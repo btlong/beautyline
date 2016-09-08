@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>예 약</title>
+<title>예약 관리</title>
 
 <!-- Bootstrap Core CSS -->
 <link href="/beautyline/bootstrap/css/bootstrap.min.css"
@@ -31,10 +31,8 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic"
 	rel="stylesheet" type="text/css">
-
 </head>
 <body>
-
 	<c:import url="/WEB-INF/views/include/header.jsp" />
 
 	<div class="container">
@@ -43,25 +41,24 @@
 				<div class="col-lg-12">
 					<hr>
 					<h2 class="intro-text text-center">
-						<strong>Reserve</strong><br> 예약
+						<strong>Reserve List</strong><br>예약관리
 					</h2>
 					<hr>
 				</div>
-				<div class="col-lg-12 text-center">
-					<div id="reservebtn">
-						<!-- 세션검사후 관리자이면 예약관리가 나와야한다. -->
-						<a href="/beautyline/reserve/reservelist" class="btn btn-default btn-lg">예약관리</a> 
-						<a href="/beautyline/reserve/reserveform"class="btn btn-default btn-lg">예약</a>
-					<div>
-					<h2>
-					<br><br><br>
-					 달력이 올 자리 
-					</h2>
+
+				<h2 class="col-lg-12 text-center">
+					<br> <small>관리자페이지 입니다.</small>
+				</h2>
+
+				<div class="col-lg-12 text-right">
+					<div id="reservelsdelbtn">
+						<a href="#" class="btn btn-default btn-lg">예약취소</a>
+					</div>
+
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<c:import url="/WEB-INF/views/include/footer.jsp" />
+		<c:import url="/WEB-INF/views/include/footer.jsp" />
 </body>
 </html>

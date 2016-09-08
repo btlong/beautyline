@@ -11,4 +11,14 @@ public class ReserveController {
 	public String calenderform(){
 		return "reserve/calenderform";
 	}
+	
+	@RequestMapping("/reservelist")
+	public String reservelist(){
+		return "reserve/reservelist";
+	}
+	
+	@RequestMapping("/reserveform")
+	public String reserveform(){
+		return "reserve/reserveform";
+	}
 }

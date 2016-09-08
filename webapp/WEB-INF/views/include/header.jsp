@@ -5,7 +5,7 @@
 	pageEncoding="UTF-8"%>
 
 
-<div class="brand">Beauty-Line</div>
+<div class="brand">BeautyLine</div>
 
 <div id="includeheader" >
 

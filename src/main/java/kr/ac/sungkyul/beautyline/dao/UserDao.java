@@ -24,7 +24,7 @@ public class UserDao {
 		UserVo vo = sqlSession.selectOne("user.getByNo", userNo);
 		return vo;
 	}
-
+/// 안녕하세요
 	public UserVo get(String email) { // 이메일 체크 다오
 		UserVo vo = sqlSession.selectOne("user.getByEmail", email);
 		//List<UserVo> list = sqlSession.selectList("user.getByEmail", email);

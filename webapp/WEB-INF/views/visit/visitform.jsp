@@ -35,20 +35,60 @@
 
 	<!-- container -->
 	<div class="container">
-		<!-- Navigation -->
-		<div class="row">
-			<nav class="navbar navbar-default" role="navigation">
-				<div class="col-md-10">
-					<a> <input type="button" align="bottom" value="쿠폰등록"> </a>
+		<form>
+			<!-- Navigation -->
+			<div class="box">
+				<div class="row">
+					<div class="col-md-9">
+						<a> <input type="button" value="쿠폰등록">
+						</a>
+					</div>
+					<div class="col-md-1">
+						<a> <input type="button" value="내역조회"></a>
+					</div>
+					<div class="col-md-1">
+						<a><input type="button" value="회원등록"> </a>
+					</div>
 				</div>
-				<div class="col-md-2">
-				 	<a> <input type="button" align="bottom" value="내역조회"> 
-						<input type="button" align="bottom" value="회원등록"> </a>
+
+				<div class="form-inline">
+					<div class="form-group has-error">
+						<label for="userno">회원번호</label> <input type="text"
+							class="form-control" id="userNo"> <label for="name">이름</label>
+						<input type="text" class="form-control" id="name"
+							placeholder="홍길동"> <label for="name">전화번호</label> <input
+							type="text" class="form-control" id="phone" placeholder="010">
+					</div>
+					<button type="button" class="btn btn-default">검색</button>
+					<div class="form-group">
+						<label >케어 프로그램</label> 
+						
+						<select class="form-control">
+							<option>선택 </option>
+							<option>베이직 케어</option>
+							<option>미백 케어</option>
+							<option>주름 케어</option>
+							<option>여드름 케어</option>
+						</select>
+						
+						<!-- 이벤트 처리 필요 (케어 프로그램 선택 완료시 횟수 보여줌) -->
+						<c:choose>
+							<c:when test=''>
+								<label class="show" for="exampleInputPassword1">남은 횟수 </label>
+							</c:when>
+							<c:otherwise>
+								<label class="hidden" for="exampleInputPassword1">남은 횟수
+								</label>
+
+							</c:otherwise>
+						</c:choose>
+					</div>
 				</div>
-			</nav> 
-		</div>
+
+			</div>
+		</form>
 		<!-- 회원번호 : 텍스트박스  ,  이름 : 텍스트박스 		right 전화번호 : 텍스트박스  -->
-		
+
 	</div>
 	<%-- <c:import url='/WEB-INF/views/include/footer.jsp'></c:import> --%>
 

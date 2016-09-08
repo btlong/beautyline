@@ -2,13 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="user">
-	<select id="getByEmailAndPassword" parameterType="uservo"
+	<select id="getByIdAndPassword" parameterType="uservo"
 		resultType="uservo">
 	<![CDATA[
-		select no, name from users where email=#{email } and password=#{password }
+		select no, name from users where id=#{id } and password=#{password }
 	]]><!-- 칼럼 이름이 어렵다하면  	select n as no, name from users where...-->
 	</select>
-
+      
 	<update id="update" parameterType="uservo">
 		<choose>
 			<when test="#{password==''}">
@@ -26,15 +26,14 @@
 
 	<insert id="insert" parameterType="uservo" >
 	<![CDATA[
-		insert into Users values(seq_Users.nextval, #{name }, #{email }, #{gender }, #{password })
+		insert into Users values(seq_Users.nextval, #{name }, #{id }, #{gender }, #{password })
 
 	]]>
 	</insert>
 
-	<select id="getByEmail" parameterType="String" resultType="uservo">
+	<select id="getById" parameterType="String" resultType="uservo">
 	<![CDATA[
-		select no, name, email from users where email=#{email }
-		
+		select no, name, id from users where id=#{id }
 	]]>
 	</select>
 

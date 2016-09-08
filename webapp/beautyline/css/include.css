@@ -14,8 +14,8 @@ ul {
     float: right;
 }
 
-li {
-    
+#includeheader li {
+    color: white;
     float: left;
 }
 

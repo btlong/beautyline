@@ -50,11 +50,13 @@ public class UserController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(HttpSession session,
-			@RequestParam(value = "email", required = false, defaultValue = "") String email,
+
+			@RequestParam(value = "id", required = false, defaultValue = "") String id,
 			@RequestParam(value = "password", required = false, defaultValue = "") String password) {
 
-		UserVo authUser = userService.login(email, password);
+		UserVo authUser = userService.login(id, password);
 		if (authUser == null) {
+			System.out.println("세션값이 없다!!!");
 			return "redirect:/user/loginform";
 		}
 		session.setAttribute("authUser", authUser);

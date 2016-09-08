@@ -24,27 +24,28 @@ public class UserDao {
 		UserVo vo = sqlSession.selectOne("user.getByNo", userNo);
 		return vo;
 	}
-/// 안녕하세요
-	public UserVo get(String email) { // 이메일 체크 다오
-		UserVo vo = sqlSession.selectOne("user.getByEmail", email);
-		//List<UserVo> list = sqlSession.selectList("user.getByEmail", email);
+
+	public UserVo get(String id) { // 이메일 체크 다오
+		UserVo vo = sqlSession.selectOne("user.getByid", id);
+		//List<UserVo> list = sqlSession.selectList("user.getByid", id);
 		return vo;
 	}
 
-	public UserVo get(String email, String password) {// 로그인 확인
+	public UserVo get(String id, String password) {// 로그인 확인
 
 		UserVo userVo = new UserVo();
-		userVo.setEmail(email);
+		userVo.setId(id);
 		userVo.setPassword(password);
 
 		//만약에 파라미터로 넘겨야 할 매핑 클래스가 없는경우
 		/*Map<String, Object>map = new HashMap<String, Object>();
-		map.put("email", email);
+		map.put("id", id);
 		map.put("password", password);
-		UserVo vo = sqlSession.selectOne("user.getByEmailAndPassword", map); q받아올때는 map.get();
+		UserVo vo = sqlSession.selectOne("user.getByidAndPassword", map); q받아올때는 map.get();
 		*/
 		
-		UserVo vo = sqlSession.selectOne("user.getByEmailAndPassword", userVo);
+		UserVo vo = sqlSession.selectOne("user.getByIdAndPassword", userVo);
+		System.out.println(vo);
 		return vo;
 
 	}

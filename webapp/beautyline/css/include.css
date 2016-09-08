@@ -1,0 +1,25 @@
+@IMPORT url("../bootstrap/css/bootstrap.css");
+
+#includeheader {
+	height:30px;
+	margin: 0 auto;
+	
+	
+}
+
+ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+    float: right;
+}
+
+li {
+    
+    float: left;
+}
+
+#includeheader ul li a {
+	color: white;
+	margin: 20px;
+}

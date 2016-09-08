@@ -5,7 +5,7 @@
 	<typeAlias type="kr.ac.sungkyul.beautyline.vo.UserVo" alias="uservo"/>
     	</typeAliases>	
 	<mappers>
-		<mapper resource="mybatis/mappers/user.xml" />
+		<mapper resource="mybatis/mappers/board.xml" />
 		
 	</mappers>
 </configuration>

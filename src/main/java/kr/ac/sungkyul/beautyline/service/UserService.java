@@ -16,8 +16,8 @@ public class UserService {
 		userDao.insert(vo);
 	}
 	
-	public UserVo login(String email, String password){
-		UserVo authUser = userDao.get(email,password);
+	public UserVo login(String id, String password){
+		UserVo authUser = userDao.get(id,password);
 		return authUser;
 		
 	}

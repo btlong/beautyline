@@ -42,12 +42,6 @@ public class UserController {
 		return "user/loginform";
 	}
 
-	/*
-	 * @RequestMapping("/login") public String login(@MoelAttribute String
-	 * email, String password ){ userService.login(email, password); return
-	 * "/main"; }
-	 */
-
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(HttpSession session,
 

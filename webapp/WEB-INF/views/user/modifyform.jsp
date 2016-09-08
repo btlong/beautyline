@@ -1,4 +1,4 @@
-<%@page import="kr.ac.sungkyul.mysite.vo.UserVo"%>
+<%@page import="kr.ac.sungkyul.beautyline.vo.UserVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>

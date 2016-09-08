@@ -8,28 +8,21 @@
 <div class="brand">Beauty-Line</div>
 
 <div id="includeheader" >
+
+	
+
 	<ul>
 		<c:choose>
-			<c:when test='${empty authUser }'>
-				<%-- if( authUser == null ){ --%>
-				<li><a href="/beautyline/user/loginform">Login</a></li>
-				<li><a href="/beautyline/user/joinform">Join</a></li>
+			<c:when test='${not empty sessionScope.authUser }'>
+			<li><li >${authUser.name }님안녕하세요^^;</li>
+			<li><a href="/beautyline/user/modifyform">회원정보수정</a><li>
+			<li><a href="/beautyline/user/logout">Log out</a>
+				
 			</c:when>
 
 			<c:otherwise>
-				<%--} else { --%>
-				<li><a href="/beautyline/user/modifyform">회원정보수정</a>
-				<li>
-				<li><a href="/beautyline/user/logout">Log out</a>
-				<li>
-					<!-- handler해줬기 때문에 url이 이뻐짐 a?이런거 안써도됨 -->
-				<li>${authUser.name }님안녕하세요^^;</li>
-				<!-- session 안붙여줘도 된다. -->
-				<!-- <li>${sessionScope.authUser.name }님 안녕하세요 ^^;</li> -->
-				<%-- <li><%=authUser.getName() %>님 안녕하세요 ^^;</li> --%>
-				<%--
-					}
-					--%>
+				<li><a href="/beautyline/user/loginform">Login</a></li>
+				<li><a href="/beautyline/user/joinform">Join</a></li>
 			</c:otherwise>
 
 		</c:choose>

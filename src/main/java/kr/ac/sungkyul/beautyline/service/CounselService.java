@@ -31,7 +31,6 @@ public class CounselService {
 			if(lowestScore > scores[i]) {
 				lowestScore = scores[i];
 				weaknessType = i;
-				System.out.println("weaknessType: " + weaknessType);
 			}
 		}
 		

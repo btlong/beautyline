@@ -28,7 +28,7 @@ public class ReserveController {
 	//수정폼
 		@RequestMapping(value = "modifyForm", method = RequestMethod.GET)
 		public String modifyForm(BoardVo boardVo, Model model) {
-//			boardVo = bbsService.selectBoard(boardVo);
+			boardVo = bbsService.selectBoard(boardVo);
 			System.out.println("modifyForm:  " + boardVo.toString());
 
 			model.addAttribute("boardVo", boardVo);

@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>예약 관리</title>
+<title>default</title>
 
 <!-- Bootstrap Core CSS -->
 <link href="/beautyline/bootstrap/css/bootstrap.min.css"
@@ -41,18 +41,17 @@
 				<div class="col-lg-12">
 					<hr>
 					<h2 class="intro-text text-center">
-						<strong>Reserve List</strong><br>예약관리
+						<strong>default</strong><br>기본
 					</h2>
 					<hr>
 				</div>
 
 				<h2 class="col-lg-12 text-center">
-					<br> <small>관리자페이지 입니다.</small>
+					<small>기본기본</small>
 				</h2>
 
-				<div class="col-lg-12 text-right">
-					<div id="reservelsdelbtn">
-						<a href="#" class="btn btn-default btn-lg">예약취소</a>
+				<div class="col-lg-12 text-center"> <!-- text-center, right -->
+						<a href="#" class="btn btn-default btn-lg">기본</a>
 					</div>
 
 				</div>

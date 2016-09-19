@@ -20,6 +20,7 @@
 <!-- Custom CSS -->
 <link href="/beautyline/bootstrap/css/business-casual.css"
 	rel="stylesheet">
+<link href="/beautyline/bootstrap/css/bootstrap.css" rel="stylesheet">
 <link href="/beautyline/beautyline/css/include.css" rel="stylesheet">
 <link href="/beautyline/beautyline/css/reserve.css" rel="stylesheet">
 
@@ -36,7 +37,7 @@
 	<c:import url="/WEB-INF/views/include/header.jsp" />
 
 	<div class="container">
-		<div clas="row">
+		<div class="row">
 			<div class="box">
 				<div class="col-lg-12">
 					<hr>
@@ -58,7 +59,16 @@
 				</div>
 			</div>
 		</div>
+	</div>
 
-		<c:import url="/WEB-INF/views/include/footer.jsp" />
+
+	<c:import url="/WEB-INF/views/include/footer.jsp" />
+	
+	<!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+	
 </body>
 </html>

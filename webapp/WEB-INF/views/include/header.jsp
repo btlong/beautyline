@@ -4,17 +4,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+<<<<<<< HEAD
 
 
 <div class="brand">BeautyLine</div>
 
 <div id="includeheader">
+=======
+<div class="brand">BeautyLine</div>
+
+<div id="includeheader" >
+
+>>>>>>> d2c674fb03ba69e250822fcf97c884b14393518e
 	<ul>
 		<c:choose>
 			<c:when test='${not empty sessionScope.authUser }'>
-			<li><li >${authUser.name }님안녕하세요^^;</li>
-			<li><a href="/beautyline/user/modifyform">회원정보수정</a><li>
-			<li><a href="/beautyline/user/logout">Log out</a>
+			<li id="userli">${authUser.name }님안녕하세요^^</li>
+			<li><a href="/beautyline/user/modifyform">회원정보수정</a></li>
+			<li><a href="/beautyline/user/logout">Log out</a></li>
 				
 			</c:when>
 

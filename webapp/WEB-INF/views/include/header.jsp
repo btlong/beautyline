@@ -5,12 +5,10 @@
 	pageEncoding="UTF-8"%>
 
 
+
 <div class="brand">BeautyLine</div>
 
-<div id="includeheader" >
-
-	
-
+<div id="includeheader">
 	<ul>
 		<c:choose>
 			<c:when test='${not empty sessionScope.authUser }'>
@@ -50,7 +48,7 @@
 				<li><a href="index.html">소개</a></li>
 				<li><a href="/beautyline/reserve/calenderform">예약</a></li>
 				<li><a href="blog.html">게시판</a></li>
-				<li><a href="contact.html">나의피부타입</a></li>
+				<li><a href="/beautyline/coun/test" >나의피부타입</a></li>
 				<!-- 관리자일때
 				<c:choose>
 					<c:when test='${empty authUser }'>

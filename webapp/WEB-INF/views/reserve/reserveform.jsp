@@ -20,6 +20,7 @@
 <!-- Custom CSS -->
 <link href="/beautyline/bootstrap/css/business-casual.css"
 	rel="stylesheet">
+<link href="/beautyline/bootstrap/css/bootstrap.css" rel="stylesheet">
 <link href="/beautyline/beautyline/css/include.css" rel="stylesheet">
 <link href="/beautyline/beautyline/css/reserve.css" rel="stylesheet">
 
@@ -50,6 +51,7 @@
 					<br> <small>예약하고자하는 시간과 프로그램을 선택하는 페이지 입니다.</small>
 				</h2>
 				<div class="col-lg-12 text-center">
+					${reservVo.regDate }
 					<div id="reserveselectbtn">
 						<a href="#" class="btn btn-default btn-lg">예</a>
 						<a href="#" class="btn btn-default btn-lg">아니오</a>

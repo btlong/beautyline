@@ -1,9 +1,11 @@
 package kr.ac.sungkyul.beautyline.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+
+import kr.ac.sungkyul.beautyline.vo.BoardVo;
 @Controller
 @RequestMapping("/reserve")
 public class ReserveController {
@@ -18,10 +20,21 @@ public class ReserveController {
 		return "reserve/reservelist";
 	}
 	
-	@RequestMapping("/reserveform")
-	public String reserveform(){
+	@RequestMapping(value = "reserveform", method = RequestMethod.GET)
+	public String reserveform( ){
 		return "reserve/reserveform";
 	}
+	
+	//수정폼
+		@RequestMapping(value = "modifyForm", method = RequestMethod.GET)
+		public String modifyForm(BoardVo boardVo, Model model) {
+			boardVo = bbsService.selectBoard(boardVo);
+			System.out.println("modifyForm:  " + boardVo.toString());
+
+			model.addAttribute("boardVo", boardVo);
+			return "board/modify";
+		}
+	
 	
 	@RequestMapping( value="/reservecalsel", method=RequestMethod.POST )
 	public String reservecalsel(String day){

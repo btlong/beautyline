@@ -1,7 +1,5 @@
-@IMPORT url("../bootstrap/css/bootstrap.css");
 
-#reservebtn	a{
-	float: right;
+#reservebtn{
 	margin: 10px;
 }
 
@@ -21,6 +19,10 @@
 #btnreserve {
 	margin-top:20px;
 }
+#adminreserve a{
+	mrgin-top: 50px;
+}
+
 
 
           

@@ -21,6 +21,7 @@
 <!-- Custom CSS -->
 <link href="/beautyline/bootstrap/css/business-casual.css"
 	rel="stylesheet">
+<link href="/beautyline/bootstrap/css/bootstrap.css" rel="stylesheet">
 <link href="/beautyline/beautyline/css/include.css" rel="stylesheet">
 <link href="/beautyline/beautyline/css/reserve.css" rel="stylesheet">
 
@@ -40,15 +41,14 @@
 <script type="text/javascript">
 $(function(){
 	$("#datepicker").datepicker({
-		inline: true,
 		showOtherMonths: true,
-		showMonthAfterYear: true,
-		monthNames: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12' ],
+		monthNames: ['01월', '02월', '03월', '04월', '05월', '06월', '07월', '08월', '09월', '10월', '11월', '12월' ],
 		dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
 		onSelect: function(dateText){
-			console.log(dateText);
+			//console.log(dateText);
 			$("#dateName").val(dateText);
 			//var selectDate = $(this).data("selectDate");
+			
 		}
 		});
 	
@@ -57,24 +57,24 @@ $(function(){
 </script>
 
 <style>
+.ui-datepicker .ui-datepicker-prev{
+	
+}
 .ui-datepicker{
 	margin: 50px auto 0;
 	width: 500px;
 	height: auto;
 	font: 10pt;
 }
-
-.ui-state-default a{
+.ui-state-default{
 	background: none;
-	border: none;
+	border: 0;
 }
-
 </style>
 </head>
 <body>
 
 	<c:import url="/WEB-INF/views/include/header.jsp" />
-
 	<div class="container">
 		<div class="box">
 		<div class="row">
@@ -87,23 +87,26 @@ $(function(){
 					<hr>
 				</div>
 				<div class="col-lg-12 text-center">
-					<div id="reservebtn">
+					<div>
 						<!-- 세션검사후 관리자이면 예약관리가 나와야한다. -->
 						<c:choose>
 							<c:when test='${not empty sessionScope.authUser }'>
 								
 									
-								<div id="datepicker"> </div>
-								<div id="col-sm-4 text-center">
+							<div id="datepicker"> </div>
+							<div id="col-sm-4 text-center">
 								
-								<form id="" name="" method="post" action="/beautyline/reserve/reservecalsel">
-									<label>예약일</label>
-									<input  id="dateName" name="day" type="text" value=""><br>
-									<input  id="btnreserve" class="btn btn-default btn-lg" type="submit" value="예약하기">
-								</form>
+								<div id="reservebtn">
+									<form id="" name="" method="GET" action="/beautyline/reserve/reserveform">
+										<label>예약일</label>
+										<input  id="dateName" name="day" type="text" value=""><br>
+										<input  id="btnreserve" class="btn btn-default btn-lg" type="submit" value="예약하기">
+									
+									</form>
 								
-									<a href="/beautyline/reserve/reservelist" class="btn btn-default btn-lg">예약관리</a>
+									<a id="adminreserve" href="/beautyline/reserve/reservelist" class="btn btn-default btn-lg">예약관리</a>
 								</div>
+							</div>
 							</c:when>
 
 							<c:otherwise>
@@ -122,11 +125,6 @@ $(function(){
 
 
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
-	<!-- jQuery -->
-	<script src="js/jquery.js"></script>
-
-	<!-- Bootstrap Core JavaScript -->
-	<script src="js/bootstrap.min.js"></script>
 
 
 </body>

@@ -4,19 +4,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-
-<div class="brand">Beauty-Line</div>
+<div class="brand">BeautyLine</div>
 
 <div id="includeheader" >
-
-	
 
 	<ul>
 		<c:choose>
 			<c:when test='${not empty sessionScope.authUser }'>
-			<li><li >${authUser.name }님안녕하세요^^;</li>
-			<li><a href="/beautyline/user/modifyform">회원정보수정</a><li>
-			<li><a href="/beautyline/user/logout">Log out</a>
+			<li id="userli">${authUser.name }님안녕하세요^^</li>
+			<li><a href="/beautyline/user/modifyform">회원정보수정</a></li>
+			<li><a href="/beautyline/user/logout">Log out</a></li>
 				
 			</c:when>
 
@@ -48,7 +45,7 @@
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li><a href="index.html">소개</a></li>
-				<li><a href="about.html">예약</a></li>
+				<li><a href="/beautyline/reserve/calenderform">예약</a></li>
 				<li><a href="blog.html">게시판</a></li>
 				<li><a href="contact.html">나의피부타입</a></li>
 				<!-- 관리자일때

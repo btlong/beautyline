@@ -31,7 +31,7 @@
 	<!-- oracle datasource -->
 	<bean id="oracleDatasource" class="oracle.jdbc.pool.OracleDataSource"
 		destroy-method="close">
-		<property name="URL" value="jdbc:oracle:thin:@localhost:1521:xe" /> <!--setURL/setUser... 등이 들어있다 -->
+		<property name="URL" value="jdbc:oracle:thin:@220.67.115.228:1521:xe" /> <!--setURL/setUser... 등이 들어있다 -->
 		<property name="user" value="btlong" />
 		<property name="password" value="btlong" />
 		<property name="connectionCachingEnabled" value="true" />

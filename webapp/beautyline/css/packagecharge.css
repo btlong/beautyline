@@ -1,0 +1,8 @@
+
+.col-md-6, .col-md-3, .col-md-2, .col-md-1   {
+	position: relative;
+    min-height: 2px;
+    padding-right: 15px;
+    padding-left: 20px;
+   	margin: 3px;	
+}

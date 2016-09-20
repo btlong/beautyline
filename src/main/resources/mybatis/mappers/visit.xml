@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="visit">
+
+	<!-- <insert id="insert" parameterType="visitvo"> <![CDATA[ insert into 
+		VISIT values ( #{ ) where users.name = #{userName} and ]]> </insert> -->
+
+	<select id="selectByName" parameterType="uservo" resultType="uservo">
+	<![CDATA[
+		select no, name, phone 
+		from users
+		where name = #{name} or phone = #{phone}
+	]]>
+	</select>
+
+</mapper>

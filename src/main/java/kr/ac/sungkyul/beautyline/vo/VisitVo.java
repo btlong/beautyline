@@ -18,6 +18,17 @@ public class VisitVo {
 	private long acneScore; // 여드름 점수
 	private double averageScore; // 평균점수
 
+	private String payName; // 결제방법이름;
+
+	/* 사용자 측정후 이미지 */
+	private long fNo; // 1.fno -> 저장시
+	private String path; // 3.path
+	private String orgName; // 4.orgName
+	private String saveName; // 5.saveName
+	private long fileSize; // 6.filesize
+
+	// private String name; // 이름검색을 위해 넣어야할지 말아야할지 모르겠음.
+
 	/* getter & setter */
 	public long getNo() {
 		return no;
@@ -115,11 +126,20 @@ public class VisitVo {
 		this.averageScore = averageScore;
 	}
 
+	public String getPayName() {
+		return payName;
+	}
+
+	public void setPayName(String payName) {
+		this.payName = payName;
+	}
+
 	@Override
 	public String toString() {
 		return "VisitVo [no=" + no + ", userNo=" + userNo + ", programNo=" + programNo + ", iamgeNo=" + iamgeNo
 				+ ", memo=" + memo + ", regDate=" + regDate + ", whiteningScore=" + whiteningScore + ", whinkleScore="
 				+ whinkleScore + ", elasticScore=" + elasticScore + ", moistureScore=" + moistureScore + ", acneScore="
-				+ acneScore + ", averageScore=" + averageScore + "]";
+				+ acneScore + ", averageScore=" + averageScore + ", payName=" + payName + "]";
 	}
+
 }

@@ -1,13 +1,10 @@
 @IMPORT url("../bootstrap/css/bootstrap.css");
 
-#reservebtn	a{
+#reservebtn	a {
 	float: right;
 	margin: 10px;
 }
 
-#reserveselectbtn a{
+#reserveselectbtn a {
 	margin: 10px;
-	
 }
-
-

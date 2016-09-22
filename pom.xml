@@ -6,6 +6,8 @@
 	<artifactId>beautyline</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
+	
+	
 	<properties>
 
 	<org.springframework-version>4.2.1.RELEASE</org.springframework-version>

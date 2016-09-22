@@ -3,9 +3,10 @@
 <configuration><!-- 결과와 파라미터만 매핑 하는것 -->
 	<typeAliases>
 	<typeAlias type="kr.ac.sungkyul.beautyline.vo.UserVo" alias="uservo"/>
+	<typeAlias type="kr.ac.sungkyul.beautyline.vo.VisitVo" alias="visitvo"/>
     	</typeAliases>	
 	<mappers>
 		<mapper resource="mybatis/mappers/user.xml" />
-		
+		<mapper resource="mybatis/mappers/visit.xml" />
 	</mappers>
 </configuration>

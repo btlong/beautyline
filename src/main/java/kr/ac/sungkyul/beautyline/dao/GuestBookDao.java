@@ -14,13 +14,6 @@ import org.springframework.stereotype.Repository;
 import kr.ac.sungkyul.beautyline.vo.GuestBookVo;
 @Repository
 public class GuestBookDao {
-
-	
-	
-	
-	
-	
-	
 	
 	public List<GuestBookVo> getList() {
 		List<GuestBookVo> list = new ArrayList<GuestBookVo>();

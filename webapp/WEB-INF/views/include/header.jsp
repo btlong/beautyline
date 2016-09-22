@@ -4,12 +4,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-
 <div class="brand">BeautyLine</div>
 
 
+<<<<<<< HEAD
+=======
 <div id="includeheader" >
 
+>>>>>>> 576740f53842181533153e67178aca553cf389d6
 	<ul>
 		<c:choose>
 			<c:when test='${not empty sessionScope.authUser }'>

@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+<<<<<<< HEAD
+=======
 import org.springframework.web.servlet.ModelAndView;
+>>>>>>> 576740f53842181533153e67178aca553cf389d6
 
 import kr.ac.sungkyul.beautyline.email.EmailSender;
 import kr.ac.sungkyul.beautyline.service.UserService;
@@ -106,7 +109,7 @@ public class UserController {
 		return "user/modifyform";
 
 	}
-
+	
 	@RequestMapping(value="/modify", method=RequestMethod.POST)
 //	public String modify(HttpSession session,@RequestParam(value="name", required=false, defaultValue="") String name, @RequestParam(value="password", required=false, defaultValue="") String password, @RequestParam(value="gender", required=false, defaultValue="") String gender ){
 

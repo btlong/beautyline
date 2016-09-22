@@ -93,14 +93,6 @@ public class UserController {
 	
 	/*--------------*/
 	
-	
-	
-
-	
-
-	
-
-	
 
 	@RequestMapping("/modifyform")
 	public String modifyform(HttpSession session) {

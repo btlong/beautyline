@@ -37,12 +37,18 @@
 		<property name="connectionCachingEnabled" value="true" />
 		<qualifier value="main-db" />
 	</bean>
-	
 	<!-- MyBatis SqlSessionFactoryBean -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="oracleDatasource" />
 		<property name="configLocation" value="classpath:mybatis/configuration.xml" />
 	</bean>
+
+
+	<!-- MyBatis SqlSessionTemplate -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>
+	
 <!-- 이메일 보내기 --> 
 <bean id="mailSender" class ="org.springframework.mail.javamail.JavaMailSenderImpl" >
     <property name="host" value="smtp.gmail.com" />
@@ -57,10 +63,11 @@
 </bean>
 
 
-	<!-- MyBatis SqlSessionTemplate -->
-	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
-		<constructor-arg index="0" ref="sqlSessionFactory" />
-	</bean>
 
+<!-- <bean id="mailMail" class="com.mkyong.common.MailMail">
+	<property name="mailSender" ref="mailSender" />
+</bean>
+
+ -->
 
 </beans> 

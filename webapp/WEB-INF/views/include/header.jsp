@@ -7,6 +7,7 @@
 
 <div class="brand">BeautyLine</div>
 
+
 <div id="includeheader" >
 
 	<ul>

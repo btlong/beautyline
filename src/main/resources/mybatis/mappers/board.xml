@@ -18,7 +18,7 @@
 	
 	<delete id="delete" parameterType="boardvo">
 	<![CDATA[
-		delete from board where no =#{no }
+		delete from board where no =#{no}
 	]]>
 	</delete>
 	

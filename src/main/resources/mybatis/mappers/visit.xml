@@ -14,4 +14,12 @@
 	]]>
 	</select>
 
+	<select id="selectList">
+	<![CDATA[
+		select s.no ,s.reg_date ,a.name , p.name , s.price  from 
+sales s,(select name from users where no = 27 ) a , (select name from pay where no = 1 ) p;
+		
+	]]>
+	</select>
+
 </mapper>

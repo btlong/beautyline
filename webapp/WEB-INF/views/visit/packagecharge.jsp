@@ -27,7 +27,6 @@
 </head>
 <body>
 	<!-- Model -->
-
 	<!-- header -->
 	<div class="modal-header">
 		<!-- 닫기(x) 버튼 -->

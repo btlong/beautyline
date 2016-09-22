@@ -28,6 +28,10 @@ public class VisitService {
 		return visitDao.selectByName(userVo);
 	}
 
+	public List<VisitVo> selectList() {
+		return visitDao.selectList();
+	}
+
 	// visitForm에서 name을 검색 --> Query를 통해 --> VisitVo의 정보를 불러옴 ( name은 UserVo에
 	// 존재 )
 	/*public VisitVo search(String name) {

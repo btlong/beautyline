@@ -27,20 +27,24 @@ public class VisitDao {
 	}
 
 	/* 방문내역 조회 */
-	public List<VisitVo> getList() {
+	/*public List<VisitVo> getList() {
 		List<VisitVo> list = sqlSession.selectList("visit.getList");
 		return list;
-	}
+	}*/
 
-	/* 회원 검색 */
+/*	 회원 검색 
 	public List<VisitVo> getList(String name) {
 
 		List<VisitVo> list = sqlSession.selectOne("visit.getSearchList", name); //
 		return list;
-	}
+	}*/
 
 	public List<UserVo> selectByName(UserVo userVo) {
-		return sqlSession.selectList("visit.selectByName", userVo);
+		return sqlSession.selectList("user.getByName", userVo);
+	}
+
+	public List<VisitVo> selectList() {
+		return sqlSession.selectList("visit.selectList");
 	}
 
 }

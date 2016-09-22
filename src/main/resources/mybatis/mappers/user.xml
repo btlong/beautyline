@@ -43,6 +43,15 @@
 	]]>
 	</select>
 	
+	<select id="getByName" parameterType="uservo" resultType="uservo">
+	<![CDATA[
+		select no, name, phone from users 
+		where 	name LIKE '%' || #{name} || '%' OR
+				phone LIKE '%' || #{phone} 
+		order by no desc 
+	]]>
+	</select>
+	
 	
 	<delete id="delete" parameterType="uservo">
 	<![CDATA[

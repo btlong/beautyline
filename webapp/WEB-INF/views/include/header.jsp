@@ -6,14 +6,18 @@
 
 <div class="brand">BeautyLine</div>
 
+
+<<<<<<< HEAD
+=======
 <div id="includeheader" >
 
+>>>>>>> 576740f53842181533153e67178aca553cf389d6
 	<ul>
 		<c:choose>
 			<c:when test='${not empty sessionScope.authUser }'>
-			<li><li >${authUser.name }님안녕하세요^^;</li>
-			<li><a href="/beautyline/user/modifyform">회원정보수정</a><li>
-			<li><a href="/beautyline/user/logout">Log out</a>
+			<li id="userli">${authUser.name }님안녕하세요^^</li>
+			<li><a href="/beautyline/user/modifyform">회원정보수정</a></li>
+			<li><a href="/beautyline/user/logout">Log out</a></li>
 				
 			</c:when>
 
@@ -47,7 +51,7 @@
 				<li><a href="index.html">소개</a></li>
 				<li><a href="/beautyline/reserve/calenderform">예약</a></li>
 				<li><a href="blog.html">게시판</a></li>
-				<li><a href="contact.html">나의피부타입</a></li>
+				<li><a href="/beautyline/coun/test" >나의피부타입</a></li>
 				<!-- 관리자일때
 				<c:choose>
 					<c:when test='${empty authUser }'>

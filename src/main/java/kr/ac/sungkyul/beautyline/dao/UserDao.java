@@ -54,6 +54,25 @@ public class UserDao {
 		sqlSession.insert("user.insert",vo);
 
 	}
+	
+	
+	public UserVo checkId(String id){//아이디 중복확인
+		UserVo vo = sqlSession.selectOne("user.checkId",id);
+		return vo;
+	}
+	
+	public UserVo getId(String name, String email) {// 찾기 id 
+		UserVo userVo = new UserVo();
+		userVo.setName(name);
+		userVo.setEmail(email);
+		
+		
+		UserVo vo = sqlSession.selectOne("user.getId",userVo);
+		return vo;
+	
+	}
+	
+	
 
 	public boolean delete(UserVo vo) {
 		return sqlSession.delete("user.delete",vo) !=0;

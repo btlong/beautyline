@@ -5,24 +5,47 @@
 <!doctype html>
 <html>
 <head>
-<title>mysite</title>
-<meta http-equiv="content-type" content="text/html; charset=utf-8">
-<link href="/mysite4/assets/css/user.css" rel="stylesheet"
-	type="text/css">
+  <title>joinform</title>
+
+ <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+     <!-- Bootstrap Core CSS -->
+	<link href="/custombeauty/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Custom CSS -->
+	<link href="/custombeauty/bootstrap/css/business-casual.css" rel="stylesheet">
+	<link href="/custombeauty/beautyline/css/include.css" rel="stylesheet">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="/custombeauty/bootstrap/css/font-awesome.min.css" media="screen" title="no title" >
+    <!-- Custom style -->
+    <link rel="stylesheet" href="/custombeauty/bootstrap/css/style.css" media="screen" title="no title" >
+	
+  <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
+	
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+  <script type="text/javascript" src="/custombeauty/bootstrap/js/jquery.js"></script>
 </head>
 <body>
 	<div id="container">
-		<c:import url='/WEB-INF/views/include/header.jsp'/>
+	
 		<div id="content">
 			<div id="user">
-				<p class="jr-success">
-					회원가입을 축하합니다. <br>
-					<br> <a href="/mysite4/user/loginform">로그인하기</a>
+				<p>${userVo.id} <br>
+					
 				</p>
 			</div>
 		</div>
-		<c:import url='/WEB-INF/views/include/navi.jsp'/>
-		<c:import url='/WEB-INF/views/include/footer.jsp'/>
+
 
 	</div>
 </body>

@@ -21,7 +21,6 @@
 
 <!-- Custom CSS -->
 <link href="/beautyline/bootstrap/css/business-casual.css" rel="stylesheet">
-<link href="beautyline/bootstrap/css/bootstrap.css" rel="stylesheet">
 <link href="/beautyline/beautyline/css/include.css" rel="stylesheet">
 
 <!-- Fonts -->

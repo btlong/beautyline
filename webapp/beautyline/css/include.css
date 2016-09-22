@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-
-
-
 #includeheader {
    height:30px;
    margin: 0 auto;
@@ -10,34 +6,24 @@
 
 #includeheader li {
    list-style: none; 
-=======
 
-
-
+}
 
 #includeheader {
-	height:30px;
-	margin: 10px auto;
-	
+   height:30px;
+   margin: 10px auto;
+   
 }
+
 #includeheader li {
-	list-style: none; 
->>>>>>> d2c674fb03ba69e250822fcf97c884b14393518e
+   list-style: none; 
     color: white;
     float: right;
     margin: 10px;
 }
+
 #includeheader ul li a {
-<<<<<<< HEAD
    color: white;
    margin: 5px;
    padding: 10px;
 }
-=======
-	color: white;
-	margin: 5px;
-	padding: 10px;
-}
-
-
->>>>>>> d2c674fb03ba69e250822fcf97c884b14393518e

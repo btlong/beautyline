@@ -23,20 +23,17 @@
 <link href="/beautyline/bootstrap/css/business-casual.css" rel="stylesheet">
 <link href="/beautyline/beautyline/css/include.css" rel="stylesheet">
 
-
 <!-- Fonts -->
 <link 	href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
 <link 	href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
-
 
 </head>
 
 <body>
 	<c:import url="/WEB-INF/views/include/header.jsp" />
-	
+
 	
 	<div class="container">
-
 		<div class="row">
 			<div class="box">
 				<div class="col-lg-12 text-center">

@@ -13,6 +13,9 @@ public class UserService {
 	private UserDao userDao;
 	
 	public void join(UserVo vo){
+		vo.setEmail(vo.getEmail1() + "@" + vo.getEmail2());
+		vo.setAddress("["+ vo.getZipCode() + "]" +vo.getAddress1()+vo.getAddress2());
+		System.out.println(vo.toString());
 		userDao.insert(vo);
 	}
 	
@@ -32,5 +35,21 @@ public class UserService {
 	public UserVo getUserInfo(Long no){
 		UserVo authUser = userDao.get(no);
 		return authUser;
+	}
+	
+	public UserVo getId(String name, String email){
+		UserVo authUser = userDao.getId(name, email);
+		return authUser;
+	}
+	
+	public String checkId(String id){
+		UserVo vo = userDao.checkId(id);
+		
+		if(vo !=null){
+		return "exists";
+		}
+		else{
+			return "ok";
+		}
 	}
 }

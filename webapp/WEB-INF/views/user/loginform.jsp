@@ -9,89 +9,217 @@
 
 
 <title>loginform</title>
-<meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-   <!-- Bootstrap Core CSS -->
-    <link href="/beautyline/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
 
+<!-- Bootstrap Core CSS -->
+<link href="/beautyline/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- font awesome -->
+    <link rel="stylesheet" href="/beautyline/bootstrap/css/font-awesome.min.css" media="screen" title="no title" >
+   
     <!-- Custom CSS -->
     <link href="/beautyline/bootstrap/css/business-casual.css" rel="stylesheet">
-	<link href="/beautyline/beautyline/css/include.css" rel="stylesheet">
-	<!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
-	
-	
-</head>
+   <link href="/beautyline/beautyline/css/include.css" rel="stylesheet">
+    <!-- Custom style -->
+    <link rel="stylesheet" href="/beautyline/bootstrap/css/style.css" media="screen" title="no title" >
+   
+  <!-- Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
+
+
+
+
+<style type="text/css">
+.block-label {
+   width: 100px;
+}
+
+.btn btn-danger {
+   margin: 50px;
+}
+
+#loginbt {
+   margin-top: 10px;
+}
+</style>
+<!-- modal script -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+ </head>
+
+
+
 <body>
-    <div class="brand">BeautyLine</div>
-    <div class="address-bar">3481 Melrose Place | Beverly Hills, CA 90210 | 123.456.7890</div>
 
-
- <!-- Navigation 상단바 -->
-    <nav class="navbar navbar-default" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
-                <a class="navbar-brand" href="index.html">Business Casual</a>
+   <c:import url="/WEB-INF/views/include/header.jsp" />
+<div class="container">
+      <div class="row">
+         <div class="box">
+            <div class="col-lg-12">
+            
+            
+             <div class="page-header">
+               <hr>
+               <h1 class="text-center">
+                  <strong>LOGIN</strong>
+               </h1>
+               <hr>
             </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="index.html">Home</a>
-                    </li>
-                    <li>
-                        <a href="about.html">About</a>
-                    </li>
-                    <li>
-                        <a href="blog.html">Blog</a>
-                    </li>
-                    <li>
-                        <a href="contact.html">Contact</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
-
-	<div class="container">
-		<div class="row">
-			<div class="box">
-			 <div class="col-lg-12">
-                    <hr>
-                    <h2 class="intro-text text-center">
-                        <strong>LOGIN</strong>
-                    </h2>
-                    <hr>
+            
+            <form class="form-horizontal"  name="loginform" method="post" action="/beautyline/user/login">
+   
+   
+               <div class="form-group">
+                  <label class="col-sm-3 control-label" for="id">ID</label>
+                   <div class="col-sm-6">
+                  <input class="form-control" id="id" name="id" type="text" value="" placeholder="YOUR ID">
+                  </div>
                 </div>
-                <form id="login-form" name="loginform" method="post" action="/beautyline/user/login">
-                 <div class="col-lg-12">
-                   <label class="block-label" for="id">ID</label>
-			   	<input id="id" name="id" type="text" value="">
-                    </div>
-				    <div class="col-lg-12">
-            	     <label class="block-label">password</label>
-					<input name="password" type="password" value="">
-                    </div>
-					<c:if test='${param.r == "fail"}'>
-						<p>로그인이 실패 했습니다.</p>
-					</c:if>
-					<input type="submit" value="LOGIN">
-				</form>
-				<div class="clearfix"></div>
-			</div>
-		</div>
+                
+                <div class="form-group">
+                  <label class="col-sm-3 control-label" for="password">PASSWORD</label>
+                   <div class="col-sm-6">
+                  <input class="form-control" id="password" name="password" type="text" value="" placeholder="PASSWORD">
+                  </div>
+                </div>
+            
+            <!--     <div class="form-group">
+                  <label class="col-sm-3 control-label" for="id">ID</label>
+                   <div class="col-sm-6">
+                  <input class="form-control" id="id" name="id" type="text" value="" placeholder="YOUR ID">
+                  </div>
+                </div> -->      
+               <c:if test='${param.r == "fail"}'>
+                  <p>로그인이 실패 했습니다.</p>
+               </c:if>
+           
+           <!-- 아이디 비밀번호 찾기 클릭 -->
+<div class="col-lg-12 text-center">
+  <!-- Trigger the modal with a button -->
+<!--   <button type="button" class="btn btn-info btn-lg" id="myBtn">아이디찾기</button>  -->
+ <a href="" id="idfind" data-target="#myModal3" type="button"  data-toggle="modal">아이디찾기</a>/
+ <a href="">비밀번호 찾기</a>
+ </div>
+ 
+           
+           
+           
+               
+               <div id="loginbt" class="col-lg-12 text-center">
+                  <input class="btn btn-danger" type="submit" value="LOGIN">
+               </div>
+      <!--       
+      <div class="col-lg-12 text-center">
+                  <label class="block-label">password</label>
+                  <input name="password" type="password" value="" placeholder="PASSWORD">
+               </div>
+                
+      
+         
+               </div> -->
+               
+               
 
-	</div>
+ 
+ 
+ 
+  
+  
+
+                  
+            </form>
+         </div>
+      </div>
+      <!-- <div class="clearfix"></div> -->
+   </div>
+   </div>
+
+   <!-- footer -->
+   <c:import url="/WEB-INF/views/include/footer.jsp" />
+
+
+
+
+<!-- Modal -->
+  <div class="modal fade" id="myModal3" role="dialog" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+    
+      <!-- Modal content-->
+     
+      <div class="modal-content">
+      <form class="form-horizontal" id="idfind-form" name="idFindForm" method="post" action="/beautyline/user/idfind">
+    
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">아이디 찾기</h4>
+        </div>
+       
+       
+        <div class="modal-body"><!-- 이름과 이메일로 찾기 -->
+               
+         
+          
+       <!-- 이름 -->
+       <div class="form-group">
+          <label class="col-sm-4 control-label" for="name">이름</label>
+        <div class="col-sm-8">
+          <input class="form-control"  name="name" id="name" type="text" placeholder="이름" >
+        </div>
+        </div>
+          
+          <div class="form-group">
+          <label class="col-sm-4 control-label" for="email">이메일</label>
+        <div class="col-sm-8">
+          <input class="form-control" name="email" id="email" type="text" placeholder="이메일">
+        </div>
+        </div>
+       
+      
+          
+       
+          
+          
+        </div>
+        <div class="modal-footer">
+        <div id="fintdt" class="col-lg-12 text-center">
+               <button class="btn btn-default" type="submit">찾기</button>
+               </div>
+       <!--  <button type="button" class="btn btn-default" data-dismiss="modal">찾기</button> -->  
+        </div>
+     </form>
+      </div>
+       
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+   <script>
+$(document).ready(function(){
+    $("#idfind").click(function(){
+    	
+        $("#myModal").modal();
+        
+    });
+});
+</script>
 </body>
 </html>
+
+
+

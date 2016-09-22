@@ -42,10 +42,22 @@
 		<property name="dataSource" ref="oracleDatasource" />
 		<property name="configLocation" value="classpath:mybatis/configuration.xml" />
 	</bean>
+<!-- 이메일 보내기 --> 
+<bean id="mailSender" class ="org.springframework.mail.javamail.JavaMailSenderImpl" >
+    <property name="host" value="smtp.gmail.com" />
+    <property name="port" value="587" />
+    <property name="username" value="userid@gmail.com" />
+    <property name="password" value="userpw" />
+    <property name="javaMailProperties">
+    <props>
+        <prop key="mail.smtp.starttls.enable">true</prop>
+    </props>
+    </property>
+</bean>
 
 
 	<!-- MyBatis SqlSessionTemplate -->
-	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
 		<constructor-arg index="0" ref="sqlSessionFactory" />
 	</bean>
 

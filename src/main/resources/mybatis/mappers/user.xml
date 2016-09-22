@@ -26,7 +26,7 @@
 
 	<insert id="insert" parameterType="uservo" >
 	<![CDATA[
-		insert into Users values(seq_Users.nextval, #{name }, #{id }, #{gender }, #{password })
+		insert into Users values(seq_Users.nextval, #{name }, #{id }, #{password }, #{email }, #{address }, #{phone }, 1, 1, 'y')
 
 	]]>
 	</insert>
@@ -44,9 +44,26 @@
 	</select>
 	
 	
+	<select id="getId" parameterType="uservo" resultType="uservo">
+	<![CDATA[
+		select no, name, id from users where name= #{name } and email=#{email }
+	]]>
+	</select>
+	
+	
+	
 	<delete id="delete" parameterType="uservo">
 	<![CDATA[
 	 delete from User where no =#{no } and password = #{password }
 	]]>
 	</delete>
+	
+	
+	<select id="checkId" parameterType="String" resultType="uservo">
+	<![CDATA[
+		select no, id from users where id=#{id }
+	]]>
+	</select>
+	
+	
 </mapper>

@@ -24,7 +24,12 @@
 			value="org.springframework.web.servlet.view.JstlView" />
 		<property name="prefix" value="/WEB-INF/views/" /> <!-- 앞에 value값을 붙이고 -->
 		<property name="suffix" value=".jsp" /> <!-- 뒤에 value값을 붙인다. --> <!-- 그것을 리턴해 준다. -->
-		<property name="order" value="1" /> 
+		<property name="order" value="1" />
 	</bean>
 
+	<!-- 첨부파일관련 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="10485760" />
+	</bean>
 </beans>

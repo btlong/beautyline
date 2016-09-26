@@ -375,6 +375,8 @@ $(function(){ // 다썼는지 체크하기! 빠진 항목없는지..
 		 
 	});
 	
+	
+	
 	$("#email_select").change( function(){ //@뒤 이메일 자동으로 만들어주는것
 		console.log($("#email_select").val());
         if ($("#email_select").val() == '1') {

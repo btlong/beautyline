@@ -5,15 +5,13 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
-import kr.ac.sungkyul.beautyline.email.EmailSender;
 import kr.ac.sungkyul.beautyline.service.UserService;
-import kr.ac.sungkyul.beautyline.vo.Email;
 import kr.ac.sungkyul.beautyline.vo.UserVo;
 
 @Controller
@@ -23,10 +21,6 @@ public class UserController {
 	@Autowired
 	UserService userService;
 
-	@Autowired
-    private EmailSender emailSender;
-	
-	//dddddd
 	
 	/* -- 회원가입  -- */	
 	
@@ -89,6 +83,22 @@ public class UserController {
 		return "redirect:/main";
 	}
 	
+	@ResponseBody
+	@RequestMapping(value="idfind", method=RequestMethod.POST) //아이디 찾기
+	public String idfind  (@RequestBody UserVo userVo) throws Exception {
+		String findResult = userService.getId(userVo);
+		System.out.println(findResult);
+		return findResult;
+    }
+	
+	@ResponseBody
+	@RequestMapping(value="pwfind", method=RequestMethod.POST) //아이디 찾기
+	public String pwfind  (@RequestBody UserVo userVo) throws Exception {
+		String findResult = userService.getPw(userVo);
+		System.out.println(findResult);
+		return findResult;
+    }
+	
 	/*--------------*/
 	
 	
@@ -124,32 +134,8 @@ public class UserController {
 	}
 	
 	
-	@RequestMapping(value="/idfind" , method=RequestMethod.POST)
-	public String idfind(
-			@RequestParam(value = "name", required = false, defaultValue = "") String name,
-			@RequestParam(value = "email", required = false, defaultValue = "") String email) {
 	
-		return "redirect:/user/joinsuccess";
 
-	}
-	
-	
-	@RequestMapping("/send")
-    public ModelAndView sendEmailAction () throws Exception {
- 
-        Email email = new Email();
-         
-        String reciver = "reciver@email.com"; //받을사람의 이메일입니다.
-        String subject = "이메일 제목";
-        String content = "이메일 내용입니다.";
-         
-        email.setReciver(reciver);
-        email.setSubject(subject);
-        email.setContent(content);
-        emailSender.SendEmail(email);
-         
-        return new ModelAndView("success");
-    }
 
 	
 	

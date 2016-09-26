@@ -43,21 +43,28 @@
 	]]>
 	</select>
 	
-	<select id="getByName" parameterType="uservo" resultType="uservo">
-	<![CDATA[
-		select no, name, phone from users 
-		where 	name LIKE '%' || #{name} || '%' OR
-				phone LIKE '%' || #{phone} 
-		order by no desc 
-	]]>
-	</select>
-	
 	
 	<select id="getId" parameterType="uservo" resultType="uservo">
 	<![CDATA[
-		select no, name, id from users where name= #{name } and email=#{email }
+		select no, name, id, email from users where name= #{name } and email=#{email }
 	]]>
 	</select>
+	
+	<select id="getPw" parameterType="uservo" resultType="uservo">
+	<![CDATA[
+		select no, name, id, email from users where name= #{name } and id=#{id } and email=#{email } 
+	]]>
+	</select>
+	
+	
+	<update id="updateTemPw" parameterType="uservo">
+	<![CDATA[
+		update users set password= #{password } where no = #{no }
+	]]>
+	</update>
+	
+	
+	
 	
 	
 	
@@ -73,6 +80,9 @@
 		select no, id from users where id=#{id }
 	]]>
 	</select>
+	
+	
+	
 	
 	
 </mapper>

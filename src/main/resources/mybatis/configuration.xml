@@ -9,6 +9,7 @@
 	<mappers>
 		<mapper resource="mybatis/mappers/user.xml" />
 		<mapper resource="mybatis/mappers/visit.xml" />
+		<mapper resource="mybatis/mappers/userinfo.xml" />
 	</mappers>
 
 </configuration>

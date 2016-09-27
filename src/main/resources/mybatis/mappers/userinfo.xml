@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="userinfo">
+
+	<select id="listUser" resultType="kr.ac.sungkyul.beautyline.vo.UserinfoVo">
+		<![CDATA[
+			select	no,
+					name, 
+					phone,
+					id, 
+					password, 
+					email, 
+					address, 
+					is_admin from users
+			order by no desc
+		]]>
+	</select>
+
+ 	<select id="selectUser" parameterType="java.lang.Long"
+		resultType="kr.ac.sungkyul.beautyline.vo.UserinfoVo">
+		<![CDATA[
+			select no, name, phone, id, email, address, is_admin from users
+			where no=#{no}
+		]]>
+	</select>
+ 
+	<delete id="deleteUser" parameterType="java.lang.Long">
+		<![CDATA[
+			delete from users
+			where no=#{no}
+		]]>
+	</delete>
+	
+	<update id="updateUser" parameterType="kr.ac.sungkyul.beautyline.vo.UserinfoVo">
+		<![CDATA[
+			update users set
+				name = #{name},
+				phone= #{phone},
+				id= #{id}, 
+				email= #{email}, 
+				address= #{address}, 
+				is_admin=  #{is_admin}
+			where no=#{no}
+		]]>
+				<!-- isAdmin= #{isAdmin} -->
+	</update>
+	
+ <!-- 	<select id="couponView" parameterType="java.lang.Long"
+		resultType="kr.ac.sungkyul.beautyline.vo.CouponviewVo">
+		<![CDATA[
+			select users.name as userName, program.name as programName, coupon.count as count
+			from users users, program program, coupon coupon
+			where coupon.user_no=users.no
+			and coupon.program_no = program.no
+			and users.no=#{users.no}
+		]]>
+	</select> -->
+	
+<!-- 	<select id="listCoupon" resultType="kr.ac.sungkyul.beautyline.vo.CouponviewVo">
+		<![CDATA[
+			select coupon.no, users.no as userNo, program.no as programNo, coupon.count as count, users.name as userName, program.name as programName
+			from users users, program program, coupon coupon
+			where coupon.user_no=users.no
+			and coupon.program_no = program.no
+			and users.no=#{users.no}
+		]]>
+	</select>
+	 -->
+</mapper>

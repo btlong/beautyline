@@ -7,6 +7,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>방문 내역</title>
 <jsp:useBean id="now" class="java.util.Date" />
 <!-- modal script -->
@@ -24,9 +26,9 @@
 <!-- Custom CSS -->
 <link href="/beautyline/bootstrap/css/business-casual.css"
 	rel="stylesheet">
-<!-- visit css -->
-<link href="/beautyline/beautyline/css/visit.css" rel="stylesheet">
-
+<!-- responsive css -->
+<!-- <link href="/beautyline/beautyline/css/visit.css" rel="stylesheet"> -->
+<link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
 <!-- Fonts -->
 <link
 	href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
@@ -45,18 +47,26 @@
 		<div class="box">
 			<form id="visitform" name="visitForm" method="post"
 				action="/beautyline/visited">
+				<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
+				<%--<div class="form-inline col-lg-10">
+					<div class="form-group">
+						<label class="intro-text">날짜 : </label> <label class="intro-text"><small><strong>${today}</strong></small></label>
+					</div>
+				</div> --%>
+
 
 				<!-- Navigation -->
-				<div class="row center-block">
-					<div class="form-inline col-lg-10">
-						<div class="form-group">
-
+				<div class="row form-inline">
+					<div class="col-lg-11">
+						<div class="text-left">
+							<label class="intro-text">날짜 : </label> <label class="intro-text"><small><strong>${today}</strong></small></label>
+						</div>
+						<div class="text-right">
 							<a href="" data-target="#myModal1" data-toggle="modal"
-								class="btn btn-danger btn-primary btn-sm left-block"
-								id="package"> 쿠폰 등록</a> <a
-								class="btn btn-danger btn-primary btn-sm right-block"
+								class="btn btn-danger btn-primary btn-sm" id="package"> 쿠폰
+								등록</a> <a class="btn btn-danger btn-primary btn-sm"
 								href="/beautyline/visit/details" role="button">내역 조회</a> <a
-								class="btn btn-danger btn-primary btn-sm right-block"
+								class="btn btn-danger btn-primary btn-sm"
 								href="/beautyline/visit/registration" role="button">회원 등록</a>
 						</div>
 					</div>
@@ -90,7 +100,7 @@
 							<th>여드름 케어</th>
 						</tr>
 
-						<tr class="hover">
+						<tr>
 							<th id="one"></th>
 							<th id="two"></th>
 							<th id="three"></th>
@@ -100,12 +110,6 @@
 					</table>
 				</div>
 
-				<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
-				<div class="form-inline col-lg-10">
-					<div class="form-group">
-						<label class="intro-text">날짜 : </label> <label class="intro-text"><small><strong>${today}</strong></small></label>
-					</div>
-				</div>
 
 				<div class="form-group col-lg-10">
 					<label class="intro-text"> 점수 </label>
@@ -127,9 +131,9 @@
 									</div>
 								</td>
 								<td><input type="text"></td>
-								<td>65</td>
-								<td>34</td>
-								<td>88</td>
+								<td><input type="text"></td>
+								<td><input type="text"></td>
+								<td><input type="text"></td>
 							</tr>
 						</table>
 					</div>

@@ -42,43 +42,40 @@
 
 	<!-- container -->
 	<div class="container">
-		<form id="visitform" name="visitForm" method="post"
-			action="/beautyline/visited">
-			<!-- Navigation -->
-			<div class="box center-block">
-				<div class="form-inline col-lg-10">
-					<div class="form-group">
+		<div class="box">
+			<form id="visitform" name="visitForm" method="post"
+				action="/beautyline/visited">
 
-						<a href="" data-target="#myModal1" data-toggle="modal"
-							class="btn btn-danger btn-primary btn-sm left-block" id="package"> 쿠폰 등록</a>
-						<a class="btn btn-danger btn-primary btn-sm right-block" href="/beautyline/visit/details" role="button">내역 조회</a> 
-						<a class="btn btn-danger btn-primary btn-sm right-block" href="/beautyline/visit/registration" role="button">회원 등록</a>
+				<!-- Navigation -->
+				<div class="row center-block">
+					<div class="form-inline col-lg-10">
+						<div class="form-group">
+
+							<a href="" data-target="#myModal1" data-toggle="modal"
+								class="btn btn-danger btn-primary btn-sm left-block"
+								id="package"> 쿠폰 등록</a> <a
+								class="btn btn-danger btn-primary btn-sm right-block"
+								href="/beautyline/visit/details" role="button">내역 조회</a> <a
+								class="btn btn-danger btn-primary btn-sm right-block"
+								href="/beautyline/visit/registration" role="button">회원 등록</a>
+						</div>
 					</div>
 				</div>
-			</div>
 
-			<div class="box">
 				<div class="form-inline col-lg-11">
-					<p class="bg-danger">
-						<!-- userNo -->
-						<label class="intro-text">회원번호</label> <input type="text"
-							class="form-control" name="userNo" id="userNo"
-							value="${userVo.no}">
+					<!-- name -->
+					<label class="intro-text">이름</label> <input type="text"
+						class="form-control" name="name" id="name" placeholder="홍길동"
+						value="${userVo.name}">
 
-						<!-- name -->
-						<label class="intro-text">이름</label> <input type="text"
-							class="form-control" name="name" id="name" placeholder="홍길동"
-							value="${userVo.name}">
+					<!-- phone -->
+					<label class="intro-text">전화번호</label> <input type="text"
+						class="form-control" name="phone" id="phone"
+						placeholder="010-1234-1234" value="${userVo.phone}">
 
-						<!-- phone -->
-						<label class="intro-text">전화번호</label> <input type="text"
-							class="form-control" name="phone" id="phone"
-							placeholder="010-1234-1234" value="${userVo.phone}">
-
-						<!-- Trigger the modal with a button -->
-						<button type="button" class="btn btn-info btn-lg" id="smyModal"
-							data-target="#myModal3" data-toggle="modal">검색</button>
-					</p>
+					<!-- Trigger the modal with a button -->
+					<button type="button" class="btn btn-info btn-lg" id="smyModal"
+						data-target="#myModal3" data-toggle="modal">검색</button>
 				</div>
 
 
@@ -93,7 +90,7 @@
 							<th>여드름 케어</th>
 						</tr>
 
-						<tr>
+						<tr class="hover">
 							<th id="one"></th>
 							<th id="two"></th>
 							<th id="three"></th>
@@ -113,7 +110,7 @@
 				<div class="form-group col-lg-10">
 					<label class="intro-text"> 점수 </label>
 					<div class="table-responsive">
-						<table class="table table-hover">
+						<table class="table">
 							<tr class="danger">
 								<th>측정 사진</th>
 								<th>수분</th>
@@ -160,15 +157,12 @@
 						</div>
 					</div>
 				</div>
-			</div>
-		</form>
+			</form>
+		</div>
 	</div>
 
 	<!-- 회원번호 : 텍스트박스  ,  이름 : 텍스트박스 		right 전화번호 : 텍스트박스  -->
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
-
-
-
 	<!-- searchModal -->
 
 	<div class="modal fade" id="myModal3" role="dialog" tabindex="-1"
@@ -220,9 +214,6 @@
 			</form>
 		</div>
 	</div>
-
-
-
 
 
 	<!-- package Model-->
@@ -283,10 +274,6 @@
 		</div>
 		<!-- 	</form> -->
 	</div>
-
-
-
-
 </body>
 <script>
 	/* search Modal Click */
@@ -356,7 +343,6 @@
 				var user = retVal.authUser;
 				var selectId = [ "one", "two", "three", "four" ];
 				/* 말줄임말 필요 */
-				document.getElementById('userNo').value = user.no;
 				document.getElementById('name').value = user.name;
 				document.getElementById('phone').value = user.phone;
 

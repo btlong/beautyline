@@ -129,7 +129,7 @@
 										<input type="file" id="input_file" class="upload-hidden">
 									</div>
 								</td>
-								<td>input 값 넣기</td>
+								<td><input type="text"></td>
 								<td>65</td>
 								<td>34</td>
 								<td>88</td>

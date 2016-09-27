@@ -1,7 +1,7 @@
 package kr.ac.sungkyul.beautyline.vo;
 
 public class UserVo {
-	private Long no;
+	private long no;
 	private String name;
 	private String id;
 	private String password;

@@ -24,7 +24,6 @@
 <link    href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
 <link    href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
 
-	
 <style type="text/css">
 img {
 	margin: 20px;
@@ -42,7 +41,7 @@ img {
 	margin-top: 100px;	
 }
 
-button {
+#forward {
 	width: 150px;
 }
 
@@ -225,7 +224,7 @@ button {
 						<small>당신이 좋아하는 색깔은?</small>
 					</h2>
 					
-					<div class="col-lg-12">
+					<div class="col-lg-12 test">
 						<img id="blue" src="/beautyline/images/btn_color_blue.png" /> 
 						<img id="green" src="/beautyline/images/btn_color_green.png" /> 
 						<img id="red" src="/beautyline/images/btn_color_red.png" /> 
@@ -239,7 +238,7 @@ button {
 						<small>당신이 좋아하는 동물은?</small>
 					</h2>
 					
-					<div class="col-lg-12">
+					<div class="col-lg-12 test">
 						<img id="bird" src="/beautyline/images/btn_animal_bird.png" /> 
 						<img id="bug" src="/beautyline/images/btn_animal_bug.png" /> 
 						<img id="nemo" src="/beautyline/images/btn_animal_nemo.png" /> 
@@ -253,7 +252,7 @@ button {
 						<small>당신의 평소 수면시간은?</small>
 					</h2>
 					
-					<div class="col-lg-12">
+					<div class="col-lg-12 test">
 						<img id="4hours" src="/beautyline/images/btn_sleep_4.PNG" /> 
 						<img id="5hours" src="/beautyline/images/btn_sleep_5.PNG" /> 
 						<img id="6hours" src="/beautyline/images/btn_sleep_6.PNG" /> 
@@ -262,12 +261,12 @@ button {
 					</div>
 				</div>
 				
-				<div class="col-lg-9 hide" id=test4>
+				<div class="col-lg-9 hide test" id=test4>
 					<h2 class="col-lg-12 text-center">
 						<small>당신의 피부 톤은?</small>
 					</h2>
 					
-					<div class="col-lg-12">
+					<div class="col-lg-12 test">
 						<img id="tone1" src="/beautyline/images/btn_color_1.PNG" /> 
 						<img id="tone2" src="/beautyline/images/btn_color_2.PNG" /> 
 						<img id="tone3" src="/beautyline/images/btn_color_3.PNG" /> 
@@ -281,7 +280,7 @@ button {
 						<small>얼마나 자주 피부 트러블이 나시나요?</small>
 					</h2>
 					
-					<div class="col-lg-12">
+					<div class="col-lg-12 test">
 						<img id="acne1" src="/beautyline/images/btn_acne_always.PNG" /> 
 						<img id="acne2" src="/beautyline/images/btn_acne_usually.PNG" /> 
 						<img id="acne3" src="/beautyline/images/btn_acne_often.PNG" /> 

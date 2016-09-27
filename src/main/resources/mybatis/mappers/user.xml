@@ -46,9 +46,21 @@
 	
 	<select id="getId" parameterType="uservo" resultType="uservo">
 	<![CDATA[
-		select no, name, id from users where name= #{name } and email=#{email }
+		select no, name, id, email from users where name= #{name } and email=#{email }
 	]]>
 	</select>
+	
+	<select id="getPw" parameterType="uservo" resultType="uservo">
+	<![CDATA[
+		select no, name, id, email from users where name= #{name } and id=#{id } and email=#{email } 
+	]]>
+	</select>
+	
+	<update id="updateTemPw" parameterType="uservo">
+	<![CDATA[
+		update users set password= #{password } where no = #{no }
+	]]>
+	</update>
 	
 	
 	<delete id="delete" parameterType="uservo">
@@ -63,6 +75,7 @@
 		select no, id from users where id=#{id }
 	]]>
 	</select>
+	
 	
 	
 </mapper>

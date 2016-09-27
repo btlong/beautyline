@@ -12,7 +12,6 @@ public class UserDao {
 	private SqlSession sqlSession;
 
 	public void update(UserVo vo) {// 회원정보수정
-
 		sqlSession.update("user.update", vo);
 		/*
 		 * catch (SQLException e) { //e.printStackTrace(); throw new
@@ -21,14 +20,13 @@ public class UserDao {
 	}
 
 	public UserVo get(Long userNo) { //세션넘버를 받아서 정보를 다가져올때
-		UserVo vo = sqlSession.selectOne("user.getByNo", userNo);
-		return vo;
+		return sqlSession.selectOne("user.getByNo", userNo);
 	}
 
 	public UserVo get(String id) { // 이메일 체크 다오
-		UserVo vo = sqlSession.selectOne("user.getByid", id);
+		
 		//List<UserVo> list = sqlSession.selectList("user.getByid", id);
-		return vo;
+		return sqlSession.selectOne("user.getByid", id);
 	}
 
 	public UserVo get(String id, String password) {// 로그인 확인
@@ -44,10 +42,9 @@ public class UserDao {
 		UserVo vo = sqlSession.selectOne("user.getByidAndPassword", map); q받아올때는 map.get();
 		*/
 		
-		UserVo vo = sqlSession.selectOne("user.getByIdAndPassword", userVo);
-		System.out.println(vo);
-		return vo;
-
+		return sqlSession.selectOne("user.getByIdAndPassword", userVo);
+	
+	
 	}
 
 	public void insert(UserVo vo) {// 회원가입
@@ -57,20 +54,26 @@ public class UserDao {
 	
 	
 	public UserVo checkId(String id){//아이디 중복확인
-		UserVo vo = sqlSession.selectOne("user.checkId",id);
-		return vo;
+		return sqlSession.selectOne("user.checkId",id);
 	}
 	
-	public UserVo getId(String name, String email) {// 찾기 id 
+	public UserVo getId(UserVo userVo) {// 찾기 id 
+		return	sqlSession.selectOne("user.getId",userVo);
+	
+	}
+	
+	public UserVo getPw(UserVo userVo) {// 찾기 id ;
+		return	sqlSession.selectOne("user.getPw",userVo);
+	
+	}
+	
+	public void updateTemPw(String tempPw, Long no) {// 회원정보수정
 		UserVo userVo = new UserVo();
-		userVo.setName(name);
-		userVo.setEmail(email);
-		
-		
-		UserVo vo = sqlSession.selectOne("user.getId",userVo);
-		return vo;
-	
+		userVo.setPassword(tempPw);
+		userVo.setNo(no);
+		sqlSession.update("user.updateTemPw", userVo);
 	}
+	
 	
 	
 

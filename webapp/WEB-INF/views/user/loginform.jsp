@@ -104,7 +104,7 @@
   <!-- Trigger the modal with a button -->
 <!--   <button type="button" class="btn btn-info btn-lg" id="myBtn">아이디찾기</button>  -->
  <a href="" id="idfind" data-target="#myModal3" type="button"  data-toggle="modal">아이디찾기</a>/
- <a href="">비밀번호 찾기</a>
+ <a href="" id="pwfind" data-target="#myModal2" type="button"  data-toggle="modal">비밀번호 찾기</a>
  </div>
  
            
@@ -124,15 +124,7 @@
          
                </div> -->
                
-               
-
- 
- 
- 
-  
-  
-
-                  
+                
             </form>
          </div>
       </div>
@@ -146,49 +138,89 @@
 
 
 
-<!-- Modal -->
+<!-- id찾기 Modal -->
   <div class="modal fade" id="myModal3" role="dialog" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
     
       <!-- Modal content-->
      
       <div class="modal-content">
-      <form class="form-horizontal" id="idfind-form" name="idFindForm" method="post" action="/beautyline/user/idfind">
+      <form class="form-horizontal" >
     
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">아이디 찾기</h4>
         </div>
-       
-       
         <div class="modal-body"><!-- 이름과 이메일로 찾기 -->
-               
-         
-          
-       <!-- 이름 -->
+	  <!-- 이름 -->
        <div class="form-group">
-          <label class="col-sm-4 control-label" for="name">이름</label>
+          <label class="col-sm-4 control-label" for="idFindName">이름</label>
         <div class="col-sm-8">
-          <input class="form-control"  name="name" id="name" type="text" placeholder="이름" >
+          <input class="form-control"  name="idFindName" id="idFindName" type="text" placeholder="이름" >
         </div>
         </div>
           
           <div class="form-group">
-          <label class="col-sm-4 control-label" for="email">이메일</label>
+          <label class="col-sm-4 control-label" for="idFindEmail">이메일</label>
         <div class="col-sm-8">
-          <input class="form-control" name="email" id="email" type="text" placeholder="이메일">
+          <input class="form-control" name="idFindEmail" id="idFindEmail" type="text" placeholder="이메일">
         </div>
         </div>
-       
-      
-          
-       
-          
-          
         </div>
         <div class="modal-footer">
         <div id="fintdt" class="col-lg-12 text-center">
-               <button class="btn btn-default" type="submit">찾기</button>
+         <input class="btn btn-default" type="button" id="idFindClick"  value="찾기">
+               </div>
+       <!--  <button type="button" class="btn btn-default" data-dismiss="modal">찾기</button> -->  
+        </div>
+     </form>
+      </div>
+       
+    </div>
+  </div>
+
+
+
+
+<!-- 비밀번호찾기 Modal -->
+  <div class="modal fade" id="myModal2" role="dialog" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+    
+      <!-- Modal content-->
+     
+      <div class="modal-content">
+      <form class="form-horizontal" >
+    
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">비밀번호 찾기</h4>
+        </div>
+        <div class="modal-body"><!-- 이름과 이메일로 찾기 -->
+	  <!-- 이름 -->
+       <div class="form-group">
+          <label class="col-sm-4 control-label" for="pwFindName">이름</label>
+        <div class="col-sm-8">
+          <input class="form-control"  name="pwFindName" id="pwFindName" type="text" placeholder="이름" >
+        </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="col-sm-4 control-label" for="pwFindId">아이디</label>
+        <div class="col-sm-8">
+          <input class="form-control"  name="pwFindId" id="pwFindId" type="text" placeholder="아이디" >
+        </div>
+        </div>
+          
+          <div class="form-group">
+          <label class="col-sm-4 control-label" for="pwFindEmail">이메일</label>
+        <div class="col-sm-8">
+          <input class="form-control" name="pwFindEmail" id="pwFindEmail" type="text" placeholder="이메일">
+        </div>
+        </div>
+        </div>
+        <div class="modal-footer">
+        <div id="fintdt" class="col-lg-12 text-center">
+         <input class="btn btn-default" type="button" id="pwFindClick"  value="찾기">
                </div>
        <!--  <button type="button" class="btn btn-default" data-dismiss="modal">찾기</button> -->  
         </div>
@@ -212,10 +244,89 @@
    <script>
 $(document).ready(function(){
     $("#idfind").click(function(){
-    	
         $("#myModal").modal();
-        
     });
+	$("#pwfind").click(function(){	
+        $("#myModal").modal();
+    }); 
+});
+	/* id중복체크  */
+	
+	$(function(){ // 다썼는지 체크하기! 빠진 항목없는지..
+
+	$("#idFindClick").on("click",function(){
+		var name = $("#idFindName").val();
+		var email = $("#idFindEmail").val();
+		var userVo ={
+				"name": name,
+				"email": email
+			};
+		$.ajax({// 비동기식 
+			url :"idfind",
+			type:"POST",
+			data:JSON.stringify(userVo),
+			contentType:"application/json",
+			dataType:"text",
+			success:function(findUser){
+				  if( findUser == "found"){
+					  alert("이메일로 아이디정보를 전송하였습니다.");
+					  $("#myModal3").modal('hide');
+					  return true; 
+				}
+				  else{
+					 alert("유효하지 않은 정보 입니다.");
+					 $("#idFindName").val("").focus();
+					 return false;
+				} 
+			},
+			 error:function(jqXHR, status, error){
+				 console.error(status+":"+error);
+			 }
+		}); 
+	});
+	
+	
+	
+	
+	
+	
+	
+	$("#pwFindClick").on("click",function(){
+		var name = $("#pwFindName").val();
+		var id = $("#pwFindId").val();
+		var email = $("#pwFindEmail").val();
+		var userVo ={
+				"name": name,
+				"id":id,
+				"email": email
+			};
+		$.ajax({// 비동기식 
+			url :"pwfind",
+			type:"POST",
+			data:JSON.stringify(userVo),
+			contentType:"application/json",
+			success:function(findUser){
+				  if( findUser == "found"){
+					  alert("이메일로 임시 비밀번호를 전송하였습니다.");
+					  $("#myModal2").modal('hide');
+					  return true; 
+				}
+				  else{
+					 alert("유효하지 않은 정보 입니다.");
+					 $("#pwFindName").val("").focus();
+					 return false;
+				} 
+			},
+			 error:function(jqXHR, status, error){
+				 console.error(status+":"+error);
+			 }
+		}); 
+	});
+	
+	
+	
+	
+	
 });
 </script>
 </body>

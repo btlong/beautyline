@@ -143,161 +143,217 @@
         
         
         <!-- ////////////////////////회원가입 폼시작///////////////////////////////////// -->
-        <form class="form-horizontal" id="join-form" name="joinform" method="post" action="/beautyline/user/join">
-        
-        <!-- 이름 -->
-        <div class="form-group">
-          <label class="col-sm-3 control-label" for="inputName">이름*</label>
-        <div class="col-sm-3">
-          <input class="form-control" id="inputName" name="name" type="text" placeholder="이름">
-        </div>
-        </div><br>
-           
-        <!-- 아이디 -->
-        <div class="form-group">
-          <label class="col-sm-3 control-label" for="inputId">아이디*</label>
-         <div class="col-sm-3">
-          <input class="form-control" id="inputId" name="id" type="text" placeholder="아이디" >
-         </div>
-         <span class="input-group-btn">
-          <button class="btn btn-success" id="checkId" type="button">중복 확인<i class="fa fa-edit spaceLeft"></i></button>
-         </span>
-        </div><br>
-        
-        <!-- 비밀번호 -->
-        <div class="form-group">
-         <label class="col-sm-3 control-label" for="inputPassword">비밀번호*</label>
-         <div class="col-sm-3">
-          <input class="form-control" id="inputPassword" name="password" type="password" placeholder="비밀번호">
-         </div>
-         <div class="col-sm-3">
-       	  <h11 class="help-block" id="checkPw">특수문자,영문,숫자를 혼합하여 6~20자 이내</h11>
-         </div>
-        </div>
-        
-        <!-- 비밀번호확인 -->
-         <div class="form-group">
-          <label class="col-sm-3 control-label" for="inputPasswordCheck">비밀번호 확인*</label>
-         <div class="col-sm-3">
-          <input class="form-control" id="inputPasswordCheck" type="password" placeholder="비밀번호 확인">
-           </div>
-           <div class="col-sm-3">
-           <h11 class="help-block" id="oneMore">비밀번호를 한번 더 입력해주세요.</h11>
-         </div>
-         </div><br>
-         
-         
-        <!-- 이메일 -->
-        <div class="form-group">
-            <label class="col-sm-3 control-label" for="inputEmail">이메일*</label>
-          <div class="col-sm-2">
-            <input class="form-control" name="email1" id="inputEmail1" type="text">
-            </div>
-             <div class="col-sm-2">
-          	<input class="form-control" name="email2" id="inputEmail2" type="text" >
-          	</div> 
-          	<div class="col-sm-2">
-          	<select class="form-control" name="email_select" id="email_select" > 
-  			<option value="" selected>선택하세요</option>
-   			<option value="naver.com">naver.com</option>
-    		<option value="hotmail.com">hotmail.com</option>
-    		<option value="hanmail.com">hanmail.com</option>
-    		<option value="yahoo.co.kr">yahoo.co.kr</option>
-    		<option value="1">직접입력</option>
-			</select>
-          </div>
-          </div><br>
-        
-        
-        
-        <!-- 주소 -->
-        <div class="form-group">
-            <label class="col-sm-3 control-label" for="inputNumber">주소*</label>
-            <div class="col-sm-2"> 
-              <input class="form-control" type="text" name="zipCode" id="sample6_postcode" placeholder="우편번호">
-            </div>
-            <span class="input-group-btn">
-              <input  class="btn btn-success" type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
-            </span>
-            <div class="col-sm-12 col-sm-offset-3">
-             <div class="row">
-               <div class="col-sm-4">            
-                <input class="form-control" name="address1" type="text" id="sample6_address" placeholder="주소">
-		       </div>
-			   <div class="col-sm-2">
-                <input class="form-control" name="address2" type="text" id="sample6_address2" placeholder="상세주소"> 
-               </div>
-             </div>
-            </div>
-        </div><br>
-       
-        <!-- 휴대폰 번호 -->
-        <div class="form-group">
-            <label class="col-sm-3 control-label" for="inputNumber">휴대폰번호*</label>
-              <div class="col-sm-3">
-                <input type="tel" class="form-control" name="phone" id="inputNumber" placeholder="- 없이 입력해 주세요" />
-                 </div>
-                  <span class="input-group-btn">
-                    <button class="btn btn-success">인증번호 전송<i class="fa fa-mail-forward spaceLeft"></i></button>
-                  </span>
-              </div><br>
-       
-       <!-- 인증번호 확인 -->
-        <div class="form-group">
-            <label class="col-sm-3 control-label" for="inputNumberCheck">인증번호 확인</label>
-          <div class="col-sm-2">
-            
-              <input class="form-control" id="inputNumberCheck" type="text" placeholder="인증번호">
-             </div>
-          <!--     <span class="input-group-btn"> -->
-          <div class="col-sm-2" id="btn">
-                <button class="btn btn-success" type="button">인증번호 확인<i class="fa fa-edit spaceLeft"></i></button>
-              </div>
-            <div class="col-sm-3">
-            <h11 class="help-block">전송된 인증번호를 입력해주세요.</h11>
-            </div>
-         
-        </div><br>
-        
-        
-          <div class="form-group">
-              <label class="col-sm-3 control-label" for="inputAgree">약관 동의</label>
-            <div class="col-sm-6" data-toggle="buttons">
-              <label class="btn btn-warning active">
-                <input id="agree" type="checkbox" autocomplete="off" chacked>
-                  <span class="fa fa-check"></span>
-              </label>
-              <a href="#">이용약관</a> 에 동의 합니다.
-            </div>
-          </div>
-        <div class="form-group">
-          <div class="col-sm-12 text-center">
-            <button class="btn btn-primary" type="submit">회원가입<i class="fa fa-check spaceLeft"></i></button>
-            <button class="btn btn-danger" type="submit">가입취소<i class="fa fa-times spaceLeft"></i></button>
-          </div>
-        </div>
-        </form>
-          <hr>
-        </div>
-    </div>
-    </div>
-    </div>
+					<form class="form-horizontal" id="join-form" name="joinform"
+						method="post" action="/beautyline/user/join">
 
-<c:import url="/WEB-INF/views/include/footer.jsp" />
+						<!-- 이름 -->
+						<div class="form-group" id="divName">
+							<label class="col-sm-3 control-label" for="inputName">이름*</label>
+							<div class="col-sm-3">
+								<input class="form-control onlyHangul" id="inputName"
+									name="name" type="text" placeholder="이름">
+							</div>
+						</div>
+						<br>
+
+						<!-- 아이디 -->
+						<div class="form-group" id="divId">
+							<label class="col-sm-3 control-label" for="inputId">아이디*</label>
+							<div class="col-sm-3">
+								<input class="form-control onlyAlphabetAndNumber" id="inputId"
+									name="id" type="text" placeholder="아이디">
+							</div>
+							<span class="input-group-btn">
+								<button class="btn btn-success" id="checkId" type="button">
+									중복 확인<i class="fa fa-edit spaceLeft"></i>
+								</button>
+							</span>
+						</div>
+						<br>
+
+						<!-- 비밀번호 -->
+						<div class="form-group" id="divPassword">
+							<label class="col-sm-3 control-label" for="inputPassword">비밀번호*</label>
+							<div class="col-sm-3">
+								<input class="form-control" id="inputPassword" name="password"
+									type="password" placeholder="비밀번호">
+							</div>
+							<div class="col-sm-3">
+								<h11 class="help-block" id="checkPw">특수문자,영문,숫자를 혼합하여
+								6~20자 이내</h11>
+							</div>
+						</div>
+
+						<!-- 비밀번호확인 -->
+						<div class="form-group" id="divPasswordCheck">
+							<label class="col-sm-3 control-label" for="inputPasswordCheck">비밀번호
+								확인*</label>
+							<div class="col-sm-3">
+								<input class="form-control" id="inputPasswordCheck"
+									type="password" placeholder="비밀번호 확인">
+							</div>
+							<div class="col-sm-3">
+								<h11 class="help-block" id="oneMore">비밀번호를 한번 더 입력해주세요.</h11>
+							</div>
+						</div>
+						<br>
+
+
+						<!-- 이메일 -->
+						<div class="form-group" id="divEmail">
+							<label class="col-sm-3 control-label" for="inputEmail">이메일*</label>
+							<div class="col-sm-2">
+								<input class="form-control" name="email1" id="inputEmail1"
+									type="text">
+							</div>
+							<div class="col-sm-2">
+								<input class="form-control" name="email2" id="inputEmail2"
+									type="text">
+							</div>
+							<div class="col-sm-2">
+								<select class="form-control" name="email_select"
+									id="email_select">
+									<option value="" selected>선택하세요</option>
+									<option value="naver.com">naver.com</option>
+									<option value="hotmail.com">hotmail.com</option>
+									<option value="hanmail.com">hanmail.com</option>
+									<option value="yahoo.co.kr">yahoo.co.kr</option>
+									<option value="1">직접입력</option>
+								</select>
+							</div>
+						</div>
+						<br>
 
 
 
+						<!-- 주소 -->
+						<div class="form-group" id="divAddress">
+							<label class="col-sm-3 control-label">주소*</label>
+							<div class="col-sm-2">
+								<input class="form-control" type="text" name="zipCode"
+									id="sample6_postcode" placeholder="우편번호">
+							</div>
+							<span class="input-group-btn"> <input
+								class="btn btn-success" type="button"
+								onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
+							</span>
+							<div class="col-sm-12 col-sm-offset-3">
+								<div class="row">
+									<div class="col-sm-4">
+										<input class="form-control" name="address1" type="text"
+											id="sample6_address" placeholder="주소">
+									</div>
+									<div class="col-sm-2">
+										<input class="form-control" name="address2" type="text"
+											id="sample6_address2" placeholder="상세주소">
+									</div>
+								</div>
+							</div>
+						</div>
+						<br>
+
+						<!-- 휴대폰 번호 -->
+						<div class="form-group" id="divNumber">
+							<label class="col-sm-3 control-label" for="inputNumber">휴대폰번호*</label>
+							<div class="col-sm-3">
+								<input type="tel" class="form-control onlyNumber" name="phone"
+									id="inputNumber" placeholder="- 없이 입력해 주세요" />
+							</div>
+							<span class="input-group-btn">
+								<button class="btn btn-success">
+									인증번호 전송<i class="fa fa-mail-forward spaceLeft"></i>
+								</button>
+							</span>
+						</div>
+						<br>
+
+						<!-- 인증번호 확인 -->
+						<div class="form-group" id="divNumberCheck">
+							<label class="col-sm-3 control-label" for="inputNumberCheck">인증번호
+								확인</label>
+							<div class="col-sm-2">
+								<input class="form-control" id="inputNumberCheck" type="text" placeholder="인증번호">
+							</div>
+							<!--     <span class="input-group-btn"> -->
+							<div class="col-sm-2" id="btn">
+								<button class="btn btn-success" type="button">
+									인증번호 확인<i class="fa fa-edit spaceLeft"></i>
+								</button>
+							</div>
+							<div class="col-sm-3">
+								<h11 class="help-block">전송된 인증번호를 입력해주세요.</h11>
+							</div>
+
+						</div>
+						<br><br>
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label" for="inputEmailReceiveYn" >이메일 수신여부</label>
+							<div class="col-sm-4">
+								<label class="radio-inline">
+								<input type="radio" id="emailReceiveYn" name="emailReceiveYn" value="Y" checked> 동의합니다.
+								</label>
+								<label class="radio-inline">
+								<input type="radio" id="emailReceiveYn" name="emailReceiveYn" value="N">동의하지 않습니다.
+								</label>
+							</div>
+						</div><br>
+						
+						<div class="form-group">
+							<label class="col-sm-3 control-label" for="inputPhoneNumber" >SMS 수신여부</label>
+							<div class="col-sm-4">
+								<label class="radio-inline">
+								<input type="radio" id="smsReceiveYn" name="smsReceiveYn" value="Y" checked>동의합니다.
+								</label>
+								<label class="radio-inline"> <input type="radio" id="smsReceiveYn" name="smsReceiveYn" value="N"> 동의하지 않습니다.
+								</label>
+							</div>
+						</div><br>
+
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label" for="inputAgree">약관 동의</label>
+							<div class="col-sm-6" data-toggle="buttons">
+								<label class="btn btn-warning active">
+								<input id="agree" type="checkbox" autocomplete="off">
+								<span class="fa fa-check"></span>
+								</label> <a href="#">이용약관</a> 에 동의 합니다.
+							</div>
+						</div><br><br>
+						
+						
+						<div class="form-group">
+							<div class="col-sm-12 text-center">
+								<button class="btn btn-primary" type="submit">
+									회원가입<i class="fa fa-check spaceLeft"></i>
+								</button>
+								<button class="btn btn-danger" type="submit">
+									가입취소<i class="fa fa-times spaceLeft"></i>
+								</button>
+							</div>
+						</div>
+					</form>
+					<hr>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<c:import url="/WEB-INF/views/include/footer.jsp" />
 
 
 
 
 
- <!-- <div class="col-md-4 hidden-lg hidden-md text-center"> 
+
+
+
+	<!-- <div class="col-md-4 hidden-lg hidden-md text-center"> 
             <div class="alert alert-danger alert-dismissable">
               <button contenteditable="false" type="button" class="close" data-dismiss="alert"
               aria-hidden="true">×</button>이미 등록된 아이디 입니다.</div>-->
-          
-<button id="qmyBtn">Click Here</button>
+
+	<button id="qmyBtn">Click Here</button>
 </body>
 
 
@@ -308,226 +364,281 @@
 
 
 <script>
-$(function(){ // 다썼는지 체크하기! 빠진 항목없는지..
-	$("#join-form").submit(function(){
-		if($("#inputName").val()=="" ){
-			alert ("이름은 필수 입력 항목입니다.");
-			$("#inputName").focus()
-			return false;
-		}
-		if($("#inputId").val()=="" ){
-			alert ("아이디는 필수 입력 항목입니다.");
-			$("#inputId").focus()
-			return false;
-		}
-		if($("#inputPassword").val()=="" ){
-			alert ("비밀번호는 필수 입력 항목입니다.");
-			$("#inputPassword").focus()
-			return false;
-		}
-		if($("#inputPasswordCheck").val()=="" ){
-			alert ("이메일은 필수 입력 항목입니다.");
-			$("#inputPasswordCheck").focus()
-			return false;
-		}
-		if($("#email1").val()=="" ){
-			alert ("이메일은 필수 입력 항목입니다.");
-			$("#email1").focus()
-			return false;
-		}
-		if($("#email2").val()=="" ){
-			alert ("이메일은 필수 입력 항목입니다.");
-			$("#email2").focus()
-			return false;
-		}
-		if($("#sample6_postcode").val()=="" ){
-			alert ("우편번호를 입력하세요.");
-			$("#sample6_postcode").focus()
-			return false;
-		}
-		if($("#address1").val()=="" ){
-			alert ("주소를 입력하세요.");
-			$("#address1").focus()
-			return false;
-		}
-		if($("#address2").val()=="" ){
-			alert ("상세주소를 입력하세요.");
-			$("#address2").focus()
-			return false;
-		}
-		if($("#inputNumber").val()=="" ){
-			alert ("전화번호를 입력하세요.");
-			$("#inputNumber").focus()
-			return false;
-		}
+	$(function() {
+		//모달을 전역변수로 선언
+		var modalContents = $(".modal-contents");
+		var modal = $("#defaultModal");
+
+		$('.onlyAlphabetAndNumber').keyup(function(event) {
+			if (!(event.keyCode >= 37 && event.keyCode <= 40)) {
+				var inputVal = $(this).val();
+				$(this).val($(this).val().replace(/[^_a-z0-9]/gi, '')); //_(underscore), 영어, 숫자만 가능
+			}
+		});
+
+		$(".onlyHangul").keyup(function(event) {
+			if (!(event.keyCode >= 37 && event.keyCode <= 40)) {
+				var inputVal = $(this).val();
+				$(this).val(inputVal.replace(/[a-z0-9]/gi, ''));
+			}
+		});
+
+		$(".onlyNumber").keyup(function(event) {
+			if (!(event.keyCode >= 37 && event.keyCode <= 40)) {
+				var inputVal = $(this).val();
+				$(this).val(inputVal.replace(/[^0-9]/gi, ''));
+			}
+		});
+
+		//------- 검사하여 상태를 class에 적용
+		$('#inputName').keyup(function(event) {
+
+			var divId = $('#divName');
+
+			if ($('#inputName').val() == "") {
+				divId.removeClass("has-success");
+				divId.addClass("has-error");
+			} else {
+				divId.removeClass("has-error");
+				divId.addClass("has-success");
+			}
+		});
+		$('#inputId').keyup(function(event) {
+			var divId = $('#divId');
+			if ($('#inputId').val() == "") {
+				divId.removeClass("has-success");
+				divId.addClass("has-error");
+			} else {
+				divId.removeClass("has-error");
+				divId.addClass("has-success");
+			}
+		});
+
+
+		$('#inputPassword').keyup(function(event) {
+			var password = $('#inputPassword').val();
+			var passwordCheck = $('#inputPasswordCheck').val();
+			var divPasswordCheck = $('#divPasswordCheck');
+			var divPassword = $('#divPassword');
+			if (password == "" || (CehckPassWord(password) == false)) {
+				divPassword.removeClass("has-success");
+				divPassword.addClass("has-error");
+				$("#checkPw").html("비밀번호는 특수문자, 영문,숫자를 혼합하여 6~20자리로 입력해주세요.");
+			} else {
+				divPassword.removeClass("has-error");
+				divPassword.addClass("has-success");
+				$("#checkPw").html("사용 가능합니다.");
+			}
+			if (password != passwordCheck) {
+				divPasswordCheck.removeClass("has-success");
+				divPasswordCheck.addClass("has-error");
+				$("#oneMore").html("일치 하지 않습니다.")
+			} else {
+				divPasswordCheck.removeClass("has-error");
+				divPasswordCheck.addClass("has-success");
+				$("#oneMore").html("일치 합니다.")
+			}
+		});
+
+		$('#inputPasswordCheck').keyup(function(event) {
+
+			var passwordCheck = $('#inputPasswordCheck').val();
+			var password = $('#inputPassword').val();
+			var divPasswordCheck = $('#divPasswordCheck');
+
+			if ((passwordCheck == "") || (password != passwordCheck)) {
+				divPasswordCheck.removeClass("has-success");
+				divPasswordCheck.addClass("has-error");
+				$("#oneMore").html("일치 하지 않습니다.")
+			} else {
+				divPasswordCheck.removeClass("has-error");
+				divPasswordCheck.addClass("has-success");
+				$("#oneMore").html("일치 합니다.")
+			}
+		});
 		
+		$('#inputEmail1').keyup(function(event) {
+			var divEmail = $('#divEmail');
+			if ($.trim($('#inputEmail1').val()) == "" || $.trim($('#inputEmail2').val()) == "") {
+				divEmail.removeClass("has-success");
+				divEmail.addClass("has-error");
+			} else {
+				divEmail.removeClass("has-error");
+				divEmail.addClass("has-success");
+			}
+		});
+		$("#email_select").change(function() {
+			/* @뒤 이메일 자동으로 만들어주는것  */
+			if ($("#email_select").val() == '1') {//
+				$("#inputEmail2").readonly = false;
+				$("#inputEmail2").value = '';
+				$("#inputEmail2").focus();
+			} else {
+				$("#inputEmail2").readonly = true;
+				$("#inputEmail2").val($("#email_select").val());
+			}
+			var divEmail = $('#divEmail');
+			if ($.trim($('#inputEmail1').val()) == "" || $.trim($('#inputEmail2').val()) == "") {
+				divEmail.removeClass("has-success");
+				divEmail.addClass("has-error");
+			} else {
+				divEmail.removeClass("has-error");
+				divEmail.addClass("has-success");
+			}
+		});
+
+		$('#inputNumber').keyup(function(event) {
+			var divPhoneNumber = $('#divNumber');
+			//숫자 검사해야함!
+			if ($.trim($('#inputNumber').val()) == "") {
+				divPhoneNumber.removeClass("has-success");
+				divPhoneNumber.addClass("has-error");
+			} else {
+				divPhoneNumber.removeClass("has-error");
+				divPhoneNumber.addClass("has-success");
+			}
+		});
+	
 		
-		
-	 	/* if($("#agree-prov").is(":checked")==false ){
+		/* validation 검사   */
+		$("#join-form").submit(function() {
+			if ($("#inputName").val() == "") {
+				alert("이름은 필수 입력 항목입니다.");
+				$("#inputName").focus()
+				return false;
+			}
+			if ($("#inputId").val() == "") {
+				alert("아이디는 필수 입력 항목입니다.");
+				$("#inputId").focus()
+				return false;
+			}
+			if ($("#inputPassword").val() == "") {
+				alert("비밀번호는 필수 입력 항목입니다.");
+				$("#inputPassword").focus()
+				return false;
+			}
+			if ($("#inputPasswordCheck").val() == "") {
+				alert("이메일은 필수 입력 항목입니다.");
+				$("#inputPasswordCheck").focus()
+				return false;
+			}
+			if ($("#email1").val() == "") {
+				alert("이메일은 필수 입력 항목입니다.");
+				$("#email1").focus()
+				return false;
+			}
+			if ($("#email2").val() == "") {
+				alert("이메일은 필수 입력 항목입니다.");
+				$("#email2").focus()
+				return false;
+			}
+			if ($("#sample6_postcode").val() == "") {
+				alert("우편번호를 입력하세요.");
+				$("#sample6_postcode").focus()
+				return false;
+			}
+			if ($("#address1").val() == "") {
+				alert("주소를 입력하세요.");
+				$("#address1").focus()
+				return false;
+			}
+			if ($("#address2").val() == "") {
+				alert("상세주소를 입력하세요.");
+				$("#address2").focus()
+				return false;
+			}
+			if ($("#inputNumber").val() == "") {
+				alert("전화번호를 입력하세요.");
+				$("#inputNumber").focus()
+				return false;
+			}
+			if($("#emailReceiveYn").is(":checked")==false ){
+				alert ("약관동의가 필요합니다.");
+				
+				return false;
+				}
+			
+			
+			if($("#agree-prov").is(":checked")==false ){
 			alert ("약관동의가 필요합니다.");
 			
 			return false;
-		} */  
-		
-		//아이디 중복체크했는지도!
-		alert ("회원가입에 성공하였습니다.");
-		 return true;
-		 
-	});
-	
-	$("#email_select").change( function(){ //@뒤 이메일 자동으로 만들어주는것
-		console.log($("#email_select").val());
-        if ($("#email_select").val() == '1') {
-        	$("#inputEmail2").readonly = false;
-        	$("#inputEmail2").value = '';
-        	$("#inputEmail2").focus();
-        }
-        else {
-            $("#inputEmail2").readonly = true;
-            $("#inputEmail2").val($("#email_select").val());
-        }
-    });
-	
-	
-	
-	/* 비밀번호와 비밀번호 확인 일치성  */
-	$("#inputPasswordCheck").keyup(function(){ 
-		if($("#inputPassword").val()!=$("#inputPasswordCheck").val()){
-			$("#oneMore").html("일치 하지 않습니다.")
-		}
-		else{
-			$("#oneMore").html("일치 합니다.")
-		}
-	});
-	
-	
-	/* 비밀번호 유효성 검사 (영문,숫자를 혼합하여 6~20자 이내 + 동일문자 x)  */
-	$("#inputPassword").keyup(function(){
-	 if(CehckPassWord($("#inputPassword").val())==false) {
-		 $("#checkPw").html("비밀번호는 특수문자, 영문,숫자를 혼합하여 6~20자리로 입력해주세요.");
-	 }
-	 else{
-		 $("#checkPw").html("사용 가능합니다.");
-	 }
-	});
-	
-	
-	
-	
-	
-
-	
-	/* id중복체크  */
-	$("#checkId").on("click",function(){
-		var id = $("#inputId").val();
-		console.log(id);
-		 $.ajax({// 비동기식 
-			url :"checkId",
-			type:"POST",
-			data:{"id":id},
-			dataType:"text",
-			success:function(check){
-				 console.log(check);
-				  if( check=="exists"){
-					alert("이미 존재하는 아이디 입니다.");
-					$("#inputId").val("").focus();
-				//된다는 alert불러오는것 
-				}
-				  else{
-					  alert("사용 가능한 아이디입니다..");
-				/*  안되는 alert 불러오는거
-				$('#my-alert').bind('closed', function () {
-					$("#inputId").val("").focus();
-					})
-					*/
-				} 
-			},
-			 error:function(jqXHR, status, error){
-				 console.error(status+":"+error);
-			 }
-		}); 
-	});
-
-	
-	
-	function CehckPassWord(str) { //비밀번호 유효성 검사 
-		 if(str.length < 6) {
-		  return false;
-		 } 		 
-		 if(!str.match(/([a-zA-Z0-9].*[!,@,#,$,%,^,&,*,?,_,~])|([!,@,#,$,%,^,&,*,?,_,~].*[a-zA-Z0-9])/))  {
-		  return false;
-		 } 
-		
-		 return true;
-		} 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	/* alert 시험  */
-	$("#qmyBtn").click(function() {
-    $(this).after(
-        '<div class="alert alert-success alert-dismissable">'+
-            '<button type="button" class="close" ' + 
-                    'data-dismiss="alert" aria-hidden="true">' + 
-                '&times;' + 
-            '</button>' + 
-            'Password Changed' + 
-         '</div>');
-}); 
-	
-	
-	
-	
-	
-	/* 
-	
-	
-	
-	 $("#email").change(function(){
-		$("#image-checked").hide();
-		$("#btn-checkemail").show();
-	})
-	$("#btn-checkemail").click(function(){
-		var email = $("#email").val(); //이메일 값 빼오기
-		if(email ==""){
-			return;
-		}
-		$.ajax({
-			"url":"/mysite/user?a=checkemail&email=" + email,
-			"type":"get",
-			"dataType":"json",
-			//"data":(#dd).a, // get방식이라서 data는 그냥..아무것도 쓰지않기
-			
-			"success":function(response){
-				if(	response.result=="fail"){
-					console.error("error:"+response.message);
-					return;
-				}
-				if(response.data == true){
-					alert("이미 존재하는 이메일입니다. 다른이메일을 사용해 주세요");
-					$("#email").val("").focus();
-					return;
-				}
-				$("#image-checked").show();
-				$("#btn-checkemail").hide();
-			},
-			"error":function(jsXHR, status, e ){
-				console.error("error:"+status+":"+e);
 			}
+
+			//아이디 중복체크했는지도!
+			alert("회원가입에 성공하였습니다.");
+			return true;
+
 		});
-	});  */
-	
-});
+
+		
+
+		/* id중복체크  */
+		$("#inputId").change(function() {
+			//승인안됨 
+			$("#checkId").on("click", function() {
+				var id = $("#inputId").val();
+				console.log(id);
+				$.ajax({// 비동기식 
+					url : "checkId",
+					type : "POST",
+					data : {
+						"id" : id
+					},
+					dataType : "text",
+					success : function(check) {
+						console.log(check);
+						if (check == "exists") {
+							alert("이미 존재하는 아이디 입니다.");
+							$("#inputId").val("").focus();
+							// fail 에 대한
+						}
+
+						/*  if($("#inputId").val()==null){
+						  $("#inputId").val("").focus();
+						 } */
+						else {
+							alert("사용 가능한 아이디입니다..");
+							//승인된
+						}
+					},
+					error : function(jqXHR, status, error) {
+						console.error(status + ":" + error);
+					}
+				});
+
+			});
+		});
+		
+		
+	/* 	$("#email_select").change(function() { 
+			console.log($("#email_select").val());
+		
+		});
+		 */
+		
+
+		
+		
+
+	});
+
+	function CehckPassWord(str) { //비밀번호 유효성 검사 
+		if (str.length < 6) {
+			return false;
+		}
+		if (!str
+				.match(/([a-zA-Z0-9].*[!,@,#,$,%,^,&,*,?,_,~])|([!,@,#,$,%,^,&,*,?,_,~].*[a-zA-Z0-9])/)) {
+			return false;
+		}
+
+		return true;
+	}
+
+	$(function() { // 다썼는지 체크하기! 빠진 항목없는지..
+		
+
+	});
 </script>
 
 

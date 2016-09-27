@@ -7,7 +7,7 @@ import kr.ac.sungkyul.beautyline.vo.ScoreVo;
 
 @Service
 public class CounselService {
-	
+	//kkkkk
 	public ResultVo recommend (ScoreVo scoreVo) {
 		
 		String[] srcs = {"/beautyline/images/cos1.PNG", "/beautyline/images/cos2.PNG", "/beautyline/images/cos3.PNG", "/beautyline/images/cos4.PNG", "/beautyline/images/cos5.PNG"};

@@ -44,32 +44,42 @@
 
 	<!-- container -->
 	<div class="container">
+	<div class="row">
 		<div class="box">
-			<form id="visitform" name="visitForm" method="post"
+		<div class="col-lg-12">
+		<div class="page-header">
+               <hr>
+               <h1 class="text-center text-center">
+                  <strong>방문내역관리</strong>
+               </h1>
+               <hr>
+            </div>
+		
+		
+		
+			<form class="form-horizontal" id="visitform" name="visitForm" method="post"
 				action="/beautyline/visited">
+			
+			
+				
+			
+				
 				<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
-				<%--<div class="form-inline col-lg-10">
-					<div class="form-group">
-						<label class="intro-text">날짜 : </label> <label class="intro-text"><small><strong>${today}</strong></small></label>
-					</div>
-				</div> --%>
-
-
-				<!-- Navigation -->
-				<div class="row form-inline">
-					<div class="col-lg-11">
-						<div class="text-left">
-							<label class="intro-text">날짜 : </label> <label class="intro-text"><small><strong>${today}</strong></small></label>
-						</div>
-						<div class="text-right">
+			
+			
+			<div class="form-group" >
+			<label class="col-sm-3 control-label">날짜 :<strong>${today}</strong></label>
+					<div class="col-sm-3 col-sm-offset-5">
+			
+						
 							<a href="" data-target="#myModal1" data-toggle="modal"
 								class="btn btn-danger btn-primary btn-sm" id="package"> 쿠폰
 								등록</a> <a class="btn btn-danger btn-primary btn-sm"
 								href="/beautyline/visit/details" role="button">내역 조회</a> <a
 								class="btn btn-danger btn-primary btn-sm"
 								href="/beautyline/visit/registration" role="button">회원 등록</a>
-						</div>
-					</div>
+	
+				</div>
 				</div>
 
 				<div class="form-inline col-lg-11">
@@ -79,7 +89,8 @@
 						value="${userVo.name}">
 
 					<!-- phone -->
-					<label class="intro-text">전화번호</label> <input type="text"
+					<label class="intro-text">전화번호</label> 
+					<input type="text"
 						class="form-control" name="phone" id="phone"
 						placeholder="010-1234-1234" value="${userVo.phone}">
 
@@ -108,7 +119,7 @@
 						</tr>
 
 					</table>
-				</div>
+				</div><br><br><br><br><br><br>
 
 
 				<div class="form-group col-lg-10">
@@ -163,7 +174,27 @@
 				</div>
 			</form>
 		</div>
-	</div>
+	</div></div></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	<!-- 회원번호 : 텍스트박스  ,  이름 : 텍스트박스 		right 전화번호 : 텍스트박스  -->
 	<c:import url="/WEB-INF/views/include/footer.jsp" />

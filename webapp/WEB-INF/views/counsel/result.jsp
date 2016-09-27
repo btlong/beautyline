@@ -29,16 +29,7 @@
 	href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic"
 	rel="stylesheet" type="text/css">
 	
-<style type="text/css">
-img {
-	width: 200px;
-	height: 400px;
-	cursor: pointer;
-}
-
-
-</style>
-
+<link href="/beautyline/beautyline/css/counsel.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<c:import url="/WEB-INF/views/include/header.jsp" />
@@ -59,14 +50,50 @@ img {
 				<h2 class="col-lg-12 text-center">
 					<small>고객님만을 위한 추천제품 (product regimen)</small>
 				</h2>
+				
+				
 
-				<div class="col-lg-12 text-center"> <!-- text-center, right -->
-						<a href='${url }' target="_blank"> <img src='${src }' title="구매하러 가기" /> </a>
+				<div class="col-lg-12 text-center " id="cosmetic"> <!-- text-center, right -->
+						<a href='${resultVo.url }' target="_blank"> <img src='${resultVo.src }' title="구매하러 가기" /> </a>
 						<h6>※이미지를 클릭하면 제품 구매 페이지로 이동합니다.</h6>
 				</div>
+				
+				
+				
+				
+				<div class="col-lg-12" id="result_score">
+					<table class="table-bordered text-center" id="print_score">
+						<tr>
+							<td>종합점수</td>
+							<td>피부점수1</td>
+							<td>피부점수2</td>
+							<td>피부점수3</td>
+							<td>피부점수4</td>
+							<td>피부점수5</td>							
+						</tr>
+						<tr>
+							<td>
+								${resultVo.average }
+							</td>
+							<c:forEach var="score" items="${resultVo.scores }">
+								<td> ${score } </td>
+							</c:forEach>
+							
+						</tr>					
+					</table>
+				</div>
 
+				<div class="vGraph" id="graph">
+					<ul>
+						<c:forEach var="score" items="${resultVo.scores }" varStatus="count">
+						
+							<li><span class="gTerm">피부점수${count.index + 1 }</span><span class="gBar" style="height:${score }%"><span>${score }점</span></span></li>
+						
+						</c:forEach>
+					</ul>
 				</div>
 			</div>
+		</div>
 	</div>
 	
 

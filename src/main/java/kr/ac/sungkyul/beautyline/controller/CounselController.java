@@ -19,7 +19,7 @@ public class CounselController {
 	
 	@RequestMapping(value = "test", method = RequestMethod.GET)
 	public String Test() {		
-		return "counsel/test";
+		return "counsel/skin_test";
 	}
 	
 	@RequestMapping(value = "result", method = RequestMethod.POST)
@@ -27,8 +27,7 @@ public class CounselController {
 		System.out.println(scoreVo.toString());
 		ResultVo resultVo = counService.recommend(scoreVo);
 		
-		model.addAttribute("url", resultVo.getUrl());
-		model.addAttribute("src", resultVo.getSrc());
+		model.addAttribute("resultVo", resultVo);
 		return "counsel/result";
 	}
 	

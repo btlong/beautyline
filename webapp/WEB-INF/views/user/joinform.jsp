@@ -164,6 +164,7 @@
 									name="id" type="text" placeholder="아이디">
 							</div>
 							<span class="input-group-btn">
+							<input type="hidden" name="conCheckId" value="0">
 								<button class="btn btn-success" id="checkId" type="button">
 									중복 확인<i class="fa fa-edit spaceLeft"></i>
 								</button>
@@ -420,6 +421,9 @@
 			var passwordCheck = $('#inputPasswordCheck').val();
 			var divPasswordCheck = $('#divPasswordCheck');
 			var divPassword = $('#divPassword');
+			
+			
+			
 			if (password == "" || (CehckPassWord(password) == false)) {
 				divPassword.removeClass("has-success");
 				divPassword.addClass("has-error");
@@ -429,6 +433,9 @@
 				divPassword.addClass("has-success");
 				$("#checkPw").html("사용 가능합니다.");
 			}
+			
+			
+			
 			if (password != passwordCheck) {
 				divPasswordCheck.removeClass("has-success");
 				divPasswordCheck.addClass("has-error");
@@ -552,20 +559,18 @@
 				$("#inputNumber").focus()
 				return false;
 			}
-			if($("#emailReceiveYn").is(":checked")==false ){
-				alert ("약관동의가 필요합니다.");
+			if($("#conCheckId").val()=='0' ){
+				alert ("아이디 중복확인이 필요합니다.");
 				
 				return false;
 				}
 			
 			
-			if($("#agree-prov").is(":checked")==false ){
+			/* if($("#agree-prov").is(":checked")==false ){
 			alert ("약관동의가 필요합니다.");
 			
 			return false;
-			}
-
-			//아이디 중복체크했는지도!
+			} */
 			alert("회원가입에 성공하였습니다.");
 			return true;
 
@@ -575,7 +580,7 @@
 
 		/* id중복체크  */
 		$("#inputId").change(function() {
-			//승인안됨 
+			$("#conCheckId").val('0');
 			$("#checkId").on("click", function() {
 				var id = $("#inputId").val();
 				console.log(id);
@@ -591,7 +596,7 @@
 						if (check == "exists") {
 							alert("이미 존재하는 아이디 입니다.");
 							$("#inputId").val("").focus();
-							// fail 에 대한
+							$("#conCheckId").val('0');
 						}
 
 						/*  if($("#inputId").val()==null){
@@ -599,7 +604,7 @@
 						 } */
 						else {
 							alert("사용 가능한 아이디입니다..");
-							//승인된
+							$("#conCheckId").val('1');
 						}
 					},
 					error : function(jqXHR, status, error) {

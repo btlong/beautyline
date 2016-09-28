@@ -56,16 +56,11 @@
 	]]>
 	</select>
 	
-	
 	<update id="updateTemPw" parameterType="uservo">
 	<![CDATA[
 		update users set password= #{password } where no = #{no }
 	]]>
 	</update>
-	
-	
-	
-	
 	
 	
 	<delete id="delete" parameterType="uservo">
@@ -80,8 +75,6 @@
 		select no, id from users where id=#{id }
 	]]>
 	</select>
-	
-	
 	
 	
 	

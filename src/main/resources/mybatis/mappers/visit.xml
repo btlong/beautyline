@@ -1,25 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
 <mapper namespace="visit">
 
 	<!-- <insert id="insert" parameterType="visitvo"> <![CDATA[ insert into 
 		VISIT values ( #{ ) where users.name = #{userName} and ]]> </insert> -->
 
-	<select id="selectByName" parameterType="uservo" resultType="uservo">
+	<select id="searchByNameAndPhone" parameterType="uservo" resultType="uservo">
 	<![CDATA[
-		select no, name, phone 
-		from users
-		where name = #{name} or phone = #{phone}
+		select no, name, phone from users 
+		where name LIKE '%' || #{name} || '%' OR
+				phone LIKE '%' || #{phone} 
 	]]>
 	</select>
 
-	<select id="selectList">
+	<select id="searchSelectOne" parameterType="uservo" resultType="uservo">
 	<![CDATA[
-		select s.no ,s.reg_date ,a.name , p.name , s.price  from 
-sales s,(select name from users where no = 27 ) a , (select name from pay where no = 1 ) p;
-		
+		select no, name, phone from users 
+		where name = #{name} and phone = #{phone}
+	]]>
+	</select>
+
+
+	<select id="couponSelect" parameterType="java.lang.Long" resultType="counponvo">
+	<![CDATA[
+		select PROGRAM_NO,count from coupon where user_no = #{no} 
 	]]>
 	</select>
 
 </mapper>
+

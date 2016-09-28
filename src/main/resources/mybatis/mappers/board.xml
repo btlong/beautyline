@@ -10,7 +10,7 @@
 	</select>
 	
 	
-	<update id="viewcount" parameterType="baordvo">
+	<update id="viewcount" parameterType="boardvo">
 	<![CDATA[
 	update BOARD set view_count =#{viewNo} where no=#{no }
 	]]>

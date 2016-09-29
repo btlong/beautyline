@@ -47,7 +47,7 @@
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li><a href="index.html">소개</a></li>
-				<li><a href="/beautyline/reserve/calenderform">예약</a></li>
+				<li><a href="/beautyline/reserve/reserve">예약</a></li>
 				<li><a href="blog.html">게시판</a></li>
 				<li><a href="/beautyline/coun/test" >나의피부타입</a></li>
 				<!-- 관리자일때

@@ -183,7 +183,7 @@
 													disabled disabled id="resSelOption"
 													<c:set var="a" value="${a+1}"></c:set>
 												</c:if>>
-													${time }:00 - ${time+1 }:00
+								 					${time }:00 - ${time+1 }:00
 												</option>
 												</c:forEach>
 											</c:when>

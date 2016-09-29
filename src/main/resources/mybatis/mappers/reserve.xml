@@ -26,7 +26,7 @@
 <select id="resDaySel" parameterType="java.lang.String" resultType="kr.ac.sungkyul.beautyline.vo.ReserveVo">
 	
 	<![CDATA[
-		select res_time as resTime from reservation where RES_DATE = #{resDate} order by resTime asc
+		select res_time as resTime from reservation where RES_DATE = #{resDateText} order by resTime asc
 	]]>
 
 </select>

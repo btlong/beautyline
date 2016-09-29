@@ -1,5 +1,8 @@
 package kr.ac.sungkyul.beautyline.dao;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -39,9 +42,16 @@ public class ReserveDao {
 	}
 	
 	//달력에서 선택한 날짜로 vo받아오기
-	public List<ReserveVo> resDaySel( String resDate ){
-		System.out.println("dao "+resDate);
-
-		return sqlSession.selectList( "res.resDaySel", resDate );
+	public List<ReserveVo> resDaySel( String resDateText ){
+		List<ReserveVo> resSelList = sqlSession.selectList( "res.resDaySel", resDateText );
+		
+		/*System.out.println( resSelList.size() );
+		long curr = System.currentTimeMillis();
+		SimpleDateFormat sdf = new SimpleDateFormat("HH");
+		String dateTime = sdf.format(new Date(curr));
+		System.out.println("--->"+dateTime);
+		System.out.println( resSelList.toString());*/
+		
+		return resSelList;
 	}
 }

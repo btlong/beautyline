@@ -39,7 +39,7 @@ public class ReserveService {
 	}
 	
 	//달력에서 선택한 날짜로 vo받아오기
-	public List<ReserveVo> resDaySel( String resDate ){
-		return reserveDao.resDaySel( resDate );
+	public List resDaySel( String resDateText ){
+		return reserveDao.resDaySel( resDateText );
 	}
 }

@@ -47,7 +47,6 @@
 #btn {
 	padding-left: 0px;
 }
-
 </style> 
 <script>
     function sample6_execDaumPostcode() {

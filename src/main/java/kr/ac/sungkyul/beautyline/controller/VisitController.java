@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
 import kr.ac.sungkyul.beautyline.service.VisitService;
 import kr.ac.sungkyul.beautyline.vo.CouponVo;
@@ -34,9 +33,8 @@ public class VisitController {
 	}
 
 	// 시술 후 등록
-	@RequestMapping(value = "/visited", method = RequestMethod.POST)
-	public String visited(@ModelAttribute VisitVo visitVo, MultipartFile file) {
-		visitService.update(visitVo, file);
+	@RequestMapping(value = "visited", method = RequestMethod.POST)
+	public String visited(@ModelAttribute VisitVo visitVo) {
 		return "redirect:/visit/visitform";
 	}
 
@@ -66,7 +64,6 @@ public class VisitController {
 		UserVo authUser = visitService.searchOne(userVo);
 		retVal.put("authUser", authUser);
 		List<CouponVo> couponList = visitService.couponList(authUser.getNo());
-		System.out.println("리스트 확인 :"+couponList.toString());
 		retVal.put("couponList", couponList);
 		return retVal;
 	}

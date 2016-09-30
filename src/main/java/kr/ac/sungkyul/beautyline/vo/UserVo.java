@@ -8,8 +8,6 @@ public class UserVo {
 	private String email;
 	
 	private String address;
-
-	
 	
 	private String phone;
 	private Long ageEmail;

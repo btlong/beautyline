@@ -13,13 +13,11 @@
 <meta name="author" content="">
 <title>예약 완료</title>
 
-<!-- Bootstrap Core CSS -->
-<link href="/beautyline/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet">
 
 <!-- Custom CSS -->
 <link href="/beautyline/bootstrap/css/business-casual.css"
 	rel="stylesheet">
+	<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">
 <link href="/beautyline/beautyline/css/include.css" rel="stylesheet">
 <link href="/beautyline/beautyline/css/reserve.css" rel="stylesheet">
 
@@ -56,11 +54,7 @@
 
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
 	
-	<!-- jQuery -->
-    <script src="js/jquery.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
 	
 </body>
 </html>

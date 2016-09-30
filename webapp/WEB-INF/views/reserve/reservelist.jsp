@@ -16,17 +16,14 @@
 
 <jsp:useBean id="now" class="java.util.Date" />
 
-<!-- Bootstrap Core CSS -->
-<link href="/beautyline/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
 
 
 <!-- Custom CSS -->
 <link href="/beautyline/bootstrap/css/business-casual.css"
 	rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">
+<!-- Modal jquery -->
+<link rel="stylesheet"href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
 <link href="/beautyline/beautyline/css/include.css" rel="stylesheet">
 <link href="/beautyline/beautyline/css/reserve.css" rel="stylesheet">
 
@@ -74,21 +71,22 @@
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <body>
-	<c:import url="/WEB-INF/views/include/header.jsp" />
 
-	<div class="container">
-		<div class="row">
-			<div class="box">
-				<div class="col-lg-12">
-					<hr>
-					<h2 class="intro-text text-center">
-						<strong>Reserve List</strong><br>예약관리
-					</h2>
-					<hr>
-				</div>
+<c:import url="/WEB-INF/views/include/header.jsp" />
 
-				<div class="col-md-3"></div>
-				<div class="col-md-6">
+<div class="container">
+	<div class="row">
+		<div class="box">
+			<div class="col-lg-12">
+				<hr>
+				<h2 class="intro-text text-center">
+				<strong>Reserve List</strong><br>예약관리
+				</h2>
+				<hr>
+			</div>
+
+			<div class="col-md-2"></div>
+				<div class="col-md-8">
 					<table class="table">
 						<thead class="thead-inverse">
 							<tr>
@@ -101,8 +99,7 @@
 							</tr>
 						</thead>
 
-						<c:set var="firstIndex"
-							value="${totalCount - (currentPage-1) * sizeList }" />
+						<c:set var="firstIndex" value="${totalCount - (currentPage-1) * sizeList }" />
 
 						<fmt:formatDate value="${now }" pattern="yyyy-MM-dd" var="today" />
 						<c:forEach items='${resList }' var="reserveVo" varStatus='status'>
@@ -112,73 +109,17 @@
 									<td>${status.index }</td>
 									<td>${reserveVo.userName }</td>
 									<td>${reserveVo.progName }</td>
-									<td><c:forTokens items='${reserveVo.resDate }' delims='-'
-											var="sel" varStatus="status">
-								${sel}
-								<c:choose>
-												<c:when test='${status.first }'>년&nbsp;</c:when>
-												<c:when test='${status.last }'>일 &nbsp;</c:when>
-												<c:otherwise>월&nbsp; </c:otherwise>
-											</c:choose>
-										</c:forTokens></td>
+									<td>${reserveVo.resDate }</td>
 									<td>${reserveVo.resTime }시- ${reserveVo.resTime + 1 }시</td>
-									<td><a href="" class="btn btn-default" id="resCancelbtn" data-target="#myModal2" data-toggle="modal">취소</a> 
-											<!-- cancel modal -->
-											<div class="modal fade" id="myModal2" role="dialog"
-												tabindex="-1" aria-labelledby="myModalLabel"
-												aria-hidden="true">
-												<div class="modal-dialog">
-													<div class="modal-content">
-														<!-- header -->
-														<div class="modal-header">
-															<!-- 닫기 버튼 -->
-															<button type="button" class="close" data-dismiss="modal">x</button>
-															<!-- header title -->
-															<h4 class="modal-title">예약 취소</h4>
-														</div>
-
-														<!-- body -->
-														<div class="modal-body">
-															<table class="table" id="modal-table">
-																<tr>
-																	<td class="tb-td">회원이름</td>
-																	<td>${reserveVo.userName }</td>
-																</tr>
-																<tr>
-																	<td class="tb-td">프로그램 명</td>
-																	<td>${reserveVo.progName }</td>
-																</tr>
-																<tr>
-																	<td>예약일</td>
-																	<td>${reserveVo.resDate }</td>
-																</tr>
-																<tr>
-																	<td class="tb-td">예약시간</td>
-																	<td>${reserveVo.resTime } 시 -
-																		${reserveVo.resTime+1 } 시</td>
-																</tr>
-															</table>
-
-															<h4>이 예약을 취소하시겠습니까?</h4>
-														</div>
-														<!-- footer -->
-														<div class="modal-footer">
-															<input type="hidden" value="${reserveVo.no }" id="resNo">
-															<a href="" type="button" class="btn btn-danger"
-																id="resDelbtn" >예</a> <input type="button"
-																class="btn btn-success" data-dismiss="modal" value="아니오">
-														</div>
-													</div>
-												</div>
-											</div></td>
+									<td><button class="btn btn-default" id="resCancelbtn">취소</button></td>
+									
 								</tr>
 							</tbody>
 						</c:forEach>
 					</table>
 
 					<div class="col-lg-12 text-right">
-						<button class="btn btn-danger" type="button"
-							onclick="location.href='calenderform'">돌아가기</button>
+						<button class="btn btn-danger" type="button" onclick="location.href='calenderform'">돌아가기</button>
 					</div>
 				</div>
 			</div>
@@ -187,32 +128,65 @@
 
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
 
+<!-- Modal -->
+	<!-- cancel modal -->
+	<div class="modal fade" id="myModal2" role="dialog" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+		<!-- header -->
+				<div class="modal-header">
+			<!-- 닫기 버튼 -->
+					<button type="button" class="close" data-dismiss="modal">x</button>
+			<!-- header title -->
+					<h4 class="modal-title">예약 취소</h4>
+				</div>
+			<!-- body -->
+				<div class="modal-body">
+					<table class="table" id="modal-table">
+						<tr>
+							<td class="tb-td">회원이름</td>
+							<td>${reserveVo.userName }</td>
+						</tr>
+						<tr>
+							<td class="tb-td">프로그램 명</td>
+							<td>${reserveVo.progName }</td>
+						</tr>
+							<tr>
+							<td>예약일</td>
+							<td>${reserveVo.resDate }</td>
+						</tr>
+						<tr>
+							<td class="tb-td">예약시간</td>
+							<td>${reserveVo.resTime } 시 - ${reserveVo.resTime+1 } 시</td>
+						</tr>
+					</table>
+					<h4>이 예약을 취소하시겠습니까?</h4>
+				</div>
+			<!-- footer -->
+				<div class="modal-footer">
+					<input type="hidden" value="${reserveVo.no }" id="resNo">
+					<a href="" type="button" class="btn btn-success" id="resDelbtn" >예</a> 
+					<button data-dismiss="modal" class="btn btn-danger">아니오</button>
+				</div>
+			</div>
+		</div>
+</div>
 
 	<!-- jQuery -->
-	<script src="js/jquery.js"></script>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
 	<!-- Bootstrap Core JavaScript -->
-	<script src="js/bootstrap.min.js"></script>
-	<script
-		src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </body>
 <script>
-$(document).ready(function(){
-// 다썼는지 체크하기! 빠진 항목없는지..
-	$("#resCancelbtn").click(function(){
+$(document).ready( function(){
+// 취소 modal 
+	$("#resCancelbtn").on("click", function(){
 		$("#myModal2").modal();
-	});
-});
-
-
-	
-	$("#resDelbtn").on("click",function(){
-		$("#myModal2").modal('hide');
-		 
+	 
 	    var no = $("#resNo").val();
+	    console.log(no);
 	      $.ajax({// 비동기식 
 	        url :"reservedelete",
 	        type:"POST",
@@ -245,7 +219,7 @@ $(document).ready(function(){
 	      }); 
 	   
 	   });
-
+});
 </script>
 
 

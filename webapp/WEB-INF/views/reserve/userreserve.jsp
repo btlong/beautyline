@@ -56,23 +56,11 @@
 <!-- 내용 -->
 		<div class="col-lg-12 text-center">
 
-	<!-- 세션검사후 관리자이면 예약관리가 나와야한다. -->
+	<!-- 세션검사 -->
 		<c:choose>
 			<c:when test='${not empty sessionScope.authUser }'>
-				<div class="col-lg-12 text-right">
-					<%-- c:if test="${sessionScope.authUser.isAdmin == 'a' }">
-					</c:if>  관리자 세션 검사--%>
-					<a id="adminreserve" href="/beautyline/reserve/reservelist" class="btn btn-default btn-lg">예약관리</a>
-				</div>
 				
-<!-- 관리자 일 경우 회원 이름으로 검색 -->
-				<div class="form-inline col-lg-12">
-					<!-- name -->
-					<label id="lbtxt" >회원 이름 : &nbsp</label> 
-					<input type="text" class="form-control" name="name" id="name" >
-					<button class="btn btn-info" id="searchUser">검색</button>
-					<button class="btn btn-success" id="insertUser">회원추가</button>
-				</div>
+				
 <!-- 달력 -->
 				<div class="col-lg-12 text-center">
 					<div id="datepicker"></div>
@@ -115,7 +103,7 @@
 								
 								<p class="resDateText"></p>
 								<hr>
-								<div id="resInfo1"><p>[회원]&nbsp</p> <p class="userSelectCk"></p></div>
+								<div id="resInfo1"><p>[회원]&nbsp</p> <p class="userSelectCk"></p><p>님</p></div>
 								<div id="resInfo2"><p>[프로그램 명]&nbsp</p><p class="progNameCk"></p></div>
 								<div id="resInfo3"><p>[시간]&nbsp</p> <p class="resTimeCk"></p></div>
 							</div>
@@ -140,114 +128,16 @@
 
 <c:import url="/WEB-INF/views/include/footer.jsp" />
 
-
-
-
-
-<!-- Modal -->
-<!-- 회원검색 모달 -->
-	<div class="modal fade" id="myModal3">
-		<div class="modal-dialog">
 		
-		<!-- modal content -->
-		<form class="form-inline" id="searchform" method="post"action="reserveusersearch">
-			<div class="modal-content">
-				
-			<!-- header -->
-				<div class="modal-header">
-					<!-- 닫기(x) 버튼 -->
-					<button type="button" class="close" data-dismiss="modal">×</button>
-					<!-- header title -->
-					<h4 class="modal-title text-center">
-						<!-- Ajax처리 -->
-						<strong>회원검색</strong>
-					</h4>
-				</div>
-				
-			<!-- body -->
-				<div class="modal-body">
-					<select size="5" class="text-center center-block " id="UserSelected" name="UserSelected">
-					</select>
-				</div>
-				
-			<!-- Footer -->
-				<div class="modal-footer">
-				<div class="form-group" id="modalbtn">
-					<button id="userSelect" class="btn btn-primary" type="button">선택</button>
-					<button data-dismiss="modal" class="btn btn-danger">취소</button>
-				</div>
-				</div>				
-			</div>
-		</form>
-		</div>
-	</div>		
-
-<!-- 회원 추가 -->
-	<div class="modal fade" id="myModal4">
-		<div class="modal-dialog">
-		
-		<!-- modal content -->
-		<form class="form-horizontal" id="userInsertForm" method="post"action="insertUser">
-			<div class="modal-content">
-				
-			<!-- header -->
-				<div class="modal-header">
-					<!-- 닫기(x) 버튼 -->
-					<button type="button" class="close" data-dismiss="modal">×</button>
-					<!-- header title -->
-					<h4 class="modal-title text-center">
-						<!-- Ajax처리 -->
-						<strong>회원 추가</strong>
-					</h4>
-				</div>
-				
-			<!-- body -->
-				<div class="modal-body" id="modal4body">
-				
-					<!-- 이름 -->
-						<div class="form-group" id="divName">
-							<label class="col-sm-4 control-label">이름*</label>
-							<div class="col-sm-4">
-								<input class="form-control onlyHangul" id="inputName" name="name" type="text" placeholder="이름">
-							</div>
-						</div>
-					<!-- 휴대폰 번호 -->
-						<div class="form-group" id="divNumber">
-							<label class="col-sm-4 control-label">휴대폰번호*</label>
-							<div class="col-sm-4">
-								<input type="tel" class="form-control onlyNumber" name="phone" id="inputNumber" placeholder="- 없이 입력해 주세요" />
-							</div>
-						</div>
-				</div>
-				
-			<!-- Footer -->
-				<div class="modal-footer">
-				<div class="form-group" id="modalbtn">
-					<button id="insertUserInfo" class="btn btn-primary" type="button">추가</button>
-					<button data-dismiss="modal" class="btn btn-danger">취소</button>
-				</div>
-				</div>				
-			</div>
-		</form>
-		</div>
-	</div>		
 </body>
 <script type="text/javascript"> 
 $(document).ready(function(){
-	var userNo = ""; //예약할때 보낼 회원 번호
+	var userNo = '${sessionScope.authUser.no }'; //예약할때 보낼 회원 번호
+	console.log('${sessionScope.authUser}');
 	var userName = ""; //예약할때 보낼 회원이름
-	var nameSearch = ""; //회원검색시 입력된 값
 	
 /* 예약 세부 내용 */
 
-	//선택된 회원 정보 
-	var userSelectCk = $('.userSelectCk');
-	var UserSelected = ""; //예약 세부내용 사용자 정보
-	$(document).on("change", "select[name=UserSelected]", function() {
-		UserSelected = $("select[name=UserSelected] option:selected").text();
-		userSelectCk.text(UserSelected);
-	});
-	
 	//프로그램 선택체크
 	var progNameCk = $('.progNameCk');
 	$(document).on("change", "select[name=progName]", function() {
@@ -262,107 +152,7 @@ $(document).ready(function(){
 		var resTimeVal = $("select[name=resTime] option:selected").val();
 		resTimeCk.text(resTime);
 	});
-	
-	$("#searchUser").on("click",function(){
-		nameSearch = $("#name").val();
-		if( nameSearch == ""){
-			alert("검색할 회원 이름을 입력해 주세요.");
-			return false;
-		}
-		$("#myModal3").modal();
-		$("#UserSelected option").remove();
-		
-		var trString2 = "";
-			$.ajax({
-			url : "reserveusersearch",
-			type: "POST",
-			data: {"name": nameSearch },
-			dataType: "JSON",
-			success: function(userList){
-				$.each(userList, function(index, userVo){
-					trString2 += "<option value='" + userVo.no + "'>";
-					trString2 += userVo.name;
-					trString2 += "&nbsp:&nbsp";
-					trString2 += userVo.phone;
-					trString2 += "</option>";
-					
-				});
-				$("#UserSelected").append(trString2)
-			}
-			
-		});
-	});
-/* 회원추가 모달 */
-	$("#insertUser").on("click", function(){
-		$("#inputName").val('');//초기화
-		$("#inputNumber").val('');//초기화
-		$("#myModal4").modal();
-	});
-/* 회원추가 모달에서 이름과 전화번호에 값이 잘못 들어올때 막기 */
-	$('#inputName').keyup(function(event) {
-		var divId = $('#divName');
 
-		if ($('#inputName').val() == "") {
-			divId.removeClass("has-success");
-			divId.addClass("has-error");
-		} else {
-			divId.removeClass("has-error");
-			divId.addClass("has-success");
-		}
-	});
-
-
-
-/* 회원 추가 */
-var inputName = "";
-var inputNumber = "";
-	$("#insertUserInfo").on("click", function(){
-		inputName = $("#inputName").val();
-		inputNumber = $("#inputNumber").val();
-		if( inputName == "" ){
-			alert("회원 이름을 입력하세요");
-			return false;
-		}
-		if( inputNumber == "" ){
-			alert("회원 전화번호를 입력하세요");
-			return false;
-		}
-		var isAdmin = "y";
-		var uservo = { 
-				"name" : inputName,
-				"phone" : inputNumber,
-		};
-		var dbCk = ""; //db에 들어갔는지 검사
-		$.ajax({
-			url : "insertUser",
-			type : "POST",
-			data : JSON.stringify(uservo),
-			dataType: "JSON",
-			contentType : "application/json",
-			success : function(uservi){
-				nameSearch = uservi.name;
-				userNo = uservi.no;
-				userName = uservi.name;
-				 /*예약세부내용 사용자 정보 추가'임효빈:01029392382'*/
-				UserSelected = uservi.name + " : " + uservi.phone;
-				userSelectCk.text(UserSelected); 
-				if( uservi =! null){
-					dbCk = 'y';
-				}
-				if( dbCk=='y' ){
-					alert("회원이 추가 되었습니다.");
-					return true;
-				}else{
-					alert("유효하지 않은 정보 입니다.");
-					return false;
-				}
-			} 
-		});
-		
-		$("#myModal4").modal('hide');
-
-	});
-	
 
 	
 /* 달력 및 예약 세부내용 출력 */
@@ -407,6 +197,10 @@ var inputNumber = "";
 				data : {"resDateText": resDateText },
 				dataType: "JSON",
 				success : function(resSelList){
+					//선택된 회원 정보 회원이름
+					var userSelectCk = $('.userSelectCk');
+					userSelectCk.text('${sessionScope.authUser.name}');
+					
 					//select option 초기화
 					$("#resTime option").remove();
 					
@@ -447,15 +241,6 @@ var inputNumber = "";
 		}
 	});
 
-
-
-	
-/* 모달에서 화면으로 값 가져오기 */
-$("#userSelect").on("click", function(){
-	userNo = $("select[name=UserSelected] option:selected").val();
-	userName = $("select[name=UserSelected] option:selected").text();
-	$("#myModal3").modal('hide'); // 숨키기.
-});
 	
 /* 예약내용 보내기 */
 $("#reservebtn").on("click",function(){
@@ -463,11 +248,6 @@ $("#reservebtn").on("click",function(){
 	var resTime2 = $("select[name=resTime] option:selected").text();
 	var resTime3 = $("select[name=resTime] option:selected").val(); 
 	//선택안했을 때 
-	if( nameSearch == ""){
-		alert("회원 이름을 입력해 주세요.");
-		return false;
-	}
-	
 	if( progName2 == "" ){
 		alert("프로그램을 선택하세요");
 		return false;

@@ -24,13 +24,19 @@ public class ReserveController {
 	@Autowired
 	UserService userService;
 	
-	//예약화면
+	//관리자 - 예약화면
 	@RequestMapping("/reserve")
 	public String reserve(){
 		return "reserve/reserve";
 	}
 	
-	//관리자 예약리스트 조회
+	//회원 - 예약화면
+	@RequestMapping("/userreserve")
+	public String userreserve(){
+		return "reserve/userreserve";
+	}
+	
+	//관리자 - 예약리스트 조회
 	@RequestMapping( value = "reservelist", method = RequestMethod.GET)
 	public String reservelist( Model model ){
 		List<ReserveVo> resList = reserveService.resList();
@@ -84,12 +90,12 @@ public class ReserveController {
 		return userList;
 	}
 	
-	//회원 추가
+	//관리자 - 회원 추가
 	@ResponseBody
 	@RequestMapping(value = "insertUser", method = RequestMethod.POST)
 	public UserVo insertUser(@RequestBody UserVo uservo ) throws Exception{
-		uservo = userService.insertUserNamePhone(uservo);
-		return uservo;
+		UserVo uservi = userService.insertUserNamePhone(uservo);
+		return uservi;
 	}
 	
 	

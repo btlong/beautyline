@@ -48,7 +48,6 @@
 		values( 
 			seq_reserve.nextVal, #{userNo }, #{progName}, #{resDate }, #{resTime }
 		)	
-
 	]]>
 </insert>
 

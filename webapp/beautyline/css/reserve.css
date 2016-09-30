@@ -1,23 +1,8 @@
 
-<<<<<<< HEAD
+
 #reservebtn	a {
 	float: right;
-=======
-#reservebtn{
->>>>>>> 576740f53842181533153e67178aca553cf389d6
-	margin: 10px;
 }
-
-#reserveselectbtn a {
-	margin: 10px;
-}
-<<<<<<< HEAD
-=======
-
-#reservejoin a{
-	float: none;
-}
-
 #dateName {
 	margin-top:50px;
 }
@@ -30,6 +15,101 @@
 }
 
 
+#selBoxgroup div {
+	margin-top: 30px;
+} 
 
-          
->>>>>>> 576740f53842181533153e67178aca553cf389d6
+.form-group div select {
+	padding-top: 30px;
+	height: 300px;
+}
+
+.form-control {
+	text-align: center;
+	border-width: 1px;
+	background: transparent;
+	overflow: hidden;
+	color: black;
+}
+
+#selDate {
+	text-align: center;
+}
+#datepicker {
+	padding-bottom : 50px;
+}
+#resInfoBox {
+	border: 1px solid red;
+	padding: 25px;
+	margin-left: 15px;
+	margin-right: 15px;
+	border-radius: 4px;
+	height: 300px;
+	
+}
+
+#resInfoBox hr {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+#resInfoBox p {
+	font-size: 14px;
+	margin-bottom: 5px;
+}
+
+#resInfo {
+	background: transparent;
+	padding-bottom: 10px;
+}
+#resInfo p{
+	display: inline;
+}
+#resInfo div{
+	text-align:left;
+	margin: 5px;
+}
+
+#resSelOption {
+	color: #CFCFCF;
+}
+
+.ui-datepicker .ui-datepicker-prev {
+	
+}
+
+.ui-datepicker {
+	margin: 50px auto 0;
+	width: 500px;
+	height: auto;
+	font: 10pt;
+}
+
+.ui-state-default {
+	background: none;
+	border: 0;
+}
+#name {
+	width: 100px;
+	text-align: left;
+}
+#lbtxt {
+	margin: 0;
+}
+#UserSelected {
+	text-align: left;
+	border-width: 1px;
+	background: transparent;
+	color: black;
+	width: 40%;
+}
+#myModal3 {
+	padding-top: 10%;
+}
+
+#modalbtn{
+	display: inline;
+	text-align: center;
+}
+#modal4body{
+}

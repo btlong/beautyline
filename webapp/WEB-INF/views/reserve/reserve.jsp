@@ -14,16 +14,13 @@
 
 <title>예 약</title>
 
-<!-- Bootstrap Core CSS -->
-<link href="/beautyline/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet">
-
 <!-- Custom CSS -->
-<link href="/beautyline/bootstrap/css/business-casual.css"
-	rel="stylesheet">
-<link href="/beautyline/beautyline/css/include.css" rel="stylesheet">
+<link href="/beautyline/bootstrap/css/business-casual.css"rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">
+<!-- Modal jquery -->
+<link rel="stylesheet"href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
 <link href="/beautyline/beautyline/css/reserve.css" rel="stylesheet">
-
+<link href="/beautyline/beautyline/css/include.css" rel="stylesheet">
 
 <!-- Fonts -->
 <link
@@ -33,17 +30,16 @@
 	href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic"
 	rel="stylesheet" type="text/css">
 
+
 <!-- Datepicker -->
-<link rel="stylesheet"
-	href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <style>
-.form-group div {
+#selBoxgroup div {
 	margin-top: 30px;
-}
+} 
 
 .form-group div select {
 	padding-top: 30px;
@@ -134,8 +130,10 @@
 }
 
 #modalbtn{
-	display: inline
+	display: inline;
 	text-align: center;
+}
+#modal4body{
 }
 </style>
 </head>
@@ -169,8 +167,9 @@
 				<div class="form-inline col-lg-12">
 					<!-- name -->
 					<label id="lbtxt" >회원 이름 : &nbsp</label> 
-					<input type="text" class="form-control" name="name" id="name" value="${userVo.name}">
+					<input type="text" class="form-control" name="name" id="name" >
 					<button class="btn btn-info" id="searchUser">검색</button>
+					<button class="btn btn-success" id="insertUser">회원추가</button>
 				</div>
 <!-- 달력 -->
 				<div class="col-lg-12 text-center">
@@ -190,7 +189,7 @@
 	
 					<div class="col-md-2"></div>
 	<!-- 프로그램 선택 -->
-					<div class="form-group">
+					<div class="form-group" id="selBoxgroup">
 						<div class="col-md-3">
 							<select class="form-control" name="progName" size="3" id="progName">
 								<option>베이직 케어</option>
@@ -215,8 +214,8 @@
 								<p class="resDateText"></p>
 								<hr>
 								<div id="resInfo1"><p>[회원]&nbsp</p> <p class="userSelectCk"></p></div>
-								<div id="resInfo2">[프로그램 명]&nbsp <p class="progNameCk"></p></div>
-								<div id="resInfo3">[시간]&nbsp <p class="resTimeCk"></p></div>
+								<div id="resInfo2"><p>[프로그램 명]&nbsp</p><p class="progNameCk"></p></div>
+								<div id="resInfo3"><p>[시간]&nbsp</p> <p class="resTimeCk"></p></div>
 							</div>
 						
 	<!-- 예약버튼, 취소버튼 -->	
@@ -249,7 +248,7 @@
 		<div class="modal-dialog">
 		
 		<!-- modal content -->
-		<form class="form-inline" id="searchform" method="post"action="search">
+		<form class="form-inline" id="searchform" method="post"action="reserveusersearch">
 			<div class="modal-content">
 				
 			<!-- header -->
@@ -272,8 +271,8 @@
 			<!-- Footer -->
 				<div class="modal-footer">
 				<div class="form-group" id="modalbtn">
-					<button id="userSelect" class="center-block btn btn-danger" type="button">선택</button>
-					<button data-dismiss="modal" class="center-block btn btn-danger">취소</button>
+					<button id="userSelect" class="btn btn-primary" type="button">선택</button>
+					<button data-dismiss="modal" class="btn btn-danger">취소</button>
 				</div>
 				</div>				
 			</div>
@@ -281,45 +280,155 @@
 		</div>
 	</div>		
 
-
+<!-- 회원 추가 -->
+	<div class="modal fade" id="myModal4">
+		<div class="modal-dialog">
+		
+		<!-- modal content -->
+		<form class="form-horizontal" id="userInsertForm" method="post"action="insertUser">
+			<div class="modal-content">
+				
+			<!-- header -->
+				<div class="modal-header">
+					<!-- 닫기(x) 버튼 -->
+					<button type="button" class="close" data-dismiss="modal">×</button>
+					<!-- header title -->
+					<h4 class="modal-title text-center">
+						<!-- Ajax처리 -->
+						<strong>회원 추가</strong>
+					</h4>
+				</div>
+				
+			<!-- body -->
+				<div class="modal-body" id="modal4body">
+				
+					<!-- 이름 -->
+						<div class="form-group" id="divName">
+							<label class="col-sm-4 control-label">이름*</label>
+							<div class="col-sm-4">
+								<input class="form-control onlyHangul" id="inputName" name="name" type="text" placeholder="이름">
+							</div>
+						</div>
+					<!-- 휴대폰 번호 -->
+						<div class="form-group" id="divNumber">
+							<label class="col-sm-4 control-label">휴대폰번호*</label>
+							<div class="col-sm-4">
+								<input type="tel" class="form-control onlyNumber" name="phone" id="inputNumber" placeholder="- 없이 입력해 주세요" />
+							</div>
+						</div>
+				</div>
+				
+			<!-- Footer -->
+				<div class="modal-footer">
+				<div class="form-group" id="modalbtn">
+					<button id="insertUserInfo" class="btn btn-primary" type="button">추가</button>
+					<button data-dismiss="modal" class="btn btn-danger">취소</button>
+				</div>
+				</div>				
+			</div>
+		</form>
+		</div>
+	</div>		
 </body>
 <script type="text/javascript"> 
 $(document).ready(function(){
-
-	/* 관리자의 회원검색  */	
+	var userNo = ""; //예약할때 보낼 회원 번호
+	var userName = ""; //예약할때 보낼 회원이름
 	var nameSearch = ""; //회원검색시 입력된 값
 	
-		$("#searchUser").on("click",function(){
-			nameSearch = $("#name").val();
-			if( nameSearch == ""){
-				alert("검색할 회원 이름을 입력해 주세요.");
-				return false;
-			}
-			$("#myModal3").modal();
-			$("#UserSelected option").remove();
-			
-			var trString2 = "";
+/* 예약 세부 내용 */
 
-			$.ajax({
-				url : "reserveusersearch",
-				type: "POST",
-				data: {"name": nameSearch },
-				dataType: "JSON",
-				success: function(userList){
-					$.each(userList, function(index, userVo){
-						trString2 += "<option value='" + userVo.no + "'>";
-						trString2 += userVo.name;
-						trString2 += "&nbsp:&nbsp";
-						trString2 += userVo.phone;
-						trString2 += "</option>";
-						
-					});
-					$("#UserSelected").append(trString2)
-				}
-				
-			});
-		});
+	//선택된 회원 정보 
+	var userSelectCk = $('.userSelectCk');
+	var UserSelected = ""; //예약 세부내용 사용자 정보
+	$(document).on("change", "select[name=UserSelected]", function() {
+		UserSelected = $("select[name=UserSelected] option:selected").text();
+		userSelectCk.text(UserSelected);
+	});
+	
+	//프로그램 선택체크
+	var progNameCk = $('.progNameCk');
+	$(document).on("change", "select[name=progName]", function() {
+		var progName = $("select[name=progName] option:selected").text();
+		progNameCk.text(progName);
+	});
+	
+	//시간 선택체크
+	var resTimeCk = $('.resTimeCk');
+	$(document).on("change", "select[name=resTime]", function() {
+		var resTime = $("select[name=resTime] option:selected").text();
+		var resTimeVal = $("select[name=resTime] option:selected").val();
+		resTimeCk.text(resTime);
+	});
+	
+	$("#searchUser").on("click",function(){
+		nameSearch = $("#name").val();
+		if( nameSearch == ""){
+			alert("검색할 회원 이름을 입력해 주세요.");
+			return false;
+		}
+		$("#myModal3").modal();
+		$("#UserSelected option").remove();
 		
+		var trString2 = "";
+			$.ajax({
+			url : "reserveusersearch",
+			type: "POST",
+			data: {"name": nameSearch },
+			dataType: "JSON",
+			success: function(userList){
+				$.each(userList, function(index, userVo){
+					trString2 += "<option value='" + userVo.no + "'>";
+					trString2 += userVo.name;
+					trString2 += "&nbsp:&nbsp";
+					trString2 += userVo.phone;
+					trString2 += "</option>";
+					
+				});
+				$("#UserSelected").append(trString2)
+			}
+			
+		});
+	});
+/* 회원추가 모달 */
+	$("#insertUser").on("click", function(){
+		$("#myModal4").modal();
+	});
+	
+/* 회원 추가 */
+var inputName = "";
+var inputNumber = "";
+	$("#insertUserInfo").on("click", function(){
+		inputName = $("#inputName").val();
+		console.log(inputName);
+		inputNumber = $("#inputNumber").val();
+		var isAdmin = "y";
+		var uservo = { 
+				"name" : inputName,
+				"phone" : inputNumber,
+		};
+		
+		$.ajax({
+			url : "insertUser",
+			type : "POST",
+			data : JSON.stringify(uservo),
+			dataType: "JSON",
+			contentType : "application/json",
+			success : function(uservo){
+				nameSearch = uservo.name;
+				userNo = uservo.no;
+				userName = uservo.name;
+				 /*예약세부내용 사용자 정보 추가'임효빈:01029392382'*/
+				UserSelected = uservo.name + " : " + uservo.phone;
+				userSelectCk.text(UserSelected); 
+			} 
+		});
+		$("#myModal4").modal('hide');
+
+	});
+	
+
+	
 /* 달력 및 예약 세부내용 출력 */
 	var resDateText =""; //선택한 날짜 (전역변수)
 	var resDateList="";
@@ -399,40 +508,13 @@ $(document).ready(function(){
 					$("#resTime").append(trString);
 				}
 			});
-			
 		}
 	});
 
 
-/* 예약 세부 내용 */
 
-	//선택된 회원 정보 
-	var userSelectCk = $('.userSelectCk');
-	$(document).on("change", "select[name=UserSelected]", function() {
-		var UserSelected = $("select[name=UserSelected] option:selected").text();
-		userSelectCk.text(UserSelected);
-	});
-	
-	//프로그램 선택체크
-	var progNameCk = $('.progNameCk');
-	$(document).on("change", "select[name=progName]", function() {
-		var progName = $("select[name=progName] option:selected").text();
-		progNameCk.text(progName);
-	});
-	
-	//시간 선택체크
-	var resTimeCk = $('.resTimeCk');
-	$(document).on("change", "select[name=resTime]", function() {
-		var resTime = $("select[name=resTime] option:selected").text();
-		var resTimeVal = $("select[name=resTime] option:selected").val();
-		resTimeCk.text(resTime);
-	});
-	
-	
 	
 /* 모달에서 화면으로 값 가져오기 */
-var userNo = "";
-var userName = "";
 $("#userSelect").on("click", function(){
 	userNo = $("select[name=UserSelected] option:selected").val();
 	userName = $("select[name=UserSelected] option:selected").text();
@@ -465,13 +547,16 @@ $("#reservebtn").on("click",function(){
 		"resTime" : resTime3,
 		"userNo" : userNo
 	};
-	//값 넘기기 ( 선택한 날짜: resDateText, 프로그램 명:progName2, 시간:resTime3, 회원번호:userNo )
+	//값 넘기기 ( F선택한 날짜: resDateText, 프로그램 명:progName2, 시간:resTime3, 회원번호:userNo )
 	$.ajax({
 		url: "reserveData",
 		type: "POST",
 		data: JSON.stringify(reserveVo),
+		contentType : "application/json",
 		success : function(count){
-			var insReturn = count;
+			if( count >= 0 ){
+				location.href = "reserveok";
+			}
 		}
 	});
 });

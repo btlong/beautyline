@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.ac.sungkyul.beautyline.service.ReserveService;
+import kr.ac.sungkyul.beautyline.service.UserService;
 import kr.ac.sungkyul.beautyline.vo.ReserveVo;
 import kr.ac.sungkyul.beautyline.vo.UserVo;
 @Controller
@@ -19,6 +20,9 @@ public class ReserveController {
 
 	@Autowired
 	private ReserveService reserveService;
+	
+	@Autowired
+	UserService userService;
 	
 	//예약화면
 	@RequestMapping("/reserve")
@@ -46,6 +50,7 @@ public class ReserveController {
 	}
 	
 	//예약하기 눌렀을때
+	@ResponseBody
 	@RequestMapping(value="reserveData", method=RequestMethod.POST)
 	public int reserve(@RequestBody ReserveVo reserveVo ){
 		// Vo에 담아(폼에서 담아져 온다.) db에 넣는다.
@@ -79,5 +84,19 @@ public class ReserveController {
 		return userList;
 	}
 	
+	//회원 추가
+	@ResponseBody
+	@RequestMapping(value = "insertUser", method = RequestMethod.POST)
+	public UserVo insertUser(@RequestBody UserVo uservo ) throws Exception{
+		uservo = userService.insertUserNamePhone(uservo);
+		return uservo;
+	}
+	
+	
+	//예약 확인
+	@RequestMapping(value="reserveok")
+	public String reserveOk(){
+		return "reserve/reserveok";
+	}
 	  
 }

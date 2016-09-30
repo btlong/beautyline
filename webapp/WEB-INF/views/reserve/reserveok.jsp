@@ -45,7 +45,8 @@
 					</h2>
 					<hr>
 				</div>
-				<div class="col-lg-12">
+				<div class="col-lg-12 text-center">
+					<p>예약이 완료되었습니다.</p>
 					<a href="/beautyline/main" class="btn btn-default btn-lg"> 메인으로 </a>
 				</div>
 			</div>

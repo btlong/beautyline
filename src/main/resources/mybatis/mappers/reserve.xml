@@ -40,9 +40,7 @@
 </delete> -->
 
 <!-- reserveVo 넣기 -->
-<insert id="reserve" parameterType="reservevo">
-	<!-- no자동생성 후 no값을 return 한다. insert문은 return 할 수 없다. -->
-	
+<insert id="reserve" parameterType="reservevo" >
 	<![CDATA[
 		insert into reservation (
 			no, user_no, prog_name, res_date, res_time
@@ -53,7 +51,6 @@
 
 	]]>
 </insert>
-
 
 <!-- 회원 이름으로 회원 검색 -->
 <select id="UserSearch" parameterType="java.lang.String" resultType="uservo">

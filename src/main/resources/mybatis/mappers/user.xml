@@ -30,6 +30,19 @@
 
 	]]>
 	</insert>
+	
+	<!-- 이름과 전화번호로 회원가입  -->
+	<insert id="insertUserNamePhone" parameterType="uservo" >
+	<![CDATA[
+		insert into users (
+			no, name, phone, is_admin
+		)
+		values( 
+		 seq_Users.nextval, #{name }, ${phone }, 'y'
+		)	
+	]]>
+	</insert>
+
 
 	<select id="getById" parameterType="String" resultType="uservo">
 	<![CDATA[

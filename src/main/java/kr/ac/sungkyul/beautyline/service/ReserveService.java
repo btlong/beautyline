@@ -27,7 +27,9 @@ public class ReserveService {
 	
 	//예약실행
 	public int reserve( ReserveVo reserveVo ){
-		return reserveDao.reserve( reserveVo );
+		int count = reserveDao.reserve( reserveVo );
+		return count;
+		
 	}
 	
 	//삭제

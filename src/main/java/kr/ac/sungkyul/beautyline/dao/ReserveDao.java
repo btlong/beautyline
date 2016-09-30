@@ -1,8 +1,5 @@
 package kr.ac.sungkyul.beautyline.dao;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -10,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.ac.sungkyul.beautyline.vo.ReserveVo;
+import kr.ac.sungkyul.beautyline.vo.UserVo;
 
 @Repository
 public class ReserveDao {
@@ -29,8 +27,9 @@ public class ReserveDao {
 	}
 	
 	// 예약실행
-	public void reserve(  ReserveVo reserveVo ){
-		sqlSession.insert( "res.reserve", reserveVo );
+	public int reserve(  ReserveVo reserveVo ){
+		int count = sqlSession.insert( "res.reserve", reserveVo );
+		return count;
 	}
 	
 	//예약 삭제
@@ -53,5 +52,10 @@ public class ReserveDao {
 		System.out.println( resSelList.toString());*/
 		
 		return resSelList;
+	}
+	
+	//회원 이름으로 회원 검색
+	public List<UserVo> UserSearch( String name ){
+		return sqlSession.selectList( "res.UserSearch", name );
 	}
 }

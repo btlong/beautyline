@@ -1,17 +1,18 @@
 package kr.ac.sungkyul.beautyline.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.ac.sungkyul.beautyline.service.ReserveService;
 import kr.ac.sungkyul.beautyline.vo.ReserveVo;
+import kr.ac.sungkyul.beautyline.vo.UserVo;
 @Controller
 @RequestMapping("/reserve")
 public class ReserveController {
@@ -45,17 +46,11 @@ public class ReserveController {
 	}
 	
 	//예약하기 눌렀을때
-	@RequestMapping(value="reserve", method=RequestMethod.POST)
-	public String reserve( ReserveVo reserveVo, Model model ){
-	
+	@RequestMapping(value="reserveData", method=RequestMethod.POST)
+	public int reserve(@RequestBody ReserveVo reserveVo ){
 		// Vo에 담아(폼에서 담아져 온다.) db에 넣는다.
-		reserveService.reserve( reserveVo );
-
-		//예약번호를 vo에 넣어서 model.addAttribute로 화면으로 보낸다.	
-		model.addAttribute( "reserveVo", reserveVo );
-		
-		
-		return "reserve/reserveok";
+		int count = reserveService.reserve( reserveVo );
+		return count;
 	}
 	
 	//예약취소화면
@@ -72,12 +67,17 @@ public class ReserveController {
 	@RequestMapping(value = "reservedelete", method = RequestMethod.POST)
 	public String reservedelete( int no ) throws Exception{
 	//@RequestBody객체로 받을때 . 객체를 해석하라고 지시하는것임
-		System.out.println( "나여기" + no );
 		String delResult = reserveService.reserveDelete( no );
-		
 		return delResult;
 	}
 	
-
+	//회원 조회
+	@ResponseBody
+	@RequestMapping(value = "reserveusersearch", method = RequestMethod.POST)
+	public List<UserVo> UserSearch( String name ) throws Exception{
+		List<UserVo> userList = reserveService.UserSearch( name );
+		return userList;
+	}
+	
 	  
 }

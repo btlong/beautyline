@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kr.ac.sungkyul.beautyline.dao.ReserveDao;
 import kr.ac.sungkyul.beautyline.vo.ReserveVo;
+import kr.ac.sungkyul.beautyline.vo.UserVo;
 
 @Service
 public class ReserveService {
@@ -25,8 +26,8 @@ public class ReserveService {
 	}
 	
 	//예약실행
-	public void reserve( ReserveVo reserveVo ){
-		reserveDao.reserve( reserveVo );
+	public int reserve( ReserveVo reserveVo ){
+		return reserveDao.reserve( reserveVo );
 	}
 	
 	//삭제
@@ -39,7 +40,12 @@ public class ReserveService {
 	}
 	
 	//달력에서 선택한 날짜로 vo받아오기
-	public List resDaySel( String resDateText ){
+	public List<ReserveVo> resDaySel( String resDateText ){
 		return reserveDao.resDaySel( resDateText );
+	}
+	
+	//회원 이름으로 검색
+	public List<UserVo> UserSearch( String name ){
+		return reserveDao.UserSearch( name );
 	}
 }

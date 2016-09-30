@@ -8,14 +8,14 @@
 	<select id="searchByNameAndPhone" parameterType="uservo" resultType="uservo">
 	<![CDATA[
 		select no, name, phone from users 
-		where name LIKE '%' || #{name} || '%' OR
-				phone LIKE '%' || #{phone} 
+		where name LIKE '%' ||  #{name} || '%'
+		and phone LIKE '%' || #{phone} || '%' 
 	]]>
 	</select>
 
 	<select id="searchSelectOne" parameterType="uservo" resultType="uservo">
 	<![CDATA[
-		select no, name, phone from users 
+		select * from users 
 		where name = #{name} and phone = #{phone}
 	]]>
 	</select>

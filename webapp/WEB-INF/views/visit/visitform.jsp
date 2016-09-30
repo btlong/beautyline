@@ -11,24 +11,29 @@
 
 <title>방문 내역</title>
 <jsp:useBean id="now" class="java.util.Date" />
-<!-- modal script -->
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<!-- 부트스트랩 -->
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-<!-- Bootstrap Core CSS -->
-<link href="/beautyline/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet">
 
 <!-- Custom CSS -->
 <link href="/beautyline/bootstrap/css/business-casual.css"
 	rel="stylesheet">
-<!-- responsive css -->
-<!-- <link href="/beautyline/beautyline/css/visit.css" rel="stylesheet"> -->
-<link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+<!-- 테마 -->
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT"
+	crossorigin="anonymous">
+
+<link href="/beautyline/beautyline/css/reserve.css" rel="stylesheet">
+<link href="/beautyline/beautyline/css/include.css" rel="stylesheet">
+
+<!-- 원호 CSS -->
+<link href="/beautyline/beautyline/css/visit.css" rel="stylesheet">
+
 <!-- Fonts -->
 <link
 	href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
@@ -36,167 +41,202 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic"
 	rel="stylesheet" type="text/css">
+
+
 <style>
 </style>
 </head>
 <body>
 	<c:import url="/WEB-INF/views/include/header.jsp" />
-
 	<!-- container -->
 	<div class="container">
-	<div class="row">
-		<div class="box">
-		<div class="col-lg-12">
-		<div class="page-header">
-               <hr>
-               <h1 class="text-center text-center">
-                  <strong>방문내역관리</strong>
-               </h1>
-               <hr>
-            </div>
-		
-		
-		
-			<form class="form-horizontal" id="visitform" name="visitForm" method="post"
-				action="/beautyline/visited">
-			
-			
-				
-			
-				
-				<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
-			
-			
-			<div class="form-group" >
-			<label class="col-sm-3 control-label">날짜 :<strong>${today}</strong></label>
-					<div class="col-sm-3 col-sm-offset-5">
-			
-						
-							<a href="" data-target="#myModal1" data-toggle="modal"
-								class="btn btn-danger btn-primary btn-sm" id="package"> 쿠폰
-								등록</a> <a class="btn btn-danger btn-primary btn-sm"
-								href="/beautyline/visit/details" role="button">내역 조회</a> <a
-								class="btn btn-danger btn-primary btn-sm"
-								href="/beautyline/visit/registration" role="button">회원 등록</a>
-	
-				</div>
-				</div>
-
-				<div class="form-inline col-lg-11">
-					<!-- name -->
-					<label class="intro-text">이름</label> <input type="text"
-						class="form-control" name="name" id="name" placeholder="홍길동"
-						value="${userVo.name}">
-
-					<!-- phone -->
-					<label class="intro-text">전화번호</label> 
-					<input type="text"
-						class="form-control" name="phone" id="phone"
-						placeholder="010-1234-1234" value="${userVo.phone}">
-
-					<!-- Trigger the modal with a button -->
-					<button type="button" class="btn btn-info btn-lg" id="smyModal"
-						data-target="#myModal3" data-toggle="modal">검색</button>
-				</div>
-
-
-				<div class="form-inline col-lg-10 ">
-					<label class="intro-text">케어 프로그램</label>
-					<table class="table animation" id="careProgram" name="careProgram">
-
-						<tr class="danger">
-							<th>베이직 케어</th>
-							<th>미백 케어</th>
-							<th>주름 케어</th>
-							<th>여드름 케어</th>
-						</tr>
-
-						<tr>
-							<th id="one"></th>
-							<th id="two"></th>
-							<th id="three"></th>
-							<th id="four"></th>
-						</tr>
-
-					</table>
-				</div><br><br><br><br><br><br>
-
-
-				<div class="form-group col-lg-10">
-					<label class="intro-text"> 점수 </label>
-					<div class="table-responsive">
-						<table class="table">
-							<tr class="danger">
-								<th>측정 사진</th>
-								<th>수분</th>
-								<th>안티에이징</th>
-								<th>민감도</th>
-								<th>피부나이</th>
-							</tr>
-							<tr>
-								<td>
-									<div class="filebox bs3-primary preview-image">
-										<input class="upload-name" value="파일선택" disabled="disabled"
-											style="width: 200px;"> <label for="input_file">업로드</label>
-										<input type="file" id="input_file" class="upload-hidden">
-									</div>
-								</td>
-								<td><input type="text"></td>
-								<td><input type="text"></td>
-								<td><input type="text"></td>
-								<td><input type="text"></td>
-							</tr>
-						</table>
+		<div class="row">
+			<div class="box">
+				<div class="col-lg-12">
+					<div class="page-header">
+						<hr>
+						<h1 class="text-center text-center">
+							<strong>방문내역관리</strong>
+						</h1>
+						<hr>
 					</div>
-				</div>
 
-				<div class="form-group col-lg-10">
-					<div class="form-inline">
-						<div class="col-md-8">
-							<label class="intro-text">메모</label>
-							<textarea class="form-control" rows="3"></textarea>
+					<form class="form-horizontal" id="visitform" name="visitform"
+						method="post" action="/beautyline/visit/visited">
+
+						<div class="form-group">
+							<div class="col-sm-4 col-sm-offset-7">
+								<a href="" data-target="#myModal1" data-toggle="modal"
+									class="btn btn-danger btn-primary btn-default" id="package">
+									쿠폰 등록</a> <a class="btn btn-danger btn-primary btn-default"
+									href="/beautyline/visit/details" role="button">내역 조회</a> <a
+									class="btn btn-danger btn-primary btn-default"
+									href="/beautyline/visit/registration" role="button">회원 등록</a>
+							</div>
 						</div>
 
-						<div class="col-md-4">
-							<label class="radio-inline"> <input type="radio"
-								name="inlineRadioOptions" id="inlineRadio1" value="option1">쿠폰
-							</label> <label class="radio-inline"> <input type="radio"
-								name="inlineRadioOptions" id="inlineRadio2" value="option2">현장결제
-							</label>
-							<div class="form-inline">
-								<label class="intro-text">금액</label> <input type="text"
-									class="form-control" id="money">
-								<button type="submit" class="btn btn-default" id="registor"
+						<!-- 회원 정보-->
+						<div class="form-group">
+							<!-- 이름 -->
+							<label class="col-sm-2 control-label">회원 정보</label>
+							<div class="col-sm-2 col-sm-offset-2" id="divName">
+								<input type="text" class="form-control onlyHangul" name="name"
+									id="name" placeholder="이름" value="${userVo.name}">
+							</div>
+							<!-- 핸드폰 -->
+							<div class="col-sm-2" id="divPhone">
+								<input type="text" class="form-control onlyNumber" name="phone"
+									id="phone" placeholder="01012341234" value="${userVo.phone}">
+							</div>
+							<!-- Trigger the modal with a button -->
+
+							<button type="button" class="btn btn-theme btn-default col-sm-1"
+								id="smyModal" data-target="#myModal3" data-toggle="modal">검색</button>
+						</div>
+						<div class="form-group">
+							<div class="well">
+								<div>
+									<label class="control-label">이름:</label> <label id="wellName"
+										class="control-label"></label> <label
+										class="col-sm-offset-4 control-label">ID:</label> <label
+										id="wellId" class="control-label"></label>
+								</div>
+								<div>
+									<label class="control-label">핸드폰:</label> <label
+										class="control-label" id="wellPhone"></label>
+								</div>
+								<div>
+									<label class="control-label">이메일:</label> <label
+										class="control-label" id="wellEmail"></label>
+								</div>
+								<div>
+									<label class="control-label">주소:</label> <label
+										class="control-label" id="wellAddress"></label>
+								</div>
+							</div>
+						</div>
+
+						<!-- 쿠폰 정보 -->
+						<div class="form-group">
+							<label class="col-sm-2 activestep control-label">쿠폰 정보</label> <br>
+							<div class="row step" id="rowstep">
+								<div id="div1" class="col-md-2 thumbnail"
+									onclick="javascript: resetActive(event);">
+									<p>베이직 케어</p>
+									<p id="one" name="programNo" value="1"></p>
+								</div>
+								<div class="col-md-2 thumbnail"
+									onclick="javascript: resetActive(event);">
+									<p>미백 케어</p>
+									<p id="two" name="programNo" value="2"></p>
+								</div>
+								<div class="col-md-2 thumbnail"
+									onclick="javascript: resetActive(event);">
+									<span class="fa fa-refresh"></span>
+									<p>주름 케어</p>
+									<p id="three" name="programNo" value="3"></p>
+								</div>
+								<div id="last" class="col-md-2 thumbnail"
+									onclick="javascript: resetActive(event);">
+									<p>여드름 케어</p>
+									<p id="four" name="programNo" value="4"></p>
+								</div>
+							</div>
+						</div>
+						<fmt:formatDate value="${now}" pattern="yyyy-MM-dd H:m"
+							var="today" />
+
+
+						<!-- 결제 정보 -->
+						<div class="form-group">
+
+							<label class="col-sm-2 control-label">결제 정보</label> <label
+								class="col-sm-2 control-label" id="regDate">${today}</label>
+							<!-- test -->
+							<div class="col-sm-3 col-sm-offset-2">
+								<div class="radio-group">
+									<input id="opt_1" class="radio-group__option" type="radio"
+										name="payNo" value="1" checked="checked"> <label
+										class="radio-group__label control-label" for="opt_1">
+										현장 결제 </label> <input id="opt_2" class="radio-group__option"
+										type="radio" name="payNo" value="2"> <label
+										class="radio-group__label control-label" for="opt_2">
+										쿠폰</label>
+								</div>
+								<div id="log"></div>
+							</div>
+						</div>
+						<br />
+						<!-- 측정 정보 -->
+						<div class="form-group">
+							<label class="col-sm-2 control-label">측정 정보</label>
+							<table class="table table-bordered">
+								<tr class="danger">
+									<th>사진</th>
+									<th>미백</th>
+									<th>주름</th>
+									<th>피부탄력</th>
+									<th>수분</th>
+									<th>여드름</th>
+								</tr>
+								<tr class="center-blcok">
+									<td>
+										<div class="filebox bs3-primary preview-image">
+											<div class="mag1">
+												<input data-toggle="magnify"
+													class="upload-name img-responsive img-rounded center-block"
+													value="파일선택" disabled="disabled" style="width: 200px;">
+
+												<label for="input_file">업로드</label> <input type="file"
+													id="input_file" class="upload-hidden">
+											</div>
+										</div>
+									</td>
+									<td><input class="onlyNumberScore" type="text"
+										id="whiteningScore" name="whiteningScore" value="" size="8"></td>
+
+									<td><input class="onlyNumberScore" type="text"
+										id="whinkleScore" name="whinkleScore" value="" size="8"
+										maxlength="3" min="0" max="100"></td>
+									<td><input class="onlyNumberScore" type="text"
+										id="elasticScore" name="elasticScore" value="" size="8"
+										maxlength="3"></td>
+									<td><input class="onlyNumberScore" type="text"
+										id="moistureScore" name="moistureScore" value="" size="8"
+										maxlength="3"></td>
+									<td><input class="onlyNumberScore" type="text"
+										id="acneScore" name="acneScore" value="" size="8"
+										maxlength="3"></td>
+								</tr>
+							</table>
+
+
+							<!-- 메모  -->
+							<div class="row">
+								<label class="col-sm-2 control-label">메모</label>
+								<textarea class="col-sm-3" id="memo" rows="2" cols="35"></textarea>
+
+								<div class="col-sm-2 col-sm-offset-3" id="average">
+									<label class="control-label">피부 평균 점수 :</label>
+								</div>
+							</div>
+						</div>
+
+						<!-- 시술 등록 -->
+						<div class="form-group">
+							<div class="text-center">
+								<button type="submit" class="btn btn-theme" id="registor"
 									data-loading-text="등록중...">등록</button>
 							</div>
 						</div>
-					</div>
+					</form>
 				</div>
-			</form>
+			</div>
 		</div>
-	</div></div></div>
+	</div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	<!-- 회원번호 : 텍스트박스  ,  이름 : 텍스트박스 		right 전화번호 : 텍스트박스  -->
+	<!-- 푸터 -->
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
 	<!-- searchModal -->
 
@@ -312,6 +352,7 @@
 </body>
 <script>
 	/* search Modal Click */
+	var userNo;
 	$("#smyModal").on("click", function() {
 		var trString = "";
 		var name = $('#name').val();
@@ -321,6 +362,7 @@
 			"name" : name,
 			"phone" : phone
 		};
+
 		$.ajax({
 			url : "visitorsearchform",
 			type : "POST",
@@ -330,17 +372,16 @@
 			success : function(visitorList) {
 
 				$.each(visitorList, function(index, userVo) {
-					trString += "<option>";
+					trString += "<option class='muk'>";
 					trString += userVo.name;
 					trString += "&nbsp;|&nbsp;&nbsp;";
 					trString += userVo.phone;
 					trString += "</option>";
 				});
+				$(".muk").remove();
 				$("#selected").append(trString);
-				//
 			}
 		});
-
 	});
 
 	/* searched visitor select */
@@ -360,8 +401,13 @@
 
 	});
 
-	/* selcted complit  회원정보 + 쿠폰 횟수 */
+	/* 선택버튼 완료시 */
 	$("#userSelect").on("click", function() {
+		$('#one').html("");
+		$('#two').html("");
+		$('#three').html("");
+		$('#four').html("");
+
 		var tdString = "";
 		var name = $("#selectedName").html().replace(/&nbsp;/gi, '');
 		var phone = $("#selectedPhone").html().replace(/&nbsp;/gi, '').trim();
@@ -376,33 +422,31 @@
 			contentType : "application/json",
 			success : function(retVal) {
 				var user = retVal.authUser;
-				var selectId = [ "one", "two", "three", "four" ];
 				/* 말줄임말 필요 */
 				document.getElementById('name').value = user.name;
 				document.getElementById('phone').value = user.phone;
-
+				$('#wellName').html(user.name);
+				$('#wellId').html(user.id);
+				$('#wellPhone').html(user.phone);
+				$('#wellEmail').html(user.email);
+				$('#wellAddress').html(user.address);
+				userNo = parseInt(user.no);
 				/* 아이디 비교하여 남은 횟수 td에 append */
 				/* for문에  if문을 섞어서  */
 				var coupon = retVal.couponList;
 				$.each(coupon, function(index, couponVo) {
-					console.log(couponVo.program_no);
 					if (couponVo.program_no == 1) {
 						$('#one').html(couponVo.count);
-						return;
 					} else if (couponVo.program_no == 2) {
 						$('#two').html(couponVo.count);
-						return;
 					} else if (couponVo.program_no == 3) {
 						$('#three').html(couponVo.count);
-						return;
 					} else if (couponVo.program_no == 4) {
 						$('#four').html(couponVo.count);
-						return;
 					} else {
 						// count가 0으로가 나도오록 
 					}
 				});
-				/* $("#careProgram").append(tdString); */
 			}
 		});
 		$("#myModal3").modal('hide'); // 숨키기.
@@ -413,9 +457,8 @@
 		$("#myModal").modal();
 	});
 
-	//preview image 
+	/* 이미지 미리보기 */
 	var imgTarget = $('.preview-image .upload-hidden');
-
 	imgTarget
 			.on(
 					'change',
@@ -450,6 +493,300 @@
 									+ imgSrc + "\")";
 						}
 					});
+
+	/* 한글만 적용 */
+	$(".onlyHangul").keyup(function(event) {
+		if (!(event.keyCode >= 37 && event.keyCode <= 40)) {
+			var inputVal = $(this).val();
+			$(this).val(inputVal.replace(/[a-z0-9]/gi, ''));
+		}
+	});
+
+	/* 숫자만 적용 */
+	$(".onlyNumber").keyup(function(event) {
+		if (!(event.keyCode >= 37 && event.keyCode <= 40)) {
+			var inputVal = $(this).val();
+			$(this).val(inputVal.replace(/[^0-9]/gi, ''));
+		}
+	});
+
+	/* 점수만 적용 Max - 3자리수 */
+	$(".onlyNumberScore").keyup(function(event) {
+		var average;
+		if (!(event.keyCode >= 37 && event.keyCode <= 40)) {
+			var inputVal = $(this).val();
+			$(this).val(inputVal.replace(/[^0-9]/gi, ''));
+		}
+		if (parseInt($(this).val()) > 100) {
+			$('#average').html('입력 값 0 ~ 100');
+			$(this).val('');
+		}
+	});
+
+	/* focus를 잃었을때 */
+	$(".onlyNumberScore").blur(function() {
+
+		var value = $(this).val();
+		var score = score + parseInt(value);
+		$(this).css("background-color", "#68dff0"); // 배경색 변경
+
+	});
+	/* 이름 - 한글만  */
+	$('#name').keyup(function(event) {
+
+		var divId = $('#divName');
+
+		if ($('#name').val() == "") {
+			divId.removeClass("has-success");
+			divId.addClass("has-error");
+		} else {
+			divId.removeClass("has-error");
+			divId.addClass("has-success");
+		}
+
+	});
+
+	/* 전화번호 - 숫자만  */
+	$('#phone').keyup(function(event) {
+		var divId = $('#divPhone');
+		if ($('#phone').val() == "") {
+			divId.removeClass("has-success");
+			divId.addClass("has-error");
+		} else {
+			divId.removeClass("has-error");
+			divId.addClass("has-success");
+		}
+	});
+
+	/* 점수 입력값 숫자만  */
+	$('#whiteningScore').keyup(function(event) {
+		var divId = $('#divWhitening');
+		if ($('#whiteningScore').val() == "") {
+			divId.removeClass("has-success");
+			divId.addClass("has-error");
+		} else {
+			divId.removeClass("has-error");
+			divId.addClass("has-success");
+		}
+	});
+
+	/* test */
+	function resetActive(event) {
+		$("div").each(function() {
+			if ($(this).hasClass("activestep")) {
+				$(this).removeClass("activestep");
+			}
+		});
+		if (event.target.className == "col-md-2") {
+			$(event.target).addClass("activestep");
+		} else {
+			$(event.target.parentNode).addClass("activestep");
+		}
+	}
+
+	/* 등록 버튼시 해당 hasClass가 있는 경우의 값을 보내라. */
+
+	/* test - 이미지 자세히 보기 */
+	!function($) {
+
+		"use strict"; // jshint ;_;
+
+		/* MAGNIFY PUBLIC CLASS DEFINITION
+		 * =============================== */
+
+		var Magnify = function(element, options) {
+			this.init('magnify', element, options)
+		}
+
+		Magnify.prototype = {
+
+			constructor : Magnify
+
+			,
+			init : function(type, element, options) {
+				var event = 'mousemove', eventOut = 'mouseleave';
+
+				this.type = type
+				this.$element = $(element)
+				this.options = this.getOptions(options)
+				this.nativeWidth = 0
+				this.nativeHeight = 0
+
+				this.$element.wrap('<div class="magnify" >');
+				this.$element.parent('.magnify').append(
+						'<div class="magnify-large" >');
+				this.$element.siblings(".magnify-large").css("background",
+						"url('" + this.$element.attr("src") + "') no-repeat");
+
+				this.$element.parent('.magnify').on(event + '.' + this.type,
+						$.proxy(this.check, this));
+				this.$element.parent('.magnify').on(eventOut + '.' + this.type,
+						$.proxy(this.check, this));
+			}
+
+			,
+			getOptions : function(options) {
+				options = $.extend({}, $.fn[this.type].defaults, options,
+						this.$element.data())
+
+				if (options.delay && typeof options.delay == 'number') {
+					options.delay = {
+						show : options.delay,
+						hide : options.delay
+					}
+				}
+
+				return options
+			}
+
+			,
+			check : function(e) {
+				var container = $(e.currentTarget);
+				var self = container.children('img');
+				var mag = container.children(".magnify-large");
+
+				// Get the native dimensions of the image
+				if (!this.nativeWidth && !this.nativeHeight) {
+					var image = new Image();
+					image.src = self.attr("src");
+
+					this.nativeWidth = image.width;
+					this.nativeHeight = image.height;
+
+				} else {
+
+					var magnifyOffset = container.offset();
+					var mx = e.pageX - magnifyOffset.left;
+					var my = e.pageY - magnifyOffset.top;
+
+					if (mx < container.width() && my < container.height()
+							&& mx > 0 && my > 0) {
+						mag.fadeIn(100);
+					} else {
+						mag.fadeOut(100);
+					}
+
+					if (mag.is(":visible")) {
+						var rx = Math.round(mx / container.width()
+								* this.nativeWidth - mag.width() / 2)
+								* -1;
+						var ry = Math.round(my / container.height()
+								* this.nativeHeight - mag.height() / 2)
+								* -1;
+						var bgp = rx + "px " + ry + "px";
+
+						var px = mx - mag.width() / 2;
+						var py = my - mag.height() / 2;
+
+						mag.css({
+							left : px,
+							top : py,
+							backgroundPosition : bgp
+						});
+					}
+				}
+
+			}
+		}
+
+		/* MAGNIFY PLUGIN DEFINITION
+		 * ========================= */
+
+		$.fn.magnify = function(option) {
+			return this
+					.each(function() {
+						var $this = $(this), data = $this.data('magnify'), options = typeof option == 'object'
+								&& option
+						if (!data)
+							$this.data('tooltip', (data = new Magnify(this,
+									options)))
+						if (typeof option == 'string')
+							data[option]()
+					})
+		}
+
+		$.fn.magnify.Constructor = Magnify
+
+		$.fn.magnify.defaults = {
+			delay : 0
+		}
+
+		/* MAGNIFY DATA-API
+		 * ================ */
+
+		$(window).on('load', function() {
+			$('[data-toggle="magnify"]').each(function() {
+				var $mag = $(this);
+				$mag.magnify()
+			})
+		})
+
+	}(window.jQuery);
+	/* test end */
+
+	/* 라디오버튼시 on off */
+	function updateLog() {
+
+		var tradioString = "";
+
+		var one = $("#opt_1:checked").val() ? "On" : "Off"
+		var two = $("#opt_2:checked").val() ? "On" : "Off"
+
+		tradioString = "<input id='opt_3' class='radio-group__option' type='radio' name='payNo' value='3'> <label class='radio-group__label control-label' for='opt_3'> 현금 </label>"
+				+ "<input id='opt_4' class='radio-group__option' type='radio' name='payNo' value='4'>"
+				+ " <label class='radio-group__label control-label' for='opt_4'> 카드</label>";
+
+		$("#log").html(tradioString);
+		$("#log").show();
+		if (one == "On") {
+			$("#log").show();
+			$("#log").html(tradioString);
+		} else if (two == "On") {
+			$("#log").hide();
+		}
+
+	}
+	$(".radio-group__option").change(updateLog)
+
+	$("#registor").on(
+			"click",
+			function() {
+				
+				var memo = $("#memo").val();
+				var regDate = $("#regDate").text();
+				var whiteningScore = $("#whiteningScore").val();
+				var whinkleScore = $("#whinkleScore").val();
+				var elasticScore = $("#elasticScore").val();
+				var moistureScore = $("#moistureScore").val();
+				var acneScore = $("#acneScore").val();
+				var payNo = $(".radio-group__option:checked").val();
+				var programNo = $("p[name=programNo]").val();
+				console.log(programNo);
+				var averageScore = (parseInt(whiteningScore)
+						+ parseInt(whinkleScore) + parseInt(elasticScore)
+						+ parseInt(moistureScore) + parseInt(acneScore)) / 5;
+
+				var visitVo = {
+					"userNo" : userNo,
+					"programNo" : programNo,
+					"memo" : memo,
+					"regDate" : regDate,
+					"whiteningScore" : whiteningScore,
+					"whinkleScore" : whinkleScore,
+					"elasticScore" : elasticScore,
+					"moistureScore" : moistureScore,
+					"acneScore" : acneScore,
+					"averageScore" : averageScore,
+					"payNo" : payNo
+				};
+				console.log(visitVo);
+				$.ajax({
+					url : "visited",
+					type : "POST",
+					data : JSON.stringify(visitVo),
+					contentType : "application/json"
+				});
+			});
 </script>
 </html>
 

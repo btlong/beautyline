@@ -2,9 +2,7 @@ package kr.ac.sungkyul.beautyline.vo;
 
 /**
  * @author WonHo
- *
  */
-
 public class VisitVo {
 	private Long no; // 방문내역 번호
 	private Long userNo; // 회원 번호
@@ -19,7 +17,7 @@ public class VisitVo {
 	private Long acneScore; // 여드름 점수
 	private Double averageScore; // 평균점수
 	
-	private String payName; // 결제방법이름;
+	private Long payNo; // 결제방법이름;
 
 	/* 사용자 측정후 이미지 */
 	private Long fNo; // 1.fno -> 저장시
@@ -128,12 +126,12 @@ public class VisitVo {
 		this.averageScore = averageScore;
 	}
 
-	public String getPayName() {
-		return payName;
+	public Long getPayNo() {
+		return payNo;
 	}
 
-	public void setPayName(String payName) {
-		this.payName = payName;
+	public void setPayNo(Long payNo) {
+		this.payNo = payNo;
 	}
 
 	public Long getfNo() {
@@ -181,7 +179,7 @@ public class VisitVo {
 		return "VisitVo [no=" + no + ", userNo=" + userNo + ", programNo=" + programNo + ", iamgeNo=" + iamgeNo
 				+ ", memo=" + memo + ", regDate=" + regDate + ", whiteningScore=" + whiteningScore + ", whinkleScore="
 				+ whinkleScore + ", elasticScore=" + elasticScore + ", moistureScore=" + moistureScore + ", acneScore="
-				+ acneScore + ", averageScore=" + averageScore + ", payName=" + payName + ", fNo=" + fNo + ", path="
-				+ path + ", orgName=" + orgName + ", saveName=" + saveName + ", fileSize=" + fileSize + "]";
+				+ acneScore + ", averageScore=" + averageScore + ", payNo=" + payNo + ", fNo=" + fNo + ", path=" + path
+				+ ", orgName=" + orgName + ", saveName=" + saveName + ", fileSize=" + fileSize + "]";
 	}
 }

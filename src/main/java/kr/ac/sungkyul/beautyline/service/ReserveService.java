@@ -15,11 +15,15 @@ public class ReserveService {
 	@Autowired
 	private ReserveDao reserveDao;
 	
-	//reserveList
+	//관리자 - reserveList
 	public List<ReserveVo> resList(){
 		return reserveDao.resList();
 	}
 	
+	//회원 - 회원번호로 list 조회
+	public List<ReserveVo> resList( int userNo ){
+		return reserveDao.resList( userNo );
+	}
 	//예약번호로 검색
 	public ReserveVo selectReserve( int no ){
 		return reserveDao.selectReserve( no );
@@ -33,12 +37,10 @@ public class ReserveService {
 	}
 	
 	//삭제
-	public String reserveDelete( int no ){
+	public int reserveDelete( int no ){
 		int delCount;
 		delCount = reserveDao.reserveDelete( no );
-		
-		
-		return "";
+		return delCount;
 	}
 	
 	//달력에서 선택한 날짜로 vo받아오기

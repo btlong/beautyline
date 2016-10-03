@@ -30,9 +30,7 @@
 	href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic"
 	rel="stylesheet" type="text/css">
 
-
-
-<!-- Datepicker -->
+<!-- jquery  -->
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -159,7 +157,6 @@
 					<button type="button" class="close" data-dismiss="modal">×</button>
 					<!-- header title -->
 					<h4 class="modal-title text-center">
-						<!-- Ajax처리 -->
 						<strong>회원검색</strong>
 					</h4>
 				</div>
@@ -496,6 +493,24 @@ $("#reservebtn").on("click",function(){
 		}
 	});
 });
+
+/* 한글만 적용 */
+$(".onlyHangul").keyup(function(event) {
+	if (!(event.keyCode >= 37 && event.keyCode <= 40)) {
+		var inputVal = $(this).val();
+		$(this).val(inputVal.replace(/[a-z0-9]/gi, ''));
+	}
+});
+
+
+/* 숫자만 적용 */
+$(".onlyNumber").keyup(function(event) {
+   if (!(event.keyCode >= 37 && event.keyCode <= 40)) {
+      var inputVal = $(this).val();
+      $(this).val(inputVal.replace(/[^0-9]/gi, ''));
+   }
+});
+
 	
 });
 </script>

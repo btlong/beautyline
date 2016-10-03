@@ -3,6 +3,7 @@
 
 <mapper namespace="res">
 
+<!-- 관리자 - 예약리스트 조회 -->
 <select id="resList" resultType="reservevo">
 	<![CDATA[
 		select r.no as no,r.user_no as userNo,u.name as userName,r.prog_name as progName,r.res_date as resDate,r.res_Time as resTime 
@@ -10,6 +11,16 @@
 	]]>
 
 </select>
+
+<!-- 회원 - 회원번호로 예약리스트 조회 -->
+<select id="resListUserNo" parameterType="java.lang.Integer" resultType="reservevo">
+	<![CDATA[
+		select r.no as no,r.user_no as userNo,u.name as userName,r.prog_name as progName,r.res_date as resDate,r.res_Time as resTime 
+		from reservation r, users u where u.no = r.user_no and r.user_no = #{userNo} order by resDate desc, resTime desc
+	]]>
+
+</select>
+
 
 <select id="resSelect" parameterType="java.lang.Integer" resultType="reservevo">
 
@@ -31,13 +42,13 @@
 
 </select>
 
-<!-- <delete id="resDelete" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+<delete id="resDelete" parameterType="java.lang.Integer">
 	<![CDATA[
 	
 		delete from reservation where no = #{no}
 		
 	]]>
-</delete> -->
+</delete>
 
 <!-- reserveVo 넣기 -->
 <insert id="reserve" parameterType="reservevo" >

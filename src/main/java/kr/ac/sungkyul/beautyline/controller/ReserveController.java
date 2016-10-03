@@ -24,16 +24,13 @@ public class ReserveController {
 	@Autowired
 	UserService userService;
 	
+
+/* 관리자 */
+	
 	//관리자 - 예약화면
 	@RequestMapping("/reserve")
 	public String reserve(){
 		return "reserve/reserve";
-	}
-	
-	//회원 - 예약화면
-	@RequestMapping("/userreserve")
-	public String userreserve(){
-		return "reserve/userreserve";
 	}
 	
 	//관리자 - 예약리스트 조회
@@ -44,27 +41,8 @@ public class ReserveController {
 		model.addAttribute("resList", resList);
 		return "reserve/reservelist";
 	}
-	
-	
-	//예약시간선택화면
-	@ResponseBody
-	@RequestMapping(value = "reserveDay", method = RequestMethod.POST)
-	public List<ReserveVo> reserveform( String resDateText ){
-		List<ReserveVo> resSelList = reserveService.resDaySel( resDateText );
-		//날짜에 맞는 시간 리스트로 받아오기
-		return resSelList;
-	}
-	
-	//예약하기 눌렀을때
-	@ResponseBody
-	@RequestMapping(value="reserveData", method=RequestMethod.POST)
-	public int reserve(@RequestBody ReserveVo reserveVo ){
-		// Vo에 담아(폼에서 담아져 온다.) db에 넣는다.
-		int count = reserveService.reserve( reserveVo );
-		return count;
-	}
-	
-	//예약취소화면
+
+	//관리자 - 예약취소화면
 	@RequestMapping(value = "reservedeleteform", method = RequestMethod.GET)
 	public String reservedeleteform( int no, Model model ){
 		ReserveVo reserveVo = reserveService.selectReserve( no );
@@ -73,16 +51,16 @@ public class ReserveController {
 		return "reserve/reservedeleteform";
 	}
 	
-	//예약취소
+	//관리자 - 예약취소
 	@ResponseBody
 	@RequestMapping(value = "reservedelete", method = RequestMethod.POST)
-	public String reservedelete( int no ) throws Exception{
+	public int reservedelete( int no ) throws Exception{
 	//@RequestBody객체로 받을때 . 객체를 해석하라고 지시하는것임
-		String delResult = reserveService.reserveDelete( no );
+		int delResult = reserveService.reserveDelete( no );
 		return delResult;
 	}
 	
-	//회원 조회
+	//관리자 - 회원 조회
 	@ResponseBody
 	@RequestMapping(value = "reserveusersearch", method = RequestMethod.POST)
 	public List<UserVo> UserSearch( String name ) throws Exception{
@@ -98,11 +76,51 @@ public class ReserveController {
 		return uservi;
 	}
 	
-	
-	//예약 확인
-	@RequestMapping(value="reserveok")
-	public String reserveOk(){
-		return "reserve/reserveok";
+
+/* 회원 */
+	//회원 - 예약화면
+		@RequestMapping("/userreserve")
+		public String userreserve(){
+			return "reserve/userreserve";
+		}
+		
+	//회원 - 예약 리스트
+		@RequestMapping("/userreservelist")
+		public String userreservelist( Model model, int userNo ){
+			List<ReserveVo> resList = reserveService.resList( userNo );
+			
+			System.out.println( resList );
+			model.addAttribute("resList", resList);
+			return "reserve/userreservelist";
+		}
+		
+/* 공통 */
+			//예약시간선택화면
+	@ResponseBody
+	@RequestMapping(value = "reserveDay", method = RequestMethod.POST)
+	public List<ReserveVo> reserveform( String resDateText ){
+		List<ReserveVo> resSelList = reserveService.resDaySel( resDateText );
+		//날짜에 맞는 시간 리스트로 받아오기
+		return resSelList;
 	}
+	
+		
+		//예약 확인
+		@RequestMapping(value="reserveok")
+		public String reserveOk(){
+			return "reserve/reserveok";
+		}
+
+		//예약하기 눌렀을때
+		@ResponseBody
+		@RequestMapping(value="reserveData", method=RequestMethod.POST)
+		public int reserve(@RequestBody ReserveVo reserveVo ){
+			// Vo에 담아(폼에서 담아져 온다.) db에 넣는다.
+			int count = reserveService.reserve( reserveVo );
+			return count;
+		}
+		
+		
 	  
 }
+ 

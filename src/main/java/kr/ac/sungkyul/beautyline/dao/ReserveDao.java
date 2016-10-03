@@ -20,9 +20,13 @@ public class ReserveDao {
 		return sqlSession.selectList( "res.resList" );
 	}
 	
+	//회원 - 회원번호로 list 조회
+	public List<ReserveVo> resList( int userNo ){
+		return sqlSession.selectList( "res.resListUserNo", userNo );
+	}
+	
 	//예약번호로 검색
 	public ReserveVo selectReserve( int no ){
-		
 		return sqlSession.selectOne( "res.resSelect", no );
 	}
 	
@@ -36,7 +40,6 @@ public class ReserveDao {
 	public int reserveDelete( int no ){
 		int delCount;
 		delCount = sqlSession.delete( "res.resDelete", no );
-		System.out.println( "예약삭제 dao = " + delCount);
 		return delCount;
 	}
 	

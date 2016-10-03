@@ -40,6 +40,7 @@
 </head>
 <style type="text/css">
 
+
 </style>
 
 
@@ -66,7 +67,6 @@
 						<thead>
 							<tr class="info">
 								<th>#</th>
-								<th>이름</th>
 								<th>예약 프로그램</th>
 								<th>예약일</th>
 								<th>예약 시간</th>
@@ -83,7 +83,6 @@
 								<c:if test='${today > reserveVo.resDate }'> id="resPast" </c:if>>
 								<tr>
 									<td>${status.index }</td>
-									<td>${reserveVo.userName }</td>
 									<td>${reserveVo.progName }</td>
 									<td>${reserveVo.resDate }</td>
 									<td>${reserveVo.resTime }시- ${reserveVo.resTime + 1 }시</td>

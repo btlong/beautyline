@@ -93,9 +93,42 @@
 								
 					</table>
 
-					<div class="col-lg-12 text-right">
-						<button class="btn btn-danger" type="button" onclick="location.href='calenderform'">돌아가기</button>
+					<div class="col-lg-12 text-center">
+						<ul class="pagination pagination-sm">
+	  						<li class="disabled"><a href="#">&laquo;</a></li>
+							<li class="active"><a href="#">1</a></li>
+							<li><a href="#">2</a></li>
+							<li><a href="#">3</a></li>
+							<li><a href="#">4</a></li>
+							<li><a href="#">5</a></li>
+							<li><a href="#">&raquo;</a></li>
+						</ul>
 					</div>
+					
+						<div class="col-lg-12 text-right">	
+					<button class="btn btn-danger" type="button" onclick="location.href='calenderform'">돌아가기</button>
+				</div>
+
+
+				<div class="col-lg-12 text-center">
+					<ul class="pagination pagination-sm">
+	  					<li class="disabled"><a href="#">&laquo;</a></li>
+						<li class="active"><a href="#">1</a></li>
+						<li><a href="#">2</a></li>
+						<li><a href="#">3</a></li>
+						<li><a href="#">4</a></li>
+						<li><a href="#">5</a></li>
+						<li><a href="#">&raquo;</a></li>
+					</ul>
+				</div>
+			
+				<div class="col-lg-12 text-center form-inline" >	
+        			<div class="form-group">
+         			<input type="text" class="form-control" placeholder="Search">
+        			</div>
+       				
+       				<button type="submit" class="btn btn-default"  >검색</button>
+      			</div>
 				</div>
 			</div>
 		</div>

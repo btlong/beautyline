@@ -115,13 +115,9 @@
 }
 
 <!-- reservelist -->
-#resPast tr {
-	color: #AEAEAE;
-}
 
-#resDel {
-	color: black;
-}
+
+
 
 .modal-dialog {
 	padding-top: 10%;
@@ -139,5 +135,7 @@
 .tb-td {
 	width: 100px;
 }
-
+#resPast tr {
+	color: #AEAEAE;
+}
 <!-- -->

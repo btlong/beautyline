@@ -39,7 +39,6 @@
 
 </head>
 <style type="text/css">
-
 </style>
 
 
@@ -87,17 +86,44 @@
 									<td>${reserveVo.progName }</td>
 									<td>${reserveVo.resDate }</td>
 									<td>${reserveVo.resTime }시- ${reserveVo.resTime + 1 }시</td>
-									<td><a href="reservedeleteform?no=${reserveVo.no }" type="button" class="btn btn-default btn-xs" <c:if test='${today > reserveVo.resDate }'> id="resDel" </c:if>>취소</a></td>
+									<td><a href="reservedeleteform?no=${reserveVo.no }" type="button" class="btn btn-default btn-xs">
+									<c:choose>
+										<c:when test='${today > reserveVo.resDate }'>삭제</c:when>
+										<c:otherwise>취소</c:otherwise>
+									</c:choose>
+									</a></td>
 								</tr>
 							</tbody>
 						</c:forEach>
-								
 					</table>
-
-					<div class="col-lg-12 text-right">
-						<button class="btn btn-danger" type="button" onclick="location.href='calenderform'">돌아가기</button>
-					</div>
+				
+				<div class="col-lg-12 text-right">	
+					<button class="btn btn-danger" type="button" onclick="location.href='calenderform'">돌아가기</button>
 				</div>
+
+
+				<div class="col-lg-12 text-center">
+					<ul class="pagination pagination-sm">
+	  					<li class="disabled"><a href="#">&laquo;</a></li>
+						<li class="active"><a href="#">1</a></li>
+						<li><a href="#">2</a></li>
+						<li><a href="#">3</a></li>
+						<li><a href="#">4</a></li>
+						<li><a href="#">5</a></li>
+						<li><a href="#">&raquo;</a></li>
+					</ul>
+				</div>
+			
+				<div class="col-lg-12 text-center form-inline" >	
+        			<div class="form-group">
+         			<input type="text" class="form-control" placeholder="Search">
+        			</div>
+       				
+       				<button type="submit" class="btn btn-default" id="resSearch">검색</button>
+      			</div>
+      			
+			</div>
+				
 			</div>
 		</div>
 	</div>
@@ -105,7 +131,13 @@
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
 
 </body>
+<script>
+$(document).ready(function(){
+	$("#resSearch").on("click",function(){
+		
+	});
+	
+});
 
-
-
+</script>
 </html>

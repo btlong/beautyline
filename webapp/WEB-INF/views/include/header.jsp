@@ -4,7 +4,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <style>
-
+li#userli {
+	color: #333
+}
 </style>
 <div class="brand">BeautyLine</div>
 
@@ -51,16 +53,14 @@
 				<li><a href="blog.html">게시판</a></li>
 				<li><a href="/beautyline/coun/test" >나의피부타입</a></li>
 				<li><a href="/beautyline/visit/visitform" >방문내역</a></li>
-				<li><a href="/beautyline/userinfo/list">회원관리</a></li>
-				
-				<!-- 관리자일때
+
 				<c:choose>
-					<c:when test='${empty authUser }'>
-						<li><a href="contact.html">회원관리</a></li>
-						<li><a href="contact.html">방문내역관리</a></li>
+ 					<c:when test="${not empty sessionScope.authUser && authUser.isAdmin eq 'a'}">
+						<li><a href="/beautyline/userinfo/list">회원관리</a></li>
+						<!-- <li><a href="contact.html">방문내역관리</a></li> -->
 					</c:when>
 				</c:choose>
-				 -->
+				 
 
 			</ul>
 		</div>

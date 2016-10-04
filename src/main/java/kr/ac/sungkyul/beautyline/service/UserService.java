@@ -32,7 +32,6 @@ public class UserService {
 		return uservo;
 	}
 	
-	
 	public UserVo login(String id, String password) { 
 		return userDao.get(id, password);
 	}

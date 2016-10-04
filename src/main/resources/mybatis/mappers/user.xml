@@ -5,7 +5,7 @@
 	<select id="getByIdAndPassword" parameterType="uservo"
 		resultType="uservo">
 	<![CDATA[
-		select no, name from users where id=#{id } and password=#{password }
+		select no, name, is_admin as isAdmin from users where id=#{id } and password=#{password }
 	]]><!-- 칼럼 이름이 어렵다하면  	select n as no, name from users where...-->
 	</select>
       
@@ -27,7 +27,6 @@
 	<insert id="insert" parameterType="uservo" >
 	<![CDATA[
 		insert into Users values(seq_Users.nextval, #{name }, #{id }, #{password }, #{email }, #{address }, #{phone }, 1, 1, 'y')
-
 	]]>
 	</insert>
 	
@@ -42,8 +41,7 @@
 		)	
 	]]>
 	</insert>
-
-
+	
 	<select id="getById" parameterType="String" resultType="uservo">
 	<![CDATA[
 		select no, name, id from users where id=#{id }

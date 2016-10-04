@@ -4,27 +4,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <style>
-li#userli {
-	color: #333
-}
+
 </style>
 <div class="brand">BeautyLine</div>
 
 
 
-<div id="includeheader" >
-	<ul>
+
+<div id="includeheader">
+	<ul id="userheader">
 		<c:choose>
 			<c:when test='${not empty sessionScope.authUser }'>
-			<li id="userli">${authUser.name }님안녕하세요^^</li>
-			<li><a href="/beautyline/user/modifyform">회원정보수정</a></li>
 			<li><a href="/beautyline/user/logout">Log out</a></li>
+			<li><a href="/beautyline/user/modifyform">마이페이지</a></li>
+			<li id="userli">${authUser.name }님안녕하세요^^</li>
 				
 			</c:when>
 
 			<c:otherwise>
-				<li><a href="/beautyline/user/loginform">Login</a></li>
 				<li><a href="/beautyline/user/joinform">Join</a></li>
+				<li><a href="/beautyline/user/loginform">Login</a></li>
 			</c:otherwise>
 
 		</c:choose>

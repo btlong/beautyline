@@ -1,33 +1,21 @@
-#includeheader {
-   height:30px;
-   margin: 0 auto;
-   
-}
 
-#includeheader li {
-   list-style: none; 
+#userli {
+	color: #333;
 
 }
-
-#includeheader {
-   height:30px;
-   margin: 10px auto;
-   
+#includeheader ul{
+	height:20px; 
+	margin:0 20px 10px 0 ;
 }
-
-#includeheader li {
-   list-style: none; 
-    color: white;
-    float: right;
-    margin: 10px;
+#includeheader ul li{
+	list-style: none; 
+	float: right;
 }
-
-#includeheader ul li a {
-   color: #2c3e50;
-   margin: 5px;
-   padding: 10px;
+#includeheader ul li a{
+	color:#4F4F4F; 
+	font-weight:bold; 
+	text-decoration:none;
 }
-
 .brand {
 	color: black;
 	text-shadow: none;
@@ -57,7 +45,8 @@ hr {
 .navbar-nav {
     display: table;
     float: none;
-    margin: 0 auto;
+    margin: auto;
+    text-align: center;
     table-layout: fixed;
     font-size: 1.25em;
 }

@@ -51,6 +51,8 @@
 				<li><a href="blog.html">게시판</a></li>
 				<li><a href="/beautyline/coun/test" >나의피부타입</a></li>
 				<li><a href="/beautyline/visit/visitform" >방문내역</a></li>
+				<li><a href="/beautyline/userinfo/list" >회원관리</a></li>
+				
 				<!-- 관리자일때
 				<c:choose>
 					<c:when test='${empty authUser }'>

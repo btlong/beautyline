@@ -26,6 +26,13 @@ public class UserService {
 		userDao.insert(vo);
 	}
 
+	/* 이름과 전화번호로 회원가입 */
+	public UserVo insertUserNamePhone(UserVo uservo){
+		userDao.insertUserNamePhone(uservo);
+		return uservo;
+	}
+	
+	
 	public UserVo login(String id, String password) { 
 		return userDao.get(id, password);
 	}

@@ -23,7 +23,41 @@
 }
 
 #includeheader ul li a {
-   color: white;
+   color: #2c3e50;
    margin: 5px;
    padding: 10px;
+}
+
+.brand {
+	color: black;
+	text-shadow: none;
+    font-family: sans-serif;
+	
+}
+body {
+	background: none;
+	background-color: none;
+}
+
+.box {
+	background-color: #F7F7F7;
+}
+hr {
+	border-color: #3E3F3A;
+}
+#footerText{
+	background-color: #2C3E50;	
+}
+#footerText p{
+	color: #F7F7F7;
+}
+#reservejoin{
+	padding: 20px;
+}
+.navbar-nav {
+    display: table;
+    float: none;
+    margin: 0 auto;
+    table-layout: fixed;
+    font-size: 1.25em;
 }

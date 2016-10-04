@@ -52,7 +52,11 @@ public class UserDao {
 
 	}
 	
-	
+	/* 이름과 전화번호로 회원가입 */
+	public UserVo insertUserNamePhone(UserVo uservo){
+		sqlSession.insert("user.insertUserNamePhone",uservo);
+		return uservo;
+	}
 	public UserVo checkId(String id){//아이디 중복확인
 		return sqlSession.selectOne("user.checkId",id);
 	}

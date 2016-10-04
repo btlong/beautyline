@@ -39,6 +39,8 @@
 
 </head>
 <style type="text/css">
+
+
 </style>
 
 
@@ -65,7 +67,6 @@
 						<thead>
 							<tr class="info">
 								<th>#</th>
-								<th>이름</th>
 								<th>예약 프로그램</th>
 								<th>예약일</th>
 								<th>예약 시간</th>
@@ -82,22 +83,29 @@
 								<c:if test='${today > reserveVo.resDate }'> id="resPast" </c:if>>
 								<tr>
 									<td>${status.index }</td>
-									<td>${reserveVo.userName }</td>
 									<td>${reserveVo.progName }</td>
 									<td>${reserveVo.resDate }</td>
 									<td>${reserveVo.resTime }시- ${reserveVo.resTime + 1 }시</td>
-									<td><a href="reservedeleteform?no=${reserveVo.no }" type="button" class="btn btn-default btn-xs">
-									<c:choose>
-										<c:when test='${today > reserveVo.resDate }'>삭제</c:when>
-										<c:otherwise>취소</c:otherwise>
-									</c:choose>
-									</a></td>
+									<td><a href="reservedeleteform?no=${reserveVo.no }" type="button" class="btn btn-default btn-xs" <c:if test='${today > reserveVo.resDate }'> id="resDel" </c:if>>취소</a></td>
 								</tr>
 							</tbody>
 						</c:forEach>
+								
 					</table>
-				
-				<div class="col-lg-12 text-right">	
+
+					<div class="col-lg-12 text-center">
+						<ul class="pagination pagination-sm">
+	  						<li class="disabled"><a href="#">&laquo;</a></li>
+							<li class="active"><a href="#">1</a></li>
+							<li><a href="#">2</a></li>
+							<li><a href="#">3</a></li>
+							<li><a href="#">4</a></li>
+							<li><a href="#">5</a></li>
+							<li><a href="#">&raquo;</a></li>
+						</ul>
+					</div>
+					
+						<div class="col-lg-12 text-right">	
 					<button class="btn btn-danger" type="button" onclick="location.href='calenderform'">돌아가기</button>
 				</div>
 
@@ -114,19 +122,14 @@
 					</ul>
 				</div>
 			
-				<div class="btn-group">
-	 				<a href="#" class="btn btn-primary btn-sm">Primary</a>
-	  				<a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
-	 				<ul class="dropdown-menu">
-					 <li><a href="#">Action</a></li>
-				     <li><a href="#">Another action</a></li>
-				     <li><a href="#">Something else here</a></li>
-				     <li class="divider"></li>
-				     <li><a href="#">Separated link</a></li>
-				    </ul>
-		    	</div>
-	 	
-			</div>
+				<div class="col-lg-12 text-center form-inline" >	
+        			<div class="form-group">
+         			<input type="text" class="form-control" placeholder="Search">
+        			</div>
+       				
+       				<button type="submit" class="btn btn-default"  >검색</button>
+      			</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -134,13 +137,7 @@
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
 
 </body>
-<script>
-$(document).ready(function(){
-	$("#resSearch").on("click",function(){
-		
-	});
-	
-});
 
-</script>
+
+
 </html>

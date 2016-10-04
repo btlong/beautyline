@@ -18,12 +18,19 @@ public class VisitService {
 	@Autowired
 	private VisitDao visitDao;
 
-	/* visited - 방문 이후 등록 */
+	
+	/* visited - insert */
+	public void insert(VisitVo visitVo) {
+		 visitDao.insert(visitVo);
+	}
+	/* visited - update */
 	public void update(VisitVo visitVo , MultipartFile file ) throws VisitUpdateException {
-		
 		visitDao.update(visitVo);
 		// 정보추가
 	}
+
+	
+	
 
 	public List<UserVo> searchList(UserVo userVo) {
 		return visitDao.selectByName(userVo);

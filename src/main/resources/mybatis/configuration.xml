@@ -5,11 +5,13 @@
 		<typeAlias type="kr.ac.sungkyul.beautyline.vo.UserVo" alias="uservo" />
 		<typeAlias type="kr.ac.sungkyul.beautyline.vo.VisitVo" alias="visitvo" />
 		<typeAlias type="kr.ac.sungkyul.beautyline.vo.CouponVo" alias="counponvo" />
+		<typeAlias type="kr.ac.sungkyul.beautyline.vo.NoticeBoardVo" alias="noticeboardvo"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/mappers/user.xml" />
 		<mapper resource="mybatis/mappers/visit.xml" />
 		<mapper resource="mybatis/mappers/userinfo.xml" />
+		<mapper resource="mybatis/mappers/noticeboard.xml" />
 	</mappers>
 
 </configuration>

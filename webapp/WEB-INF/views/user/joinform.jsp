@@ -509,6 +509,48 @@
 		
 		/* validation 검사   */
 		$("#join-form").submit(function() {
+			
+		/* 	var name = $("#inputName").val();
+				var id = $("#inputId").val();
+			var 	$("#inputPassword").val()
+				$("#inputPasswordCheck").val()
+				$("#email1").val()
+				$("#email2").val()
+				$("#sample6_postcode").val()
+				$("#address1").val()
+				$("#address2").val()
+				$("#inputNumber").val() */
+				
+				
+				console.log(id);
+				$.ajax({// 비동기식 
+					url : "checkId",
+					type : "POST",
+					data : {
+						"id" : id
+					},
+					dataType : "text",
+					success : function(check) {
+						console.log(check);
+						if (check == "exists") {
+							alert("이미 존재하는 아이디 입니다.");
+							$("#inputId").val("").focus();
+							$("#conCheckId").val('0');
+						}
+
+						/*  if($("#inputId").val()==null){
+						  $("#inputId").val("").focus();
+						 } */
+						else {
+							alert("사용 가능한 아이디입니다..");
+							$("#conCheckId").val('1');
+						}
+					},
+					error : function(jqXHR, status, error) {
+						console.error(status + ":" + error);
+					}
+				});
+			
 			if ($("#inputName").val() == "") {
 				alert("이름은 필수 입력 항목입니다.");
 				$("#inputName").focus()

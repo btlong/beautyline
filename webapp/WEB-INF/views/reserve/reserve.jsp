@@ -203,15 +203,15 @@
 				
 					<!-- 이름 -->
 						<div class="form-group" id="divName">
-							<label class="col-sm-4 control-label">이름*</label>
-							<div class="col-sm-4">
+							<label class="col-sm-5 control-label">이름*</label>
+							<div class="col-sm-7">
 								<input class="form-control onlyHangul" id="inputName" name="name" type="text" placeholder="이름">
 							</div>
 						</div>
 					<!-- 휴대폰 번호 -->
 						<div class="form-group" id="divNumber">
-							<label class="col-sm-4 control-label">휴대폰번호*</label>
-							<div class="col-sm-4">
+							<label class="col-sm-5 control-label">휴대폰번호*</label>
+							<div class="col-sm-7">
 								<input type="tel" class="form-control onlyNumber" name="phone" id="inputNumber" placeholder="- 없이 입력해 주세요" />
 							</div>
 						</div>

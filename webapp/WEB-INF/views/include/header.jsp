@@ -49,15 +49,21 @@ li#userli {
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li><a href="index.html">소개</a></li>
-				<li><a href="/beautyline/reserve/reserve">예약</a></li>
+				<c:choose>
+ 					<c:when test="${not empty sessionScope.authUser && authUser.isAdmin eq 'a'}">
+						<li><a href="/beautyline/reserve/reserve">예약</a></li> 					
+ 					</c:when>
+ 					<c:otherwise>
+ 						<li><a href="/beautyline/reserve/userreserve">예약</a></li>
+ 					</c:otherwise>
+ 				</c:choose>
 				<li><a href="blog.html">게시판</a></li>
 				<li><a href="/beautyline/coun/test" >나의피부타입</a></li>
-				<li><a href="/beautyline/visit/visitform" >방문내역</a></li>
 
 				<c:choose>
  					<c:when test="${not empty sessionScope.authUser && authUser.isAdmin eq 'a'}">
 						<li><a href="/beautyline/userinfo/list">회원관리</a></li>
-						<!-- <li><a href="contact.html">방문내역관리</a></li> -->
+						<li><a href="/beautyline/visit/visitform" >방문내역</a></li>
 					</c:when>
 				</c:choose>
 				 

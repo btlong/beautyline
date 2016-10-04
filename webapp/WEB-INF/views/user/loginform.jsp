@@ -106,7 +106,9 @@
  </div>
  
            
-           
+            <div class="image-block col-sm-6">
+            <p class="submessage"> Effect Button </p>
+        </div>
            
                
                <div id="loginbt" class="col-lg-12 text-center">

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="noticeboard">
+	<!--<select id="getByIdAndPassword" parameterType="uservo"
+		resultType="uservo">
+	<![CDATA[
+		select no, name from users where id=#{id } and password=#{password }
+	]]>칼럼 이름이 어렵다하면  	select n as no, name from users where...
+	</select>
+      
+	
+-->
+	<insert id="insert" parameterType="noticeboardvo" >
+	<![CDATA[
+		insert into board_notice values(seq_board_notice.nextval, '27', #{title }, #{content }, sysdate, '1')
+	
+	]]>
+	</insert>
+
+	
+	<select id="getAll" resultType="noticeboardvo">
+	<![CDATA[
+		select no, user_no as userNo, title, content, reg_date as regDate, view_count as viewCount  from board_notice
+	]]>
+	</select>
+	
+	
+	
+</mapper> 

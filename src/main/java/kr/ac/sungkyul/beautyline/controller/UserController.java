@@ -65,7 +65,7 @@ public class UserController {
 	public String login(HttpSession session,
 
 			@RequestParam(value = "id", required = false, defaultValue = "") String id,
-			@RequestParam(value = "password", required = false, defaultValue = "") String password) {
+			@RequestParam(value = "password", required = false, defaultValue = "") String password){
 
 		UserVo authUser = userService.login(id, password);
 		if (authUser == null) {

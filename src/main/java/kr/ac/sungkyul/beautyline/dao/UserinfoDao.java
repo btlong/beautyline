@@ -14,18 +14,22 @@ public class UserinfoDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	// 리스트
 	public List<UserinfoVo> listUser() {
 		return sqlSession.selectList("userinfo.listUser");
 	}
 
-	public UserinfoVo selectUser(long no) {
-		return sqlSession.selectOne("userinfo.selectUser", no);
-	}
-	
+	// 회원삭제
 	public void deleteUser(long no) {
 		sqlSession.delete("userinfo.deleteUser", no);
 	}
 
+	// 수정폼
+	public UserinfoVo selectUser(long no) {
+		return sqlSession.selectOne("userinfo.selectUser", no);
+	}
+
+	// 수정
 	public void updateUser(UserinfoVo userinfoVo) {
 		sqlSession.update("userinfo.updateUser", userinfoVo);
 	}

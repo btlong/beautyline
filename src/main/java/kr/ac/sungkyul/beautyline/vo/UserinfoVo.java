@@ -11,7 +11,7 @@ public class UserinfoVo {
 	private String phone;
 	private Long agrEmail;
 	private Long agrMessage;
-	private String is_admin;
+	private String isAdmin;
 	
 	public Long getNo() {
 		return no;
@@ -67,18 +67,18 @@ public class UserinfoVo {
 	public void setAgrMessage(Long agrMessage) {
 		this.agrMessage = agrMessage;
 	}
-	public String getIs_admin() {
-		return is_admin;
+	public String getIsAdmin() {
+		return isAdmin;
 	}
-	public void setIs_admin(String isAdmin) {
-		this.is_admin = isAdmin;
+	public void setIsAdmin(String isAdmin) {
+		this.isAdmin = isAdmin;
 	}
 	
 	@Override
 	public String toString() {
 		return "UserinfoVo [no=" + no + ", name=" + name + ", id=" + id + ", password=" + password + ", email=" + email
 				+ ", address=" + address + ", phone=" + phone + ", agrEmail=" + agrEmail + ", agrMessage=" + agrMessage
-				+ ", is_admin=" + is_admin + "]";
+				+ ", isAdmin=" + isAdmin + "]";
 	}
 	
 	

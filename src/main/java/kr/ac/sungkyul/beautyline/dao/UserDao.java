@@ -57,6 +57,7 @@ public class UserDao {
 		sqlSession.insert("user.insertUserNamePhone",uservo);
 		return uservo;
 	}
+	
 	public UserVo checkId(String id){//아이디 중복확인
 		return sqlSession.selectOne("user.checkId",id);
 	}

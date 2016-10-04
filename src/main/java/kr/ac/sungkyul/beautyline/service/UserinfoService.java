@@ -14,18 +14,22 @@ public class UserinfoService {
 	@Autowired
 	private UserinfoDao userinfoDao;
 	
+	// 리스트
 	public List<UserinfoVo> listUser(){
 		return userinfoDao.listUser();
 	}
 	
-	public UserinfoVo selectUser(long no){
-		return userinfoDao.selectUser(no);
-	}
-	
+	// 회원삭제
 	public void deleteUser(long no){
 		userinfoDao.deleteUser(no);
 	}
 	
+	// 수정폼
+	public UserinfoVo selectUser(long no){
+		return userinfoDao.selectUser(no);
+	}
+	
+	// 수정
 	public void updateUser(UserinfoVo userinfoVo){
 		userinfoDao.updateUser(userinfoVo);
 	}

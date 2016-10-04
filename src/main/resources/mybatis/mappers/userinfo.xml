@@ -4,6 +4,7 @@
 
 <mapper namespace="userinfo">
 
+	<!--  리스트 -->
 	<select id="listUser" resultType="kr.ac.sungkyul.beautyline.vo.UserinfoVo">
 		<![CDATA[
 			select	no,
@@ -13,19 +14,12 @@
 					password, 
 					email, 
 					address, 
-					is_admin from users
+					is_admin as isAdmin from users
 			order by no desc
 		]]>
 	</select>
 
- 	<select id="selectUser" parameterType="java.lang.Long"
-		resultType="kr.ac.sungkyul.beautyline.vo.UserinfoVo">
-		<![CDATA[
-			select no, name, phone, id, email, address, is_admin from users
-			where no=#{no}
-		]]>
-	</select>
- 
+	<!-- 회원삭제 -->
 	<delete id="deleteUser" parameterType="java.lang.Long">
 		<![CDATA[
 			delete from users
@@ -33,6 +27,16 @@
 		]]>
 	</delete>
 	
+	<!-- 수정폼 -->
+ 	<select id="selectUser" parameterType="java.lang.Long"
+		resultType="kr.ac.sungkyul.beautyline.vo.UserinfoVo">
+		<![CDATA[
+			select no, name, phone, id, email, address, is_admin as isAdmin from users
+			where no=#{no}
+		]]>
+	</select>
+ 
+ 	<!-- 수정 -->
 	<update id="updateUser" parameterType="kr.ac.sungkyul.beautyline.vo.UserinfoVo">
 		<![CDATA[
 			update users set
@@ -41,11 +45,12 @@
 				id= #{id}, 
 				email= #{email}, 
 				address= #{address}, 
-				is_admin=  #{is_admin}
+				is_admin=  #{isAdmin}
 			where no=#{no}
 		]]>
 				<!-- isAdmin= #{isAdmin} -->
 	</update>
+	
 	
  <!-- 	<select id="couponView" parameterType="java.lang.Long"
 		resultType="kr.ac.sungkyul.beautyline.vo.CouponviewVo">

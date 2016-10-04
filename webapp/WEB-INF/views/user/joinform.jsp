@@ -20,8 +20,9 @@
 
 	<!-- Custom CSS -->
 	<link href="/beautyline/bootstrap/css/business-casual.css" rel="stylesheet">
-	<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">  
-    <!-- font awesome -->
+   <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">
+   <link href="/beautyline/beautyline/css/include.css" rel="stylesheet">
+   <!-- font awesome -->
     <link rel="stylesheet" href="/beautyline/bootstrap/css/font-awesome.min.css" media="screen" title="no title" >
     <!-- Custom style -->
     <link rel="stylesheet" href="/beautyline/bootstrap/css/style.css" media="screen" title="no title" >

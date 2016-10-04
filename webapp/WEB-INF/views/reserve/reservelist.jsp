@@ -114,16 +114,19 @@
 					</ul>
 				</div>
 			
-				<div class="col-lg-12 text-center form-inline" >	
-        			<div class="form-group">
-         			<input type="text" class="form-control" placeholder="Search">
-        			</div>
-       				
-       				<button type="submit" class="btn btn-default" id="resSearch">검색</button>
-      			</div>
-      			
+				<div class="btn-group">
+	 				<a href="#" class="btn btn-primary btn-sm">Primary</a>
+	  				<a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+	 				<ul class="dropdown-menu">
+					 <li><a href="#">Action</a></li>
+				     <li><a href="#">Another action</a></li>
+				     <li><a href="#">Something else here</a></li>
+				     <li class="divider"></li>
+				     <li><a href="#">Separated link</a></li>
+				    </ul>
+		    	</div>
+	 	
 			</div>
-				
 			</div>
 		</div>
 	</div>

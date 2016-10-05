@@ -387,6 +387,7 @@
 		});
 
 		$(".onlyNumber").keyup(function(event) {
+
 	         if (!(event.keyCode >= 37 && event.keyCode <= 40)) {
 	            var inputVal = $(this).val();
 	            inputVal = inputVal.replace(/[^0-9]/g, '');
@@ -417,6 +418,7 @@
 	         }
 	         
 	      });
+
 
 		//------- 검사하여 상태를 class에 적용
 		$('#inputName').keyup(function(event) {

@@ -47,10 +47,11 @@
 <body>
 
 <c:import url="/WEB-INF/views/include/header.jsp" />
-
 <div class="container">
 	<div class="row">
 		<div class="box">
+<c:choose>
+<c:when test="${not empty sessionScope.authUser && authUser.isAdmin eq 'a'}">
 			<div class="col-lg-12">
 				<hr>
 				<h2 class="intro-text text-center">
@@ -127,6 +128,20 @@
 		    	</div>
 	 	
 			</div>
+			
+			</c:when>
+			<c:otherwise>
+				<div class="col-lg-12 text-center">
+					<hr>
+					<h2 class="intro-text text-center">
+					<strong>관리자 페이지</strong><br>관리자 페이지 입니다.
+					</h2>
+					<hr>
+					
+					<a href="/beautyline/main" type="button" class="btn-primary btn-lg">메인으로</a>
+				</div>
+			</c:otherwise>
+			</c:choose>
 			</div>
 		</div>
 	</div>

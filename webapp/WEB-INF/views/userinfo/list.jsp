@@ -58,7 +58,7 @@
 				<div class="col-lg-12">
 					<hr>
 					<h1 class="text-center text-center">
-						<strong>회원정보</strong>
+						<strong>회원관리</strong>
 					</h1>
 					<hr>
 				</div>
@@ -68,10 +68,13 @@
 					<c:choose>
 						<c:when
 							test="${not empty sessionScope.authUser && authUser.isAdmin eq 'a'}">
+							
+							<!-- 회원등록버튼 -->
 							<div class="col-lg-12 text-right">
 								<a class="btn btn-info" href="/beautyline/userinfo/joinform" id="insert-user" type="button" role="button">등록</a>
 							</div>
 
+							<!-- 회원리스트 -->
 							<div class="col-lg-12 text-center">
 								<table class="table table-hover">
 									<thead>
@@ -105,28 +108,34 @@
 												<td>${userinfoVo.isAdmin}</td>
 
 												<td>
-													<!-- 조회 클릭 --> <!-- Trigger the modal with a button --> <input
+													<!-- 쿠폰 조회  --> 
+													<!-- Trigger the modal with a button --> <input
 													type="hidden" name="no" value="${CouponviewVo.userNo }" />
 													<a class="btn btn-default btn-sm" href="" id="couponview"
-													data-target="#myModal2" type="button" data-toggle="modal"
+													data-target="#modalView" type="button" data-toggle="modal"
 													role="button">조회</a>
 												</td>
 
-												<td><input type="hidden" name="no"
-													value="${userinfoVo.no }" /> <a class="btn btn-default  btn-sm"
-													href="modifyuser?no=${userinfoVo.no }" role="button">수정</a></td>
+												<td>
+													<!-- 회원 수정 --> <input type="hidden" name="no"
+														value="${userinfoVo.no }" /> <a class="btn btn-default  btn-sm"
+														href="modifyuser?no=${userinfoVo.no }" role="button">수정</a>
+												</td>
 													
-												<td><form method="post" action="delete">
+												<td>
+													<!-- 회원 삭제 --> <form method="post" action="delete">
 														<input type="hidden" name="no" value="${userinfoVo.no }" />
 														<input type="submit" value="삭제" class="btn btn-default  btn-sm">
 														<!-- <a class="btn btn-default" href = "javascript:del()">삭제</a> -->
-													</form></td>
+													</form>
+												</td>
 											</tr>
 										</c:forEach>
 									</tbody>
 								</table>
 							</div>
 
+							<!-- 페이징 -->
 							<div class="col-lg-12 text-center">
 								<nav>
 									<ul class="pagination pagination-sm">
@@ -145,6 +154,7 @@
 								</nav>
 							</div>
 
+							<!-- 검색 -->
 							<div class="col-lg-12">
 								<form id="search_form" action="/beautyline/userinfo"
 									method="get">
@@ -165,6 +175,7 @@
 							</div>
 						</c:when>
 						<c:otherwise>
+						<!-- authUser.isAdmin 값이 'a'가 아닐 때 -->
 							<h4>관리자페이지 입니다.</h4>
 							<c:import url="/WEB-INF/views/userinfo/loginform.jsp" />
 						</c:otherwise>
@@ -177,7 +188,7 @@
 
 
 	<!-- 쿠폰조회 Modal -->
-	<div class="modal fade" id="myModal2" role="dialog" tabindex="-1"
+	<div class="modal fade" id="modalView" role="dialog" tabindex="-1"
 		aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-sm">
 
@@ -199,7 +210,23 @@
 							</thead>
 							<!-- 리스트영역 -->
 							<tbody>
-								<c:forEach items="${couponView }" var="couponinfoVo"
+								<tr>
+									<td>베이직 케어</td>
+									<td id="one"></td>
+								</tr>
+								<tr>
+									<td>미백 케어</td>
+									<td id="two"></td>
+								</tr>
+								<tr>
+									<td>주름 케어</td>
+									<td id="three"></td>
+								</tr>
+								<tr>
+									<td>여드름 케어</td>
+									<td id="four"></td>
+								</tr>
+								<%-- <c:forEach items="${couponView }" var="couponinfoVo"
 									varStatus="status">
 									<tr>
 										<td><input type="hidden" name="programNo"
@@ -208,7 +235,7 @@
 										<td><input type="hidden" name="no"
 											value="${couponinfoVo.no }" /> ${couponinfoVo.count}</td>
 									</tr>
-								</c:forEach>
+								</c:forEach> --%>
 							</tbody>
 						</table>
 					</div>
@@ -230,24 +257,17 @@
 
 
 	<script>
-		/* $(document).ready(function() {
-			$("#insertUser").click(function() {
-				$("#myModal").modal();
-			});
+		 $(document).ready(function() {
 			$("#couponview").click(function() {
-				$("#myModal").modal();
+				$("#modalView").modal();
 			});
 		});
 		
 		$('#myDropdown').on('shown.bs.dropdown', function () {
 			  // do something…
 			});
-			 */
-			
-	
-		$(document).ready(function() {
-			
-		});
+			 
+		
 	</script>
 
 </body>

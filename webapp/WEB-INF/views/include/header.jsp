@@ -4,27 +4,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <style>
-li#userli {
-	color: #333
-}
+
 </style>
 <div class="brand">BeautyLine</div>
 
 
 
-<div id="includeheader" >
-	<ul>
+
+<div id="includeheader">
+	<ul id="userheader">
 		<c:choose>
 			<c:when test='${not empty sessionScope.authUser }'>
-			<li id="userli">${authUser.name }님안녕하세요^^</li>
-			<li><a href="/beautyline/user/modifyform">회원정보수정</a></li>
 			<li><a href="/beautyline/user/logout">Log out</a></li>
+			<li><a href="/beautyline/user/modifyform">마이페이지</a></li>
+			<li id="userli">${authUser.name }님안녕하세요^^</li>
 				
 			</c:when>
 
 			<c:otherwise>
-				<li><a href="/beautyline/user/loginform">Login</a></li>
 				<li><a href="/beautyline/user/joinform">Join</a></li>
+				<li><a href="/beautyline/user/loginform">Login</a></li>
 			</c:otherwise>
 
 		</c:choose>
@@ -49,16 +48,27 @@ li#userli {
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li><a href="index.html">소개</a></li>
-				<li><a href="/beautyline/reserve/reserve">예약</a></li>
-				<li><a href="blog.html">게시판</a></li>
+				<c:choose>
+ 					<c:when test="${not empty sessionScope.authUser && authUser.isAdmin eq 'a'}">
+						<li><a href="/beautyline/reserve/reserve">예약</a></li> 					
+ 					</c:when>
+ 					<c:otherwise>
+ 						<li><a href="/beautyline/reserve/userreserve">예약</a></li>
+ 					</c:otherwise>
+ 				</c:choose>
+				<li><a class="dropdown-toggle" data-toggle="dropdown" href="">게시판 </a>
+					<ul class="dropdown-menu" id="navdropdown">
+						<li><a href="/beautyline/noticeboard/board">공지사항</a></li>
+				      	<li><a href="#">문의게시판</a></li>
+				      	<li><a href="#">후기게시판</a></li>
+					</ul>
+				</li>
 				<li><a href="/beautyline/coun/test" >나의피부타입</a></li>
-				<li><a href="/beautyline/visit/visitform" >방문내역</a></li>
 
-				<!-- 관리자일때-->
 				<c:choose>
  					<c:when test="${not empty sessionScope.authUser && authUser.isAdmin eq 'a'}">
 						<li><a href="/beautyline/userinfo/list">회원관리</a></li>
-						<!-- <li><a href="contact.html">방문내역관리</a></li> -->
+						<li><a href="/beautyline/visit/visitform" >방문내역</a></li>
 					</c:when>
 				</c:choose>
 				 

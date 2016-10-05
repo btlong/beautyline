@@ -25,5 +25,10 @@ public class NoticeBoardDao {
 		sqlSession.insert("noticeboard.insert",vo);	
 	}
 
+	/* 공지사항 글 보기 */
+	public NoticeBoardVo viewBoard(int no){
+		return sqlSession.selectOne("noticeboard.view",no);
+	}
+	
 
 }

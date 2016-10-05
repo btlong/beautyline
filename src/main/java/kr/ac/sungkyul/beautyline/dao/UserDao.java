@@ -49,7 +49,6 @@ public class UserDao {
 
 	public void insert(UserVo vo) {// 회원가입
 		sqlSession.insert("user.insert",vo);
-
 	}
 	
 	/* 이름과 전화번호로 회원가입 */

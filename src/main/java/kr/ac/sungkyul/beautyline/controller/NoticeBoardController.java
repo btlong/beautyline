@@ -28,13 +28,13 @@ public class NoticeBoardController {
 		List<NoticeBoardVo> boardList= nBoardService.getAll();
 		model.addAttribute("boarList", boardList );
 		
-		return"board/board";
+		return"board/noticeboard/board";
 	}
 	
 	/*글쓰기 폼*/
 	@RequestMapping("/writeform")
 	public String writeform(){
-		return"board/noticewrite2";
+		return"board/noticeboard/write2";
 	}
 
 	/*글쓰기*/
@@ -49,7 +49,7 @@ public class NoticeBoardController {
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
 	public String view(){
 		
-		return"board/noticeview";
+		return"board/noticeboard/view";
 	}
 
 	

@@ -37,7 +37,7 @@
 			no, name, phone, is_admin
 		)
 		values( 
-		 seq_Users.nextval, #{name }, ${phone }, 'y'
+		 seq_Users.nextval, #{name }, #{phone }, 'y'
 		)	
 	]]>
 	</insert>

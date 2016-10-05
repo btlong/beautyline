@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
@@ -93,12 +94,12 @@
 				<a href="#" class="btn btn-sm btn-danger">목록보기 <span class="glyphicon glyphicon-th-list"></span></a>
 					<!-- <a href="/mysite/bs?a=list&no=1">글목록</a>  -->
 					
-				<!-- <c:if test='${not empty authUser && (boardVo.userNo == authUser.no) }'> -->	
+				<%-- <!-- <c:if test='${not empty authUser && (boardVo.userNo == authUser.no) }'> -->	
 					<a href="#" class="btn btn-sm btn-danger">수정하기 <span class="glyphicon glyphicon-edit"></span></a>
-					<%-- <a href="/mysite/bs?a=modifyform&no=${boardVo.no }">글수정</a> --%>
+					<a href="/mysite/bs?a=modifyform&no=${boardVo.no }">글수정</a>
 					<a href="#" class="btn btn-sm btn-danger">삭제 <span class="glyphicon glyphicon-remove"></span></a>
-					<%-- <a href="/mysite/bs?a=replyform&no=${boardVo.no }">삭제</a> 
-					</c:if>--%>
+					<a href="/mysite/bs?a=replyform&no=${boardVo.no }">삭제</a> 
+					</c:if> --%>
 					
 				</div>
 			</div>

@@ -9,6 +9,7 @@
 }
 #includeheader ul li{
 	list-style: none; 
+	padding-left: 10px;
 	float: right;
 }
 #includeheader ul li a{
@@ -49,4 +50,12 @@ hr {
     text-align: center;
     table-layout: fixed;
     font-size: 1.25em;
+}
+
+#navdropdown {
+	text-align: center;
+	background-color: #2C3E50;
+}
+#navdropdown li a hover{
+	background-color: #1A242F;
 }

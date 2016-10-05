@@ -43,6 +43,9 @@
 <div class="container">
 	<div class="row">
 	<div class="box">
+<c:choose>
+<c:when test="${not empty sessionScope.authUser && authUser.isAdmin eq 'a'}">
+	
 <!-- 헤더 -->
 		<div class="col-lg-12">
 			<hr>
@@ -55,13 +58,7 @@
 		<div class="col-lg-12 text-center">
 
 	<!-- 세션검사후 관리자이면 예약관리가 나와야한다. -->
-		<c:choose>
-			<c:when test='${not empty sessionScope.authUser }'>
-				<div class="col-lg-12 text-right">
-					<%-- c:if test="${sessionScope.authUser.isAdmin == 'a' }">
-					</c:if>  관리자 세션 검사--%>
-					<a id="adminreserve" href="/beautyline/reserve/reservelist" class="btn btn-default btn-lg">예약관리</a>
-				</div>
+
 				
 <!-- 관리자 일 경우 회원 이름으로 검색 -->
 				<div class="form-inline col-lg-12">
@@ -125,10 +122,17 @@
 				</div>
 				</div>
 				
-			</c:when>
+		</c:when>
 			<c:otherwise>
-				<h4>온라인 예약은 회원만 가능합니다.</h4>
-				<c:import url="/WEB-INF/views/include/login.jsp" />
+				<div class="col-lg-12 text-center">
+					<hr>
+					<h2 class="intro-text text-center">
+					<strong>관리자 페이지</strong><br>관리자 페이지 입니다.
+					</h2>
+					<hr>
+					
+					<a href="/beautyline/main" type="button" class="btn-primary btn-lg">메인으로</a>
+				</div>
 			</c:otherwise>
 			</c:choose>
 		</div>

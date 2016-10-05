@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.ac.sungkyul.beautyline.service.UserService;
 import kr.ac.sungkyul.beautyline.service.UserinfoService;
+import kr.ac.sungkyul.beautyline.vo.PageVo;
 import kr.ac.sungkyul.beautyline.vo.UserVo;
 import kr.ac.sungkyul.beautyline.vo.UserinfoVo;
 
@@ -30,11 +31,23 @@ public class UserinfoController {
 	UserService userService;
 	
 	// 리스트
-	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public String listUser(Model model) {
+	@RequestMapping(value = "list")
+	public String listUser(Model model,
+			@RequestParam(value = "nowPage", required = false) Integer nowPage,
+			@RequestParam(value = "nowBlock", required=false) Integer nowBlock) {
 		List<UserinfoVo> listUser = userinfoService.listUser();
 		//System.out.println(listUser.toString());
+		PageVo page = null;
+        try{
+            page = userinfoService.pagingProc(nowPage, nowBlock, listUser.size());
+        }
+        catch(Exception err){
+            System.out.println("now페이지와 now블럭이 존재하지 않아 0을 대입했습니다.");
+            System.out.println("에러내용은 다음과 같습니다." + err);
+            page = userinfoService.pagingProc(0, 0, listUser.size());
+        }
 		model.addAttribute("listUser", listUser);
+		model.addAttribute("page", page);
 		return "userinfo/list";
 	}	
 	

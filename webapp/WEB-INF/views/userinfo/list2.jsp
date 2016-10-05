@@ -341,11 +341,6 @@
 
 
 	<script>
-		/* ▶전체 회원 수 : 몇 명   ▶현재 페이지 : 몇 페이지*/
-		console.log("${page.pagePerBlock}" + ":" + "${page.nowBlock}" + ":"
-				+ "${page.nowPage}")
-				
-
 		/* 페이징 */
 		 function pagemove(i) {
 			var nowPage = document.pagemove.nowPage.value;

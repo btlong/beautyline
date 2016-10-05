@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.ac.sungkyul.beautyline.service.NoticeBoardService;
@@ -28,13 +27,13 @@ public class NoticeBoardController {
 		List<NoticeBoardVo> boardList= nBoardService.getAll();
 		model.addAttribute("boarList", boardList );
 		
-		return"board/board";
+		return"board/noticeboard/board";
 	}
 	
 	/*글쓰기 폼*/
 	@RequestMapping("/writeform")
 	public String writeform(){
-		return"board/noticewrite2";
+		return"board/noticeboard/write";
 	}
 
 	/*글쓰기*/
@@ -47,11 +46,24 @@ public class NoticeBoardController {
 	
 	/*글 보기 폼*/
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
-	public String view(){
-		
-		return"board/noticeview";
+	public String view(int no, Model model){
+		NoticeBoardVo notiBdVo = nBoardService.view(no);
+		model.addAttribute( "notiBdVo", notiBdVo );
+		return"board/noticeboard/view";
+	}
+	
+	/* 글 수정 폼 */
+	@ResponseBody
+	@RequestMapping(value = "/modify", method = RequestMethod.POST)
+	public void modify(@RequestBody NoticeBoardVo vo){
+		//nBoardService.modify(vo);
+	
 	}
 
-	
+	/*글 삭제 폼*/
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	public void delete(int no){
+		
+	}
 
 }

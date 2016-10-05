@@ -13,7 +13,7 @@
 -->
 	<insert id="insert" parameterType="noticeboardvo" >
 	<![CDATA[
-		insert into board_notice values(seq_board_notice.nextval, '27', #{title }, #{content }, sysdate, '1')
+		insert into bd_noti values(seq_bd_noti.nextval, '43', #{title }, #{content }, sysdate, '0')
 	
 	]]>
 	</insert>
@@ -21,10 +21,17 @@
 	
 	<select id="getAll" resultType="noticeboardvo">
 	<![CDATA[
-		select no, user_no as userNo, title, content, reg_date as regDate, view_count as viewCount  from board_notice
+		select no, user_no as userNo, title, content, reg_date as regDate, view_count as viewCount  from bd_noti
 	]]>
 	</select>
 	
-	
+	<select id="view" parameterType="java.lang.Integer" resultType="noticeboardvo">
+	<![CDATA[
+		select b.no, b.user_no as userNo, u.name as userName, b.title, b.content, b.reg_date as regDate, b.view_count as viewCount  
+    	from bd_noti b, users u 
+    	where b.no = #{no }
+    	and b.USER_NO = u.NO
+    ]]>
+	</select>
 	
 </mapper> 

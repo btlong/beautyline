@@ -222,7 +222,7 @@
         </div>
         <div class="modal-footer">
         <div id="fintdt" class="col-lg-12 text-center">
-         <input class="btn btn-default" type="button" id="pwFindClick"  value="찾기">
+         <button class="btn btn-danger" type="button" id="pwFindClick"  >찾기</button>
                </div>
        <!--  <button type="button" class="btn btn-default" data-dismiss="modal">찾기</button> -->  
         </div>

@@ -1,12 +1,18 @@
 package kr.ac.sungkyul.beautyline.service;
 
+import java.io.File;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.ac.sungkyul.beautyline.dao.NoticeBoardDao;
 import kr.ac.sungkyul.beautyline.vo.NoticeBoardVo;
+import kr.ac.sungkyul.mysite.vo.AttachFileVo;
+import kr.ac.sungkyul.mysite.vo.BBSVo;
 
 @Service
 public class NoticeBoardService {
@@ -23,7 +29,7 @@ public class NoticeBoardService {
 	}
 	
 	/* 공지사항 글쓰기 */
-	public void write(NoticeBoardVo vo) {
+	public void write(NoticeBoardVo vo, MultipartFile file ) {
 		vo.setTitle("["+vo.getCategory()+"]"+vo.getTitle()); //카테고리와 제목 합치기
 		nBoardDao.insertBoard(vo);
 	}
@@ -34,7 +40,39 @@ public class NoticeBoardService {
  
 	}
 	
+public void insertBoard(BBSVo BBSVo, MultipartFile file) throws Exception{
+
+		
+		//1. fno --> 저장할때
+		
+		//2. no --> 게시글 저장할때
+		Long no = bbsDao.insertBoard(BBSVo);
+		System.out.println(no);
+		//3. orgName
+		String orgName =file.getOriginalFilename();
 	
+		//4. fileSize
+		long fileSize = file.getSize();
+		
+		//5. saveName
+		String saveName = UUID.randomUUID().toString()+"_"+orgName;
+		
+		//6. path
+		String path = "c:\\Users\\S401-11\\Downloads\\filestore";
+	
+	
+		AttachFileVo attachFileVo = new AttachFileVo();
+		attachFileVo.setNo(no);
+		attachFileVo.setPath(path);
+		attachFileVo.setFileSize(fileSize);
+		attachFileVo.setOrgName(orgName);
+		attachFileVo.setSaveName(saveName);
+
+		bbsDao.insertAttachFile(attachFileVo);
+		
+		File target = new File(path, saveName);
+		FileCopyUtils.copy(file.getBytes(), target);
+	}
 	
 	
 	

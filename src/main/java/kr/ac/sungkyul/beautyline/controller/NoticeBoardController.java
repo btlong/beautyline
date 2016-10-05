@@ -65,5 +65,40 @@ public class NoticeBoardController {
 	public void delete(int no){
 		
 	}
+	
+	
+/*	public void insertBoard(BBSVo BBSVo, MultipartFile file) throws Exception{
+
+		
+		//1. fno --> 저장할때
+		
+		//2. no --> 게시글 저장할때
+		Long no = bbsDao.insertBoard(BBSVo);
+		System.out.println(no);
+		//3. orgName
+		String orgName =file.getOriginalFilename();
+	
+		//4. fileSize
+		long fileSize = file.getSize();
+		
+		//5. saveName
+		String saveName = UUID.randomUUID().toString()+"_"+orgName;
+		
+		//6. path
+		String path = "c:\\Users\\S401-11\\Downloads\\filestore";
+	
+	
+		AttachFileVo attachFileVo = new AttachFileVo();
+		attachFileVo.setNo(no);
+		attachFileVo.setPath(path);
+		attachFileVo.setFileSize(fileSize);
+		attachFileVo.setOrgName(orgName);
+		attachFileVo.setSaveName(saveName);
+
+		bbsDao.insertAttachFile(attachFileVo);
+		
+		File target = new File(path, saveName);
+		FileCopyUtils.copy(file.getBytes(), target);
+	}*/
 
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.ac.sungkyul.beautyline.service.NoticeBoardService;
+import kr.ac.sungkyul.beautyline.vo.BoardVo;
 import kr.ac.sungkyul.beautyline.vo.NoticeBoardVo;
 
 @Controller
@@ -47,11 +48,24 @@ public class NoticeBoardController {
 	
 	/*글 보기 폼*/
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
-	public String view(){
-		
+	public String view(int no, Model model){
+		NoticeBoardVo notiBdVo = nBoardService.view(no);
+		model.addAttribute( "notiBdVo", notiBdVo );
 		return"board/noticeboard/view";
 	}
-
 	
+	/* 글 수정 폼 */
+	@ResponseBody
+	@RequestMapping(value = "/modify", method = RequestMethod.POST)
+	public void modify(@RequestBody NoticeBoardVo vo){
+		//nBoardService.modify(vo);
+	
+	}
+
+	/*글 삭제 폼*/
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	public void delete(int no){
+		
+	}
 
 }

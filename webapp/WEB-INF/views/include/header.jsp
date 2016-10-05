@@ -56,11 +56,9 @@
  						<li><a href="/beautyline/reserve/userreserve">예약</a></li>
  					</c:otherwise>
  				</c:choose>
-				<li><a class="dropdown-toggle" data-toggle="dropdown" href="">
-     				 게시판 
-  					 </a>
+				<li><a class="dropdown-toggle" data-toggle="dropdown" href="">게시판 </a>
 					<ul class="dropdown-menu" id="navdropdown">
-						<li><a href="/beautyline/board/">공지사항</a></li>
+						<li><a href="/beautyline/noticeboard/board">공지사항</a></li>
 				      	<li><a href="#">문의게시판</a></li>
 				      	<li><a href="#">후기게시판</a></li>
 					</ul>

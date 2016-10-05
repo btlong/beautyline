@@ -7,7 +7,7 @@
 <html>
 <head>
 
-<title>joinform</title>
+<title>view</title>
 
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,12 +16,10 @@
 <meta name="author" content="">
 
 
-<!-- Bootstrap Core CSS -->
-
 
 <!-- Custom CSS -->
 <link href="/beautyline/bootstrap/css/business-casual.css" rel="stylesheet">
-	<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">
+<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">
 	
 <link href="/beautyline/beautyline/css/include.css" rel="stylesheet">
 <!-- font awesome -->
@@ -49,14 +47,6 @@
 	padding-left: 0px;
 }
 </style>
-<script>
-
-
-
-</script>
-
-
-
 
 </head>
 <body>
@@ -80,18 +70,22 @@
 					</tr>
 					<tr>
 						<td class="label">제목</td>
-						<td>${boardVo.title }</td>
+						<td>${notiBdVo.title }</td>
 					</tr>
 					<tr>
 						
 						<td>
-							<div class="view-content">${boardVo.content }<br> 
+							<div class="view-content">${notiBdVo.content }<br> 
 							</div>
 						</td>
 					</tr>
 				</table>
 				<div class="col-lg-11 text-right">
-				<a href="#" class="btn btn-sm btn-danger">목록보기 <span class="glyphicon glyphicon-th-list"></span></a>
+				<a href="board" class="btn btn-sm btn-danger">목록보기 <span class="glyphicon glyphicon-th-list"></span></a>
+				<a href="modify" class="btn btn-sm btn-danger">수정 <span class="glyphicon glyphicon-pencil"></span></a>
+				<a href="delete" class="btn btn-sm btn-danger">삭제 <span class="glyphicon glyphicon-trash"></span></a>
+				
+				
 					<!-- <a href="/mysite/bs?a=list&no=1">글목록</a>  -->
 					
 				<%-- <!-- <c:if test='${not empty authUser && (boardVo.userNo == authUser.no) }'> -->	
@@ -107,27 +101,16 @@
 					
 		</div>
 		</div>			
-					
-
-
-
-
 
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
 
-
 </body>
 
-
-
-
-
-
-
-
 <script>
+$(document).ready(function(){
 
-	
+
+});
 </script>
 
 

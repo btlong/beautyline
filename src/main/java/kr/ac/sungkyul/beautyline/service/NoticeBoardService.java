@@ -22,19 +22,17 @@ public class NoticeBoardService {
 		return list;	
 	}
 	
-	
-	
-	
-	
-	
-	
 	/* 공지사항 글쓰기 */
 	public void write(NoticeBoardVo vo) {
 		vo.setTitle("["+vo.getCategory()+"]"+vo.getTitle()); //카테고리와 제목 합치기
 		nBoardDao.insertBoard(vo);
 	}
 	
-	
+	/* 공지사항 글 보기 */
+	public NoticeBoardVo view( int no ){
+		return nBoardDao.viewBoard(no);
+ 
+	}
 	
 	
 	

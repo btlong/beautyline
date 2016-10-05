@@ -140,7 +140,9 @@ width:50%;
             </table>
             </div>
             <div class="col-lg-11 text-right">
-       <a href="writeform" class="btn btn-sm btn-danger">글쓰기 <span class="glyphicon glyphicon-pencil"></span></a>
+            <c:if test="${authUser.isAdmin eq 'a'}">
+      			<a href="writeform" class="btn btn-sm btn-danger">글쓰기 <span class="glyphicon glyphicon-pencil"></span></a>
+       		</c:if>
       </div>
    <!--  페이징 -->
 

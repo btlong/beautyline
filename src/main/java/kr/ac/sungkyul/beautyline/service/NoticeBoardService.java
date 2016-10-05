@@ -35,6 +35,10 @@ public class NoticeBoardService {
 	}
 	
 	
+	/* 공지사항 글 삭제 */
+	public int delete( int no ){
+		 return nBoardDao.delete(no);
+	}
 	
 	
 	

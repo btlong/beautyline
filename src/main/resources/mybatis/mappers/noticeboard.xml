@@ -27,11 +27,16 @@
 	
 	<select id="view" parameterType="java.lang.Integer" resultType="noticeboardvo">
 	<![CDATA[
-		select b.no, b.user_no as userNo, u.name as userName, b.title, b.content, b.reg_date as regDate, b.view_count as viewCount  
+		select b.no, b.user_no as userNo, u.name as userName, b.title, b.content, b.reg_date as regDate, b.view_count as viewCount
     	from bd_noti b, users u 
     	where b.no = #{no }
     	and b.USER_NO = u.NO
     ]]>
 	</select>
 	
+	<delete id="delete" parameterType="java.lang.Integer">
+	<![CDATA[
+		delete from BD_NOTI where no = #{no } 
+	]]>
+	</delete>
 </mapper> 

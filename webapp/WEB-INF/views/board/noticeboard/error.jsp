@@ -7,7 +7,7 @@
 <html>
 <head>
 
-<title>view</title>
+<title>삭제 확인</title>
 
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -46,26 +46,6 @@
 #btn {
 	padding-left: 0px;
 }
-#bdbox {
-	display: inline;
-	padding-left: 15%;
-}
-#date {
-	padding-left: 70%;
-}
-#bdhr {
-	width: 100%;
-	background-color: #3E3F3A;
-	height: 1px; 
-}
-#contents {
-	padding-top: 10px;
-	padding-bottom: 10px;
-	
-}
-#title {
-	display: inline-block;
-}
 </style>
 
 </head>
@@ -76,47 +56,17 @@
 		<div class="row">
 			<div class="box">
 				<div class="col-lg-12">
-					<div class="page-header"></div>
-					
-					<div class="col-md-2"></div>
-					<div class="col-md-9" id="title">
-					
-					<div>
-					  <table>
-                		<tbody>
-	                		<tr>                 
-		                	<td>
-		                        <span>${notiBdVo.title }</span>
-		                    </td>
-	                        </tr>
-	                    </tbody>
-                      </table>
-					</div>
-					
-					<div>
-					<table>
-                		<tbody>
-	                		<tr>                 
-		                	<td>
-		                        <span>${notiBdVo.regDate }</span>
-		                    </td>
-	                        </tr>
-	                    </tbody>
-                      </table>
-					</div>
-						<div id="bdhr"></div>
-						
-												
+					<div class="page-header">
+						<hr>
+						<h1 class="text-center">
+							<strong>유효하지 않은 정보 입니다.</strong>
+						</h1>
+						<hr>
 					</div>
 					
 				
-				
-				<div class="col-lg-11 text-right">
-          		<c:if test="${authUser.isAdmin eq 'a'}">
-					<a href="deleteform?no=${notiBdVo.no }" class="btn btn-sm btn-danger">삭제 <span class="glyphicon glyphicon-trash"></span></a>
-					<a href="modify" class="btn btn-sm btn-danger">수정 <span class="glyphicon glyphicon-pencil"></span></a>
-				</c:if>
-				<a href="board" class="btn btn-sm btn-danger">목록보기 <span class="glyphicon glyphicon-th-list"></span></a>
+				<div class="col-lg-11 text-center">
+				<a href="/beautyline/main" class="btn btn-md btn-primary">메인으로 <span class="glyphicon glyphicon-remove"></span></a>
 				
 				
 					<!-- <a href="/mysite/bs?a=list&no=1">글목록</a>  -->

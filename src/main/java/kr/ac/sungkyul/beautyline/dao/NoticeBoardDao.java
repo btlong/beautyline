@@ -30,5 +30,8 @@ public class NoticeBoardDao {
 		return sqlSession.selectOne("noticeboard.view",no);
 	}
 	
-
+	/* 공지사항 글 삭제 */
+	public int delete(int no){
+		return sqlSession.delete("noticeboard.delete",no);	
+	}
 }

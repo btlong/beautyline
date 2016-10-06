@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="noticeboard">
+	<!--<select id="getByIdAndPassword" parameterType="uservo"
+		resultType="uservo">
+	<![CDATA[
+		select no, name from users where id=#{id } and password=#{password }
+	]]>칼럼 이름이 어렵다하면  	select n as no, name from users where...
+	</select>
+      
+	
+-->
+	<insert id="insert" parameterType="noticeboardvo" >
+	<![CDATA[
+		insert into bd_noti values(seq_bd_noti.nextval, '43', #{title }, #{content }, sysdate, '0')
+	
+	]]>
+	</insert>
+
+	
+	<select id="getAll" resultType="noticeboardvo">
+	<![CDATA[
+		select no, user_no as userNo, title, content, to_char(reg_date,'yyyy-mm-dd pm hh:mi') as regDate, view_count as viewCount  from bd_noti
+	]]>
+	</select>
+	
+	<select id="view" parameterType="java.lang.Integer" resultType="noticeboardvo">
+	<![CDATA[
+		select b.no, b.user_no as userNo, u.name as userName, b.title, b.content, to_char(reg_date,'yyyy-mm-dd pm hh:mi') as regDate, b.view_count as viewCount
+    	from bd_noti b, users u 
+    	where b.no = #{no }
+    	and b.USER_NO = u.NO
+    ]]>
+	</select>
+	
+	
+	<!-- 조회수 업뎃 -->
+	<update id="updateviewcnt" parameterType="java.lang.Integer">
+	<![CDATA[
+		update bd_noti set VIEW_COUNT = VIEW_COUNT+1 where no= #{no }
+	]]>
+	</update>
+	
+	<delete id="delete" parameterType="java.lang.Integer">
+	<![CDATA[
+		delete from BD_NOTI where no = #{no } 
+	]]>
+	</delete>
+</mapper> 

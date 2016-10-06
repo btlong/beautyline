@@ -52,14 +52,12 @@
 				<div class="col-md-6">
 				<table class="table">
 				<tr>
-						<th>회원이름</th>
 						<th>예약 프로그램</th>
 						<th>예약일</th>
 						<th>예약 시간</th>
 						
 					</tr>
-				<tr>
-					<td>${reserveVo.userName }</td>
+				<tr>					
 					<td>${reserveVo.progName }</td>
 					<td>${reserveVo.resDate }</td>
 					<td>${reserveVo.resTime }시 - ${reserveVo.resTime + 1 }시</td>
@@ -105,7 +103,6 @@
 				
 			<!-- Footer -->
 				<div class="modal-footer">
-					<button class="btn btn-default" id="backList">리스트로</button>
 					<button class="btn btn-default" id="backMain">메인으로</button>					
 				</div>				
 			</div>
@@ -134,9 +131,6 @@ $(document).ready(function(){
 		});
 	});
 	
-	$("#backList").on("click", function(){
-		location.href = "reservelist";
-	});
 	
 	$("#backMain").on("click", function(){
 		location.href = "/beautyline/main";

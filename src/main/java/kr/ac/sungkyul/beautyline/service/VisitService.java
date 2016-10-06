@@ -42,6 +42,10 @@ public class VisitService {
 		visitDao.SalesInsert(visitVo);
 	}
 
+	public void insert(VisitVo visitVo) {
+		visitDao.insert(visitVo);
+	}
+
 	/* visited - update */
 	public void update(VisitVo visitVo, MultipartFile file) throws VisitUpdateException {
 		visitDao.update(visitVo);

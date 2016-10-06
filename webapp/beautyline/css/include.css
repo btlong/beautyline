@@ -1,55 +1,59 @@
-#includeheader {
-   height:30px;
-   margin: 0 auto;
-   
-}
 
-#includeheader li {
-   list-style: none; 
+#userli {
+	color: #333;
 
 }
-
-#includeheader {
-   height:30px;
-   margin: 10px auto;
-   
+#includeheader ul{
+	height:20px; 
+	margin:0 20px 10px 0 ;
 }
-
-#includeheader li {
-   list-style: none; 
-    color: white;
-    float: right;
-    margin: 10px;
+#includeheader ul li{
+	list-style: none; 
+	padding-left: 10px;
+	float: right;
 }
-
-#includeheader ul li a {
-   color: white;
-   margin: 5px;
-   padding: 10px;
+#includeheader ul li a{
+	color:#4F4F4F; 
+	font-weight:bold; 
+	text-decoration:none;
 }
 .brand {
-   color: black;
-   text-shadow: none;
+	color: black;
+	text-shadow: none;
     font-family: sans-serif;
-   
+	
 }
 body {
-   background: none;
-   background-color: none;
+	background: none;
+	background-color: none;
 }
 
 .box {
-   background-color: #F7F7F7;
+	background-color: #F7F7F7;
 }
 hr {
-   border-color: #3E3F3A;
+	border-color: #3E3F3A;
 }
 #footerText{
-   background-color: #2C3E50;   
+	background-color: #2C3E50;	
 }
 #footerText p{
-   color: #F7F7F7;
+	color: #F7F7F7;
 }
-.nav navbar-nav{
-   padding-left:100px;
+#reservejoin{
+	padding: 20px;
 }
+.navbar-nav {
+    display: table;
+    float: none;
+    margin: auto;
+    text-align: center;
+    table-layout: fixed;
+    font-size: 1.25em;
+}
+
+#navdropdown {
+	text-align: center;
+	background-color: #2C3E50;
+}
+

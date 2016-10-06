@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
@@ -40,10 +39,7 @@
 #total-record {
 	margin-bottom: 5px;
 }
-#page-location {
-	color:red;
-}
-</style>
+</style> 
 
 <!-- jQuery -->
 <script
@@ -68,6 +64,8 @@
 				</div>
 
 
+
+
 				<div class="col-lg-12 text-center">
 					<!-- 관리자권한 설정 -->
 					<c:choose>
@@ -82,14 +80,13 @@
 									id="insert-user" type="button" role="button">등록</a>
 							</div>
 
-
-							<!-- 페이지 정보 -->
 							<div id=total-record class="col-lg-12 text-left">
-								▶전체 회원 수 : ${page.totalRecord }명&nbsp; &nbsp; ▶현재 페이지 ( <span id =page-location>${page.nowPage+1 } / ${page.totalPage} 페이지</span>)
+								▶전체 회원 수 : ${page.totalRecord }명&nbsp; &nbsp; ▶현재 페이지 ( <font
+									color=red> ${page.nowPage+1 } / ${page.totalPage} 페이지</font>)
 							</div>
-
-
-
+							
+							
+							
 							<!-- 회원리스트 -->
 							<div class="col-lg-12 text-center">
 								<table class="table table-hover">
@@ -110,60 +107,60 @@
 									</thead>
 
 									<tbody>
-										<c:set var="doneLoop" value="false" />
-										<!-- for(i=보고있는 페이지의 시작번호; i<(시작번호+한페이지의 게시물수); i++ ){ -->
-										<c:forEach begin="${page.beginPerPage }"
-											end="${page.beginPerPage + page.numPerPage -1}" var="i"
-											varStatus="status">
+												<c:set var="doneLoop" value="false" />
+												<!-- for(i=보고있는 페이지의 시작번호; i<(시작번호+한페이지의 게시물수); i++ ){ -->
+												<c:forEach begin="${page.beginPerPage }"
+													end="${page.beginPerPage + page.numPerPage -1}" var="i"
+													varStatus="status">
+													
+													<!-- doneLoop가 false이면 루프 계속 돎-->
+													<c:if test="${not doneLoop }">
+														<tr>
+															<!-- (전체 게시물 갯수-(전체회원수-1))>=1이면 -->
+															<c:if test="${(page.totalRecord -status.index)>=1}">
+																<td>${page.totalRecord -status.index}</td>
+																<td>${listUser[i].no}</td>
+																<td>${listUser[i].name}</td>
+																<td>${listUser[i].phone}</td>
+																<td>${listUser[i].id}</td>
+																<td>${listUser[i].email}</td>
+																<td>${listUser[i].address}</td>
+																<td>${listUser[i].isAdmin}</td>
 
-											<!-- doneLoop가 false이면 루프 계속 돎-->
-											<c:if test="${not doneLoop }">
-												<tr>
-													<!-- (전체 게시물 갯수-(전체회원수-1))>=1이면 -->
-													<c:if test="${(page.totalRecord -status.index)>=1}">
-														<td>${page.totalRecord -status.index}</td>
-														<td>${listUser[i].no}</td>
-														<td>${listUser[i].name}</td>
-														<td>${listUser[i].phone}</td>
-														<td>${listUser[i].id}</td>
-														<td>${listUser[i].email}</td>
-														<td>${listUser[i].address}</td>
-														<td>${listUser[i].isAdmin}</td>
+																<td>
+																	<!-- 쿠폰 조회  --> <!-- Trigger the modal with a button -->
+																	<input type="hidden" name="no"
+																	value="${CouponviewVo.userNo }" /> <a
+																	class="btn btn-default btn-sm" href="" id="couponview"
+																	data-target="#modalView" type="button"
+																	data-toggle="modal" role="button">조회</a>
+																</td>
 
-														<td>
-															<!-- 쿠폰 조회  --> <!-- Trigger the modal with a button -->
-															<input type="hidden" name="no"
-															value="${CouponviewVo.userNo }" /> <a
-															class="btn btn-default btn-sm" href="" id="couponview"
-															data-target="#modalCoupon" type="button"
-															data-toggle="modal" role="button">조회</a>
-														</td>
+																<td>
+																	<!-- 회원 수정 --> <input type="hidden" name="no"
+																	value="${listUser[i].no }" /> <a
+																	class="btn btn-default  btn-sm"
+																	href="modifyuser?no=${listUser[i].no }" role="button">수정</a>
+																</td>
 
-														<td>
-															<!-- 회원 수정 --> <input type="hidden" name="no"
-															value="${listUser[i].no }" /> <a
-															class="btn btn-default  btn-sm"
-															href="modifyuser?no=${listUser[i].no }" role="button">수정</a>
-														</td>
+																<td>
+																	<!-- 회원 삭제 -->
+																	<form method="post" action="delete">
+																		<input type="hidden" name="no"
+																			value="${listUser[i].no }" /> <input type="submit"
+																			value="삭제" class="btn btn-default  btn-sm">
+																		<!-- <a class="btn btn-default" href = "javascript:del()">삭제</a> -->
+																	</form>
+																</td>
+															</c:if>
 
-														<td>
-															<!-- 회원 삭제 -->
-															<form method="post" action="delete">
-																<input type="hidden" name="no"
-																	value="${listUser[i].no }" /> <input type="submit"
-																	value="삭제" class="btn btn-default  btn-sm">
-																<!-- <a class="btn btn-default" href = "javascript:del()">삭제</a> -->
-															</form>
-														</td>
+														</tr>
+														<!-- 회원수가 토탈 게시물보다 많아지면 루프가 True가 되어 빠져나옴 -->
+														<c:if test="${i+1 == page.totalRecord} }">
+															<c:set var="doneLoop" value="true" />
+														</c:if>
 													</c:if>
-
-												</tr>
-												<!-- 회원수가 토탈 게시물보다 많아지면 루프가 True가 되어 빠져나옴 -->
-												<c:if test="${i+1 == page.totalRecord} }">
-													<c:set var="doneLoop" value="true" />
-												</c:if>
-											</c:if>
-										</c:forEach>
+												</c:forEach>
 									</tbody>
 									<tfoot></tfoot>
 								</table>
@@ -171,11 +168,76 @@
 
 
 							<!-------------Paging--------------->
-							<c:import url="/WEB-INF/views/include/paging.jsp" />
+							<div class="col-lg-12 text-center">
+							<nav>
+									<ul class="pagination pagination-sm">
+										<c:if test="${page.totalRecord !=0}">
+											<!-- 이전 -->
+											<c:if test="${page.nowBlock >0 }">
+												<li id="previous"><span aria-hidden="true">&laquo;</span>
+												</li>
+											</c:if>
+											
+											<!-- 페이지블럭 -->
+											<c:set var="doneLoop2" value="false" />
+											<c:forEach begin="0" end="${page.pagePerBlock-1 }" var="i">
+												<c:if test="${not doneLoop2 }">
+												<li id="page-block"><a href="javascript:pagemove(${i })">
+															${(page.nowBlock*page.pagePerBlock)+i+1}</a></li>
+													
+													<c:if
+														test="${(page.pagePerBlock*page.nowBlock+i+1) == page.totalPage }">
+														<c:set var="doneLoop2" value="true" />
+													</c:if>
+												</c:if>
+											</c:forEach>
+
+											<!-- 다음 -->
+											<c:if test="${page.totalBlock > page.nowBlock+1 }">
+												<li id="following"><span
+														aria-hidden="true">&raquo;</span>
+												</li>
+											</c:if>
+										</c:if>
+									</ul>
+								</nav>
+							</div>
+
+							<!-- 히든 정의 -->
+							
+								<!-- 이전 페이지 -->
+							<form id="blockmoveb" name="blockmoveb" method="POST" action="list">
+								<input type="hidden" name="nowBlock" value="${page.nowBlock-1 }" />
+								<input type="hidden" name="nowPage"
+									value="${(page.nowBlock-1)*page.pagePerBlock}" />
+								<%-- <input type="hidden" name="keyField" value="${keyField }" />
+								<input type="hidden" name="keyWord" value="${keyWord }" /> --%>
+							</form>
+							
+								<!-- 페이지블록 -->
+							<form id="pagemove" name="pagemove" method="POST" action="list">
+								<input type="hidden" name="nowBlock" value="${page.nowBlock}" />
+								<input id="now-page" type="hidden" name="nowPage"
+									value="${page.nowBlock*page.pagePerBlock}" />
+								<%-- <input type="hidden"name="keyField" value="${keyField }" /> 
+								<input type="hidden"name="keyWord" value="${keyWord }" /> --%>
+							</form>
+
+								<!-- 다음 페이지 -->
+							<form id="blockmovef" name="blockmovef" method="POST" action="list">
+								<input type="hidden" name="nowBlock" value="${page.nowBlock+1 }" />
+								<input type="hidden" name="nowPage"
+									value="${(page.nowBlock+1)*page.pagePerBlock}" />
+								<%-- <input type="hidden" name="keyField" value="${keyField }" />
+								<input type="hidden" name="keyWord" value="${keyWord }" /> --%>
+							</form>
+							
+							<!-------------Paging 끝--------------->
+
 
 
 							<!-- 검색 -->
-							<%-- <div class="col-lg-12">
+							<div class="col-lg-12">
 								<form id="search_form" action="/beautyline/userinfo"
 									method="get">
 									<div class="btn-group">
@@ -192,63 +254,10 @@
 									<input type="text" id="kwd" name="kwd" value="${keyword }">
 									<input type="submit" value="찾기">
 								</form>
-							</div> --%>
-							 <form action="list" name="search" method="post">
-							<select name="keyField" size="1">
-								<option value="name"
-									<c:if test="${''==keyField }"> selected</c:if>>전체
-								</option>
-								<option value="name"
-									<c:if test="${'name'==keyField }"> selected</c:if>>이름
-								</option>
-								<option value="title"
-									<c:if test="${'title'==keyField }"> selected</c:if>>
-									제목</option>
-								<option value="content"
-									<c:if test="${'content'==keyField }"> selected</c:if>>
-									내용</option>
-							</select></form>
-							<input type="text" size="16" name="keyWord" value="${keyWord }">
-							<input type="button" value="검색" onClick="check()">
-							<input type="hidden" name="page" value="0">
-
-							<!-------------Paging n Search form--------------->
-							<!-- 히든 정의 -->
-
-							<!-- 이전 페이지 -->
-							<form id="blockmoveb" name="blockmoveb" method="POST"
-								action="list">
-								<input type="hidden" name="nowBlock" value="${page.nowBlock-1 }" />
-								<input type="hidden" name="nowPage"
-									value="${(page.nowBlock-1)*page.pagePerBlock}" />
-								<input type="hidden" name="keyField" value="${keyField }" />	
-								<input type="hidden" name="keyWord" value="${keyWord }" />
-							</form>
-
-							<!-- 페이지블록 -->
-							<form id="pagemove" name="pagemove" method="POST" action="list">
-								<input type="hidden" name="nowBlock" value="${page.nowBlock}" />
-								<input id="now-page" type="hidden" name="nowPage"
-									value="${page.nowBlock*page.pagePerBlock}" />
-								<input type="hidden"name="keyField" value="${keyField }" />
-								<input type="hidden"name="keyWord" value="${keyWord }" />
-							</form>
-
-							<!-- 다음 페이지 -->
-							<form id="blockmovef" name="blockmovef" method="POST"
-								action="list">
-								<input type="hidden" name="nowBlock" value="${page.nowBlock+1 }" />
-								<input type="hidden" name="nowPage"
-									value="${(page.nowBlock+1)*page.pagePerBlock}" />
-								<input type="hidden" name="keyField" value="${keyField }" />
-								<input type="hidden" name="keyWord" value="${keyWord }" />
-							</form>
-
-
-							
+							</div>
 						</c:when>
-
-
+						
+						
 						<c:otherwise>
 							<!-- authUser.isAdmin 값이 'a'가 아닐 때 -->
 							<h4>관리자페이지 입니다.</h4>
@@ -263,7 +272,7 @@
 
 
 	<!-- 쿠폰조회 Modal -->
-	<div class="modal fade" id="modalCoupon" role="dialog" tabindex="-1"
+	<div class="modal fade" id="modalView" role="dialog" tabindex="-1"
 		aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-sm">
 
@@ -328,29 +337,48 @@
 
 		</div>
 	</div>
-	<!-- Modal-->
+
 
 
 	<script>
+		/* 페이징 */
+		 function pagemove(i) {
+			var nowPage = document.pagemove.nowPage.value;
+			document.pagemove.nowPage.value = Number(nowPage) + Number(i);
+			document.pagemove.submit();
+		} 
+/* <li id="page-block"><a href="javascript:pagemove(${i })">
+${(page.nowBlock*page.pagePerBlock)+i+1}</a></li>  */		
+		
+		
+		
+		
+		/*  */
 		$(document).ready(function() {
+			$('#previous').click(function() {
+				  $('#blockmoveb').submit();
+				});
+			
+			/* $('#page-block').click(function(i) {
+				var nowPage=$('#now-page').val;
+				$('#now-page').val= $('#now-page')+i;
+				  $('#pagemove').submit();
+				}); */
+			
+			$('#following').click(function() {
+				  $('#blockmovef').submit();
+				});
+			
 			$("#couponview").click(function() {
-				$("#modalCoupon").modal();
+				$("#modalView").modal();
 			});
 
 			$('#myDropdown').on('shown.bs.dropdown', function() {
 				// do something…
 			});
 		});
-		
-		function check() {
-	        if (document.search.keyWord.value == "") {
-	            alert("검색어를 입력하세요.");
-	            document.search.keyWord.focus();
-	            return;
-	        }
-	        document.search.submit();
-	    }
 	</script>
 
 </body>
+
 </html>

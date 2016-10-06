@@ -59,15 +59,18 @@
 	font-weight: bolder;
 	font-size: 15pt;
 }
+#userName {
+	text-align: right;
+	font-weight: bold;
+}
 #date {
 	color: #95A5A6;	
-	text-align: right;
 }
 #bottombtns {
 	padding-top: 10px;
 }
-#userNametxt{
-	font-weight: bold;
+#titleInfo {
+	text-align: right;
 }
 </style>
 
@@ -90,12 +93,11 @@
 		                	<td id="titletxt">
 		                        <span>${notiBdVo.title }</span>
 		                    </td>
-		                    <td id="date">
-		                        <span>${notiBdVo.regDate }</span>
+		                    <td id="titleInfo">
+		                    	<span id="userName">관리자</span> &qnbsp
+		                        <span id="date">${notiBdVo.regDate }</span>
 		                    </td>
-		                    <td>
-		                    
-		                    </td>
+		                   
 	                        </tr>
 	                    </tbody>
                       </table>
@@ -103,7 +105,6 @@
 					
 						<div id="bdhr"></div>
 						
-						<div id="userNametxt">관리자</div>
 						<div id="contents">
 							${notiBdVo.content }
 						</div>

@@ -4,7 +4,7 @@
 	<typeAliases>
 		<typeAlias type="kr.ac.sungkyul.beautyline.vo.UserVo" alias="uservo" />
 		<typeAlias type="kr.ac.sungkyul.beautyline.vo.VisitVo" alias="visitvo" />
-		<typeAlias type="kr.ac.sungkyul.beautyline.vo.CouponVo" alias="counponvo" />
+		<typeAlias type="kr.ac.sungkyul.beautyline.vo.CouponVo" alias="couponvo" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/mappers/user.xml" />

@@ -39,9 +39,6 @@
  	</property> 
  </bean> 
 
-
-
-
 	<!-- 첨부파일관련 -->
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

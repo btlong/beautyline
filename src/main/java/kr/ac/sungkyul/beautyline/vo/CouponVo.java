@@ -3,9 +3,12 @@ package kr.ac.sungkyul.beautyline.vo;
 public class CouponVo {
 	private Long no;
 	private Long userNo;
-	private Long program_no;
-	private String programName;
+	private Long programNo;    
 	private Long count;
+	private Long price;
+	private String regDate; // 날짜
+	private Long payNo;
+	
 	public Long getNo() {
 		return no;
 	}
@@ -18,17 +21,11 @@ public class CouponVo {
 	public void setUserNo(Long userNo) {
 		this.userNo = userNo;
 	}
-	public Long getProgram_no() {
-		return program_no;
+	public Long getProgramNo() {
+		return programNo;
 	}
-	public void setProgram_no(Long program_no) {
-		this.program_no = program_no;
-	}
-	public String getProgramName() {
-		return programName;
-	}
-	public void setProgramName(String programName) {
-		this.programName = programName;
+	public void setProgram_No(Long programNo) {
+		this.programNo = programNo;
 	}
 	public Long getCount() {
 		return count;
@@ -36,10 +33,29 @@ public class CouponVo {
 	public void setCount(Long count) {
 		this.count = count;
 	}
+	public String getRegDate() {
+		return regDate;
+	}
+	public void setRegDate(String regDate) {
+		this.regDate = regDate;
+	}
+	public Long getPayNo() {
+		return payNo;
+	}
+	public void setPayNo(Long payNo) {
+		this.payNo = payNo;
+	}
+	
+	public Long getPrice() {
+		return price;
+	}
+	public void setPrice(Long price) {
+		this.price = price;
+	}
 	@Override
 	public String toString() {
-		return "CouponVo [no=" + no + ", userNo=" + userNo + ", program_no=" + program_no + ", programName="
-				+ programName + ", count=" + count + "]";
+		return "CouponVo [no=" + no + ", userNo=" + userNo + ", programNo=" + programNo + ", count=" + count
+				+ ", price=" + price + ", regDate=" + regDate + ", payNo=" + payNo + "]";
 	}
 }
 	

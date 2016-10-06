@@ -7,7 +7,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,24 +28,24 @@ public class VisitController {
 	// 처음 화면
 	@RequestMapping("/visitform")
 	public String visitForm() {
-
 		return "visit/visitform";
 	}
 
 	// 시술 후 등록
-	@RequestMapping(value = "/visited", method = RequestMethod.POST)
-	public String visited(@ModelAttribute VisitVo visitVo, MultipartFile file) {
-		visitService.update(visitVo, file);
-		return "redirect:/visit/visitform";
+	
+	@RequestMapping(value = "visited", method = RequestMethod.POST)
+	public String visited(VisitVo visitVo, MultipartFile file) {
+		System.out.println(file.getOriginalFilename().toString());
+		visitService.insert(visitVo ,file);
+		return "visit/visited";
 	}
 
 	// 내역 조회
 	@RequestMapping("/details")
 	public String details(Model model) {
-		/*
-		 * List<VisitHistoryVo> visitList = visitService.selectList();
-		 * model.addAttribute("visitList",visitList);
-		 */
+		List<VisitVo> visitList = visitService.selectList();
+		model.addAttribute("visitList", visitList);
+
 		return "visit/details";
 	}
 
@@ -66,15 +65,27 @@ public class VisitController {
 		UserVo authUser = visitService.searchOne(userVo);
 		retVal.put("authUser", authUser);
 		List<CouponVo> couponList = visitService.couponList(authUser.getNo());
-		System.out.println("리스트 확인 :"+couponList.toString());
+		/*System.out.println(couponList);*/
 		retVal.put("couponList", couponList);
 		return retVal;
 	}
 
-	// 쿠폰 충전
-	@RequestMapping(value = "/packagecharge", method = RequestMethod.GET)
-	public String packageCharge(VisitVo visitVo) {
-		return "visit/packagecharge";
+	/* 쿠폰 충전 */
+	@ResponseBody
+	@RequestMapping(value = "packageModal", method = RequestMethod.POST)
+	public UserVo packageCharge(@RequestBody UserVo userVo) {
+		System.out.println(userVo);
+		UserVo authUser = visitService.searchOne(userVo);
+		return authUser;
+	}
+
+	/* 쿠폰 완료 */
+	@ResponseBody
+	@RequestMapping(value = "packageCharge", method = RequestMethod.POST)
+	public List<CouponVo> packageCharge(@RequestBody CouponVo couponVo) {
+		visitService.couponCharge(couponVo);
+		List<CouponVo> couponList = visitService.couponList(couponVo.getUserNo());
+		return couponList ;
 	}
 
 	// 회원등록
@@ -83,14 +94,4 @@ public class VisitController {
 		return "registration";
 	}
 
-	/*
-	 * @ResponseBody
-	 * 
-	 * @RequestMapping(value = "careSelected", method = RequestMethod.POST)
-	 * public List<CouponVo> careSelected(@RequestBody CouponVo couponVo) { //
-	 * userNo 1번씨가 -->> 번호가1번 10회 , 2번 5회 3번 4회가 존재. List<CouponVo> couponList =
-	 * visitService.couponList(couponVo); System.out.println(couponList.size());
-	 * 
-	 * return couponList; }
-	 */
 }

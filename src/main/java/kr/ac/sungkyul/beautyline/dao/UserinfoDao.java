@@ -1,6 +1,8 @@
 package kr.ac.sungkyul.beautyline.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,18 +16,40 @@ public class UserinfoDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public List<UserinfoVo> listUser() {
-		return sqlSession.selectList("userinfo.listUser");
-	}
-
-	public UserinfoVo selectUser(long no) {
-		return sqlSession.selectOne("userinfo.selectUser", no);
+	// 리스트
+	public List<UserinfoVo> listUser(String keyfield, String keyword) {
+		//List<UserinfoVo> listUser = new ArrayList<UserinfoVo>();
+        System.out.println(keyfield + "//" + keyword);
+        if(keyfield != null && keyword != null && keyfield !="" && keyword !=""){
+            Map<String, String> map = new HashMap<String, String> ();
+            map.put("keyfield" , keyfield);
+            map.put("keyword", keyword);
+            return sqlSession.selectList("userinfo.searchUser", map);
+        }else {
+        	return sqlSession.selectList("userinfo.listUser");
+        }
 	}
 	
+	
+	
+	//회원번호에 의한 리스트뽑기
+	/*public UserinfoVo findByNo(int no) {
+		return sqlSession.selectOne("findByNo",no);
+    }*/
+	
+     
+	
+	// 회원삭제
 	public void deleteUser(long no) {
 		sqlSession.delete("userinfo.deleteUser", no);
 	}
 
+	// 수정폼
+	public UserinfoVo selectUser(long no) {
+		return sqlSession.selectOne("userinfo.selectUser", no);
+	}
+
+	// 수정
 	public void updateUser(UserinfoVo userinfoVo) {
 		sqlSession.update("userinfo.updateUser", userinfoVo);
 	}
@@ -39,4 +63,5 @@ public class UserinfoDao {
 	}
 	*/
 
+	
 }

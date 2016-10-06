@@ -1,33 +1,63 @@
-#includeheader {
-   height:30px;
-   margin: 0 auto;
-   
-}
 
-#includeheader li {
-   list-style: none; 
+#userli {
+	color: #333;
 
 }
-
-#includeheader {
-   height:30px;
-   margin: 10px auto;
-   
+#includeheader ul{
+	height:20px; 
+	margin:0 20px 10px 0 ;
+}
+#includeheader ul li{
+	list-style: none; 
+	padding-left: 10px;
+	float: right;
+}
+#includeheader ul li a{
+	color:#4F4F4F; 
+	font-weight:bold; 
+	text-decoration:none;
+}
+.brand {
+	color: black;
+	text-shadow: none;
+    font-family: sans-serif;
+	
+}
+body {
+	background: none;
+	background-color: none;
 }
 
-#includeheader li {
-   list-style: none; 
-    color: white;
-    float: right;
-    margin: 10px;
+.box {
+	background-color: #F7F7F7;
+}
+hr {
+	border-color: #3E3F3A;
+}
+#footerText{
+	background-color: #2C3E50;	
+}
+#footerText p{
+	color: #F7F7F7;
+}
+#reservejoin{
+	padding: 20px;
+}
+.navbar-nav {
+    display: table;
+    float: none;
+    margin: auto;
+    text-align: center;
+    table-layout: fixed;
+    font-size: 1.25em;
 }
 
-#includeheader ul li a {
-   color: white;
-   margin: 5px;
-   padding: 10px;
+#navdropdown {
+	text-align: center;
+	background-color: #2C3E50;
 }
 
+<<<<<<< HEAD
 body {
 	background: none;
 	background-color: none;

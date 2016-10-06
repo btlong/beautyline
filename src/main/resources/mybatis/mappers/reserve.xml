@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="res">
+
+<!-- 관리자 - 예약리스트 조회 -->
+<select id="resList" resultType="reservevo">
+	<![CDATA[
+		select r.no as no,r.user_no as userNo,u.name as userName,r.prog_name as progName,r.res_date as resDate,r.res_Time as resTime 
+		from reservation r, users u where u.no = r.user_no order by resDate desc, resTime desc
+	]]>
+
+</select>
+
+<!-- 회원 - 회원번호로 예약리스트 조회 -->
+<select id="resListUserNo" parameterType="java.lang.Integer" resultType="reservevo">
+	<![CDATA[
+		select r.no as no,r.user_no as userNo,u.name as userName,r.prog_name as progName,r.res_date as resDate,r.res_Time as resTime 
+		from reservation r, users u where u.no = r.user_no and r.user_no = #{userNo} order by resDate desc, resTime desc
+	]]>
+
+</select>
+
+
+<select id="resSelect" parameterType="java.lang.Integer" resultType="reservevo">
+
+	<![CDATA[
+		select r.no as no,r.user_no as userNo,u.name as userName,r.prog_name as progName,r.res_date as resDate,r.res_Time as resTime 
+		from reservation r, users u where u.no = r.user_no and r.no = #{no} 
+	
+	]]>
+
+
+</select>
+
+<!-- 예약일로 검색해서 list로 돌려주기 -->
+<select id="resDaySel" parameterType="java.lang.String" resultType="reservevo">
+	
+	<![CDATA[
+		select res_time as resTime from reservation where RES_DATE = #{resDateText} order by resTime asc
+	]]>
+
+</select>
+
+<delete id="resDelete" parameterType="java.lang.Integer">
+	<![CDATA[
+	
+		delete from reservation where no = #{no}
+		
+	]]>
+</delete>
+
+<!-- reserveVo 넣기 -->
+<insert id="reserve" parameterType="reservevo" >
+	<![CDATA[
+		insert into reservation (
+			no, user_no, prog_name, res_date, res_time
+		)
+		values( 
+			seq_reserve.nextVal, #{userNo }, #{progName}, #{resDate }, #{resTime }
+		)	
+	]]>
+</insert>
+
+<!-- 회원 이름으로 회원 검색 -->
+<select id="UserSearch" parameterType="java.lang.String" resultType="uservo">
+	
+	<![CDATA[
+		select no,name,phone from users where name LIKE '%' || #{name} || '%'
+	]]>
+
+</select>
+</mapper>

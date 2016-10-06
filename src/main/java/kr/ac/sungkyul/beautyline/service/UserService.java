@@ -19,13 +19,21 @@ public class UserService {
 	@Autowired
 	private EmailSender emailSender;
 
-	public void join(UserVo vo) {
+	/* 회원가입 */
+	public int join(UserVo vo) {
 		vo.setEmail(vo.getEmail1() + "@" + vo.getEmail2());
 		vo.setAddress("[" + vo.getZipCode() + "]" + vo.getAddress1() + vo.getAddress2());
 		System.out.println(vo.toString());
-		userDao.insert(vo);
+		int a =	userDao.insert(vo);
+		return a;
 	}
 
+	/* 이름과 전화번호로 회원가입 */
+	public UserVo insertUserNamePhone(UserVo uservo){
+		userDao.insertUserNamePhone(uservo);
+		return uservo;
+	}
+	
 	public UserVo login(String id, String password) { 
 		return userDao.get(id, password);
 	}
@@ -42,6 +50,7 @@ public class UserService {
 		return userDao.get(no); 
 	}
 
+	/* 아이디찾기  */
 	public String getId(UserVo userVo) throws Exception {//아이디 찾기
 		UserVo authUser = userDao.getId(userVo);
 		if(authUser !=null){
@@ -62,7 +71,7 @@ public class UserService {
 		}
 	}
 
-	
+	/* 비밀번호 찾기  */
 	public String getPw(UserVo vo) throws Exception {//임시 패스워드 만드는 동시에 update해야함 
 		UserVo authUser = userDao.getPw(vo);
 		if(authUser !=null){

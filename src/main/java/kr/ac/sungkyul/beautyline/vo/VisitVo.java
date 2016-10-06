@@ -1,16 +1,19 @@
 package kr.ac.sungkyul.beautyline.vo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 /**
  * @author WonHo
- *
  */
-
 public class VisitVo {
 	private Long no; // 방문내역 번호
 	private Long userNo; // 회원 번호
+	private String name; // 이름
 	private Long programNo; // 프로그램 번호
 	private String programName; // 프로그램 이름
 	private Long iamgeNo; // 이미지 번호
+
+	private Long imageNo; // 이미지 번호
 	private String memo; // 메모
 	private String regDate; // 날짜
 	private Long whiteningScore; // 미백 점수
@@ -19,20 +22,15 @@ public class VisitVo {
 	private Long moistureScore; // 수분 점수
 	private Long acneScore; // 여드름 점수
 	private Double averageScore; // 평균점수
-	
-	private String payName; // 결제방법이름;
 
+	private Long payNo; // 결제방법번호;
+	private String payName; // 결제 방법 이름
+
+	private Long price;
 	/* 사용자 측정후 이미지 */
-	private Long fNo; // 1.fno -> 저장시
-	private String path; // 3.path
-	private String orgName; // 4.orgName
-	private String saveName; // 5.saveName
-	private Long fileSize; // 6.filesize
-
-	// private String name; // 이름검색을 위해 넣어야할지 말아야할지 모르겠음.
+	private MultipartFile file;
 
 	/* getter & setter */
-	
 	public Long getNo() {
 		return no;
 	}
@@ -47,6 +45,14 @@ public class VisitVo {
 
 	public void setUserNo(Long userNo) {
 		this.userNo = userNo;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public Long getProgramNo() {
@@ -65,12 +71,13 @@ public class VisitVo {
 		this.programName = programName;
 	}
 
-	public Long getIamgeNo() {
-		return iamgeNo;
+
+	public Long getImageNo() {
+		return imageNo;
 	}
 
-	public void setIamgeNo(Long iamgeNo) {
-		this.iamgeNo = iamgeNo;
+	public void setImageNo(Long imageNo) {
+		this.imageNo = imageNo;
 	}
 
 	public String getMemo() {
@@ -137,6 +144,14 @@ public class VisitVo {
 		this.averageScore = averageScore;
 	}
 
+	public Long getPayNo() {
+		return payNo;
+	}
+
+	public void setPayNo(Long payNo) {
+		this.payNo = payNo;
+	}
+
 	public String getPayName() {
 		return payName;
 	}
@@ -145,52 +160,30 @@ public class VisitVo {
 		this.payName = payName;
 	}
 
-	public Long getfNo() {
-		return fNo;
+	public Long getPrice() {
+		return price;
 	}
 
-	public void setfNo(Long fNo) {
-		this.fNo = fNo;
+	public void setPrice(Long price) {
+		this.price = price;
 	}
 
-	public String getPath() {
-		return path;
+	public MultipartFile getFile() {
+		return file;
 	}
 
-	public void setPath(String path) {
-		this.path = path;
+	public void setFile(MultipartFile file) {
+		this.file = file;
 	}
-
-	public String getOrgName() {
-		return orgName;
-	}
-
-	public void setOrgName(String orgName) {
-		this.orgName = orgName;
-	}
-
-	public String getSaveName() {
-		return saveName;
-	}
-
-	public void setSaveName(String saveName) {
-		this.saveName = saveName;
-	}
-
-	public Long getFileSize() {
-		return fileSize;
-	}
-
-	public void setFileSize(Long fileSize) {
-		this.fileSize = fileSize;
-	}
-
+	
 	@Override
 	public String toString() {
-		return "VisitVo [no=" + no + ", userNo=" + userNo + ", programNo=" + programNo + ", iamgeNo=" + iamgeNo
-				+ ", memo=" + memo + ", regDate=" + regDate + ", whiteningScore=" + whiteningScore + ", whinkleScore="
-				+ whinkleScore + ", elasticScore=" + elasticScore + ", moistureScore=" + moistureScore + ", acneScore="
-				+ acneScore + ", averageScore=" + averageScore + ", payName=" + payName + ", fNo=" + fNo + ", path="
-				+ path + ", orgName=" + orgName + ", saveName=" + saveName + ", fileSize=" + fileSize + "]";
+		return "VisitVo [no=" + no + ", userNo=" + userNo + ", name=" + name + ", programNo=" + programNo
+				+ ", programName=" + programName + ", imageNo=" + imageNo + ", memo=" + memo + ", regDate=" + regDate
+				+ ", whiteningScore=" + whiteningScore + ", whinkleScore=" + whinkleScore + ", elasticScore="
+				+ elasticScore + ", moistureScore=" + moistureScore + ", acneScore=" + acneScore + ", averageScore="
+				+ averageScore + ", payNo=" + payNo + ", payName=" + payName + ", price=" + price + ", file=" + file
+				+ "]";
 	}
+
 }

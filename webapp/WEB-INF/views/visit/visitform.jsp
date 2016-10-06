@@ -7,24 +7,31 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>방문 내역</title>
 <jsp:useBean id="now" class="java.util.Date" />
-<!-- modal script -->
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<!-- 부트스트랩 -->
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-<!-- Bootstrap Core CSS -->
-<link href="/beautyline/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet">
 
 <!-- Custom CSS -->
 <link href="/beautyline/bootstrap/css/business-casual.css"
 	rel="stylesheet">
-<!-- visit css -->
+<!-- 테마 -->
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT"
+	crossorigin="anonymous">
+
+<link href="/beautyline/beautyline/css/reserve.css" rel="stylesheet">
+<link href="/beautyline/beautyline/css/include.css" rel="stylesheet">
+
+<!-- 원호 CSS -->
 <link href="/beautyline/beautyline/css/visit.css" rel="stylesheet">
 
 <!-- Fonts -->
@@ -34,142 +41,215 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic"
 	rel="stylesheet" type="text/css">
+
+
 <style>
 </style>
 </head>
 <body>
 	<c:import url="/WEB-INF/views/include/header.jsp" />
-
 	<!-- container -->
 	<div class="container">
-		<div class="box">
-			<form id="visitform" name="visitForm" method="post"
-				action="/beautyline/visited">
-
-				<!-- Navigation -->
-				<div class="row center-block">
-					<div class="form-inline col-lg-10">
+		<div class="row">
+			<div class="box">
+				<div class="col-lg-12">
+					<div class="page-header">
+						<hr>
+						<h1 class="text-center text-center">
+							<strong>방문내역관리</strong>
+						</h1>
+						<hr>
+					</div>
+					<div class="form-horizontal">
 						<div class="form-group">
-
-							<a href="" data-target="#myModal1" data-toggle="modal"
-								class="btn btn-danger btn-primary btn-sm left-block"
-								id="package"> 쿠폰 등록</a> <a
-								class="btn btn-danger btn-primary btn-sm right-block"
-								href="/beautyline/visit/details" role="button">내역 조회</a> <a
-								class="btn btn-danger btn-primary btn-sm right-block"
-								href="/beautyline/visit/registration" role="button">회원 등록</a>
-						</div>
-					</div>
-				</div>
-
-				<div class="form-inline col-lg-11">
-					<!-- name -->
-					<label class="intro-text">이름</label> <input type="text"
-						class="form-control" name="name" id="name" placeholder="홍길동"
-						value="${userVo.name}">
-
-					<!-- phone -->
-					<label class="intro-text">전화번호</label> <input type="text"
-						class="form-control" name="phone" id="phone"
-						placeholder="010-1234-1234" value="${userVo.phone}">
-
-					<!-- Trigger the modal with a button -->
-					<button type="button" class="btn btn-info btn-lg" id="smyModal"
-						data-target="#myModal3" data-toggle="modal">검색</button>
-				</div>
-
-
-				<div class="form-inline col-lg-10 ">
-					<label class="intro-text">케어 프로그램</label>
-					<table class="table animation" id="careProgram" name="careProgram">
-
-						<tr class="danger">
-							<th>베이직 케어</th>
-							<th>미백 케어</th>
-							<th>주름 케어</th>
-							<th>여드름 케어</th>
-						</tr>
-
-						<tr class="hover">
-							<th id="one"></th>
-							<th id="two"></th>
-							<th id="three"></th>
-							<th id="four"></th>
-						</tr>
-
-					</table>
-				</div>
-
-				<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
-				<div class="form-inline col-lg-10">
-					<div class="form-group">
-						<label class="intro-text">날짜 : </label> <label class="intro-text"><small><strong>${today}</strong></small></label>
-					</div>
-				</div>
-
-				<div class="form-group col-lg-10">
-					<label class="intro-text"> 점수 </label>
-					<div class="table-responsive">
-						<table class="table">
-							<tr class="danger">
-								<th>측정 사진</th>
-								<th>수분</th>
-								<th>안티에이징</th>
-								<th>민감도</th>
-								<th>피부나이</th>
-							</tr>
-							<tr>
-								<td>
-									<div class="filebox bs3-primary preview-image">
-										<input class="upload-name" value="파일선택" disabled="disabled"
-											style="width: 200px;"> <label for="input_file">업로드</label>
-										<input type="file" id="input_file" class="upload-hidden">
-									</div>
-								</td>
-								<td><input type="text"></td>
-								<td>65</td>
-								<td>34</td>
-								<td>88</td>
-							</tr>
-						</table>
-					</div>
-				</div>
-
-				<div class="form-group col-lg-10">
-					<div class="form-inline">
-						<div class="col-md-8">
-							<label class="intro-text">메모</label>
-							<textarea class="form-control" rows="3"></textarea>
-						</div>
-
-						<div class="col-md-4">
-							<label class="radio-inline"> <input type="radio"
-								name="inlineRadioOptions" id="inlineRadio1" value="option1">쿠폰
-							</label> <label class="radio-inline"> <input type="radio"
-								name="inlineRadioOptions" id="inlineRadio2" value="option2">현장결제
-							</label>
-							<div class="form-inline">
-								<label class="intro-text">금액</label> <input type="text"
-									class="form-control" id="money">
-								<button type="submit" class="btn btn-default" id="registor"
-									data-loading-text="등록중...">등록</button>
+							<div class="col-sm-4 col-sm-offset-7">
+								<a href="" data-target="#myModal1" data-toggle="modal"
+									class="btn btn-danger btn-primary btn-default" id="package">
+									쿠폰 등록</a> <a class="btn btn-danger btn-primary btn-default"
+									href="/beautyline/visit/details" role="button">내역 조회</a> <a
+									class="btn btn-danger btn-primary btn-default"
+									href="/beautyline/visit/registration" role="button">회원 등록</a>
 							</div>
 						</div>
+						<form id="visit-form" name="visit-form" method="post"
+							enctype="multipart/form-data" action="/beautyline/visit/visited">
+							<!-- 회원 정보-->
+							<div class="form-group">
+								<!-- 이름 -->
+								<label class="col-sm-2 control-label">회원 정보</label>
+								<div class="col-sm-2 col-sm-offset-2" id="divName">
+									<input type="text" class="form-control onlyHangul"
+										name="searchName" id="searchName" placeholder="이름"
+										value="${userVo.name}">
+								</div>
+								<!-- 핸드폰 -->
+								<div class="col-sm-2" id="divPhone">
+									<input type="text" class="form-control onlyNumber"
+										name="searchPhone" id="searchPhone" placeholder="01012341234"
+										value="${userVo.phone}">
+								</div>
+								<!-- Trigger the modal with a button -->
+
+								<button type="button" class="btn btn-theme btn-default col-sm-1"
+									id="smyModal" data-target="#myModal3" data-toggle="modal">검색</button>
+							</div>
+							<div class="form-group">
+								<div class="well">
+									<div>
+										<label class="control-label">이름:</label> <label id="wellName"
+											name="name" class="control-label"></label> <label
+											class="col-sm-offset-4 control-label">ID:</label> <label
+											id="wellId" name="id" class="control-label"></label>
+									</div>
+									<div>
+										<label class="control-label">핸드폰:</label> <label
+											class="control-label" id="wellPhone" name="phone"></label>
+									</div>
+									<div>
+										<label class="control-label">이메일:</label> <label
+											class="control-label" id="wellEmail" name="email"></label>
+									</div>
+									<div>
+										<label class="control-label">주소:</label> <label
+											class="control-label" id="wellAddress" name="address"></label>
+									</div>
+								</div>
+							</div>
+
+							<!-- 쿠폰 정보 -->
+							<div class="form-group">
+								<label class="col-sm-2 activestep control-label">쿠폰 정보</label> <br>
+								<div class="row step" id="rowstep">
+									<div id="div1" class="col-md-2 thumbnail"
+										onclick="javascript: resetActive(event, 1);" value="1">
+										<p>베이직 케어</p>
+										<p id="one" name="count" value="1"></p>
+									</div>
+									<div class="col-md-2 thumbnail"
+										onclick="javascript: resetActive(event, 2);" value="2">
+										<p>미백 케어</p>
+										<p id="two" name="count" value="2"></p>
+									</div>
+									<div class="col-md-2 thumbnail"
+										onclick="javascript: resetActive(event, 3);">
+										<span class="fa fa-refresh"></span>
+										<p>주름 케어</p>
+										<p id="three" name="count" value="3"></p>
+									</div>
+									<div id="last" class="col-md-2 thumbnail"
+										onclick="javascript: resetActive(event, 4);">
+										<p>여드름 케어</p>
+										<p id="four" name="count" value="4"></p>
+									</div>
+								</div>
+							</div>
+							<fmt:formatDate value="${now}" pattern="yyyy-MM-dd H:m"
+								var="today" />
+
+
+							<!-- 결제 정보 -->
+							<div class="form-group">
+
+								<label class="col-sm-2 control-label">결제 정보</label> <label
+									class="col-sm-2 control-label" id="regDate" name="regDate"
+									value="${today}">${today}</label>
+								<!-- test -->
+								<div class="col-sm-3 col-sm-offset-2">
+									<div class="radio-group">
+										<input id="opt_1" class="radio-group__option" type="radio"
+											name="payNo" value="1"> <label
+											class="radio-group__label control-label" for="opt_1">
+											현장 결제 </label> <input id="opt_2" class="radio-group__option"
+											type="radio" name="payNo" value="2" checked="checked">
+										<label class="radio-group__label control-label" for="opt_2">
+											쿠폰</label>
+									</div>
+									<div id="log"></div>
+								</div>
+							</div>
+							<br />
+							<!-- 측정 정보 -->
+							<div class="form-group">
+								<label class="col-sm-2 control-label">측정 정보</label>
+								<table class="table table-bordered text-center">
+									<tr class="danger">
+										<th>사진</th>
+										<th>미백</th>
+										<th>주름</th>
+										<th>피부탄력</th>
+										<th>수분</th>
+										<th>여드름</th>
+									</tr>
+									<tr class="center-blcok">
+										<td>
+											<div class="filebox bs3-primary preview-image">
+												<div class="mag1">
+													<input data-toggle="magnify"
+														class="upload-name img-responsive img-rounded center-block"
+														value="" disabled="disabled" style="width: 200px;">
+
+													<label for="file">업로드</label> <input type="file" id="file"
+														name="file" class="upload-hidden">
+												</div>
+											</div>
+
+										</td>
+										<td><input class="onlyNumberScore" type="text"
+											id="whiteningScore" name="whiteningScore" value="" size="8"></td>
+
+										<td><input class="onlyNumberScore" type="text"
+											id="whinkleScore" name="whinkleScore" value="" size="8"
+											maxlength="3" min="0" max="100"></td>
+										<td><input class="onlyNumberScore" type="text"
+											id="elasticScore" name="elasticScore" value="" size="8"
+											maxlength="3"></td>
+										<td><input class="onlyNumberScore" type="text"
+											id="moistureScore" name="moistureScore" value="" size="8"
+											maxlength="3"></td>
+										<td><input class="onlyNumberScore" type="text"
+											id="acneScore" name="acneScore" value="" size="8"
+											maxlength="3"></td>
+									</tr>
+								</table>
+								<input type="hidden" id="userNo" name="userNo"> 
+								<input type="hidden" id="averageScore" name="averageScore"> 
+								<input type="hidden" id="programNo" name="programNo" value='0'>
+								<!-- 메모  -->
+								<div class="row">
+									<label class="col-sm-2 control-label">메모</label>
+									<textarea class="col-sm-3" id="memo" rows="2" cols="35"
+										name="memo"></textarea>
+
+									<div class="col-sm-2 col-sm-offset-3" id="average">
+										<label class="control-label"></label>
+									</div>
+								</div>
+							</div>
+
+							<!-- 시술 등록 -->
+							<div class="form-group">
+								<div class="text-center">
+									<button type="submit" class="btn btn-theme" id="registor"
+										data-loading-text="등록중...">등록</button>
+								</div>
+							</div>
+						</form>
 					</div>
 				</div>
-			</form>
+			</div>
 		</div>
 	</div>
 
-	<!-- 회원번호 : 텍스트박스  ,  이름 : 텍스트박스 		right 전화번호 : 텍스트박스  -->
+
+	<!-- 푸터 -->
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
 	<!-- searchModal -->
-
 	<div class="modal fade" id="myModal3" role="dialog" tabindex="-1"
 		aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 
 			<!-- Modal content-->
+			<!-- 모달 회원 검색 -->
 			<form class="form-inline" id="searchform" method="post"
 				action="search">
 				<div class="modal-content">
@@ -179,7 +259,7 @@
 						<button type="button" class="close" data-dismiss="modal">×</button>
 						<!-- header title -->
 						<h4 class="modal-title text-center">
-							<strong>회원검색</strong>
+							<strong>회원 검색</strong>
 						</h4>
 					</div>
 
@@ -216,76 +296,92 @@
 	</div>
 
 
-	<!-- package Model-->
+	<!-- 쿠폰 충전 모달 -->
 	<div id="myModal1" class="modal fade " tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
-		<!-- header -->
-		<div class="modal-header">
-			<!-- 닫기(x) 버튼 -->
-			<button type="button" class="close" data-dismiss="modal">×</button>
-			<!-- header title -->
-			<h4 class="modal-title text-center">
-				<strong>패키지 충전</strong>
-			</h4>
-		</div>
+		<div class="modal-content modal-dialog">
+			<!-- header -->
+			<div class="modal-header">
+				<!-- 닫기(x) 버튼 -->
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<!-- header title -->
+				<h4 class="modal-title text-center">
+					<strong>패키지 충전</strong>
+				</h4>
+			</div>
 
-		<!-- body -->
-		<!-- 	<form class="form-inline" method="post" action="registration"> -->
+			<!-- body -->
+			<!-- 	<form class="form-inline" method="post" action="registration"> -->
 
-		<div class="modal-body">
+			<div class="modal-body">
 
-			<div class="bg-danger ">
 				<div class="row center-blocks">
-					<label class="col-md-6 text-right">이름</label> <input
-						class="col-md-3" type="text" value="">
+					<label class="col-sm-6 text-right">이름</label> <label
+						id="packageName" class="col-sm-3 com-sm-offset-1" type="text"
+						value="" size="8"></label>
 				</div>
 				<div class="row center-blocks">
-					<label class="col-md-6 text-right">전화번호</label> <input
-						class="col-md-3" type="text" value="">
+					<label class="col-md-6 text-right">전화번호</label> <label
+						id="packagePhone" class="col-md-3" type="text"
+						value="${userVo.phone}"></label>
 				</div>
 
 				<div class="row center-blocks">
 					<label class="col-md-6 text-right">구매프로그램</label> <select
-						class="col-md-3">
-						<option value="1">여드름케어</option>
-						<option value="2">주름 케어</option>
-						<option value="3">화이트닝 케어</option>
+						id="packageSelected" class="col-md-3">
+						<option value="1">베이직 케어</option>
+						<option value="2">미백 케어</option>
+						<option value="3">주름 케어</option>
 						<option value="4">여드름 케어</option>
 					</select>
 				</div>
 				<div class="row center-blocks">
 					<label class="col-md-6 text-right">횟수</label> <input
-						class="col-md-2" type="text" value=""> <label
+						id="packageCount" class="col-md-2" type="text"> <label
 						class="col-md-1">회</label>
 				</div>
 				<div class="row center-blocks">
 					<label class="col-md-6 text-right">금액</label> <input
-						class="col-md-2" type="text" value="">
+						id="packagePrice" class="col-md-2" type="text"> <label
+						class="col-md-1">원</label>
+				</div>
+				<div class="radio-group text-center">
+					<input id="pack_opt_1" class="radio-box" type="radio"
+						name="packagePay" value="4"> <label
+						class="radio-group__label control-label " for="pack_opt_1">
+						카드</label> <input id="pack_opt_2" class="radio-box" type="radio"
+						name="packagePay" value="3"> <label
+						class="radio-group__label control-label" for="pack_opt_2">
+						현금</label>
+				</div>
+			</div>
+
+			<!-- Footer -->
+			<div class="modal-footer">
+				<div class="col-lg-12 text-center form-group">
+					<input id="packageCharge" class="btn btn-danger " type="button"
+						value="충전하기">
+					<button type="button" class=" btn btn-danger" data-dismiss="modal">닫기</button>
 				</div>
 			</div>
 		</div>
-
-		<!-- Footer -->
-		<div class="modal-footer">
-			<div class="col-lg-12 text-center form-group">
-				<input class="btn btn-danger " type="submit" value="충전하기">
-				<button type="button" class=" btn btn-danger" data-dismiss="modal">닫기</button>
-			</div>
-		</div>
-		<!-- 	</form> -->
 	</div>
 </body>
 <script>
 	/* search Modal Click */
+	var userNo;
+	var programNo;
+
 	$("#smyModal").on("click", function() {
 		var trString = "";
-		var name = $('#name').val();
-		var phone = $('#phone').val();
+		var name = $('#searchName').val();
+		var phone = $('#searchPhone').val();
 
 		var userVo = {
 			"name" : name,
 			"phone" : phone
 		};
+
 		$.ajax({
 			url : "visitorsearchform",
 			type : "POST",
@@ -295,17 +391,16 @@
 			success : function(visitorList) {
 
 				$.each(visitorList, function(index, userVo) {
-					trString += "<option>";
+					trString += "<option class='muk'>";
 					trString += userVo.name;
 					trString += "&nbsp;|&nbsp;&nbsp;";
 					trString += userVo.phone;
 					trString += "</option>";
 				});
+				$(".muk").remove();
 				$("#selected").append(trString);
-				//
 			}
 		});
-
 	});
 
 	/* searched visitor select */
@@ -325,8 +420,13 @@
 
 	});
 
-	/* selcted complit  회원정보 + 쿠폰 횟수 */
+	/* 선택버튼 완료시 */
 	$("#userSelect").on("click", function() {
+		$('#one').html("");
+		$('#two').html("");
+		$('#three').html("");
+		$('#four').html("");
+
 		var tdString = "";
 		var name = $("#selectedName").html().replace(/&nbsp;/gi, '');
 		var phone = $("#selectedPhone").html().replace(/&nbsp;/gi, '').trim();
@@ -341,44 +441,43 @@
 			contentType : "application/json",
 			success : function(retVal) {
 				var user = retVal.authUser;
-				var selectId = [ "one", "two", "three", "four" ];
-				/* 말줄임말 필요 */
-				document.getElementById('name').value = user.name;
-				document.getElementById('phone').value = user.phone;
 
+				/* 말줄임말 필요 */
+				document.getElementById('searchName').value = user.name;
+				document.getElementById('searchPhone').value = user.phone;
+
+				$('#wellName').html(user.name);
+				$('#wellName').val(user.name);
+				$('#wellId').html(user.id);
+				$('#wellPhone').html(user.phone);
+				$('#wellEmail').html(user.email);
+				$('#wellAddress').html(user.address);
+
+				/* userNo = parseInt(user.no); */
+				$("#userNo").val(parseInt(user.no));
 				/* 아이디 비교하여 남은 횟수 td에 append */
 				/* for문에  if문을 섞어서  */
 				var coupon = retVal.couponList;
+
 				$.each(coupon, function(index, couponVo) {
-					console.log(couponVo.program_no);
-					if (couponVo.program_no == 1) {
+					if (couponVo.programNo == 1) {
 						$('#one').html(couponVo.count);
-						return;
-					} else if (couponVo.program_no == 2) {
+					} else if (couponVo.programNo == 2) {
 						$('#two').html(couponVo.count);
-						return;
-					} else if (couponVo.program_no == 3) {
+					} else if (couponVo.programNo == 3) {
 						$('#three').html(couponVo.count);
-						return;
-					} else if (couponVo.program_no == 4) {
+					} else if (couponVo.programNo == 4) {
 						$('#four').html(couponVo.count);
-						return;
 					} else {
 						// count가 0으로가 나도오록 
 					}
 				});
-				/* $("#careProgram").append(tdString); */
 			}
 		});
 		$("#myModal3").modal('hide'); // 숨키기.
 	});
 
-	/* package Modal */
-	$("#package").on("click", function() {
-		$("#myModal").modal();
-	});
-
-	//preview image 
+	/* 이미지 미리보기 */
 	var imgTarget = $('.preview-image .upload-hidden');
 
 	imgTarget
@@ -399,7 +498,8 @@
 								parent
 										.prepend('<div class="upload-display"><div class="upload-thumb-wrap"><img src="'+src+'" class="upload-thumb"></div></div>');
 							}
-							reader.readAsDataURL($(this)[0].files[0]);
+							reader.readAsDataURL($(this)[0].files[0])
+
 						}
 
 						else {
@@ -414,6 +514,274 @@
 							img[0].style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(enable='true',sizingMethod='scale',src=\""
 									+ imgSrc + "\")";
 						}
+
+					});
+
+	/* 한글만 적용 */
+	$(".onlyHangul").keyup(function(event) {
+		if (!(event.keyCode >= 37 && event.keyCode <= 40)) {
+			var inputVal = $(this).val();
+			$(this).val(inputVal.replace(/[a-z0-9]/gi, ''));
+		}
+	});
+
+	/* 숫자만 적용 */
+	$(".onlyNumber").keyup(function(event) {
+		if (!(event.keyCode >= 37 && event.keyCode <= 40)) {
+			var inputVal = $(this).val();
+			$(this).val(inputVal.replace(/[^0-9]/gi, ''));
+		}
+	});
+
+	/* 점수만 적용 Max - 3자리수 */
+	$(".onlyNumberScore").keyup(function(event) {
+		var average;
+		if (!(event.keyCode >= 37 && event.keyCode <= 40)) {
+			var inputVal = $(this).val();
+			$(this).val(inputVal.replace(/[^0-9]/gi, ''));
+		}
+		if (parseInt($(this).val()) > 100) {
+			$('#average').html('입력 값 0 ~ 100');
+			$(this).val('');
+		}
+	});
+
+	/* focus를 잃었을때 */
+	$(".onlyNumberScore").blur(function() {
+
+		var value = $(this).val();
+		var score = score + parseInt(value);
+		$(this).css("background-color", "#68dff0"); // 배경색 변경
+
+	});
+	/* 이름 - 한글만  */
+	$('#searchName').keyup(function(event) {
+
+		var divId = $('#divName');
+
+		if ($('#searchName').val() == "") {
+			divId.removeClass("has-success");
+			divId.addClass("has-error");
+		} else {
+			divId.removeClass("has-error");
+			divId.addClass("has-success");
+		}
+
+	});
+
+	/* 전화번호 - 숫자만  */
+	$('#searchPhone').keyup(function(event) {
+		var divId = $('#divPhone');
+		if ($('#searchPhone').val() == "") {
+			divId.removeClass("has-success");
+			divId.addClass("has-error");
+		} else {
+			divId.removeClass("has-error");
+			divId.addClass("has-success");
+		}
+	});
+
+	/* 점수 입력값 숫자만  */
+	$('#whiteningScore').keyup(function(event) {
+		var divId = $('#divWhitening');
+		if ($('#whiteningScore').val() == "") {
+			divId.removeClass("has-success");
+			divId.addClass("has-error");
+		} else {
+			divId.removeClass("has-error");
+			divId.addClass("has-success");
+		}
+	});
+
+	/* test */
+	function resetActive(event, y) {
+		$("div").each(function() {
+			if ($(this).hasClass("activestep")) {
+				$(this).removeClass("activestep");
+			}
+		});
+		if (event.target.className == "col-md-2") {
+			$(event.target).addClass("activestep");
+
+		} else {
+			$(event.target.parentNode).addClass("activestep");
+		}
+		var por = $("#programNo").val(y);
+	}
+
+	/* 라디오버튼시 on off */
+	function updateLog() {
+
+		var tradioString = "";
+
+		/* 해당 id에 checked 옵션. */
+		var one = $("#opt_1:checked").val() ? "On" : "Off"
+		var two = $("#opt_2:checked").val() ? "On" : "Off"
+
+		tradioString = "<input id='opt_3' class='radio-group__option' type='radio' name='payNo' value='3'> <label class='radio-group__label control-label' for='opt_3'> 현금 </label>"
+				+ "<input id='opt_4' class='radio-group__option' type='radio' name='payNo' value='4'>"
+				+ " <label class='radio-group__label control-label' for='opt_4'> 카드</label>"
+				+ "<input type='text' class='form-control onlyNumber' id='price' name='price'>원";
+
+		$("#log").html(tradioString);
+		$("#log").show();
+		if (one == "On") {
+			$("#log").show();
+			$("#log").html(tradioString);
+		} else if (two == "On") {
+			$("#log").hide();
+		}
+
+	}
+	/* 충전 모달 열기 */
+	$("#package").on("click", function() {
+		// 모달 열기
+
+		var name = $('#wellName').text();
+		var phone = $('#wellPhone').text();
+		var userVo = {
+			"name" : name,
+			"phone" : phone
+		};
+
+		$.ajax({
+			url : "packageModal",
+			type : "POST",
+			data : JSON.stringify(userVo),
+			contentType : "application/json",
+
+			success : function(authUser) {
+
+				if (authUser == '') {
+					$('#packageName').html("");
+					$('#packagePhone').html("");
+
+				}
+				/* packageName은  id값 */
+				$('#packageName').html(authUser.name);
+				$('#packagePhone').html(authUser.phone);
+				/* userNo = parseInt(authUser.no); */
+				$("#userNo").val(parseInt(authUser.no));
+				userNo = authUser.no;
+
+			}
+		});
+
+		$("#myModal").modal();
+	});
+
+	/* 쿠폰 충전 */
+	$("#packageCharge").on("click", function() {
+		var name = $("#packageName").val();
+		var phone = $("#packagePhone").val();
+		var programNo = $("#packageSelected option:checked").val();
+		var payNo = $(".radio-box:checked").val();
+		var count = $("#packageCount").val();
+		var price = $("#packagePrice").val();
+		var couponVo = {
+			"name" : name,
+			"userNo" : userNo,
+			"phone" : phone,
+			"programNo" : programNo,
+			"payNo" : payNo,
+			"count" : count,
+			"price" : price
+		};
+
+		$.ajax({
+			url : "packageCharge",
+			type : "POST",
+			data : JSON.stringify(couponVo),
+			contentType : "application/json",
+
+			success : function(couponList) {
+				$.each(couponList, function(index, couponVo) {
+					if (couponVo.programNo == 1) {
+						$('#one').html(couponVo.count);
+					} else if (couponVo.programNo == 2) {
+						$('#two').html(couponVo.count);
+					} else if (couponVo.programNo == 3) {
+						$('#three').html(couponVo.count);
+					} else if (couponVo.programNo == 4) {
+						$('#four').html(couponVo.count);
+					} else {
+						// count가 0으로가 나도오록 
+					}
+
+				});
+				alert("충전되었습니다.");
+				$("#myModal1").modal('hide'); // 숨키기.
+			}
+		});
+
+	});
+
+	$(".radio-group__option").change(updateLog);
+
+	$("#registor")
+			.on(
+					"click",
+					function() {
+						$("#averageScore").val((parseInt(whiteningScore)
+												+ parseInt(whinkleScore)
+												+ parseInt(elasticScore)
+												+ parseInt(moistureScore) 
+												+ parseInt(acneScore)) / 5);
+						var payNo = $(".radio-group__option:checked").val();
+
+						/* 쿠폰 없을때 */
+						var programSample = $("#programNo").val();
+						var count;
+						if (programSample == 1) {
+							count = $('#one').text();
+						} else if (programSample == 2) {
+							count = $('#two').text();
+						} else if (programSample == 3) {
+							count = $('#three').text();
+						} else if (programSample == 4) {
+							count = $('#four').text();
+						}
+
+						if (count <= 0 && payNo == 2) {
+							alert("횟수가 부족");
+							return false;
+						}
+						/* 버튼을 눌렀을때 쿠폰남은 횟수가 0이면서 라디오버튼이 쿠폰인 경우  경고창 출력 */
+						/*
+						var memo = $("#memo").val();
+						var regDate = $("#regDate").text();
+						
+						var whiteningScore = $("#whiteningScore").val();
+						var whinkleScore = $("#whinkleScore").val();
+						var elasticScore = $("#elasticScore").val();
+						var moistureScore = $("#moistureScore").val();
+						var acneScore = $("#acneScore").val();
+						var payNo = $(".radio-group__option:checked").val();
+						
+						var price = $("#price").val();
+						var file = $("#input_file")[0].files[0];
+
+						
+						var formData = new FormData();
+						formData.append('input_file', $('#input_file')[0].files[0]);
+						
+
+						var visitVo = {
+						"userNo" : userNo,
+						"programNo" : programNo,
+						"memo" : memo,
+						"regDate" : regDate,
+						"whiteningScore" : whiteningScore,
+						"whinkleScore" : whinkleScore,
+						"elasticScore" : elasticScore,
+						"moistureScore" : moistureScore,
+						"acneScore" : acneScore,
+						"averageScore" : averageScore,
+						"price" : price,
+						"payNo" : payNo,
+						"file" : formData
+						}; */
+						/* 2번 코드에 해당되는 key값을 별도로 주는 FormData */
 					});
 </script>
 </html>

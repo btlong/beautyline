@@ -30,10 +30,12 @@ public class UserController {
 		return "user/joinform";
 	}
 	
-	@RequestMapping("/join")
-	public String join(@ModelAttribute UserVo vo) {//회원가입 버튼 누를 때
-		userService.join(vo);
-		return "redirect:/main"; // redirect해야함
+	@ResponseBody
+	@RequestMapping(value ="join", method = RequestMethod.POST)
+	public int join(@RequestBody UserVo vo) {//회원가입 버튼 누를 때
+		System.out.println(vo);
+		int a = userService.join(vo);
+		return a; // redirect해야함
 	}
 	
 	@RequestMapping("/joinsuccess")
@@ -65,7 +67,7 @@ public class UserController {
 	public String login(HttpSession session,
 
 			@RequestParam(value = "id", required = false, defaultValue = "") String id,
-			@RequestParam(value = "password", required = false, defaultValue = "") String password) {
+			@RequestParam(value = "password", required = false, defaultValue = "") String password){
 
 		UserVo authUser = userService.login(id, password);
 		if (authUser == null) {

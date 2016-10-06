@@ -21,7 +21,6 @@
 <!-- Custom CSS -->
 <link href="/beautyline/bootstrap/css/business-casual.css"
 	rel="stylesheet">
-<link href="/beautyline/bootstrap/css/bootstrap.css" rel="stylesheet">
 <link href="/beautyline/beautyline/css/include.css" rel="stylesheet">
 <link href="/beautyline/beautyline/css/reserve.css" rel="stylesheet">
 
@@ -44,12 +43,15 @@ $(function(){
 		showOtherMonths: true,
 		monthNames: ['01월', '02월', '03월', '04월', '05월', '06월', '07월', '08월', '09월', '10월', '11월', '12월' ],
 		dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+		minDate: '-0d',
+		dateFormat: 'yy-mm-dd',
 		onSelect: function(dateText){
 			//console.log(dateText);
-			$("#dateName").val(dateText);
+			$("#resDate").val(dateText);
 			//var selectDate = $(this).data("selectDate");
 			
 		}
+		
 		});
 	
 	
@@ -70,14 +72,16 @@ $(function(){
 	background: none;
 	border: 0;
 }
+
 </style>
 </head>
 <body>
 
 	<c:import url="/WEB-INF/views/include/header.jsp" />
 	<div class="container">
-		<div class="box">
 		<div class="row">
+		<div class="box">
+		
 		
 				<div class="col-lg-12">
 					<hr>
@@ -87,34 +91,34 @@ $(function(){
 					<hr>
 				</div>
 				<div class="col-lg-12 text-center">
-					<div>
+					
 						<!-- 세션검사후 관리자이면 예약관리가 나와야한다. -->
 						<c:choose>
 							<c:when test='${not empty sessionScope.authUser }'>
 								
-									
+							<div class="col-lg-12 text-right">
+								<%-- c:if test="${sessionScope.authUser.isAdmin == 'a' }">
+								</c:if>  관리자 세션 검사--%>
+									<a id="adminreserve" href="/beautyline/reserve/reservelist" class="btn btn-default btn-lg">예약관리</a>
+								</div>	
+					
 							<div id="datepicker"> </div>
 							<div id="col-sm-4 text-center">
 								
 								<div id="reservebtn">
 									<form id="" name="" method="GET" action="/beautyline/reserve/reserveform">
 										<label>예약일</label>
-										<input  id="dateName" name="day" type="text" value=""><br>
-										<input  id="btnreserve" class="btn btn-default btn-lg" type="submit" value="예약하기">
-									
+										<input id="resDate" name="resDate" type="text" value="" readonly><br>
+										<input id="btnreserve" class="btn btn-default btn-lg" type="submit" value="예약하기">
 									</form>
-								
-									<a id="adminreserve" href="/beautyline/reserve/reservelist" class="btn btn-default btn-lg">예약관리</a>
+									
 								</div>
 							</div>
 							</c:when>
 
 							<c:otherwise>
-								<div class="col-lg-12 text-center" id="reservejoin">
-									<p>예약은 회원만 가능합니다.</p>
-									<a href="/beautyline/user/loginform" class="btn btn-default btn-lg">로그인하러가기</a>
-									<a href="#" class="btn btn-default btn-lg">회원가입하러가기</a>
-								</div>
+								<h4>온라인 예약은 회원만 가능합니다.</h4>
+								<c:import url="/WEB-INF/views/include/login.jsp" />
 							</c:otherwise>
 						</c:choose>
 					</div>

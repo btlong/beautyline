@@ -2,30 +2,118 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="visit">
 
-	<!-- <insert id="insert" parameterType="visitvo"> <![CDATA[ insert into 
-		VISIT values ( #{ ) where users.name = #{userName} and ]]> </insert> -->
-
-	<select id="searchByNameAndPhone" parameterType="uservo" resultType="uservo">
+	<select id="searchByNameAndPhone" parameterType="uservo"
+		resultType="uservo">
 	<![CDATA[
 		select no, name, phone from users 
-		where name LIKE '%' || #{name} || '%' OR
-				phone LIKE '%' || #{phone} 
+		where name LIKE '%' ||  #{name} || '%'
+		and phone LIKE '%' || #{phone} || '%' 
 	]]>
 	</select>
 
 	<select id="searchSelectOne" parameterType="uservo" resultType="uservo">
 	<![CDATA[
-		select no, name, phone from users 
+		select * from users 
 		where name = #{name} and phone = #{phone}
 	]]>
 	</select>
 
-
-	<select id="couponSelect" parameterType="java.lang.Long" resultType="counponvo">
+	<select id="couponSelect" parameterType="java.lang.Long"
+		resultType="couponvo">
 	<![CDATA[
-		select PROGRAM_NO,count from coupon where user_no = #{no} 
+		select program_no,count from coupon where user_no = #{no} 
 	]]>
 	</select>
+
+	<insert id="insert" parameterType="visitvo">
+		<selectKey resultType="java.lang.Long" keyProperty="imageNo"
+			order="BEFORE">
+		<![CDATA[
+			select seq_f_visit.nextVal as imageNo from dual
+		]]>
+		</selectKey>
+		
+	
+	<![CDATA[
+		insert into visit
+		(	no, 
+			user_no, 
+			program_no, 
+			image_no, 
+			memo, 
+			reg_date, 
+			whitening_score, 
+			wrinkle_score, 
+			elastic_score, 
+			moisture_score,
+			acne_score, 
+			average_score )
+		values(
+			seq_visit.nextval, #{userNo}, #{programNo}, #{imageNo}, #{memo},
+			to_char(sysdate , 'YYYY-MM-DD HH24:MI'), #{whiteningScore}, #{whinkleScore},
+			#{elasticScore}, #{moistureScore}, #{acneScore},
+			#{averageScore}
+			)
+		]]>
+	</insert>
+
+	<select id="detailSelect" resultType="visitvo">
+	<![CDATA[
+		SELECT s.no "no", s.reg_date "regDate", u.name "name", pro.name "programName", s.price "price", pay.name "payName"
+		from sales s,  users u , PAY pay, program pro 
+		where s.USER_NO = u.NO 
+		and  s.PAY_NO = pay.NO
+		and  s.PROGRAM_NO = pro.no  
+	]]>
+	</select>
+
+	<update id="couponUpdate" parameterType="visitvo">
+	<![CDATA[
+			update coupon 
+			set count = count-1 
+			where USER_NO = #{userNo} and PROGRAM_NO = ${programNo}
+	]]>
+	</update>
+
+	<insert id="salesInsert" parameterType="visitvo">
+		<selectKey resultType="java.lang.Long" keyProperty="no"
+			order="BEFORE">
+		<![CDATA[
+			select seq_sales.nextVal as no from dual
+		]]>
+		</selectKey>
+	<![CDATA[
+			insert into sales ( no, user_no, pay_no, program_no, reg_date, price)
+			values ( #{no}, #{userNo}, #{payNo}, #{programNo} , #{regDate}, #{price} )
+	]]>
+	</insert>
+
+	<insert id="couponInsert" parameterType="couponvo">
+		<selectKey resultType="java.lang.Long" keyProperty="no"
+			order="BEFORE">
+		<![CDATA[
+			select seq_sales.nextVal as no from dual
+		]]>
+		</selectKey>
+	<![CDATA[
+			insert into coupon ( no, user_no, program_no, pay_no, count)
+			values ( #{no}, #{userNo}, #{programNo}, #{payNo}, #{count} )
+	]]>
+	</insert>
+
+
+	<insert id="salesInsertByCoupon" parameterType="couponvo">
+		<selectKey resultType="java.lang.Long" keyProperty="no"
+			order="BEFORE">
+		<![CDATA[
+			select seq_sales.nextVal as no from dual
+		]]>
+		</selectKey>
+	<![CDATA[
+			insert into sales ( no, user_no, pay_no, program_no, reg_date, price)
+			values ( #{no}, #{userNo}, #{payNo}, #{programNo} , to_char(sysdate , 'YYYY-MM-DD HH24:MI'), #{price} )
+	]]>
+	</insert>
 
 </mapper>
 

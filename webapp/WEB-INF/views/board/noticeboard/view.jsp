@@ -39,32 +39,35 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript" src="/beautyline/bootstrap/js/jquery.js"></script>
 <style type="text/css">
-.col-sm-3, .col-sm-2 {
-	padding-right: 0px;
-}
 
-#btn {
-	padding-left: 0px;
-}
-#bdbox {
-	display: inline;
-	padding-left: 15%;
-}
-#date {
-	padding-left: 70%;
-}
 #bdhr {
 	width: 100%;
 	background-color: #3E3F3A;
-	height: 1px; 
+	height: 1px;
+	margin-top: 3px;
+	margin-bottom: 3px;  
 }
 #contents {
-	padding-top: 10px;
-	padding-bottom: 10px;
+	padding: 20px 5px;
+	
 	
 }
-#title {
-	display: inline-block;
+#title table{
+	width: 100%;
+}
+#titletxt {
+	font-weight: bolder;
+	font-size: 15pt;
+}
+#date {
+	color: #95A5A6;	
+	text-align: right;
+}
+#bottombtns {
+	padding-top: 10px;
+}
+#userNametxt{
+	font-weight: bold;
 }
 </style>
 
@@ -81,59 +84,52 @@
 					<div class="col-md-2"></div>
 					<div class="col-md-9" id="title">
 					
-					<div>
 					  <table>
                 		<tbody>
 	                		<tr>                 
-		                	<td>
+		                	<td id="titletxt">
 		                        <span>${notiBdVo.title }</span>
 		                    </td>
-	                        </tr>
-	                    </tbody>
-                      </table>
-					</div>
-					
-					<div>
-					<table>
-                		<tbody>
-	                		<tr>                 
-		                	<td>
+		                    <td id="date">
 		                        <span>${notiBdVo.regDate }</span>
+		                    </td>
+		                    <td>
+		                    
 		                    </td>
 	                        </tr>
 	                    </tbody>
                       </table>
-					</div>
+
+					
 						<div id="bdhr"></div>
 						
-												
+						<div id="userNametxt">관리자</div>
+						<div id="contents">
+							${notiBdVo.content }
+						</div>
+						
+						
+						
+						<div id="bdhr"></div>						
 					</div>
 					
 				
+				<div class="col-md-2"></div>
+				<div class="col-md-9 text-right" id="bottombtns">
 				
-				<div class="col-lg-11 text-right">
           		<c:if test="${authUser.isAdmin eq 'a'}">
 					<a href="deleteform?no=${notiBdVo.no }" class="btn btn-sm btn-danger">삭제 <span class="glyphicon glyphicon-trash"></span></a>
-					<a href="modify" class="btn btn-sm btn-danger">수정 <span class="glyphicon glyphicon-pencil"></span></a>
+					<a href="modify" class="btn btn-sm btn-success">글 수정 <span class="glyphicon glyphicon-pencil"></span></a>
 				</c:if>
-				<a href="board" class="btn btn-sm btn-danger">목록보기 <span class="glyphicon glyphicon-th-list"></span></a>
+				<a href="board" class="btn btn-sm btn-primary">목록 <span class="glyphicon glyphicon-th-list"></span></a>
 				
-				
-					<!-- <a href="/mysite/bs?a=list&no=1">글목록</a>  -->
-					
-				<%-- <!-- <c:if test='${not empty authUser && (boardVo.userNo == authUser.no) }'> -->	
-					<a href="#" class="btn btn-sm btn-danger">수정하기 <span class="glyphicon glyphicon-edit"></span></a>
-					<a href="/mysite/bs?a=modifyform&no=${boardVo.no }">글수정</a>
-					<a href="#" class="btn btn-sm btn-danger">삭제 <span class="glyphicon glyphicon-remove"></span></a>
-					<a href="/mysite/bs?a=replyform&no=${boardVo.no }">삭제</a> 
-					</c:if> --%>
-					
 				</div>
+				
 			</div>
 		</div>
 					
 		</div>
-		</div>			
+	</div>			
 
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
 

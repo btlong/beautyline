@@ -49,7 +49,12 @@ public class NoticeBoardController {
 	/*글 보기 폼*/
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
 	public String view(int no, Model model){
+		//글 정보 받아오기
 		NoticeBoardVo notiBdVo = nBoardService.view(no);
+		
+		//조회수 올리기
+		nBoardService.updateViewCount(no);		
+		
 		model.addAttribute( "notiBdVo", notiBdVo );
 		return "board/noticeboard/view";
 	}

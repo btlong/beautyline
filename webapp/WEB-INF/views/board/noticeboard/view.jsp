@@ -120,7 +120,7 @@
 				
           		<c:if test="${authUser.isAdmin eq 'a'}">
 					<a href="deleteform?no=${notiBdVo.no }" class="btn btn-sm btn-danger">삭제 <span class="glyphicon glyphicon-trash"></span></a>
-					<a href="modify" class="btn btn-sm btn-success">글 수정 <span class="glyphicon glyphicon-pencil"></span></a>
+					<a href="modifyform?no=${notiBdVo.no }" class="btn btn-sm btn-success" type="button">글 수정<span class="glyphicon glyphicon-pencil"></span></a>
 				</c:if>
 				<a href="board" class="btn btn-sm btn-primary">목록 <span class="glyphicon glyphicon-th-list"></span></a>
 				

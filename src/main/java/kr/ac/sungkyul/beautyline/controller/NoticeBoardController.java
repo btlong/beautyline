@@ -59,13 +59,24 @@ public class NoticeBoardController {
 	}
 	
 	/* 글 수정 폼 */
-	@ResponseBody
-	@RequestMapping(value = "/modifyform", method = RequestMethod.POST)
-	public void modifyform(@RequestBody NoticeBoardVo vo){
-		//nBoardService.modify(vo);
-	
+	@RequestMapping(value = "/modifyform", method = RequestMethod.GET)
+	public String modifyform(int no, Model model){
+		NoticeBoardVo notiBdVo = nBoardService.view(no);
+		nBoardService.updateViewCount(no);
+		
+		model.addAttribute( "notiBdVo", notiBdVo );
+
+		return "/board/noticeboard/modifyform";
 	}
 
+	/* 글 쓰기 */
+	@ResponseBody
+	@RequestMapping(value = "/modify", method = RequestMethod.POST)
+	public void modify(@RequestBody NoticeBoardVo vo) throws Exception{
+		nBoardService.modify(vo);
+		
+	}
+	
 	/* 글 삭제 폼 */
 	@RequestMapping(value = "/deleteform", method = RequestMethod.GET)
 	public String deleteform(int no, Model model){

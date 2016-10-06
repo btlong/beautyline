@@ -191,7 +191,7 @@
       <!-- Modal content-->
      
       <div class="modal-content">
-      <form class="form-horizontal" >
+      <div class="form-horizontal" >
     
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -226,7 +226,7 @@
                </div>
        <!--  <button type="button" class="btn btn-default" data-dismiss="modal">찾기</button> -->  
         </div>
-     </form>
+     </div>
       </div>
        
     </div>

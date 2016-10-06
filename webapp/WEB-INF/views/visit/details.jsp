@@ -1,6 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -24,42 +26,70 @@
 	href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic"
 	rel="stylesheet" type="text/css">
 
+<!-- 테마 -->
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT"
+	crossorigin="anonymous">
 
-<!-- visit css -->
-<!-- <link href="/beautyline/beautyline/css/visit.css" rel="stylesheet"> -->
+<link href="/beautyline/beautyline/css/reserve.css" rel="stylesheet">
+<link href="/beautyline/beautyline/css/include.css" rel="stylesheet">
+
 </head>
 <body>
 
 	<c:import url="/WEB-INF/views/include/header.jsp" />
 
-	<div class="box">
-		<div class="form-group">
-			<label>방문 내역 조회</label>
-			<div class="table-responsive hidden-xs">
+	<!-- container -->
+	<div class="container">
+		<div class="row">
+			<div class="box">
+				<div class="col-lg-12">
+					<div class="page-header">
+						<hr>
+						<h1 class="text-center text-center">
+							<strong>방문내역조회</strong>
+						</h1>
+						<hr>
+					</div>
+					<div class=form-group>
+						<div class="table-responsive">
+							<table class="table table-condensed">
+								<tr>
+									<th class="text-center">번호</th>
+									<th class="text-center">방문날짜</th>
+									<th class="text-center">고객</th>
+									<th class="text-center">프로그램</th>
+									<th class="text-center">금액</th>
+									<th class="text-center">결제방법</th>
+								</tr>
 
-				<table class="table">
-					<tr class="danger">
-						<th>번호</th>
-						<th>방문날짜</th>
-						<th>고객</th>
-						<th>프로그램</th>
-						<th>금액</th>
-						<th>결제방법</th>
-					</tr>
-					<c:set var='visitList' value='${fn:length(list) }' />
-					<c:forEach var='vo' items='${list}' varStatus='s'>
-						<tr>
-							<td>[${countList - s.index }]</td>
-							<td>${vo.regDate }</td>
-							<td>${vo.name }</td>
-							<td>${vo.money}</td>
-							<td>${vo.payName}</td>
-						</tr>
-					</c:forEach>
-				</table>
+								<c:forEach var='visitvo' items="${visitList}" varStatus='s'>
+									<tr>
+										<td class="text-center">${s.index +1}</td>
+										<td class="text-center">${visitvo.regDate}</td>
+										<td class="text-center">${visitvo.name}</td>
+										<td class="text-center">${visitvo.programName}</td>
+										<td class="text-right">${visitvo.price}</td>
+										<td class="text-center">${visitvo.payName}</td>
+									</tr>
+								</c:forEach>
+							</table>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<div class="group-form">
+				<div class="col-sm-1 col-sm-offset-11">
+					<a class="btn-danger btn-primary btn-default"
+						href="/beautyline/visit/visitform" role="button">내역 관리</a> <br />
+				</div>
 			</div>
 		</div>
 	</div>
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
+
 </body>
 </html>

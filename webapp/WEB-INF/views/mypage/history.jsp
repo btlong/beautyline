@@ -129,57 +129,49 @@
 				<div class="col-lg-12">
 					<hr>
 						<h2 class="intro-text text-center">
-							<strong>나의 피부타입</strong><br>추천 제품
+							<strong>방문내역</strong>
 						</h2>
 					<hr>
 				</div>
-				
-				<div class="col-lg-1">
-				</div>
-				
-				<div class="col-lg-4 " style="height:420px;">
+								
+				<div class="col-lg-12">
 					<h2 class="col-lg-12 text-center">
-						<small >고객님만을 위한 추천제품 (product regimen)</small>
+						<small>최근 5회 점수</small>
 					</h2>
-					<div class="col-lg-12 text-center " id="cosmetic" style="height:420px;"> <!-- text-center -->
-							<a href='${resultVo.url }' target="_blank"> <img src='${resultVo.src }' title="구매하러 가기" /> </a>
-							<h6>※이미지를 클릭하면 제품 구매 페이지로 이동합니다.</h6>
+					<div class="col-lg-4" style="height:290px;">
 					</div>
+					<div class="col-lg-12 clumn">            
+			            <div class="graphBox2">
+			                <ul>
+			                    <li class="g1"><span class="counter1 counter">0</span></li>
+			                    <li class="g2"><span class="counter2 counter">0</span></li>
+			                    <li class="g3"><span class="counter3 counter">0</span></li>
+			                    <li class="g4"><span class="counter4 counter">0</span></li>
+			                    <li class="g5"><span class="counter5 counter">0</span></li>
+			                </ul>
+			            </div>
+		        	</div>
+					
 				</div>
 				
-				<div class="col-lg-1">
-				</div>
 				
 				
 				
-				<div class="col-lg-6 clumn">
-            
-		            <div class="graphBox2">
-		                <ul>
-		                    <li class="g1"><span class="counter1 counter">0</span></li>
-		                    <li class="g2"><span class="counter2 counter">0</span></li>
-		                    <li class="g3"><span class="counter3 counter">0</span></li>
-		                    <li class="g4"><span class="counter4 counter">0</span></li>
-		                    <li class="g5"><span class="counter5 counter">0</span></li>
-		                </ul>
-		            </div>
-		        </div>
-				
-				
-				<div class="col-lg-7" id="result_score">
+				<div class="col-lg-12" id="visitRecords">
 					<table class="table-bordered text-center" id="print_score">
 						<tr>
-							<td>종합점수</td>
+							<td>번호</td>
+							<td>날짜</td>
+							<td>프로그램</td>
 							<td>피부점수1</td>
 							<td>피부점수2</td>
 							<td>피부점수3</td>
 							<td>피부점수4</td>
-							<td>피부점수5</td>							
+							<td>피부점수5</td>						
+							<td>평균점수</td>
 						</tr>
 						<tr>
-							<td>
-								${resultVo.average }
-							</td>
+							
 							<c:forEach var="score" items="${resultVo.scores }">
 								<td> ${score } </td>
 							</c:forEach>

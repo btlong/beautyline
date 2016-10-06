@@ -196,28 +196,29 @@ $(function(){
 		});
 
 	});
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-$("#inputTitle").keyup(function(){
-	var markup = $('#summernote').summernote('code');
-	//console.log("출력"+markup);
+	function sendFile(file, editor, welEditable) {
+			data = new FormData();
+			data.append("file", file);
+			$.ajax({
+				url : "imaUpload",
+				type : "POST",
+				data : data,
+				cache : false,
+				contentType : false,
+				processData : false,
+				success : function(url) {
+					editor.insertImage(welEditable, url);
+				},
+				error : function(jqXHR, status, error) {
+					console.error(status + ":" + error);
+				}
+			});
+		}
+
+		$("#inputTitle").keyup(function() {
+			var markup = $('#summernote').summernote('code');
+			//console.log("출력"+markup);
+		});
 	});
-});
-
-
-
-
-
 </script>
 </html>

@@ -1,5 +1,6 @@
 package kr.ac.sungkyul.beautyline.controller;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import kr.ac.sungkyul.beautyline.service.NoticeBoardService;
 import kr.ac.sungkyul.beautyline.vo.NoticeBoardVo;
@@ -39,9 +42,10 @@ public class NoticeBoardController {
 	/*글쓰기*/
 	@ResponseBody
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
-	public void write(@RequestBody NoticeBoardVo vo){
+	public void write(@RequestBody NoticeBoardVo vo) throws Exception{
+		//nBoardService.write(vo, file);
 		nBoardService.write(vo);
-	
+		
 	}
 	
 	/*글 보기 폼*/
@@ -66,7 +70,27 @@ public class NoticeBoardController {
 		
 	}
 	
+	/* 이미지 업로드 */
+	@ResponseBody
+	@RequestMapping(value="/imaUpload", method = RequestMethod.POST)
+	public String imaUpload(MultipartHttpServletRequest request){
+		Iterator<String> itr = request.getFileNames();
+		MultipartFile dwqmpf = request.getFile(itr.next());
+		
+		
+		return "";
+	}
 	
+	/*	@ResponseBody
+	@RequestMapping(value = "/imaUpload", method = RequestMethod.POST)
+	public String imaUpload(MultipartHttpServletRequest req, HttpServletResponse res){
+
+	 Iterator<String> itr =  request.getFileNames();
+	    MultipartFile mpf = request.getFile(itr.next());
+	    String originFileName = mpf.getOriginalFilename();
+	 return "";
+	
+}*/
 /*	public void insertBoard(BBSVo BBSVo, MultipartFile file) throws Exception{
 
 		

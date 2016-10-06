@@ -34,4 +34,47 @@
     ]]>
 	</select>
 	
+	
+	<!--  파일저장 -->
+	<insert id="insertFileNoti" parameterType="kr.ac.sungkyul.beautyline.vo.FileNotiVo">
+	
+	<![CDATA[
+		insert into f_noti values (seq_f_noti.nextVal, #{noticeNo }, #{orgName }, #{path }, #{saveName } )
+		]]>
+	
+	</insert>
+	
+	
+	
+	
+	
+	<!-- 첨부파일 시험 
+	
+		<select id="selectAttachFileByNo" parameterType="java.lang.Long" resultType="kr.ac.sungkyul.mysite.vo.AttachFileVo">
+	<![CDATA[
+	select * from bbs_file where no =#{no }
+]]>
+	</select>
+	
+	<select id="selectAttachFileByFno" parameterType="java.lang.Long" resultType="kr.ac.sungkyul.mysite.vo.AttachFileVo">
+	<![CDATA[
+	select * from bbs_file where fno =#{fno }
+]]>
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	-->
+	
 </mapper> 

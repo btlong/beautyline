@@ -11,44 +11,13 @@ public class UserDao {
 	@Autowired
 	private SqlSession sqlSession;
 
-	public void update(UserVo vo) {// 회원정보수정
-		sqlSession.update("user.update", vo);
-		/*
-		 * catch (SQLException e) { //e.printStackTrace(); throw new
-		 * RuntimeException(); }
-		 */
-	}
-
-	public UserVo get(Long userNo) { //세션넘버를 받아서 정보를 다가져올때
-		return sqlSession.selectOne("user.getByNo", userNo);
-	}
-
-	public UserVo get(String id) { // 이메일 체크 다오
-		
-		//List<UserVo> list = sqlSession.selectList("user.getByid", id);
-		return sqlSession.selectOne("user.getByid", id);
-	}
-
-	public UserVo get(String id, String password) {// 로그인 확인
-
-		UserVo userVo = new UserVo();
-		userVo.setId(id);
-		userVo.setPassword(password);
-
-		//만약에 파라미터로 넘겨야 할 매핑 클래스가 없는경우
-		/*Map<String, Object>map = new HashMap<String, Object>();
-		map.put("id", id);
-		map.put("password", password);
-		UserVo vo = sqlSession.selectOne("user.getByidAndPassword", map); q받아올때는 map.get();
-		*/
-		
-		return sqlSession.selectOne("user.getByIdAndPassword", userVo);
 	
-	
-	}
+	/* 회원가입 */
+	public int insert(UserVo vo) {// 회원가입
+		int a = sqlSession.insert("user.insert",vo);
+		System.out.println(a);
+		return a; //요거 아직 확인안함 service에도 써야함 
 
-	public void insert(UserVo vo) {// 회원가입
-		sqlSession.insert("user.insert",vo);
 	}
 	
 	/* 이름과 전화번호로 회원가입 */
@@ -57,20 +26,23 @@ public class UserDao {
 		return uservo;
 	}
 	
-	public UserVo checkId(String id){//아이디 중복확인
+	/* id 중복확인 */
+	public UserVo checkId(String id){
 		return sqlSession.selectOne("user.checkId",id);
 	}
 	
-	public UserVo getId(UserVo userVo) {// 찾기 id 
+	/* ID 찾기  */
+	public UserVo getId(UserVo userVo) {
 		return	sqlSession.selectOne("user.getId",userVo);
 	
 	}
-	
-	public UserVo getPw(UserVo userVo) {// 찾기 id ;
+	/* PW 찾기  */	
+	public UserVo getPw(UserVo userVo) {
 		return	sqlSession.selectOne("user.getPw",userVo);
 	
 	}
 	
+	/* 임시 비밀번호 발급(비밀번호 찾기시) */
 	public void updateTemPw(String tempPw, Long no) {// 회원정보수정
 		UserVo userVo = new UserVo();
 		userVo.setPassword(tempPw);
@@ -80,7 +52,30 @@ public class UserDao {
 	
 	
 	
+	public void update(UserVo vo) {// 회원정보수정
+		sqlSession.update("user.update", vo);
+		/*
+		 * catch (SQLException e) { //e.printStackTrace(); throw new
+		 * RuntimeException(); }
+		 */
+	}
 
+	
+	
+	
+	public UserVo get(Long userNo) { //세션넘버를 받아서 정보를 다가져올때
+		return sqlSession.selectOne("user.getByNo", userNo);
+	}
+	
+	public UserVo get(String id, String password) {// 로그인 확인
+		UserVo userVo = new UserVo();
+		userVo.setId(id);
+		userVo.setPassword(password);
+		return sqlSession.selectOne("user.getByIdAndPassword", userVo);
+	}
+	public UserVo get(String id) { // 이메일 체크 다오
+		return sqlSession.selectOne("user.getByid", id);
+	}
 	public boolean delete(UserVo vo) {
 		return sqlSession.delete("user.delete",vo) !=0;
 }

@@ -7,6 +7,8 @@
 		<typeAlias type="kr.ac.sungkyul.beautyline.vo.CouponVo" alias="counponvo" />
 		<typeAlias type="kr.ac.sungkyul.beautyline.vo.NoticeBoardVo" alias="noticeboardvo"/>
 		<typeAlias type="kr.ac.sungkyul.beautyline.vo.ReserveVo" alias="reservevo" />
+		<typeAlias type="kr.ac.sungkyul.beautyline.vo.UserinfoVo" alias="userinfovo" />
+		<typeAlias type="kr.ac.sungkyul.beautyline.vo.PageVo" alias="pagevo" />
 
 	</typeAliases>
 	<mappers>

@@ -8,11 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.ac.sungkyul.beautyline.service.NoticeBoardService;
-import kr.ac.sungkyul.beautyline.vo.BoardVo;
 import kr.ac.sungkyul.beautyline.vo.NoticeBoardVo;
 
 @Controller
@@ -35,7 +33,7 @@ public class NoticeBoardController {
 	/*글쓰기 폼*/
 	@RequestMapping("/writeform")
 	public String writeform(){
-		return"board/noticeboard/write2";
+		return"board/noticeboard/write";
 	}
 
 	/*글쓰기*/

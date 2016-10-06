@@ -13,11 +13,10 @@
 <meta name="author" content="">
 <title>default</title>
 
-<!-- Bootstrap Core CSS -->
-<link href="/beautyline/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Custom CSS -->
 <link href="/beautyline/bootstrap/css/business-casual.css" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">
 <link href="/beautyline/beautyline/css/include.css" rel="stylesheet">
 
 <!-- Fonts -->
@@ -52,6 +51,13 @@ img {
 <script type="text/javascript" src="/beautyline/jquery/jquery-1.9.0.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
+		
+		$(function() {
+			$("#btn_temp").click(function() {
+				var url = "/beautyline/mypage/history?userNo=8";
+				$(location).attr('href',url);
+			});
+		});
 
 		$(function() {
 			$("img").click(function() {
@@ -63,22 +69,42 @@ img {
 		$(function() {
 			$("#forward").click(function() {
 				if ($("#stage").val() == 1) {
+					if($("#score1").val() == '') {
+						alert("버튼을 누르세요");
+						return;
+					}
 					$("#stage").val("2");
 					$("#test1").remove();
 					$("#test2").removeClass("hide");
                 } else if ($("#stage").val() == 2) {
+                	if($("#score2").val() == '') {
+						alert("버튼을 누르세요");
+						return;
+					}
 					$("#stage").val("3");
 					$("#test2").remove();
 					$("#test3").removeClass("hide");
                 } else if ($("#stage").val() == 3) {
+                	if($("#score3").val() == '') {
+						alert("버튼을 누르세요");
+						return;
+					}
 					$("#stage").val("4");
 					$("#test3").remove();
 					$("#test4").removeClass("hide");
                 } else if ($("#stage").val() == 4) {
+                	if($("#score4").val() == '') {
+						alert("버튼을 누르세요");
+						return;
+					}
                 	$("#stage").val("5");
 					$("#test4").remove();
 					$("#test5").removeClass("hide");
                 } else if ($("#stage").val() == 5) {
+                	if($("#score5").val() == '') {
+						alert("버튼을 누르세요");
+						return;
+					}
 					$("#scores").submit();
 					console.log("섭밋"); 
                 }
@@ -211,6 +237,9 @@ img {
 						<input type="hidden" id ="score4" name="score4" value="" />
 						<input type="hidden" id ="score5" name="score5" value="" />
 					</form>
+					<div class="col-lg-12" id="temp">
+						<button id="btn_temp">히스토리</button>
+					</div>
 				<div class="col-lg-12">
 					<hr>
 					<h2 class="intro-text text-center">

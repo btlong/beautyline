@@ -9,6 +9,7 @@ public class VisitVo {
 	private Long no; // 방문내역 번호
 	private Long userNo; // 회원 번호
 	private Long programNo; // 프로그램 번호
+	private String programName; // 프로그램 이름
 	private Long iamgeNo; // 이미지 번호
 	private String memo; // 메모
 	private String regDate; // 날짜
@@ -54,6 +55,14 @@ public class VisitVo {
 
 	public void setProgramNo(Long programNo) {
 		this.programNo = programNo;
+	}
+	
+	public String getProgramName() {
+		return programName;
+	}
+
+	public void setProgramName(String programName) {
+		this.programName = programName;
 	}
 
 	public Long getIamgeNo() {

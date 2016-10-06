@@ -193,24 +193,26 @@
 									<input type="submit" value="찾기">
 								</form>
 							</div> --%>
+							<div class="col-lg-12">
 							 <form action="list" name="search" method="post">
 							<select name="keyField" size="1">
-								<option value="name"
-									<c:if test="${''==keyField }"> selected</c:if>>전체
-								</option>
+								<%-- <option value="*"
+									<c:if test="${''==keyField }"> selected</c:if>>선택하세요
+								</option> --%>
 								<option value="name"
 									<c:if test="${'name'==keyField }"> selected</c:if>>이름
 								</option>
-								<option value="title"
-									<c:if test="${'title'==keyField }"> selected</c:if>>
-									제목</option>
-								<option value="content"
-									<c:if test="${'content'==keyField }"> selected</c:if>>
-									내용</option>
+								<option value="phone"
+									<c:if test="${'phone'==keyField }"> selected</c:if>>
+									전화번호</option>
+								<option value="id"
+									<c:if test="${'id'==keyField }"> selected</c:if>>
+									아이디</option>
 							</select></form>
 							<input type="text" size="16" name="keyWord" value="${keyWord }">
 							<input type="button" value="검색" onClick="check()">
 							<input type="hidden" name="page" value="0">
+							</div>
 
 							<!-------------Paging n Search form--------------->
 							<!-- 히든 정의 -->

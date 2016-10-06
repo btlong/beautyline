@@ -196,9 +196,9 @@
 							<div class="col-lg-12">
 							 <form action="list" name="search" method="post">
 							<select name="keyField" size="1">
-								<%-- <option value="*"
+								<option value="*"
 									<c:if test="${''==keyField }"> selected</c:if>>선택하세요
-								</option> --%>
+								</option>
 								<option value="name"
 									<c:if test="${'name'==keyField }"> selected</c:if>>이름
 								</option>
@@ -208,12 +208,21 @@
 								<option value="id"
 									<c:if test="${'id'==keyField }"> selected</c:if>>
 									아이디</option>
-							</select></form>
+								<option value="email"
+									<c:if test="${'email'==keyField }"> selected</c:if>>
+									이메일</option>
+								<option value="address"
+									<c:if test="${'address'==keyField }"> selected</c:if>>
+									주소</option>
+								<option value="is_admin"
+									<c:if test="${'isAdmin'==keyField }"> selected</c:if>>
+									권한</option>
+							</select>
 							<input type="text" size="16" name="keyWord" value="${keyWord }">
 							<input type="button" value="검색" onClick="check()">
 							<input type="hidden" name="page" value="0">
+							</form>
 							</div>
-
 							<!-------------Paging n Search form--------------->
 							<!-- 히든 정의 -->
 

@@ -115,15 +115,15 @@ width:50%;
 	         <table class="table table-bordered table-hover table-responsive">
               <tbody>      
 <%--               <c:set var='totalCount' value='${fn:length(listUser) }' /> --%>
-						<c:forEach items="${boarList }" var="NoticeBoardVo"
+						<c:forEach items="${boarList }" var="notiBdVo"
 							varStatus="status">
 							<tr>
 								
-								<td>${NoticeBoardVo.no}</td>
-								<td><a href="view?no=${NoticeBoardVo.no }">${NoticeBoardVo.title}</a></td>
+								<td>${notiBdVo.no}</td>
+								<td><a href="view?no=${notiBdVo.no }">${notiBdVo.title}</a></td>
 								<td>관리자</td>
-								<td>${NoticeBoardVo.regDate}</td>
-								<td>${NoticeBoardVo.viewCount}</td>
+								<td>${notiBdVo.viewCount}</td>
+								<td>${notiBdVo.regDate}</td>
 						
 							</tr>
 						</c:forEach>  
@@ -133,8 +133,8 @@ width:50%;
                   <th id="listNo" class="danger text-center">no</th>
                   <th id="listTitle" class="danger">제목</th>
                   <th id="listName" class="danger">작성자</th>
-                  <th id="listDate" class="danger">등록일</th>
                   <th id="listCount" class="danger">조회수</th>
+                  <th id="listDate" class="danger">등록일</th>
                 </tr>
               </thead>
             </table>

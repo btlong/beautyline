@@ -68,9 +68,25 @@ public void write(NoticeBoardVo vo)throws Exception {
 		return nBoardDao.viewBoard(no);
 	}
 	
-}
 
+	/* 공지사항 글 조회수 업뎃 */
+	public void updateViewCount( int no ){
+		nBoardDao.updateViewCount(no);
+	}
 	
+	/* 공지사항 글 삭제 */
+	public int delete( int no ){
+		 return nBoardDao.delete(no);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	}
 
 
 

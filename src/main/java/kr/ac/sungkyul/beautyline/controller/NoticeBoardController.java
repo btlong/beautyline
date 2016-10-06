@@ -75,7 +75,7 @@ public class NoticeBoardController {
 	@RequestMapping(value="/imaUpload", method = RequestMethod.POST)
 	public String imaUpload(MultipartHttpServletRequest request){
 		Iterator<String> itr = request.getFileNames();
-		MultipartFile dwqmpf = request.getFile(itr.next());
+	//	MultipartFile dwqmpf = request.getFile(itr.next());
 		
 		
 		return "";

@@ -50,4 +50,14 @@ public class NoticeBoardDao {
 		return fileVo;
 	}
 	
+	/* 공지사항 글 조회수 업뎃 */
+	public void updateViewCount(int no){
+		sqlSession.update("noticeboard.updateviewcnt",no);
+	}
+	
+	/* 공지사항 글 삭제 */
+	public int delete(int no){
+		return sqlSession.delete("noticeboard.delete",no);	
+	}
+
 }

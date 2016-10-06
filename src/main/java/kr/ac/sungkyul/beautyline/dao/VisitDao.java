@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.ac.sungkyul.beautyline.exception.VisitUpdateException;
 import kr.ac.sungkyul.beautyline.vo.CouponVo;
+import kr.ac.sungkyul.beautyline.vo.FileVisitVo;
 import kr.ac.sungkyul.beautyline.vo.UserVo;
 import kr.ac.sungkyul.beautyline.vo.VisitVo;
 
@@ -48,14 +49,14 @@ public class VisitDao {
 	public List<VisitVo> selectList() {
 		return sqlSession.selectList("visit.detailSelect");
 	}
-	
+
 	/* 쿠폰 사용 */
 	public void updateCoupon(VisitVo visitVo) {
 		sqlSession.update("visit.couponUpdate", visitVo);
 		System.out.println("coupon의 갯수차감에 성공했습니다.");
 	}
-	
-	/* 방문 내역 기록 - 시술이후*/
+
+	/* 방문 내역 기록 - 시술이후 */
 	public void SalesInsert(VisitVo visitVo) {
 		sqlSession.insert("visit.salesInsert", visitVo);
 		System.out.println("sales 등록에 성공했습니다.");
@@ -67,11 +68,16 @@ public class VisitDao {
 		return sqlSession.insert("visit.couponInsert", couponVo);
 	}
 
-	/* 방문 내역 기록  - 쿠폰 등록 이후*/
+	/* 방문 내역 기록 - 쿠폰 등록 이후 */
 	public void SalesInsert(CouponVo couponVo) {
 		System.out.println(couponVo.getPayNo());
 		sqlSession.insert("visit.salesInsertByCoupon", couponVo);
 		System.out.println("sales 등록에 성공했습니다.");
+	}
+
+	public long fileInsert(FileVisitVo fileVisitVo) {
+		sqlSession.insert("visit.fileInsert", fileVisitVo);
+		return fileVisitVo.getNo();
 	}
 
 }

@@ -43,6 +43,7 @@
 #page-location {
 	color:red;
 }
+
 </style>
 
 <!-- jQuery -->
@@ -193,9 +194,10 @@
 									<input type="submit" value="찾기">
 								</form>
 							</div> --%>
-							<div class="col-lg-12">
-							 <form action="list" name="search" method="post">
-							<select name="keyField" size="1">
+							 <form class="form-inline" action="list" name="search" method="post">
+							<div class="form-group">
+							
+							<select class="form-control input-sm" name="keyField" size="1">
 								<option value="*"
 									<c:if test="${''==keyField }"> selected</c:if>>선택하세요
 								</option>
@@ -218,11 +220,17 @@
 									<c:if test="${'isAdmin'==keyField }"> selected</c:if>>
 									권한</option>
 							</select>
-							<input type="text" size="16" name="keyWord" value="${keyWord }">
-							<input type="button" value="검색" onClick="check()">
+									
+							<label>
+							<input type="text" class="form-control input-sm" name="keyWord" value="${keyWord }">
+							</label>
+							<label>
+							<input class="btn btn-warning btn-sm" type="button" value="검색" onClick="check()"></label>
 							<input type="hidden" name="page" value="0">
-							</form>
 							</div>
+							</form>
+							
+							
 							<!-------------Paging n Search form--------------->
 							<!-- 히든 정의 -->
 

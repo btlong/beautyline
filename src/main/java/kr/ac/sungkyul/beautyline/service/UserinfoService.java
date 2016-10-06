@@ -16,9 +16,14 @@ public class UserinfoService {
 	private UserinfoDao userinfoDao;
 	
 	// 리스트
-	public List<UserinfoVo> listUser(){
-		return userinfoDao.listUser();
+	public List<UserinfoVo> listUser(String keyfield, String keyword){
+		return userinfoDao.listUser(keyfield, keyword);
 	}
+		
+	//회원번호에의한 리스트뽑기
+	/*public UserinfoVo findByNo(int no) {
+        return userinfoDao.findByNo(no);
+    }*/
 	
 	// 회원삭제
 	public void deleteUser(long no){

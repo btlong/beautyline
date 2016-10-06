@@ -512,12 +512,37 @@ $(".onlyHangul").keyup(function(event) {
 
 /* 숫자만 적용 */
 $(".onlyNumber").keyup(function(event) {
-   if (!(event.keyCode >= 37 && event.keyCode <= 40)) {
-      var inputVal = $(this).val();
-      $(this).val(inputVal.replace(/[^0-9]/gi, ''));
-   }
-});
 
+    if (!(event.keyCode >= 37 && event.keyCode <= 40)) {
+       var inputVal = $(this).val();
+       inputVal = inputVal.replace(/[^0-9]/g, '');
+       var tmp = '';
+       
+       if( inputVal.length < 4){
+          return $(this).val(inputVal);
+       }else if(inputVal.length < 7){
+          tmp += inputVal.substr(0, 3);
+          tmp += '-';
+          tmp += inputVal.substr(3);
+          return $(this).val(tmp);
+       }else if(inputVal.length < 11){
+          tmp += inputVal.substr(0, 3);
+          tmp += '-';
+          tmp += inputVal.substr(3, 3);
+          tmp += '-';
+          tmp += inputVal.substr(6);
+          return $(this).val(tmp);
+       }else{            
+          tmp += inputVal.substr(0, 3);
+          tmp += '-';
+          tmp += inputVal.substr(3, 4);
+          tmp += '-';
+          tmp += inputVal.substr(7);
+          return $(this).val(tmp);
+       }
+    }
+    
+ });
 	
 });
 </script>

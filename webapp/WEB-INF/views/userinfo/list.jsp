@@ -43,6 +43,7 @@
 #page-location {
 	color:red;
 }
+
 </style>
 
 <!-- jQuery -->
@@ -193,25 +194,43 @@
 									<input type="submit" value="찾기">
 								</form>
 							</div> --%>
-							 <form action="list" name="search" method="post">
-							<select name="keyField" size="1">
-								<option value="name"
-									<c:if test="${''==keyField }"> selected</c:if>>전체
+							 <form class="form-inline" action="list" name="search" method="post">
+							<div class="form-group">
+							
+							<select class="form-control input-sm" name="keyField" size="1">
+								<option value="*"
+									<c:if test="${''==keyField }"> selected</c:if>>선택하세요
 								</option>
 								<option value="name"
 									<c:if test="${'name'==keyField }"> selected</c:if>>이름
 								</option>
-								<option value="title"
-									<c:if test="${'title'==keyField }"> selected</c:if>>
-									제목</option>
-								<option value="content"
-									<c:if test="${'content'==keyField }"> selected</c:if>>
-									내용</option>
-							</select></form>
-							<input type="text" size="16" name="keyWord" value="${keyWord }">
-							<input type="button" value="검색" onClick="check()">
+								<option value="phone"
+									<c:if test="${'phone'==keyField }"> selected</c:if>>
+									전화번호</option>
+								<option value="id"
+									<c:if test="${'id'==keyField }"> selected</c:if>>
+									아이디</option>
+								<option value="email"
+									<c:if test="${'email'==keyField }"> selected</c:if>>
+									이메일</option>
+								<option value="address"
+									<c:if test="${'address'==keyField }"> selected</c:if>>
+									주소</option>
+								<option value="is_admin"
+									<c:if test="${'isAdmin'==keyField }"> selected</c:if>>
+									권한</option>
+							</select>
+									
+							<label>
+							<input type="text" class="form-control input-sm" name="keyWord" value="${keyWord }">
+							</label>
+							<label>
+							<input class="btn btn-warning btn-sm" type="button" value="검색" onClick="check()"></label>
 							<input type="hidden" name="page" value="0">
-
+							</div>
+							</form>
+							
+							
 							<!-------------Paging n Search form--------------->
 							<!-- 히든 정의 -->
 

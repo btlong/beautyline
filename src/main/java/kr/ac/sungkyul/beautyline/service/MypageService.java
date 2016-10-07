@@ -15,6 +15,7 @@ public class MypageService {
 	private MypageDao mypageDao;
 	
 	public List<VisitVo> listHistory(Long userNo) {
+		System.out.println("Service userNo : " + userNo);
 		List<VisitVo> listHistory = mypageDao.listHistory(userNo);
 		return listHistory;
 	}

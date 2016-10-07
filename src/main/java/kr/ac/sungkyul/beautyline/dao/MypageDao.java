@@ -17,7 +17,9 @@ public class MypageDao {
 	private SqlSession sqlSession;
 	
 	public List<VisitVo> listHistory(Long userNo) {
-		List<VisitVo> list = sqlSession.selectList("mypage.listHistory");
+		System.out.println("DAO userNo : " + userNo);
+		List<VisitVo> list = sqlSession.selectList("mypage.listHistory", userNo);
+		System.out.println(list);
 		return list;
 	}
 	

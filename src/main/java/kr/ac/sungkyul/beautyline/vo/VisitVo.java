@@ -13,7 +13,6 @@ public class VisitVo {
 	private String programName; // 프로그램 이름
 	private Long iamgeNo; // 이미지 번호
 
-	private Long imageNo; // 이미지 번호
 	private String memo; // 메모
 	private String regDate; // 날짜
 	private Long whiteningScore; // 미백 점수
@@ -31,6 +30,15 @@ public class VisitVo {
 	private MultipartFile file;
 
 	/* getter & setter */
+
+	public Long getIamgeNo() {
+		return iamgeNo;
+	}
+
+	public void setIamgeNo(Long iamgeNo) {
+		this.iamgeNo = iamgeNo;
+	}
+	
 	public Long getNo() {
 		return no;
 	}
@@ -69,15 +77,6 @@ public class VisitVo {
 
 	public void setProgramName(String programName) {
 		this.programName = programName;
-	}
-
-
-	public Long getImageNo() {
-		return imageNo;
-	}
-
-	public void setImageNo(Long imageNo) {
-		this.imageNo = imageNo;
 	}
 
 	public String getMemo() {
@@ -175,15 +174,17 @@ public class VisitVo {
 	public void setFile(MultipartFile file) {
 		this.file = file;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "VisitVo [no=" + no + ", userNo=" + userNo + ", name=" + name + ", programNo=" + programNo
-				+ ", programName=" + programName + ", imageNo=" + imageNo + ", memo=" + memo + ", regDate=" + regDate
+				+ ", programName=" + programName + ", iamgeNo=" + iamgeNo + ", memo=" + memo + ", regDate=" + regDate
 				+ ", whiteningScore=" + whiteningScore + ", whinkleScore=" + whinkleScore + ", elasticScore="
 				+ elasticScore + ", moistureScore=" + moistureScore + ", acneScore=" + acneScore + ", averageScore="
 				+ averageScore + ", payNo=" + payNo + ", payName=" + payName + ", price=" + price + ", file=" + file
 				+ "]";
 	}
+	
+	
 
 }

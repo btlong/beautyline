@@ -35,7 +35,9 @@
 <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
  
+<style>
 
+</style>
 </head>
 <body>
 
@@ -67,6 +69,7 @@
 					<input type="text" class="form-control" name="name" id="name" >
 					<button class="btn btn-info" id="searchUser">검색</button>
 					<button class="btn btn-success" id="insertUser">회원추가</button>
+					<a href="reservelist" class="btn btn-primary" id="reserveList">예약관리</a>
 				</div>
 <!-- 달력 -->
 				<div class="col-lg-12 text-center">

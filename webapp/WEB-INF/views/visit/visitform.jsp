@@ -66,9 +66,8 @@
 								<a href="" data-target="#myModal1" data-toggle="modal"
 									class="btn btn-danger btn-primary btn-default" id="package">
 									쿠폰 등록</a> <a class="btn btn-danger btn-primary btn-default"
-									href="/beautyline/visit/details" role="button">내역 조회</a> <a
-									class="btn btn-danger btn-primary btn-default"
-									href="/beautyline/visit/registration" role="button">회원 등록</a>
+									href="/beautyline/visit/details" role="button">내역 조회</a> 
+									<a class="btn btn-danger btn-primary btn-default" id="insertUser" role="button">회원 등록</a>
 							</div>
 						</div>
 						<form id="visit-form" name="visit-form" method="post"
@@ -212,7 +211,7 @@
 									</tr>
 								</table>
 								<input type="hidden" id="userNo" name="userNo"> 
-								<input type="hidden" id="averageScore" name="averageScore"> 
+								<!-- <input type="hidden" id="averageScore" name="averageScore" value=''> --> 
 								<input type="hidden" id="programNo" name="programNo" value='0'>
 								<!-- 메모  -->
 								<div class="row">
@@ -366,6 +365,58 @@
 			</div>
 		</div>
 	</div>
+	
+	
+	<!-- 회원 추가 -->
+	<div class="modal fade" id="myModal4">
+		<div class="modal-dialog">
+		
+		<!-- modal content -->
+		<form class="form-horizontal" id="userInsertForm" method="post"action="insertUser">
+			<div class="modal-content">
+				
+			<!-- header -->
+				<div class="modal-header">
+					<!-- 닫기(x) 버튼 -->
+					<button type="button" class="close" data-dismiss="modal">×</button>
+					<!-- header title -->
+					<h4 class="modal-title text-center">
+						<!-- Ajax처리 -->
+						<strong>회원 추가</strong>
+					</h4>
+				</div>
+				
+			<!-- body -->
+				<div class="modal-body" id="modal4body">
+				
+					<!-- 이름 -->
+						<div class="form-group" id="divName">
+							<label class="col-sm-5 control-label">이름*</label>
+							<div class="col-sm-7">
+								<input class="form-control onlyHangul" id="inputName" name="name" type="text" placeholder="이름">
+							</div>
+						</div>
+					<!-- 휴대폰 번호 -->
+						<div class="form-group" id="divNumber">
+							<label class="col-sm-5 control-label">휴대폰번호*</label>
+							<div class="col-sm-7">
+								<input type="tel" class="form-control onlyNumberPhone" name="phone" id="inputNumber" placeholder="- 없이 입력해 주세요" />
+							</div>
+						</div>
+				</div>
+				
+			<!-- Footer -->
+				<div class="modal-footer">
+				<div class="form-group" id="modalbtn">
+					<button id="insertUserInfo" class="btn btn-primary" type="button">추가</button>
+					<button data-dismiss="modal" class="btn btn-danger">취소</button>
+				</div>
+				</div>				
+			</div>
+		</form>
+		</div>
+	</div>		
+	
 </body>
 <script>
 	/* search Modal Click */
@@ -722,11 +773,18 @@
 			.on(
 					"click",
 					function() {
+					/* 	var whiteningScore = $("#whiteningScore").val();
+						var whinkleScore = $("#whinkleScore").val();
+						var elasticScore = $("#elasticScore").val();
+						var moistureScore = $("#moistureScore").val();
+						var acneScore = $("#acneScore").val();
+						
 						$("#averageScore").val((parseInt(whiteningScore)
 												+ parseInt(whinkleScore)
 												+ parseInt(elasticScore)
 												+ parseInt(moistureScore) 
-												+ parseInt(acneScore)) / 5);
+												+ parseInt(acneScore)) / 5); */
+						
 						var payNo = $(".radio-group__option:checked").val();
 
 						/* 쿠폰 없을때 */
@@ -751,11 +809,6 @@
 						var memo = $("#memo").val();
 						var regDate = $("#regDate").text();
 						
-						var whiteningScore = $("#whiteningScore").val();
-						var whinkleScore = $("#whinkleScore").val();
-						var elasticScore = $("#elasticScore").val();
-						var moistureScore = $("#moistureScore").val();
-						var acneScore = $("#acneScore").val();
 						var payNo = $(".radio-group__option:checked").val();
 						
 						var price = $("#price").val();
@@ -783,6 +836,112 @@
 						}; */
 						/* 2번 코드에 해당되는 key값을 별도로 주는 FormData */
 					});
+	
+	
+	
+	
+	/* test */
+	/* 회원추가 모달 */
+	$("#insertUser").on("click", function(){
+		$("#inputName").val('');//초기화
+		$("#inputNumber").val('');//초기화
+		$("#myModal4").modal();
+	});
+	
+/* 회원추가 모달에서 이름과 전화번호에 값이 잘못 들어올때 막기 */
+	$('#inputName').keyup(function(event) {
+		var divId = $('#divName');
+
+		if ($('#inputName').val() == "") {
+			divId.removeClass("has-success");
+			divId.addClass("has-error");
+		} else {
+			divId.removeClass("has-error");
+			divId.addClass("has-success");
+		}
+	});
+
+
+
+/* 회원 추가 */
+var inputName = "";
+var inputNumber = "";
+	$("#insertUserInfo").on("click", function(){
+		inputName = $("#inputName").val();
+		inputNumber = $("#inputNumber").val();
+		if( inputName == "" ){
+			alert("회원 이름을 입력하세요");
+			return false;
+		}
+		if( inputNumber == "" ){
+			alert("회원 전화번호를 입력하세요");
+			return false;
+		}
+		var isAdmin = "y";
+		var uservo = { 
+				"name" : inputName,
+				"phone" : inputNumber,
+		};
+		var dbCk = ""; //db에 들어갔는지 검사
+		$.ajax({
+			url : "insertUser",
+			type : "POST",
+			data : JSON.stringify(uservo),
+			dataType: "JSON",
+			contentType : "application/json",
+			success : function(uservi){
+				console.log(uservi);
+				 /*예약세부내용 사용자 정보 추가'임효빈:01029392382'*/
+				if( uservi =! null){
+					dbCk = 'y';
+				}
+				if( dbCk=='y' ){
+					alert("회원이 추가 되었습니다.");
+					return true;
+				}else{
+					alert("유효하지 않은 정보 입니다.");
+					return false;
+				}
+			} 
+		});
+		
+		$("#myModal4").modal('hide');
+	});
+	
+	
+	/* 핸드폰 하이픈 자동 삽입  */
+	$(".onlyNumberPhone").keyup(function(event) {
+
+	    if (!(event.keyCode >= 37 && event.keyCode <= 40)) {
+	       var inputVal = $(this).val();
+	       inputVal = inputVal.replace(/[^0-9]/g, '');
+	       var tmp = '';
+	       
+	       if( inputVal.length < 4){
+	          return $(this).val(inputVal);
+	       }else if(inputVal.length < 7){
+	          tmp += inputVal.substr(0, 3);
+	          tmp += '-';
+	          tmp += inputVal.substr(3);
+	          return $(this).val(tmp);
+	       }else if(inputVal.length < 11){
+	          tmp += inputVal.substr(0, 3);
+	          tmp += '-';
+	          tmp += inputVal.substr(3, 3);
+	          tmp += '-';
+	          tmp += inputVal.substr(6);
+	          return $(this).val(tmp);
+	       }else{            
+	          tmp += inputVal.substr(0, 3);
+	          tmp += '-';
+	          tmp += inputVal.substr(3, 4);
+	          tmp += '-';
+	          tmp += inputVal.substr(7);
+	          return $(this).val(tmp);
+	       }
+	    }
+	    
+	 });
 </script>
 </html>
 

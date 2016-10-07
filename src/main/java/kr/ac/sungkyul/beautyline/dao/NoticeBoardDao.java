@@ -17,6 +17,7 @@ public class NoticeBoardDao {
 	private SqlSession sqlSession;
 	
 	
+	
 	/* 전체글 가져오기 */
 	public List<NoticeBoardVo> getAll(){
 		List<NoticeBoardVo> list = sqlSession.selectList("noticeboard.getAll");
@@ -35,10 +36,10 @@ public class NoticeBoardDao {
 	}
 	
 	
-	public void insertAttachFile(FileNotiVo fileVo ){ // 게시판 글작성 첨부파일 
+/*	public void insertAttachFile(FileNotiVo fileVo ){ // 게시판 글작성 첨부파일 
 		sqlSession.insert("bbs.insertAttachFile",fileVo);
 	}
-	
+*/	
 	
 	
 	

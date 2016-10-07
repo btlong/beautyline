@@ -2,6 +2,7 @@ package kr.ac.sungkyul.beautyline.vo;
 
 /**
  * @author WonHo
+ *
  */
 public class VisitVo {
 	private Long no; // 방문내역 번호
@@ -24,7 +25,6 @@ public class VisitVo {
 	private String payName; // 결제 방법 이름
 
 	private Long price;
-
 
 	/* getter & setter */
 	public Long getNo() {
@@ -172,7 +172,4 @@ public class VisitVo {
 				+ averageScore + ", payNo=" + payNo + ", payName=" + payName + ", price=" + price + "]";
 	}
 
-	
-
-	
 }

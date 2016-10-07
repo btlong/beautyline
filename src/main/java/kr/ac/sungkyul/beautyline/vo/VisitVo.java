@@ -27,7 +27,7 @@ public class VisitVo {
 
 	private Long price;
 	/* 사용자 측정후 이미지 */
-	private MultipartFile file;
+	
 
 	/* getter & setter */
 	public Long getNo() {

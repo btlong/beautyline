@@ -115,7 +115,7 @@ padding-left: 0px;
 								</select>
 							</div>
 							<div class="col-lg-3">
-								<input class="form-control" id="inputTitle" name="title" type="text" placeholder="제목" value="${no }">
+								<input class="form-control" id="inputTitle" name="title" type="text" placeholder="제목" value="${notiBdVo.title }">
 							</div>
 						 </div>
 					</div>
@@ -132,7 +132,7 @@ padding-left: 0px;
 					  
 				 <div class="form-group" >
 				  <div class="col-lg-10 col-lg-offset-1">
-					  <textarea id="summernote" name="contents"></textarea>
+					  <textarea id="summernote" name="contents">${notiBdVo.content }</textarea>
  				  </div>
  				</div>
  					

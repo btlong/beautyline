@@ -61,7 +61,10 @@ public class NoticeBoardController {
 	/* 글 수정 폼 */
 	@RequestMapping(value = "/modifyform", method = RequestMethod.GET)
 	public String modifyform(int no, Model model){
-		model.addAttribute( "no", no );
+		NoticeBoardVo notiBdVo = nBoardService.view(no);
+		nBoardService.updateViewCount(no);
+		
+		model.addAttribute( "notiBdVo", notiBdVo );
 		return"board/noticeboard/modifyform";
 	}
 

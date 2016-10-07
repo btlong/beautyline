@@ -2,15 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="noticeboard">
-	<!--<select id="getByIdAndPassword" parameterType="uservo"
-		resultType="uservo">
-	<![CDATA[
-		select no, name from users where id=#{id } and password=#{password }
-	]]>칼럼 이름이 어렵다하면  	select n as no, name from users where...
-	</select>
-      
-	
--->
 	<insert id="insert" parameterType="noticeboardvo" >
 	<![CDATA[
 		insert into bd_noti values(seq_bd_noti.nextval, '84', #{title }, #{content }, to_char(sysdate , 'YYYY-MM-DD'), '0')
@@ -44,8 +35,6 @@
 		]]>
 	
 	</insert>
-	
-	
 	
 	
 	

@@ -1,7 +1,7 @@
 package kr.ac.sungkyul.beautyline.vo;
-
 /**
  * @author WonHo
+ *
  */
 public class VisitVo {
    private Long no; // 방문내역 번호
@@ -165,11 +165,11 @@ public class VisitVo {
    }
 
    @Override
-public String toString() {
-	return "VisitVo [no=" + no + ", userNo=" + userNo + ", name=" + name + ", programNo=" + programNo + ", programName="
-			+ programName + ", imageNo=" + imageNo + ", memo=" + memo + ", regDate=" + regDate + ", whiteningScore="
-			+ whiteningScore + ", whinkleScore=" + whinkleScore + ", elasticScore=" + elasticScore + ", moistureScore="
-			+ moistureScore + ", acneScore=" + acneScore + ", averageScore=" + averageScore + ", payNo=" + payNo
-			+ ", payName=" + payName + ", price=" + price + "]";
-}
+   public String toString() {
+      return "VisitVo [no=" + no + ", userNo=" + userNo + ", name=" + name + ", programNo=" + programNo
+            + ", programName=" + programName + ", imageNo=" + imageNo + ", memo=" + memo + ", regDate=" + regDate
+            + ", whiteningScore=" + whiteningScore + ", whinkleScore=" + whinkleScore + ", elasticScore="
+            + elasticScore + ", moistureScore=" + moistureScore + ", acneScore=" + acneScore + ", averageScore="
+            + averageScore + ", payNo=" + payNo + ", payName=" + payName + ", price=" + price + "]";
+   }
 }

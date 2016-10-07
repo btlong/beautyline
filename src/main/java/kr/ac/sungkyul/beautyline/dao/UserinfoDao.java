@@ -18,13 +18,14 @@ public class UserinfoDao {
 	
 	// 리스트
 	public List<UserinfoVo> listUser(String keyfield, String keyword) {
-		//List<UserinfoVo> listUser = new ArrayList<UserinfoVo>();
         System.out.println(keyfield + "//" + keyword);
         if(keyfield != null && keyword != null && keyfield !="" && keyword !=""){
             Map<String, String> map = new HashMap<String, String> ();
             map.put("keyfield" , keyfield);
             map.put("keyword", keyword);
             return sqlSession.selectList("userinfo.searchUser", map);
+        /*}else if((keyfield == null || keyfield =="") && (keyword != null || keyword !="")){
+        	return sqlSession.selectList("userinfo.listUser");*/
         }else {
         	return sqlSession.selectList("userinfo.listUser");
         }
@@ -34,7 +35,7 @@ public class UserinfoDao {
 	
 	//회원번호에 의한 리스트뽑기
 	/*public UserinfoVo findByNo(int no) {
-		return sqlSession.selectOne("findByNo",no);
+		return sqlSession.selectOne("userinfo.findByNo",no);
     }*/
 	
      

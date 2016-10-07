@@ -43,6 +43,7 @@
 #page-location {
 	color:red;
 }
+
 </style>
 
 <!-- jQuery -->
@@ -92,7 +93,7 @@
 
 							<!-- 회원리스트 -->
 							<div class="col-lg-12 text-center">
-								<table class="table table-hover">
+								<table class="table table-hover" id="test">
 									<thead>
 										<tr class="danger">
 											<th>#</th>
@@ -119,6 +120,7 @@
 											<!-- doneLoop가 false이면 루프 계속 돎-->
 											<c:if test="${not doneLoop }">
 												<tr>
+													
 													<!-- (전체 게시물 갯수-(전체회원수-1))>=1이면 -->
 													<c:if test="${(page.totalRecord -status.index)>=1}">
 														<td>${page.totalRecord -status.index}</td>
@@ -129,11 +131,11 @@
 														<td>${listUser[i].email}</td>
 														<td>${listUser[i].address}</td>
 														<td>${listUser[i].isAdmin}</td>
-
+														
 														<td>
 															<!-- 쿠폰 조회  --> <!-- Trigger the modal with a button -->
 															<input type="hidden" name="no"
-															value="${CouponviewVo.userNo }" /> <a
+															value="${listUser[i].no }"/> <a
 															class="btn btn-default btn-sm" href="" id="couponview"
 															data-target="#modalCoupon" type="button"
 															data-toggle="modal" role="button">조회</a>
@@ -193,25 +195,43 @@
 									<input type="submit" value="찾기">
 								</form>
 							</div> --%>
-							 <form action="list" name="search" method="post">
-							<select name="keyField" size="1">
-								<option value="name"
-									<c:if test="${''==keyField }"> selected</c:if>>전체
+							 <form class="form-inline" action="list" name="search" method="post">
+							<div class="form-group">
+							
+							<select class="form-control input-sm" name="keyField" size="1">
+								<option value="*"
+									<c:if test="${''==keyField }"> selected</c:if>>선택하세요
 								</option>
 								<option value="name"
 									<c:if test="${'name'==keyField }"> selected</c:if>>이름
 								</option>
-								<option value="title"
-									<c:if test="${'title'==keyField }"> selected</c:if>>
-									제목</option>
-								<option value="content"
-									<c:if test="${'content'==keyField }"> selected</c:if>>
-									내용</option>
-							</select></form>
-							<input type="text" size="16" name="keyWord" value="${keyWord }">
-							<input type="button" value="검색" onClick="check()">
+								<option value="phone"
+									<c:if test="${'phone'==keyField }"> selected</c:if>>
+									전화번호</option>
+								<option value="id"
+									<c:if test="${'id'==keyField }"> selected</c:if>>
+									아이디</option>
+								<option value="email"
+									<c:if test="${'email'==keyField }"> selected</c:if>>
+									이메일</option>
+								<option value="address"
+									<c:if test="${'address'==keyField }"> selected</c:if>>
+									주소</option>
+								<option value="is_admin"
+									<c:if test="${'isAdmin'==keyField }"> selected</c:if>>
+									권한</option>
+							</select>
+									
+							<label>
+							<input type="text" class="form-control input-sm" name="keyWord" value="${keyWord }">
+							</label>
+							<label>
+							<input class="btn btn-warning btn-sm" type="button" value="검색" onClick="check()"></label>
 							<input type="hidden" name="page" value="0">
-
+							</div>
+							</form>
+							
+							
 							<!-------------Paging n Search form--------------->
 							<!-- 히든 정의 -->
 
@@ -333,13 +353,24 @@
 
 	<script>
 		$(document).ready(function() {
+			/*  userNo 값 초기화 */
 			$("#couponview").click(function() {
-				$("#modalCoupon").modal();
+				var tess  = $("#list").val();
+				
+				console.log(tess);
+				/* $("#modalCoupon").modal(); */
+				
+			/* 	$.ajax({
+					url : "selectCoupon",
+					type : "POST",
+					data : {"userNo" : userNo},
+					
+				}); */
 			});
 
-			$('#myDropdown').on('shown.bs.dropdown', function() {
+			/* $('#myDropdown').on('shown.bs.dropdown', function() {
 				// do something…
-			});
+			}); */
 		});
 		
 		function check() {

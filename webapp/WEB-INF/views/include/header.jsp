@@ -6,7 +6,7 @@
 <style>
 
 </style>
-<div class="brand">BeautyLine</div>
+<a href="/beautyline/main" class="brand">BeautyLine</a>
 
 
 

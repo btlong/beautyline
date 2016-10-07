@@ -137,11 +137,8 @@ padding-left: 0px;
  				</div>
  					
 				<div class="col-lg-11 text-right">
-<<<<<<< HEAD
 					<button  id="insert" class="btn btn-danger">등록 <span class="glyphicon glyphicon-ok"></span></button>
-=======
 					<button  id="modify" class="btn btn-danger">수정 <span class="glyphicon glyphicon-ok"></span></button>
->>>>>>> 9736b05cc1fed2de8363c2e5ff8d8e59da73a5d9
 					<a href="board" class="btn btn-danger">취소 <span class="glyphicon glyphicon-repeat"></span></a>
 				</div>
 			</div>	

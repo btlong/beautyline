@@ -73,30 +73,7 @@ public class NoticeBoardController {
 		model.addAttribute("keyWord", keyWord);
 		return "userinfo/list";
 	}	*/
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	
 	/*글쓰기 폼*/
@@ -131,10 +108,23 @@ public class NoticeBoardController {
 		model.addAttribute( "notiBdVo", notiBdVo );
 		return"board/noticeboard/modifyform";
 
-
+	}
+	
 	/*글 삭제 폼*/
+	@RequestMapping(value = "/deleteform", method = RequestMethod.GET)
+	public String deleteform(int no){
+		return "board/noticeboard/deleteform";
+	}
+	
+	/*글 삭제 */
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	public void delete(int no){
+	public String delete(int no){
+		int cnt = nBoardService.delete(no);
+		if( cnt >0 ){
+			return "redirect:board";
+		}else{
+			return "board/noticeboard/error";
+		}
 		
 	}
 	

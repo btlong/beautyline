@@ -93,7 +93,7 @@
 
 							<!-- 회원리스트 -->
 							<div class="col-lg-12 text-center">
-								<table class="table table-hover">
+								<table class="table table-hover" id="test">
 									<thead>
 										<tr class="danger">
 											<th>#</th>
@@ -120,6 +120,7 @@
 											<!-- doneLoop가 false이면 루프 계속 돎-->
 											<c:if test="${not doneLoop }">
 												<tr>
+													
 													<!-- (전체 게시물 갯수-(전체회원수-1))>=1이면 -->
 													<c:if test="${(page.totalRecord -status.index)>=1}">
 														<td>${page.totalRecord -status.index}</td>
@@ -130,11 +131,11 @@
 														<td>${listUser[i].email}</td>
 														<td>${listUser[i].address}</td>
 														<td>${listUser[i].isAdmin}</td>
-
+														
 														<td>
 															<!-- 쿠폰 조회  --> <!-- Trigger the modal with a button -->
 															<input type="hidden" name="no"
-															value="${CouponviewVo.userNo }" /> <a
+															value="${listUser[i].no }"/> <a
 															class="btn btn-default btn-sm" href="" id="couponview"
 															data-target="#modalCoupon" type="button"
 															data-toggle="modal" role="button">조회</a>
@@ -352,13 +353,24 @@
 
 	<script>
 		$(document).ready(function() {
+			/*  userNo 값 초기화 */
 			$("#couponview").click(function() {
-				$("#modalCoupon").modal();
+				var tess  = $("#list").val();
+				
+				console.log(tess);
+				/* $("#modalCoupon").modal(); */
+				
+			/* 	$.ajax({
+					url : "selectCoupon",
+					type : "POST",
+					data : {"userNo" : userNo},
+					
+				}); */
 			});
 
-			$('#myDropdown').on('shown.bs.dropdown', function() {
+			/* $('#myDropdown').on('shown.bs.dropdown', function() {
 				// do something…
-			});
+			}); */
 		});
 		
 		function check() {

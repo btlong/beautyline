@@ -1,9 +1,7 @@
 package kr.ac.sungkyul.beautyline.vo;
-
-import org.springframework.web.multipart.MultipartFile;
-
 /**
  * @author WonHo
+ *
  */
 public class VisitVo {
 	private Long no; // 방문내역 번호
@@ -166,21 +164,12 @@ public class VisitVo {
 		this.price = price;
 	}
 
-	public MultipartFile getFile() {
-		return file;
-	}
-
-	public void setFile(MultipartFile file) {
-		this.file = file;
-	}
-
 	@Override
 	public String toString() {
 		return "VisitVo [no=" + no + ", userNo=" + userNo + ", name=" + name + ", programNo=" + programNo
 				+ ", programName=" + programName + ", imageNo=" + imageNo + ", memo=" + memo + ", regDate=" + regDate
 				+ ", whiteningScore=" + whiteningScore + ", whinkleScore=" + whinkleScore + ", elasticScore="
 				+ elasticScore + ", moistureScore=" + moistureScore + ", acneScore=" + acneScore + ", averageScore="
-				+ averageScore + ", payNo=" + payNo + ", payName=" + payName + ", price=" + price + ", file=" + file
-				+ "]";
+				+ averageScore + ", payNo=" + payNo + ", payName=" + payName + ", price=" + price + "]";
 	}
 }

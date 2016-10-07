@@ -19,7 +19,7 @@ public class VisitVo {
 	private Long elasticScore; // 피부탄력 점수
 	private Long moistureScore; // 수분 점수
 	private Long acneScore; // 여드름 점수
-	private Double averageScore; // 평균점수
+	private Long averageScore; // 평균점수
 
 	private Long payNo; // 결제방법번호;
 	private String payName; // 결제 방법 이름
@@ -131,12 +131,12 @@ public class VisitVo {
 		this.acneScore = acneScore;
 	}
 
-	public Double getAverageScore() {
+	public Long getAverageScore() {
 		return averageScore;
 	}
 
-	public void setAverageScore(Double averageScore) {
-		this.averageScore = averageScore;
+	public void setAverageScore(long l) {
+		this.averageScore = l;
 	}
 
 	public Long getPayNo() {

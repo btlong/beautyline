@@ -12,12 +12,12 @@
 					password, 
 					email, 
 					address, 
-					agr_email as agrEmail,
-					agr_message as agrMessage,
 					is_admin as isAdmin from users
 			order by no desc
 		]]>
 	</select>
+					<!-- agr_email as agrEmail,
+					agr_message as agrMessage, -->
 
 	<!-- 회원검색 -->
 	<select id="searchUser" parameterType="map" resultType="userinfovo">

@@ -40,10 +40,10 @@
 #total-record {
 	margin-bottom: 5px;
 }
-#page-location {
-	color:red;
-}
 
+#page-location {
+	color: red;
+}
 </style>
 
 <!-- jQuery -->
@@ -86,7 +86,9 @@
 
 							<!-- 페이지 정보 -->
 							<div id=total-record class="col-lg-12 text-left">
-								▶전체 회원 수 : ${page.totalRecord }명&nbsp; &nbsp; ▶현재 페이지 ( <span id =page-location>${page.nowPage+1 } / ${page.totalPage} 페이지</span>)
+								▶전체 회원 수 : ${page.totalRecord }명&nbsp; &nbsp; ▶현재 페이지 ( <span
+									id=page-location>${page.nowPage+1 } / ${page.totalPage}
+									페이지</span>)
 							</div>
 
 
@@ -120,7 +122,7 @@
 											<!-- doneLoop가 false이면 루프 계속 돎-->
 											<c:if test="${not doneLoop }">
 												<tr>
-													
+
 													<!-- (전체 게시물 갯수-(전체회원수-1))>=1이면 -->
 													<c:if test="${(page.totalRecord -status.index)>=1}">
 														<td>${page.totalRecord -status.index}</td>
@@ -131,12 +133,11 @@
 														<td>${listUser[i].email}</td>
 														<td>${listUser[i].address}</td>
 														<td>${listUser[i].isAdmin}</td>
-														
+
 														<td>
 															<!-- 쿠폰 조회  --> <!-- Trigger the modal with a button -->
-															<input type="hidden" name="no"
-															value="${listUser[i].no }"/> <a
-															class="btn btn-default btn-sm" href="" id="couponview"
+															<input type="hidden" name="no" value="${listUser[i].no }" />
+															<a class="btn btn-default btn-sm" href="" id="couponview"
 															data-target="#modalCoupon" type="button"
 															data-toggle="modal" role="button">조회</a>
 														</td>
@@ -172,8 +173,40 @@
 							</div>
 
 
+
 							<!-------------Paging--------------->
-							<c:import url="/WEB-INF/views/include/paging.jsp" />
+							<div class="col-lg-12 text-center">
+								<nav>
+									<ul class="pagination pagination-sm">
+										<c:if test="${page.totalRecord !=0}">
+											<!-- 이전 -->
+											<c:if test="${page.nowBlock >0 }">
+												<li id="previous"><span aria-hidden="true">&laquo;</span></li>
+											</c:if>
+
+											<!-- 페이지블럭 -->
+											<c:set var="doneLoop2" value="false" />
+											<c:forEach begin="0" end="${page.pagePerBlock-1 }" var="i">
+												<c:if test="${not doneLoop2 }">
+													<li id="page-block"><a
+														href="javascript:pagemove(${i })">
+															${(page.nowBlock*page.pagePerBlock)+i+1}</a></li>
+													<c:if
+														test="${(page.pagePerBlock*page.nowBlock+i+1) == page.totalPage }">
+														<c:set var="doneLoop2" value="true" />
+													</c:if>
+												</c:if>
+											</c:forEach>
+
+											<!-- 다음 -->
+											<c:if test="${page.totalBlock > page.nowBlock+1 }">
+												<li id="following"><span aria-hidden="true">&raquo;</span></li>
+											</c:if>
+										</c:if>
+									</ul>
+								</nav>
+							</div>
+
 
 
 							<!-- 검색 -->
@@ -195,43 +228,39 @@
 									<input type="submit" value="찾기">
 								</form>
 							</div> --%>
-							 <form class="form-inline" action="list" name="search" method="post">
-							<div class="form-group">
-							
-							<select class="form-control input-sm" name="keyField" size="1">
-								<option value="*"
-									<c:if test="${'*'==keyField }"> selected</c:if>>선택하세요
-								</option>
-								<option value="name"
-									<c:if test="${'name'==keyField }"> selected</c:if>>이름
-								</option>
-								<option value="phone"
-									<c:if test="${'phone'==keyField }"> selected</c:if>>
-									전화번호</option>
-								<option value="id"
-									<c:if test="${'id'==keyField }"> selected</c:if>>
-									아이디</option>
-								<option value="email"
-									<c:if test="${'email'==keyField }"> selected</c:if>>
-									이메일</option>
-								<option value="address"
-									<c:if test="${'address'==keyField }"> selected</c:if>>
-									주소</option>
-								<option value="is_admin"
-									<c:if test="${'isAdmin'==keyField }"> selected</c:if>>
-									권한</option>
-							</select>
-									
-							<label>
-							<input type="text" class="form-control input-sm" name="keyWord" value="${keyWord }">
-							</label>
-							<label>
-							<input class="btn btn-warning btn-sm" type="button" value="검색" onClick="check()"></label>
-							<input type="hidden" name="page" value="0">
-							</div>
+							<form class="form-inline" action="list" name="search"
+								method="post">
+								<div class="form-group">
+
+									<select class="form-control input-sm" name="keyField" size="1">
+										<option value="name"
+											<c:if test="${'name'==keyField }"> selected</c:if>>이름
+										</option>
+										<option value="phone"
+											<c:if test="${'phone'==keyField }"> selected</c:if>>
+											전화번호</option>
+										<option value="id"
+											<c:if test="${'id'==keyField }"> selected</c:if>>
+											아이디</option>
+										<option value="email"
+											<c:if test="${'email'==keyField }"> selected</c:if>>
+											이메일</option>
+										<option value="address"
+											<c:if test="${'address'==keyField }"> selected</c:if>>
+											주소</option>
+										<option value="is_admin"
+											<c:if test="${'isAdmin'==keyField }"> selected</c:if>>
+											권한</option>
+									</select> <label> <input type="text"
+										class="form-control input-sm" name="keyWord"
+										value="${keyWord }">
+									</label> <label> <input class="btn btn-warning btn-sm"
+										type="button" value="검색" onClick="check()"></label> <input
+										type="hidden" name="page" value="0">
+								</div>
 							</form>
-							
-							
+
+
 							<!-------------Paging n Search form--------------->
 							<!-- 히든 정의 -->
 
@@ -240,18 +269,18 @@
 								action="list">
 								<input type="hidden" name="nowBlock" value="${page.nowBlock-1 }" />
 								<input type="hidden" name="nowPage"
-									value="${(page.nowBlock-1)*page.pagePerBlock}" />
-								<input type="hidden" name="keyField" value="${keyField }" />	
-								<input type="hidden" name="keyWord" value="${keyWord }" />
+									value="${(page.nowBlock-1)*page.pagePerBlock}" /> <input
+									type="hidden" name="keyField" value="${keyField }" /> <input
+									type="hidden" name="keyWord" value="${keyWord }" />
 							</form>
 
 							<!-- 페이지블록 -->
 							<form id="pagemove" name="pagemove" method="POST" action="list">
 								<input type="hidden" name="nowBlock" value="${page.nowBlock}" />
 								<input id="now-page" type="hidden" name="nowPage"
-									value="${page.nowBlock*page.pagePerBlock}" />
-								<input type="hidden"name="keyField" value="${keyField }" />
-								<input type="hidden"name="keyWord" value="${keyWord }" />
+									value="${page.nowBlock*page.pagePerBlock}" /> <input
+									type="hidden" name="keyField" value="${keyField }" /> <input
+									type="hidden" name="keyWord" value="${keyWord }" />
 							</form>
 
 							<!-- 다음 페이지 -->
@@ -259,13 +288,13 @@
 								action="list">
 								<input type="hidden" name="nowBlock" value="${page.nowBlock+1 }" />
 								<input type="hidden" name="nowPage"
-									value="${(page.nowBlock+1)*page.pagePerBlock}" />
-								<input type="hidden" name="keyField" value="${keyField }" />
-								<input type="hidden" name="keyWord" value="${keyWord }" />
+									value="${(page.nowBlock+1)*page.pagePerBlock}" /> <input
+									type="hidden" name="keyField" value="${keyField }" /> <input
+									type="hidden" name="keyWord" value="${keyWord }" />
 							</form>
 
 
-							
+
 						</c:when>
 
 
@@ -352,35 +381,58 @@
 
 
 	<script>
+		/* 검색 */
+		function check() {
+			if (document.search.keyWord.value == "") {
+				alert("검색어를 입력하세요.");
+				document.search.keyWord.focus();
+				return;
+			}
+			document.search.submit();
+		}
+
+		/*  paging*/
+		function pagemove(i) {
+			var nowPage = document.pagemove.nowPage.value;
+			document.pagemove.nowPage.value = Number(nowPage) + Number(i);
+			document.pagemove.submit();
+		}
+
 		$(document).ready(function() {
-			/*  userNo 값 초기화 */
+			/*  paging*/
+			$('#previous').click(function() {
+				$('#blockmoveb').submit();
+			});
+
+			/* $('#page-block').click(function(i) {
+				 var nowPage=$('#now-page').val;
+				$('#now-page').val= $('#now-page')+i; 
+				  $('#pagemove').submit();
+				}); */
+
+			$('#following').click(function() {
+				$('#blockmovef').submit();
+			});
+
+			/*  쿠폰조회 모달 userNo 값 초기화 */
 			$("#couponview").click(function() {
-				var tess  = $("#list").val();
-				
+				var tess = $("#list").val();
+
 				console.log(tess);
 				/* $("#modalCoupon").modal(); */
-				
-			/* 	$.ajax({
-					url : "selectCoupon",
-					type : "POST",
-					data : {"userNo" : userNo},
-					
-				}); */
+
+				/* 	$.ajax({
+						url : "selectCoupon",
+						type : "POST",
+						data : {"userNo" : userNo},
+						
+					}); */
 			});
 
 			/* $('#myDropdown').on('shown.bs.dropdown', function() {
 				// do something…
 			}); */
 		});
-		
-		function check() {
-	        if (document.search.keyWord.value == "") {
-	            alert("검색어를 입력하세요.");
-	            document.search.keyWord.focus();
-	            return;
-	        }
-	        document.search.submit();
-	    }
 	</script>
 
 </body>

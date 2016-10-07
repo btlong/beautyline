@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 
 import kr.ac.sungkyul.beautyline.vo.FileNotiVo;
 import kr.ac.sungkyul.beautyline.vo.NoticeBoardVo;
+
+
 @Repository
 public class NoticeBoardDao {
 	
@@ -17,7 +19,7 @@ public class NoticeBoardDao {
 	
 	/* 전체글 가져오기 */
 	public List<NoticeBoardVo> getAll(){
-		List<NoticeBoardVo> list =sqlSession.selectList("noticeboard.getAll");
+		List<NoticeBoardVo> list = sqlSession.selectList("noticeboard.getAll");
 		return list;
 	}
 	
@@ -52,7 +54,6 @@ public class NoticeBoardDao {
 	
 	/* 공지사항 글 조회수 업뎃 */
 	public void updateViewCount(int no){
-		sqlSession.update("noticeboard.updateviewcnt",no);
 	}
 	
 	/* 공지사항 글 삭제 */

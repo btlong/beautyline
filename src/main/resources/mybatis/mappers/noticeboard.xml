@@ -2,18 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="noticeboard">
-	<!--<select id="getByIdAndPassword" parameterType="uservo"
-		resultType="uservo">
-	<![CDATA[
-		select no, name from users where id=#{id } and password=#{password }
-	]]>칼럼 이름이 어렵다하면  	select n as no, name from users where...
-	</select>
-      
-	
--->
+
 	<insert id="insert" parameterType="noticeboardvo" >
 	<![CDATA[
-		insert into bd_noti values(seq_bd_noti.nextval, '43', #{title }, #{content }, sysdate, '0')
+		insert into bd_noti values(seq_bd_noti.nextval, '84', #{title }, #{content }, sysdate, '0')
 	
 	]]>
 	</insert>
@@ -21,7 +13,7 @@
 	
 	<select id="getAll" resultType="noticeboardvo">
 	<![CDATA[
-		select no, user_no as userNo, title, content, to_char(reg_date,'yyyy-mm-dd pm hh:mi') as regDate, view_count as viewCount  from bd_noti
+		select no, title, to_char(reg_date,'yyyy-mm-dd') as regDate, view_count as viewCount  from bd_noti
 	]]>
 	</select>
 	
@@ -62,18 +54,7 @@
 	select * from bbs_file where fno =#{fno }
 ]]>
 	</select>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	
 	-->

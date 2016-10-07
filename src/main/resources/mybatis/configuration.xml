@@ -1,29 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration><!-- 결과와 파라미터만 매핑 하는것 -->
-   <typeAliases>
-      <typeAlias type="kr.ac.sungkyul.beautyline.vo.UserVo" alias="uservo" />
-      <typeAlias type="kr.ac.sungkyul.beautyline.vo.VisitVo"
-         alias="visitvo" />
-      <typeAlias type="kr.ac.sungkyul.beautyline.vo.CouponVo"
-         alias="couponvo" />
-      <typeAlias type="kr.ac.sungkyul.beautyline.vo.NoticeBoardVo"
-         alias="noticeboardvo" />
-      <typeAlias type="kr.ac.sungkyul.beautyline.vo.ReserveVo"
-         alias="reservevo" />
-      <typeAlias type="kr.ac.sungkyul.beautyline.vo.UserinfoVo"
-         alias="userinfovo" />
-      <typeAlias type="kr.ac.sungkyul.beautyline.vo.PageVo" alias="pagevo" />
+	<typeAliases>
+		<typeAlias type="kr.ac.sungkyul.beautyline.vo.UserVo" alias="uservo" />
+		<typeAlias type="kr.ac.sungkyul.beautyline.vo.VisitVo"
+			alias="visitvo" />
+		<typeAlias type="kr.ac.sungkyul.beautyline.vo.CouponVo"
+			alias="couponvo" />
+		<typeAlias type="kr.ac.sungkyul.beautyline.vo.NoticeBoardVo"
+			alias="noticeboardvo" />
+		<typeAlias type="kr.ac.sungkyul.beautyline.vo.ReserveVo"
+			alias="reservevo" />
+		<typeAlias type="kr.ac.sungkyul.beautyline.vo.UserinfoVo"
+			alias="userinfovo" />
+		<typeAlias type="kr.ac.sungkyul.beautyline.vo.PageVo" alias="pagevo" />
 
-   </typeAliases>
-   <mappers>
-      <mapper resource="mybatis/mappers/mypage.xml" />
-      <mapper resource="mybatis/mappers/user.xml" />
-      <mapper resource="mybatis/mappers/visit.xml" />
-      <mapper resource="mybatis/mappers/userinfo.xml" />
-      <mapper resource="mybatis/mappers/noticeboard.xml" />
-      <mapper resource="mybatis/mappers/reserve.xml" />
+	</typeAliases>
+	<mappers>
+		<mapper resource="mybatis/mappers/user.xml" />
+		<mapper resource="mybatis/mappers/visit.xml" />
+		<mapper resource="mybatis/mappers/userinfo.xml" />
+		<mapper resource="mybatis/mappers/noticeboard.xml" />
+		<mapper resource="mybatis/mappers/reserve.xml" />
 
-   </mappers>
+	</mappers>
 
 </configuration>

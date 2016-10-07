@@ -68,11 +68,10 @@
 				phone= #{phone},
 				id= #{id}, 
 				email= #{email}, 
-				address= #{address}, 
-				is_admin=  #{isAdmin}
+				address= #{address} 
 			where no=#{no}
 		]]>
-				<!-- isAdmin= #{isAdmin} -->
+				<!-- is_admin= #{isAdmin} -->
 	</update>
 	
 	

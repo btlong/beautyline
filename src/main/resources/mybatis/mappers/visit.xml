@@ -25,36 +25,34 @@
 	]]>
 	</select>
 
-	<insert id="fileInsert" parameterType="filevisitvo">
-		<selectKey resultType="java.lang.Long" keyProperty="no"
-			order="BEFORE">
-		<![CDATA[
-			select seq_f_visit.nextVal as no from dual
-		]]>
-		</selectKey>
-	
-		<![CDATA[
-			insert into f_visit 
-			values ( #{no} , #{orgName} , #{path} , #{saveName} ) 
-	
-		]]>
-	</insert>
-
 	<insert id="insert" parameterType="visitvo">
-		
-		<selectKey resultType="java.lang.Long" keyProperty="no"
+		<selectKey resultType="java.lang.Long" keyProperty="imageNo"
 			order="BEFORE">
 		<![CDATA[
-			select seq_visit.nextVal as no from dual
+			select seq_f_visit.nextVal as imageNo from dual
 		]]>
 		</selectKey>
+		
 	
 	<![CDATA[
-		insert into visit values( 
-			#{no}, #{userNo}, #{programNo}, 
-			#{imageNo}, #{memo}, to_char(sysdate , 'YYYY-MM-DD HH24:MI'), 
-			#{whiteningScore}, #{whinkleScore}, #{elasticScore},
-			#{moistureScore}, #{acneScore}, #{averageScore}
+		insert into visit
+		(	no, 
+			user_no, 
+			program_no, 
+			image_no, 
+			memo, 
+			reg_date, 
+			whitening_score, 
+			wrinkle_score, 
+			elastic_score, 
+			moisture_score,
+			acne_score, 
+			average_score )
+		values(
+			seq_visit.nextval, #{userNo}, #{programNo}, #{imageNo}, #{memo},
+			to_char(sysdate , 'YYYY-MM-DD HH24:MI'), #{whiteningScore}, #{whinkleScore},
+			#{elasticScore}, #{moistureScore}, #{acneScore},
+			#{averageScore}
 			)
 		]]>
 	</insert>
@@ -86,7 +84,7 @@
 		</selectKey>
 	<![CDATA[
 			insert into sales ( no, user_no, pay_no, program_no, reg_date, price)
-			values ( #{no}, #{userNo}, #{payNo}, #{programNo} ,to_char(sysdate , 'YYYY-MM-DD HH24:MI'), #{price} )
+			values ( #{no}, #{userNo}, #{payNo}, #{programNo} , #{regDate}, #{price} )
 	]]>
 	</insert>
 

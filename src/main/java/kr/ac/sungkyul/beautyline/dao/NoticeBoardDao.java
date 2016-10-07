@@ -44,6 +44,7 @@ public class NoticeBoardDao {
 	
 	
 	
+	
 	public FileNotiVo selectAttachFileByNo(Long no){//글 보기를 눌렀을때 첨부파일 이름 가져오기위한 dao
 		FileNotiVo fileVo = sqlSession.selectOne("bbs.selectAttachFileByNo",no);
 		return fileVo;
@@ -53,12 +54,6 @@ public class NoticeBoardDao {
 	public void updateViewCount(int no){
 		sqlSession.update("noticeboard.updateviewcnt",no);
 	}
-	
-	/* 공지사항 글 수정 */
-	public void modify(NoticeBoardVo vo){
-		sqlSession.update("noticeboard.modify",vo);
-	}
-	
 	
 	/* 공지사항 글 삭제 */
 	public int delete(int no){

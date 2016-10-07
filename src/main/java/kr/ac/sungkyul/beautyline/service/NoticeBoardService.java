@@ -27,12 +27,11 @@ public class NoticeBoardService {
 		return list;	
 	}
 	
-	/* 글 쓰기  */
-	public void write(NoticeBoardVo vo)throws Exception {
+public void write(NoticeBoardVo vo)throws Exception {
 		
 		vo.setTitle("["+vo.getCategory()+"]"+vo.getTitle()); //카테고리와 제목 합치기
 		 nBoardDao.insertBoard(vo); // board no 가져오기
-	}
+}
 	
 	/* 공지사항 글쓰기 
 	public void write(NoticeBoardVo vo, MultipartFile file )throws Exception {
@@ -73,13 +72,6 @@ public class NoticeBoardService {
 	/* 공지사항 글 조회수 업뎃 */
 	public void updateViewCount( int no ){
 		nBoardDao.updateViewCount(no);
-	}
-	
-	/* 공지사항 글 수정 */
-	public void modify(NoticeBoardVo vo)throws Exception {
-		
-		//vo.setTitle("["+vo.getCategory()+"]"+vo.getTitle()); //카테고리와 제목 합치기
-		 nBoardDao.modify(vo); // board no 가져오기
 	}
 	
 	/* 공지사항 글 삭제 */

@@ -112,7 +112,8 @@ public class NoticeBoardController {
 	
 	/*글 삭제 폼*/
 	@RequestMapping(value = "/deleteform", method = RequestMethod.GET)
-	public String deleteform(int no){
+	public String deleteform(int no, Model model){
+		model.addAttribute( "no", no );
 		return "board/noticeboard/deleteform";
 	}
 	

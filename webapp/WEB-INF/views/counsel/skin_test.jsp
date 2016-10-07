@@ -238,7 +238,7 @@ img {
 						<input type="hidden" id ="score5" name="score5" value="" />
 					</form>
 					<div class="col-lg-12" id="temp">
-						<a href="/beautyline/mypage/history">히스토리</a>
+						<button id="btn_temp">히스토리</button>
 					</div>
 				<div class="col-lg-12">
 					<hr>

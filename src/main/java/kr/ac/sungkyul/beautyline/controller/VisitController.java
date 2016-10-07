@@ -28,7 +28,7 @@ public class VisitController {
 
 	@Autowired
 	UserService userService;
-	
+
 	// 처음 화면
 	@RequestMapping("/visitform")
 	public String visitForm() {
@@ -36,10 +36,10 @@ public class VisitController {
 	}
 
 	// 시술 후 등록
-	
+
 	@RequestMapping(value = "visited", method = RequestMethod.POST)
 	public String visited(VisitVo visitVo, MultipartFile file) throws Exception {
-		visitService.insert(visitVo ,file);
+		visitService.insert(visitVo, file);
 		return "redirect:/visit/visitform";
 	}
 
@@ -68,7 +68,7 @@ public class VisitController {
 		UserVo authUser = visitService.searchOne(userVo);
 		retVal.put("authUser", authUser);
 		List<CouponVo> couponList = visitService.couponList(authUser.getNo());
-		/*System.out.println(couponList);*/
+		/* System.out.println(couponList); */
 		retVal.put("couponList", couponList);
 		return retVal;
 	}
@@ -88,7 +88,7 @@ public class VisitController {
 	public List<CouponVo> packageCharge(@RequestBody CouponVo couponVo) {
 		visitService.couponCharge(couponVo);
 		List<CouponVo> couponList = visitService.couponList(couponVo.getUserNo());
-		return couponList ;
+		return couponList;
 	}
 
 	// 회원등록
@@ -97,11 +97,11 @@ public class VisitController {
 		return "registration";
 	}
 
-	//회원 추가
-		@ResponseBody
-		@RequestMapping(value = "insertUser", method = RequestMethod.POST)
-		public UserVo insertUser(@RequestBody UserVo uservo ) throws Exception{
-			UserVo uservi = userService.insertUserNamePhone(uservo);
-			return uservi;
-		}
+	// 회원 추가
+	@ResponseBody
+	@RequestMapping(value = "insertUser", method = RequestMethod.POST)
+	public UserVo insertUser(@RequestBody UserVo uservo) throws Exception {
+		UserVo uservi = userService.insertUserNamePhone(uservo);
+		return uservi;
+	}
 }

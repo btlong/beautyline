@@ -8,11 +8,13 @@ import org.springframework.stereotype.Repository;
 
 import kr.ac.sungkyul.beautyline.vo.FileNotiVo;
 import kr.ac.sungkyul.beautyline.vo.NoticeBoardVo;
+
 @Repository
 public class NoticeBoardDao {
 	
 	@Autowired
 	private SqlSession sqlSession;
+	
 	
 	
 	/* 전체글 가져오기 */
@@ -33,9 +35,10 @@ public class NoticeBoardDao {
 	}
 	
 	
-	public void insertAttachFile(FileNotiVo fileVo ){ // 게시판 글작성 첨부파일 
+/*	public void insertAttachFile(FileNotiVo fileVo ){ // 게시판 글작성 첨부파일 
 		sqlSession.insert("bbs.insertAttachFile",fileVo);
 	}
+*/	
 	
 	
 	
@@ -53,12 +56,6 @@ public class NoticeBoardDao {
 	public void updateViewCount(int no){
 		sqlSession.update("noticeboard.updateviewcnt",no);
 	}
-	
-	/* 공지사항 글 수정 */
-	public void modify(NoticeBoardVo vo){
-		sqlSession.update("noticeboard.modify",vo);
-	}
-	
 	
 	/* 공지사항 글 삭제 */
 	public int delete(int no){

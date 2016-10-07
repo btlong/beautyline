@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import kr.ac.sungkyul.beautyline.service.NoticeBoardService;
@@ -52,43 +51,22 @@ public class NoticeBoardController {
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
 	public String view(int no, Model model){
 		NoticeBoardVo notiBdVo = nBoardService.view(no);
-		nBoardService.updateViewCount(no);
-		
 		model.addAttribute( "notiBdVo", notiBdVo );
 		return"board/noticeboard/view";
 	}
 	
 	/* 글 수정 폼 */
-	@RequestMapping(value = "/modifyform", method = RequestMethod.GET)
-	public String modifyform(int no, Model model){
-		NoticeBoardVo notiBdVo = nBoardService.view(no);
-		nBoardService.updateViewCount(no);
-		
-		model.addAttribute( "notiBdVo", notiBdVo );
-
-		return "/board/noticeboard/modifyform";
-	}
-
-	/* 글 쓰기 */
 	@ResponseBody
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
-	public void modify(@RequestBody NoticeBoardVo vo) throws Exception{
-		nBoardService.modify(vo);
+	public void modify(@RequestBody NoticeBoardVo vo){
+		//nBoardService.modify(vo);
+	
+	}
+
+	/*글 삭제 폼*/
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	public void delete(int no){
 		
-	}
-	
-	/* 글 삭제 폼 */
-	@RequestMapping(value = "/deleteform", method = RequestMethod.GET)
-	public String deleteform(int no, Model model){
-		model.addAttribute("no", no);
-		return "board/noticeboard/deleteform";
-	}
-	
-	/* 글 삭제 */
-	@RequestMapping(value="/delete", method=RequestMethod.GET)
-	public String delete(int no){
-		nBoardService.delete(no);
-		return "redirect:board";
 	}
 	
 	/* 이미지 업로드 */

@@ -2,38 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="noticeboard">
-	<select id="getByIdAndPassword" parameterType="uservo"
-		resultType="uservo">
-	<![CDATA[
-		select no, name from users where id=#{id } and password=#{password }
-	
-	]]>
-	</select>
-
 
 	<insert id="insert" parameterType="noticeboardvo">
 	<![CDATA[
-		insert into bd_noti values(seq_bd_noti.nextval, '84', #{title }, #{content }, to_char(sysdate , 'YYYY-MM-DD'), '0')
-	
+		insert into bd_noti values(seq_bd_noti.nextval, '43', #{title }, #{content }, sysdate, '0')
 	]]>
 	</insert>
 
 
 	<select id="getAll" resultType="noticeboardvo">
 	<![CDATA[
-		select no, user_no as userNo, title, content, to_char(reg_date,'yyyy-mm-dd') as regDate, view_count as viewCount  from bd_noti
+		select no, user_no as userNo, title, content, to_char(reg_date,'yyyy-mm-dd pm hh:mi') as regDate, view_count as viewCount  from bd_noti
 	]]>
 	</select>
 
 	<select id="view" parameterType="java.lang.Integer" resultType="noticeboardvo">
 	<![CDATA[
-		select b.no, b.user_no as userNo, u.name as userName, b.title, b.content, to_char(reg_date,'yyyy-mm-dd') as regDate, b.view_count as viewCount
+		select b.no, b.user_no as userNo, u.name as userName, b.title, b.content, to_char(reg_date,'yyyy-mm-dd pm hh:mi') as regDate, b.view_count as viewCount
     	from bd_noti b, users u 
     	where b.no = #{no }
     	and b.USER_NO = u.NO
     ]]>
 	</select>
-
 
 
 	<!-- 파일저장 -->
@@ -42,10 +32,14 @@
 	<![CDATA[
 		insert into f_noti values (seq_f_noti.nextVal, #{noticeNo }, #{orgName }, #{path }, #{saveName } )
 		]]>
-
 	</insert>
 
 
+	<!-- 첨부파일 시험 <select id="selectAttachFileByNo" parameterType="java.lang.Long" 
+		resultType="kr.ac.sungkyul.mysite.vo.AttachFileVo"> <![CDATA[ select * from 
+		bbs_file where no =#{no } ]]> </select> <select id="selectAttachFileByFno" 
+		parameterType="java.lang.Long" resultType="kr.ac.sungkyul.mysite.vo.AttachFileVo"> 
+		<![CDATA[ select * from bbs_file where fno =#{fno } ]]> </select> -->
 
 
 
@@ -69,5 +63,4 @@
 	]]>
 	</delete>
 
-	<!-- 삭제 -->
 </mapper> 

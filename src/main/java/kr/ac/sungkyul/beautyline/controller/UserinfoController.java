@@ -7,7 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -82,6 +82,38 @@ public class UserinfoController {
 	}
 	
 	
+	/* -- 회원가입  -- */	
+	@RequestMapping("/joinform")
+	public String joinform() { //회원가입 폼
+		return "userinfo/joinform";
+	}
+	
+	
+	
+	/*@RequestMapping("/join")
+	public String join(@ModelAttribute UserVo vo) {//회원가입 버튼 누를 때
+		userService.join(vo);
+		return "redirect:/userinfo/list"; // redirect해야함
+	}*/
+	@ResponseBody
+	@RequestMapping(value ="join", method = RequestMethod.POST)
+	public int join(@RequestBody UserVo vo) {//회원가입 버튼 누를 때
+		System.out.println(vo);
+		int a = userService.join(vo);
+		return a; // redirect해야함
+	}
+	
+	
+	
+	@ResponseBody
+	@RequestMapping(value ="checkId", method = RequestMethod.POST)
+	public String checkId(@RequestParam (value = "id", required = false) String id){//회원가입시 id중복체크
+		String check = userService.checkId(id);
+		return check;
+	}
+	/*--------------*/
+	
+	
 	
 	/* --  로그인  -- */
 	@RequestMapping("/loginform")
@@ -111,26 +143,13 @@ public class UserinfoController {
 	}
 	/* -------------- */
 	
-	
-	/* -- 회원가입  -- */	
-	@RequestMapping("/joinform")
-	public String joinform() { //회원가입 폼
-		return "userinfo/joinform";
-	}
-	
-	@RequestMapping("/join")
-	public String join(@ModelAttribute UserVo vo) {//회원가입 버튼 누를 때
-		userService.join(vo);
-		return "redirect:/userinfo/list"; // redirect해야함
-	}
-	
 	@ResponseBody
-	@RequestMapping(value ="checkId", method = RequestMethod.POST)
-	public String checkId(@RequestParam String id){//회원가입시 id중복체크
-		String check = userService.checkId(id);
-		return check;
+	@RequestMapping(value="selectCoupon" ,method=RequestMethod.POST)
+	public void selectCoupon(@RequestBody Long value) {
+		System.out.println(value);
+		
 	}
-	/*--------------*/
+	
 	
 	
 /*	// 쿠폰조회

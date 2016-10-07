@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.ac.sungkyul.beautyline.service.UserService;
 import kr.ac.sungkyul.beautyline.service.VisitService;
 import kr.ac.sungkyul.beautyline.vo.CouponVo;
 import kr.ac.sungkyul.beautyline.vo.UserVo;
@@ -25,6 +26,9 @@ public class VisitController {
 	@Autowired
 	VisitService visitService;
 
+	@Autowired
+	UserService userService;
+	
 	// 처음 화면
 	@RequestMapping("/visitform")
 	public String visitForm() {
@@ -34,10 +38,9 @@ public class VisitController {
 	// 시술 후 등록
 	
 	@RequestMapping(value = "visited", method = RequestMethod.POST)
-	public String visited(VisitVo visitVo, MultipartFile file) {
-		System.out.println(file.getOriginalFilename().toString());
+	public String visited(VisitVo visitVo, MultipartFile file) throws Exception {
 		visitService.insert(visitVo ,file);
-		return "visit/visited";
+		return "redirect:/visit/visitform";
 	}
 
 	// 내역 조회
@@ -94,4 +97,11 @@ public class VisitController {
 		return "registration";
 	}
 
+	//회원 추가
+		@ResponseBody
+		@RequestMapping(value = "insertUser", method = RequestMethod.POST)
+		public UserVo insertUser(@RequestBody UserVo uservo ) throws Exception{
+			UserVo uservi = userService.insertUserNamePhone(uservo);
+			return uservi;
+		}
 }

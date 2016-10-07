@@ -137,7 +137,11 @@ padding-left: 0px;
  				</div>
  					
 				<div class="col-lg-11 text-right">
+<<<<<<< HEAD
 					<button  id="insert" class="btn btn-danger">등록 <span class="glyphicon glyphicon-ok"></span></button>
+=======
+					<button  id="modify" class="btn btn-danger">수정 <span class="glyphicon glyphicon-ok"></span></button>
+>>>>>>> 9736b05cc1fed2de8363c2e5ff8d8e59da73a5d9
 					<a href="board" class="btn btn-danger">취소 <span class="glyphicon glyphicon-repeat"></span></a>
 				</div>
 			</div>	
@@ -220,5 +224,62 @@ $(function(){
 			//console.log("출력"+markup);
 		});
 	});
+<<<<<<< HEAD
+=======
+	
+$(function(){
+	$("#modify").on("click", function() {
+		var category = $("#category_select").val();
+		var title = $("#inputTitle").val();
+	var content = 	$('#summernote').summernote('code');
+		var NoticeBoardVo ={
+				"category": category,
+				"title" : title,
+				"content": content
+			};
+		
+		
+		console.log(NoticeBoardVo);
+	
+		$.ajax({// 비동기식 
+			url : "modify",
+			type : "POST",
+			data : JSON.stringify(NoticeBoardVo),
+			contentType:"application/json",
+			success : function() {
+				location.href = "board";
+				
+			},
+			error : function(jqXHR, status, error) {
+				console.error(status + ":" + error);
+			}
+		});
+
+	});
+	function sendFile(file, editor, welEditable) {
+			data = new FormData();
+			data.append("file", file);
+			$.ajax({
+				url : "imaUpload",
+				type : "POST",
+				data : data,
+				cache : false,
+				contentType : false,
+				processData : false,
+				success : function(url) {
+					editor.insertImage(welEditable, url);
+				},
+				error : function(jqXHR, status, error) {
+					console.error(status + ":" + error);
+				}
+			});
+		}
+
+		$("#inputTitle").keyup(function() {
+			var markup = $('#summernote').summernote('code');
+			//console.log("출력"+markup);
+		});
+	});	
+>>>>>>> 9736b05cc1fed2de8363c2e5ff8d8e59da73a5d9
 </script>
 </html>

@@ -91,7 +91,13 @@ width:50%;
 </head>
 <body>
 	<c:import url="/WEB-INF/views/include/header.jsp" />
-				
+
+
+					
+					
+					
+					
+					
 
 <div class="container">
     <div class="row">
@@ -107,36 +113,21 @@ width:50%;
 					</div>
 					<div class="col-lg-10 col-lg-offset-1">
 	         <table class="table table-bordered table-hover table-responsive">
-             
-                   
               <tbody>      
-              	<c:set var="doneLoop" value="false" />
-				<!-- for(i=보고있는 페이지의 시작번호; i<(시작번호+한페이지의 게시물수); i++ ){ -->
-				<c:forEach begin="${page.beginPerPage }" end="${page.beginPerPage + page.numPerPage -1}" var="i" varStatus="status">
-
-				<!-- doneLoop가 false이면 루프 계속 돎-->
-				<c:if test="${not doneLoop }">
-   				  <tr>
-					<!-- (전체 게시물 갯수-(전체회원수-1))>=1이면 -->
-					<c:if test="${(page.totalRecord -status.index)>=1}">
-					<td>${page.totalRecord -status.index}</td>
-					<td><a href="view?no=${boardList[i].no }">${boardList[i].title}</a></td>
-					<td>관리자</td>
-					<td>${boardList[i].viewCount}</td>
-					<td>${boardList[i].regDate}</td>
-					</c:if>
-				  </tr>
-					
-					<!-- 회원수가 토탈 게시물보다 많아지면 루프가 True가 되어 빠져나옴 -->
-					<c:if test="${i+1 == page.totalRecord} }">
-					<c:set var="doneLoop" value="true" />
-					</c:if>
-				</c:if>
-				
-				</c:forEach>  
-             </tbody>
-             
-           
+<%--               <c:set var='totalCount' value='${fn:length(listUser) }' /> --%>
+						<c:forEach items="${boarList }" var="notiBdVo"
+							varStatus="status">
+							<tr>
+								
+								<td>${notiBdVo.no}</td>
+								<td><a href="view?no=${notiBdVo.no }">${notiBdVo.title}</a></td>
+								<td>관리자</td>
+								<td>${notiBdVo.viewCount}</td>
+								<td>${notiBdVo.regDate}</td>
+						
+							</tr>
+						</c:forEach>  
+              </tbody>
               <thead>
                 <tr>
                   <th id="listNo" class="danger text-center">no</th>
@@ -153,45 +144,134 @@ width:50%;
       			<a href="writeform" class="btn btn-sm btn-danger">글쓰기 <span class="glyphicon glyphicon-pencil"></span></a>
        		</c:if>
       </div>
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <!-------------Paging--------------->
-	 <c:import url="/WEB-INF/views/include/paging.jsp" />
-      <!-- 이전 페이지 -->
-							<form id="blockmoveb" name="blockmoveb" method="POST" action="board">
-								<input type="hidden" name="nowBlock" value="${page.nowBlock-1 }" />
-								<input type="hidden" name="nowPage" value="${(page.nowBlock-1)*page.pagePerBlock}" />
-								<%-- <input type="hidden" name="keyField" value="${keyField }" />	
-								<input type="hidden" name="keyWord" value="${keyWord }" /> --%>
-							</form>
+   <!--  페이징 -->
 
-							<!-- 페이지블록 -->
-							<form id="pagemove" name="pagemove" method="POST" action="board">
-								<input type="hidden" name="nowBlock" value="${page.nowBlock}" />
-								<input id="now-page" type="hidden" name="nowPage" value="${page.nowBlock*page.pagePerBlock}" />
-							<%-- 	<input type="hidden"name="keyField" value="${keyField }" />
-								<input type="hidden"name="keyWord" value="${keyWord }" /> --%>
-							</form>
+    
+          <div class="col-md-12 text-center">
+            <ul class="pagination pagination-sm">
+              <li class="">
+                <a href="#"><span class="glyphicon glyphicon-chevron-left"></span></a>
+              </li>
+              <li class="active"><a href="#">1</a></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#">4</a></li>
+              <li><a href="#">5</a></li>
+              <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+            </ul>
+          </div>
+        	<div class="col-lg-11 text-right">
+			<a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-search"></span> </a>		
+				 </div>
+	</div>	
+	  </div>
+      </div>				
+			   </div>		
+					
+<!-- 					
+<ul class="pagination pull-center">
+  <li class="disabled"><a href="#"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+  <li class="active"><a href="#">1</a></li>
+  <li><a href="#">2</a></li>
+  <li><a href="#">3</a></li>
+  <li><a href="#">4</a></li>
+  <li><a href="#">5</a></li>
+  <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+</ul>
+ -->
 
-							<!-- 다음 페이지 -->
-							<form id="blockmovef" name="blockmovef" method="POST" action="board">
-								<input type="hidden" name="nowBlock" value="${page.nowBlock+1 }" />
-								<input type="hidden" name="nowPage" value="${(page.nowBlock+1)*page.pagePerBlock}" />
-								<%-- <input type="hidden" name="keyField" value="${keyField }" />
-								<input type="hidden" name="keyWord" value="${keyWord }" /> --%>
-							</form>
-  </div>
-  </div>
-  </div>
-  </div>
+
+
+
+  
+
+
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+      <div class="modal-dialog">
+    <div class="modal-content">
+          <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+        <h4 class="modal-title custom_align" id="Heading">Edit Your Detail</h4>
+      </div>
+          <div class="modal-body">
+          <div class="form-group">
+        <input class="form-control " type="text" placeholder="Mohsin">
+        </div>
+        <div class="form-group">
+        
+        <input class="form-control " type="text" placeholder="Irshad">
+        </div>
+        <div class="form-group">
+        <textarea rows="2" class="form-control" placeholder="CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan"></textarea>
+    
+        
+        </div>
+      </div>
+          <div class="modal-footer ">
+        <button type="button" class="btn btn-warning btn-lg" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Update</button>
+      </div>
+        </div>
+    <!-- /.modal-content --> 
+  </div>
+      <!-- /.modal-dialog --> 
+    </div>
+    
+    
+    
+    <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+      <div class="modal-dialog">
+    <div class="modal-content">
+          <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+        <h4 class="modal-title custom_align" id="Heading">Delete this entry</h4>
+      </div>
+          <div class="modal-body">
+       
+       <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> Are you sure you want to delete this Record?</div>
+       
+      </div>
+        <div class="modal-footer ">
+        <button type="button" class="btn btn-success" ><span class="glyphicon glyphicon-ok-sign"></span> Yes</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
+      </div>
+        </div>
+    <!-- /.modal-content --> 
+  </div>
+      <!-- /.modal-dialog --> 
+    </div>
+					
+					
+
+
+
+
 </body>
+
+
+
+
+
+
+
+
+<script>
+	$(function() {
+	
+</script>
+
+
+
 </html>

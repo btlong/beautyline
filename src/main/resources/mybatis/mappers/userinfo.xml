@@ -16,13 +16,27 @@
 			order by no desc
 		]]>
 	</select>
+					<!-- agr_email as agrEmail,
+					agr_message as agrMessage, -->
 
 	<!-- 회원검색 -->
 	<select id="searchUser" parameterType="map" resultType="userinfovo">
 		<![CDATA[
-			select * from users where ${keyfield} like '%${keyword}%' order by no desc
+			select 	no,
+					name, 
+					phone,
+					id, 
+					password, 
+					email, 
+					address,
+					agr_email as agrEmail,
+					agr_message as agrMessage, 
+					is_admin as isAdmin from users 
+			where ${keyfield} like '%${keyword}%' order by no desc
 		]]>
 	</select>
+	
+	
 	
 	<!-- 수정 -->
 	<!-- <select id="findByNo" parameterType="Long" resultType="userinfovo">
@@ -54,11 +68,10 @@
 				phone= #{phone},
 				id= #{id}, 
 				email= #{email}, 
-				address= #{address}, 
-				is_admin=  #{isAdmin}
+				address= #{address} 
 			where no=#{no}
 		]]>
-				<!-- isAdmin= #{isAdmin} -->
+				<!-- is_admin= #{isAdmin} -->
 	</update>
 	
 	

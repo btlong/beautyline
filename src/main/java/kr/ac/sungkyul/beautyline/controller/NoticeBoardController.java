@@ -52,22 +52,43 @@ public class NoticeBoardController {
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
 	public String view(int no, Model model){
 		NoticeBoardVo notiBdVo = nBoardService.view(no);
+		nBoardService.updateViewCount(no);
+		
 		model.addAttribute( "notiBdVo", notiBdVo );
 		return"board/noticeboard/view";
 	}
 	
 	/* 글 수정 폼 */
-	@ResponseBody
-	@RequestMapping(value = "/modify", method = RequestMethod.POST)
-	public void modify(@RequestBody NoticeBoardVo vo){
-		//nBoardService.modify(vo);
-	
+	@RequestMapping(value = "/modifyform", method = RequestMethod.GET)
+	public String modifyform(int no, Model model){
+		NoticeBoardVo notiBdVo = nBoardService.view(no);
+		nBoardService.updateViewCount(no);
+		
+		model.addAttribute( "notiBdVo", notiBdVo );
+
+		return "/board/noticeboard/modifyform";
 	}
 
-	/*글 삭제 폼*/
-	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	public void delete(int no){
+	/* 글 쓰기 */
+	@ResponseBody
+	@RequestMapping(value = "/modify", method = RequestMethod.POST)
+	public void modify(@RequestBody NoticeBoardVo vo) throws Exception{
+		nBoardService.modify(vo);
 		
+	}
+	
+	/* 글 삭제 폼 */
+	@RequestMapping(value = "/deleteform", method = RequestMethod.GET)
+	public String deleteform(int no, Model model){
+		model.addAttribute("no", no);
+		return "board/noticeboard/deleteform";
+	}
+	
+	/* 글 삭제 */
+	@RequestMapping(value="/delete", method=RequestMethod.GET)
+	public String delete(int no){
+		nBoardService.delete(no);
+		return "redirect:board";
 	}
 	
 	/* 이미지 업로드 */

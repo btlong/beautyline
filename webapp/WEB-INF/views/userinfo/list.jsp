@@ -76,14 +76,13 @@
 							test="${not empty sessionScope.authUser && authUser.isAdmin eq 'a'}">
 
 
-
 							<!-- 회원등록버튼 -->
 							<div class="col-lg-12 text-right">
 								<a class="btn btn-info" href="/beautyline/userinfo/joinform"
 									id="insert-user" type="button" role="button">등록</a>
 							</div>
 
-
+	
 							<!-- 페이지 정보 -->
 							<div id=total-record class="col-lg-12 text-left">
 								▶전체 회원 수 : ${page.totalRecord }명&nbsp; &nbsp; ▶현재 페이지 ( <span id =page-location>${page.nowPage+1 } / ${page.totalPage} 페이지</span>)

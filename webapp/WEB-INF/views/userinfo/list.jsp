@@ -200,7 +200,7 @@
 							
 							<select class="form-control input-sm" name="keyField" size="1">
 								<option value="*"
-									<c:if test="${''==keyField }"> selected</c:if>>선택하세요
+									<c:if test="${'*'==keyField }"> selected</c:if>>선택하세요
 								</option>
 								<option value="name"
 									<c:if test="${'name'==keyField }"> selected</c:if>>이름

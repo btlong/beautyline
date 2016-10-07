@@ -59,11 +59,10 @@ public class NoticeBoardController {
 	}
 	
 	/* 글 수정 폼 */
-	@ResponseBody
-	@RequestMapping(value = "/modifyform", method = RequestMethod.POST)
-	public void modifyform(@RequestBody NoticeBoardVo vo){
-		//nBoardService.modify(vo);
-	
+	@RequestMapping(value = "/modifyform", method = RequestMethod.GET)
+	public String modifyform(int no, Model model){
+		model.addAttribute( "no", no );
+		return"board/noticeboard/modifyform";
 	}
 
 	/* 글 삭제 폼 */

@@ -12,7 +12,7 @@
 	
 -->
 	<insert id="insert" parameterType="noticeboardvo" >
-	<![CDATA[ㄴ
+	<![CDATA[
 		insert into bd_noti values(seq_bd_noti.nextval, '84', #{title }, #{content }, to_char(sysdate , 'YYYY-MM-DD'), '0')
 	
 	]]>

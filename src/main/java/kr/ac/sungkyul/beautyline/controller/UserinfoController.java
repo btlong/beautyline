@@ -70,26 +70,39 @@ public class UserinfoController {
 	 * userinfoService.couponList(no); System.out.println(couponList);
 	 * retVal.put("couponList", couponList); return retVal; }
 	 */
+	
+	//쿠폰뷰
 	@ResponseBody
 	@RequestMapping(value = "selectCoupon", method = RequestMethod.POST)
 	public List<CouponVo> readBoardAjax(long no) {
-		System.out.println(no);
-		/* UserinfoVo userinfoVo = userinfoService.selectUser(no); */
+		//System.out.println(no);
+		//UserinfoVo userinfoVo = userinfoService.selectUser(no);
 		List<CouponVo> couponList = visitService.couponList(no);
-		System.out.println(couponList);
+		//System.out.println(couponList);
 		return couponList;
 	}
+	
+	//쿠폰 수정
+	/*@ResponseBody
+	@RequestMapping(value = "updateCoupon", method = RequestMethod.POST)
+	public CouponVo updateCoupon(@RequestBody CouponVo couponvo){
+		//System.out.println(couponvo);
+		CouponVo couponValue = userinfoService.updateCouponList(couponvo);
+		//System.out.println(couponValue);
+		return couponValue;
+	}*/
+
 
 	// 회원삭제
 	@RequestMapping(value = "delete", method = RequestMethod.POST)
-	public String modifyUser(long no) {
+	public String modifyUser(Long no) {
 		userinfoService.deleteUser(no);
 		return "redirect:list";
 	}
 
 	// 수정폼
 	@RequestMapping(value = "modifyuser", method = RequestMethod.GET)
-	public String modifyUser(long no, Model model) {
+	public String modifyUser(Long no, Model model) {
 		UserinfoVo userinfoVo = userinfoService.selectUser(no);
 		model.addAttribute("UserinfoVo", userinfoVo);
 		return "userinfo/modifyuser";

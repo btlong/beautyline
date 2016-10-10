@@ -117,6 +117,5 @@ public class MypageService {
 		
 		return listVo;
 	}
-	
 
 }

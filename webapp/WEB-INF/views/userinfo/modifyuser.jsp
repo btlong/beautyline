@@ -79,32 +79,32 @@
 
 
 						<tbody>
+							
 							<tr>
 								<td>${UserinfoVo.no}</td>
 								<td><input type="hidden" name="no"
-									value="${UserinfoVo.no }" /> <input type="text" name="name"
+									value="${UserinfoVo.no }" /> <input type="text" class="form-control input-sm" name="name"
 									value="${UserinfoVo.name}"></td>
 								<td><input type="hidden" name="no"
-									value="${UserinfoVo.no }" /> <input type="text" name="phone"
+									value="${UserinfoVo.no }" /> <input type="text" class="form-control input-sm" name="phone"
 									value="${UserinfoVo.phone}"></td>
 								<td><input type="hidden" name="no"
-									value="${UserinfoVo.no }" /> <input type="text" name="id"
+									value="${UserinfoVo.no }" /> <input type="text" class="form-control input-sm" name="id"
 									value="${UserinfoVo.id}"></td>
 								<td><input type="hidden" name="no"
-									value="${UserinfoVo.no }" /> <input type="text" name="email"
+									value="${UserinfoVo.no }" /> <input type="text" class="form-control input-sm" name="email"
 									value="${UserinfoVo.email}"></td>
 								<td><input type="hidden" name="no"
-									value="${UserinfoVo.no }" /> <input type="text" name="address"
+									value="${UserinfoVo.no }" /> <input type="text" class="form-control input-sm" name="address"
 									value="${UserinfoVo.address}"></td>
+								<td>${UserinfoVo.isAdmin}</td>
 								<td><input type="hidden" name="no"
-									value="${UserinfoVo.no }" /> <input type="text"
-									name="is_admin" value="${UserinfoVo.isAdmin}"></td>
-								<td><input type="hidden" name="no"
-									value="${userinfoVo.no }" /> <input type="submit" value="저장">
+									value="${UserinfoVo.no }" /> <input type="submit" class="btn btn-primary btn-sm" value="저장">
 								</td>
-								<td><a class="btn btn-default"
+								<td><a class="btn btn-default btn-sm"
 									href="javascript:history.go(-1);" role="button">취소</a></td>
 							</tr>
+								
 						</tbody>
 				
 					</table>

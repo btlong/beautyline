@@ -48,7 +48,11 @@ img {
 </style>
 	
 
-<script type="text/javascript" src="/beautyline/jquery/jquery-1.9.0.js"></script>
+<script type="text/javascript" src="/beautyline/bootstrap/js/jquery.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		
@@ -238,7 +242,7 @@ img {
 						<input type="hidden" id ="score5" name="score5" value="" />
 					</form>
 					<div class="col-lg-12" id="temp">
-						<a href="/beautyline/mypage/history">히스토리</a>
+						<button id="btn_temp">히스토리</button>
 					</div>
 				<div class="col-lg-12">
 					<hr>

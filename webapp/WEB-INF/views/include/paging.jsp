@@ -3,30 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
-<script>
-	$(document).ready(function() {
-		$('#previous').click(function() {
-			$('#blockmoveb').submit();
-		});
-
-		/* $('#page-block').click(function(i) {
-			 var nowPage=$('#now-page').val;
-			$('#now-page').val= $('#now-page')+i; 
-			  $('#pagemove').submit();
-			}); */
-
-		$('#following').click(function() {
-			$('#blockmovef').submit();
-		});
-	});
-
-	 function pagemove(i) {
-		var nowPage = document.pagemove.nowPage.value;
-		document.pagemove.nowPage.value = Number(nowPage) + Number(i);
-		document.pagemove.submit();
-	} 
-</script>
+<script type="text/javascript" src="/beautyline/bootstrap/js/jquery.js"></script>
 
 <div class="col-lg-12 text-center">
 	<nav>
@@ -58,3 +35,25 @@
 		</ul>
 	</nav>
 </div>
+
+
+<script>
+	/*  paging*/
+	function pagemove(i) {
+		var nowPage = document.pagemove.nowPage.value;
+		document.pagemove.nowPage.value = Number(nowPage) + Number(i);
+		document.pagemove.submit();
+	}
+
+	$(document).ready(function() {
+		/*  paging*/
+		$('#previous').click(function() {
+			$('#blockmoveb').submit();
+		});
+
+		$('#following').click(function() {
+			$('#blockmovef').submit();
+		});
+
+	});
+</script>

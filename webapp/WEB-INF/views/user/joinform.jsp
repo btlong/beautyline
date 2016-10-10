@@ -285,7 +285,7 @@
 
 						<div class="form-group">
 							<label class="col-sm-3 control-label" for="inputEmailReceiveYn" >이메일 수신여부</label>
-							<div class="col-sm-4" data-toggle="buttons">
+							<div class="col-sm-7" data-toggle="buttons">
 								<label class="btn btn-info active">
 								<input type="radio" class="emailReceiveYn" name="emailReceiveYn" value="Y" autocomplete="off" >
 								<span class="fa fa-check"></span>
@@ -315,7 +315,7 @@
 
 
 						<div class="form-group">
-							<label class="col-sm-7 control-label" for="inputAgree">약관 동의</label>
+							<label class="col-sm-3 control-label" for="inputAgree">약관 동의</label>
 							<div class="col-sm-6" data-toggle="buttons">
 								<label class="btn btn-warning" id="terms">
 								<input id="agree" type="checkbox" autocomplete="off">

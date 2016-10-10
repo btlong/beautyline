@@ -81,8 +81,19 @@
 						<c:forEach items='${resList }' var="reserveVo" varStatus='status'>
 							<tbody
 								<c:if test='${today > reserveVo.resDate }'> id="resPast" </c:if>>
+								<c:set var="doneLoop" value="false" />
+								<!-- for(i=보고있는 페이지의 시작번호; i<(시작번호+한페이지의 게시물수); i++ ){ -->
+									<c:forEach begin="${page.beginPerPage }"
+											end="${page.beginPerPage + page.numPerPage -1}" var="i"
+											varStatus="status">
+
+											<!-- doneLoop가 false이면 루프 계속 돎-->
+											<c:if test="${not doneLoop }">
+			
 								<tr>
-									<td>${status.index }</td>
+									<!-- (전체 게시물 갯수-(전체회원수-1))>=1이면 -->
+									<c:if test="${(page.totalRecord -status.index)>=1}">
+									<td>${page.totalRecord -status.index}</td>
 									<td>${reserveVo.userName }</td>
 									<td>${reserveVo.progName }</td>
 									<td>${reserveVo.resDate }</td>
@@ -92,8 +103,17 @@
 										<c:when test='${today > reserveVo.resDate }'>삭제</c:when>
 										<c:otherwise>취소</c:otherwise>
 									</c:choose>
+									
 									</a></td>
+									
+									</c:if>
 								</tr>
+								<!-- 게시물수가 토탈 게시물보다 많아지면 루프가 True가 되어 빠져나옴 -->
+								<c:if test="${i+1 == page.totalRecord} }">
+									<c:set var="doneLoop" value="true" />
+								</c:if>
+							</c:if>
+							</c:forEach>
 							</tbody>
 						</c:forEach>
 					</table>
@@ -102,17 +122,9 @@
 					<a class="btn btn-danger" type="button" href="javascript:history.go(-1);" >돌아가기</a>
 				</div>
 
-
+				<!-------------Paging--------------->
 				<div class="col-lg-12 text-center">
-					<ul class="pagination pagination-sm">
-	  					<li class="disabled"><a href="#">&laquo;</a></li>
-						<li class="active"><a href="#">1</a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>
-						<li><a href="#">5</a></li>
-						<li><a href="#">&raquo;</a></li>
-					</ul>
+					<c:import url="/WEB-INF/views/include/paging.jsp" />
 				</div>
 			
 				<div class="btn-group">

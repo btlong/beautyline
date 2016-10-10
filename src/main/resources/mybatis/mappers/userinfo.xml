@@ -18,6 +18,15 @@
 	</select>
 					<!-- agr_email as agrEmail,
 					agr_message as agrMessage, -->
+	
+	<!-- 쿠폰 -->				
+	<select id="selectCoupon" parameterType="java.lang.Long"
+		resultType="couponvo">
+	<![CDATA[
+		select program_no,count from coupon where user_no = #{no} 
+	]]>
+	</select>
+					
 
 	<!-- 회원검색 -->
 	<select id="searchUser" parameterType="map" resultType="userinfovo">

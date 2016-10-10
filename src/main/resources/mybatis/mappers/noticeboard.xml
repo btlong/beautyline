@@ -3,27 +3,68 @@
 
 <mapper namespace="noticeboard">
 
+	<!-- 게시판 글쓰기 -->
 	<insert id="insert" parameterType="noticeboardvo" >
+	<selectKey resultType="java.lang.Long" keyProperty="no" order="BEFORE">
 	<![CDATA[
-		insert into bd_noti values(seq_bd_noti.nextval, '84', #{title }, #{content }, sysdate, '0')
+	select seq_bd_noti.nextval as no from DUAL
+	]]>
+	</selectKey>
+	<![CDATA[
+		insert into bd_noti values(#{no }, '84', #{category}, #{title }, #{content }, sysdate, '0')
 	]]>
 	</insert>
+	
+
+	<!-- 파일 쓰기 -->
+ 	<insert id="insertFileNoti" parameterType="kr.ac.sungkyul.beautyline.vo.FileNotiVo">
+	
+	<![CDATA[
+		insert into f_noti values (seq_f_notice.nextVal,  #{noticeNo }, #{orgName }, #{path }, #{saveName })
+		]]>
+	
+	</insert>
+	 
+	
+	
+	<select id="selectFileNotiByNo" parameterType="java.lang.Long" resultType="kr.ac.sungkyul.beautyline.vo.FileNotiVo">
+	<![CDATA[
+	select no, notice_no as noticeNo, org_name as orgName, path, save_name as saveName from f_noti where notice_no =#{noticeNo }
+	]]>
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 
 	<select id="getAll" resultType="noticeboardvo">
 	<![CDATA[
-		select no, title, to_char(reg_date,'yyyy-mm-dd') as regDate, view_count as viewCount  from bd_noti
+		select no, category, title, to_char(reg_date,'yyyy-mm-dd') as regDate, view_count as viewCount  from bd_noti order by no desc
 	]]>
 	</select>
 
+
 	<select id="view" parameterType="java.lang.Integer" resultType="noticeboardvo">
-	<![CDATA[
-		select b.no, b.user_no as userNo, u.name as userName, b.title, b.content, to_char(reg_date,'yyyy-mm-dd pm hh:mi') as regDate, b.view_count as viewCount
-    	from bd_noti b, users u 
-    	where b.no = #{no }
-    	and b.USER_NO = u.NO
-    ]]>
-	</select>
+   	<![CDATA[
+      select b.no, b.category, b.user_no as userNo, u.name as userName, b.title, b.content, to_char(reg_date,'yyyy-mm-dd') as regDate, b.view_count as viewCount
+       from bd_noti b, users u 
+       where b.no = #{no }
+       and b.USER_NO = u.NO
+    	]]>
+  	 </select>
+
 
 
 	<!-- 파일저장 -->

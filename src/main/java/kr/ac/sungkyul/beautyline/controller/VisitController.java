@@ -4,12 +4,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -104,4 +107,34 @@ public class VisitController {
 		UserVo uservi = userService.insertUserNamePhone(uservo);
 		return uservi;
 	}
+	
+
+	/* --  로그인  -- */
+	@RequestMapping("/loginform")
+	public String loginform() {
+		return "visit/loginform";
+	}
+
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String login(HttpSession session,
+
+			@RequestParam(value = "id", required = false, defaultValue = "") String id,
+			@RequestParam(value = "password", required = false, defaultValue = "") String password){
+
+		UserVo authUser = userService.login(id, password);
+		if (authUser == null) {
+			return "redirect:/visit/loginform";
+		}
+		session.setAttribute("authUser", authUser);
+		return "redirect:/visit/visitform";
+	}
+
+	@RequestMapping("/logout")
+	public String logout(HttpSession session) {
+		session.removeAttribute("authUser");
+		session.invalidate(); //
+		return "redirect:/main";
+	}
+	/* -------------- */
+	
 }

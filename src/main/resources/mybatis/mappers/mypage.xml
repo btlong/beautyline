@@ -3,8 +3,7 @@
 
 <mapper namespace="mypage">
 	
-	<select id="listHistory" parameterType="java.lang.Long" 
-	resultType="kr.ac.sungkyul.beautyline.vo.VisitVo">
+	<select id="listHistory" parameterType="java.lang.Long" resultType="kr.ac.sungkyul.beautyline.vo.VisitVo">
 		<![CDATA[
 		SELECT a.no, b.name as program_name, a.reg_date, a.whitening_score, a.wrinkle_score, a.elastic_score, a.moisture_score, a.acne_score, a.average_score 
 		FROM VISIT a, PROGRAM b

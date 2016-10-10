@@ -6,7 +6,11 @@
 <style>
 
 </style>
+<<<<<<< HEAD
 <a href="/beautyline/main" class="brand">BeautyLine</a>
+=======
+<div class="brand"><a href ="/beautyline/main">BeautyLine</a></div>
+>>>>>>> a69f69bf263993a8595615041bf244a157c6834c
 
 
 
@@ -42,12 +46,15 @@
 					class="icon-bar"></span>
 			</button>
 			<!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
-			<a class="navbar-brand" href="index.html">Beauty Line</a>
+			<a class="navbar-brand" href="/beautyline/main">Beauty Line</a>
 		</div>
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li><a href="index.html">소개</a></li>
+				<li><a href="index.html">소개</a>
+				
+				
+				</li>
 				<c:choose>
  					<c:when test="${not empty sessionScope.authUser && authUser.isAdmin eq 'a'}">
 						<li><a href="/beautyline/reserve/reserve">예약</a></li> 					
@@ -56,11 +63,15 @@
  						<li><a href="/beautyline/reserve/userreserve">예약</a></li>
  					</c:otherwise>
  				</c:choose>
-				<li><a class="dropdown-toggle" data-toggle="dropdown" href="">게시판 </a>
-					<ul class="dropdown-menu" id="navdropdown">
+ 				
+
+ 				
+				<li >
+				<a  class="dropdown-toggle"  data-toggle="dropdown" role="button" aria-expanded="true">게시판 </a>
+					<ul class="dropdown-menu" id="navdropdown" role="menu">
 						<li><a href="/beautyline/noticeboard/board">공지사항</a></li>
-				      	<li><a href="#">문의게시판</a></li>
-				      	<li><a href="#">후기게시판</a></li>
+					   	<li><a href="#">문의게시판</a></li>
+				       	<li><a href="#">후기게시판</a></li>
 					</ul>
 				</li>
 				<li><a href="/beautyline/coun/test" >나의피부타입</a></li>

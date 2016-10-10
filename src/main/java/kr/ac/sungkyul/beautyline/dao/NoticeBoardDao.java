@@ -31,27 +31,23 @@ public class NoticeBoardDao {
 	}
 
 	/* 공지사항 글 보기 */
-	public NoticeBoardVo viewBoard(int no){
+	public NoticeBoardVo viewBoard(Long no){
 		return sqlSession.selectOne("noticeboard.view",no);
 	}
 	
 	
-/*	public void insertAttachFile(FileNotiVo fileVo ){ // 게시판 글작성 첨부파일 
-		sqlSession.insert("bbs.insertAttachFile",fileVo);
+	public void insertFileNoti(FileNotiVo fileVo ){ // 게시판 글작성 첨부파일 
+		sqlSession.insert("noticeboard.insertFileNoti",fileVo);
 	}
-*/	
+
 	
-	
-	
-	
-	
-	
-	
-	
-	public FileNotiVo selectAttachFileByNo(Long no){//글 보기를 눌렀을때 첨부파일 이름 가져오기위한 dao
-		FileNotiVo fileVo = sqlSession.selectOne("bbs.selectAttachFileByNo",no);
-		return fileVo;
+	/* 글 보기 눌렀을 때 첨부파일 이름 가져오기  & 다운*/
+	public FileNotiVo selectFileNotiByNo(Long noticeNo){//글 보기를 눌렀을때 첨부파일 이름 가져오기위한 dao
+		return  sqlSession.selectOne("noticeboard.selectFileNotiByNo",noticeNo);
+		
 	}
+	
+
 	
 	/* 공지사항 글 조회수 업뎃 */
 	public void updateViewCount(int no){

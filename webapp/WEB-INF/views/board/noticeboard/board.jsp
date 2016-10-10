@@ -8,16 +8,7 @@
 <html>
 <head>
 
-   <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"
-    rel="stylesheet" type="text/css">
-    <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css"
-    rel="stylesheet" type="text/css">
 
-<!-- <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/united/bootstrap.min.css" rel="stylesheet" integrity="sha384-pVJelSCJ58Og1XDc2E95RVYHZDPb9AVyXsI8NoVpB2xmtxoZKJePbMfE4mlXw7BJ" crossorigin="anonymous">
- -->
 <title>noticeBoard</title>
 
 <meta charset="utf-8">
@@ -30,34 +21,27 @@
 <!-- Bootstrap Core CSS -->
 
 <!-- Custom CSS -->
- <link href="/beautyline/bootstrap/css/business-casual.css"
-	rel="stylesheet"> 
-	<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">
+ <link href="/beautyline/bootstrap/css/business-casual.css" rel="stylesheet"> 
+ <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">
 
-<link href="/beautyline/beautyline/css/include.css" rel="stylesheet">
-<!-- font awesome -->
-<link rel="stylesheet" href="/beautyline/bootstrap/css/font-awesome.min.css" media="screen" title="no title">
-<!-- Custom style -->
-<link rel="stylesheet" href="/beautyline/bootstrap/css/style.css" media="screen" title="no title">
+ <link href="/beautyline/beautyline/css/include.css" rel="stylesheet">
+ <!-- font awesome -->
+ <link rel="stylesheet" href="/beautyline/bootstrap/css/font-awesome.min.css" media="screen" title="no title">
+ <!-- Custom style -->
+ <link rel="stylesheet" href="/beautyline/bootstrap/css/style.css" media="screen" title="no title">
 
 <!-- Fonts -->
-<link
-	href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
-	rel="stylesheet" type="text/css">
-<link
-	href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic"
-	rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
 
 
+<!-- 
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script
-	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<script type="text/javascript"
-	src="/beautyline/bootstrap/js/jquery.js"></script>
+<script type="text/javascript" src="/beautyline/bootstrap/js/jquery.js"></script>
 						
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
 	<!-- 
 <style type="text/css">
@@ -120,7 +104,7 @@ width:50%;
 					<!-- (전체 게시물 갯수-(전체회원수-1))>=1이면 -->
 					<c:if test="${(page.totalRecord -status.index)>=1}">
 					<td>${page.totalRecord -status.index}</td>
-					<td><a href="view?no=${boardList[i].no }">${boardList[i].title}</a></td>
+					<td><a href="view?no=${boardList[i].no }">[${boardList[i].category }] ${boardList[i].title}</a></td>
 					<td>관리자</td>
 					<td>${boardList[i].viewCount}</td>
 					<td>${boardList[i].regDate}</td>

@@ -31,6 +31,10 @@ public class UserinfoDao {
         }
 	}
 	
+	//쿠폰뷰
+/*	public List<CouponVo> selectList(long no) {
+		return sqlSession.selectList("visit.selectCoupon", no);
+	}*/
 	
 	
 	//회원번호에 의한 리스트뽑기
@@ -54,7 +58,9 @@ public class UserinfoDao {
 	public void updateUser(UserinfoVo userinfoVo) {
 		sqlSession.update("userinfo.updateUser", userinfoVo);
 	}
-	
+
+
+
 /*	public CouponviewVo couponView(long userNo) {
 		return sqlSession.selectOne("userinfo.couponView", userNo);
 	}*/

@@ -25,6 +25,12 @@ public class UserinfoService {
         return userinfoDao.findByNo(no);
     }*/
 	
+	// 쿠폰뷰
+/*	public List<CouponVo> couponList(long no) {
+		return userinfoDao.selectList(no);
+	}*/
+
+	
 	// 회원삭제
 	public void deleteUser(long no){
 		userinfoDao.deleteUser(no);
@@ -68,5 +74,7 @@ public class UserinfoService {
         page.setTotalRecord(totalRecord);
         
         return page;
-    } 
+    }
+
+
 }

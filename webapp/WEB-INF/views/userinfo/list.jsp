@@ -82,7 +82,7 @@
 									id="insert-user" type="button" role="button">등록</a>
 							</div>
 
-	
+
 							<!-- 페이지 정보 -->
 							<div id=total-record class="col-lg-12 text-left">
 								▶전체 회원 수 : ${page.totalRecord }명&nbsp; &nbsp; ▶현재 페이지 ( <span
@@ -91,9 +91,10 @@
 							</div>
 
 
+
 							<!-- 회원리스트 -->
 							<div class="col-lg-12 text-center">
-								<table class="table table-hover" id="test">
+								<table class="table table-hover">
 									<thead>
 										<tr class="danger">
 											<th>#</th>
@@ -135,9 +136,10 @@
 														<td>
 															<!-- 쿠폰 조회  --> <!-- Trigger the modal with a button -->
 															<input type="hidden" name="no" value="${listUser[i].no }" />
-															<a class="btn btn-default btn-sm" href="" id="couponview"
+															<a class="btn btn-default btn-sm couponview" href=""
 															data-target="#modalCoupon" type="button"
-															data-toggle="modal" role="button">조회</a>
+															data-toggle="modal" role="button"
+															data-userno="${listUser[i].no}">조회</a>
 														</td>
 
 														<td>
@@ -360,34 +362,65 @@
 
 		
 		$(document).ready(function() {
-			
+			$("#delete").on("click", function() {
+	            confirm($(this).text());
+	        });
 			/* $('#page-block').click(function(i) {
 				 var nowPage=$('#now-page').val;
 				$('#now-page').val= $('#now-page')+i; 
 				  $('#pagemove').submit();
 				}); */
 
-			
+        });
 
-			/*  쿠폰조회 모달 userNo 값 초기화 */
-			$("#couponview").click(function() {
-				var tess = $("#list").val();
-
-				console.log(tess);
-				/* $("#modalCoupon").modal(); */
-
-				/* 	$.ajax({
+			/*  쿠폰조회 모달  */
+			$(".couponview").click(function() {
+				console.log(this);
+				$('#one').html("0");
+				$('#two').html("0");
+				$('#three').html("0");
+				$('#four').html("0");
+				
+				var no = $(this).data("userno");//userno 소문자여야함
+				console.log(no);
+				
+				 	$.ajax({
 						url : "selectCoupon",
 						type : "POST",
-						data : {"userNo" : userNo},
-						
-					}); */
-			});
+						data : {"no" : no},
+						success : function(couponList) {
+							console.log(couponList);
+							$.each(couponList, function(index, couponVo) {
+								if (couponVo.programNo == 1) {
+									$('#one').html(couponVo.count);
+								} else if (couponVo.programNo == 2) {
+									$('#two').html(couponVo.count);
+								} else if (couponVo.programNo == 3) {
+									$('#three').html(couponVo.count);
+								} else if (couponVo.programNo == 4) {
+									$('#four').html(couponVo.count);
+								} else {
+									// count가 0으로가 나도오록 
+								}
+							});
+						}
+					});
+				});
+				
+				
+			/* 	
+				var tess = $("${listUser[i].no}").text();
+				console.log(tess); 
+				 */
+				
+				
+				/* $("#modalCoupon").modal(); */
+
+			
 
 			/* $('#myDropdown').on('shown.bs.dropdown', function() {
 				// do something…
 			}); */
-		});
 	</script>
 
 </body>

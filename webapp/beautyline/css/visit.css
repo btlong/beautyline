@@ -492,3 +492,23 @@ body {
  -webkit-transition-delay:0.2s
 }
 
+.modal-body {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+/* 테이블 선택 */
+.step .activestep {
+    color: #F58723;
+    height: 100%;
+    margin-top: -7px;
+    padding-top: 7px;
+    border-left: 6px solid #68dff0 !important;
+    border-left-width: 6px;
+    border-left-style: solid;
+    border-left-color: rgb(104, 223, 240);
+    border-right: 6px solid #68dff0 !important;
+    border-top: 3px solid #68dff0 !important;
+    border-bottom: 3px solid #68dff0 !important;
+    vertical-align: central;
+}

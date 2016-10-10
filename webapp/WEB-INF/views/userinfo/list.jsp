@@ -91,7 +91,6 @@
 							</div>
 
 
-
 							<!-- 회원리스트 -->
 							<div class="col-lg-12 text-center">
 								<table class="table table-hover" id="test">

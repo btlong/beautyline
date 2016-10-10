@@ -46,6 +46,7 @@
 		<div class="row">
 			<div class="box">
 				<div class="col-lg-12">
+
 					<div class="page-header">
 						<hr>
 						<h1 class="text-center text-center">
@@ -53,6 +54,15 @@
 						</h1>
 						<hr>
 					</div>
+
+					<!-- 페이지 정보 -->
+					<%-- <div id=total-record class="col-lg-12 text-left">
+						▶전체 회원 수 : ${page.totalRecord }명&nbsp; &nbsp; ▶현재 페이지 ( <span
+							id=page-location>${page.nowPage+1 } / ${page.totalPage}
+							페이지</span>)
+					</div> --%>
+					
+					
 					<div class=form-group>
 						<div class="table-responsive">
 							<table class="table table-condensed">

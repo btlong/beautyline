@@ -111,7 +111,6 @@
  
            
            
-           
                
                <div id="loginbt" class="col-lg-12 text-center">
                   <input class="btn btn-danger" type="submit" value="LOGIN">

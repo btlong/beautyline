@@ -176,7 +176,6 @@
 							<c:import url="/WEB-INF/views/include/paging.jsp" />
 
 
-
 							<!-- 검색 -->
 							<%-- <div class="col-lg-12">
 								<form id="search_form" action="/beautyline/userinfo"

@@ -6,14 +6,8 @@
 <style>
 
 </style>
-<<<<<<< HEAD
-<a href="/beautyline/main" class="brand">BeautyLine</a>
-=======
+
 <div class="brand"><a href ="/beautyline/main">BeautyLine</a></div>
->>>>>>> a69f69bf263993a8595615041bf244a157c6834c
-
-
-
 
 <div id="includeheader">
 	<ul id="userheader">

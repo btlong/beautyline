@@ -12,7 +12,7 @@
    
 
 
-<title>modify</title>
+<title>write</title>
 
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -34,9 +34,9 @@
 <link href="/beautyline/bootstrap/css/business-casual.css" rel="stylesheet">
 	
 	
-	<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">
+<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">
 	
-	
+<link rel="stylesheet"href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
 
 
 <!-- font awesome -->
@@ -82,7 +82,12 @@ width :70px;
 padding-left: 0px;
 
 }
-
+#delmodalbody{
+	text-align: center;
+}
+.modal-footer{
+	text-align: center;
+}
 </style>
 
 
@@ -102,7 +107,7 @@ padding-left: 0px;
 				<div class="form-horizontal" id="write-form" >
 					
 					<!-- 제목 -->
-					<div class="form-group" id="divTitle">
+					<div class="form-group" id="divTitle" enctype="multipart/form-data">
 						<div class="col-lg-10 col-lg-offset-1">
 							<label class="col-sm-1 control-label" id= "title_title" for="inputName">제목</label>
 							<!-- select  [공지 or 이벤트] -->
@@ -120,13 +125,28 @@ padding-left: 0px;
 						 </div>
 					</div>
 					
-				 <!-- 첨부파일  -->	
+					
+				 <!-- 첨부파일 삭제  -->	
 				<div class="form-group" >
 				  <div class="col-lg-10 col-lg-offset-1">
 					<label class="col-sm-1 control-label" id= "file_title" for="file">첨부파일</label>
-					<div class="col-lg-2">
-						<input class="btn btn-default" name="file" id="file" type="file">		
-					</div>						
+					<div class="col-lg-2" >
+						<span id="org_fileName">${file.orgName }</span>
+					</div>	
+					<div class="col-lg-2" >
+						<button class="btn btn-danger" id="file_delck">삭제</button>
+						<button class="btn btn-danger" id="file_modick">수정</button>
+					</div>				
+				 </div>
+				</div>
+				
+				 <!-- 첨부파일  -->	
+				<div class="form-group" id= "uploadForm">
+				  <div class="col-lg-10 col-lg-offset-1">
+					<label class="col-sm-1 control-label" id= "file_title" for="file">첨부파일</label>
+					<div class="col-lg-2" >
+						<input class="btn btn-default" name="file" id="file" type="file">
+					</div>					
 				 </div>
 				</div>
 					  
@@ -137,8 +157,8 @@ padding-left: 0px;
  				</div>
  					
 				<div class="col-lg-11 text-right">
-					<button  id="insert" class="btn btn-danger">등록 <span class="glyphicon glyphicon-ok"></span></button>
-					<a href="board" class="btn btn-danger">취소 <span class="glyphicon glyphicon-repeat"></span></a>
+					<button id="modify" class="btn btn-danger">수정 <span class="glyphicon glyphicon-ok"></span></button>
+					<a href="board" class="btn btn-primary">취소 <span class="glyphicon glyphicon-repeat"></span></a>
 				</div>
 			</div>	
 		</div>
@@ -146,13 +166,55 @@ padding-left: 0px;
 			</div>
 			</div>
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
+
+
+<!-- 모달 -->
+<!-- 파일 삭제 -->
+	<div class="modal fade" id="myModal">
+		<div class="modal-dialog">
+		
+		<!-- modal content -->
+		<form class="form-horizontal" id="userInsertForm" method="post">
+			<div class="modal-content">
+				
+			<!-- header -->
+				<div class="modal-header">
+					<!-- 닫기(x) 버튼 -->
+					<button type="button" class="close" data-dismiss="modal">×</button>
+					<!-- header title -->
+					<h4 class="modal-title text-center">
+						<!-- Ajax처리 -->
+						<strong>파일 삭제</strong>
+					</h4>
+				</div>
+				
+			<!-- body -->
+				<div class="modal-body" id="delmodalbody">
+					<h2>정말 삭제 하시겠습니까?</h2> 	
+				</div>
+				
+			<!-- Footer -->
+				<div class="modal-footer">
+				<div class="form-group">
+					<button class="btn btn-danger" type="button" id="delfile">삭제</button>
+					<button data-dismiss="modal" class="btn btn-primary">취소</button>
+				</div>
+				</div>				
+			</div>
+		</form>
+		</div>
+	</div>	
+
+
 </body>
 
 <script >
-
-
-
 $(document).ready(function() {
+	$("#uploadForm").hide();
+	//카테고리 받아오기
+	var categoryseled = "${notiBdVo.category }";
+	$("#category_select").val(categoryseled);
+	
     $('#summernote').summernote({
     	
     	height : 300,
@@ -166,37 +228,114 @@ $(document).ready(function() {
   	
     });
    
+    
+    
+/* 파일 삭제 모달 열기 */
+ 	$("#file_delck").on("click", function(){
+		$("#myModal").modal();
+
+ 	});
+
+ var fileCheck = 0; // 파일이 수정되거나 삭제되었는지 체크하기위함
+/* 파일 삭제 체크 */
+$("#delfile").on("click",function(){
+	fileCheck = 1;
+	
+	$("#org_fileName").css("text-decoration","line-through");
+	$("#myModal").modal('hide');
+	
 });
-$(function(){
-	$("#insert").on("click", function() {
+
+/* 파일 수정 체크 */
+$("#file_modick").on("click",function(){
+	fileCheck = 2;
+	
+	$("#org_fileName").css("text-decoration","line-through");
+	$("#uploadForm").show();
+});
+
+
+/* 파일 삭제 
+	$("#delfile").on("click",function(){
+		var fileNo = "${file.no }";
+		var boardNo = "${notiBdVo.no}";
+		$.ajax({
+			url:"delFile",
+			type:"POST",
+			data: {"fileNo":fileNo,
+					"boardNo": boardNo},
+			success: function(ck){
+				if(ck > 0){
+					
+					$("#org_fileName").css("text-decoration","line-through");
+					$("#myModal").modal('hide');
+
+					console.log("갔다옴"+"${file.no}");
+				}else{
+					console.log("유효하지 않은 정보 입니다.");
+				}
+			}
+			
+		});
+	});
+ 	*/
+ 	
+	$("#modify").on("click", function() {
+		var urlModi = "";
+		var fileNo = "${file.no }";
+		var boardNo = "${notiBdVo.no}";
+
+		if ( fileCheck = 1 ){ //첨부파일 삭제인 경우
+			urlModi = "modify";
+			
+			//첨부파일 삭제
+		
+			$.ajax({
+				url:"delFile",
+				type:"POST",
+				data: {"fileNo":fileNo,
+						"boardNo": boardNo }
+			});
+		
+		} else if ( fileCheck = 2 ){ //수정
+			urlModi = "modifyModiFile";
+		} else { //파일 변경된것 없음--글만 수정
+			urlModi = "modify";
+		}
+		var data = new FormData();
 		var category = $("#category_select").val();
 		var title = $("#inputTitle").val();
-	var content = 	$('#summernote').summernote('code');
-		var NoticeBoardVo ={
-				"category": category,
-				"title" : title,
-				"content": content
-			};
-		
-		
-		console.log(NoticeBoardVo);
+		var content = 	$('#summernote').summernote('code');
+		var file = $("#file")[0].files[0];
+	 	
+		data.append("no",boardNo);
+ 	    data.append("category",category);
+		data.append("title",title);
+		data.append("content",content); 
+	 	data.append("file", file); 
 	
-		$.ajax({// 비동기식 
-			url : "write",
-			type : "POST",
-			data : JSON.stringify(NoticeBoardVo),
-			contentType:"application/json",
-			success : function() {
-				location.href = "board";
-				
-			},
-			error : function(jqXHR, status, error) {
-				console.error(status + ":" + error);
-			}
+		 	$.ajax({// 비동기식 
+				url : urlModi,
+				type : "POST",
+				data : data,
+				dataType:"text",
+		 	 	enctype: "multipart/form-data", 
+				processData: false,
+			    contentType: false,
+			    success : function() {
+					console.log("success");
+					location.href = "board";
+					
+				},
+				error : function(jqXHR, status, error) {
+					console.error(status + ":" + error);
+				}
 		});
-
 	});
-/* 	function sendFile(file, editor, welEditable) {
+	
+	
+	
+/*  	function sendFile(file, editor, welEditable) {
 			data = new FormData();
 			data.append("file", file);
 			console.log(file);
@@ -214,12 +353,8 @@ $(function(){
 					console.error(status + ":" + error);
 				}
 			});
-		} */
+		}  */
 
-		$("#inputTitle").keyup(function() {
-			var markup = $('#summernote').summernote('code');
-			//console.log("출력"+markup);
-		});
-	});
+});
 </script>
 </html>

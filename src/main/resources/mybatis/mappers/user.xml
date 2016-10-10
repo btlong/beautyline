@@ -26,8 +26,7 @@
 
 	<insert id="insert" parameterType="uservo" >
 	<![CDATA[
-		insert into Users values(seq_Users.nextval, #{name }, #{id }, #{password }, #{email }, #{address }, #{phone }, #{agrEmail }, #{agrMessage }, 'y')
-	]]>
+		insert into Users values(seq_Users.nextval, #{name }, #{id }, #{password }, #{email1 }, #{address1 }, #{phone }, #{agrEmail }, #{agrMessage }, 'y', #{email2}, #{zipCode}, #{address2}, #{email } )	]]>
 	</insert>
 	
 	<!-- 이름과 전화번호로 회원가입  -->

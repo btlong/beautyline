@@ -73,7 +73,8 @@ public class NoticeBoardController {
    /*public Object write(MultipartHttpServletRequest request) throws Exception {*/
    public void write(NoticeBoardVo noticeBoardVo,@RequestParam("file") MultipartFile file) throws Exception {
       //if(itr.hasNext()) {
-   
+	   
+	   System.out.println("글쓰기"+noticeBoardVo);
       nBoardService.write(noticeBoardVo, file);
       // }
       
@@ -88,27 +89,74 @@ public class NoticeBoardController {
    /* 글 보기 폼 */
    @RequestMapping(value = "/view", method = RequestMethod.GET)
    public String view(Long no, Model model) {
+	   /* 조회수 업뎃 */
+	  nBoardService.updateViewCount(no);
+	  
       NoticeBoardVo notiBdVo = nBoardService.view(no);
       FileNotiVo file = nBoardService.fileview(no);
+      
       model.addAttribute("file",file);
       model.addAttribute("notiBdVo", notiBdVo);
       return "board/noticeboard/view";
    }
-
    /* 글 수정 폼 */
-   @ResponseBody
-   @RequestMapping(value = "/modify", method = RequestMethod.POST)
-   public void modify(@RequestBody NoticeBoardVo vo) {
-      // nBoardService.modify(vo);
+	@RequestMapping(value = "/modifyform", method = RequestMethod.GET)
+	public String modifyform(Long no, Model model){
+		NoticeBoardVo notiBdVo = nBoardService.view(no);
+	    FileNotiVo file = nBoardService.fileview(no);
+	    
+		model.addAttribute("file",file);
+		model.addAttribute( "notiBdVo", notiBdVo );
+		return"board/noticeboard/modifyform";
 
-   }
-
-   /* 글 삭제 폼 */
-   @RequestMapping(value = "/delete", method = RequestMethod.GET)
-   public void delete(int no) {
-
-   }
-   
+	}
+	
+/*------------------- 수정--------------------  */
+	
+	/* 글 수정 -- 글만 수정 */
+	@ResponseBody
+	@RequestMapping(value = "/modify", method = RequestMethod.POST, produces = "text/html; charset=UTF-8")
+	public String modify(NoticeBoardVo noticeBoardVo) throws Exception{
+		System.out.println("수정전: "+noticeBoardVo);
+		nBoardService.modify(noticeBoardVo);
+		System.out.println("수정후: "+noticeBoardVo);
+		return "redirect:board";
+	}
+	
+	
+	/* 첨부파일 삭제 */
+	@ResponseBody
+	@RequestMapping(value = "/delFile", method = RequestMethod.POST)
+	public void delFile(Long fileNo,Long boardNo,Model model){
+		nBoardService.delFile(fileNo);		
+		
+	}   
+	
+	
+	
+	
+	
+	
+   /*글 삭제 폼*/
+	@RequestMapping(value = "/deleteform", method = RequestMethod.GET)
+	public String deleteform(Long no, Model model){
+		model.addAttribute( "no", no );
+		return "board/noticeboard/deleteform";
+	}
+	
+	/*글 삭제 */
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	public String delete(Long no){
+		int cnt = nBoardService.delete(no);
+		if( cnt >0 ){
+			return "redirect:board";
+		}else{
+			return "board/noticeboard/error";
+		}
+		
+	}
+	
+	
    /* 첨부파일 다운로드 */
    @RequestMapping(value = "download", method = RequestMethod.GET)
    public void downloadFile(Long no, HttpServletResponse res) throws Exception {
@@ -119,7 +167,7 @@ public class NoticeBoardController {
       res.setHeader("Content-disposition", "attachment; filename=\"" + URLEncoder.encode(orgName,"UTF-8") +"\""); // orgname으로 바꿔서 보내준다.
       OutputStream resOut = res.getOutputStream();
    
-      FileInputStream fin = new FileInputStream("c:\\Users\\S401-11\\Downloads\\filestore\\"+saveName); // savename을  orgname으로 바꿔서 보내준다.
+      FileInputStream fin = new FileInputStream("C:\\Users\\User\\Download2\\filestore\\"+saveName); // savename을  orgname으로 바꿔서 보내준다.
       FileCopyUtils.copy(fin, resOut);
       fin.close();
        

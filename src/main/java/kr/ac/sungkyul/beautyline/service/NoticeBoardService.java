@@ -42,7 +42,7 @@ public class NoticeBoardService {
 		String saveName = UUID.randomUUID().toString() + "_" + orgName;
 
 		// 6. path
-		String path = "c:\\Users\\S401-11\\Downloads\\filestore";
+		String path = "C:\\Users\\User\\Download2\\filestore\\";
 		FileNotiVo noticeFile = new FileNotiVo();
 
 		noticeFile.setNoticeNo(noticeNo);
@@ -65,12 +65,12 @@ public class NoticeBoardService {
 	
 
 	/* 공지사항 글 조회수 업뎃 */
-	public void updateViewCount( int no ){
+	public void updateViewCount( Long no ){
 		nBoardDao.updateViewCount(no);
 	}
 	
 	/* 공지사항 글 삭제 */
-	public int delete( int no ){
+	public int delete( Long no ){
 		 return nBoardDao.delete(no);
 	}
 	
@@ -78,12 +78,55 @@ public class NoticeBoardService {
 	public FileNotiVo fileview(Long noticeNo){//볼때
 		return nBoardDao.selectFileNotiByNo(noticeNo);
 	}
+
+/*------------------- 수정--------------------  */
+	/* 글만 수정 */
+	public void modify(NoticeBoardVo noticeBoardVo){
+		nBoardDao.modify(noticeBoardVo);
+	}
+	
+	
+	/* 글 수정 */
+	public void modify2(NoticeBoardVo noticeBoardVo, MultipartFile file)throws Exception {
+		
+		nBoardDao.modify(noticeBoardVo);
+		Long noticeNo = noticeBoardVo.getNo();
+		
+		// 2. orgName
+		String orgName = file.getOriginalFilename();
+
+		// 4. fileSize 리사이징할때
+		// long fileSize = file.getSize();
+
+		// 5. saveName
+		String saveName = UUID.randomUUID().toString() + "_" + orgName;
+
+		// 6. path
+		String path = "C:\\Users\\User\\Download2\\filestore\\";
+		FileNotiVo noticeFile = new FileNotiVo();
+
+		noticeFile.setNoticeNo(noticeNo);
+		noticeFile.setOrgName(orgName);
+		noticeFile.setPath(path);
+		noticeFile.setSaveName(saveName);
+		nBoardDao.insertFileNoti(noticeFile);
+
+		File target = new File(path, saveName);
+		FileCopyUtils.copy(file.getBytes(), target);
+
+	}
+	
 	
 /*	 파일 다운로드 ! 	
 	public FileNotiVo selectAttachFileByFno(Long no){//다운로드를위해
 		return nBoardDao.selectAttachFileByFno(no);
 		
 	}*/
+	
+	/* 파일 삭제 */
+	public int delFile(Long fileNo){
+		return nBoardDao.delFile(fileNo);
+	}
 	
 	
 	

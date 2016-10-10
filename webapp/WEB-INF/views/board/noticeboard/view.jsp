@@ -84,67 +84,7 @@
 
 </head>
 <body>
-<<<<<<< HEAD
-	<c:import url="/WEB-INF/views/include/header.jsp" />
 
-	<div class="container">
-		<div class="row">
-			<div class="box">
-				<div class="col-lg-12">
-					<div class="page-header"></div>
-					
-					<div class="col-md-2"></div>
-					<div class="col-md-9" id="title">
-					
-					  <table>
-                		<tbody>
-	                		<tr>                 
-		                	<td id="titletxt">
-		                        <span>${notiBdVo.title }</span>
-		                    </td>
-		                    <td id="titleInfo">
-		                    	<span id="userName">관리자</span> &nbsp;
-		                        <span id="date">${notiBdVo.regDate }</span>
-		                    <td>
-		                    
-		                    </td>
-	                        </tr>
-	                    </tbody>
-                      </table>
-
-					
-						<div id="bdhr"></div>
-						
-						<div id="userNametxt">관리자</div>
-						<div id="contents">
-							${notiBdVo.content }
-						</div>
-						
-						
-						
-						<div id="bdhr"></div>						
-					</div>
-					
-				
-				<div class="col-md-2"></div>
-				<div class="col-md-9 text-right" id="bottombtns">
-				
-          		<c:if test="${authUser.isAdmin eq 'a'}">
-					<a href="deleteform?no=${notiBdVo.no }" class="btn btn-sm btn-danger">삭제 <span class="glyphicon glyphicon-trash"></span></a>
-					<a href="modifyform?no=${notiBdVo.no }" class="btn btn-sm btn-success">글 수정 <span class="glyphicon glyphicon-pencil"></span></a>
-				</c:if>
-				<a href="board" class="btn btn-sm btn-primary">목록 <span class="glyphicon glyphicon-th-list"></span></a>
-				
-				</div>
-				
-			</div>
-		</div>
-					
-		</div>
-	</div>			
-
-	<c:import url="/WEB-INF/views/include/footer.jsp" />
-=======
    <c:import url="/WEB-INF/views/include/header.jsp" />
 
    <div class="container">
@@ -215,7 +155,6 @@
    </div>         
 
    <c:import url="/WEB-INF/views/include/footer.jsp" />
->>>>>>> a69f69bf263993a8595615041bf244a157c6834c
 
 </body>
 

@@ -2,9 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mypage">
+<<<<<<< HEAD
 
 	<select id="listHistory" parameterType="listvo" 
 	resultType="visitvo">
+=======
+	
+	<select id="listHistory" parameterType="java.lang.Long" resultType="kr.ac.sungkyul.beautyline.vo.VisitVo">
+>>>>>>> 3b1f7ddca3b01002fdf95b16743b5b8443d54fd1
 		<![CDATA[
 		  SELECT * FROM (     SELECT rownum as rnum, c.* FROM 
             (SELECT 
@@ -29,6 +34,5 @@
 		SELECT count(*) FROM VISIT WHERE user_no = #{userNo }
 		]]>
 	</select>
-	
 	
 </mapper>

@@ -15,6 +15,7 @@ public class MypageService {
 	@Autowired
 	private MypageDao mypageDao;
 	
+<<<<<<< HEAD
 	public ListVo listHistory(ListVo listVo) {
 		
 		final int PAGE_RECORDS = 10;
@@ -116,6 +117,11 @@ public class MypageService {
 		
 		
 		return listVo;
+=======
+	public List<VisitVo> listHistory(Long userNo) {
+		List<VisitVo> listHistory = mypageDao.listHistory(userNo);
+		return listHistory;
+>>>>>>> 3b1f7ddca3b01002fdf95b16743b5b8443d54fd1
 	}
 
 }

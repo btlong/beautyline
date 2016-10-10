@@ -173,37 +173,7 @@
 
 
 							<!-------------Paging--------------->
-							<div class="col-lg-12 text-center">
-								<nav>
-									<ul class="pagination pagination-sm">
-										<c:if test="${page.totalRecord !=0}">
-											<!-- 이전 -->
-											<c:if test="${page.nowBlock >0 }">
-												<li id="previous"><span aria-hidden="true">&laquo;</span></li>
-											</c:if>
-
-											<!-- 페이지블럭 -->
-											<c:set var="doneLoop2" value="false" />
-											<c:forEach begin="0" end="${page.pagePerBlock-1 }" var="i">
-												<c:if test="${not doneLoop2 }">
-													<li id="page-block"><a
-														href="javascript:pagemove(${i })">
-															${(page.nowBlock*page.pagePerBlock)+i+1}</a></li>
-													<c:if
-														test="${(page.pagePerBlock*page.nowBlock+i+1) == page.totalPage }">
-														<c:set var="doneLoop2" value="true" />
-													</c:if>
-												</c:if>
-											</c:forEach>
-
-											<!-- 다음 -->
-											<c:if test="${page.totalBlock > page.nowBlock+1 }">
-												<li id="following"><span aria-hidden="true">&raquo;</span></li>
-											</c:if>
-										</c:if>
-									</ul>
-								</nav>
-							</div>
+							<c:import url="/WEB-INF/views/include/paging.jsp" />
 
 
 
@@ -389,28 +359,16 @@
 			document.search.submit();
 		}
 
-		/*  paging*/
-		function pagemove(i) {
-			var nowPage = document.pagemove.nowPage.value;
-			document.pagemove.nowPage.value = Number(nowPage) + Number(i);
-			document.pagemove.submit();
-		}
-
+		
 		$(document).ready(function() {
-			/*  paging*/
-			$('#previous').click(function() {
-				$('#blockmoveb').submit();
-			});
-
+			
 			/* $('#page-block').click(function(i) {
 				 var nowPage=$('#now-page').val;
 				$('#now-page').val= $('#now-page')+i; 
 				  $('#pagemove').submit();
 				}); */
 
-			$('#following').click(function() {
-				$('#blockmovef').submit();
-			});
+			
 
 			/*  쿠폰조회 모달 userNo 값 초기화 */
 			$("#couponview").click(function() {

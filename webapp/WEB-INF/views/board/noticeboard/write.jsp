@@ -160,9 +160,9 @@ $(document).ready(function() {
     	maxHeight : null,
     	focus : true,
     	lang : 'ko-KR',
-    	 onImageUpload : function(files, editor, welEditable) {
+/*     	 onImageUpload : function(files, editor, welEditable) {
              sendFile(files[0], editor, welEditable);
-         }
+         } */
   	
     });
    
@@ -196,9 +196,10 @@ $(function(){
 		});
 
 	});
-	function sendFile(file, editor, welEditable) {
+/* 	function sendFile(file, editor, welEditable) {
 			data = new FormData();
 			data.append("file", file);
+			console.log(file);
 			$.ajax({
 				url : "imaUpload",
 				type : "POST",
@@ -213,7 +214,7 @@ $(function(){
 					console.error(status + ":" + error);
 				}
 			});
-		}
+		} */
 
 		$("#inputTitle").keyup(function() {
 			var markup = $('#summernote').summernote('code');

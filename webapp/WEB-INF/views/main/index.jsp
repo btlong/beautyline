@@ -60,7 +60,7 @@
 						<div class="carousel-inner">
 							<div class="item active">
 								<img class="img-responsive img-full"
-									src="bootstrap/img/slide-1.jpg" alt="">
+									src="images/main1.png" alt="">
 							</div>
 							<div class="item">
 								<img class="img-responsive img-full"

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.ac.sungkyul.beautyline.dao.UserinfoDao;
+import kr.ac.sungkyul.beautyline.vo.CouponVo;
 import kr.ac.sungkyul.beautyline.vo.PageVo;
 import kr.ac.sungkyul.beautyline.vo.UserinfoVo;
 
@@ -26,8 +27,21 @@ public class UserinfoService {
     }*/
 	
 	// 쿠폰뷰
-/*	public List<CouponVo> couponList(long no) {
+	public List<CouponVo> couponList(long no) {
 		return userinfoDao.selectList(no);
+	}
+	
+	// 쿠폰수정
+	/*public void updateCouponList(CouponVo couponvo) {
+		//CouponVo couponVo = new CouponVo();
+		
+		
+		System.out.println("///"+couponvo);
+		CouponVo no = userinfoDao.updateCouponList(couponvo);
+		//Long userno =couponvo.getUserNo();
+		int updateCouponList = userinfoDao.updateCouponList(couponvo);
+		System.out.println("////"+updateCouponList);
+		//return updateCouponList;
 	}*/
 
 	
@@ -75,6 +89,7 @@ public class UserinfoService {
         
         return page;
     }
+
 
 
 }

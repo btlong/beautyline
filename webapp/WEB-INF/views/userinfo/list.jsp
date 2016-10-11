@@ -294,7 +294,7 @@
 					</div>
 					<div class="modal-body">
 						<!-- program name,coupon count  -->
-						<table class="table table-hover">
+						<table class="table">
 							<thead>
 								<tr class="danger">
 									<th>프로그램이름</th>
@@ -305,20 +305,21 @@
 							<tbody>
 								<tr>
 									<td>베이직 케어</td>
-									<td id="one"></td>
+									<td><input class="form-control input-sm" type=text id="one"></td>
 								</tr>
 								<tr>
 									<td>미백 케어</td>
-									<td id="two"></td>
+									<td><input class="form-control input-sm" type=text id="two"></td>
 								</tr>
 								<tr>
 									<td>주름 케어</td>
-									<td id="three"></td>
+									<td><input class="form-control input-sm" type=text id="three"></td>
 								</tr>
 								<tr>
 									<td>여드름 케어</td>
-									<td id="four"></td>
+									<td><input class="form-control input-sm" type=text id="four"></td>
 								</tr>
+								<tr><td><input type=text id="coupon-userno" value=""></td></tr>
 								<%-- <c:forEach items="${couponView }" var="couponinfoVo"
 									varStatus="status">
 									<tr>
@@ -330,6 +331,7 @@
 									</tr>
 								</c:forEach> --%>
 							</tbody>
+							 <tfoot></tfoot>
 						</table>
 					</div>
 
@@ -338,7 +340,7 @@
 							<input class="btn btn-default" type="button"
 								id="couponCountModify" value="수정">
 							<button type="button" class="btn btn-default"
-								data-dismiss="modal">닫기</button>
+								data-dismiss="modal">취소</button>
 						</div>
 					</div>
 				</form>
@@ -363,7 +365,7 @@
 		
 		$(document).ready(function() {
 			$("#delete").on("click", function() {
-	            confirm($(this).text());
+	            alert($(this).text());
 	        });
 			/* $('#page-block').click(function(i) {
 				 var nowPage=$('#now-page').val;
@@ -375,14 +377,14 @@
 
 			/*  쿠폰조회 모달  */
 			$(".couponview").click(function() {
-				console.log(this);
-				$('#one').html("0");
-				$('#two').html("0");
-				$('#three').html("0");
-				$('#four').html("0");
+				//console.log(this);//.couponview 버튼
+				$('#one').val("0");
+				$('#two').val("0");
+				$('#three').val("0");
+				$('#four').val("0");
 				
 				var no = $(this).data("userno");//userno 소문자여야함
-				console.log(no);
+				console.log(no);//userno 받아옴
 				
 				 	$.ajax({
 						url : "selectCoupon",
@@ -392,31 +394,75 @@
 							console.log(couponList);
 							$.each(couponList, function(index, couponVo) {
 								if (couponVo.programNo == 1) {
-									$('#one').html(couponVo.count);
+									$('#one').val(couponVo.count);
 								} else if (couponVo.programNo == 2) {
-									$('#two').html(couponVo.count);
+									$('#two').val(couponVo.count);
 								} else if (couponVo.programNo == 3) {
-									$('#three').html(couponVo.count);
+									$('#three').val(couponVo.count);
 								} else if (couponVo.programNo == 4) {
-									$('#four').html(couponVo.count);
+									$('#four').val(couponVo.count);
 								} else {
 									// count가 0으로가 나도오록 
 								}
 							});
+							$('#coupon-userno').val(no);
 						}
 					});
+				
+			/* 쿠폰모달 수정버튼 클릭 */
+			$("#couponCountModify").on("click", function(){
+				var one = $('#one').val();
+				var two = $('#two').val();
+				var three = $('#three').val();
+				var four = $('#four').val();
+				var userno = $('#coupon-userno').val();
+				
+				alert(userno);
+				
+				var couponvo = { 
+						"one" : one,
+						"two" : two,
+						"three" : three,
+						"four" : four,
+						"userno" : userno,
+				};
+				console.log(couponvo);
+				
+				$.ajax({
+					url : "updateCoupon",
+					type : "POST",
+					data : JSON.stringify(couponvo),
+					dataType: "JSON",
+					contentType : "application/json"
+					/* success : function(uservi){
+						nameSearch = uservi.name;
+						userNo = uservi.no;
+						userName = uservi.name;
+						 //예약세부내용 사용자 정보 추가'임효빈:01029392382'
+						UserSelected = uservi.name + " : " + uservi.phone;
+						userSelectCk.text(UserSelected); 
+						if( uservi =! null){
+							dbCk = 'y';
+						}
+						if( dbCk=='y' ){
+							alert("회원이 추가 되었습니다.");
+							return true;
+						}else{
+							alert("유효하지 않은 정보 입니다.");
+							return false;
+						}
+					}  */
 				});
 				
-				
-			/* 	
-				var tess = $("${listUser[i].no}").text();
-				console.log(tess); 
-				 */
-				
-				
-				/* $("#modalCoupon").modal(); */
+				/* $("#modalCoupon").modal('hide'); */
 
+			});
 			
+			
+				});
+				
+			
+					
 
 			/* $('#myDropdown').on('shown.bs.dropdown', function() {
 				// do something…

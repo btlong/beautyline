@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.ac.sungkyul.beautyline.service.UserService;
 import kr.ac.sungkyul.beautyline.service.UserinfoService;
@@ -20,6 +21,7 @@ import kr.ac.sungkyul.beautyline.vo.CouponVo;
 import kr.ac.sungkyul.beautyline.vo.PageVo;
 import kr.ac.sungkyul.beautyline.vo.UserVo;
 import kr.ac.sungkyul.beautyline.vo.UserinfoVo;
+import kr.ac.sungkyul.beautyline.vo.VisitVo;
 
 @Controller
 @RequestMapping("/userinfo")
@@ -70,26 +72,42 @@ public class UserinfoController {
 	 * userinfoService.couponList(no); System.out.println(couponList);
 	 * retVal.put("couponList", couponList); return retVal; }
 	 */
+	
+	//쿠폰뷰
 	@ResponseBody
 	@RequestMapping(value = "selectCoupon", method = RequestMethod.POST)
 	public List<CouponVo> readBoardAjax(long no) {
-		System.out.println(no);
-		/* UserinfoVo userinfoVo = userinfoService.selectUser(no); */
-		List<CouponVo> couponList = visitService.couponList(no);
-		System.out.println(couponList);
+		//System.out.println(no);
+		//UserinfoVo userinfoVo = userinfoService.selectUser(no);
+		List<CouponVo> couponList = userinfoService.couponList(no);
+		//System.out.println(couponList.toString());
 		return couponList;
 	}
+	
+	//쿠폰 수정
+	@ResponseBody
+	@RequestMapping(value = "updateCoupon", method = RequestMethod.POST)
+	public List<CouponVo> updateCoupon(@RequestBody CouponVo couponvo){
+		//System.out.println("+++"+couponvo);
+		//userinfoService.updateCouponList(couponvo);
+		List<CouponVo> couponList = userinfoService.couponList(couponvo.getUserNo());
+		System.out.println("++"+couponList);
+		//return couponUpdate;
+		return couponList;
+		//return null;
+	}
+
 
 	// 회원삭제
 	@RequestMapping(value = "delete", method = RequestMethod.POST)
-	public String modifyUser(long no) {
+	public String modifyUser(Long no) {
 		userinfoService.deleteUser(no);
 		return "redirect:list";
 	}
 
 	// 수정폼
 	@RequestMapping(value = "modifyuser", method = RequestMethod.GET)
-	public String modifyUser(long no, Model model) {
+	public String modifyUser(Long no, Model model) {
 		UserinfoVo userinfoVo = userinfoService.selectUser(no);
 		model.addAttribute("UserinfoVo", userinfoVo);
 		return "userinfo/modifyuser";

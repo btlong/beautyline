@@ -8,6 +8,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.ac.sungkyul.beautyline.vo.CouponVo;
+import kr.ac.sungkyul.beautyline.vo.UserVo;
 import kr.ac.sungkyul.beautyline.vo.UserinfoVo;
 
 @Repository
@@ -32,15 +34,18 @@ public class UserinfoDao {
 	}
 	
 	//쿠폰뷰
-/*	public List<CouponVo> selectList(long no) {
-		return sqlSession.selectList("visit.selectCoupon", no);
-	}*/
+	public List<CouponVo> selectList(Long no) {
+		return sqlSession.selectList("userinfo.selectCoupon", no);
+	}
 	
 	
-	//회원번호에 의한 리스트뽑기
-	/*public UserinfoVo findByNo(int no) {
-		return sqlSession.selectOne("userinfo.findByNo",no);
-    }*/
+	//쿠폰수정
+	public int updateCouponList(CouponVo couponvo) {
+		System.out.println("//"+couponvo);
+		int updateCouponList = sqlSession.update("userinfo.updateCoupon", couponvo);
+		//return null;
+		return updateCouponList;
+	}
 	
      
 	
@@ -58,6 +63,7 @@ public class UserinfoDao {
 	public void updateUser(UserinfoVo userinfoVo) {
 		sqlSession.update("userinfo.updateUser", userinfoVo);
 	}
+
 
 
 

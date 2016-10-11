@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,71 +27,91 @@ import kr.ac.sungkyul.beautyline.vo.PageVo;
 @RequestMapping("/noticeboard")
 public class NoticeBoardController {
 
-   @Autowired
-   private NoticeBoardService nBoardService;
+	@Autowired
+	private NoticeBoardService nBoardService;
 
-   @Autowired
-   private PageService pageService;
+	@Autowired
+	private PageService pageService;
+	
+	//소연시작
+	/* 게시판 리스트 */
+	   @RequestMapping("board")
+	   public String list(Model model, @RequestParam(value = "nowPage", required = false) Integer nowPage,
+	         @RequestParam(value = "nowBlock", required = false) Integer nowBlock
+	   /*
+	    * @RequestParam(value = "keyField", required=false) String keyField,
+	    * 
+	    * @RequestParam(value = "keyWord", required=false) String keyWord
+	    */) {
+	      List<NoticeBoardVo> boardList = nBoardService.getAll();
+	      PageVo page = null;
+	      try {
+	         page = pageService.pagingProc(nowPage, nowBlock, boardList.size());
+	      } catch (Exception err) {
+	         page = pageService.pagingProc(0, 0, boardList.size());
+	      }
+	      model.addAttribute("boardList", boardList);
+	      model.addAttribute("page", page);
+	      /*
+	       * model.addAttribute("keyField", keyField);
+	       * model.addAttribute("keyWord", keyWord);
+	       */
+	      return "board/noticeboard/board";
+	   }
+	
+	
+	   /* 글 보기 폼 */
+	   @RequestMapping(value = "/view", method = RequestMethod.GET)
+	   public String view(Long no, Model model) {
+		   /* 조회수 업뎃 */
+		  nBoardService.updateViewCount(no);
+		  
+	      NoticeBoardVo notiBdVo = nBoardService.view(no);
+	      FileNotiVo file = nBoardService.fileview(no);
+	      
+	      model.addAttribute("file",file);
+	      model.addAttribute("notiBdVo", notiBdVo);
+	      return "board/noticeboard/view";
+	   }
 
-   /* 게시판 리스트 */
-   @RequestMapping("board")
-   public String list(Model model, @RequestParam(value = "nowPage", required = false) Integer nowPage,
-         @RequestParam(value = "nowBlock", required = false) Integer nowBlock
-  ) {
-      List<NoticeBoardVo> boardList = nBoardService.getAll();
-      PageVo page = null;
-      try {
 
-         page = pageService.pagingProc(nowPage, nowBlock, boardList.size());
-      } catch (Exception err) {
-         page = pageService.pagingProc(0, 0, boardList.size());
-      }
-      model.addAttribute("boardList", boardList);
-      model.addAttribute("page", page);
-    
-      return "board/noticeboard/board";
-   }
-
-
-   /* 글쓰기 폼 */
-   @RequestMapping("/writeform")
-   public String writeform() {
-      return "board/noticeboard/write";
-   }
-
-   /* 글쓰기 */
-   @ResponseBody
-   @RequestMapping(value = "/write", method = RequestMethod.POST,  produces = "text/html; charset=UTF-8")
-   public void write(NoticeBoardVo noticeBoardVo,@RequestParam("file") MultipartFile file) throws Exception {
 	   
-      nBoardService.write(noticeBoardVo, file);
+	/* 글쓰기 폼 */
+	@RequestMapping("/writeform")
+	public String writeform() {
+		return "board/noticeboard/write";
+	}
 
-   }
-
-   /* 글 보기 폼 */
-   @RequestMapping(value = "/view", method = RequestMethod.GET)
-   public String view(Long no, Model model) {
-	   /* 조회수 업뎃 */
-	  nBoardService.updateViewCount(no);
-	  
-      NoticeBoardVo notiBdVo = nBoardService.view(no);
-      FileNotiVo file = nBoardService.fileview(no);
-      
-      model.addAttribute("file",file);
-      model.addAttribute("notiBdVo", notiBdVo);
-      return "board/noticeboard/view";
-   }
-   /* 글 수정 폼 */
-	@RequestMapping(value = "/modifyform", method = RequestMethod.GET)
-	public String modifyform(Long no, Model model){
-		NoticeBoardVo notiBdVo = nBoardService.view(no);
-	    FileNotiVo file = nBoardService.fileview(no);
-	    
-		model.addAttribute("file",file);
-		model.addAttribute( "notiBdVo", notiBdVo );
-		return"board/noticeboard/modifyform";
+	/* 글쓰기 */
+	@ResponseBody
+	@RequestMapping(value = "/write", method = RequestMethod.POST,  produces = "text/html; charset=UTF-8")
+	/*public Object write(MultipartHttpServletRequest request) throws Exception {*/
+	public void write(NoticeBoardVo noticeBoardVo) throws Exception {
+		nBoardService.write(noticeBoardVo);
+	
 
 	}
+	
+	/* 글쓰기 +파일 */
+	@ResponseBody
+	@RequestMapping(value = "/writefile", method = RequestMethod.POST,  produces = "text/html; charset=UTF-8")
+	/*public Object write(MultipartHttpServletRequest request) throws Exception {*/
+	public void write(NoticeBoardVo noticeBoardVo,@RequestParam("file") MultipartFile file) throws Exception {
+		//if(itr.hasNext()) {
+
+		nBoardService.write(noticeBoardVo, file);
+
+		// }
+	   
+	  /*  return true;
+        } else {
+            return false;
+        }*/
+	 
+
+	}
+	
+	
 	
 /*------------------- 수정--------------------  */
 	
@@ -124,10 +143,12 @@ public class NoticeBoardController {
 		//nBoardService.modify(noticeBoardVo, file);
 		
 	}
-	
+
 /*--------------------------------------------  */
 	
 	
+	
+
 	
    /*글 삭제 폼*/
 	@RequestMapping(value = "/deleteform", method = RequestMethod.GET)
@@ -163,7 +184,12 @@ public class NoticeBoardController {
       FileCopyUtils.copy(fin, resOut);
       fin.close();
        
-    }
+   }
 
    
-}
+
+	    
+	 }
+ //소연이
+   
+

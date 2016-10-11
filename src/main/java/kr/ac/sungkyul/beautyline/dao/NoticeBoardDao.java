@@ -52,6 +52,7 @@ public class NoticeBoardDao {
 	/* 공지사항 글 조회수 업뎃 */
 	public void updateViewCount(Long no){
 		sqlSession.update("noticeboard.updateviewcnt",no);
+
 	}
 	
 

@@ -1,0 +1,9 @@
+diff a/src/main/java/kr/ac/sungkyul/beautyline/controller/NoticeBoardController.java b/src/main/java/kr/ac/sungkyul/beautyline/controller/NoticeBoardController.java	(rejected hunks)
+@@ -10,6 +10,7 @@
+ import org.springframework.web.bind.annotation.RequestMethod;
+ import org.springframework.web.bind.annotation.RequestParam;
+ import org.springframework.web.bind.annotation.ResponseBody;
++
+ import kr.ac.sungkyul.beautyline.service.NoticeBoardService;
+ import kr.ac.sungkyul.beautyline.service.PageService;
+ import kr.ac.sungkyul.beautyline.vo.NoticeBoardVo;

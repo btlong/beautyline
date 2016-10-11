@@ -26,10 +26,13 @@ public class NoticeBoardService {
 		List<NoticeBoardVo> list = nBoardDao.getAll();		
 		return list;	
 	}
+	public void write(NoticeBoardVo noticeBoardVo){
+		nBoardDao.insertBoard(noticeBoardVo);
+	}
+	
 	
 	/* 글쓰기	*/
 	public void write(NoticeBoardVo noticeBoardVo, MultipartFile file)throws Exception {
-		
 		Long noticeNo = nBoardDao.insertBoard(noticeBoardVo);
 		
 		// 2. orgName

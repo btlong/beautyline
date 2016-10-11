@@ -306,6 +306,7 @@
 								<tr>
 									<td>베이직 케어</td>
 									<td><input class="form-control input-sm" type=text id="one"></td>
+									
 								</tr>
 								<tr>
 									<td>미백 케어</td>
@@ -374,7 +375,7 @@
 				}); */
 
         });
-
+var basic="";
 			/*  쿠폰조회 모달  */
 			$(".couponview").click(function() {
 				//console.log(this);//.couponview 버튼
@@ -386,6 +387,7 @@
 				var no = $(this).data("userno");//userno 소문자여야함
 				console.log(no);//userno 받아옴
 				
+				
 				 	$.ajax({
 						url : "selectCoupon",
 						type : "POST",
@@ -395,6 +397,9 @@
 							$.each(couponList, function(index, couponVo) {
 								if (couponVo.programNo == 1) {
 									$('#one').val(couponVo.count);
+									console.log("쿠폰 Vo : " + couponVo.no);
+									basic = couponVo.no;
+									console.log("확인"+basic);
 								} else if (couponVo.programNo == 2) {
 									$('#two').val(couponVo.count);
 								} else if (couponVo.programNo == 3) {
@@ -411,13 +416,21 @@
 				
 			/* 쿠폰모달 수정버튼 클릭 */
 			$("#couponCountModify").on("click", function(){
-				var one = $('#one').val();
-				var two = $('#two').val();
-				var three = $('#three').val();
-				var four = $('#four').val();
-				var userno = $('#coupon-userno').val();
+				var no = basic;
+				var count = $('#one').val();
 				
-				alert(userno);
+				var couponvo = { 
+						"no": no,
+						"count":count,
+				};
+				
+		//	var two = $('#two').val();
+			//	var three = $('#three').val();
+			//	var four = $('#four').val();
+			//	var userno = $('#coupon-userno').val();
+				
+				/* 
+				
 				
 				var couponvo = { 
 						"one" : one,
@@ -426,16 +439,27 @@
 						"four" : four,
 						"userno" : userno,
 				};
-				console.log(couponvo);
+				console.log(couponvo); */
 				
 				$.ajax({
 					url : "updateCoupon",
 					type : "POST",
 					data : JSON.stringify(couponvo),
-					dataType: "JSON",
-					contentType : "application/json"
-					/* success : function(uservi){
-						nameSearch = uservi.name;
+					//dataType: "JSON",
+					contentType : "application/json",
+					 success : function(ck){
+						 if(ck >0){
+							 alert("수정되었습니다");
+							 $("#one").css("background-color","#FFE793");
+								return true;
+
+						 }else{
+								alert("유효하지 않은 정보 입니다.");
+								return false;
+
+						 }
+						 
+						/*nameSearch = uservi.name;
 						userNo = uservi.no;
 						userName = uservi.name;
 						 //예약세부내용 사용자 정보 추가'임효빈:01029392382'
@@ -450,10 +474,10 @@
 						}else{
 							alert("유효하지 않은 정보 입니다.");
 							return false;
-						}
-					}  */
+						}*/
+					}  
 				});
-				
+				 $("#modalCoupon").modal('hide');
 				/* $("#modalCoupon").modal('hide'); */
 
 			});

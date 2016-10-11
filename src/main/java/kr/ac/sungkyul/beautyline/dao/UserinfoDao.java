@@ -40,11 +40,12 @@ public class UserinfoDao {
 	
 	
 	//쿠폰수정
-	public int updateCouponList(CouponVo couponvo) {
+	public int updateCoupon(CouponVo couponvo) {
 		System.out.println("//"+couponvo);
-		int updateCouponList = sqlSession.update("userinfo.updateCoupon", couponvo);
+		return sqlSession.update("userinfo.updateCoupon", couponvo);
+		//int updateCouponList = 
 		//return null;
-		return updateCouponList;
+		//return updateCouponList;
 	}
 	
      

@@ -80,21 +80,20 @@ public class UserinfoController {
 		//System.out.println(no);
 		//UserinfoVo userinfoVo = userinfoService.selectUser(no);
 		List<CouponVo> couponList = userinfoService.couponList(no);
-		//System.out.println(couponList.toString());
+		System.out.println(couponList.toString());
 		return couponList;
 	}
 	
 	//쿠폰 수정
 	@ResponseBody
 	@RequestMapping(value = "updateCoupon", method = RequestMethod.POST)
-	public List<CouponVo> updateCoupon(@RequestBody CouponVo couponvo){
-		//System.out.println("+++"+couponvo);
-		//userinfoService.updateCouponList(couponvo);
-		List<CouponVo> couponList = userinfoService.couponList(couponvo.getUserNo());
-		System.out.println("++"+couponList);
-		//return couponUpdate;
-		return couponList;
-		//return null;
+	public int updateCoupon(@RequestBody CouponVo couponvo){
+		/*List<CouponVo> couponList = userinfoService.couponList(couponvo.getUserNo());*/
+	/*	System.out.println("++"+couponList);*/
+		
+		System.out.println("왔쟈"+couponvo);
+		int ck = userinfoService.updateCoupon(couponvo);
+		return ck;
 	}
 
 

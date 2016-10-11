@@ -32,17 +32,21 @@ public class UserinfoService {
 	}
 	
 	// 쿠폰수정
-	/*public void updateCouponList(CouponVo couponvo) {
+	public int updateCoupon(CouponVo couponvo) {
+		return userinfoDao.updateCoupon(couponvo);
 		//CouponVo couponVo = new CouponVo();
 		
-		
+		/*
 		System.out.println("///"+couponvo);
 		CouponVo no = userinfoDao.updateCouponList(couponvo);
 		//Long userno =couponvo.getUserNo();
 		int updateCouponList = userinfoDao.updateCouponList(couponvo);
 		System.out.println("////"+updateCouponList);
 		//return updateCouponList;
-	}*/
+*
+*/
+		
+	}
 
 	
 	// 회원삭제

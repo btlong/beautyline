@@ -63,19 +63,9 @@ public class NoticeBoardController {
    /* 글쓰기 */
    @ResponseBody
    @RequestMapping(value = "/write", method = RequestMethod.POST,  produces = "text/html; charset=UTF-8")
-   /*public Object write(MultipartHttpServletRequest request) throws Exception {*/
    public void write(NoticeBoardVo noticeBoardVo,@RequestParam("file") MultipartFile file) throws Exception {
-      //if(itr.hasNext()) {
 	   
-	   System.out.println("글쓰기"+noticeBoardVo);
       nBoardService.write(noticeBoardVo, file);
-      // }
-      
-     /*  return true;
-        } else {
-            return false;
-        }*/
-    
 
    }
 

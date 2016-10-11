@@ -82,7 +82,7 @@
 		category = #{category}, 
 		title = #{title },
 		content = #{content },
-		reg_date = sysdate,
+		reg_date = sysdate
 		where no = #{no}
 	]]>	
 	</update>

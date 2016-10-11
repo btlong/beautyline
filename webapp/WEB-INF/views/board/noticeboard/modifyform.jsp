@@ -12,7 +12,7 @@
    
 
 
-<title>write</title>
+<title>modify</title>
 
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -88,6 +88,9 @@ padding-left: 0px;
 .modal-footer{
 	text-align: center;
 }
+#fName {
+	display: inline;
+}
 </style>
 
 
@@ -101,7 +104,7 @@ padding-left: 0px;
 				<div class="col-lg-12">
 				
 					<div class="page-header">
-						<hr><h3 class="text-center"><strong>글쓰기</strong></h3><hr>
+						<hr><h3 class="text-center"><strong>수정하기</strong></h3><hr>
 					</div>
 				
 				<div class="form-horizontal" id="write-form" >
@@ -112,8 +115,7 @@ padding-left: 0px;
 							<label class="col-sm-1 control-label" id= "title_title" for="inputName">제목</label>
 							<!-- select  [공지 or 이벤트] -->
 							<div class="col-lg-2">
-								<select class="form-control" name="category_select"
-									id="category_select">
+								<select class="form-control" name="category_select" id="category_select">
 									<option value="" selected>선택하세요</option>
 									<option value="공지">공지</option>
 									<option value="이벤트">이벤트</option>
@@ -130,26 +132,22 @@ padding-left: 0px;
 				<div class="form-group" >
 				  <div class="col-lg-10 col-lg-offset-1">
 					<label class="col-sm-1 control-label" id= "file_title" for="file">첨부파일</label>
-					<div class="col-lg-2" >
-						<span id="org_fileName">${file.orgName }</span>
-					</div>	
-					<div class="col-lg-2" >
-						<button class="btn btn-danger" id="file_delck">삭제</button>
-						<button class="btn btn-danger" id="file_modick">수정</button>
-					</div>				
+							<div class="col-lg-5" >
+								<input class="btn btn-default" name="file" id="file" type="file">
+							</div>
+						
+						<div class="col-lg-5" >
+							<div id="org_fileName">
+								<div id="fName">
+									${file.orgName }
+								</div>
+								<button class="btn btn-danger btn-xs" id="file_delck">X</button>
+							</div>
+						</div>
 				 </div>
 				</div>
 				
-				 <!-- 첨부파일  -->	
-				<div class="form-group" id= "uploadForm">
-				  <div class="col-lg-10 col-lg-offset-1">
-					<label class="col-sm-1 control-label" id= "file_title" for="file">첨부파일</label>
-					<div class="col-lg-2" >
-						<input class="btn btn-default" name="file" id="file" type="file">
-					</div>					
-				 </div>
-				</div>
-					  
+				 	  
 				 <div class="form-group" >
 				  <div class="col-lg-10 col-lg-offset-1">
 					  <textarea id="summernote" name="contents">${notiBdVo.content }</textarea>
@@ -231,107 +229,90 @@ $(document).ready(function() {
     
     
 /* 파일 삭제 모달 열기 */
- 	$("#file_delck").on("click", function(){
+ $("#file_delck").on("click", function(){
 		$("#myModal").modal();
 
- 	});
+});
 
  var fileCheck = 0; // 파일이 수정되거나 삭제되었는지 체크하기위함
 /* 파일 삭제 체크 */
 $("#delfile").on("click",function(){
 	fileCheck = 1;
 	
-	$("#org_fileName").css("text-decoration","line-through");
+	$("#org_fileName").hide();
 	$("#myModal").modal('hide');
 	
 });
-
-/* 파일 수정 체크 */
-$("#file_modick").on("click",function(){
-	fileCheck = 2;
-	
-	$("#org_fileName").css("text-decoration","line-through");
-	$("#uploadForm").show();
+/* 수정 */
+$("#file").on("change",function(){ 
+	fileCheck = 1;
+	$("#org_fileName").hide();
 });
 
 
-/* 파일 삭제 
-	$("#delfile").on("click",function(){
-		var fileNo = "${file.no }";
-		var boardNo = "${notiBdVo.no}";
-		$.ajax({
-			url:"delFile",
-			type:"POST",
-			data: {"fileNo":fileNo,
-					"boardNo": boardNo},
-			success: function(ck){
-				if(ck > 0){
-					
-					$("#org_fileName").css("text-decoration","line-through");
-					$("#myModal").modal('hide');
-
-					console.log("갔다옴"+"${file.no}");
-				}else{
-					console.log("유효하지 않은 정보 입니다.");
-				}
-			}
-			
-		});
-	});
- 	*/
- 	
-	$("#modify").on("click", function() {
-		var urlModi = "";
-		var fileNo = "${file.no }";
-		var boardNo = "${notiBdVo.no}";
-
-		if ( fileCheck = 1 ){ //첨부파일 삭제인 경우
-			urlModi = "modify";
-			
-			//첨부파일 삭제
-		
-			$.ajax({
-				url:"delFile",
-				type:"POST",
-				data: {"fileNo":fileNo,
-						"boardNo": boardNo }
-			});
-		
-		} else if ( fileCheck = 2 ){ //수정
-			urlModi = "modifyModiFile";
-		} else { //파일 변경된것 없음--글만 수정
-			urlModi = "modify";
-		}
-		var data = new FormData();
-		var category = $("#category_select").val();
-		var title = $("#inputTitle").val();
-		var content = 	$('#summernote').summernote('code');
-		var file = $("#file")[0].files[0];
-	 	
-		data.append("no",boardNo);
- 	    data.append("category",category);
-		data.append("title",title);
-		data.append("content",content); 
-	 	data.append("file", file); 
+$("#modify").on("click", function() {
+    var data = new FormData();
+    
+	var boardNo = "${notiBdVo.no}";
+	var data = new FormData();
+	var category = $("#category_select").val();
+	var title = $("#inputTitle").val();
+	var content = 	$('#summernote').summernote('code');
+	var fNo = "${file.no }";
+	var file ="";
 	
-		 	$.ajax({// 비동기식 
-				url : urlModi,
-				type : "POST",
-				data : data,
-				dataType:"text",
-		 	 	enctype: "multipart/form-data", 
-				processData: false,
-			    contentType: false,
-			    success : function() {
-					console.log("success");
-					location.href = "board";
-					
-				},
-				error : function(jqXHR, status, error) {
-					console.error(status + ":" + error);
-				}
+	data.append("no",boardNo);
+ 	data.append("category",category);
+	data.append("title",title);
+	data.append("content",content); 
+	
+		
+	if(  $("#file")[0].files[0] != undefined ){ //첨부파일이 있는 경우
+		data.append("fNo",fNo);	
+		file = $("#file")[0].files[0];
+	 	data.append("file", file);
+	 	
+	 	$.ajax({// 비동기식 
+			url : "modifyWF",
+			type : "POST",
+			data : data,
+			dataType:"text",
+	 	 	enctype: "multipart/form-data", 
+			processData: false,
+		    contentType: false,
+		    success : function() {
+				console.log("success");
+				location.href = "board";
+			}
 		});
-	});
+	 	
+	}else{ //첨부된 파일이 없는 경우
+		//삭제 안한경우 -- 글만 업데이트
+		if( fileCheck =! 0){ //삭제 한경우 -- 파일 삭제, 글 업데이트
+			data.append("fNo",fNo);			
+		}
+		
+		
+		$.ajax({// 비동기식 
+			url : "modify",
+			type : "POST",
+			data : data,
+			dataType:"text",
+		 	enctype: "multipart/form-data", 
+			processData: false,
+		    contentType: false,
+		    success : function() {
+				console.log("success");
+				location.href = "board";
+			}
+		});
+		
+		
+	}
+	
+	
+			 	
+});
 	
 	
 	

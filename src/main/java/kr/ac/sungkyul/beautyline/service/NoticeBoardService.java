@@ -81,13 +81,13 @@ public class NoticeBoardService {
 
 /*------------------- 수정--------------------  */
 	/* 글만 수정 */
-	public void modify(NoticeBoardVo noticeBoardVo){
+	public void modifyBd(NoticeBoardVo noticeBoardVo){
 		nBoardDao.modify(noticeBoardVo);
 	}
 	
 	
-	/* 글 수정 */
-	public void modify2(NoticeBoardVo noticeBoardVo, MultipartFile file)throws Exception {
+	/* 글 수정과 첨부파일 추가 */
+	public void modify(NoticeBoardVo noticeBoardVo, MultipartFile file)throws Exception {
 		
 		nBoardDao.modify(noticeBoardVo);
 		Long noticeNo = noticeBoardVo.getNo();

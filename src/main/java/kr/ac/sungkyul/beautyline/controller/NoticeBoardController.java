@@ -113,27 +113,36 @@ public class NoticeBoardController {
 	
 /*------------------- 수정--------------------  */
 	
-	/* 글 수정 -- 글만 수정 */
+	/* 글+첨부파일 수정  */
 	@ResponseBody
-	@RequestMapping(value = "/modify", method = RequestMethod.POST, produces = "text/html; charset=UTF-8")
-	public String modify(NoticeBoardVo noticeBoardVo) throws Exception{
-		System.out.println("수정전: "+noticeBoardVo);
-		nBoardService.modify(noticeBoardVo);
-		System.out.println("수정후: "+noticeBoardVo);
-		return "redirect:board";
+	@RequestMapping(value = "/modifyWF", method = RequestMethod.POST, produces = "text/html; charset=UTF-8")
+	public void modifyWF(NoticeBoardVo noticeBoardVo,Long fNo,@RequestParam("file") MultipartFile file) throws Exception{
+		
+		if( fNo != null ){ //fNo있으면
+			nBoardService.delFile(fNo); //첨부파일 삭제
+		}
+		/* 글수정 과 첨부파일 추가  */
+		 nBoardService.modify(noticeBoardVo, file);
+		
+		
 	}
 	
-	
-	/* 첨부파일 삭제 */
+	/* 글만 수정  */
 	@ResponseBody
-	@RequestMapping(value = "/delFile", method = RequestMethod.POST)
-	public void delFile(Long fileNo,Long boardNo,Model model){
-		nBoardService.delFile(fileNo);		
+	@RequestMapping(value = "/modify", method = RequestMethod.POST)
+	public void modify(NoticeBoardVo noticeBoardVo,Long fNo) throws Exception{
+		if( fNo != null ){ //fNo있으면
+			System.out.println("fNo있다. fNo삭제할거다");
+			nBoardService.delFile(fNo); //첨부파일 삭제
+		}
+			System.out.println("글 업뎃한다.");
+		nBoardService.modifyBd(noticeBoardVo); //글업데이트
 		
-	}   
+		//nBoardService.modify(noticeBoardVo, file);
+		
+	}
 	
-	
-	
+/*--------------------------------------------  */
 	
 	
 	

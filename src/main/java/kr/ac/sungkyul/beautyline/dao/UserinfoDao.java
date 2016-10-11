@@ -34,16 +34,18 @@ public class UserinfoDao {
 	}
 	
 	//쿠폰뷰
-/*	public List<CouponVo> selectList(long no) {
-		return sqlSession.selectList("visit.selectCoupon", no);
-	}*/
-	//쿠폰수정
-	/*public CouponVo updateCoupon(CouponVo couponvo) {
-		return sqlSession.update("userinfo.updateCoupon", couponvo);
+	public List<CouponVo> selectList(Long no) {
+		return sqlSession.selectList("userinfo.selectCoupon", no);
 	}
-	public UserVo selectOne(UserVo userVo) {
-		return sqlSession.selectOne("visit.searchSelectOne", userVo);
-	}*/
+	
+	
+	//쿠폰수정
+	public int updateCouponList(CouponVo couponvo) {
+		System.out.println("//"+couponvo);
+		int updateCouponList = sqlSession.update("userinfo.updateCoupon", couponvo);
+		//return null;
+		return updateCouponList;
+	}
 	
      
 	

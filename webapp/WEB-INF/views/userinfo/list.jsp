@@ -320,6 +320,7 @@
 									<td>여드름 케어</td>
 									<td><input class="form-control input-sm" type=text id="four"></td>
 								</tr>
+								<tr><td><input type=text id="coupon-userno" value=""></td></tr>
 								<%-- <c:forEach items="${couponView }" var="couponinfoVo"
 									varStatus="status">
 									<tr>
@@ -331,6 +332,7 @@
 									</tr>
 								</c:forEach> --%>
 							</tbody>
+							 <tfoot></tfoot>
 						</table>
 					</div>
 
@@ -339,7 +341,7 @@
 							<input class="btn btn-default" type="button"
 								id="couponCountModify" value="수정">
 							<button type="button" class="btn btn-default"
-								data-dismiss="modal">닫기</button>
+								data-dismiss="modal">취소</button>
 						</div>
 					</div>
 				</form>
@@ -364,7 +366,7 @@
 		
 		$(document).ready(function() {
 			$("#delete").on("click", function() {
-	            confirm($(this).text());
+	            alert($(this).text());
 	        });
 			/* $('#page-block').click(function(i) {
 				 var nowPage=$('#now-page').val;
@@ -383,7 +385,7 @@
 				$('#four').val("0");
 				
 				var no = $(this).data("userno");//userno 소문자여야함
-				//console.log(no);//userno 받아옴
+				console.log(no);//userno 받아옴
 				
 				 	$.ajax({
 						url : "selectCoupon",
@@ -404,6 +406,7 @@
 									// count가 0으로가 나도오록 
 								}
 							});
+							$('#coupon-userno').val(no);
 						}
 					});
 				
@@ -413,12 +416,16 @@
 				var two = $('#two').val();
 				var three = $('#three').val();
 				var four = $('#four').val();
+				var userno = $('#coupon-userno').val();
+				
+				alert(userno);
 				
 				var couponvo = { 
 						"one" : one,
 						"two" : two,
 						"three" : three,
 						"four" : four,
+						"userno" : userno,
 				};
 				console.log(couponvo);
 				
@@ -427,7 +434,7 @@
 					type : "POST",
 					data : JSON.stringify(couponvo),
 					dataType: "JSON",
-					contentType : "application/json",
+					contentType : "application/json"
 					/* success : function(uservi){
 						nameSearch = uservi.name;
 						userNo = uservi.no;

@@ -22,8 +22,6 @@
 <!-- Custom CSS -->
 <link href="/beautyline/beautyline/css/include.css" rel="stylesheet">
 <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">
-<link href="/beautyline/beautyline/css/userinfo.css" rel="stylesheet"
-	type="text/css">
 
 <!-- Fonts -->
 <link
@@ -69,8 +67,11 @@
 								<th>이름</th>
 								<th>전화번호</th>
 								<th>아이디</th>
-								<th>이메일</th>
+								<th>이메일1</th>
+								<th>이메일2</th>
+								<th>우편번호</th>
 								<th>주소</th>
+								<th>상세주소</th>
 								<th>권한</th>
 								<th>저장</th>
 								<th>취소</th>
@@ -92,11 +93,20 @@
 									value="${UserinfoVo.no }" /> <input type="text" class="form-control input-sm" name="id"
 									value="${UserinfoVo.id}"></td>
 								<td><input type="hidden" name="no"
-									value="${UserinfoVo.no }" /> <input type="text" class="form-control input-sm" name="email"
-									value="${UserinfoVo.email}"></td>
+									value="${UserinfoVo.no }" /> <input type="text" class="form-control input-sm" name="email1"
+									value="${UserinfoVo.email1}"></td>
 								<td><input type="hidden" name="no"
-									value="${UserinfoVo.no }" /> <input type="text" class="form-control input-sm" name="address"
-									value="${UserinfoVo.address}"></td>
+									value="${UserinfoVo.no }" /> <input type="text" class="form-control input-sm" name="email2"
+									value="${UserinfoVo.email2}"></td>
+								<td><input type="hidden" name="no"
+									value="${UserinfoVo.no }" /> <input type="text" class="form-control input-sm" name="zipCode"
+									value="${UserinfoVo.zipCode}"></td>
+								<td><input type="hidden" name="no"
+									value="${UserinfoVo.no }" /> <input type="text" class="form-control input-sm" name="address1"
+									value="${UserinfoVo.address1}"></td>
+								<td><input type="hidden" name="no"
+									value="${UserinfoVo.no }" /> <input type="text" class="form-control input-sm" name="address2"
+									value="${UserinfoVo.address2}"></td>
 								<td>${UserinfoVo.isAdmin}</td>
 								<td><input type="hidden" name="no"
 									value="${UserinfoVo.no }" /> <input type="submit" class="btn btn-primary btn-sm" value="저장">

@@ -27,12 +27,21 @@ public class UserinfoService {
     }*/
 	
 	// 쿠폰뷰
-/*	public List<CouponVo> couponList(long no) {
+	public List<CouponVo> couponList(long no) {
 		return userinfoDao.selectList(no);
-	}*/
+	}
+	
 	// 쿠폰수정
-	/*public CouponVo updateCouponList(CouponVo couponvo) {
-		return userinfoDao.updateCoupon(couponvo);
+	/*public void updateCouponList(CouponVo couponvo) {
+		//CouponVo couponVo = new CouponVo();
+		
+		
+		System.out.println("///"+couponvo);
+		CouponVo no = userinfoDao.updateCouponList(couponvo);
+		//Long userno =couponvo.getUserNo();
+		int updateCouponList = userinfoDao.updateCouponList(couponvo);
+		System.out.println("////"+updateCouponList);
+		//return updateCouponList;
 	}*/
 
 	

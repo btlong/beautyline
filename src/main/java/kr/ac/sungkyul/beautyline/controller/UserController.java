@@ -4,7 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,26 +23,20 @@ public class UserController {
 
 	
 	/* -- 회원가입  -- */	
-	
 	@RequestMapping("/joinform")
 	public String joinform() { //회원가입 폼
-
 		return "user/joinform";
 	}
 	
+	/* 회원가입 아작스	*/
 	@ResponseBody
 	@RequestMapping(value ="join", method = RequestMethod.POST)
 	public int join(@RequestBody UserVo vo) {//회원가입 버튼 누를 때
 		System.out.println(vo);
 		int a = userService.join(vo);
-		return a; // redirect해야함
+		return a; 
 	}
-	
-	@RequestMapping("/joinsuccess")
-	public String joinsuccess() { //회원가입 성공시
-		return "user/joinsuccess"; // redirect해야함
-	}
-	
+
 	@ResponseBody
 	@RequestMapping(value ="checkId", method = RequestMethod.POST)
 	public String checkId(@RequestParam String id){//회원가입시 id중복체크
@@ -59,23 +53,20 @@ public class UserController {
 	/* --  로그인  -- */
 	@RequestMapping("/loginform")
 	public String loginform() {
-
 		return "user/loginform";
 	}
 
+	@ResponseBody
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(HttpSession session,
+	public String login(HttpSession session, @RequestBody UserVo vo){
 
-			@RequestParam(value = "id", required = false, defaultValue = "") String id,
-			@RequestParam(value = "password", required = false, defaultValue = "") String password){
-
-		UserVo authUser = userService.login(id, password);
+		UserVo authUser = userService.login(vo);
 		if (authUser == null) {
 			System.out.println("세션값이 없다!!!");
-			return "redirect:/user/loginform";
+			return "";
 		}
 		session.setAttribute("authUser", authUser);
-		return "redirect:/main";
+		return "found";
 	}
 
 	@RequestMapping("/logout")
@@ -107,36 +98,27 @@ public class UserController {
 	
 
 	
-
-	
-
-	
-
+	/* 회원 정보 수정 */	
 	@RequestMapping("/modifyform")
-	public String modifyform(HttpSession session) {
+	public String modifyform(HttpSession session, Model model)  throws Exception  {
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
-		userService.getUserInfo(authUser.getNo());
+		UserVo userVo = userService.getUserInfo(authUser.getNo());
+		model.addAttribute("userVo",userVo);
 		return "user/modifyform";
 
 	}
-
+	@ResponseBody
 	@RequestMapping(value="/modify", method=RequestMethod.POST)
-//	public String modify(HttpSession session,@RequestParam(value="name", required=false, defaultValue="") String name, @RequestParam(value="password", required=false, defaultValue="") String password, @RequestParam(value="gender", required=false, defaultValue="") String gender ){
-
-	public String modify(HttpSession session, @ModelAttribute UserVo vo) {
-
+	public int modify(HttpSession session, @RequestBody UserVo vo ) {
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
-
 		vo.setNo(authUser.getNo());
-		userService.updateInfo(vo);
-
-		authUser.setName(vo.getName());
-		return "redirect:/main";
-
+		vo.setName(authUser.getName());
+	    int check =	userService.updateInfo(vo);
+		return check;
 	}
 	
 	
-	
+	/*--------------*/
 
 
 	

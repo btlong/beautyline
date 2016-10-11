@@ -169,20 +169,34 @@ $(document).ready(function() {
 });
 $(function(){
 	$("#insert").on("click", function() {
+		var url ="";
 	 	var data = new FormData();
 	
 		var category = $("#category_select").val();
 		var title = $("#inputTitle").val();
 		var content = 	$('#summernote').summernote('code');
+		var file;
+		if($("#file")[0].files[0] != undefined){
+			  file=$("#file")[0].files[0];
+	          data.append("file", file);
+	          url="writefile";
+		
+		}
+		
+		else{
+			url="write"
+		}
+		
+		
 		var file = $("#file")[0].files[0];
-	 
+		console.log(file);	 
  	    data.append("category",category);
 		data.append("title",title);
 		data.append("content",content); 
 	 	data.append("file", file); 
 	
-		 	$.ajax({// 비동기식 
-				url : "write",
+		 	  $.ajax({// 비동기식 
+				url : url,
 				type : "POST",
 				data : data,
 				dataType:"text",
@@ -197,7 +211,7 @@ $(function(){
 				error : function(jqXHR, status, error) {
 					console.error(status + ":" + error);
 				}
-		});
+		}); 
 	});
 	
 	

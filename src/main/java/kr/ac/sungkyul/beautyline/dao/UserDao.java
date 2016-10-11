@@ -52,22 +52,18 @@ public class UserDao {
 	
 	
 	
-	public void update(UserVo vo) {// 회원정보수정
-		sqlSession.update("user.update", vo);
-		/*
-		 * catch (SQLException e) { //e.printStackTrace(); throw new
-		 * RuntimeException(); }
-		 */
+	public int update(UserVo vo) {// 회원정보수정
+		return sqlSession.update("user.update", vo);
 	}
 
 	
 	
-	
-	public UserVo get(Long userNo) { //세션넘버를 받아서 정보를 다가져올때
+	/* 회원정보 수정 - 세션넘버를 받아서 정보를 다가져올때	*/
+	public UserVo getUserInfo(Long userNo) { //세션넘버를 받아서 정보를 다가져올때
 		return sqlSession.selectOne("user.getByNo", userNo);
 	}
-	
-	public UserVo get(String id, String password) {// 로그인 확인
+	/* 로그인	*/
+	public UserVo get(String id, String password) {//
 		UserVo userVo = new UserVo();
 		userVo.setId(id);
 		userVo.setPassword(password);

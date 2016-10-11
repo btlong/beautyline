@@ -47,8 +47,11 @@
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li><a href="index.html">소개</a>
-				
+				<li><a class="dropdown-toggle"  data-toggle="dropdown" role="button" aria-expanded="true">소개</a>
+				<ul class="dropdown-menu" id="navdropdown" role="menu">
+						<li><a href="/beautyline/information/brand">뷰티라인</a></li>
+					   	<li><a href="/beautyline/information/program">프로그램</a></li>
+					</ul>
 				
 				</li>
 				<c:choose>
@@ -61,8 +64,21 @@
  				</c:choose>
  				
 
+ 				<!--
  				
-				<li >
+ 				<li style="width:160px;" class=" "><a href="../contents/program_basic_moist.php">프로그램</a>
+			<ul style="overflow: hidden; display: block; height: 0px; z-index: 1035; opacity: 0;">
+				<li style="width:160px;"><a href="../contents/program_basic_moist.php">피부/기본 관리</a></li>
+				<li style="width:160px;"><a href="../contents/program_special_lifting.php">피부/스페셜 관리</a></li>
+				<li style="width:160px;"><a href="../contents/program_part_lowbody.php">바디 관리</a></li>
+				<li style="width:160px;"><a href="../contents/program_point_goose.php">집중 관리</a></li>
+			</ul>
+		</li> 
+ 				 -->
+ 				
+ 				
+ 				
+				<li calss="">
 				<a  class="dropdown-toggle"  data-toggle="dropdown" role="button" aria-expanded="true">게시판 </a>
 					<ul class="dropdown-menu" id="navdropdown" role="menu">
 						<li><a href="/beautyline/noticeboard/board">공지사항</a></li>

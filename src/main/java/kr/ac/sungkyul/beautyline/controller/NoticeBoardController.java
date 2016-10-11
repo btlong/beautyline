@@ -38,6 +38,7 @@ public class NoticeBoardController {
 	@RequestMapping("board")
 	public String list(Model model, @RequestParam(value = "nowPage", required = false) Integer nowPage,
 			@RequestParam(value = "nowBlock", required = false) Integer nowBlock
+			
 	/*
 	 * @RequestParam(value = "keyField", required=false) String keyField,
 	 * 
@@ -71,10 +72,21 @@ public class NoticeBoardController {
 	@ResponseBody
 	@RequestMapping(value = "/write", method = RequestMethod.POST,  produces = "text/html; charset=UTF-8")
 	/*public Object write(MultipartHttpServletRequest request) throws Exception {*/
+	public void write(NoticeBoardVo noticeBoardVo) throws Exception {
+		nBoardService.write(noticeBoardVo);
+	
+
+	}
+	
+	/* 글쓰기 */
+	@ResponseBody
+	@RequestMapping(value = "/writefile", method = RequestMethod.POST,  produces = "text/html; charset=UTF-8")
+	/*public Object write(MultipartHttpServletRequest request) throws Exception {*/
 	public void write(NoticeBoardVo noticeBoardVo,@RequestParam("file") MultipartFile file) throws Exception {
 		//if(itr.hasNext()) {
-	
+
 		nBoardService.write(noticeBoardVo, file);
+
 		// }
 	   
 	  /*  return true;
@@ -84,6 +96,7 @@ public class NoticeBoardController {
 	 
 
 	}
+	
 
 	/* 글 보기 폼 */
 	@RequestMapping(value = "/view", method = RequestMethod.GET)

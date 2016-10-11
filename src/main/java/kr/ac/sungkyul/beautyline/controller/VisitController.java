@@ -115,7 +115,7 @@ public class VisitController {
 		return "visit/loginform";
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
+/*	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(HttpSession session,
 
 			@RequestParam(value = "id", required = false, defaultValue = "") String id,
@@ -127,7 +127,7 @@ public class VisitController {
 		}
 		session.setAttribute("authUser", authUser);
 		return "redirect:/visit/visitform";
-	}
+	}*/
 
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {

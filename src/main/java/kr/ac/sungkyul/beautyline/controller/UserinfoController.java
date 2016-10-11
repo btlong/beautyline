@@ -77,20 +77,39 @@ public class UserinfoController {
 	@ResponseBody
 	@RequestMapping(value = "selectCoupon", method = RequestMethod.POST)
 	public List<CouponVo> readBoardAjax(long no) {
-		//System.out.println(no);
-		//UserinfoVo userinfoVo = userinfoService.selectUser(no);
 		List<CouponVo> couponList = userinfoService.couponList(no);
 		System.out.println(couponList.toString());
 		return couponList;
 	}
 	
-	//쿠폰 수정
+	//쿠폰 수정1
 	@ResponseBody
-	@RequestMapping(value = "updateCoupon", method = RequestMethod.POST)
-	public int updateCoupon(@RequestBody CouponVo couponvo){
-		/*List<CouponVo> couponList = userinfoService.couponList(couponvo.getUserNo());*/
-	/*	System.out.println("++"+couponList);*/
-		
+	@RequestMapping(value = "updateCoupon1", method = RequestMethod.POST)
+	public int updateCoupon1(@RequestBody CouponVo couponvo){
+		System.out.println("왔쟈"+couponvo);
+		int ck = userinfoService.updateCoupon(couponvo);
+		return ck;
+	}
+	//쿠폰 수정2
+	@ResponseBody
+	@RequestMapping(value = "updateCoupon2", method = RequestMethod.POST)
+	public int updateCoupon2(@RequestBody CouponVo couponvo){
+		System.out.println("왔쟈"+couponvo);
+		int ck = userinfoService.updateCoupon(couponvo);
+		return ck;
+	}
+	//쿠폰 수정3
+	@ResponseBody
+	@RequestMapping(value = "updateCoupon3", method = RequestMethod.POST)
+	public int updateCoupon3(@RequestBody CouponVo couponvo){
+		System.out.println("왔쟈"+couponvo);
+		int ck = userinfoService.updateCoupon(couponvo);
+		return ck;
+	}
+	//쿠폰 수정4
+	@ResponseBody
+	@RequestMapping(value = "updateCoupon4", method = RequestMethod.POST)
+	public int updateCoupon4(@RequestBody CouponVo couponvo){
 		System.out.println("왔쟈"+couponvo);
 		int ck = userinfoService.updateCoupon(couponvo);
 		return ck;

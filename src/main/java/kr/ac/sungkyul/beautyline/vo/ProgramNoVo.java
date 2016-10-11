@@ -1,13 +1,12 @@
 package kr.ac.sungkyul.beautyline.vo;
 
-public class JinVo {
+public class ProgramNoVo {
 
 	private Long userNo;
-	private int basic;
-	private int white;
-	private int ju;
-	private int acne;
-	
+	private int basic;//programNo==1
+	private int whitening;//programNo==2
+	private int antiaging;//programNo==3
+	private int acne;//programNo==4
 	
 	public Long getUserNo() {
 		return userNo;
@@ -21,22 +20,28 @@ public class JinVo {
 	public void setBasic(int basic) {
 		this.basic = basic;
 	}
-	public int getWhite() {
-		return white;
+	public int getWhitening() {
+		return whitening;
 	}
-	public void setWhite(int white) {
-		this.white = white;
+	public void setWhitening(int whitening) {
+		this.whitening = whitening;
 	}
-	public int getJu() {
-		return ju;
+	public int getAntiaging() {
+		return antiaging;
 	}
-	public void setJu(int ju) {
-		this.ju = ju;
+	public void setAntiaging(int antiaging) {
+		this.antiaging = antiaging;
 	}
 	public int getAcne() {
 		return acne;
 	}
 	public void setAcne(int acne) {
 		this.acne = acne;
+	}
+	
+	@Override
+	public String toString() {
+		return "ProgramNoVo [userNo=" + userNo + ", basic=" + basic + ", whitening=" + whitening + ", antiaging="
+				+ antiaging + ", acne=" + acne + "]";
 	}
 }

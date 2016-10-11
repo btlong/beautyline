@@ -43,9 +43,6 @@ public class UserinfoDao {
 	public int updateCoupon(CouponVo couponvo) {
 		System.out.println("//"+couponvo);
 		return sqlSession.update("userinfo.updateCoupon", couponvo);
-		//int updateCouponList = 
-		//return null;
-		//return updateCouponList;
 	}
 	
      

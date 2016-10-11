@@ -21,11 +21,6 @@ public class UserinfoService {
 		return userinfoDao.listUser(keyfield, keyword);
 	}
 		
-	//회원번호에의한 리스트뽑기
-	/*public UserinfoVo findByNo(int no) {
-        return userinfoDao.findByNo(no);
-    }*/
-	
 	// 쿠폰뷰
 	public List<CouponVo> couponList(long no) {
 		return userinfoDao.selectList(no);
@@ -34,18 +29,6 @@ public class UserinfoService {
 	// 쿠폰수정
 	public int updateCoupon(CouponVo couponvo) {
 		return userinfoDao.updateCoupon(couponvo);
-		//CouponVo couponVo = new CouponVo();
-		
-		/*
-		System.out.println("///"+couponvo);
-		CouponVo no = userinfoDao.updateCouponList(couponvo);
-		//Long userno =couponvo.getUserNo();
-		int updateCouponList = userinfoDao.updateCouponList(couponvo);
-		System.out.println("////"+updateCouponList);
-		//return updateCouponList;
-*
-*/
-		
 	}
 
 	

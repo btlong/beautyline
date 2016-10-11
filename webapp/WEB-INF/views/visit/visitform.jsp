@@ -21,6 +21,7 @@
 <!-- Custom CSS -->
 <link href="/beautyline/bootstrap/css/business-casual.css"
 	rel="stylesheet">
+
 <!-- 테마 -->
 <link
 	href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css"
@@ -28,12 +29,11 @@
 	integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT"
 	crossorigin="anonymous">
 
-
-<link href="/beautyline/beautyline/css/reserve.css" rel="stylesheet">
 <link href="/beautyline/beautyline/css/include.css" rel="stylesheet">
 
 <!-- 원호 CSS -->
 <link href="/beautyline/beautyline/css/visit.css" rel="stylesheet">
+
 
 <!-- Fonts -->
 <link
@@ -43,19 +43,17 @@
 	href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic"
 	rel="stylesheet" type="text/css">
 
-
 <style>
 </style>
 </head>
 <body>
 	<c:import url="/WEB-INF/views/include/header.jsp" />
-	<!-- container -->
 
 	<c:choose>
 		<c:when
 			test="${not empty sessionScope.authUser && authUser.isAdmin eq 'a'}">
 
-
+			<!-- container -->
 			<div class="container">
 				<div class="row">
 					<div class="box">
@@ -87,8 +85,7 @@
 										<label class="col-sm-2 control-label">회원 정보</label>
 										<div class="col-sm-2 col-sm-offset-2" id="divName">
 											<input type="text" class="form-control onlyHangul"
-												name="searchName" id="searchName" placeholder="이름"
-												value="${userVo.name}">
+												name="searchName" id="searchName" placeholder="이름" value="">
 										</div>
 										<!-- 핸드폰 -->
 										<div class="col-sm-2" id="divPhone">
@@ -479,7 +476,7 @@
 	var userNo;
 	var programNo;
 
-	/* test */
+	/* 이미지 이름 불러오기 */
 	function reviewUploadImg(fileObj) {
 		var filePath = fileObj.value;
 		var fileName = filePath.substring(filePath.lastIndexOf("\\") + 1);
@@ -494,10 +491,13 @@
 		$("#imageName").val(fileName);
 	}
 
-	/* test end */
 
 	$("#smyModal").on("click", function() {
+		
 		var trString = "";
+		
+		$('#selectedName').html("");
+		$('#selectedPhone').html("");
 		var name = $('#searchName').val();
 		var phone = $('#searchPhone').val();
 
@@ -554,6 +554,11 @@
 		var tdString = "";
 		var name = $("#selectedName").html().replace(/&nbsp;/gi, '');
 		var phone = $("#selectedPhone").html().replace(/&nbsp;/gi, '').trim();
+		
+		if( name== "" || phone=="") {
+			alert("선택해주세요");
+			return;
+		}
 		var userVo = {
 			"name" : name,
 			"phone" : phone
@@ -564,14 +569,15 @@
 			data : JSON.stringify(userVo),
 			contentType : "application/json",
 			success : function(retVal) {
-				var user = retVal.authUser;
-
+				var user = retVal.authUser;				
 				/* 말줄임말 필요 */
-				document.getElementById('searchName').value = user.name;
-				document.getElementById('searchPhone').value = user.phone;
-
+			/* 	document.getElementById('searchName').value = user.name;
+				document.getElementById('searchPhone').value = user.phone; */
+				
+				
+				document.getElementById('searchName').value = "";
+				document.getElementById('searchPhone').value = "";
 				$('#wellName').html(user.name);
-				$('#wellName').val(user.name);
 				$('#wellId').html(user.id);
 				$('#wellPhone').html(user.phone);
 				$('#wellEmail').html(user.email);

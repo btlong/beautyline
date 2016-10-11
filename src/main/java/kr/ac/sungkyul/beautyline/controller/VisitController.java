@@ -16,9 +16,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.ac.sungkyul.beautyline.service.PageService;
 import kr.ac.sungkyul.beautyline.service.UserService;
+import kr.ac.sungkyul.beautyline.service.UserinfoService;
 import kr.ac.sungkyul.beautyline.service.VisitService;
 import kr.ac.sungkyul.beautyline.vo.CouponVo;
+import kr.ac.sungkyul.beautyline.vo.PageVo;
 import kr.ac.sungkyul.beautyline.vo.UserVo;
 import kr.ac.sungkyul.beautyline.vo.VisitVo;
 
@@ -31,6 +34,9 @@ public class VisitController {
 
 	@Autowired
 	UserService userService;
+
+	@Autowired
+	PageService pageService;
 
 	// 처음 화면
 	@RequestMapping("/visitform")
@@ -47,10 +53,28 @@ public class VisitController {
 	}
 
 	// 내역 조회
-	@RequestMapping("/details")
-	public String details(Model model) {
+	@RequestMapping("details")
+	public String details(Model model, @RequestParam(value = "nowPage", required = false) Integer nowPage,
+			@RequestParam(value = "nowBlock", required = false) Integer nowBlock,
+			@RequestParam(value = "keyField", required = false) String keyField,
+			@RequestParam(value = "keyWord", required = false) String keyWord) {
 		List<VisitVo> visitList = visitService.selectList();
+		System.out.println(visitList.size());
+
+		System.out.println(nowBlock);
+		System.out.println(keyField);
+		System.out.println(keyWord);
+		PageVo page = null;
+		try {
+			page = pageService.pagingProc(nowPage, nowBlock, visitList.size());
+		} catch (Exception err) {
+			page = pageService.pagingProc(0, 0, visitList.size());
+		}
+
 		model.addAttribute("visitList", visitList);
+		model.addAttribute("page", page);
+		model.addAttribute("keyField", keyField);
+		model.addAttribute("keyWord", keyWord);
 
 		return "visit/details";
 	}
@@ -107,9 +131,8 @@ public class VisitController {
 		UserVo uservi = userService.insertUserNamePhone(uservo);
 		return uservi;
 	}
-	
 
-	/* --  로그인  -- */
+	/* -- 로그인 -- */
 	@RequestMapping("/loginform")
 	public String loginform() {
 		return "visit/loginform";
@@ -119,7 +142,7 @@ public class VisitController {
 	public String login(HttpSession session,
 
 			@RequestParam(value = "id", required = false, defaultValue = "") String id,
-			@RequestParam(value = "password", required = false, defaultValue = "") String password){
+			@RequestParam(value = "password", required = false, defaultValue = "") String password) {
 
 		UserVo authUser = userService.login(id, password);
 		if (authUser == null) {
@@ -136,5 +159,5 @@ public class VisitController {
 		return "redirect:/main";
 	}
 	/* -------------- */
-	
+
 }

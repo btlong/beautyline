@@ -50,11 +50,11 @@ public class NoticeBoardDao {
 
 	
 	/* 공지사항 글 조회수 업뎃 */
-	public void updateViewCount(int no){
+	public void updateViewCount(Long no){
 	}
 	
 	/* 공지사항 글 삭제 */
-	public int delete(int no){
+	public int delete(Long no){
 		return sqlSession.delete("noticeboard.delete",no);	
 	}
 

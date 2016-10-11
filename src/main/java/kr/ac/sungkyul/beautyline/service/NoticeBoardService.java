@@ -68,12 +68,12 @@ public class NoticeBoardService {
 	
 
 	/* 공지사항 글 조회수 업뎃 */
-	public void updateViewCount( int no ){
+	public void updateViewCount( Long no ){
 		nBoardDao.updateViewCount(no);
 	}
 	
 	/* 공지사항 글 삭제 */
-	public int delete( int no ){
+	public int delete( Long no ){
 		 return nBoardDao.delete(no);
 	}
 	

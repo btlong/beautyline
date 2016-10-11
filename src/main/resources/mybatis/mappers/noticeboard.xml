@@ -32,8 +32,7 @@
 	select no, notice_no as noticeNo, org_name as orgName, path, save_name as saveName from f_noti where notice_no =#{noticeNo }
 	]]>
 	</select>
-	
-	
+
 	<select id="getAll" resultType="noticeboardvo">
 	<![CDATA[
 		select no, category, title, to_char(reg_date,'yyyy-mm-dd') as regDate, view_count as viewCount  from bd_noti order by no desc
@@ -49,6 +48,15 @@
        and b.USER_NO = u.NO
     	]]>
   	 </select>
+
+
+
+
+	<select id="getAll" resultType="noticeboardvo">
+	<![CDATA[
+		select no, category, title, to_char(reg_date,'yyyy-mm-dd') as regDate, view_count as viewCount  from bd_noti order by no desc
+	]]>
+	</select>
 
 	<!-- 조회수 업뎃 -->
 	<update id="updateviewcnt" parameterType="java.lang.Integer">

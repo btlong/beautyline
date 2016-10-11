@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<script type="text/javascript" src="/beautyline/bootstrap/js/jquery.js"></script>
 
 <div class="col-lg-12 text-center">
 	<nav>
@@ -38,25 +38,22 @@
 
 
 <script>
-/*  paging*/
-		function pagemove(i) {
-			var nowPage = document.pagemove.nowPage.value;
-			document.pagemove.nowPage.value = Number(nowPage) + Number(i);
-			document.pagemove.submit();
-		}
-		
-		$(document).ready(function() {
-			/*  paging*/
-			$('#previous').click(function() {
-				$('#blockmoveb').submit();
-			});
+	/*  paging*/
+	function pagemove(i) {
+		var nowPage = document.pagemove.nowPage.value;
+		document.pagemove.nowPage.value = Number(nowPage) + Number(i);
+		document.pagemove.submit();
+	}
 
-		
+	$(document).ready(function() {
+		/*  paging*/
+		$('#previous').click(function() {
+			$('#blockmoveb').submit();
+		});
 
-			$('#following').click(function() {
-				$('#blockmovef').submit();
-			});
+		$('#following').click(function() {
+			$('#blockmovef').submit();
+		});
 
-			
-			});
+	});
 </script>

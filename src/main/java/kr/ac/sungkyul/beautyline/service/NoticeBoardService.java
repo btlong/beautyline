@@ -1,11 +1,16 @@
 package kr.ac.sungkyul.beautyline.service;
 
+import java.io.File;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.ac.sungkyul.beautyline.dao.NoticeBoardDao;
+import kr.ac.sungkyul.beautyline.vo.FileNotiVo;
 import kr.ac.sungkyul.beautyline.vo.NoticeBoardVo;
 
 @Service
@@ -21,63 +26,67 @@ public class NoticeBoardService {
 		List<NoticeBoardVo> list = nBoardDao.getAll();		
 		return list;	
 	}
+	public void write(NoticeBoardVo noticeBoardVo){
+		nBoardDao.insertBoard(noticeBoardVo);
+	}
 	
-public void write(NoticeBoardVo vo)throws Exception {
-		
-		vo.setTitle("["+vo.getCategory()+"]"+vo.getTitle()); //카테고리와 제목 합치기
-		 nBoardDao.insertBoard(vo); // board no 가져오기
-}
 	
-	/* 공지사항 글쓰기 
-	public void write(NoticeBoardVo vo, MultipartFile file )throws Exception {
+	/* 글쓰기	*/
+	public void write(NoticeBoardVo noticeBoardVo, MultipartFile file)throws Exception {
+		Long noticeNo = nBoardDao.insertBoard(noticeBoardVo);
 		
-		vo.setTitle("["+vo.getCategory()+"]"+vo.getTitle()); //카테고리와 제목 합치기
-		Long noticeNo = nBoardDao.insertBoard(vo); // board no 가져오기
-		
-		/*
-		//2. orgName
-		String orgName =file.getOriginalFilename();
-			
-		//4. fileSize 리사이징할때 
-		//long fileSize = file.getSize();
-			
-		//5. saveName
-		String saveName = UUID.randomUUID().toString()+"_"+orgName;
-			
-		//6. path
+		// 2. orgName
+		String orgName = file.getOriginalFilename();
+
+		// 4. fileSize 리사이징할때
+		// long fileSize = file.getSize();
+
+		// 5. saveName
+		String saveName = UUID.randomUUID().toString() + "_" + orgName;
+
+		// 6. path
 		String path = "c:\\Users\\S401-11\\Downloads\\filestore";
 		FileNotiVo noticeFile = new FileNotiVo();
-		
+
 		noticeFile.setNoticeNo(noticeNo);
 		noticeFile.setOrgName(orgName);
 		noticeFile.setPath(path);
 		noticeFile.setSaveName(saveName);
-		nBoardDao.insertAttachFile(noticeFile);
-				
+		nBoardDao.insertFileNoti(noticeFile);
+
 		File target = new File(path, saveName);
 		FileCopyUtils.copy(file.getBytes(), target);
+
+		 // board no 가져오기
 	}
-	*/
+	
 	/* 공지사항 글 보기 */
-	public NoticeBoardVo view( int no ){
+	public NoticeBoardVo view( Long no ){
 		return nBoardDao.viewBoard(no);
+		
 	}
 	
 
 	/* 공지사항 글 조회수 업뎃 */
-	public void updateViewCount( int no ){
+	public void updateViewCount( Long no ){
 		nBoardDao.updateViewCount(no);
 	}
 	
 	/* 공지사항 글 삭제 */
-	public int delete( int no ){
+	public int delete( Long no ){
 		 return nBoardDao.delete(no);
 	}
 	
+	/* 글보기 누를때 파일 이름가져오기	*/
+	public FileNotiVo fileview(Long noticeNo){//볼때
+		return nBoardDao.selectFileNotiByNo(noticeNo);
+	}
 	
-	
-	
-	
+/*	 파일 다운로드 ! 	
+	public FileNotiVo selectAttachFileByFno(Long no){//다운로드를위해
+		return nBoardDao.selectAttachFileByFno(no);
+		
+	}*/
 	
 	
 	

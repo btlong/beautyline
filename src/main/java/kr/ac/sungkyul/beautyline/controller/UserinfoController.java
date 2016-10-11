@@ -154,7 +154,7 @@ public class UserinfoController {
 		return "userinfo/loginform";
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
+/*	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(HttpSession session,
 
 			@RequestParam(value = "id", required = false, defaultValue = "") String id,
@@ -174,7 +174,7 @@ public class UserinfoController {
 		session.invalidate(); //
 		return "redirect:/main";
 	}
-	/* -------------- */
+	 -------------- */
 
 	/*
 	 * // 쿠폰조회

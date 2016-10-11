@@ -48,7 +48,11 @@ img {
 </style>
 	
 
-<script type="text/javascript" src="/beautyline/jquery/jquery-1.9.0.js"></script>
+<script type="text/javascript" src="/beautyline/bootstrap/js/jquery.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		

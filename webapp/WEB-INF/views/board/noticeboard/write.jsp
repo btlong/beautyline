@@ -102,7 +102,7 @@ padding-left: 0px;
 				<div class="form-horizontal" id="write-form" >
 					
 					<!-- 제목 -->
-					<div class="form-group" id="divTitle">
+					<div class="form-group" id="divTitle" enctype="multipart/form-data">
 						<div class="col-lg-10 col-lg-offset-1">
 							<label class="col-sm-1 control-label" id= "title_title" for="inputName">제목</label>
 							<!-- select  [공지 or 이벤트] -->
@@ -121,10 +121,10 @@ padding-left: 0px;
 					</div>
 					
 				 <!-- 첨부파일  -->	
-				<div class="form-group" >
+				<div class="form-group" id= "uploadForm">
 				  <div class="col-lg-10 col-lg-offset-1">
 					<label class="col-sm-1 control-label" id= "file_title" for="file">첨부파일</label>
-					<div class="col-lg-2">
+					<div class="col-lg-2" id="uploadForm">
 						<input class="btn btn-default" name="file" id="file" type="file">		
 					</div>						
 				 </div>
@@ -169,34 +169,54 @@ $(document).ready(function() {
 });
 $(function(){
 	$("#insert").on("click", function() {
+		var url ="";
+	 	var data = new FormData();
+	
 		var category = $("#category_select").val();
 		var title = $("#inputTitle").val();
-	var content = 	$('#summernote').summernote('code');
-		var NoticeBoardVo ={
-				"category": category,
-				"title" : title,
-				"content": content
-			};
+		var content = 	$('#summernote').summernote('code');
+		var file;
+		if($("#file")[0].files[0] != undefined){
+			  file=$("#file")[0].files[0];
+	          data.append("file", file);
+	          url="writefile";
+		
+		}
+		
+		else{
+			url="write"
+		}
 		
 		
-		console.log(NoticeBoardVo);
+		var file = $("#file")[0].files[0];
+		console.log(file);	 
+ 	    data.append("category",category);
+		data.append("title",title);
+		data.append("content",content); 
+	 	data.append("file", file); 
 	
-		$.ajax({// 비동기식 
-			url : "write",
-			type : "POST",
-			data : JSON.stringify(NoticeBoardVo),
-			contentType:"application/json",
-			success : function() {
-				location.href = "board";
-				
-			},
-			error : function(jqXHR, status, error) {
-				console.error(status + ":" + error);
-			}
-		});
-
+		 	  $.ajax({// 비동기식 
+				url : url,
+				type : "POST",
+				data : data,
+				dataType:"text",
+		 	 	enctype: "multipart/form-data", 
+				processData: false,
+			    contentType: false,
+			    success : function(response) {
+					console.log('success')
+					location.href = "board";
+					
+				},
+				error : function(jqXHR, status, error) {
+					console.error(status + ":" + error);
+				}
+		}); 
 	});
-/* 	function sendFile(file, editor, welEditable) {
+	
+	
+	
+/*  	function sendFile(file, editor, welEditable) {
 			data = new FormData();
 			data.append("file", file);
 			console.log(file);
@@ -214,12 +234,8 @@ $(function(){
 					console.error(status + ":" + error);
 				}
 			});
-		} */
+		}  */
 
-		$("#inputTitle").keyup(function() {
-			var markup = $('#summernote').summernote('code');
-			//console.log("출력"+markup);
-		});
 	});
 </script>
 </html>

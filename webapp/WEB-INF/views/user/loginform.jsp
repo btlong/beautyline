@@ -59,80 +59,46 @@
 <body>
 
    <c:import url="/WEB-INF/views/include/header.jsp" />
-<div class="container">
-      <div class="row">
-         <div class="box">
-            <div class="col-lg-12">
-            
-            
-             <div class="page-header">
-               <hr>
-               <h1 class="text-center">
-                  <strong>LOGIN</strong>
-               </h1>
-               <hr>
-            </div>
-            
-            <form class="form-horizontal"  name="loginform" method="post" action="/beautyline/user/login">
-   
-   
-               <div class="form-group">
-                  <label class="col-sm-3 control-label" for="id">ID</label>
-                   <div class="col-sm-6">
-                  <input class="form-control" id="id" name="id" type="text" value="" placeholder="YOUR ID">
-                  </div>
-                </div>
-                
-                <div class="form-group">
-                  <label class="col-sm-3 control-label" for="password">PASSWORD</label>
-                   <div class="col-sm-6">
-                  <input class="form-control" id="password" name="password" type="password"  value="" placeholder="PASSWORD">
-                  </div>
-                </div>
-            
-            <!--     <div class="form-group">
-                  <label class="col-sm-3 control-label" for="id">ID</label>
-                   <div class="col-sm-6">
-                  <input class="form-control" id="id" name="id" type="text" value="" placeholder="YOUR ID">
-                  </div>
-                </div> -->      
-               <c:if test='${param.r == "fail"}'>
-                  <p>로그인이 실패 했습니다.</p>
-               </c:if>
-           
-           <!-- 아이디 비밀번호 찾기 클릭 -->
-<div class="col-lg-12 text-center">
-  <!-- Trigger the modal with a button -->
-<!--   <button type="button" class="btn btn-info btn-lg" id="myBtn">아이디찾기</button>  -->
- <a href="" id="idfind" data-target="#myModal3" type="button"  data-toggle="modal">아이디찾기</a>/
- <a href="" id="pwfind" data-target="#myModal2" type="button"  data-toggle="modal">비밀번호 찾기</a>
- </div>
- 
-           
-           
-               
-               <div id="loginbt" class="col-lg-12 text-center">
-                  <input class="btn btn-danger" type="submit" value="LOGIN">
-               </div>
-      <!--       
-      <div class="col-lg-12 text-center">
-                  <label class="block-label">password</label>
-                  <input name="password" type="password" value="" placeholder="PASSWORD">
-               </div>
-                
-      
-         
-               </div> -->
-               
-                
-            </form>
-         </div>
-      </div>
-      <!-- <div class="clearfix"></div> -->
-   </div>
-   </div>
+	<div class="container">
+		<div class="row">
+			<div class="box">
+				<div class="col-lg-12">
+					<div class="page-header">
+						<hr><h1 class="text-center"><strong>LOGIN</strong></h1><hr>
+					</div>
 
-   <!-- footer -->
+					<div class="form-horizontal" id="loginform" >
+						<div class="form-group">
+							<label class="col-sm-3 control-label" for="id">ID</label>
+							<div class="col-sm-6">
+								<input class="form-control" id="id" name="id" type="text" value="" placeholder="YOUR ID">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label" for="password">PASSWORD</label>
+							<div class="col-sm-6">
+								<input class="form-control" id="password" name="password" type="password" value="" placeholder="PASSWORD">
+							</div>
+						</div>
+
+						<!-- 아이디 비밀번호 찾기 클릭 -->
+						<div class="col-lg-12 text-center">
+							<a href="" id="idfind" data-target="#myModal3" type="button" data-toggle="modal">아이디 찾기 &nbsp;/</a> 
+							<a href="" id="pwfind" data-target="#myModal2" type="button" data-toggle="modal">&nbsp;비밀번호 찾기</a>
+						</div>
+
+						<div class="col-lg-12 text-center">
+							<input class="btn btn-danger" type="button" id="loginbt" value="LOGIN">
+						</div>
+					</div>
+				</div>
+			</div>
+		  <div class="clearfix"></div>
+		</div>
+	</div>
+
+	<!-- footer -->
    <c:import url="/WEB-INF/views/include/footer.jsp" />
 
 
@@ -241,19 +207,59 @@
 
 
 
-   <script>
-$(document).ready(function(){
-    $("#idfind").click(function(){
-        $("#myModal").modal();
-    });
-	$("#pwfind").click(function(){	
-        $("#myModal").modal();
-    }); 
-});
-	/* id중복체크  */
-	
-	$(function(){ // 다썼는지 체크하기! 빠진 항목없는지..
-	
+<script>
+$(function(){ // 다썼는지 체크하기! 빠진 항목없는지..
+	$("#loginbt").on("click",function(){
+		
+		if($("#id").val() == ""){
+			$("#id").focus();
+		}
+		if($("#password").val()==""){
+			$("#password").focus();
+		}
+		
+		var id = 		$("#id").val();
+		var password =	$("#password").val();
+	 
+		userVo = {
+				"id" : id,
+				"password" : password
+		};
+		
+		$.ajax({// 비동기식 
+			url :"login",
+			type:"POST",
+			data:JSON.stringify(userVo),
+			contentType:"application/json",
+			dataType:"text",
+			success:function(findUser){
+				  if( findUser == "found"){
+					//  window.history.back();
+					  location.href = "/beautyline/main";
+					//javascript:location.reload(); 
+					return true;
+				}
+				  else{
+					 alert("아이디와 비밀번호가 유효하지 않습니다.");
+					 $("#id").focus();
+					 return false;
+				} 
+			},
+			 error:function(jqXHR, status, error){
+				 console.error(status+":"+error);
+			 }
+		}); 
+
+	});
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	/* id 찾기(이름,이메일) */
 	$("#idFindClick").on("click",function(){
 		
@@ -325,9 +331,9 @@ $(document).ready(function(){
 			contentType:"application/json",
 			success:function(findUser){
 				/* 진행되고 있는 표시 지우기  */
-				 $("#idFindClick").removeClass("btn m-progress btn-danger");
-				 $("#idFindClick").addClass("btn btn-danger");
-				 $('#idFindClick').attr('disabled',false);
+				 $("#pwFindClick").removeClass("btn m-progress btn-danger");
+				 $("#pwFindClick").addClass("btn btn-danger");
+				 $('#pwFindClick').attr('disabled',false);
 				
 				  if( findUser == "found"){
 					  alert("이메일로 임시 비밀번호를 전송하였습니다.");
@@ -350,6 +356,20 @@ $(document).ready(function(){
 	
 	
 });
+	
+	/*  모달$(document).ready(function(){
+    $("#idfind").click(function(){
+        $("#myModal").modal();
+    });
+	$("#pwfind").click(function(){	
+        $("#myModal").modal();
+    }); 
+}); */
+	
+	
+	
+	
+	
 </script>
 </body>
 </html>

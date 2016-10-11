@@ -64,6 +64,12 @@
 
 
 
+
+<!-- 파일전송 위한  CommonsMultipartResolver 설정-->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	  <property name="maxUploadSize" value="10000000000"/>
+ 	</bean>
+
 <!-- <bean id="mailMail" class="com.mkyong.common.MailMail">
 	<property name="mailSender" ref="mailSender" />
 </bean>

@@ -88,59 +88,26 @@ public class NoticeBoardController {
    /* 글 보기 폼 */
    @RequestMapping(value = "/view", method = RequestMethod.GET)
    public String view(Long no, Model model) {
-      /* 조회수 업뎃 */
-     nBoardService.updateViewCount(no);
-     
       NoticeBoardVo notiBdVo = nBoardService.view(no);
       FileNotiVo file = nBoardService.fileview(no);
-      
       model.addAttribute("file",file);
       model.addAttribute("notiBdVo", notiBdVo);
       return "board/noticeboard/view";
    }
 
    /* 글 수정 폼 */
-   @RequestMapping(value = "/modifyform", method = RequestMethod.GET)
-   public String modifyform(long no, Model model){
-      NoticeBoardVo notiBdVo = nBoardService.view(no);
-       FileNotiVo file = nBoardService.fileview(no);
-       
-      model.addAttribute("file",file);
-      model.addAttribute( "notiBdVo", notiBdVo );
-      return"board/noticeboard/modifyform";
-
-   }
-   
-   /* 글 수정 */
    @ResponseBody
    @RequestMapping(value = "/modify", method = RequestMethod.POST)
-   public String modify(@RequestBody NoticeBoardVo vo){
-      Long no = vo.getNo();
-      
-      //nBoardService.modify(vo);
-      
-      return "board/noticeboard/view?no="+no;
+   public void modify(@RequestBody NoticeBoardVo vo) {
+      // nBoardService.modify(vo);
+
    }
-   
-   /*글 삭제 폼*/
-   @RequestMapping(value = "/deleteform", method = RequestMethod.GET)
-   public String deleteform(long no, Model model){
-      model.addAttribute( "no", no );
-      return "board/noticeboard/deleteform";
-   }
-   
-   /*글 삭제 */
+
+   /* 글 삭제 폼 */
    @RequestMapping(value = "/delete", method = RequestMethod.GET)
-   public String delete(long no){
-      int cnt = nBoardService.delete(no);
-      if( cnt >0 ){
-         return "redirect:board";
-      }else{
-         return "board/noticeboard/error";
-      }
-      
+   public void delete(int no) {
+
    }
-   
    
    /* 첨부파일 다운로드 */
    @RequestMapping(value = "download", method = RequestMethod.GET)

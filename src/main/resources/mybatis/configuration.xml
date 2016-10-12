@@ -22,6 +22,7 @@
 		<mapper resource="mybatis/mappers/noticeboard.xml" />
 		<mapper resource="mybatis/mappers/reserve.xml" />
 		<mapper resource="mybatis/mappers/mypage.xml" />
+		
 	</mappers>
 
 </configuration>

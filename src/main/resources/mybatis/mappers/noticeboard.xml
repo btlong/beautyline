@@ -20,7 +20,7 @@
  	<insert id="insertFileNoti" parameterType="kr.ac.sungkyul.beautyline.vo.FileNotiVo">
 	
 	<![CDATA[
-		insert into f_noti values (seq_f_notice.nextVal,  #{noticeNo }, #{orgName }, #{path }, #{saveName })
+		insert into f_noti values (seq_f_noti.nextVal,  #{noticeNo }, #{orgName }, #{path }, #{saveName })
 		]]>
 	
 	</insert>
@@ -65,15 +65,6 @@
     	]]>
   	 </select>
 
-
-
-	<!-- 파일저장 -->
-	<insert id="insertFileNoti" parameterType="kr.ac.sungkyul.beautyline.vo.FileNotiVo">
-	
-	<![CDATA[
-		insert into f_noti values (seq_f_noti.nextVal, #{noticeNo }, #{orgName }, #{path }, #{saveName } )
-		]]>
-	</insert>
 
 	
 	

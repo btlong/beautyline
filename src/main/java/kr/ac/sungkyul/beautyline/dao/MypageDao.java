@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.ac.sungkyul.beautyline.vo.FileVisitVo;
 import kr.ac.sungkyul.beautyline.vo.VisitVo;
 
 
@@ -19,6 +20,10 @@ public class MypageDao {
 	public List<VisitVo> listHistory(Long userNo) {
 		List<VisitVo> list = sqlSession.selectList("mypage.listHistory" ,userNo);
 		return list;
+	}
+
+	public List<FileVisitVo> listImage(Long userNo) {
+		return sqlSession.selectList("mypage.listImage" , userNo);
 	}
 	
 	

@@ -3,11 +3,20 @@
 
 <mapper namespace="mypage">
 	
-	<select id="listHistory" parameterType="java.lang.Long" resultType="kr.ac.sungkyul.beautyline.vo.VisitVo">
+	<select id="listHistory" parameterType="java.lang.Long" resultType="visitvo">
 		<![CDATA[
 		SELECT a.no, b.name as program_name, a.reg_date, a.whitening_score, a.wrinkle_score, a.elastic_score, a.moisture_score, a.acne_score, a.average_score 
 		FROM VISIT a, PROGRAM b
 		WHERE a.user_no = #{userNo } AND a.program_no = b.no ORDER BY a.no
+		]]>
+	</select>
+	
+	<select id="listImage" parameterType="java.lang.Long" resultType="filevisitvo">
+		<![CDATA[
+		select v.user_no as userNo ,v.reg_date as regDate, fv.path as path ,fv.sava_name as saveName from visit v, f_visit fv 
+		where fv.NO = v.IMAGE_NO
+		and v.user_no = #{ userNo }
+		order by regDate asc 
 		]]>
 	</select>
 	

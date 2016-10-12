@@ -1,14 +1,17 @@
 package kr.ac.sungkyul.beautyline.service;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.List;
 import java.util.UUID;
 
+import javax.imageio.ImageIO;
+
+import org.imgscalr.Scalr;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
-
 
 import kr.ac.sungkyul.beautyline.dao.VisitDao;
 import kr.ac.sungkyul.beautyline.exception.VisitUpdateException;
@@ -16,6 +19,7 @@ import kr.ac.sungkyul.beautyline.vo.CouponVo;
 import kr.ac.sungkyul.beautyline.vo.FileVisitVo;
 import kr.ac.sungkyul.beautyline.vo.UserVo;
 import kr.ac.sungkyul.beautyline.vo.VisitVo;
+import net.coobird.thumbnailator.Thumbnails;
 
 @Service
 public class VisitService {
@@ -31,41 +35,82 @@ public class VisitService {
 		String path = "c:\\upload\\beautyline";
 		String saveName = UUID.randomUUID().toString() + "_" + orgName;
 
-		// 6.path
-
+		/* 객체 setting */
 		FileVisitVo fileVisitVo = new FileVisitVo();
-
 		fileVisitVo.setOrgName(orgName);
 		fileVisitVo.setPath(path);
 		fileVisitVo.setSaveName(saveName);
 
+		/* 이미지 insert */
 		long imageNo = visitDao.fileInsert(fileVisitVo);
-
 		File target = new File(path, saveName);
 		FileCopyUtils.copy(file.getBytes(), target);
 
-		visitVo.setImageNo(imageNo);
+		int idx = saveName.lastIndexOf(".");
+		
+		
+		String thumbFileName = saveName.substring(0, idx); //확장자 전까지
+		String extension = saveName.substring(idx + 1);		// 확장자 이후
 
+		File thumbnail = new File(path, thumbFileName + "_s_" + extension);
+
+		if (target.exists()) {
+			thumbnail.getParentFile().mkdirs();
+			Thumbnails.of(target).forceSize(150,96).outputFormat("png").toFile(thumbnail);
+		}
+		visitVo.setImageNo(imageNo);
 		visitVo.setAverageScore((visitVo.getWhiteningScore() + // 미백
 				visitVo.getElasticScore() + // 피부탄력
 				visitVo.getMoistureScore() + // 수분
 				visitVo.getAcneScore() + // 여드름
 				visitVo.getWhinkleScore() // 주름
 		) / 5);
-		
+
+		/* 데이터 insert */
 		visitDao.insert(visitVo);
-		System.out.println();
+
 		/* payNo == 2 (쿠폰 ) */
 		if (visitVo.getPayNo() == 2) {
+
+			/* 쿠폰 update */
 			visitDao.updateCoupon(visitVo); // userNo와 programNo가 필요.
 		}
 		if (visitVo.getPrice() == null) {
 			visitVo.setPrice(0L); // defined
 		}
 
+		/* 시술 내역 insert */
 		visitDao.SalesInsert(visitVo);
 	}
 
+	public static void imageResize(String orgFilePath, String targetFilePath, String imageType) throws Exception {
+
+		BufferedImage originalImage = ImageIO.read(new File(orgFilePath));
+
+		int imgwidth = Math.min(originalImage.getHeight(), originalImage.getWidth());
+		int imgheight = imgwidth;
+
+		BufferedImage scaledImage = Scalr.crop(originalImage, (originalImage.getWidth() - imgwidth) / 2,
+				(originalImage.getHeight() - imgheight) / 2, imgwidth, imgheight, null);
+
+		BufferedImage resizedImage = Scalr.resize(scaledImage, 180, 100, null);
+
+		ImageIO.write(resizedImage, imageType, new File(targetFilePath));
+
+	}
+
+	/*
+	 * public boolean scale(BufferedImage srcImage, String destPath, String
+	 * imageFormat, int destWidth, int destHeight) { boolean result = true;
+	 * 
+	 * try { ResampleOp resampleOp = new ResampleOp(destWidth, destHeight);
+	 * resampleOp.setUnsharpenMask(AdvancedResizeOp.UnsharpenMask.Soft);
+	 * 
+	 * BufferedImage rescaledImage = resampleOp.filter(srcImage, null); File
+	 * destFile = new File(destPath); ImageIO.write(rescaledImage, imageFormat,
+	 * destFile); } catch (Exception e) { System.out.println(e.getMessage());
+	 * result = false; } return result; }
+	 */
 	public void insert(VisitVo visitVo) {
 		visitDao.insert(visitVo);
 	}
@@ -101,12 +146,4 @@ public class VisitService {
 		}
 	}
 
-	// visitForm에서 name을 검색 --> Query를 통해 --> VisitVo의 정보를 불러옴 ( name은 UserVo에
-	// 존재 )
-	/*
-	 * public VisitVo search(String name) { 회원의 대한 정보 이름 검색 VisitVo vo =
-	 * (VisitVo) visitDao.getList(name);
-	 * 
-	 * return vo; }
-	 */
 }

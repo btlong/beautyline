@@ -1,9 +1,0 @@
-diff a/src/main/java/kr/ac/sungkyul/beautyline/dao/NoticeBoardDao.java b/src/main/java/kr/ac/sungkyul/beautyline/dao/NoticeBoardDao.java	(rejected hunks)
-@@ -32,6 +32,7 @@
- 	
- 	/* 공지사항 글 조회수 업뎃 */
- 	public void updateViewCount(int no){
-+		sqlSession.update("noticeboard.updateviewcnt",no);
- 	}
- 	
- 	/* 공지사항 글 삭제 */

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.ac.sungkyul.beautyline.service.UserService;
 import kr.ac.sungkyul.beautyline.service.UserinfoService;
@@ -20,6 +21,7 @@ import kr.ac.sungkyul.beautyline.vo.CouponVo;
 import kr.ac.sungkyul.beautyline.vo.PageVo;
 import kr.ac.sungkyul.beautyline.vo.UserVo;
 import kr.ac.sungkyul.beautyline.vo.UserinfoVo;
+import kr.ac.sungkyul.beautyline.vo.VisitVo;
 
 @Controller
 @RequestMapping("/userinfo")
@@ -70,26 +72,60 @@ public class UserinfoController {
 	 * userinfoService.couponList(no); System.out.println(couponList);
 	 * retVal.put("couponList", couponList); return retVal; }
 	 */
+	
+	//쿠폰뷰
 	@ResponseBody
 	@RequestMapping(value = "selectCoupon", method = RequestMethod.POST)
 	public List<CouponVo> readBoardAjax(long no) {
-		System.out.println(no);
-		/* UserinfoVo userinfoVo = userinfoService.selectUser(no); */
-		List<CouponVo> couponList = visitService.couponList(no);
-		System.out.println(couponList);
+		List<CouponVo> couponList = userinfoService.couponList(no);
+		System.out.println(couponList.toString());
 		return couponList;
 	}
+	
+	//쿠폰 수정1
+	@ResponseBody
+	@RequestMapping(value = "updateCoupon1", method = RequestMethod.POST)
+	public int updateCoupon1(@RequestBody CouponVo couponvo){
+		System.out.println("왔쟈"+couponvo);
+		int ck = userinfoService.updateCoupon(couponvo);
+		return ck;
+	}
+	//쿠폰 수정2
+	@ResponseBody
+	@RequestMapping(value = "updateCoupon2", method = RequestMethod.POST)
+	public int updateCoupon2(@RequestBody CouponVo couponvo){
+		System.out.println("왔쟈"+couponvo);
+		int ck = userinfoService.updateCoupon(couponvo);
+		return ck;
+	}
+	//쿠폰 수정3
+	@ResponseBody
+	@RequestMapping(value = "updateCoupon3", method = RequestMethod.POST)
+	public int updateCoupon3(@RequestBody CouponVo couponvo){
+		System.out.println("왔쟈"+couponvo);
+		int ck = userinfoService.updateCoupon(couponvo);
+		return ck;
+	}
+	//쿠폰 수정4
+	@ResponseBody
+	@RequestMapping(value = "updateCoupon4", method = RequestMethod.POST)
+	public int updateCoupon4(@RequestBody CouponVo couponvo){
+		System.out.println("왔쟈"+couponvo);
+		int ck = userinfoService.updateCoupon(couponvo);
+		return ck;
+	}
+
 
 	// 회원삭제
 	@RequestMapping(value = "delete", method = RequestMethod.POST)
-	public String modifyUser(long no) {
+	public String modifyUser(Long no) {
 		userinfoService.deleteUser(no);
 		return "redirect:list";
 	}
 
 	// 수정폼
 	@RequestMapping(value = "modifyuser", method = RequestMethod.GET)
-	public String modifyUser(long no, Model model) {
+	public String modifyUser(Long no, Model model) {
 		UserinfoVo userinfoVo = userinfoService.selectUser(no);
 		model.addAttribute("UserinfoVo", userinfoVo);
 		return "userinfo/modifyuser";
@@ -136,7 +172,7 @@ public class UserinfoController {
 		return "userinfo/loginform";
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
+/*	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(HttpSession session,
 
 			@RequestParam(value = "id", required = false, defaultValue = "") String id,
@@ -156,7 +192,7 @@ public class UserinfoController {
 		session.invalidate(); //
 		return "redirect:/main";
 	}
-	/* -------------- */
+	 -------------- */
 
 	/*
 	 * // 쿠폰조회

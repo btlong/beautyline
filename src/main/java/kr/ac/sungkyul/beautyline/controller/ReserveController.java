@@ -8,10 +8,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.ac.sungkyul.beautyline.service.PageService;
 import kr.ac.sungkyul.beautyline.service.ReserveService;
 import kr.ac.sungkyul.beautyline.service.UserService;
+import kr.ac.sungkyul.beautyline.vo.PageVo;
 import kr.ac.sungkyul.beautyline.vo.ReserveVo;
 import kr.ac.sungkyul.beautyline.vo.UserVo;
 @Controller
@@ -24,6 +27,8 @@ public class ReserveController {
 	@Autowired
 	UserService userService;
 	
+	@Autowired
+	PageService pageService;
 
 /* 관리자 */
 	
@@ -35,9 +40,27 @@ public class ReserveController {
 	
 	//관리자 - 예약리스트 조회
 	@RequestMapping( value = "reservelist", method = RequestMethod.GET)
-	public String reservelist( Model model ){
-		List<ReserveVo> resList = reserveService.resList();
+	public String reservelist( Model model,
+			@RequestParam(value = "nowPage", required = false) Integer nowPage,
+			@RequestParam(value = "nowBlock", required=false) Integer nowBlock, 
+			@RequestParam(value = "keyField", required=false) String keyField, 
+			@RequestParam(value = "keyWord", required=false) String keyWord){
 		
+		List<ReserveVo> resList = reserveService.resList();
+		System.out.println(resList.toString());
+
+		PageVo page = null;
+        try{
+            page = pageService.pagingProc(nowPage, nowBlock, resList.size());
+        }
+        catch(Exception err){
+            System.out.println("현재페이지와 현재블럭이 존재하지 않아 0을 대입했습니다.");
+            System.out.println("에러내용은 다음과 같습니다." + err);
+            page = pageService.pagingProc(0, 0, resList.size());
+        }
+		model.addAttribute("page", page);
+		model.addAttribute("keyField", keyField);
+		model.addAttribute("keyWord", keyWord);
 		model.addAttribute("resList", resList);
 		return "reserve/reservelist";
 	}

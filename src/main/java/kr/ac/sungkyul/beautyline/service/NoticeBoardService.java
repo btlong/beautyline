@@ -26,10 +26,13 @@ public class NoticeBoardService {
 		List<NoticeBoardVo> list = nBoardDao.getAll();		
 		return list;	
 	}
+	public void write(NoticeBoardVo noticeBoardVo){
+		nBoardDao.insertBoard(noticeBoardVo);
+	}
+	
 	
 	/* 글쓰기	*/
 	public void write(NoticeBoardVo noticeBoardVo, MultipartFile file)throws Exception {
-		
 		Long noticeNo = nBoardDao.insertBoard(noticeBoardVo);
 		
 		// 2. orgName
@@ -42,7 +45,10 @@ public class NoticeBoardService {
 		String saveName = UUID.randomUUID().toString() + "_" + orgName;
 
 		// 6. path
-		String path = "c:\\Users\\S401-11\\Downloads\\filestore";
+	//	String path = "C:\\Users\\User\\Download2\\filestore\\";
+		String path = "c:\\Users\\S401-11\\Downloads\\filestore\\";
+
+		
 		FileNotiVo noticeFile = new FileNotiVo();
 
 		noticeFile.setNoticeNo(noticeNo);
@@ -78,12 +84,57 @@ public class NoticeBoardService {
 	public FileNotiVo fileview(Long noticeNo){//볼때
 		return nBoardDao.selectFileNotiByNo(noticeNo);
 	}
+
+/*------------------- 수정--------------------  */
+	/* 글만 수정 */
+	public void modifyBd(NoticeBoardVo noticeBoardVo){
+		nBoardDao.modify(noticeBoardVo);
+	}
+	
+	
+	/* 글 수정과 첨부파일 추가 */
+	public void modify(NoticeBoardVo noticeBoardVo, MultipartFile file)throws Exception {
+		
+		nBoardDao.modify(noticeBoardVo);
+		Long noticeNo = noticeBoardVo.getNo();
+		
+		// 2. orgName
+		String orgName = file.getOriginalFilename();
+
+		// 4. fileSize 리사이징할때
+		// long fileSize = file.getSize();
+
+		// 5. saveName
+		String saveName = UUID.randomUUID().toString() + "_" + orgName;
+
+		// 6. path
+		//String path = "C:\\Users\\User\\Download2\\filestore\\";
+		String path = "c:\\Users\\S401-11\\Downloads\\filestore";
+
+		FileNotiVo noticeFile = new FileNotiVo();
+
+		noticeFile.setNoticeNo(noticeNo);
+		noticeFile.setOrgName(orgName);
+		noticeFile.setPath(path);
+		noticeFile.setSaveName(saveName);
+		nBoardDao.insertFileNoti(noticeFile);
+
+		File target = new File(path, saveName);
+		FileCopyUtils.copy(file.getBytes(), target);
+
+	}
+	
 	
 /*	 파일 다운로드 ! 	
 	public FileNotiVo selectAttachFileByFno(Long no){//다운로드를위해
 		return nBoardDao.selectAttachFileByFno(no);
 		
 	}*/
+	
+	/* 파일 삭제 */
+	public int delFile(Long fileNo){
+		return nBoardDao.delFile(fileNo);
+	}
 	
 	
 	

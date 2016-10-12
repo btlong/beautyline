@@ -26,11 +26,12 @@
 	href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic"
 	rel="stylesheet" type="text/css">
 	
-<link href="/beautyline/beautyline/css/counsel.css" rel="stylesheet" type="text/css">
 
 
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" charset=utf-8"></script>
+<script type="text/javascript" src="/beautyline/jquery/jquery-1.9.0.js"></script>
+ <script type="text/javascript" src="/beautyline/jquery/jquery.scrollfollow.js"></script>
 <style type="text/css">
 
    div.clumn {width:360px; float:left;overflow:visible;}
@@ -49,67 +50,143 @@
    
    .counter {margin-left: 5px; }
       
-   
+   .movepage:hover {cursor:pointer;}
+  	div.pager  ul li 			{ display:inline-block; margin:5px 0; width:20px ; font-weight:bold; }
+	div.pager  ul li.selected { text-decoration: underline; color:#f40808 }
+	
+	.bg {background-color: #F2F396}
 
-   
- 
+   .color-item {	
+   display:inline-block;
+	width: 20px;
+	height:20px;
+	margin-left: 5px;
+	margin-top: 5px;
+}
+
+	#color-item {
+		padding-top: 30px;
+	}
+	
+	#ment { font-size: 15px;}
+	
+	#ad {
+		background-color: #123456;
+		position: absolute;
+        border: 3px solid #f00;
+
+        right : 20px;
+        top : 30px;
+        width: 175px;
+        height: 315px;
+	}
+	
+	#img_ad {
+		width:150px;
+		height:150px;
+	}
+
 </style>
 <script type="text/javascript">
 
+
+$(document).ready(function(){
+	
+	$("#ad").scrollFollow({
+        speed : 800,    // 꿈지럭 거리는 속도
+        offset : 500     // 웹페이지 상단에서 부터의 거리(바꿔보면 뭔지 안다)
+    });
+	
+	
+	
+	
 	
 
-
-   $(document).ready(function(){
-           //$("div.graphBox ul").animate({height:"80px"}, 100);
-           $(".graphBox2 li span").text('0');
-           $(".graphBox2 .g1").animate({height:(max1*2)+"px"}, 250);
-           $(".graphBox2 .g2").animate({height:(max2*2)+"px"}, 200);
-           $(".graphBox2 .g3").animate({height:(max3*2)+"px"}, 150);
-           $(".graphBox2 .g4").animate({height:(max4*2)+"px"}, 100);
-           $(".graphBox2 .g5").animate({height:(max5*2)+"px"}, 50);
-           $(".graphBox2 li span").fadeIn(500);
-           var opacity = 1;
-           $(".graphBox2 li").css("opacity", opacity);
-           $(".graphBox2 li").hover(function(){
-               $(this).css("opacity", 0.5);
-           }, function(){
-               $(this).css("opacity", opacity);
-           });
-           incCounter2();                
-   });
-       
+	$("tr").click(function() {
+		
+		$( "tr.bg" ).removeClass( "bg" );
+		$(this).addClass( "bg" );
+		
+		var selectedDay = $(this).find("#regDate").text();
+		max1 = $(this).find("#whiteningScore").text();
+		max2 = $(this).find("#whinkleScore").text();
+		max3 = $(this).find("#elasticScore").text();
+		max4 = $(this).find("#moistureScore").text();
+		max5 = $(this).find("#acneScore").text();
+			
+		$("#selectedDay").text(selectedDay);
+		drawGraph();
+		
+	});
    
-   // 숫자 카운터(%값)
-   var max1 = ${resultVo.scores[0] };
-   var max2 = ${resultVo.scores[1] };
-   var max3 = ${resultVo.scores[2] };
-   var max4 = ${resultVo.scores[3] };
-   var max5 = ${resultVo.scores[4] };
-               
-   function incCounter2(){
-	   console.log("counter");
-       var currCount1 = parseInt($('.graphBox2 .counter1').html());
-       var currCount2 = parseInt($('.graphBox2 .counter2').html());
-       var currCount3 = parseInt($('.graphBox2 .counter3').html());
-       var currCount4 = parseInt($('.graphBox2 .counter4').html());
-       var currCount5 = parseInt($('.graphBox2 .counter5').html());
-       if (currCount1 != max1){
-           $('.graphBox2 .counter1').text(currCount1+1+"점");
-           setTimeout('incCounter2()',0);
-       } else if (currCount2 != max2){
-           $('.graphBox2 .counter2').text(currCount2+1+"점");
-           setTimeout('incCounter2()',0);
-       } else if (currCount3 != max3){
-           $('.graphBox2 .counter3').text(currCount3+1+"점");
-           setTimeout('incCounter2()',0);
-       } else if (currCount4 != max4){
-           $('.graphBox2 .counter4').text(currCount4+1+"점");
-           setTimeout('incCounter2()',0);
-       } else if (currCount5 != max5){
-           $('.graphBox2 .counter5').text(currCount5+1+"점");
-           setTimeout('incCounter2()',0);
-       }
-   }
+});
+
+
+
+//숫자 카운터(%값)
+var max1 = 0;
+var max2 = 0;
+var max3 = 0;
+var max4 = 0;
+var max5 = 0;
+
+function drawGraph() {
+    $(".graphBox2 li span").text('0');
+    $(".graphBox2 .g1").animate({height:(max1*2)+"px"}, 250);
+    $(".graphBox2 .g2").animate({height:(max2*2)+"px"}, 200);
+    $(".graphBox2 .g3").animate({height:(max3*2)+"px"}, 150);
+    $(".graphBox2 .g4").animate({height:(max4*2)+"px"}, 100);
+    $(".graphBox2 .g5").animate({height:(max5*2)+"px"}, 50);
+    $(".graphBox2 li span").fadeIn(500);
+    
+    var opacity = 1;
+    $(".graphBox2 li").css("opacity", opacity);
+    $(".graphBox2 li").hover(
+    		function(){$(this).css("opacity", 0.5);}, 
+    		function(){$(this).css("opacity", opacity);}
+    );
+     incCounter2();     
+};
+
+
+function incCounter2(){
+	var currCount1 = parseInt($('.graphBox2 .counter1').html());
+	var currCount2 = parseInt($('.graphBox2 .counter2').html());
+	var currCount3 = parseInt($('.graphBox2 .counter3').html());
+	var currCount4 = parseInt($('.graphBox2 .counter4').html());
+	var currCount5 = parseInt($('.graphBox2 .counter5').html());
+	
+	if (currCount1 != max1){
+	    $('.graphBox2 .counter1').text(currCount1+1+"점");
+	    setTimeout('incCounter2()',0);
+	} else if (currCount2 != max2){
+	    $('.graphBox2 .counter2').text(currCount2+1+"점");
+	    setTimeout('incCounter2()',0);
+	} else if (currCount3 != max3){
+	    $('.graphBox2 .counter3').text(currCount3+1+"점");
+	    setTimeout('incCounter2()',0);
+		   } else if (currCount4 != max4){
+	    $('.graphBox2 .counter4').text(currCount4+1+"점");
+	    setTimeout('incCounter2()',0);
+	} else if (currCount5 != max5){
+	    $('.graphBox2 .counter5').text(currCount5+1+"점");
+	    setTimeout('incCounter2()',0);
+	}
+	
+};
+										
+
+
+$(function() {
+	$(".movepage").click(function() {
+		console.log("click");
+		var cp = $(this).data("cp");
+		
+		$("#currentPage").val(cp);
+		$("#list_form").submit();
+		
+	});
+});
 
 </script>
 
@@ -119,9 +196,27 @@
 
 </head>
 <body>
-	<c:import url="/WEB-INF/views/include/header.jsp" />
 
+
+	<form id="list_form" action="/beautyline/mypage/history" method="POST">
+		<input type="hidden" id=currentPage name="currentPage" value=${listVo.currentPage }>
+		<input type="hidden" id=userNo name="userNo" value=${authUser.no }>
+	</form>
+
+	<c:import url="/WEB-INF/views/include/header.jsp"/>
+	
+	<div id="ad" >
+		<h2 class="text-center">
+			<small id="ment">고객님만을 위한 <br> 추천제품 </small>
+		</h2>
+		<div class="text-center " id="cosmetic"> <!-- text-center -->
+			<a href='${recommend.url }' target="_blank"> <img src='${recommend.src }' title="구매하러 가기" style="height:250px; width:170px;"/> </a>
+		</div>
+	</div>
+	
 	<div class="container">
+	
+	
 		<div class="row">
 			<div class="box">		
 				
@@ -136,9 +231,10 @@
 								
 				<div class="col-lg-12">
 					<h2 class="col-lg-12 text-center">
-						<small>최근 5회 점수</small>
+						<small id="selectedDay"></small>
 					</h2>
 					<div class="col-lg-4" style="height:290px;">
+						
 					</div>
 					<div class="col-lg-12 clumn">            
 			            <div class="graphBox2">
@@ -151,48 +247,91 @@
 			                </ul>
 			            </div>
 		        	</div>
+		        	<div class="col-lg-4" id="color-item" style="height:290px;">
+		        		<div><div class="color-item" style="background-color: #EC008C" ></div> <label>미백점수</label></div>
+		        		<div><div class="color-item" style="background-color: #662D91" ></div> <label>주름점수</label></div>
+		        		<div><div class="color-item" style="background-color: #0D004C" ></div> <label>피부탄력점수</label></div>
+		        		<div><div class="color-item" style="background-color: #F7941D" ></div> <label>수분점수</label></div>
+		        		<div><div class="color-item" style="background-color: #8DC63F" ></div> <label>여드름점수</label></div>
+		        		
+					</div>
 					
 				</div>
 				
-				
-				
-				
 				<div class="col-lg-12" id="visitRecords">
-					<table class="table-bordered text-center" id="print_score">
+					<table class="table table-bordered table-hover table-responsive" >
+						<thead>
 						<tr>
-							<td>번호</td>
-							<td>날짜</td>
-							<td>프로그램</td>
-							<td>피부점수1</td>
-							<td>피부점수2</td>
-							<td>피부점수3</td>
-							<td>피부점수4</td>
-							<td>피부점수5</td>						
-							<td>평균점수</td>
+							<th class="danger">번호</th>
+							<th class="danger">날짜</th>
+							<th class="danger">프로그램</th>
+							<th class="danger">미백점수</th>
+							<th class="danger">주름점수</th>
+							<th class="danger">피부탄력점수</th>
+							<th class="danger">수분점수</th>
+							<th class="danger">여드름점수</th>	
+							<th class="danger">평균점수</th>
 						</tr>
-						<tr>
-							
-							<c:forEach var="score" items="${resultVo.scores }">
-								<td> ${score } </td>
+						</thead>
+						<c:set var='countList' value='${fn:length(listVo.visitList)}'/>
+						<c:forEach var='visitVo' items='${listVo.visitList }' varStatus='status'>
+							<tr>
+								<td>[${listVo.number - status.index }]</td>
+								<td id="regDate">${visitVo.regDate }</td>
+								<td>${visitVo.programName }</td>
+								<td id="whiteningScore">${visitVo.whiteningScore }</td>
+								<td id="whinkleScore">${visitVo.whinkleScore }</td>
+								<td id="elasticScore">${visitVo.elasticScore }</td>
+								<td id="moistureScore">${visitVo.moistureScore }</td>
+								<td id="acneScore">${visitVo.acneScore }</td>
+								<td>${visitVo.averageScore }</td>
+							</tr>
+						</c:forEach>	
+											
+											
+					</table>
+					
+					<!-- begin:paging -->
+					<div class="pager">
+						<ul>
+							<c:if test="${listVo.beforePage > 0 }">
+								<li class="movepage" data-cp=${listVo.beforePage }> ◀  </li>
+							</c:if>						
+							<c:forEach begin='${listVo.firstPage + 1 }' end='${listVo.lastPage }' step='1' var='i'>
+								<c:choose>
+									<c:when test='${listVo.currentPage == i }'>
+										<li class="selected">${i }</li>
+									</c:when>
+									
+									<c:otherwise>
+										<li class="movepage" data-cp=${i }>${i }</li>
+									</c:otherwise>
+								</c:choose>
 							</c:forEach>
 							
-						</tr>					
-					</table>
+							<c:if test='${listVo.nextPage > 0 }'>
+								<li class="movepage" data-cp=${listVo.nextPage }>▶</li>
+							</c:if>
+						</ul>
+					</div>
+				<!-- end:paging -->
+					
 				</div>
 
-				
-				
-			
-				
-				
-				
 			</div>
 		</div>
+		
 	</div>
+		
 	
 
 
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
+	
+		
+	
+	
+
 	
 </body>
 </html>

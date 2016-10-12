@@ -2,11 +2,14 @@ package kr.ac.sungkyul.beautyline.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.ac.sungkyul.beautyline.dao.MypageDao;
 import kr.ac.sungkyul.beautyline.vo.ListVo;
+import kr.ac.sungkyul.beautyline.vo.RecommendVo;
 import kr.ac.sungkyul.beautyline.vo.VisitVo;
 
 @Service
@@ -15,7 +18,7 @@ public class MypageService {
    @Autowired
    private MypageDao mypageDao;
    
-   public ListVo listHistory(ListVo listVo) {
+   public ListVo listHistory(HttpSession session, ListVo listVo) {
       
       final int PAGE_RECORDS = 10;
       final int PAGE_SETS = 5;
@@ -88,9 +91,43 @@ public class MypageService {
       listVo.setCurrentPageSet(currentPageSet);
       listVo.setPageRecords(PAGE_RECORDS);
       
-      
+      // 리스트 데이터
       List<VisitVo> visitList = mypageDao.listHistory(listVo);
       listVo.setVisitList(visitList);
+      
+      // 맞춤 서비스 데이터
+      RecommendVo recommendVo = new RecommendVo();
+      if( session.getAttribute("recommend") == null) {
+         String[] srcs = {"/beautyline/images/cos1.PNG"
+               , "/beautyline/images/cos2.PNG"
+               , "/beautyline/images/cos3.PNG"
+               , "/beautyline/images/cos4.PNG"
+               , "/beautyline/images/cos5.PNG"};
+         String[] urls = {"http://www.dermalogica.co.kr/?r=home&m=shop&cat=2&uid=14"
+               , "http://www.dermalogica.co.kr/?r=home&m=shop&cat=2&uid=9"
+               , "http://www.dermalogica.co.kr/?r=home&m=shop&cat=3&uid=27"
+               , "http://www.dermalogica.co.kr/?r=home&m=shop&cat=2&uid=11"
+               , "http://www.dermalogica.co.kr/?r=home&m=shop&cat=3&uid=31"};
+         VisitVo visitVo = visitList.get(0);
+         Long whiteningScore = visitVo.getWhiteningScore();
+         Long whinkleScore = visitVo.getWhinkleScore();
+         Long elasticScore = visitVo.getElasticScore();
+         Long moistureScore = visitVo.getMoistureScore();
+         Long acneScore = visitVo.getAcneScore();
+         
+         Long lowestScore = 100L;
+         int weaknessType = 0;
+         Long[] scores = {whiteningScore, whinkleScore, elasticScore, moistureScore, acneScore};
+         for(int i=0; i < scores.length; i++) {
+            if(lowestScore > scores[i]) {
+               lowestScore = scores[i];
+               weaknessType = i;
+            }
+         }
+         recommendVo.setSrc(srcs[weaknessType]);
+         recommendVo.setUrl(urls[weaknessType]);
+         session.setAttribute("recommend", recommendVo);
+      }
       
       // 페이징 데이터
       

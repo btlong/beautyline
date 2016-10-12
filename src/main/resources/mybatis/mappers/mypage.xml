@@ -10,7 +10,7 @@
             (SELECT 
                a.no 
               ,b.name as programName
-              ,a.reg_date as regDate
+              ,SUBSTR(a.reg_date,1,10) as regDate
               ,a.whitening_score as whiteningScore
               ,a.wrinkle_score as whinkleScore
               ,a.elastic_score as elasticScore

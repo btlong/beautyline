@@ -22,11 +22,11 @@ public class MypageController {
       @RequestMapping("/history")
       
       public String listHistory(HttpSession session, ListVo listVo, Model model) {
-         UserVo userVo =(UserVo) session.getAttribute("authUser");
-         System.out.println("세션 값 : " + userVo.getNo());
+         UserVo authUser =(UserVo) session.getAttribute("authUser");
+         System.out.println("세션 값 : " + authUser.getNo());
          
-         listVo.setUserNo(83L);
-         listVo = mypageService.listHistory(listVo);
+         listVo.setUserNo(authUser.getNo());
+         listVo = mypageService.listHistory(session, listVo);
          
          System.out.println("listVo : " + listVo);
          

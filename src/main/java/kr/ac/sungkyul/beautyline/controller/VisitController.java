@@ -18,7 +18,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import kr.ac.sungkyul.beautyline.service.PageService;
 import kr.ac.sungkyul.beautyline.service.UserService;
-import kr.ac.sungkyul.beautyline.service.UserinfoService;
 import kr.ac.sungkyul.beautyline.service.VisitService;
 import kr.ac.sungkyul.beautyline.vo.CouponVo;
 import kr.ac.sungkyul.beautyline.vo.PageVo;

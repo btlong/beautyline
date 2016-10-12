@@ -12,10 +12,7 @@
 		<typeAlias type="kr.ac.sungkyul.beautyline.vo.UserinfoVo" alias="userinfovo" />
 		<typeAlias type="kr.ac.sungkyul.beautyline.vo.PageVo" alias="pagevo" />
 		<typeAlias type="kr.ac.sungkyul.beautyline.vo.FileVisitVo" alias="filevisitvo" />
-<<<<<<< HEAD
 		<typeAlias type="kr.ac.sungkyul.beautyline.vo.ListVo" alias="listvo" />
-=======
->>>>>>> 3b1f7ddca3b01002fdf95b16743b5b8443d54fd1
 	</typeAliases>
 
 

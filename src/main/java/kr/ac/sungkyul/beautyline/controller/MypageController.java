@@ -1,5 +1,7 @@
 package kr.ac.sungkyul.beautyline.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.ac.sungkyul.beautyline.service.MypageService;
 import kr.ac.sungkyul.beautyline.vo.ListVo;
+import kr.ac.sungkyul.beautyline.vo.UserVo;
 
 @Controller
 @RequestMapping("/mypage")
@@ -16,26 +19,19 @@ public class MypageController {
 	private MypageService mypageService;
 	
 	// 히스토리
-<<<<<<< HEAD
 		@RequestMapping("/history")
-		public String listHistory(ListVo listVo, Model model) {
+		
+		public String listHistory(HttpSession session, ListVo listVo, Model model) {
+			UserVo authUser =(UserVo) session.getAttribute("authUser");
+			System.out.println("세션 값 : " + authUser.getNo());
 			
-			listVo.setUserNo(83L);
-			listVo = mypageService.listHistory(listVo);
+			listVo.setUserNo(authUser.getNo());
+			listVo = mypageService.listHistory(session, listVo);
 			
 			System.out.println("listVo : " + listVo);
 			
 			model.addAttribute("listVo", listVo); // jsp에서 쓸 이름, 넘겨줄 애(실제 데이터)
 			
-=======
-		@RequestMapping(value = "history", method = RequestMethod.POST)
-		public String listHistory(Long userNo, Model model) {
-			
-			List<VisitVo> listHistory = mypageService.listHistory(userNo);
-
-			// jsp에 넘겨준다.
-			model.addAttribute("listHistory", listHistory); // jsp에서 쓸 이름, 넘겨줄 애(실제 데이터)
->>>>>>> 3b1f7ddca3b01002fdf95b16743b5b8443d54fd1
 
 			return "mypage/history";
 		}

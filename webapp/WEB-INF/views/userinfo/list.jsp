@@ -71,9 +71,9 @@
 
 				<div class="col-lg-12 text-center">
 					<!-- 관리자권한 설정 -->
-					<c:choose>
+					<%-- <c:choose>
 						<c:when
-							test="${not empty sessionScope.authUser && authUser.isAdmin eq 'a'}">
+							test="${not empty sessionScope.authUser && authUser.isAdmin eq 'a'}"> --%>
 
 
 							<!-- 회원등록버튼 -->
@@ -138,7 +138,7 @@
 															<input type="hidden" name="no" value="${listUser[i].no }" />
 															<a class="btn btn-default btn-sm couponview" href=""
 															data-target="#modalCoupon" type="button"
-															data-toggle="modal" role="button"
+															data-toggle="modal" data-backdrop="static" role="button"
 															data-userno="${listUser[i].no}">조회</a>
 														</td>
 
@@ -264,7 +264,7 @@
 
 
 
-						</c:when>
+						<%-- </c:when>
 
 
 						<c:otherwise>
@@ -272,7 +272,7 @@
 							<h4>관리자페이지 입니다.</h4>
 							<c:import url="/WEB-INF/views/userinfo/loginform.jsp" />
 						</c:otherwise>
-					</c:choose>
+					</c:choose> --%>
 				</div>
 			</div>
 		</div>
@@ -299,41 +299,42 @@
 								<tr class="danger">
 									<th>프로그램이름</th>
 									<th>잔여횟수</th>
+									<th></th>
 								</tr>
 							</thead>
 							<!-- 리스트영역 -->
 							<tbody>
 								<tr>
 									<td>베이직 케어</td>
-									<td><input class="form-control input-sm" type=text
-										id="one"></td>
+									<td><input class="form-control input-sm" type=number
+										min=0 id="one"></td>
 									<td><input class="btn btn-default" type="button"
 								id="couponCountModify1" value="수정"></td>
 								</tr>
 								<tr>
 									<td>미백 케어</td>
-									<td><input class="form-control input-sm" type=text
-										id="two"></td>
+									<td><input class="form-control input-sm" type=number
+										min=0 id="two"></td>
 										<td><input class="btn btn-default" type="button"
 								id="couponCountModify2" value="수정"></td>
 								</tr>
 								<tr>
 									<td>주름 케어</td>
-									<td><input class="form-control input-sm" type=text
-										id="three"></td>
+									<td><input class="form-control input-sm" type=number
+										min=0 id="three"></td>
 										<td><input class="btn btn-default" type="button"
 								id="couponCountModify3" value="수정"></td>
 								</tr>
 								<tr>
 									<td>여드름 케어</td>
-									<td><input class="form-control input-sm" type=text
-										id="four"></td>
+									<td><input class="form-control input-sm" type=number
+										min=0 id="four"></td>
 										<td><input class="btn btn-default" type="button"
 								id="couponCountModify4" value="수정"></td>
 								</tr>
-								<!-- <tr>
+								<tr>
 									<td><input type=hidden id="coupon-userno" value=""></td>
-								</tr> -->
+								</tr>
 								<%-- <c:forEach items="${couponView }" var="couponinfoVo"
 									varStatus="status">
 									<tr>
@@ -351,8 +352,10 @@
 
 					<div class="modal-footer">
 						<div id="fintdt" class="col-lg-12 text-center">
-							<button type="button" class="btn btn-default"
-								data-dismiss="modal">닫기</button>
+							<!-- <button type="button" class="btn btn-default"
+								data-dismiss="modal">닫기</button> -->
+							<button id=reload type="button" class="btn btn-info"
+								>닫기</button>
 						</div>
 					</div>
 				</form>
@@ -388,6 +391,14 @@
 		var antiaging="";
 		var acne="";
 		
+		
+		
+		
+		/*  모달닫으면 새로고침 */
+		$("#reload").on("click", function() {
+			location.reload();
+		});
+		
 		/*  쿠폰count조회 모달  */
 		$(".couponview").click(function() {
 			//console.log(this);//.couponview 버튼
@@ -395,52 +406,74 @@
 			$('#two').val("0");
 			$('#three').val("0");
 			$('#four').val("0");
-			var no = $(this).data("userno");//userno 소문자여야함
-			//console.log(no);//userno 받아옴
+			var userNo = $(this).data("userno");//userno 소문자여야함
+			console.log(userNo);//userno 받아옴
 			$.ajax({
 				url : "selectCoupon",
 				type : "POST",
-				data : {
-					"no" : no
-				}, success : function(couponList) {
+				data : {"userNo" : userNo}, 
+				success : function(couponList) {
 					console.log(couponList);
 					$.each(couponList, function(index, couponVo) {
 						if (couponVo.programNo == 1) {
 							$('#one').val(couponVo.count);
 							//console.log("쿠폰 Vo : " + couponVo.no);
 							basic = couponVo.no;
-							//console.log("확인" + basic);
+							//console.log("확인x" + basic);
 						} else if (couponVo.programNo == 2) {
 							$('#two').val(couponVo.count);
+							whitening = couponVo.no;
 						} else if (couponVo.programNo == 3) {
+							console.log("쿠폰 Vo : " + couponVo.no);
 							$('#three').val(couponVo.count);
+							console.log("확인x" + antiaging);
+							antiaging = couponVo.no;
 						} else if (couponVo.programNo == 4) {
 							$('#four').val(couponVo.count);
+							acne = couponVo.no;
 						} else {
 							// count가 0으로가 나도오록 
 						}
 					});
-					//$('#coupon-userno').val(no);
+					$('#coupon-userno').val(userNo);
 				}
 			});
 
 			
+				console.log("val:"+$('#one').val());
 			/* 쿠폰모달 수정버튼 클릭 */
 			$("#couponCountModify1").on("click", function() {
-				var no = basic;
-				var count = $('#one').val();
+				var no = basic;//쿠폰번호
+				var userNo = $('#coupon-userno').val();//유저번호
+				var programNo = 1;//프로그램번호
+				var count = $('#one').val();//count
+				console.log("val:"+$('#one').val());
+				
+				var url="";
+				/* if(count=="" && count==null){ */
+					url ="insertCoupon1";
+				/* }
+				else{
+					url = "updateCoupon1";
+				} */
+				//console.log("유저넘: "+userNo);
+				
 				var couponvo = {
 					"no" : no,
-					"count" : count,
+					"userNo" : userNo,
+					"programNo": programNo,
+					"count" : count
 				};
+				//console.log("쿠폰vo: "+couponvo);
+				
 				$.ajax({
-					url : "updateCoupon1",
+					url : url,
 					type : "POST",
 					data : JSON.stringify(couponvo),
 					//dataType: "JSON",
 					contentType : "application/json",
-					success : function(ck) {
-						if (ck > 0) {
+					success : function(ck1) {
+						if (ck1 > 0) {
 							alert("수정되었습니다");
 							$("#one").css("background-color", "#FFE793");
 							return true;
@@ -453,20 +486,37 @@
 
 			});
 			$("#couponCountModify2").on("click", function() {
-				var no = whitening;
-				var count = $('#two').val();
+				var no = whitening;//쿠폰번호
+				var userNo = $('#coupon-userno').val();//유저번호
+				var programNo = 2;//프로그램번호
+				var count = $('#two').val();//count
+				console.log("val:"+$('#two').val());
+				
+				var url="";
+				/* if(count=="" && count==null){ */
+					url ="insertCoupon2";
+				/* }
+				else{
+					url = "updateCoupon1";
+				} */
+				//console.log("유저넘: "+userNo);
+				
 				var couponvo = {
 					"no" : no,
-					"count" : count,
+					"userNo" : userNo,
+					"programNo": programNo,
+					"count" : count
 				};
+				//console.log("쿠폰vo: "+couponvo);
+				
 				$.ajax({
-					url : "updateCoupon2",
+					url : url,
 					type : "POST",
 					data : JSON.stringify(couponvo),
 					//dataType: "JSON",
 					contentType : "application/json",
-					success : function(ck) {
-						if (ck > 0) {
+					success : function(ck2) {
+						if (ck2 > 0) {
 							alert("수정되었습니다");
 							$("#two").css("background-color", "#FFE793");
 							return true;
@@ -479,20 +529,37 @@
 
 			});
 			$("#couponCountModify3").on("click", function() {
-				var no = antiaging;
-				var count = $('#three').val();
+				var no = antiaging;//쿠폰번호
+				var userNo = $('#coupon-userno').val();//유저번호
+				var programNo = 3;//프로그램번호
+				var count = $('#three').val();//count
+				console.log("val:"+$('#three').val());
+				
+				var url="";
+				/* if(count=="" && count==null){ */
+					url ="insertCoupon3";
+				/* }
+				else{
+					url = "updateCoupon1";
+				} */
+				//console.log("유저넘: "+userNo);
+				
 				var couponvo = {
 					"no" : no,
-					"count" : count,
+					"userNo" : userNo,
+					"programNo": programNo,
+					"count" : count
 				};
+				//console.log("쿠폰vo: "+couponvo);
+				
 				$.ajax({
-					url : "updateCoupon3",
+					url : url,
 					type : "POST",
 					data : JSON.stringify(couponvo),
 					//dataType: "JSON",
 					contentType : "application/json",
-					success : function(ck) {
-						if (ck > 0) {
+					success : function(ck3) {
+						if (ck3 > 0) {
 							alert("수정되었습니다");
 							$("#three").css("background-color", "#FFE793");
 							return true;
@@ -505,20 +572,37 @@
 
 			});
 			$("#couponCountModify4").on("click", function() {
-				var no = acne;
-				var count = $('#four').val();
+				var no = acne;//쿠폰번호
+				var userNo = $('#coupon-userno').val();//유저번호
+				var programNo = 4;//프로그램번호
+				var count = $('#four').val();//count
+				console.log("val:"+$('#four').val());
+				
+				var url="";
+				/* if(count=="" && count==null){ */
+					url ="insertCoupon4";
+				/* }
+				else{
+					url = "updateCoupon1";
+				} */
+				//console.log("유저넘: "+userNo);
+				
 				var couponvo = {
 					"no" : no,
-					"count" : count,
+					"userNo" : userNo,
+					"programNo": programNo,
+					"count" : count
 				};
+				//console.log("쿠폰vo: "+couponvo);
+				
 				$.ajax({
-					url : "updateCoupon4",
+					url : url,
 					type : "POST",
 					data : JSON.stringify(couponvo),
 					//dataType: "JSON",
 					contentType : "application/json",
-					success : function(ck) {
-						if (ck > 0) {
+					success : function(ck4) {
+						if (ck4 > 0) {
 							alert("수정되었습니다");
 							$("#four").css("background-color", "#FFE793");
 							return true;
@@ -530,7 +614,7 @@
 				});
 
 			});
-
+			
 		});
 
 		/* $('#myDropdown').on('shown.bs.dropdown', function() {

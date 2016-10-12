@@ -143,7 +143,7 @@
 
 
 					<!-- ////////////////////////회원가입 폼시작///////////////////////////////////// -->
-					<form class="form-horizontal" id="join-form" >
+					<div class="form-horizontal" id="join-form" >
 
 						<!-- 이름 -->
 						<div class="form-group" id="divName">
@@ -286,7 +286,7 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label" for="inputEmailReceiveYn" >이메일 수신여부</label>
 							<div class="col-sm-7" data-toggle="buttons">
-								<label class="btn btn-info active">
+								<label class="btn btn-info">
 								<input type="radio" class="emailReceiveYn" name="emailReceiveYn" value="Y" autocomplete="off" >
 								<span class="fa fa-check"></span>
 								</label> 동의합니다.
@@ -302,7 +302,7 @@
 							
 							
 							<div class="col-sm-7" id="smsReceveYn" data-toggle="buttons">
-								<label class="btn btn-info active">
+								<label class="btn btn-info">
 								<input type="radio" class="smsReceiveYn" name="smsReceiveYn" value="Y" autocomplete="off">
 								<span class="fa fa-check"></span>
 								</label> 동의합니다.
@@ -327,7 +327,7 @@
 						
 						<div class="form-group">
 							<div class="col-sm-12 text-center">
-								<button class="btn btn-primary" >
+								<button class="btn btn-primary" id="submit" >
 									회원가입<i class="fa fa-check spaceLeft"></i>
 								</button>
 								<a class="btn btn-danger" href="/beautyline/main">
@@ -335,7 +335,7 @@
 								</a>
 							</div>
 						</div>
-					</form>
+					</div>
 					<hr>
 				</div>
 			</div>
@@ -536,57 +536,65 @@
 		
 		
 		/* validation 검사 & submit   */
-		$("#join-form").submit(function() {
+		$("#submit").on("click",function() {
 			
+			if ($(".emailReceiveYn:checked").val()== null) {
+				alert("이메일 수신여부를 체크해주세요.");
+				return false;
+			}
+			if ($(".smsReceiveYn:checked").val() ==null) {
+				alert("SMS 수신여부를 체크해주세요.");
+				return false;
+			}
 		
 			if ($("#inputName").val() == "") {
 				alert("이름은 필수 입력 항목입니다.");
-				$("#inputName").focus()
+				$("#inputName").focus();
 				return false;
 			}
 			if ($("#inputId").val() == "") {
 				alert("아이디는 필수 입력 항목입니다.");
-				$("#inputId").focus()
+				$("#inputId").focus();
 				return false;
 			}
 			if ($("#inputPassword").val() == "") {
 				alert("비밀번호는 필수 입력 항목입니다.");
-				$("#inputPassword").focus()
+				$("#inputPassword").focus();
 				return false;
 			}
 			if ($("#inputPasswordCheck").val() == "") {
 				alert("이메일은 필수 입력 항목입니다.");
-				$("#inputPasswordCheck").focus()
+				$("#inputPasswordCheck").focus();
 				return false;
 			}
 			if ($("#email1").val() == "") {
 				alert("이메일은 필수 입력 항목입니다.");
-				$("#email1").focus()
+				$("#email1").focus();
 				return false;
 			}
 			if ($("#email2").val() == "") {
 				alert("이메일은 필수 입력 항목입니다.");
-				$("#email2").focus()
+				$("#email2").focus();
 				return false;
 			}
 			if ($("#sample6_postcode").val() == "") {
 				alert("우편번호를 입력하세요.");
-				$("#sample6_postcode").focus()
+				$("#sample6_postcode").focus();
 				return false;
 			}
 			if ($("#address1").val() == "") {
 				alert("주소를 입력하세요.");
-				$("#address1").focus()
+				$("#address1").focus();
 				return false;
 			}
 			if ($("#address2").val() == "") {
 				alert("상세주소를 입력하세요.");
-				$("#address2").focus()
+				$("#address2").focus();
 				return false;
 			}
 			if ($("#inputNumber").val() == "") {
 				alert("전화번호를 입력하세요.");
-				$("#inputNumber").focus()
+				$("#inputNumber").focus();
 				return false;
 			}
 			if($("#conCheckId").val()=="0" ){
@@ -638,6 +646,7 @@
 							
 							if (a == 1) {
 								alert("회원가입에 성공하였습니다.");
+								location.href = "/beautyline/main";
 								return true;
 							}
 

@@ -51,11 +51,25 @@ public class NoticeBoardDao {
 	
 	/* 공지사항 글 조회수 업뎃 */
 	public void updateViewCount(Long no){
+		sqlSession.update("noticeboard.updateviewcnt",no);
+
 	}
 	
+
 	/* 공지사항 글 삭제 */
 	public int delete(Long no){
 		return sqlSession.delete("noticeboard.delete",no);	
+	}
+
+	/* 공지사항 글 수정 --글만수정 */
+	public void modify(NoticeBoardVo noticeBoardVo){
+		sqlSession.update("noticeboard.modify",noticeBoardVo);	
+	}
+	
+	
+	/* 파일 삭제 */
+	public int delFile(Long fileNo){
+		return sqlSession.delete("noticeboard.delFile",fileNo);
 	}
 
 }

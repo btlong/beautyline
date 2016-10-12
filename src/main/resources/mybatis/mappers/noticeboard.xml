@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="noticeboard">
-
-   <!-- 게시판 글쓰기 -->
+   
+<!-- 게시판 글쓰기 -->
    <insert id="insert" parameterType="noticeboardvo" >
    <selectKey resultType="java.lang.Long" keyProperty="no" order="BEFORE">
    <![CDATA[
@@ -32,8 +32,7 @@
    select no, notice_no as noticeNo, org_name as orgName, path, save_name as saveName from f_noti where notice_no =#{noticeNo }
    ]]>
    </select>
-   
-   
+
    <select id="getAll" resultType="noticeboardvo">
    <![CDATA[
       select no, category, title, to_char(reg_date,'yyyy-mm-dd') as regDate, view_count as viewCount  from bd_noti order by no desc
@@ -49,6 +48,29 @@
        and b.USER_NO = u.NO
        ]]>
       </select>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+
+   <!-- 글 수정 -->
+   <update id="modify" parameterType="noticeboardvo">
+   <![CDATA[
+      update bd_noti set 
+      category = #{category}, 
+      title = #{title },
+      content = #{content },
+      reg_date = sysdate
+      where no = #{no}
+   ]]>   
+   </update>
+
 
    <!-- 조회수 업뎃 -->
    <update id="updateviewcnt" parameterType="java.lang.Integer">
@@ -57,9 +79,17 @@
    ]]>
    </update>
 
-   <delete id="delete" parameterType="java.lang.Integer">
+   <!-- 글 삭제 -->
+   <delete id="delete" parameterType="java.lang.Long">
    <![CDATA[
       delete from BD_NOTI where no = #{no } 
+   ]]>
+   </delete>
+
+   <!-- 파일 삭제 -->
+   <delete id="delFile" parameterType="java.lang.Long">
+   <![CDATA[
+      delete from f_noti where no = #{no }
    ]]>
    </delete>
 

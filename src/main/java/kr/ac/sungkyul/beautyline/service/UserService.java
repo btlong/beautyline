@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import kr.ac.sungkyul.beautyline.dao.UserDao;
 import kr.ac.sungkyul.beautyline.email.EmailSender;
-import kr.ac.sungkyul.beautyline.exception.UserInfoUpdateException;
 import kr.ac.sungkyul.beautyline.vo.Email;
 import kr.ac.sungkyul.beautyline.vo.UserVo;
 
@@ -22,34 +21,30 @@ public class UserService {
 	/* 회원가입 */
 	public int join(UserVo vo) {
 		vo.setEmail(vo.getEmail1() + "@" + vo.getEmail2());
-		vo.setAddress("[" + vo.getZipCode() + "]" + vo.getAddress1() + vo.getAddress2());
 		System.out.println(vo.toString());
 		int a =	userDao.insert(vo);
 		return a;
 	}
 
 	/* 이름과 전화번호로 회원가입 */
-	public UserVo insertUserNamePhone(UserVo uservo){
-		userDao.insertUserNamePhone(uservo);
-		return uservo;
+	public UserVo insertUserNamePhone(UserVo userVo){
+		userDao.insertUserNamePhone(userVo);
+		return userVo;
 	}
 	
-	public UserVo login(String id, String password) { 
+	/* 로그인	*/
+	public UserVo login(UserVo userVo) { 
+		String id = userVo.getId();
+		String password = userVo.getPassword();
 		return userDao.get(id, password);
 	}
 
-	public void updateInfo(UserVo vo) {
-		try {
-			userDao.update(vo);
-		} catch (UserInfoUpdateException e) {
-
+	/*	회원정보 수정    */
+	public int updateInfo(UserVo vo) {
+			return userDao.update(vo);
 		}
-	}
 
-	public UserVo getUserInfo(Long no) {
-		return userDao.get(no); 
-	}
-
+	
 	/* 아이디찾기  */
 	public String getId(UserVo userVo) throws Exception {//아이디 찾기
 		UserVo authUser = userDao.getId(userVo);
@@ -105,7 +100,7 @@ public class UserService {
 			return "notFound";
 		}
 	}
-	
+	/* 아이디 중복확인	*/
 	public String checkId(String id) {
 		UserVo vo = userDao.checkId(id);
 
@@ -115,4 +110,12 @@ public class UserService {
 			return "ok";
 		}
 	}
+	
+	/* 회원정보 수정폼에 회원정보 가져오기 */
+	public UserVo getUserInfo(Long userNo) {
+		return userDao.getUserInfo(userNo); 
+	}
+
+	
+	
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.ac.sungkyul.beautyline.dao.UserinfoDao;
+import kr.ac.sungkyul.beautyline.vo.CouponVo;
 import kr.ac.sungkyul.beautyline.vo.PageVo;
 import kr.ac.sungkyul.beautyline.vo.UserinfoVo;
 
@@ -20,15 +21,15 @@ public class UserinfoService {
 		return userinfoDao.listUser(keyfield, keyword);
 	}
 		
-	//회원번호에의한 리스트뽑기
-	/*public UserinfoVo findByNo(int no) {
-        return userinfoDao.findByNo(no);
-    }*/
-	
 	// 쿠폰뷰
-/*	public List<CouponVo> couponList(long no) {
+	public List<CouponVo> couponList(long no) {
 		return userinfoDao.selectList(no);
-	}*/
+	}
+	
+	// 쿠폰수정
+	public int updateCoupon(CouponVo couponvo) {
+		return userinfoDao.updateCoupon(couponvo);
+	}
 
 	
 	// 회원삭제
@@ -75,6 +76,7 @@ public class UserinfoService {
         
         return page;
     }
+
 
 
 }

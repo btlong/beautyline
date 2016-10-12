@@ -6,7 +6,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!doctype html>
 
-<html >
+<html  lang="kr">
 <head>
  
    
@@ -169,9 +169,6 @@ $(document).ready(function() {
 });
 $(function(){
 	$("#insert").on("click", function() {
-		$("#insert").removeClass("btn btn-danger");
-		$("#insert").addClass("btn m-progress btn-danger");
-		$('#insert').attr('disabled',true);
 
 		var url ="";
 	 	var data = new FormData();
@@ -208,10 +205,7 @@ $(function(){
 				processData: false,
 			    contentType: false,
 			    success : function(response) {
-			    	$("#insert").removeClass("btn m-progress btn-danger");
-					$("#insert").addClass("btn btn-danger");
-					$('#insert').attr('disabled',false);
-			    	console.log('success')
+					console.log('success')
 					location.href = "board";
 					
 				},
@@ -221,6 +215,28 @@ $(function(){
 		}); 
 	});
 	
+	
+	
+/* function sendFile(file, editor, welEditable) {
+			data = new FormData();
+			data.append("file", file);
+			console.log(file);
+			$.ajax({
+				url : "imaUpload",
+				type : "POST",
+				data : data,
+				cache : false,
+				contentType : false,
+				processData : false,
+				success : function(url) {
+					editor.insertImage(welEditable, url);
+				},
+				error : function(jqXHR, status, error) {
+					console.error(status + ":" + error);
+				}
+			});
+		}  */
+
 	});
 </script>
 </html>

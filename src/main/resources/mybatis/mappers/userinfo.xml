@@ -10,8 +10,8 @@
 					phone,
 					id, 
 					password, 
-					email, 
-					address, 
+					email1||'@'||email2 as email, 
+					'['||zip_code||'] '||address1||', '||address2 as address, 
 					is_admin as isAdmin from users
 			order by no desc
 		]]>
@@ -19,13 +19,30 @@
 					<!-- agr_email as agrEmail,
 					agr_message as agrMessage, -->
 	
-	<!-- 쿠폰 -->				
+	<!-- 쿠폰 -->	
+		<!-- <select id="couponSelect" parameterType="java.lang.Long"
+		resultType="couponvo">
+		<![CDATA[
+			select program_no,count from coupon where user_no = #{no} 
+		]]>
+	</select>	 -->
+	<!-- 쿠폰뷰 -->		
 	<select id="selectCoupon" parameterType="java.lang.Long"
 		resultType="couponvo">
 	<![CDATA[
-		select program_no,count from coupon where user_no = #{no} 
+		select a.no as no, a.user_no as userNo, a.program_no as programNo, a.count as count from coupon a, users b
+		 where a.user_no= b.no and a.user_no = #{no} 
 	]]>
 	</select>
+	
+	<!-- 쿠폰수정 -->
+	<update id="updateCoupon" parameterType="couponvo">
+    <![CDATA[
+        update coupon set 
+        	count = #{count} 
+        where no = #{no}
+    ]]>    
+    </update>
 					
 
 	<!-- 회원검색 -->
@@ -46,11 +63,6 @@
 	</select>
 	
 	
-	
-	<!-- 수정 -->
-	<!-- <select id="findByNo" parameterType="Long" resultType="userinfovo">
-        select * from users where no = #{no}
-    </select> -->
 
 	<!-- 회원삭제 -->
 	<delete id="deleteUser" parameterType="java.lang.Long">
@@ -64,7 +76,7 @@
  	<select id="selectUser" parameterType="java.lang.Long"
 		resultType="userinfovo">
 		<![CDATA[
-			select no, name, phone, id, email, address, is_admin as isAdmin from users
+			select no, name, phone, id, email1, email2, zip_code as zipCode, address1, address2, is_admin as isAdmin from users
 			where no=#{no}
 		]]>
 	</select>
@@ -76,8 +88,11 @@
 				name = #{name},
 				phone= #{phone},
 				id= #{id}, 
-				email= #{email}, 
-				address= #{address} 
+				email1= #{email1}, 
+				email2= #{email2}, 
+				zip_code= #{zipCode},
+				address1=#{address1},
+				address2=#{address2} 
 			where no=#{no}
 		]]>
 				<!-- is_admin= #{isAdmin} -->

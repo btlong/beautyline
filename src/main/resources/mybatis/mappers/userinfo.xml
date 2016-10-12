@@ -30,17 +30,19 @@
 	<select id="selectCoupon" parameterType="java.lang.Long"
 		resultType="couponvo">
 	<![CDATA[
-		select user_no as userNo, program_no, count from coupon, users where coupon.user_no= users.no and user_no = #{no} 
+		select a.no as no, a.user_no as userNo, a.program_no as programNo, a.count as count from coupon a, users b
+		 where a.user_no= b.no and a.user_no = #{no} 
 	]]>
 	</select>
 	
 	<!-- 쿠폰수정 -->
-	<select id="updateCoupon" parameterType="Long" resultType="couponvo">
+	<update id="updateCoupon" parameterType="couponvo">
+    <![CDATA[
         update coupon set 
         	count = #{count} 
-        where user_no = #{userNo} and program_no=${programNo}
-        
-    </select>
+        where no = #{no}
+    ]]>    
+    </update>
 					
 
 	<!-- 회원검색 -->

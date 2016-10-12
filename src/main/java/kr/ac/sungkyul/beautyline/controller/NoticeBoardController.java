@@ -33,7 +33,6 @@ public class NoticeBoardController {
 	@Autowired
 	private PageService pageService;
 	
-	//소연시작
 	/* 게시판 리스트 */
 	   @RequestMapping("board")
 	   public String list(Model model, @RequestParam(value = "nowPage", required = false) Integer nowPage,
@@ -59,7 +58,6 @@ public class NoticeBoardController {
 	      return "board/noticeboard/board";
 	   }
 	
-	
 	   /* 글 보기 폼 */
 	   @RequestMapping(value = "/view", method = RequestMethod.GET)
 	   public String view(Long no, Model model) {
@@ -70,6 +68,7 @@ public class NoticeBoardController {
 	      FileNotiVo file = nBoardService.fileview(no);
 	      
 	      model.addAttribute("file",file);
+	      System.out.println(file);
 	      model.addAttribute("notiBdVo", notiBdVo);
 	      return "board/noticeboard/view";
 	   }
@@ -113,7 +112,7 @@ public class NoticeBoardController {
 	
 	
 	
-/*------------------- 수정--------------------  */
+	/*------------------- 수정--------------------  */
 	
 	/* 글+첨부파일 수정  */
 	@ResponseBody
@@ -144,11 +143,19 @@ public class NoticeBoardController {
 		
 	}
 
-/*--------------------------------------------  */
-	
-	
-	
+	/*--------------------------------------------  */
 
+	/* 글 수정폼 */
+	@RequestMapping(value = "/modifyform", method = RequestMethod.GET)
+	public String modyfyform(Long no, Model model) {
+		NoticeBoardVo notiBdVo = nBoardService.view(no);
+		FileNotiVo file = nBoardService.fileview(no);
+
+		model.addAttribute("file", file);
+		model.addAttribute("notiBdVo", notiBdVo);
+		return "board/noticeboard/modifyform";
+
+	}
 	
    /*글 삭제 폼*/
 	@RequestMapping(value = "/deleteform", method = RequestMethod.GET)
@@ -180,7 +187,8 @@ public class NoticeBoardController {
       res.setHeader("Content-disposition", "attachment; filename=\"" + URLEncoder.encode(orgName,"UTF-8") +"\""); // orgname으로 바꿔서 보내준다.
       OutputStream resOut = res.getOutputStream();
    
-      FileInputStream fin = new FileInputStream("C:\\Users\\User\\Download2\\filestore\\"+saveName); // savename을  orgname으로 바꿔서 보내준다.
+    //  FileInputStream fin = new FileInputStream("C:\\Users\\User\\Download2\\filestore\\"+saveName); // savename을  orgname으로 바꿔서 보내준다.
+      FileInputStream fin = new FileInputStream("c:\\Users\\S401-11\\Downloads\\filestore\\"+saveName);
       FileCopyUtils.copy(fin, resOut);
       fin.close();
        
@@ -189,7 +197,6 @@ public class NoticeBoardController {
    
 
 	    
-	 }
- //소연이
+}
    
 

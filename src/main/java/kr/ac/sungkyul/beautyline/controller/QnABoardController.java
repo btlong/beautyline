@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.ac.sungkyul.beautyline.service.PageService;
 import kr.ac.sungkyul.beautyline.service.QnABoardService;
+import kr.ac.sungkyul.beautyline.vo.FileNotiVo;
+import kr.ac.sungkyul.beautyline.vo.NoticeBoardVo;
 import kr.ac.sungkyul.beautyline.vo.PageVo;
 import kr.ac.sungkyul.beautyline.vo.QnABoardVo;
 
@@ -101,7 +103,15 @@ public class QnABoardController {
 	
 	
 /*------------------- 수정--------------------  */
-	
+	/*글 수정폼 */
+	   @RequestMapping(value = "/modifyform", method = RequestMethod.GET)
+	   public String modyfyform(Long no,Model model){
+		   QnABoardVo qnabdvo = qBoardService.view(no);
+	       
+	         model.addAttribute("qnabdvo", qnabdvo);
+	         return "board/qnaboard/modifyform";
+	      
+	   }
 
 	/* 글만 수정  */
 	@ResponseBody
@@ -115,9 +125,6 @@ public class QnABoardController {
 	}
 
 /*--------------------------------------------  */
-	
-	
-	
 
 	
    /*글 삭제 폼*/
@@ -130,7 +137,10 @@ public class QnABoardController {
 	/*글 삭제 */
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public String delete(Long no){
-		int cnt = qBoardService.delete(no);
+		
+		QnABoardVo qnabdvo = qBoardService.view(no);
+		int cnt = qBoardService.delete(qnabdvo);
+
 		if( cnt >0 ){
 			return "redirect:board";
 		}else{

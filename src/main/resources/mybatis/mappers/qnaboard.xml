@@ -91,9 +91,9 @@
 	</update>
 
 	<!-- 글 삭제 -->
-	<delete id="delete" parameterType="java.lang.Long">
+	<delete id="delete" parameterType="qnaboardvo">
 	<![CDATA[
-		delete from bd_qna where no = #{no } 
+		delete from bd_qna where group_no = #{groupNo } 
 	]]>
 	</delete>
 

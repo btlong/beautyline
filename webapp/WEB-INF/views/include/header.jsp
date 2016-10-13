@@ -3,9 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<style>
 
-</style>
 
 <div class="brand"><a href ="/beautyline/main">BeautyLine</a></div>
 
@@ -35,9 +33,9 @@
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse"
 				data-target="#bs-example-navbar-collapse-1">
-				<span class="sr-only">Toggle navigation</span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
+				<span class="sr-only">Toggle navigation</span>
+				 <span class="icon-bar"></span> <span class="icon-bar"></span>
+				  <span class="icon-bar"></span>
 			</button>
 			<!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
 			<a class="navbar-brand" href="/beautyline/main">Beauty Line</a>
@@ -45,10 +43,12 @@
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li><a class="dropdown-toggle"  data-toggle="dropdown" role="button" aria-expanded="true">소개</a>
-				<ul class="dropdown-menu" id="navdropdown" role="menu">
-						<li><a href="/beautyline/information/brand">뷰티라인</a></li>
-					   	<li><a href="/beautyline/information/program">프로그램</a></li>
+				<li class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="false">소개</a>
+				<ul class="dropdown-menu" >
+						<li><a tabindex="-1" href="/beautyline/information/brand">뷰티라인</a></li>
+					   
+					   	<li><a tabindex="-1" href="/beautyline/information/program">프로그램</a></li>
 					</ul>
 				
 				</li>
@@ -80,8 +80,8 @@
 				<a  class="dropdown-toggle"  data-toggle="dropdown" role="button" aria-expanded="true">게시판 </a>
 					<ul class="dropdown-menu" id="navdropdown" role="menu">
 						<li><a href="/beautyline/noticeboard/board">공지사항</a></li>
-					   	<li><a href="#">문의게시판</a></li>
-				       	<li><a href="#">후기게시판</a></li>
+					   	<li><a href="/beautyline/qnaboard/board">문의게시판</a></li>
+				       	<li><a href="/beautyline/reviewboard/board">후기게시판</a></li>
 					</ul>
 				</li>
 				<li><a href="/beautyline/coun/test" >나의피부타입</a></li>
@@ -100,3 +100,4 @@
 	</div>
 	<!-- /.container -->
 </nav>
+

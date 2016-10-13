@@ -25,6 +25,13 @@ public class MypageController {
    @Autowired
    private MypageService mypageService;
    
+   // 요약페이지
+	@RequestMapping("/main")
+	public String main() {
+		return "mypage/main";
+	}
+   
+   
    // 히스토리
       @RequestMapping("/history")
       public String listHistory(HttpSession session, ListVo listVo, Model model) {

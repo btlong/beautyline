@@ -39,7 +39,7 @@ public class MypageController {
    UserService userService;
    
     
-   /* 요약페이지 */
+   /*--- 요약페이지--- */
 	@RequestMapping("/main")
 	public String main(HttpSession session, VisitVo visitVo, Model model) {
 		UserVo authUser =(UserVo) session.getAttribute("authUser");
@@ -71,7 +71,7 @@ public class MypageController {
 		
 		return "mypage/history2";
 	}
-   
+	/*------------*/
    
 	// 히스토리
 	@RequestMapping("/history")

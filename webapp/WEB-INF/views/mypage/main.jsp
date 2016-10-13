@@ -83,7 +83,7 @@
 											</form>
 										</td>
 										<td>
-											<form method="post" action="history2">
+											<form method="post" action="history">
 												<input class="btn btn-warning btn-sm" type="submit"
 													value="방문내역">
 											</form>

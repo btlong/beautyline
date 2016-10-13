@@ -13,7 +13,8 @@
 		<typeAlias type="kr.ac.sungkyul.beautyline.vo.PageVo" alias="pagevo" />
 		<typeAlias type="kr.ac.sungkyul.beautyline.vo.FileVisitVo" alias="filevisitvo" />
 		<typeAlias type="kr.ac.sungkyul.beautyline.vo.ListVo" alias="listvo" />
-
+		<typeAlias type="kr.ac.sungkyul.beautyline.vo.ReviewBoardVo" alias="reviewboardvo" />
+		<typeAlias type="kr.ac.sungkyul.beautyline.vo.ReplyVo" alias="replyvo" />
 	</typeAliases>
 
 
@@ -22,6 +23,7 @@
 		<mapper resource="mybatis/mappers/visit.xml" />
 		<mapper resource="mybatis/mappers/userinfo.xml" />
 		<mapper resource="mybatis/mappers/noticeboard.xml" />
+		<mapper resource="mybatis/mappers/reviewboard.xml" />
 		<mapper resource="mybatis/mappers/reserve.xml" />
 		<mapper resource="mybatis/mappers/mypage.xml" />
 	</mappers>

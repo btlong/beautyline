@@ -91,8 +91,8 @@
             <div class="col-lg-12">
                <div class="page-header"></div>
                
-               <div class="col-md-2"></div>
-               <div class="col-md-9" id="title">
+               <div class="col-lg-2"></div>
+               <div class="col-lg-9" id="title">
                
                  <table>
                       <tbody>
@@ -129,24 +129,23 @@
             	내요요용용포문으로 돌릴것것거</li> -->
 
             </ul>
-            <div>
-         <a href="#" class="btn btn-warning">더 보기 <span class="glyphicon glyphicon-arrow-down"></span></a>
-                 
-                 </div>
+            <div class="text-center" >
+         <a href="#" class="btn btn-warning ">더 보기 <span class="glyphicon glyphicon-arrow-down"></span></a>
+          </div>
                  
                  
                  
                  <c:if test='${not empty sessionScope.authUser }'>  
-                          <div id="bdhr"></div>
+                  <div id="bdhr"></div>
               <div  class="list-group-item">
+              <div class="row">
               
-              <textarea rows="3" id="replycontent" class="form-control col-sm-1"></textarea>
-                   
-          <a href="#" id="reply" class="btn btn-lg btn-primary btn-primary">댓글쓰기 <span class="glyphicon glyphicon-comment"></span></a>  
-          </div>
+              <textarea rows="3" id="replycontent" class="form-control"></textarea>
+          <span id="reply" class="btn btn-mg btn-primary btn-primary">댓글쓰기 <span class="glyphicon glyphicon-comment"></span></span>  
+          </div> </div>
             </c:if>
-            
-            
+             
+           
        <div id="bdhr"></div>
              
              

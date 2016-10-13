@@ -118,7 +118,9 @@ padding-left: 0px;
 								<select class="form-control" name="category_select" id="category_select">
 									<option value="" selected>선택하세요</option>
 									<option value="예약문의">예약문의</option>
+									<option value="예약답변">예약답변</option>
 									<option value="프로그램문의">프로그램문의</option>
+									<option value="프로그램답변">프로그램답변</option>
 								</select>
 							</div>
 							<div class="col-lg-3">

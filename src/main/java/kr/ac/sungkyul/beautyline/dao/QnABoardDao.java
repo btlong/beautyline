@@ -53,8 +53,8 @@ public class QnABoardDao {
 	
 
 	/* 글 삭제 */
-	public int delete(Long no){
-		return sqlSession.delete("qnaboard.delete",no);	
+	public int delete(QnABoardVo qbdvo){
+		return sqlSession.delete("qnaboard.delete",qbdvo);	
 	}
 
 	/* 글 수정 */

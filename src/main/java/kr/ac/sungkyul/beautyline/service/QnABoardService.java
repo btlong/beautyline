@@ -47,8 +47,8 @@ public class QnABoardService {
 	}
 	
 	/* 공지사항 글 삭제 */
-	public int delete( Long no ){
-		 return qBoardDao.delete(no);
+	public int delete(QnABoardVo qbdv){
+		 return qBoardDao.delete(qbdv);
 	}
 	
 

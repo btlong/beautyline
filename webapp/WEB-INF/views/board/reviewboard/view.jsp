@@ -98,13 +98,11 @@
                       <tbody>
                          <tr>                 
                          <td id="titletxt">
-                              <span>[${notiBdVo.category }] ${notiBdVo.title }</span>
+                              <span>[${reviewBoardVo.category }] ${reviewBoardVo.title }</span>
                           </td>
                           <td id="titleInfo">
-                             <span id="userName">관리자</span> &nbsp;
-                              <span id="date">${notiBdVo.regDate }</span>
-                         
-                          
+                             <span id="userName">${reviewBoardVo.userId }</span> &nbsp;
+                              <span id="date">${reviewBoardVo.regDate }</span>
                           </td>
                            </tr>
                        </tbody>
@@ -114,36 +112,55 @@
                   <div id="bdhr"></div>
                   
                   <div id="contents">
-                     ${notiBdVo.content }
+                     ${reviewBoardVo.content }
                   </div>
                   
-                  
-                  
-                  <div id="bdhr"></div>   
+                  <br><br>
+                  <p>댓글갯수는?ㅎ</p>
+                  <div id="bdhr"></div>
+            <ul id="list-group" class="list-group">
+          
+           <!--  포문으로 돌리기 여기에 추가 prepended-->           
+          <!--   <li  class="list-group-item">
+            	<div>
+            userId regdate    <a href="#" class="btn btn-xs btn-default">삭제 <span class="glyphicon glyphicon-trash"></span></a></div>
+            	<div>내요요용용포문으로 돌릴것것거</div></li>
+            	<li  class="list-group-item">userId regdate<a href="#" class="btn btn-xs btn-default">삭제 <span class="glyphicon glyphicon-trash"></span></a>
+            	내요요용용포문으로 돌릴것것거</li> -->
 
-                  <!-- 첨부파일  -->
-                  <table>
-                     <tbody>
-                        <tr>
-                        <td id="file"><span>첨부파일</span></td>     
-                 <c:if test="${ not empty file.orgName }">
-                       	<td id="fileNotice" data-no="${notiBdVo.no }" >&nbsp;<a href="">${file.orgName }</a></td>    
-                        </c:if>
-                    </tr>
-                     </tbody>
-                  </table>                  
-                  <div id="bdhr"></div>                  
-               
-               </div>
-               
-            
-            <div class="col-md-2"></div>
-            <div class="col-md-9 text-right" id="bottombtns">
-            
-                <c:if test="${authUser.isAdmin eq 'a'}">
-               <a href="deleteform?no=${notiBdVo.no }" class="btn btn-sm btn-danger">삭제 <span class="glyphicon glyphicon-trash"></span></a>
-               <a href="modifyform?no=${notiBdVo.no }" class="btn btn-sm btn-success">글 수정 <span class="glyphicon glyphicon-pencil"></span></a>
+            </ul>
+            <div>
+         <a href="#" class="btn btn-warning">더 보기 <span class="glyphicon glyphicon-arrow-down"></span></a>
+                 
+                 </div>
+                 
+                 
+                 
+                 <c:if test='${not empty sessionScope.authUser }'>  
+                          <div id="bdhr"></div>
+              <div  class="list-group-item">
+              
+              <textarea rows="3" id="replycontent" class="form-control col-sm-1"></textarea>
+                   
+          <a href="#" id="reply" class="btn btn-lg btn-primary btn-primary">댓글쓰기 <span class="glyphicon glyphicon-comment"></span></a>  
+          </div>
             </c:if>
+            
+            
+       <div id="bdhr"></div>
+             
+             
+             
+             
+             
+               </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-9 text-right" id="bottombtns"> 
+            
+             <c:if test="${authUser.no eq reviewBoardVo.userNo }">
+               <a href="deleteform?no=${reviewBoardVo.no }" class="btn btn-sm btn-danger">삭제 <span class="glyphicon glyphicon-trash"></span></a>
+               <a href="modifyform?no=${reviewBoardVo.no }" class="btn btn-sm btn-success">글 수정 <span class="glyphicon glyphicon-pencil"></span></a>
+       		 </c:if>
             <a href="board" class="btn btn-sm btn-primary">목록 <span class="glyphicon glyphicon-th-list"></span></a>
             
             </div>
@@ -157,15 +174,110 @@
    <c:import url="/WEB-INF/views/include/footer.jsp" />
 
 </body>
-
 <script>
-$("#fileNotice").on("click",function(event){
-	var no = $(this).data("no");
-	var url = "download?no=" + no;
-	window.open(url);
-	consolg.log(no);
+function replyAll(reviewNo, userNo){
+	var trString="";
+	
+	$.ajax({
+        type : 'POST',
+        url : 'replylist',
+        data :{"reviewNo": reviewNo},
+        /* contentType: "application/json", */
+        success : function (listBoard) {
+        	$.each(listBoard, function(index, replyVo) {
+        		trString += "<li class='list-group-item'>";
+        		trString += "	<div><strong>" + replyVo.userId + "</strong>&nbsp; "+ replyVo.regDate ;
+				if(userNo == replyVo.userNo){
+        		trString += "	<a href='#' data-no='"+ replyVo.no +"' id='deletereply' class='btn btn-xs btn-default'>삭제 <span class='glyphicon glyphicon-trash'></span></a></div>";
+				}
+        		trString += "	<div>" + replyVo.content + "</div>";
+        		trString += "</li>";
+        	});
+        	$("#list-group").html(trString);
+        	/* console.log(trString) */
+        }
+    });
+}	
+
+
+$(function(){
+	
+	var reviewNo =('${reviewBoardVo.no }');
+ 	var userNo = "${sessionScope.authUser.no }";
+ 	replyAll(reviewNo,userNo);
+ 	
+	$("#reply").on("click", function() {
+		var reviewNo =('${reviewBoardVo.no }');
+		var content = $('#replycontent').val();
+	    var userNo = "${sessionScope.authUser.no }";
+		
+	    replyVo = {
+			"reviewNo": reviewNo,
+			"content": content,
+			"userNo": userNo
+	    }
+	    $.ajax({// 비동기식 
+				url : "reply",
+				type : "POST",
+				data:JSON.stringify(replyVo),
+				contentType:"application/json",
+			    success : function(response) {
+			 if(response != null){
+			    	console.log('success');
+			    	
+			    	replyAll(reviewNo,userNo);
+			    	$("#replycontent").val("");
+			 		return true;
+			 }
+			 else{
+				 alert("글쓰기에 실패했습니다...");
+				 return false;
+				 
+			 }
+			   
+				},
+				error : function(jqXHR, status, error) {
+					console.error(status + ":" + error);
+				}
+		}); 
+	});
+	
+	
+	
+	$("#list-group").on("click", "#deletereply", function() {
+		var replyNo = $(this).data("no");
+		console.log(this);
+		console.log("reply no느"+replyNo);
+		   $.ajax({// 비동기식 
+				url : "deletereply",
+				type : "POST",
+				data:{"replyNo": replyNo},
+				success : function(response) {
+			 if(response != null){
+			    	console.log('success');
+			    	
+			    	replyAll(reviewNo,userNo);
+			    	$("#replycontent").val("");
+			 		return true;
+			 }
+			 else{
+				 alert("글쓰기에 실패했습니다...");
+				 return false;
+				 
+			 }
+			   
+				},
+				error : function(jqXHR, status, error) {
+					console.error(status + ":" + error);
+				}
+		}); 
+
+	});
 	
 });
+
+
+
 </script>
 
 

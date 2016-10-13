@@ -105,13 +105,14 @@ padding-left: 0px;
 					<div class="form-group" id="divTitle" enctype="multipart/form-data">
 						<div class="col-lg-10 col-lg-offset-1">
 							<label class="col-sm-1 control-label" id= "title_title" for="inputName">제목</label>
-							<!-- select  [공지 or 이벤트] -->
+							<!-- select  [예약문의, 프로그램 문의 , ] -->
 							<div class="col-lg-2">
 								<select class="form-control" name="category_select"
 									id="category_select">
 									<option value="" selected>선택하세요</option>
-									<option value="공지">공지</option>
-									<option value="이벤트">이벤트</option>
+									<option value="예약문의">예약문의</option>
+									<option value="프로그램문의">프로그램문의</option>
+
 								</select>
 							</div>
 							<div class="col-lg-3">
@@ -120,16 +121,7 @@ padding-left: 0px;
 						 </div>
 					</div>
 					
-				 <!-- 첨부파일  -->	
-				<div class="form-group" id= "uploadForm">
-				  <div class="col-lg-10 col-lg-offset-1">
-					<label class="col-sm-1 control-label" id= "file_title" for="file">첨부파일</label>
-					<div class="col-lg-2" id="uploadForm">
-						<input class="btn btn-default" name="file" id="file" type="file">		
-					</div>						
-				 </div>
-				</div>
-					  
+
 				 <div class="form-group" >
 				  <div class="col-lg-10 col-lg-offset-1">
 					  <textarea id="summernote" name="contents"></textarea>
@@ -145,7 +137,8 @@ padding-left: 0px;
 			</div>
 			</div>
 			</div>
-	<c:import url="/WEB-INF/views/include/footer.jsp" />
+		<c:import url="/WEB-INF/views/include/footer.jsp" />
+
 </body>
 
 <script >
@@ -153,6 +146,7 @@ padding-left: 0px;
 
 
 $(document).ready(function() {
+
     $('#summernote').summernote({
     	
     	height : 300,
@@ -170,34 +164,21 @@ $(document).ready(function() {
 $(function(){
 	$("#insert").on("click", function() {
 
-		var url ="";
 	 	var data = new FormData();
 	
 		var category = $("#category_select").val();
 		var title = $("#inputTitle").val();
 		var content = 	$('#summernote').summernote('code');
-		var file;
-		if($("#file")[0].files[0] != undefined){
-			  file=$("#file")[0].files[0];
-	          data.append("file", file);
-	          url="writefile";
-		
-		}
-		
-		else{
-			url="write"
-		}
-		
-		
-		var file = $("#file")[0].files[0];
-		console.log(file);	 
- 	    data.append("category",category);
+		var userNo = "${sessionScope.authUser.no }";
+
+		data.append("category",category);
 		data.append("title",title);
 		data.append("content",content); 
-	 	data.append("file", file); 
+		data.append("userNo",userNo);
 	
 		 	  $.ajax({// 비동기식 
-				url : url,
+				url : "write",
+
 				type : "POST",
 				data : data,
 				dataType:"text",
@@ -215,27 +196,7 @@ $(function(){
 		}); 
 	});
 	
-	
-	
-/* function sendFile(file, editor, welEditable) {
-			data = new FormData();
-			data.append("file", file);
-			console.log(file);
-			$.ajax({
-				url : "imaUpload",
-				type : "POST",
-				data : data,
-				cache : false,
-				contentType : false,
-				processData : false,
-				success : function(url) {
-					editor.insertImage(welEditable, url);
-				},
-				error : function(jqXHR, status, error) {
-					console.error(status + ":" + error);
-				}
-			});
-		}  */
+
 
 	});
 </script>

@@ -7,15 +7,18 @@ import kr.ac.sungkyul.beautyline.vo.ScoreVo;
 
 @Service
 public class CounselService {
-	//kkkkk
 	public ResultVo recommend (ScoreVo scoreVo) {
 		
-		String[] srcs = {"/beautyline/images/cos1.PNG", "/beautyline/images/cos2.PNG", "/beautyline/images/cos3.PNG", "/beautyline/images/cos4.PNG", "/beautyline/images/cos5.PNG"};
+		String[] srcs = {"/beautyline/images/cos1.PNG"
+						, "/beautyline/images/cos2.PNG"
+						, "/beautyline/images/cos3.PNG"
+						, "/beautyline/images/cos4.PNG"
+						, "/beautyline/images/cos5.PNG"};
 		String[] urls = {"http://www.dermalogica.co.kr/?r=home&m=shop&cat=2&uid=14"
-				, "http://www.dermalogica.co.kr/?r=home&m=shop&cat=2&uid=9"
-				, "http://www.dermalogica.co.kr/?r=home&m=shop&cat=3&uid=27"
-				, "http://www.dermalogica.co.kr/?r=home&m=shop&cat=2&uid=11"
-				, "http://www.dermalogica.co.kr/?r=home&m=shop&cat=3&uid=31"};
+						, "http://www.dermalogica.co.kr/?r=home&m=shop&cat=2&uid=9"
+						, "http://www.dermalogica.co.kr/?r=home&m=shop&cat=3&uid=27"
+						, "http://www.dermalogica.co.kr/?r=home&m=shop&cat=2&uid=11"
+						, "http://www.dermalogica.co.kr/?r=home&m=shop&cat=3&uid=31"};
 		
 		
 		int score1 = scoreVo.getScore1();

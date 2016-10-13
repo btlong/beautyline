@@ -31,19 +31,26 @@
 		resultType="couponvo">
 	<![CDATA[
 		select a.no as no, a.user_no as userNo, a.program_no as programNo, a.count as count from coupon a, users b
-		 where a.user_no= b.no and a.user_no = #{no} 
+		 where a.user_no= b.no and a.user_no = #{userNo} 
 	]]>
 	</select>
 	
 	<!-- 쿠폰수정 -->
-	<update id="updateCoupon" parameterType="couponvo">
+	<!-- <update id="updateCoupon" parameterType="couponvo">
     <![CDATA[
         update coupon set 
         	count = #{count} 
-        where no = #{no}
+        where no = #{no} and user_no =#{userNo }
     ]]>    
-    </update>
-					
+    </update> -->
+			
+			
+	<!-- 쿠폰 insert -->				
+	<insert id="insertCoupon" parameterType="couponvo">
+	<![CDATA[
+		insert into coupon values (seq_coupon.nextval, #{userNo }, #{programNo }, 0, #{count }, sysdate)
+	]]>
+	</insert>
 
 	<!-- 회원검색 -->
 	<select id="searchUser" parameterType="map" resultType="userinfovo">

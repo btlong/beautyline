@@ -3,10 +3,10 @@ package kr.ac.sungkyul.beautyline.vo;
 public class ProgramNoVo {
 
 	private Long userNo;
-	private int basic;//programNo==1
-	private int whitening;//programNo==2
-	private int antiaging;//programNo==3
-	private int acne;//programNo==4
+	private Long basic;//programNo==1
+	private Long whitening;//programNo==2
+	private Long antiaging;//programNo==3
+	private Long acne;//programNo==4
 	
 	public Long getUserNo() {
 		return userNo;
@@ -14,28 +14,28 @@ public class ProgramNoVo {
 	public void setUserNo(Long userNo) {
 		this.userNo = userNo;
 	}
-	public int getBasic() {
+	public Long getBasic() {
 		return basic;
 	}
-	public void setBasic(int basic) {
+	public void setBasic(Long basic) {
 		this.basic = basic;
 	}
-	public int getWhitening() {
+	public Long getWhitening() {
 		return whitening;
 	}
-	public void setWhitening(int whitening) {
+	public void setWhitening(Long whitening) {
 		this.whitening = whitening;
 	}
-	public int getAntiaging() {
+	public Long getAntiaging() {
 		return antiaging;
 	}
-	public void setAntiaging(int antiaging) {
+	public void setAntiaging(Long antiaging) {
 		this.antiaging = antiaging;
 	}
-	public int getAcne() {
+	public Long getAcne() {
 		return acne;
 	}
-	public void setAcne(int acne) {
+	public void setAcne(Long acne) {
 		this.acne = acne;
 	}
 	

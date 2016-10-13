@@ -22,13 +22,18 @@ public class UserinfoService {
 	}
 		
 	// 쿠폰뷰
-	public List<CouponVo> couponList(long no) {
-		return userinfoDao.selectList(no);
+	public List<CouponVo> couponList(long userNo) {
+		return userinfoDao.selectList(userNo);
 	}
 	
 	// 쿠폰수정
-	public int updateCoupon(CouponVo couponvo) {
+	/*public int updateCoupon(CouponVo couponvo) {
 		return userinfoDao.updateCoupon(couponvo);
+	}*/
+
+	// 쿠폰 insert
+	public int insertCoupon(CouponVo couponvo) {
+		return userinfoDao.insertCoupon(couponvo);
 	}
 
 	

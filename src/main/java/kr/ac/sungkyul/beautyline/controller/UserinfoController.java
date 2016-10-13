@@ -2,8 +2,6 @@ package kr.ac.sungkyul.beautyline.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
 import kr.ac.sungkyul.beautyline.service.UserService;
 import kr.ac.sungkyul.beautyline.service.UserinfoService;
@@ -21,7 +18,6 @@ import kr.ac.sungkyul.beautyline.vo.CouponVo;
 import kr.ac.sungkyul.beautyline.vo.PageVo;
 import kr.ac.sungkyul.beautyline.vo.UserVo;
 import kr.ac.sungkyul.beautyline.vo.UserinfoVo;
-import kr.ac.sungkyul.beautyline.vo.VisitVo;
 
 @Controller
 @RequestMapping("/userinfo")
@@ -76,44 +72,45 @@ public class UserinfoController {
 	//쿠폰뷰
 	@ResponseBody
 	@RequestMapping(value = "selectCoupon", method = RequestMethod.POST)
-	public List<CouponVo> readBoardAjax(long no) {
-		List<CouponVo> couponList = userinfoService.couponList(no);
+	public List<CouponVo> readBoardAjax(Long userNo) {
+		List<CouponVo> couponList = userinfoService.couponList(userNo);
 		System.out.println(couponList.toString());
 		return couponList;
 	}
 	
-	//쿠폰 수정1
+	//쿠폰 insert1
 	@ResponseBody
-	@RequestMapping(value = "updateCoupon1", method = RequestMethod.POST)
-	public int updateCoupon1(@RequestBody CouponVo couponvo){
-		System.out.println("왔쟈"+couponvo);
-		int ck = userinfoService.updateCoupon(couponvo);
-		return ck;
+	@RequestMapping(value = "insertCoupon1", method = RequestMethod.POST)
+	public int insertCoupon1(@RequestBody CouponVo couponvo){
+		System.out.println("insert왔쟈"+couponvo);
+		int ck1 = userinfoService.insertCoupon(couponvo);
+		return ck1;
 	}
-	//쿠폰 수정2
+	//쿠폰 insert2
 	@ResponseBody
-	@RequestMapping(value = "updateCoupon2", method = RequestMethod.POST)
-	public int updateCoupon2(@RequestBody CouponVo couponvo){
-		System.out.println("왔쟈"+couponvo);
-		int ck = userinfoService.updateCoupon(couponvo);
-		return ck;
+	@RequestMapping(value = "insertCoupon2", method = RequestMethod.POST)
+	public int insertCoupon2(@RequestBody CouponVo couponvo){
+		System.out.println("insert왔쟈"+couponvo);
+		int ck2 = userinfoService.insertCoupon(couponvo);
+		return ck2;
 	}
-	//쿠폰 수정3
+	//쿠폰 insert3
 	@ResponseBody
-	@RequestMapping(value = "updateCoupon3", method = RequestMethod.POST)
-	public int updateCoupon3(@RequestBody CouponVo couponvo){
-		System.out.println("왔쟈"+couponvo);
-		int ck = userinfoService.updateCoupon(couponvo);
-		return ck;
+	@RequestMapping(value = "insertCoupon3", method = RequestMethod.POST)
+	public int insertCoupon3(@RequestBody CouponVo couponvo){
+		System.out.println("insert왔쟈"+couponvo);
+		int ck3 = userinfoService.insertCoupon(couponvo);
+		return ck3;
 	}
-	//쿠폰 수정4
+	//쿠폰 insert4
 	@ResponseBody
-	@RequestMapping(value = "updateCoupon4", method = RequestMethod.POST)
-	public int updateCoupon4(@RequestBody CouponVo couponvo){
-		System.out.println("왔쟈"+couponvo);
-		int ck = userinfoService.updateCoupon(couponvo);
-		return ck;
+	@RequestMapping(value = "insertCoupon4", method = RequestMethod.POST)
+	public int insertCoupon4(@RequestBody CouponVo couponvo){
+		System.out.println("insert왔쟈"+couponvo);
+		int ck4 = userinfoService.insertCoupon(couponvo);
+		return ck4;
 	}
+	
 
 
 	// 회원삭제

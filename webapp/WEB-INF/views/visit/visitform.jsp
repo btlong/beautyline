@@ -184,7 +184,6 @@
 
 									<!-- 결제 정보 -->
 									<div class="form-group">
-
 										<label class="col-sm-2 control-label">결제 정보</label> <label
 											class="col-sm-2 control-label" id="regDate" name="regDate"
 											value="${today}">${today}</label>
@@ -293,6 +292,8 @@
 
 	<!-- 푸터 -->
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
+	
+	
 	<!-- searchModal -->
 	<div class="modal fade" id="myModal3" role="dialog" tabindex="-1"
 		aria-labelledby="myModalLabel" aria-hidden="true">
@@ -491,11 +492,10 @@
 		$("#imageName").val(fileName);
 	}
 
-
 	$("#smyModal").on("click", function() {
-		
+
 		var trString = "";
-		
+
 		$('#selectedName').html("");
 		$('#selectedPhone').html("");
 		var name = $('#searchName').val();
@@ -554,8 +554,8 @@
 		var tdString = "";
 		var name = $("#selectedName").html().replace(/&nbsp;/gi, '');
 		var phone = $("#selectedPhone").html().replace(/&nbsp;/gi, '').trim();
-		
-		if( name== "" || phone=="") {
+
+		if (name == "" || phone == "") {
 			alert("선택해주세요");
 			return;
 		}
@@ -569,12 +569,11 @@
 			data : JSON.stringify(userVo),
 			contentType : "application/json",
 			success : function(retVal) {
-				var user = retVal.authUser;				
+				var user = retVal.authUser;
 				/* 말줄임말 필요 */
-			/* 	document.getElementById('searchName').value = user.name;
-				document.getElementById('searchPhone').value = user.phone; */
-				
-				
+				/* 	document.getElementById('searchName').value = user.name;
+					document.getElementById('searchPhone').value = user.phone; */
+
 				document.getElementById('searchName').value = "";
 				document.getElementById('searchPhone').value = "";
 				$('#wellName').html(user.name);
@@ -1014,7 +1013,6 @@
 				return $(this).val(tmp);
 			}
 		}
-
 	});
 </script>
 </html>

@@ -17,8 +17,11 @@
               ,a.moisture_score as moistureScore
               ,a.acne_score as acneScore
               ,a.average_score as averageScore
-            FROM VISIT a, PROGRAM b
-            WHERE a.user_no = #{userNo } AND a.program_no = b.no ORDER BY a.REG_DATE desc) c  )
+			  ,d.path as path
+              ,d.sava_name as saveName
+              ,a.memo as memo
+            FROM VISIT a, PROGRAM b,  F_VISIT d
+            WHERE a.user_no = #{userNo } AND a.program_no = b.no AND a.image_no = d.no ORDER BY a.REG_DATE desc , a.no desc) c  )
         WHERE ( #{currentPage } - 1 ) * #{pageRecords } + 1 <= rnum and rnum <= #{currentPage } * #{pageRecords }
       ]]>
    </select>

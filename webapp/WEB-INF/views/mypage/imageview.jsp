@@ -77,7 +77,7 @@ style>.headermessage {
 
 	<div class="container">
 		<div class="row">
-			<div class="box center-block text-center">
+			<div class="box">
 
 				<div class="container-fluid center-block">
 
@@ -87,6 +87,7 @@ style>.headermessage {
 
 
 					<div class="row">
+					
 						<a href="#" data-toggle="modal" data-target=".dialog1" class="center-block text-center">
 							<div 
 								class="image-block col-sm-2 img-responsive img-rounded center-block"

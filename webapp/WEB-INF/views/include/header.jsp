@@ -12,7 +12,7 @@
 		<c:choose>
 			<c:when test='${not empty sessionScope.authUser }'>
 			<li><a href="/beautyline/user/logout">Log out</a></li>
-			<li><a href="/beautyline/user/modifyform">마이페이지</a></li>
+			<li><a href="/beautyline/mypage/main">마이페이지</a></li>
 			<li id="userli">${authUser.name }님안녕하세요^^</li>
 				
 			</c:when>

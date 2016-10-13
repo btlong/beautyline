@@ -39,6 +39,7 @@ public class QnABoardController {
 	    * @RequestParam(value = "keyWord", required=false) String keyWord
 	    */) {
 	      List<QnABoardVo> boardList = qBoardService.getAll();
+	      System.out.println("문의게시판의 사이즈"+boardList.size());
 	      PageVo page = null;
 	      try {
 	         page = pageService.pagingProc(nowPage, nowBlock, boardList.size());

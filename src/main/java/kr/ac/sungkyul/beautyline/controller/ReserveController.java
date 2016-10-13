@@ -39,7 +39,7 @@ public class ReserveController {
 	}
 	
 	//관리자 - 예약리스트 조회
-	@RequestMapping( value = "reservelist")
+	@RequestMapping( "reserveList" )
 	public String reservelist( Model model,
 			@RequestParam(value = "nowPage", required = false) Integer nowPage,
 			@RequestParam(value = "nowBlock", required=false) Integer nowBlock 
@@ -48,14 +48,11 @@ public class ReserveController {
 			){
 		
 		List<ReserveVo> resList = reserveService.resList();
-
 		PageVo page = null;
         try{
             page = pageService.pagingProc(nowPage, nowBlock, resList.size());
         }
         catch(Exception err){
-            System.out.println("현재페이지와 현재블럭이 존재하지 않아 0을 대입했습니다.");
-            System.out.println("에러내용은 다음과 같습니다." + err);
             page = pageService.pagingProc(0, 0, resList.size());
         }
 		model.addAttribute("page", page);
@@ -108,12 +105,29 @@ public class ReserveController {
 		}
 		
 	//회원 - 예약 리스트
-		@RequestMapping("/userreservelist")
-		public String userreservelist( Model model, int userNo ){
-			List<ReserveVo> resList = reserveService.resList( userNo );
+		@RequestMapping("userreservelist")
+		public String userreservelist( Model model, 
+				@RequestParam(value = "nowPage", required = false) Integer nowPage,
+				@RequestParam(value = "nowBlock", required=false) Integer nowBlock,
+				@RequestParam(value = "userNo", required=false) Long userNo 
+
+				//,@RequestParam(value = "keyField", required=false) String keyField 
+				//,@RequestParam(value = "keyWord", required=false) String keyWord
+				){
 			
-			System.out.println( resList );
+			List<ReserveVo> resList = reserveService.resList( userNo );
+			PageVo page = null;
+	        try{
+	            page = pageService.pagingProc(nowPage, nowBlock, resList.size());
+	        }
+	        catch(Exception err){
+	            page = pageService.pagingProc(0, 0, resList.size());
+	        }
+			model.addAttribute("page", page);
 			model.addAttribute("resList", resList);
+			//model.addAttribute("keyField", keyField);
+			//model.addAttribute("keyWord", keyWord);
+
 			return "reserve/userreservelist";
 		}
 		

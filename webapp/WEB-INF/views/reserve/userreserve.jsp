@@ -59,14 +59,15 @@
 	<!-- 세션검사 -->
 		<c:choose>
 			<c:when test='${not empty sessionScope.authUser }'>
-				
-				
+		<form method="POST" action="userreservelist">	
+		<input type="hidden" name="userNo" value="${sessionScope.authUser.no }">
+		<input type="submit" value="예약조회">
+		</form>
 <!-- 달력 -->
 				<div class="col-lg-12 text-center">
 					<div id="datepicker"></div>
 					</div>
-				<div class="col-md-4"></div>
-				<div class="col-md-4">	
+				<div class="col-lg-12 text-center">	
 					<h4 id="txt1">예약하고자 하는 날짜를 선택하세요</h4> 
 				</div>
 				
@@ -77,10 +78,10 @@
 						<h2 class="selDateView"></h2>
 					</div>
 	
-					<div class="col-md-2"></div>
+					<div class="col-lg-2"></div>
 	<!-- 프로그램 선택 -->
 					<div class="form-group" id="selBoxgroup">
-						<div class="col-md-3">
+						<div class="col-lg-3">
 							<select class="form-control" name="progName" size="3" id="progName">
 								<option>베이직 케어</option>
 								<option>미백 케어</option>
@@ -89,14 +90,14 @@
 							</select>
 						</div> 
 	<!-- 시간 선택 -->			
-						<div class="col-md-3">
+						<div class="col-lg-3">
 							<select class="form-control" name="resTime" size="3" id="resTime" >							
 								
 							</select>
 							
 						</div>
 	<!-- 예약 정보 -->
-						<div class="col-md-3" id="resInfoBox">
+						<div class="col-lg-3" id="resInfoBox">
 							<div id="resInfo">
 								<h3>예약 정보</h3>
 								<hr>
@@ -133,7 +134,6 @@
 <script type="text/javascript"> 
 $(document).ready(function(){
 	var userNo = '${sessionScope.authUser.no }'; //예약할때 보낼 회원 번호
-	console.log('${sessionScope.authUser}');
 	var userName = ""; //예약할때 보낼 회원이름
 	
 /* 예약 세부 내용 */
@@ -189,6 +189,9 @@ $(document).ready(function(){
 			
 			// 예약세부내용 화면 보이게
 			$("#resInfoDiv").removeClass("hide");
+
+			$("#txt1").text("프로그램과 시간을 선택해 주세요");
+
 			
 			//선택한 날짜를 이용해 db에서 list를 받아온다. 
 			$.ajax({

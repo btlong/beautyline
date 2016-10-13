@@ -4,7 +4,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -96,18 +95,20 @@ public class UserController {
 	
 	
 	
-
+	/* MyPageController에 있어욤 */
+	
+	
 	
 	/* 회원 정보 수정 */	
-	@RequestMapping("/modifyform")
+	/*@RequestMapping("/modifyform")
 	public String modifyform(HttpSession session, Model model)  throws Exception  {
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
 		UserVo userVo = userService.getUserInfo(authUser.getNo());
 		model.addAttribute("userVo",userVo);
 		return "user/modifyform";
 
-	}
-	@ResponseBody
+	}*/
+	/*@ResponseBody
 	@RequestMapping(value="/modify", method=RequestMethod.POST)
 	public int modify(HttpSession session, @RequestBody UserVo vo ) {
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
@@ -115,7 +116,7 @@ public class UserController {
 		vo.setName(authUser.getName());
 	    int check =	userService.updateInfo(vo);
 		return check;
-	}
+	}*/
 	
 	
 	/*--------------*/

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="qnaboard">
+	
+<!-- 게시판 글쓰기 -->
+   <insert id="insert" parameterType="qnaboardvo" >
+   <selectKey resultType="java.lang.Long" keyProperty="no" order="BEFORE">
+   <![CDATA[
+   select seq_bd_qna.nextval as no from DUAL
+   ]]>
+   </selectKey>
+   <![CDATA[
+      insert into bd_qna values(#{no },  #{userNo },  #{title },  #{content }, sysdate, '0', 
+      nvl((select max(group_no) from bd_qna), 0) + 1, 
+      '1', 
+      '0',
+      #{category})
+      
+   ]]>
+   </insert>
+
+     <!-- 답글쓰기 -->
+   <insert id="insertreply" parameterType="qnaboardvo" >
+   <![CDATA[
+      insert into bd_qna values( seq_bd_qna.nextval,  #{userNo },  #{title },  #{content }, sysdate, '0',
+      							#{groupNo },
+      							#{orderNo } + 1,
+      							#{depth } + 1,
+      							#{category}
+      							)
+      
+   ]]>
+   </insert>   
+   
+   <!-- 답글 업뎃 -->
+	<update id="updatereply" parameterType="qnaboardvo">
+	<![CDATA[
+		update bd_qna set 
+		order_no = order_no + 1
+		where group_no = #{groupNo }
+		and order_no > #{orderNo}
+	]]>	
+	</update>
+   
+   
+		<!--  조회수/ 그룹/ order / depth -->
+
+   <select id="getAll" resultType="qnaboardvo">
+   <![CDATA[
+      select b.no, b.category, b.title, to_char(b.reg_date,'yyyy-mm-dd') as regDate, b.view_count as viewCount,
+        b.group_no as groupNo, b.order_no as orderNo, b.depth as depth,
+        u.no as userNo, u.id as userId, u.name as userName  
+      from bd_qna b, users u
+      where b.user_no = u.no
+      order by group_no desc, order_no asc
+   ]]>
+   </select>
+
+
+   <select id="view" parameterType="java.lang.Integer" resultType="qnaboardvo">
+      <![CDATA[
+      select b.no, b.category, b.user_no as userNo, u.name as userName, b.title, b.content, to_char(reg_date,'yyyy-mm-dd') as regDate,
+       b.view_count as viewCount, u.id as userId,
+       b.group_no as groupNo, b.order_no as orderNo, b.depth as depth
+       from bd_qna b, users u 
+       where b.no = #{no }
+       and b.USER_NO = u.NO
+       ]]>
+      </select>
+
+
+	<!-- 글 수정 -->
+	<update id="modify" parameterType="qnaboardvo">
+	<![CDATA[
+		update bd_qna set 
+		category = #{category}, 
+		title = #{title },
+		content = #{content },
+		reg_date = sysdate
+		where no = #{no}
+	]]>	
+	</update>
+
+
+	<!-- 조회수 업뎃 -->
+	<update id="updateviewcnt" parameterType="java.lang.Integer">
+	<![CDATA[
+		update bd_qna set VIEW_COUNT = VIEW_COUNT+1 where no= #{no }
+	]]>
+	</update>
+
+	<!-- 글 삭제 -->
+	<delete id="delete" parameterType="java.lang.Long">
+	<![CDATA[
+		delete from bd_qna where no = #{no } 
+	]]>
+	</delete>
+
+</mapper> 

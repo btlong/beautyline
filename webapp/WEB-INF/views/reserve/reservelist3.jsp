@@ -74,40 +74,47 @@
 							</tr>
 						</thead>
 
+						<c:set var="firstIndex" value="${totalCount - (currentPage-1) * sizeList }" />
 
 						<fmt:formatDate value="${now }" pattern="yyyy년 MM월 dd일" var="today" />
 						
-						<tbody>
-						<%-- 	<c:set var="doneLoop" value="false" />
-							<!-- for(i=보고있는 페이지의 시작번호; i<(시작번호+한페이지의 게시물수); i++ ){ -->
-							<c:forEach begin="${page.beginPerPage }" end="${page.beginPerPage + page.numPerPage -1}" var="i"varStatus="status">
-							<!-- doneLoop가 false이면 루프 계속 돎-->
-							<c:if test="${not doneLoop }">
-	
-							<tr>
-								<!-- (전체 게시물 갯수-(전체회원수-1))>=1이면 -->
-								<c:if test="${(page.totalRecord -status.index)>=1}">
-								<td>${page.totalRecord -status.index}</td>
-								<td>${resList[i].userName }</td>
-								<td>${resList[i].progName }</td>
-								<td>${resList[i].resDate }</td>
-								<td>${resList[i].resTime }시- ${resList[i].resTime + 1 }시</td>
-								<td><a href="reservedeleteform?no=${resList[i].no }" type="button" class="btn btn-default btn-xs">
-								<c:choose>
-									<c:when test='${today > resList[i].resDate }'>삭제</c:when>
-									<c:otherwise>취소</c:otherwise>
-								</c:choose>
-								</a></td>
-								</c:if>
-							</tr>
-								<!-- 회원수가 토탈 게시물보다 많아지면 루프가 True가 되어 빠져나옴 -->
-								<c:if test="${i+1 == page.totalRecord} ">
-								<c:set var="doneLoop" value="true" />
+						<c:forEach items='${resList }' var="reserveVo" varStatus='status'>
+							<tbody
+								<c:if test='${today > reserveVo.resDate }'> id="resPast" </c:if>>
+								<c:set var="doneLoop" value="false" />
+								<!-- for(i=보고있는 페이지의 시작번호; i<(시작번호+한페이지의 게시물수); i++ ){ -->
+									<c:forEach begin="${page.beginPerPage }" end="${page.beginPerPage + page.numPerPage -1}" var="i"varStatus="status">
+
+											<!-- doneLoop가 false이면 루프 계속 돎-->
+											<c:if test="${not doneLoop }">
+			
+								<tr>
+									<!-- (전체 게시물 갯수-(전체회원수-1))>=1이면 -->
+									<c:if test="${(page.totalRecord -status.index)>=1}">
+									<td>${page.totalRecord -status.index}</td>
+									<td>${reserveVo.userName }</td>
+									<td>${reserveVo.progName }</td>
+									<td>${reserveVo.resDate }</td>
+									<td>${reserveVo.resTime }시- ${reserveVo.resTime + 1 }시</td>
+									<td><a href="reservedeleteform?no=${reserveVo.no }" type="button" class="btn btn-default btn-xs">
+									<c:choose>
+										<c:when test='${today > reserveVo.resDate }'>삭제</c:when>
+										<c:otherwise>취소</c:otherwise>
+									</c:choose>
+									
+									</a></td>
+									
+									</c:if>
+								</tr>
+							<!-- 회원수가 토탈 게시물보다 많아지면 루프가 True가 되어 빠져나옴 -->
+							<c:if test="${i+1 == page.totalRecord} ">
+							<c:set var="doneLoop" value="true" />
 							</c:if>
-						</c:if>
-						</c:forEach> --%>
-					</tbody>
-				</table>
+							</c:if>
+							</c:forEach>
+							</tbody>
+						</c:forEach>
+					</table>
 				
 				<div class="col-lg-12 text-right">	
 					<a class="btn btn-danger" type="button" href="javascript:history.go(-1);" >돌아가기</a>

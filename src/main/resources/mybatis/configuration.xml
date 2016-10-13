@@ -8,6 +8,7 @@
 		<typeAlias type="kr.ac.sungkyul.beautyline.vo.VisitVo" alias="visitvo" />
 		<typeAlias type="kr.ac.sungkyul.beautyline.vo.CouponVo" alias="couponvo" />
 		<typeAlias type="kr.ac.sungkyul.beautyline.vo.NoticeBoardVo" alias="noticeboardvo" />
+		<typeAlias type="kr.ac.sungkyul.beautyline.vo.QnABoardVo" alias="qnaboardvo" />
 		<typeAlias type="kr.ac.sungkyul.beautyline.vo.ReserveVo" alias="reservevo" />
 		<typeAlias type="kr.ac.sungkyul.beautyline.vo.UserinfoVo" alias="userinfovo" />
 		<typeAlias type="kr.ac.sungkyul.beautyline.vo.PageVo" alias="pagevo" />
@@ -22,6 +23,7 @@
 		<mapper resource="mybatis/mappers/visit.xml" />
 		<mapper resource="mybatis/mappers/userinfo.xml" />
 		<mapper resource="mybatis/mappers/noticeboard.xml" />
+		<mapper resource="mybatis/mappers/qnaboard.xml" />
 		<mapper resource="mybatis/mappers/reserve.xml" />
 		<mapper resource="mybatis/mappers/mypage.xml" />
 	</mappers>

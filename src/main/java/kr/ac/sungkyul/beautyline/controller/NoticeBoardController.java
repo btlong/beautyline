@@ -33,7 +33,6 @@ public class NoticeBoardController {
 	@Autowired
 	private PageService pageService;
 	
-	//소연시작
 	/* 게시판 리스트 */
 	   @RequestMapping("board")
 	   public String list(Model model, @RequestParam(value = "nowPage", required = false) Integer nowPage,
@@ -187,9 +186,20 @@ public class NoticeBoardController {
    }
 
    
+   /*글 수정폼 */
+	@RequestMapping(value = "/modifyform", method = RequestMethod.GET)
+	public String modyfyform(Long no,Model model){
+		 NoticeBoardVo notiBdVo = nBoardService.view(no);
+	      FileNotiVo file = nBoardService.fileview(no);
+	      
+	      model.addAttribute("file",file);
+	      model.addAttribute("notiBdVo", notiBdVo);
+	      return "board/noticeboard/modifyform";
+		
+	}
+   
+   
 
-	    
-	 }
- //소연이
+	    }
    
 

@@ -80,7 +80,7 @@
 				<a  class="dropdown-toggle"  data-toggle="dropdown" role="button" aria-expanded="true">게시판 </a>
 					<ul class="dropdown-menu" id="navdropdown" role="menu">
 						<li><a href="/beautyline/noticeboard/board">공지사항</a></li>
-					   	<li><a href="#">문의게시판</a></li>
+					   	<li><a href="/beautyline/qnaboard/board">문의게시판</a></li>
 				       	<li><a href="#">후기게시판</a></li>
 					</ul>
 				</li>

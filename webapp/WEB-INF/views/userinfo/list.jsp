@@ -61,6 +61,7 @@
 		<div class="row">
 			<div class="box">
 				<div class="col-lg-12">
+				<div class="page-header">
 					<hr>
 					<h1 class="text-center text-center">
 						<strong>회원관리</strong>
@@ -69,7 +70,7 @@
 				</div>
 
 
-				<div class="col-lg-12 text-center">
+				<div>
 					<!-- 관리자권한 설정 -->
 					<%-- <c:choose>
 						<c:when
@@ -84,7 +85,7 @@
 
 
 							<!-- 페이지 정보 -->
-							<div id=total-record class="col-lg-4 col-lg-offset-1 text=left">
+							<div id=total-record class="col-lg-10 col-lg-offset-1 text=left">
 								▶전체 회원 수 : ${page.totalRecord }명&nbsp; &nbsp; ▶현재 페이지 ( <span
 									id=page-location>${page.nowPage+1 } / ${page.totalPage}
 									페이지</span>)
@@ -93,7 +94,7 @@
 
 
 							<!-- 회원리스트 -->
-							<div class=row></div>
+							<div class=row>
 							<div class="col-lg-10 col-lg-offset-1">
 								<table class="table table-bordered table-hover table-responsive">
 									<thead>
@@ -282,6 +283,9 @@
 			</div>
 		</div>
 	</div>
+	</div>
+	
+	
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
 
 

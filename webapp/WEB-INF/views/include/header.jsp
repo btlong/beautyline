@@ -5,7 +5,7 @@
 	pageEncoding="UTF-8"%>
 
 
-<div class="brand"><a href ="/beautyline/main">BeautyLine</a></div>
+<div class="brand"><a href ="/beautyline/main"><img id="blue" src="/beautyline/images/beautylinelogo.png" /></a></div>
 
 <div id="includeheader">
 	<ul id="userheader">

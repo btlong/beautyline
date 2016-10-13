@@ -146,7 +146,7 @@ transition-delay:.2s;
      <div class="form-group">
            <div class="col-md-3">
            <div class="hovereffect">
-            <img src="/beautyline/images/information/program/1.png" class="img-responsive">
+            <img src="/beautyline/images/information/program/1.jpg" class="img-responsive">
             <div class="overlay">
             <h2>베이직 케어</h2>
             <p> 

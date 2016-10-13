@@ -40,6 +40,9 @@
 .form-group {
 	margin-top: 30px
 }
+#user-name{
+	font-weight: bold
+}
 </style>
 
 <!-- jQuery -->
@@ -67,14 +70,14 @@
 
 				<div class="col-lg-10 col-lg-offset-1">
 					<!-- 세션검사 -->
-					<%-- <c:choose>
-						<c:when test='${not empty sessionScope.authUser }'> --%>
-
-							<div class=".col-lg-4 .col-lg-offset-4">
+					<c:choose>
+						<c:when test='${not empty sessionScope.authUser }'>
+							<div class="row">
+							<div class="col-lg-4 col-lg-offset-3">
 								<table class="table table-responsive text-center">
 									<tr>
 										<td>
-											<form method="post" action="#">
+											<form method="post" action="userreservelist">
 												<input class="btn btn-warning btn-sm" type="submit"
 													value="예약확인">
 											</form>
@@ -94,49 +97,37 @@
 									<tr>
 								</table>
 							</div>
+							</div>
 
 							<!-- 결제한 케어프로그램 남은 횟수  -->
 								<div class="row">
-								<div class="col-lg-3">
-								<table>
-								<tr>
-									<td rowspan="5">${userVo.name }&nbsp;회원님</td>
-								<tr>
-								</table>
-								
+									<span id="user-name">${userVo.name }&nbsp;</span><span>회원님</span>
 								</div>
-								<div class="col-lg-8 col-lg-offset-1">
+								
+								
 								<table class="table table-bordered table-responsive">
 									<thead>
 										<tr class="danger">
-											<th>프로그램이름</th>
-											<th>잔여횟수</th>
+											<th>베이직 케어</th>
+											<th>화이트 케어</th>
+											<th>리프팅 케어</th>
+											<th>여드름 케어</th>
 											<!-- <th></th> -->
 										</tr>
 									</thead>
 									<!-- 리스트영역 -->
 									<tbody>
 										<tr>
-											<td>베이직 케어</td>
 											<td id="one"></td>
-										</tr>
-										<tr>
-											<td>미백 케어</td>
 											<td id="two"></td>
-										</tr>
-										<tr>
-											<td>주름 케어</td>
 											<td id="three"></td>
-										</tr>
-										<tr>
-											<td>여드름 케어</td>
 											<td id="four"></td>
 										</tr>
 									</tbody>
 									<tfoot></tfoot>
 								</table>
-								</div>
-								</div>
+								
+								
 							<!----------------------->
 							
 
@@ -147,11 +138,14 @@
 										<label>예약확인</label>
 									</div>
 									<div class="col-lg-10 text-right">
-										<form method="post" action="#">
+										<form method="post" action="userreservelist">
 											<input class="btn btn-default btn-sm" type="submit"
 												value="예약내역 더 보기" placeholder=".col-xs-2">
 										</form>
 									</div>
+								</div>
+								<div class="row">
+								<!-- css 둥근 모서리 박스 : http://www.erzsamatory.net/4 -->
 								</div>
 							</div>
 							<!----------->
@@ -213,12 +207,12 @@
 							</div>
 
 
-						<%-- </c:when>
+						</c:when>
 						<c:otherwise>
 							<h4>마이페이지 조회는 회원만 가능합니다.</h4>
 							<c:import url="/WEB-INF/views/include/login.jsp" />
 						</c:otherwise>
-					</c:choose> --%>
+					</c:choose>
 				</div>
 
 			</div>

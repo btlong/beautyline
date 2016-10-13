@@ -114,7 +114,6 @@ public class MypageService {
          Long elasticScore = visitVo.getElasticScore();
          Long moistureScore = visitVo.getMoistureScore();
          Long acneScore = visitVo.getAcneScore();
-         
          Long lowestScore = 100L;
          int weaknessType = 0;
          Long[] scores = {whiteningScore, whinkleScore, elasticScore, moistureScore, acneScore};
@@ -140,7 +139,6 @@ public class MypageService {
       listVo.setNextPage(nextPage);
       listVo.setNextPageSet(nextPageSet);
       listVo.setNumber(number);
-      
       
       return listVo;
    }

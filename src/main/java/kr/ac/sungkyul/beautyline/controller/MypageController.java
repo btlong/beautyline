@@ -1,13 +1,19 @@
 package kr.ac.sungkyul.beautyline.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.ac.sungkyul.beautyline.service.MypageService;
+import kr.ac.sungkyul.beautyline.service.UserinfoService;
+import kr.ac.sungkyul.beautyline.vo.CouponVo;
 import kr.ac.sungkyul.beautyline.vo.ListVo;
 import kr.ac.sungkyul.beautyline.vo.UserVo;
 
@@ -17,6 +23,9 @@ public class MypageController {
 
    @Autowired
    private MypageService mypageService;
+   
+   @Autowired
+   UserinfoService userinfoService;
    
    // 요약페이지
 	@RequestMapping("/main")
@@ -43,4 +52,13 @@ public class MypageController {
          return "mypage/history";
       }
    
+      
+    //쿠폰뷰
+  	@ResponseBody
+  	@RequestMapping(value = "selectCoupon", method = RequestMethod.POST)
+  	public List<CouponVo> readCouponAjax(Long userNo) {
+  		List<CouponVo> couponList = userinfoService.couponList(userNo);
+  		System.out.println(couponList.toString());
+  		return couponList;
+  	}
 }

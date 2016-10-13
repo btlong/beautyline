@@ -32,9 +32,7 @@
 
 <!-- Custom CSS -->
 <link href="/beautyline/bootstrap/css/business-casual.css" rel="stylesheet">
-	
-	
-	<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">
+<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">
 	
 	
 
@@ -47,12 +45,8 @@
 	
 	
 <!-- Fonts -->
-<link
-	href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
-	rel="stylesheet" type="text/css">
-<link
-	href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic"
-	rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -94,24 +88,23 @@ padding-left: 0px;
 		<div class="row">
 			<div class="box">
 				<div class="col-lg-12">
-				
 					<div class="page-header">
 						<hr><h3 class="text-center"><strong>글쓰기</strong></h3><hr>
 					</div>
-				
 				<div class="form-horizontal" id="write-form" >
-					
 					<!-- 제목 -->
-					<div class="form-group" id="divTitle" enctype="multipart/form-data">
+					<div class="form-group" id="divTitle" >
 						<div class="col-lg-10 col-lg-offset-1">
-							<label class="col-sm-1 control-label" id= "title_title" for="inputName">제목</label>
-							<!-- select  [공지 or 이벤트] -->
+							<label class="col-sm-2 control-label" id= "title_title" for="inputName">제목</label>
+							<!-- select  [프로그램] -->
 							<div class="col-lg-2">
 								<select class="form-control" name="category_select"
 									id="category_select">
 									<option value="" selected>선택하세요</option>
-									<option value="공지">공지</option>
-									<option value="이벤트">이벤트</option>
+									<option value="베이직 케어">베이직 케어</option>
+									<option value="미백 케어">미백 케어</option>
+									<option value="리프팅 케어">리프팅 케어</option>
+									<option value="여드름 케어">여드름 케어</option>
 								</select>
 							</div>
 							<div class="col-lg-3">
@@ -119,17 +112,6 @@ padding-left: 0px;
 							</div>
 						 </div>
 					</div>
-					
-				 <!-- 첨부파일  -->	
-				<div class="form-group" id= "uploadForm">
-				  <div class="col-lg-10 col-lg-offset-1">
-					<label class="col-sm-1 control-label" id= "file_title" for="file">첨부파일</label>
-					<div class="col-lg-2" id="uploadForm">
-						<input class="btn btn-default" name="file" id="file" type="file">		
-					</div>						
-				 </div>
-				</div>
-					  
 				 <div class="form-group" >
 				  <div class="col-lg-10 col-lg-offset-1">
 					  <textarea id="summernote" name="contents"></textarea>
@@ -160,83 +142,48 @@ $(document).ready(function() {
     	maxHeight : null,
     	focus : true,
     	lang : 'ko-KR',
-/*     	 onImageUpload : function(files, editor, welEditable) {
-             sendFile(files[0], editor, welEditable);
-         } */
-  	
+
     });
    
 });
+
 $(function(){
 	$("#insert").on("click", function() {
 
-		var url ="";
-	 	var data = new FormData();
-	
 		var category = $("#category_select").val();
 		var title = $("#inputTitle").val();
 		var content = 	$('#summernote').summernote('code');
-		var file;
-		if($("#file")[0].files[0] != undefined){
-			  file=$("#file")[0].files[0];
-	          data.append("file", file);
-	          url="writefile";
-		
-		}
-		
-		else{
-			url="write"
-		}
-		
-		
-		var file = $("#file")[0].files[0];
-		console.log(file);	 
- 	    data.append("category",category);
-		data.append("title",title);
-		data.append("content",content); 
-	 	data.append("file", file); 
-	
-		 	  $.ajax({// 비동기식 
-				url : url,
+	    var userNo = "${sessionScope.authUser.no }";
+
+	    reviewBoardVo = {
+	    		"category" : category,
+	    		"title" : title,
+	    		"content": content,
+	    		"userNo":userNo
+	    };
+	    $.ajax({// 비동기식 
+				url : "write",
 				type : "POST",
-				data : data,
-				dataType:"text",
-		 	 	enctype: "multipart/form-data", 
-				processData: false,
-			    contentType: false,
+				data:JSON.stringify(reviewBoardVo),
+				contentType:"application/json",
 			    success : function(response) {
-					console.log('success')
-					location.href = "board";
-					
+			 if(response != null){
+			    	console.log('success');
+			 		location.href = "board"; 
+			 		return true;
+			 }
+			 else{
+				 alert("글쓰기에 실패했습니다...");
+				 return false;
+				 
+			 }
+			   
 				},
 				error : function(jqXHR, status, error) {
 					console.error(status + ":" + error);
 				}
 		}); 
 	});
-	
-	
-	
-/* function sendFile(file, editor, welEditable) {
-			data = new FormData();
-			data.append("file", file);
-			console.log(file);
-			$.ajax({
-				url : "imaUpload",
-				type : "POST",
-				data : data,
-				cache : false,
-				contentType : false,
-				processData : false,
-				success : function(url) {
-					editor.insertImage(welEditable, url);
-				},
-				error : function(jqXHR, status, error) {
-					console.error(status + ":" + error);
-				}
-			});
-		}  */
-
-	});
+});
 </script>
 </html>

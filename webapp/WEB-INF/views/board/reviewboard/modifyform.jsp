@@ -110,47 +110,27 @@ padding-left: 0px;
 				<div class="form-horizontal" id="write-form" >
 					
 					<!-- 제목 -->
-					<div class="form-group" id="divTitle" enctype="multipart/form-data">
+					<div class="form-group" id="divTitle" >
 						<div class="col-lg-10 col-lg-offset-1">
 							<label class="col-sm-1 control-label" id= "title_title" for="inputName">제목</label>
 							<!-- select  [공지 or 이벤트] -->
 							<div class="col-lg-2">
 								<select class="form-control" name="category_select" id="category_select">
 									<option value="" selected>선택하세요</option>
-									<option value="공지">공지</option>
-									<option value="이벤트">이벤트</option>
+									<option value="베이직 케어">베이직 케어</option>
+									<option value="미백 케어">미백 케어</option>
+									<option value="리프팅 케어">리프팅 케어</option>
+									<option value="여드름 케어">여드름 케어</option>
 								</select>
 							</div>
 							<div class="col-lg-3">
-								<input class="form-control" id="inputTitle" name="title" type="text" placeholder="제목" value="${notiBdVo.title }">
+								<input class="form-control" id="inputTitle" name="title" type="text" placeholder="제목" value="${reviewBoardVo.title }">
 							</div>
 						 </div>
 					</div>
-					
-					
-				 <!-- 첨부파일 삭제  -->	
-				<div class="form-group" >
-				  <div class="col-lg-10 col-lg-offset-1">
-					<label class="col-sm-1 control-label" id= "file_title" for="file">첨부파일</label>
-							<div class="col-lg-5" >
-								<input class="btn btn-default" name="file" id="file" type="file">
-							</div>
-						
-						<div class="col-lg-5" >
-							<div id="org_fileName">
-								<div id="fName">
-									${file.orgName }
-								</div>
-								<button class="btn btn-danger btn-xs" id="file_delck">X</button>
-							</div>
-						</div>
-				 </div>
-				</div>
-				
-				 	  
 				 <div class="form-group" >
 				  <div class="col-lg-10 col-lg-offset-1">
-					  <textarea id="summernote" name="contents">${notiBdVo.content }</textarea>
+					  <textarea id="summernote" name="contents">${reviewBoardVo.content }</textarea>
  				  </div>
  				</div>
  					
@@ -165,52 +145,13 @@ padding-left: 0px;
 			</div>
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
 
-
-<!-- 모달 -->
-<!-- 파일 삭제 -->
-	<div class="modal fade" id="myModal">
-		<div class="modal-dialog">
-		
-		<!-- modal content -->
-		<form class="form-horizontal" id="userInsertForm" method="post">
-			<div class="modal-content">
-				
-			<!-- header -->
-				<div class="modal-header">
-					<!-- 닫기(x) 버튼 -->
-					<button type="button" class="close" data-dismiss="modal">×</button>
-					<!-- header title -->
-					<h4 class="modal-title text-center">
-						<!-- Ajax처리 -->
-						<strong>파일 삭제</strong>
-					</h4>
-				</div>
-				
-			<!-- body -->
-				<div class="modal-body" id="delmodalbody">
-					<h2>정말 삭제 하시겠습니까?</h2> 	
-				</div>
-				
-			<!-- Footer -->
-				<div class="modal-footer">
-				<div class="form-group">
-					<button class="btn btn-danger" type="button" id="delfile">삭제</button>
-					<button data-dismiss="modal" class="btn btn-primary">취소</button>
-				</div>
-				</div>				
-			</div>
-		</form>
-		</div>
-	</div>	
-
-
 </body>
 
 <script >
 $(document).ready(function() {
-	$("#uploadForm").hide();
+	
 	//카테고리 받아오기
-	var categoryseled = "${notiBdVo.category }";
+	var categoryseled = "${reviewBoardVo.category }";
 	$("#category_select").val(categoryseled);
 	
     $('#summernote').summernote({
@@ -220,122 +161,52 @@ $(document).ready(function() {
     	maxHeight : null,
     	focus : true,
     	lang : 'ko-KR',
-/*     	 onImageUpload : function(files, editor, welEditable) {
-             sendFile(files[0], editor, welEditable);
-         } */
+
   	
     });
-   
-    
-    
-/* 파일 삭제 모달 열기 */
- $("#file_delck").on("click", function(){
-		$("#myModal").modal();
-
-});
-
- var fileCheck = 0; // 파일이 수정되거나 삭제되었는지 체크하기위함
-/* 파일 삭제 체크 */
-$("#delfile").on("click",function(){
-	fileCheck = 1;
-	
-	$("#org_fileName").hide();
-	$("#myModal").modal('hide');
-	
-});
-/* 수정 */
-$("#file").on("change",function(){ 
-	fileCheck = 1;
-	$("#org_fileName").hide();
-});
 
 
 $("#modify").on("click", function() {
-    var data = new FormData();
-    
-	var boardNo = "${notiBdVo.no}";
-	var data = new FormData();
+	var no = "${reviewBoardVo.no}";
 	var category = $("#category_select").val();
 	var title = $("#inputTitle").val();
 	var content = 	$('#summernote').summernote('code');
-	var fNo = "${file.no }";
-	var file ="";
+
+	reviewBoardVo = {
+    		"category" : category,
+    		"title" : title,
+    		"content": content,
+    		"no":no
+    };
+		
 	
-	data.append("no",boardNo);
- 	data.append("category",category);
-	data.append("title",title);
-	data.append("content",content); 
-	
-		
-	if(  $("#file")[0].files[0] != undefined ){ //첨부파일이 있는 경우
-		data.append("fNo",fNo);	
-		file = $("#file")[0].files[0];
-	 	data.append("file", file);
-	 	
-	 	$.ajax({// 비동기식 
-			url : "modifyWF",
-			type : "POST",
-			data : data,
-			dataType:"text",
-	 	 	enctype: "multipart/form-data", 
-			processData: false,
-		    contentType: false,
-		    success : function() {
-				console.log("success");
-				location.href = "board";
-			}
-		});
-	 	
-	}else{ //첨부된 파일이 없는 경우
-		//삭제 안한경우 -- 글만 업데이트
-		if( fileCheck =! 0){ //삭제 한경우 -- 파일 삭제, 글 업데이트
-			data.append("fNo",fNo);			
-		}
-		
-		
 		$.ajax({// 비동기식 
 			url : "modify",
 			type : "POST",
-			data : data,
-			dataType:"text",
-		 	enctype: "multipart/form-data", 
-			processData: false,
-		    contentType: false,
-		    success : function() {
-				console.log("success");
-				location.href = "board";
-			}
+			type : "POST",
+			data:JSON.stringify(reviewBoardVo),
+			contentType:"application/json",
+			success : function(response) {
+				if(response != null){
+					console.log('success');
+			 		location.href = "board";
+			 		return true;
+				}
+				else{
+				 alert("수정을 할수없습니다...");
+				 return false;
+				}
+					},
+			error : function(jqXHR, status, error) {
+						console.error(status + ":" + error);
+					}
 		});
-		
-		
-	}
+		});
 	
 	
 			 	
 });
-	
-	
-	
-/*  	function sendFile(file, editor, welEditable) {
-			data = new FormData();
-			data.append("file", file);
-			console.log(file);
-			$.ajax({
-				url : "imaUpload",
-				type : "POST",
-				data : data,
-				cache : false,
-				contentType : false,
-				processData : false,
-				success : function(url) {
-					editor.insertImage(welEditable, url);
-				},
-				error : function(jqXHR, status, error) {
-					console.error(status + ":" + error);
-				}
-			});
-		}  */
 
-});
+
 </script>
 </html>

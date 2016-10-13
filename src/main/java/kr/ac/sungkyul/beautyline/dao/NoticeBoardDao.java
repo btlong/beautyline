@@ -37,7 +37,7 @@ public class NoticeBoardDao {
 	
 	
 	public void insertFileNoti(FileNotiVo fileVo ){ // 게시판 글작성 첨부파일 
-		sqlSession.insert("noticeboard.insertFileNoti",fileVo);
+		sqlSession.insert("noticeboard.insertFileNoti", fileVo);
 	}
 
 	

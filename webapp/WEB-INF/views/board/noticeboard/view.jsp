@@ -125,12 +125,12 @@
                   <table>
                      <tbody>
                         <tr>
-                        	<td id="file"><span>첨부파일</span></td>     
-	                        	<c:if test='${not empty file.orgName }'>
-	                        	    
-	                      	 		<td id="fileNotice" data-no="${notiBdVo.no }" >&nbsp;<a href="">${file.orgName }</a></td>    
-								</c:if>	                       		
-                    	</tr>
+
+                        <td id="file"><span>첨부파일</span></td>     
+                 <c:if test="${ not empty file.orgName }">
+                       	<td id="fileNotice" data-no="${notiBdVo.no }" >&nbsp;<a href="">${file.orgName }</a></td>    
+                        </c:if>
+                    </tr>
                      </tbody>
                   </table>                  
                   <div id="bdhr"></div>                  

@@ -9,8 +9,7 @@
 <head>
 
 
-<title>QnABoard</title>
-
+<title>noticeBoard</title>
 
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -86,8 +85,7 @@ width:50%;
 					<div class="page-header">
 						<hr>
 						<h1 class="text-center text-center">
-							<strong>문의사항</strong>
-
+							<strong>공지사항</strong>
 						</h1>
 						<hr>
 					</div>
@@ -106,12 +104,8 @@ width:50%;
 					<!-- (전체 게시물 갯수-(전체회원수-1))>=1이면 -->
 					<c:if test="${(page.totalRecord -status.index)>=1}">
 					<td>${page.totalRecord -status.index}</td>
-					<td style="padding-left:${boardList[i].depth * 15}px">
-						<c:if test='${boardList[i].depth >= 1 }'>
-							<img src = "/beautyline/images/arrow2.png" width="10px">
-						</c:if>
-					<a href="view?no=${boardList[i].no }">[${boardList[i].category }] ${boardList[i].title}</a></td>
-					<td> ${boardList[i].userId}</td>
+					<td><a href="view?no=${boardList[i].no }">[${boardList[i].category }] ${boardList[i].title}</a></td>
+					<td>관리자</td>
 					<td>${boardList[i].viewCount}</td>
 					<td>${boardList[i].regDate}</td>
 					</c:if>
@@ -139,8 +133,7 @@ width:50%;
             </table>
             </div>
             <div class="col-lg-11 text-right">
-            <c:if test="${not empty sessionScope.authUser}">
-
+            <c:if test="${authUser.isAdmin eq 'a'}">
       			<a href="writeform" class="btn btn-sm btn-danger">글쓰기 <span class="glyphicon glyphicon-pencil"></span></a>
        		</c:if>
       </div>

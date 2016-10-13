@@ -28,4 +28,5 @@
 		<mapper resource="mybatis/mappers/mypage.xml" />
 	</mappers>
 
+
 </configuration>

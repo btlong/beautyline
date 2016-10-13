@@ -1,85 +1,70 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<!-- Bootstrap Core CSS -->
-<link href="/beautyline/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet">
+	<!-- 쿠폰 충전 모달 -->
+	<div id="myModal1" class="modal fade " tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-content modal-dialog">
+			<!-- header -->
+			<div class="modal-header">
+				<!-- 닫기(x) 버튼 -->
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<!-- header title -->
+				<h4 class="modal-title text-center">
+					<strong>패키지 충전</strong>
+				</h4>
+			</div>
 
-<!-- Custom CSS -->
-<link href="/beautyline/bootstrap/css/business-casual.css"
-	rel="stylesheet">
-<link href="/beautyline/beautyline/css/packagecharge.css" rel="stylesheet">
-<!-- Fonts -->
-<link
-	href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
-	rel="stylesheet" type="text/css">
-<link
-	href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic"
-	rel="stylesheet" type="text/css">
+			<!-- body -->
+			<!-- 	<form class="form-inline" method="post" action="registration"> -->
 
-</head>
-<body>
-	<!-- Model -->
-	<!-- header -->
-	<div class="modal-header">
-		<!-- 닫기(x) 버튼 -->
-		<button type="button" class="close" data-dismiss="modal">×</button>
-		<!-- header title -->
-		<h4 class="modal-title text-center">
-			<strong>패키지 충전</strong>
-		</h4>
-	</div>
+			<div class="modal-body">
 
-	<!-- body -->
-	<form class="form-inline" method="post" action="registration">
-
-		<div class="modal-body">
-
-			<div class="bg-danger ">
 				<div class="row center-blocks">
-					<label class="col-md-6 text-right">이름</label> 
-					<input class="col-md-3" type="text" value="">
+					<label class="col-sm-6 text-right">이름</label> <label
+						id="packageName" class="col-sm-3 com-sm-offset-1" type="text"
+						value="" size="8"></label>
 				</div>
 				<div class="row center-blocks">
-					<label class="col-md-6 text-right">전화번호</label> 
-					<input class="col-md-3" type="text" value="">
+					<label class="col-md-6 text-right">전화번호</label> <label
+						id="packagePhone" class="col-md-4" type="text"
+						value="${userVo.phone}"></label>
 				</div>
+
 				<div class="row center-blocks">
-					<label class="col-md-6 text-right" >구매프로그램</label> 
-					<select class="col-md-3">
-						<option>여드름케어</option>
-						<option>주름 케어</option>
-						<option>화이트닝 케어</option>
-						<option>여드름 케어</option>
+					<label class="col-md-6 text-right">구매프로그램</label> <select
+						id="packageSelected" class="col-md-3">
+						<option value="1">베이직 케어</option>
+						<option value="2">미백 케어</option>
+						<option value="3">주름 케어</option>
+						<option value="4">여드름 케어</option>
 					</select>
 				</div>
 				<div class="row center-blocks">
-					<label class="col-md-6 text-right" >횟수</label>
-					<input class="col-md-2" type="text" value=""> <label class="col-md-1">회</label>
+					<label class="col-md-6 text-right">횟수</label> <input
+						id="packageCount" class="col-md-2" type="text"> <label
+						class="col-md-1">회</label>
 				</div>
 				<div class="row center-blocks">
-					<label class="col-md-6 text-right">금액</label> 
-					<input class="col-md-2" type="text" value="">
+					<label class="col-md-6 text-right">금액</label> <input
+						id="packagePrice" class="col-md-2" type="text"> <label
+						class="col-md-1">원</label>
+				</div>
+				<div class="radio-group text-center">
+					<input id="pack_opt_1" class="radio-box" type="radio"
+						name="packagePay" value="4"> <label
+						class="radio-group__label control-label " for="pack_opt_1">
+						카드</label> <input id="pack_opt_2" class="radio-box" type="radio"
+						name="packagePay" value="3"> <label
+						class="radio-group__label control-label" for="pack_opt_2">
+						현금</label>
+				</div>
+			</div>
+
+			<!-- Footer -->
+			<div class="modal-footer">
+				<div class="col-lg-12 text-center form-group">
+					<input id="packageCharge" class="btn btn-danger " type="button"
+						value="충전하기">
+					<button type="button" class=" btn btn-danger" data-dismiss="modal">닫기</button>
 				</div>
 			</div>
 		</div>
-
-		<!-- Footer -->
-		<div class="modal-footer">
-		
-			<div class="col-lg-12 text-center form-group">
-				<input class="btn btn-danger " type="submit" value="충전하기">
-				<button type="button" class=" btn btn-danger" data-dismiss="modal">닫기</button>
-			</div>
-		</div>
-	</form>
-
-</body>
-</html>
+	</div>

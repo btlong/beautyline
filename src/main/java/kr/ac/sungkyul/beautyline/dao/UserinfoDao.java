@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.ac.sungkyul.beautyline.vo.CouponVo;
-import kr.ac.sungkyul.beautyline.vo.UserVo;
 import kr.ac.sungkyul.beautyline.vo.UserinfoVo;
 
 @Repository
@@ -34,20 +33,28 @@ public class UserinfoDao {
 	}
 	
 	//쿠폰뷰
-	public List<CouponVo> selectList(Long no) {
-		return sqlSession.selectList("userinfo.selectCoupon", no);
+	public List<CouponVo> selectList(Long userNo) {
+		return sqlSession.selectList("userinfo.selectCoupon", userNo);
 	}
 	
 	
-	//쿠폰수정
-	public int updateCouponList(CouponVo couponvo) {
+	/*//쿠폰수정
+	public int updateCoupon(CouponVo couponvo) {
 		System.out.println("//"+couponvo);
-		int updateCouponList = sqlSession.update("userinfo.updateCoupon", couponvo);
-		//return null;
-		return updateCouponList;
-	}
+		Long programNo = couponvo.getProgramNo();
+		Long userNo = couponvo.getUserNo();
+		if(programNo!=null && userNo!=null){
+		return sqlSession.update("userinfo.updateCoupon", couponvo);
+		}else{
+			return sqlSession.insert("userinfo.insertCoupon", couponvo);
+		}
+	}*/
 	
-     
+	// 쿠폰count==0일때 insert
+	public int insertCoupon(CouponVo couponvo) {
+		return sqlSession.insert("userinfo.insertCoupon", couponvo);
+	}
+
 	
 	// 회원삭제
 	public void deleteUser(long no) {
@@ -63,6 +70,7 @@ public class UserinfoDao {
 	public void updateUser(UserinfoVo userinfoVo) {
 		sqlSession.update("userinfo.updateUser", userinfoVo);
 	}
+
 
 
 

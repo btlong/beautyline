@@ -69,7 +69,15 @@
 				<a href="view?no=${no }" class="btn btn-md btn-primary">취소 <span class="glyphicon glyphicon-remove"></span></a>
 				<a href="delete?no=${no }" class="btn btn-md btn-danger">삭제 <span class="glyphicon glyphicon-trash"></span></a>
 				
-
+				
+					<!-- <a href="/mysite/bs?a=list&no=1">글목록</a>  -->
+					
+				<%-- <!-- <c:if test='${not empty authUser && (boardVo.userNo == authUser.no) }'> -->	
+					<a href="#" class="btn btn-sm btn-danger">수정하기 <span class="glyphicon glyphicon-edit"></span></a>
+					<a href="/mysite/bs?a=modifyform&no=${boardVo.no }">글수정</a>
+					<a href="#" class="btn btn-sm btn-danger">삭제 <span class="glyphicon glyphicon-remove"></span></a>
+					<a href="/mysite/bs?a=replyform&no=${boardVo.no }">삭제</a> 
+					</c:if> --%>
 					
 				</div>
 			</div>

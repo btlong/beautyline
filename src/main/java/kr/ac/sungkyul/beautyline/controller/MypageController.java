@@ -18,15 +18,22 @@ public class MypageController {
    @Autowired
    private MypageService mypageService;
    
+   // 요약페이지
+	@RequestMapping("/main")
+	public String main() {
+		return "mypage/main";
+	}
+   
+   
    // 히스토리
       @RequestMapping("/history")
       
       public String listHistory(HttpSession session, ListVo listVo, Model model) {
-         UserVo userVo =(UserVo) session.getAttribute("authUser");
-         System.out.println("세션 값 : " + userVo.getNo());
+         UserVo authUser =(UserVo) session.getAttribute("authUser");
+         System.out.println("세션 값 : " + authUser.getNo());
          
-         listVo.setUserNo(83L);
-         listVo = mypageService.listHistory(listVo);
+         listVo.setUserNo(authUser.getNo());
+         listVo = mypageService.listHistory(session, listVo);
          
          System.out.println("listVo : " + listVo);
          

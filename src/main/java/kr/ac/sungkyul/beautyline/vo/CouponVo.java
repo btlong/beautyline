@@ -3,7 +3,7 @@ package kr.ac.sungkyul.beautyline.vo;
 public class CouponVo {
 	private Long no;
 	private Long userNo;
-	private Long programNo;    
+	private Long programNo;  
 	private Long count;
 	private Long price;
 	private String regDate; // 날짜

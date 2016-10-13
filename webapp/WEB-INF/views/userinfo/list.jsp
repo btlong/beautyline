@@ -77,14 +77,14 @@
 
 
 							<!-- 회원등록버튼 -->
-							<div class="col-lg-12 text-right">
+							<div class="col-lg-11 text-right">
 								<a class="btn btn-info" href="/beautyline/userinfo/joinform"
 									id="insert-user" type="button" role="button">등록</a>
 							</div>
 
 
 							<!-- 페이지 정보 -->
-							<div id=total-record class="col-lg-12 text-left">
+							<div id=total-record class="col-lg-4 col-lg-offset-1 text=left">
 								▶전체 회원 수 : ${page.totalRecord }명&nbsp; &nbsp; ▶현재 페이지 ( <span
 									id=page-location>${page.nowPage+1 } / ${page.totalPage}
 									페이지</span>)
@@ -93,8 +93,9 @@
 
 
 							<!-- 회원리스트 -->
-							<div class="col-lg-12 text-center">
-								<table class="table table-hover">
+							<div class=row></div>
+							<div class="col-lg-10 col-lg-offset-1">
+								<table class="table table-bordered table-hover table-responsive">
 									<thead>
 										<tr class="danger">
 											<th>#</th>
@@ -171,6 +172,7 @@
 									<tfoot></tfoot>
 								</table>
 							</div>
+							</div>
 
 
 
@@ -179,6 +181,8 @@
 
 
 							<!-- 검색 -->
+							<div class=row>
+							<div class="col-md-6 col-md-offset-3 text-center">
 							<%-- <div class="col-lg-12">
 								<form id="search_form" action="/beautyline/userinfo"
 									method="get">
@@ -228,7 +232,8 @@
 										type="hidden" name="page" value="0">
 								</div>
 							</form>
-
+							</div>
+						</div>
 
 							<!-------------Paging n Search form--------------->
 							<!-- 히든 정의 -->

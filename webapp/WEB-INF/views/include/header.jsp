@@ -12,7 +12,7 @@
 		<c:choose>
 			<c:when test='${not empty sessionScope.authUser }'>
 			<li><a href="/beautyline/user/logout">Log out</a></li>
-			<li><a href="/beautyline/user/modifyform">마이페이지</a></li>
+			<li><a href="/beautyline/mypage/main">마이페이지</a></li>
 			<li id="userli">${authUser.name }님안녕하세요^^</li>
 				
 			</c:when>
@@ -80,7 +80,7 @@
 				<a  class="dropdown-toggle"  data-toggle="dropdown" role="button" aria-expanded="true">게시판 </a>
 					<ul class="dropdown-menu" id="navdropdown" role="menu">
 						<li><a href="/beautyline/noticeboard/board">공지사항</a></li>
-					   	<li><a href="#">문의게시판</a></li>
+					   	<li><a href="/beautyline/qnaboard/board">문의게시판</a></li>
 				       	<li><a href="/beautyline/reviewboard/board">후기게시판</a></li>
 					</ul>
 				</li>

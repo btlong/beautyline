@@ -20,11 +20,13 @@ public class VisitVo {
 	private Long moistureScore; // 수분 점수
 	private Long acneScore; // 여드름 점수
 	private Long averageScore; // 평균점수
-	
+
 	private Long payNo; // 결제방법번호;
 	private String payName; // 결제 방법 이름
 
 	private Long price;
+	private String path;
+	private String saveName;
 
 	/* getter & setter */
 	public Long getNo() {
@@ -163,13 +165,30 @@ public class VisitVo {
 		this.price = price;
 	}
 
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
+	}
+
+	public String getSaveName() {
+		return saveName;
+	}
+
+	public void setSaveName(String saveName) {
+		this.saveName = saveName;
+	}
+
 	@Override
 	public String toString() {
 		return "VisitVo [no=" + no + ", userNo=" + userNo + ", name=" + name + ", programNo=" + programNo
 				+ ", programName=" + programName + ", imageNo=" + imageNo + ", memo=" + memo + ", regDate=" + regDate
 				+ ", whiteningScore=" + whiteningScore + ", whinkleScore=" + whinkleScore + ", elasticScore="
 				+ elasticScore + ", moistureScore=" + moistureScore + ", acneScore=" + acneScore + ", averageScore="
-				+ averageScore + ", payNo=" + payNo + ", payName=" + payName + ", price=" + price + "]";
+				+ averageScore + ", payNo=" + payNo + ", payName=" + payName + ", price=" + price + ", path=" + path
+				+ ", saveName=" + saveName + "]";
 	}
 
 }

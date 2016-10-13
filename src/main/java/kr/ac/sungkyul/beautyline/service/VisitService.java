@@ -46,17 +46,13 @@ public class VisitService {
 		File target = new File(path, saveName);
 		FileCopyUtils.copy(file.getBytes(), target);
 
-		int idx = saveName.lastIndexOf(".");
-		
-		
-		String thumbFileName = saveName.substring(0, idx); //확장자 전까지
-		String extension = saveName.substring(idx + 1);		// 확장자 이후
 
-		File thumbnail = new File(path, thumbFileName + "_s_" + extension);
+		File thumbnail = new File(path, "thumb_"+ saveName);
 
 		if (target.exists()) {
 			thumbnail.getParentFile().mkdirs();
-			Thumbnails.of(target).forceSize(150,96).outputFormat("png").toFile(thumbnail);
+			Thumbnails.of(target).forceSize(152,195).toFile(thumbnail);
+			
 		}
 		visitVo.setImageNo(imageNo);
 		visitVo.setAverageScore((visitVo.getWhiteningScore() + // 미백
@@ -83,21 +79,6 @@ public class VisitService {
 		visitDao.SalesInsert(visitVo);
 	}
 
-	public static void imageResize(String orgFilePath, String targetFilePath, String imageType) throws Exception {
-
-		BufferedImage originalImage = ImageIO.read(new File(orgFilePath));
-
-		int imgwidth = Math.min(originalImage.getHeight(), originalImage.getWidth());
-		int imgheight = imgwidth;
-
-		BufferedImage scaledImage = Scalr.crop(originalImage, (originalImage.getWidth() - imgwidth) / 2,
-				(originalImage.getHeight() - imgheight) / 2, imgwidth, imgheight, null);
-
-		BufferedImage resizedImage = Scalr.resize(scaledImage, 180, 100, null);
-
-		ImageIO.write(resizedImage, imageType, new File(targetFilePath));
-
-	}
 
 	/*
 	 * public boolean scale(BufferedImage srcImage, String destPath, String

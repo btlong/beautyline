@@ -71,7 +71,7 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label" for="id">ID</label>
 							<div class="col-sm-6">
-								<input class="form-control" id="id" name="id" type="text" value="" placeholder="YOUR ID">
+								<input class="form-control" id="id" name="id" type="text" value="" placeholder="YOUR ID" autofocus>
 							</div>
 						</div>
 

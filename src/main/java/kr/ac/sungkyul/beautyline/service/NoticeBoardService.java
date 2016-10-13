@@ -45,8 +45,7 @@ public class NoticeBoardService {
 		String saveName = UUID.randomUUID().toString() + "_" + orgName;
 
 		// 6. path
-	//	String path = "C:\\Users\\User\\Download2\\filestore\\";
-		String path = "c:\\Users\\S401-11\\Downloads\\filestore\\";
+		String path = "C:\\Users\\User\\Download2\\filestore\\";
 
 		
 		FileNotiVo noticeFile = new FileNotiVo();
@@ -108,7 +107,7 @@ public class NoticeBoardService {
 		String saveName = UUID.randomUUID().toString() + "_" + orgName;
 
 		// 6. path
-		//String path = "C:\\Users\\User\\Download2\\filestore\\";
+
 		String path = "c:\\Users\\S401-11\\Downloads\\filestore";
 
 		FileNotiVo noticeFile = new FileNotiVo();

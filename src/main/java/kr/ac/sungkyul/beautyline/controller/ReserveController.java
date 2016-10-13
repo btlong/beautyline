@@ -39,15 +39,15 @@ public class ReserveController {
 	}
 	
 	//관리자 - 예약리스트 조회
-	@RequestMapping( value = "reservelist", method = RequestMethod.GET)
+	@RequestMapping( value = "reservelist")
 	public String reservelist( Model model,
 			@RequestParam(value = "nowPage", required = false) Integer nowPage,
-			@RequestParam(value = "nowBlock", required=false) Integer nowBlock, 
-			@RequestParam(value = "keyField", required=false) String keyField, 
-			@RequestParam(value = "keyWord", required=false) String keyWord){
+			@RequestParam(value = "nowBlock", required=false) Integer nowBlock 
+			//,@RequestParam(value = "keyField", required=false) String keyField 
+			//,@RequestParam(value = "keyWord", required=false) String keyWord
+			){
 		
 		List<ReserveVo> resList = reserveService.resList();
-		System.out.println(resList.toString());
 
 		PageVo page = null;
         try{
@@ -59,9 +59,9 @@ public class ReserveController {
             page = pageService.pagingProc(0, 0, resList.size());
         }
 		model.addAttribute("page", page);
-		model.addAttribute("keyField", keyField);
-		model.addAttribute("keyWord", keyWord);
 		model.addAttribute("resList", resList);
+		//model.addAttribute("keyField", keyField);
+		//model.addAttribute("keyWord", keyWord);
 		return "reserve/reservelist";
 	}
 

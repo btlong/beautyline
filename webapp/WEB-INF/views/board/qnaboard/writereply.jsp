@@ -12,7 +12,7 @@
    
 
 
-<title>modify</title>
+<title>write reply</title>
 
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -34,9 +34,9 @@
 <link href="/beautyline/bootstrap/css/business-casual.css" rel="stylesheet">
 	
 	
-<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">
+	<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">
 	
-<link rel="stylesheet"href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+	
 
 
 <!-- font awesome -->
@@ -82,15 +82,7 @@ width :70px;
 padding-left: 0px;
 
 }
-#delmodalbody{
-	text-align: center;
-}
-.modal-footer{
-	text-align: center;
-}
-#fName {
-	display: inline;
-}
+
 </style>
 
 
@@ -104,7 +96,10 @@ padding-left: 0px;
 				<div class="col-lg-12">
 				
 					<div class="page-header">
-						<hr><h3 class="text-center"><strong>수정하기</strong></h3><hr>
+						<hr><h3 class="text-center"><strong>답글쓰기</strong></h3>
+						<h4 class="text-center"><strong>'${qnabdvo.title }'의 답글</strong></h4>
+						<hr>
+						
 					</div>
 				
 				<div class="form-horizontal" id="write-form" >
@@ -113,95 +108,104 @@ padding-left: 0px;
 					<div class="form-group" id="divTitle" enctype="multipart/form-data">
 						<div class="col-lg-10 col-lg-offset-1">
 							<label class="col-sm-1 control-label" id= "title_title" for="inputName">제목</label>
-							<!-- select  [공지 or 이벤트] -->
+							<!-- select  [예약문의, 프로그램 문의 , ] -->
 							<div class="col-lg-2">
-								<select class="form-control" name="category_select" id="category_select">
+								<select class="form-control" name="category_select"
+									id="category_select">
 									<option value="" selected>선택하세요</option>
-									<option value="예약문의">예약문의</option>
 									<option value="예약답변">예약답변</option>
-									<option value="프로그램문의">프로그램문의</option>
 									<option value="프로그램답변">프로그램답변</option>
 								</select>
 							</div>
 							<div class="col-lg-3">
-								<input class="form-control" id="inputTitle" name="title" type="text" placeholder="제목" value="${qnabdvo.title }">
+								<input class="form-control" id="inputTitle" name="title" type="text" placeholder="제목">
 							</div>
 						 </div>
 					</div>
-								
-				 	  
+					
 				 <div class="form-group" >
 				  <div class="col-lg-10 col-lg-offset-1">
-					  <textarea id="summernote" name="contents">${qnabdvo.content }</textarea>
-
+					  <textarea id="summernote" name="contents"></textarea>
  				  </div>
  				</div>
  					
 				<div class="col-lg-11 text-right">
-					<button id="modify" class="btn btn-danger">수정 <span class="glyphicon glyphicon-ok"></span></button>
-					<a href="board" class="btn btn-primary">취소 <span class="glyphicon glyphicon-repeat"></span></a>
+					<button  id="insert" class="btn btn-danger">등록 <span class="glyphicon glyphicon-ok"></span></button>
+					<a href="board" class="btn btn-danger">취소 <span class="glyphicon glyphicon-repeat"></span></a>
 				</div>
 			</div>	
 		</div>
 			</div>
 			</div>
 			</div>
-	<c:import url="/WEB-INF/views/include/footer.jsp" />
-
-
-
-
+		<c:import url="/WEB-INF/views/include/footer.jsp" />
 </body>
 
 <script >
-$(document).ready(function() {
-	//카테고리 받아오기
-	var categoryseled = "${qnabdvo.category }";
-	$("#category_select").val(categoryseled);
-	
-	$('#summernote').summernote({
 
+
+
+$(document).ready(function() {
+    
+    $('#summernote').summernote({
     	
     	height : 300,
     	minHeight : null,
     	maxHeight : null,
     	focus : true,
     	lang : 'ko-KR',
-	});
+/*     	 onImageUpload : function(files, editor, welEditable) {
+             sendFile(files[0], editor, welEditable);
+         } */
+  	
+    });
    
-    
-
-$("#modify").on("click", function() {
-    var data = new FormData();
-    
-	var boardNo = "${qnabdvo.no}";
-	var data = new FormData();
-	var category = $("#category_select").val();
-	var title = $("#inputTitle").val();
-	var content = 	$('#summernote').summernote('code');
-
-	
-	data.append("no",boardNo);
- 	data.append("category",category);
-	data.append("title",title);
-	data.append("content",content); 
-	
-		
-		$.ajax({// 비동기식 
-			url : "modify",
-			type : "POST",
-			data : data,
-			dataType:"text",
-		 	enctype: "multipart/form-data", 
-			processData: false,
-		    contentType: false,
-		    success : function() {
-				console.log("success");
-				location.href = "board";
-			}
-		});		
-	});
-
 });
+$(function(){
+	$("#insert").on("click", function() {
+		
+	 	var data = new FormData();
+	
+		var category = $("#category_select").val();
+		var title = $("#inputTitle").val();
+		var content = 	$('#summernote').summernote('code');
+		var no = "${qnabdvo.no}";
+		var userNo = "${sessionScope.authUser.no }";
+		var groupNo = "${qnabdvo.groupNo }";
+		var orderNo = "${qnabdvo.orderNo }";
+		var depth = "${qnabdvo.depth }";
+		
+		data.append("category",category);
+		data.append("title",title);
+		data.append("content",content);
+		data.append("no",no);
+		data.append("userNo",userNo);
+		data.append("groupNo",groupNo);
+		data.append("orderNo",orderNo);
+		data.append("depth",depth);
+	
+		 	  $.ajax({// 비동기식 
+				url : "replywrite",
+				type : "POST",
+				data : data,
+				dataType:"text",
+		 	 	enctype: "multipart/form-data", 
+				processData: false,
+			    contentType: false,
+			    success : function(response) {
+					console.log('success')
+					location.href = "board";
+					
+				},
+				error : function(jqXHR, status, error) {
+					console.error(status + ":" + error);
+				}
+		}); 
+	});
+	
+	
+
+
+	});
 </script>
 </html>

@@ -98,11 +98,12 @@
                       <tbody>
                          <tr>                 
                          <td id="titletxt">
-                              <span>[${notiBdVo.category }] ${notiBdVo.title }</span>
+                              <span>[${qnabdvo.category }] ${qnabdvo.title }</span>
                           </td>
                           <td id="titleInfo">
-                             <span id="userName">관리자</span> &nbsp;
-                              <span id="date">${notiBdVo.regDate }</span>
+                             <span id="userName">${qnabdvo.userId }</span> &nbsp;
+                              <span id="date">${qnabdvo.regDate }</span>
+
                          
                           
                           </td>
@@ -114,36 +115,28 @@
                   <div id="bdhr"></div>
                   
                   <div id="contents">
-                     ${notiBdVo.content }
+                     ${qnabdvo.content }
+
                   </div>
                   
                   
                   
                   <div id="bdhr"></div>   
 
-                  <!-- 첨부파일  -->
-                  <table>
-                     <tbody>
-                        <tr>
-                        <td id="file"><span>첨부파일</span></td>     
-                 <c:if test="${ not empty file.orgName }">
-                       	<td id="fileNotice" data-no="${notiBdVo.no }" >&nbsp;<a href="">${file.orgName }</a></td>    
-                        </c:if>
-                    </tr>
-                     </tbody>
-                  </table>                  
-                  <div id="bdhr"></div>                  
-               
+
                </div>
                
             
             <div class="col-md-2"></div>
             <div class="col-md-9 text-right" id="bottombtns">
             
-                <c:if test="${authUser.isAdmin eq 'a'}">
-               <a href="deleteform?no=${notiBdVo.no }" class="btn btn-sm btn-danger">삭제 <span class="glyphicon glyphicon-trash"></span></a>
-               <a href="modifyform?no=${notiBdVo.no }" class="btn btn-sm btn-success">글 수정 <span class="glyphicon glyphicon-pencil"></span></a>
-            </c:if>
+             <c:if test="${authUser.no eq qnabdvo.userNo || authUser.isAdmin eq 'a'}">
+               <a href="deleteform?no=${qnabdvo.no }" class="btn btn-sm btn-danger">삭제 <span class="glyphicon glyphicon-trash"></span></a>
+               <a href="modifyform?no=${qnabdvo.no }" class="btn btn-sm btn-success">글 수정 <span class="glyphicon glyphicon-pencil"></span></a>
+			   <a href="replywriteform?no=${qnabdvo.no }" class="btn btn-sm btn-warning">답글<span class="glyphicon glyphicon-pencil"></span></a>
+           		
+           	</c:if>
+
             <a href="board" class="btn btn-sm btn-primary">목록 <span class="glyphicon glyphicon-th-list"></span></a>
             
             </div>
@@ -159,13 +152,6 @@
 </body>
 
 <script>
-$("#fileNotice").on("click",function(event){
-	var no = $(this).data("no");
-	var url = "download?no=" + no;
-	window.open(url);
-	consolg.log(no);
-	
-});
 </script>
 
 

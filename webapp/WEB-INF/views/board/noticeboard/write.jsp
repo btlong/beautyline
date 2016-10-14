@@ -68,9 +68,9 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
 
 <style type="text/css">
-.col-lg-2, .col-lg-3 {
+/* .col-lg-2, .col-lg-3 {
 	padding-left: 0px;
-}
+} */
 
 #title_title {
 width :45px;
@@ -104,9 +104,9 @@ padding-left: 0px;
 					<!-- 제목 -->
 					<div class="form-group" id="divTitle" enctype="multipart/form-data">
 						<div class="col-lg-10 col-lg-offset-1">
-							<label class="col-sm-1 control-label" id= "title_title" for="inputName">제목</label>
+							<label class="col-lg-1 control-label" id= "title_title" for="inputName">제목</label>
 							<!-- select  [공지 or 이벤트] -->
-							<div class="col-lg-2">
+							<div class="col-lg-3">
 								<select class="form-control" name="category_select"
 									id="category_select">
 									<option value="" selected>선택하세요</option>
@@ -114,17 +114,17 @@ padding-left: 0px;
 									<option value="이벤트">이벤트</option>
 								</select>
 							</div>
-							<div class="col-lg-3">
+							<span class="col-lg-4">
 								<input class="form-control" id="inputTitle" name="title" type="text" placeholder="제목">
-							</div>
+							</span>
 						 </div>
 					</div>
 					
 				 <!-- 첨부파일  -->	
 				<div class="form-group" id= "uploadForm">
 				  <div class="col-lg-10 col-lg-offset-1">
-					<label class="col-sm-1 control-label" id= "file_title" for="file">첨부파일</label>
-					<div class="col-lg-2" id="uploadForm">
+					<label class="control-label" id= "file_title" for="file">첨부파일</label>
+					<div  id="uploadForm">
 						<input class="btn btn-default" name="file" id="file" type="file">		
 					</div>						
 				 </div>

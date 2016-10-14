@@ -107,9 +107,8 @@
 							</form>
 						</td>
 						<td>
-							<form method="post" action="#">
-								<input class="btn btn-warning btn-sm" type="submit" value="회원정보 수정">
-							</form>
+							<a href="/beautyline/user/modifyform"  class="btn btn-warning btn-sm" 
+										>회원정보 수정</a>
 						</td>
 						
 					<tr>
@@ -191,10 +190,10 @@
 								<label>회원정보</label>
 							</div>
 							<div class="col-lg-10 text-right">
-								<form method="post" action="#">
-									<input class="btn btn-default btn-sm" type="submit"
-										value="회원정보 수정" placeholder=".col-xs-2">
-								</form>	
+							
+									<a href="/beautyline/user/modifyform" class="btn btn-default btn-sm" 
+										>회원정보 수정</a>
+								
 							</div>
 						</div>
 						<table class="table table-bordered table-responsive">

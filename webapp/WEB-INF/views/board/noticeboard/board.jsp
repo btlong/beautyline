@@ -89,7 +89,7 @@ width:50%;
 						</h1>
 						<hr>
 					</div>
-					<div class="col-lg-10 col-lg-offset-1">
+					<div class="col-lg-12">
 	         <table class="table table-bordered table-hover table-responsive">
              
                    
@@ -132,7 +132,7 @@ width:50%;
               </thead>
             </table>
             </div>
-            <div class="col-lg-11 text-right">
+            <div class="col-lg-12 text-right">
             <c:if test="${authUser.isAdmin eq 'a'}">
       			<a href="writeform" class="btn btn-sm btn-danger">글쓰기 <span class="glyphicon glyphicon-pencil"></span></a>
        		</c:if>

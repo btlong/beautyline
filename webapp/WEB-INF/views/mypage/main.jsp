@@ -40,7 +40,8 @@
 .form-group {
 	margin-top: 30px
 }
-#user-name{
+
+#user-name {
 	font-weight: bold
 }
 </style>
@@ -73,63 +74,54 @@
 					<c:choose>
 						<c:when test='${not empty sessionScope.authUser }'>
 							<div class="row">
-							<div class="col-lg-4 col-lg-offset-3">
-								<table class="table table-responsive text-center">
-									<tr>
-										<td>
-											<form method="post" action="userreservelist">
-												<input class="btn btn-warning btn-sm" type="submit"
-													value="예약확인">
-											</form>
-										</td>
-										<td>
-											<form method="post" action="history">
-												<input class="btn btn-warning btn-sm" type="submit"
-													value="방문내역">
-											</form>
-										</td>
-										<td>
-											<form method="post" action="modifyform">
-												<input class="btn btn-warning btn-sm" type="submit"
-													value="회원정보 수정">
-											</form>
-										</td>
-									<tr>
-								</table>
-							</div>
+								<div class="col-lg-4 col-lg-offset-3">
+									<table class="table table-responsive text-center">
+										<tr>
+											<td>
+												<a href="/beautyline/reserve/userreservelist" class="btn btn-warning btn-sm" >예약확인</a>
+											</td>
+											<td>
+												<form method="post" action="history">
+													<input class="btn btn-warning btn-sm" type="submit"
+														value="방문내역">
+												</form>
+											</td>
+											<td>
+												<a href="/beautyline/user/modifyform" class="btn btn-warning btn-sm">회원정보 수정</a>
+											</td>
+										<tr>
+									</table>
+								</div>
 							</div>
 
 							<!-- 결제한 케어프로그램 남은 횟수  -->
-								<div class="row">
-									<span id="user-name">${userVo.name }&nbsp;</span><span>회원님</span>
-								</div>
-								
-								
-								<table class="table table-bordered table-responsive">
-									<thead>
-										<tr class="danger">
-											<th>베이직 케어</th>
-											<th>화이트 케어</th>
-											<th>리프팅 케어</th>
-											<th>여드름 케어</th>
-											<!-- <th></th> -->
-										</tr>
-									</thead>
-									<!-- 리스트영역 -->
-									<tbody>
-										<tr>
-											<td id="one"></td>
-											<td id="two"></td>
-											<td id="three"></td>
-											<td id="four"></td>
-										</tr>
-									</tbody>
-									<tfoot></tfoot>
-								</table>
-								
-								
+							<div class="row">
+								<span id="user-name">${userVo.name }&nbsp;</span><span>회원님</span>
+							</div>
+
+							<table class="table table-bordered table-responsive">
+								<thead>
+									<tr class="danger">
+										<th>베이직 케어</th>
+										<th>화이트 케어</th>
+										<th>리프팅 케어</th>
+										<th>여드름 케어</th>
+										<!-- <th></th> -->
+									</tr>
+								</thead>
+								<!-- 리스트영역 -->
+								<tbody>
+									<tr>
+										<td id="one"></td>
+										<td id="two"></td>
+										<td id="three"></td>
+										<td id="four"></td>
+									</tr>
+								</tbody>
+								<tfoot></tfoot>
+							</table>
 							<!----------------------->
-							
+
 
 							<!-- 예약확인 -->
 							<div class="form-group">
@@ -138,17 +130,16 @@
 										<label>예약확인</label>
 									</div>
 									<div class="col-lg-10 text-right">
-										<form method="post" action="userreservelist">
-											<input class="btn btn-default btn-sm" type="submit"
-												value="예약내역 더 보기" placeholder=".col-xs-2">
-										</form>
+										<a href="/beautyline/reserve/userreservelist" class="btn btn-success btn-sm" >예약내역 더 보기</a>
 									</div>
 								</div>
 								<div class="row">
-								<!-- css 둥근 모서리 박스 : http://www.erzsamatory.net/4 -->
+									<!-- css 둥근 모서리 박스 : http://www.erzsamatory.net/4 -->
 								</div>
 							</div>
 							<!----------->
+
+
 
 							<!-- 방문내역확인 -->
 							<div class="form-group">
@@ -158,24 +149,24 @@
 									</div>
 									<div class="col-lg-10 text-right">
 										<form method="post" action="history2">
-											<input class="btn btn-default btn-sm" type="submit"
-												value="방문내역 더 보기" placeholder=".col-xs-2">
+											<input class="btn btn-success btn-sm" type="submit"
+												value="방문내역 더 보기">
 										</form>
 									</div>
 								</div>
 							</div>
 							<!----------->
 
+
+
+							<!-- 회원정보수정 -->
 							<div class="form-group">
 								<div class="row">
 									<div class="col-lg-2 text-left">
 										<label>회원정보</label>
 									</div>
 									<div class="col-lg-10 text-right">
-										<form method="post" action="modifyform">
-											<input class="btn btn-default btn-sm" type="submit"
-												value="회원정보 수정" placeholder=".col-xs-2">
-										</form>
+										<a href="/beautyline/user/modifyform" class="btn btn-success btn-sm" >회원정보 수정</a>
 									</div>
 								</div>
 								<table class="table table-bordered table-responsive">
@@ -184,27 +175,22 @@
 											<th colspan=2>고객님의 연락처를 확인 해 주세요</th>
 										</tr>
 									</thead>
-									<!-- 리스트영역 -->
 									<tbody>
 										<tr>
 											<td><span class="glyphicon glyphicon-envelope"></span>&nbsp;
-												이메일 :&nbsp; ${userVo.email1 }@${userVo.email2 }
-											<!-- 이메일 --></td>
+												이메일 :&nbsp; ${userVo.email1 }@${userVo.email2 }</td>
 											<td><span class="glyphicon glyphicon-phone"></span>&nbsp;
-												휴대폰 :&nbsp; ${userVo.phone }
-											<!-- 휴대폰번호 --></td>
+												휴대폰 :&nbsp; ${userVo.phone }</td>
 										</tr>
 										<tr>
-											<td>수신동의 :&nbsp; ${userVo.agrEmail }
-											<!-- 수신동의 --></td>
-											<td>수신동의 :&nbsp; ${userVo.agrMessage }
-											<!-- 수신동의 --></td>
+											<td>수신동의 :&nbsp; ${userVo.agrEmail }</td>
+											<td>수신동의 :&nbsp; ${userVo.agrMessage }</td>
 										</tr>
-										
 									</tbody>
 									<tfoot></tfoot>
 								</table>
 							</div>
+							<!----------->
 
 
 						</c:when>
@@ -223,6 +209,7 @@
 	<script>
 		$(document).ready(function() {
 			
+			/* 쿠폰남은 횟수  */
 			$('#one').text("0");
 			$('#two').text("0");
 			$('#three').text("0");
@@ -252,6 +239,10 @@
 					});
 				}
 			});
+			/* ------- */
+			
+			
+			
 		});
 	</script>
 

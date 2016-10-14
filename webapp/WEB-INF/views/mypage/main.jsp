@@ -40,6 +40,9 @@
 .form-group {
 	margin-top: 30px
 }
+#user-name{
+	font-weight: bold
+}
 </style>
 
 <!-- jQuery -->
@@ -64,220 +67,185 @@
 					<hr>
 				</div>
 
-				
+
 				<div class="col-lg-10 col-lg-offset-1">
-<!-- 세션검사 -->
-		<c:choose>
-			<c:when test='${not empty sessionScope.authUser }'>
+					<!-- 세션검사 -->
+					<c:choose>
+						<c:when test='${not empty sessionScope.authUser }'>
+							<div class="row">
+							<div class="col-lg-4 col-lg-offset-3">
+								<table class="table table-responsive text-center">
+									<tr>
+										<td>
+											<form method="post" action="userreservelist">
+												<input class="btn btn-warning btn-sm" type="submit"
+													value="예약확인">
+											</form>
+										</td>
+										<td>
+											<form method="post" action="history">
+												<input class="btn btn-warning btn-sm" type="submit"
+													value="방문내역">
+											</form>
+										</td>
+										<td>
+											<form method="post" action="modifyform">
+												<input class="btn btn-warning btn-sm" type="submit"
+													value="회원정보 수정">
+											</form>
+										</td>
+									<tr>
+								</table>
+							</div>
+							</div>
 
-					<!-- <div class="row">
-						<div class="col-lg-4  text-left">
-						<form id="reserve" method="post" action="#">
-							<label class="sr-only" for="reservebtn">예약확인</label>
-							<button id="reservebtn" class="btn btn-default btn-lg">예약확인</button>
-							</form>
-						</div>
-						<div class="col-lg-3 col-lg-offset-1 text-center">
-						<form id="visit" method="post" action="#">
-							<label class="sr-only" for="visitbtm">방문내역</label>
-							<button id="visitbtn" class="btn btn-default btn-lg"
-								type="submit">방문내역</button>
-								</form>
-						</div>
-						<div class="col-lg-3 col-lg-offset-1 text-right">
-						<form id="modifyuser" method="post" action="#">
-							<label class="sr-only" for="modifyuserbtn">회원정보 수정</label>
-							<button id="modifyuserbtn" class="btn btn-default btn-lg"
-								type="submit">회원정보 수정</button>
-						</form>
-						</div>
-					</div>	 -->
-					
-					<div class=".col-lg-4 .col-lg-offset-4">
-					<table class="table table-responsive text-center">
-					<tr>
-						<td>
-							<form method="post" action="#">
-								<input class="btn btn-warning btn-sm" type="submit" value="예약확인">
-							</form>
-						</td>
-						<td>
-							<form method="post" action="#">
-								<input class="btn btn-warning btn-sm" type="submit" value="방문내역">
-							</form>
-						</td>
-						<td>
-							<form method="post" action="#">
-								<input class="btn btn-warning btn-sm" type="submit" value="회원정보 수정">
-							</form>
-						</td>
-						
-					<tr>
-					</table>
-					</div>
+							<!-- 결제한 케어프로그램 남은 횟수  -->
+								<div class="row">
+									<span id="user-name">${userVo.name }&nbsp;</span><span>회원님</span>
+								</div>
+								
+								
+								<table class="table table-bordered table-responsive">
+									<thead>
+										<tr class="danger">
+											<th>베이직 케어</th>
+											<th>화이트 케어</th>
+											<th>리프팅 케어</th>
+											<th>여드름 케어</th>
+											<!-- <th></th> -->
+										</tr>
+									</thead>
+									<!-- 리스트영역 -->
+									<tbody>
+										<tr>
+											<td id="one"></td>
+											<td id="two"></td>
+											<td id="three"></td>
+											<td id="four"></td>
+										</tr>
+									</tbody>
+									<tfoot></tfoot>
+								</table>
+								
+								
+							<!----------------------->
+							
 
-					<!-- program name,coupon count  -->
-					<div class="form-group">
-					<div class="form-group">
-						<span class="userName"></span>&nbsp;회원님
-					</div>
-						<table class="table table-bordered table-responsive">
-							<thead>
-								<tr class="danger">
-									<th>프로그램이름</th>
-									<th>잔여횟수</th>
-									<!-- <th></th> -->
-								</tr>
-							</thead>
-							<!-- 리스트영역 -->
-							<tbody>
-								<tr>
-									<td>베이직 케어</td>
-									<td id="one"></td>
-								</tr>
-								<tr>
-									<td>미백 케어</td>
-									<td id="two"></td>
-								</tr>
-								<tr>
-									<td>주름 케어</td>
-									<td id="three"></td>
-								</tr>
-								<tr>
-									<td>여드름 케어</td>
-									<td id="four"></td>
-								</tr>
-								<!-- <tr>
-									<td><input type=hidden id="coupon-userno" value=""></td>
-								</tr> -->
-							</tbody>
-							<tfoot></tfoot>
-						</table>
-					</div>
-					
-					<div class="form-group">
-						
+							<!-- 예약확인 -->
+							<div class="form-group">
 								<div class="row">
 									<div class="col-lg-2 text-left">
 										<label>예약확인</label>
 									</div>
 									<div class="col-lg-10 text-right">
-										<form method="post" action="#">
+										<form method="post" action="userreservelist">
 											<input class="btn btn-default btn-sm" type="submit"
 												value="예약내역 더 보기" placeholder=".col-xs-2">
-										</form>	
+										</form>
 									</div>
 								</div>
-							
-						
+								<div class="row">
+								<!-- css 둥근 모서리 박스 : http://www.erzsamatory.net/4 -->
+								</div>
+							</div>
+							<!----------->
+
+							<!-- 방문내역확인 -->
+							<div class="form-group">
 								<div class="row">
 									<div class="col-lg-2 text-left">
 										<label>방문내역</label>
 									</div>
 									<div class="col-lg-10 text-right">
-										<form method="post" action="#">
+										<form method="post" action="history2">
 											<input class="btn btn-default btn-sm" type="submit"
 												value="방문내역 더 보기" placeholder=".col-xs-2">
 										</form>
 									</div>
 								</div>
-							
-					</div>				
-					
-					
-					<div class="form-group">
-						<div class="row">
-							<div class="col-lg-2 text-left">
-								<label>회원정보</label>
 							</div>
-							<div class="col-lg-10 text-right">
-								<form method="post" action="#">
-									<input class="btn btn-default btn-sm" type="submit"
-										value="회원정보 수정" placeholder=".col-xs-2">
-								</form>	
+							<!----------->
+
+							<div class="form-group">
+								<div class="row">
+									<div class="col-lg-2 text-left">
+										<label>회원정보</label>
+									</div>
+									<div class="col-lg-10 text-right">
+										<form method="post" action="modifyform">
+											<input class="btn btn-default btn-sm" type="submit"
+												value="회원정보 수정" placeholder=".col-xs-2">
+										</form>
+									</div>
+								</div>
+								<table class="table table-bordered table-responsive">
+									<thead>
+										<tr class="danger">
+											<th colspan=2>고객님의 연락처를 확인 해 주세요</th>
+										</tr>
+									</thead>
+									<!-- 리스트영역 -->
+									<tbody>
+										<tr>
+											<td><span class="glyphicon glyphicon-envelope"></span>&nbsp;
+												이메일 :&nbsp; ${userVo.email1 }@${userVo.email2 }
+											<!-- 이메일 --></td>
+											<td><span class="glyphicon glyphicon-phone"></span>&nbsp;
+												휴대폰 :&nbsp; ${userVo.phone }
+											<!-- 휴대폰번호 --></td>
+										</tr>
+										<tr>
+											<td>수신동의 :&nbsp; ${userVo.agrEmail }
+											<!-- 수신동의 --></td>
+											<td>수신동의 :&nbsp; ${userVo.agrMessage }
+											<!-- 수신동의 --></td>
+										</tr>
+										
+									</tbody>
+									<tfoot></tfoot>
+								</table>
 							</div>
-						</div>
-						<table class="table table-bordered table-responsive">
-							<thead>
-								<tr class="danger">
-									<th colspan=2>고객님의 연락처를 확인 해 주세요</th>
-								</tr>
-							</thead>
-							<!-- 리스트영역 -->
-							<tbody>
-								<tr>
-								
-									<td><span class="glyphicon glyphicon-phone"></span>&nbsp; 휴대폰 :&nbsp; <span class="userPhone"></span><!-- 휴대폰번호 --></td>
-									<td><span class="glyphicon glyphicon-envelope"></span>&nbsp; 이메일 :&nbsp; <span class="userEmail1"></span>@<span class="userEmail2"></span><!-- 이메일 --></td>
-								</tr>
-								<tr>
-									<td>수신동의 :&nbsp; <span class="userAgrMessage"></span><!-- 수신동의 --></td>
-									<td>수신동의 :&nbsp; <span class="userAgrEmail"></span><!-- 수신동의 --></td>
-								</tr>
-								<!-- <tr>
-									<td><input type=hidden id="coupon-userno" value=""></td>
-								</tr> -->
-							</tbody>
-							<tfoot></tfoot>
-						</table>
-					</div>
-					
-					
-					</c:when>
-			<c:otherwise>
-				<h4>마이페이지 조회는 회원만 가능합니다.</h4>
-				<c:import url="/WEB-INF/views/include/login.jsp" />
-			</c:otherwise>
-			</c:choose>
+
+
+						</c:when>
+						<c:otherwise>
+							<h4>마이페이지 조회는 회원만 가능합니다.</h4>
+							<c:import url="/WEB-INF/views/include/login.jsp" />
+						</c:otherwise>
+					</c:choose>
 				</div>
-				
+
 			</div>
 		</div>
 	</div>
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
 
 	<script>
-	$(document).ready(function(){
-		var userNo = '${sessionScope.authUser.no }'; //coupon count 가져올 때 보낼 회원 번호
-		console.log('${sessionScope.authUser}');
-		
-		var userName = $('.userName');
-		var userPhone = $('.userPhone');
-		var userEmail1 = $('.userEmail1');
-		var userEmail2 = $('.userEmail2');
-		var userAgrMessage = $('.userAgrMessage');
-		var userAgrEmail = $('.userAgrEmail');
-		userName.text('${sessionScope.authUser.name}');	
-		userPhone.text('${sessionScope.authUser.phone}');	
-		userEmail1.text('${sessionScope.authUser.email1}');	
-		userEmail2.text('${sessionScope.authUser.email2}');	
-		userAgrMessage.text('${sessionScope.authUser.agrMessage}');	
-		userAgrEmail.text('${sessionScope.authUser.agrEmail}');	
-		
-		
-
-			//console.log(this);//.couponview 버튼
+		$(document).ready(function() {
+			
 			$('#one').text("0");
 			$('#two').text("0");
 			$('#three').text("0");
 			$('#four').text("0");
-			//var userNo = $(this).data("userno");//userno 소문자여야함
-			//console.log(userNo);//userno 받아옴 
+			var userNo = ${userVo.no }; //coupon count 가져올 때 보낼 회원 번호
+			//console.log(userNo);
 			$.ajax({
 				url : "selectCoupon",
 				type : "POST",
-				data : {"userNo" : userNo}, 
+				data : {
+					"userNo" : userNo
+				},
 				success : function(couponList) {
 					console.log(couponList);
 					$.each(couponList, function(index, couponVo) {
 						if (couponVo.programNo == 1) {
-							$('#one').val(couponVo.count);
+							$('#one').text(couponVo.count);
 						} else if (couponVo.programNo == 2) {
-							$('#two').val(couponVo.count);
+							$('#two').text(couponVo.count);
 						} else if (couponVo.programNo == 3) {
-							$('#three').val(couponVo.count);
+							$('#three').text(couponVo.count);
 						} else if (couponVo.programNo == 4) {
-							$('#four').val(couponVo.count);
+							$('#four').text(couponVo.count);
 						} else {
 							// count가 0으로가 나도오록 
 						}

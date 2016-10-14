@@ -27,6 +27,7 @@ public class ReviewBoardController {
 	@Autowired
 	private PageService pageService;
 
+	
 	/* 게시판 리스트 */
 	@RequestMapping("board")
 	public String list(Model model, @RequestParam(value = "nowPage", required = false) Integer nowPage,
@@ -48,7 +49,7 @@ public class ReviewBoardController {
 	public String view(Long no, Model model) {
 		rBoardService.updateViewCount(no);// 조회수 업뎃
 		ReviewBoardVo reviewBoardVo = rBoardService.view(no);
-		System.out.println(reviewBoardVo);
+	
 		model.addAttribute("reviewBoardVo", reviewBoardVo);
 		return "board/reviewboard/view";
 	}
@@ -110,7 +111,7 @@ public class ReviewBoardController {
 	/* 댓글 리스트	*/
 	@ResponseBody
 	@RequestMapping(value = "/replylist", method = RequestMethod.POST)
-	public List<ReplyVo> replylist(@RequestParam("reviewNo") Long reviewNo) {
+	public List<ReplyVo> replylist(@RequestParam("reviewNo") Long reviewNo, Model model) {
 		List<ReplyVo> list = rBoardService.replylist(reviewNo);
 		return list;
 	}
@@ -129,6 +130,8 @@ public class ReviewBoardController {
 		int check = rBoardService.deletereply(replyNo);
 		return check;
 	}
+	
+	/*-------------------------------------------- */
 	
 	
 	

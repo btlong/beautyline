@@ -94,6 +94,7 @@
 								</div>
 							</div>
 
+
 							<!-- 결제한 케어프로그램 남은 횟수  -->
 							<div class="row">
 								<span id="user-name">${userVo.name }&nbsp;</span><span>회원님</span>
@@ -121,6 +122,7 @@
 								<tfoot></tfoot>
 							</table>
 							<!----------------------->
+
 
 
 							<!-- 예약확인 -->
@@ -155,6 +157,7 @@
 									</div>
 								</div>
 							</div>
+
 							<!----------->
 
 
@@ -167,6 +170,7 @@
 									</div>
 									<div class="col-lg-10 text-right">
 										<a href="/beautyline/user/modifyform" class="btn btn-success btn-sm" >회원정보 수정</a>
+
 									</div>
 								</div>
 								<table class="table table-bordered table-responsive">
@@ -189,6 +193,7 @@
 									</tbody>
 									<tfoot></tfoot>
 								</table>
+
 							</div>
 							<!----------->
 

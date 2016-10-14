@@ -57,11 +57,23 @@ width:50%;
 					<div class="page-header">
 						<hr>
 						<h1 class="text-center text-center">
-							<strong>공지사항</strong>
+							<strong>후기 게시판</strong>
 						</h1>
 						<hr>
 					</div>
-					<div class="col-lg-10 col-lg-offset-1">
+					
+					<div class="col-lg-3">
+						<select class="col-lg-3 form-control" name="category_select"
+									id="category_select">
+									<option value="" selected>선택하세요</option>
+									<option value="베이직 케어">베이직 케어</option>
+									<option value="미백 케어">미백 케어</option>
+									<option value="리프팅 케어">리프팅 케어</option>
+									<option value="여드름 케어">여드름 케어</option>
+								</select>
+					</div>
+					
+					<div class="col-lg-12">
 						<table class="table table-bordered table-hover table-responsive">
 						<tbody>
 								<c:set var="doneLoop" value="false" />
@@ -72,7 +84,7 @@ width:50%;
 										<tr>
 											<!-- (전체 게시물 갯수-(전체회원수-1))>=1이면 -->
 											<c:if test="${(page.totalRecord -status.index)>=1}">
-												<td>${page.totalRecord -status.index}</td>
+												<td class="text-center">${page.totalRecord -status.index}</td>
 												<td><a href="view?no=${boardList[i].no }">[${boardList[i].category }] ${boardList[i].title}</a></td>
 												<td>${boardList[i].userId}</td>
 												<td>${boardList[i].viewCount}</td>
@@ -101,7 +113,7 @@ width:50%;
 							</thead>
 						</table>
 					</div>
-					<div class="col-lg-11 text-right">
+					<div class="col-lg-12 text-right">
 						<c:if test='${not empty sessionScope.authUser }'>
 							<a href="writeform" class="btn btn-sm btn-danger">글쓰기 <span class="glyphicon glyphicon-pencil"></span></a>
 					</c:if>

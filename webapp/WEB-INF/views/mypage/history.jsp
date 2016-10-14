@@ -444,7 +444,7 @@ style>.headermessage {
 
 					</table>
 
-					<div id="imageTable" style="display: none;">
+					<div id="imageTable">
 
 						<div class="container-fluid center-block">
 
@@ -506,8 +506,9 @@ style>.headermessage {
 
 						</div>
 
-					</div>
+	
 				</div>
+			</div>
 			</div>
 		</div>
 

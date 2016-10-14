@@ -363,7 +363,7 @@
 						<div id="fintdt" class="col-lg-12 text-center">
 							<!-- <button type="button" class="btn btn-default"
 								data-dismiss="modal">닫기</button> -->
-							<button id=reload type="button" class="btn btn-info"
+							<button id=reload type="button" class="btn btn-success"
 								>닫기</button>
 						</div>
 					</div>

@@ -294,7 +294,7 @@
 								<button class="btn btn-primary" id="modi" >
 									수정하기<i class="fa fa-check spaceLeft"></i>
 								</button>
-								<a class="btn btn-danger" href="/beautyline/main">
+								<a class="btn btn-danger" href="javascript:history.go(-1);">
 									취소<i class="fa fa-times spaceLeft"></i>
 								</a>
 							</div>
@@ -613,8 +613,9 @@
 							
 							if (a == 1) {
 								alert("회원정보를 수정하였습니다.");
-								window.history.back();
-							//	 location.href = "/beautyline/main";
+								//window.history.back();
+								
+								 location.href = "/beautyline/mypage/main";
 								 return true;
 							}
 

@@ -21,7 +21,7 @@ public class ReserveService {
 	}
 	
 	//회원 - 회원번호로 list 조회
-	public List<ReserveVo> resList( int userNo ){
+	public List<ReserveVo> resList( Long userNo ){
 		return reserveDao.resList( userNo );
 	}
 	//예약번호로 검색

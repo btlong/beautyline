@@ -40,7 +40,7 @@
 	<!-- 로그인  -->
 	<select id="getByIdAndPassword" parameterType="uservo" resultType="uservo">
 	<![CDATA[
-		select no, name, is_admin as isAdmin,  id,  password, email1, email2, zip_code as zipCode, address1, address2, phone, agr_email as agrEmail, agr_message as agrMessage from users
+		select no, name, id,  password, is_admin as isAdmin, email1, email2, zip_code as zipCode, address1, address2, phone, agr_email as agrEmail, agr_message as agrMessage from users
 		where id=#{id } and password=#{password }
 		 
 	]]>

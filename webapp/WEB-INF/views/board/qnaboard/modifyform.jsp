@@ -8,8 +8,6 @@
 
 <html  lang="kr">
 <head>
- 
-   
 
 
 <title>modify</title>
@@ -26,9 +24,6 @@
   <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">
   <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
 <script src="/beautyline/beautyline/lang/summernote-ko-KR.js"></script>
-
-<!-- Bootstrap Core CSS -->
-
 
 <!-- Custom CSS -->
 <link href="/beautyline/bootstrap/css/business-casual.css" rel="stylesheet">
@@ -91,6 +86,7 @@ padding-left: 0px;
 #fName {
 	display: inline;
 }
+
 </style>
 
 
@@ -102,7 +98,6 @@ padding-left: 0px;
 		<div class="row">
 			<div class="box">
 				<div class="col-lg-12">
-				
 					<div class="page-header">
 						<hr><h3 class="text-center"><strong>수정하기</strong></h3><hr>
 					</div>
@@ -143,9 +138,10 @@ padding-left: 0px;
 				</div>
 			</div>	
 		</div>
-			</div>
-			</div>
-			</div>
+		
+		</div>
+	</div>
+</div>
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
 
 

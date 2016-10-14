@@ -3,17 +3,23 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<style type="text/css">
+#btn-appdownload {
+	float: right;
+	margin: 8px 20px 0px 0px;
+}
+</style>
 
 
-<div class="brand"><a href ="/beautyline/main">BeautyLine</a></div>
-
+<div><a href="" data-target="#downloadModal" type="button" data-toggle="modal" data-backdrop="static" role="button"><img id="btn-appdownload" src="/beautyline/images/appdownload/btn_appdownload.png" class="img-responsive"></a></div>
+<div class="brand"><a href ="/beautyline/main"><img class="brand" src="/beautyline/images/beautylinelogo.png" /></a></div>
 <div id="includeheader">
 	<ul id="userheader">
 		<c:choose>
 			<c:when test='${not empty sessionScope.authUser }'>
-			<li><a href="/beautyline/user/logout">Log out</a></li>
-			<li><a href="/beautyline/mypage/main">마이페이지</a></li>
-			<li id="userli">${authUser.name }님안녕하세요^^</li>
+				<li><a href="/beautyline/user/logout">Log out</a></li>
+				<li><a href="/beautyline/mypage/main">마이페이지</a></li>
+				<li id="userli">${authUser.name }님안녕하세요^^</li>
 				
 			</c:when>
 
@@ -101,3 +107,32 @@
 	<!-- /.container -->
 </nav>
 
+<!-- 앱다운로드 Modal -->
+	<div class="modal fade" id="downloadModal" role="dialog" tabindex="-1"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-sm">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<form class="form-horizontal">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">앱다운로드</h4>
+					</div>
+					<div class="modal-body">
+						<img src="/beautyline/images/appdownload/modal_appdownload.png" class="img-responsive">
+
+					</div>
+
+					<div class="modal-footer">
+						<div id="fintdt" class="col-lg-12 text-center">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">닫기</button>
+						</div>
+					</div>
+				</form>
+			</div>
+
+		</div>
+	</div>
+	<!-- Modal-->

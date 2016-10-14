@@ -59,10 +59,9 @@
 	<!-- 세션검사 -->
 		<c:choose>
 			<c:when test='${not empty sessionScope.authUser }'>
-		<form method="POST" action="userreservelist">	
-		<input type="hidden" name="userNo" value="${sessionScope.authUser.no }">
-		<input type="submit" value="예약조회">
-		</form>
+	
+		<a href="userreservelist" class="btn btn-primary" type="button">예약조회</a>
+
 <!-- 달력 -->
 				<div class="col-lg-12 text-center">
 					<div id="datepicker"></div>

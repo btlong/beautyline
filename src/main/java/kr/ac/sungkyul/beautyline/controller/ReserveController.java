@@ -2,6 +2,8 @@ package kr.ac.sungkyul.beautyline.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -109,12 +111,12 @@ public class ReserveController {
 		public String userreservelist( Model model, 
 				@RequestParam(value = "nowPage", required = false) Integer nowPage,
 				@RequestParam(value = "nowBlock", required=false) Integer nowBlock,
-				@RequestParam(value = "userNo", required=false) Long userNo 
-
+				HttpSession session
 				//,@RequestParam(value = "keyField", required=false) String keyField 
 				//,@RequestParam(value = "keyWord", required=false) String keyWord
 				){
-			
+	        UserVo authUser =(UserVo) session.getAttribute("authUser");
+	        Long userNo = authUser.getNo();
 			List<ReserveVo> resList = reserveService.resList( userNo );
 			PageVo page = null;
 	        try{

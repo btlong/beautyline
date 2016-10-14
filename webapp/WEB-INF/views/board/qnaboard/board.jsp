@@ -61,8 +61,12 @@
 width:50%;
 
 }
-
-
+#kwd{
+	margin-right: 11px;
+}
+ #search_form{
+	display: flex;
+}
 </style>
 <script>
 
@@ -145,13 +149,7 @@ width:50%;
        		</c:if>
       </div>
       
-      
-      
-      
-      
-      
-      
-      
+
       
       
       <!-------------Paging--------------->
@@ -179,10 +177,49 @@ width:50%;
 								<%-- <input type="hidden" name="keyField" value="${keyField }" />
 								<input type="hidden" name="keyWord" value="${keyWord }" /> --%>
 							</form>
+  
+  
+  
+		<!-- 검색 -->
+	    <div class="col-lg-12">
+			<form id="search_form" action="board" method="get">
+				<div class="col-lg-3"></div>
+				<div class="col-lg-2">
+					<select class="form-control" id="selectSearch" name="selectSearch">
+						<option value="whole">전체</option>
+						<option value="writer">작성자</option>
+						<option value="category">카테고리</option>
+					</select>
+				</div>
+				
+				<input type="text" id="kwd" name="kwd" value="${keyword }">
+				
+				<div class="col-lg-2" id="divSelCategory" hidden="true">
+					<select class="form-control" id="selectCategory" name="selectCategory">
+						<option>선택</option>
+						<option value="resQ">예약문의</option>
+						<option value="progQ">프로그램문의</option>
+					</select>
+				</div>
+				
+				<input type="submit" class="btn btn-info" value="찾기">
+			</form>
+  
+
+  
+  </div>
   </div>
   </div>
   </div>
   </div>
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
 </body>
+<script type="text/javascript">
+$(document).ready(function(){
+	$(document).on("change","select[name=selectSearch]", function(){
+		$("#kwd").hide();
+		$("#divSelCategory").show();
+	});
+});
+</script>
 </html>

@@ -45,7 +45,7 @@ public class NoticeBoardService {
 		String saveName = UUID.randomUUID().toString() + "_" + orgName;
 
 		// 6. path
-		String path = "C:\\Users\\User\\Download2\\filestore\\";
+		String path = "c:\\Users\\S401-11\\Downloads\\filestore";
 
 		
 		FileNotiVo noticeFile = new FileNotiVo();
@@ -122,13 +122,6 @@ public class NoticeBoardService {
 		FileCopyUtils.copy(file.getBytes(), target);
 
 	}
-	
-	
-/*	 파일 다운로드 ! 	
-	public FileNotiVo selectAttachFileByFno(Long no){//다운로드를위해
-		return nBoardDao.selectAttachFileByFno(no);
-		
-	}*/
 	
 	/* 파일 삭제 */
 	public int delFile(Long fileNo){

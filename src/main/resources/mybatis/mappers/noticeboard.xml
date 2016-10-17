@@ -11,7 +11,7 @@
    ]]>
    </selectKey>
    <![CDATA[
-      insert into bd_noti values(#{no }, '3', #{category}, #{title }, #{content }, sysdate, 0)
+      insert into bd_noti values(#{no }, #{userNo }, #{title }, #{content }, sysdate, 0, #{category })
    ]]>
    </insert>
 

@@ -36,7 +36,6 @@
 	
 	<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">
 	
-	
 
 
 <!-- font awesome -->
@@ -53,7 +52,7 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic"
 	rel="stylesheet" type="text/css">
-
+<link rel="stylesheet" href="http://www.prepbootstrap.com/Content/css/loadingbuttoneffects/local.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -100,7 +99,6 @@ padding-left: 0px;
 					</div>
 				
 				<div class="form-horizontal" id="write-form" >
-					
 					<!-- 제목 -->
 					<div class="form-group" id="divTitle" enctype="multipart/form-data">
 						<div class="col-lg-10 col-lg-offset-1">
@@ -109,7 +107,7 @@ padding-left: 0px;
 							<div class="col-lg-3">
 								<select class="form-control" name="category_select"
 									id="category_select">
-									<option value="" selected>선택하세요</option>
+									<option value="1" selected>선택하세요</option>
 									<option value="공지">공지</option>
 									<option value="이벤트">이벤트</option>
 								</select>
@@ -137,7 +135,7 @@ padding-left: 0px;
  				</div>
  					
 				<div class="col-lg-11 text-right">
-					<button  id="insert" class="btn btn-danger">등록 <span class="glyphicon glyphicon-ok"></span></button>
+					<button  id="insert" class="btn btn-info">등록 <span class="glyphicon glyphicon-ok"></span></button>
 					<a href="board" class="btn btn-danger">취소 <span class="glyphicon glyphicon-repeat"></span></a>
 				</div>
 			</div>	
@@ -160,22 +158,29 @@ $(document).ready(function() {
     	maxHeight : null,
     	focus : true,
     	lang : 'ko-KR',
-/*     	 onImageUpload : function(files, editor, welEditable) {
-             sendFile(files[0], editor, welEditable);
-         } */
-  	
     });
    
 });
 $(function(){
 	$("#insert").on("click", function() {
-		$("#insert").removeClass("btn btn-danger");
-		$("#insert").addClass("btn m-progress btn-danger");
+		
+		if ($("#inputTitle").val() == "") {
+			alert("제목을 입력해 주세요.");
+			$("#inputTitle").focus();
+			return false;
+		}
+		if ($("#category_select").val() == '1') {//
+			alert("카테고리를 선택해 주세요.");
+			return false;
+		}	
+		
+		$("#insert").removeClass("btn btn-info");
+		$("#insert").addClass("btn m-progress btn btn-info");
 		$('#insert').attr('disabled',true);
 
 		var url ="";
 	 	var data = new FormData();
-	
+	 	var userNo = "${sessionScope.authUser.no }";
 		var category = $("#category_select").val();
 		var title = $("#inputTitle").val();
 		var content = 	$('#summernote').summernote('code');
@@ -184,13 +189,9 @@ $(function(){
 			  file=$("#file")[0].files[0];
 	          data.append("file", file);
 	          url="writefile";
-		
-		}
-		
-		else{
+		}else{
 			url="write"
 		}
-		
 		
 		var file = $("#file")[0].files[0];
 		console.log(file);	 
@@ -198,7 +199,7 @@ $(function(){
 		data.append("title",title);
 		data.append("content",content); 
 	 	data.append("file", file); 
-	
+		data.append("userNo", userNo);
 		 	  $.ajax({// 비동기식 
 				url : url,
 				type : "POST",
@@ -208,11 +209,12 @@ $(function(){
 				processData: false,
 			    contentType: false,
 			    success : function(response) {
-			    	$("#insert").removeClass("btn m-progress btn-danger");
-					$("#insert").addClass("btn btn-danger");
+			    	$("#insert").removeClass("btn m-progress btn btn-info");
+					$("#insert").addClass("btn btn-info");
 					$('#insert').attr('disabled',false);
 			    	console.log('success')
 					location.href = "board";
+			    	return true;
 					
 				},
 				error : function(jqXHR, status, error) {

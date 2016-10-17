@@ -98,8 +98,8 @@
 		]]>
 		</selectKey>
 	<![CDATA[
-			insert into coupon ( no, user_no, program_no, pay_no, count)
-			values ( #{no}, #{userNo}, #{programNo}, #{payNo}, #{count} )
+			insert into coupon ( no, user_no, program_no, pay_no, count, reg_date)
+			values ( #{no}, #{userNo}, #{programNo}, #{payNo}, #{count} , sysDate)
 	]]>
 	</insert>
 

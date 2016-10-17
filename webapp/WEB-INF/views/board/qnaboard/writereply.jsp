@@ -44,6 +44,7 @@
 <!-- Custom style -->
 <link rel="stylesheet" href="/beautyline/bootstrap/css/style.css" media="screen" title="no title">
 <link href="/beautyline/beautyline/css/include.css" rel="stylesheet">
+	<link rel="stylesheet" href="http://www.prepbootstrap.com/Content/css/loadingbuttoneffects/local.css" /> <!-- 버튼효과 -->
 	
 	
 <!-- Fonts -->
@@ -130,7 +131,7 @@ padding-left: 0px;
  				</div>
  					
 				<div class="col-lg-11 text-right">
-					<button  id="insert" class="btn btn-danger">등록 <span class="glyphicon glyphicon-ok"></span></button>
+					<button  id="insert" class="btn btn-info">등록 <span class="glyphicon glyphicon-ok"></span></button>
 					<a href="board" class="btn btn-danger">취소 <span class="glyphicon glyphicon-repeat"></span></a>
 				</div>
 			</div>	
@@ -163,6 +164,9 @@ $(document).ready(function() {
 });
 $(function(){
 	$("#insert").on("click", function() {
+		$("#insert").removeClass("btn btn-info");
+		$("#insert").addClass("btn m-progress btn btn-info");
+		$('#insert').attr('disabled',true);
 		
 	 	var data = new FormData();
 	
@@ -193,6 +197,9 @@ $(function(){
 				processData: false,
 			    contentType: false,
 			    success : function(response) {
+			    	$("#insert").removeClass("btn m-progress btn btn-info");
+					$("#insert").addClass("btn btn-info");
+					$('#insert').attr('disabled',false);
 					console.log('success')
 					location.href = "board";
 					

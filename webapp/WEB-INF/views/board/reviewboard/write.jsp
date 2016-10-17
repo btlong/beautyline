@@ -32,8 +32,7 @@
 
 <!-- Custom CSS -->
 <link href="/beautyline/bootstrap/css/business-casual.css" rel="stylesheet">
-<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">
-	
+
 	
 
 
@@ -41,7 +40,7 @@
 <link rel="stylesheet" 	href="/beautyline/bootstrap/css/font-awesome.min.css" media="screen" title="no title">
 <!-- Custom style -->
 <link rel="stylesheet" href="/beautyline/bootstrap/css/style.css" media="screen" title="no title">
-<link href="/beautyline/beautyline/css/include.css" rel="stylesheet">
+
 	
 	
 <!-- Fonts -->
@@ -61,6 +60,11 @@
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
 <link rel="stylesheet" href="http://www.prepbootstrap.com/Content/css/loadingbuttoneffects/local.css" /> <!-- 버튼효과 -->
+
+
+<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">
+	
+<link href="/beautyline/beautyline/css/include.css" rel="stylesheet">
 <style type="text/css">
 .col-lg-2, .col-lg-3 {
 	padding-left: 0px;
@@ -95,18 +99,17 @@ padding-left: 0px;
 					<!-- 제목 -->
 					<div class="form-group" id="divTitle" >
 						<div class="col-lg-10 col-lg-offset-1">
-							<label class="col-lg-2 control-label" id= "title_title" for="inputName">제목</label>
 							<!-- select  [프로그램] -->
 							<div class="col-lg-3">
 								<select class="form-control" name="category_select" id="category_select">
-									<option value="" selected>선택하세요</option>
+									<option value="1" selected>카테고리</option>
 									<option value="베이직 케어">베이직 케어</option>
 									<option value="미백 케어">미백 케어</option>
 									<option value="리프팅 케어">리프팅 케어</option>
 									<option value="여드름 케어">여드름 케어</option>
 								</select>
 							</div>
-							<div class="col-lg-5">
+							<div >
 								<input class="form-control" id="inputTitle" name="title" type="text" placeholder="제목">
 							</div>
 						 </div>
@@ -118,7 +121,7 @@ padding-left: 0px;
  				</div>
  					
 				<div class="col-lg-11 text-right">
-					<button  id="insert" class="btn btn-danger">등록 <span class="glyphicon glyphicon-ok"></span></button>
+					<button  id="insert" class="btn btn-info">등록 <span class="glyphicon glyphicon-ok"></span></button>
 					<a href="board" class="btn btn-danger">취소 <span class="glyphicon glyphicon-repeat"></span></a>
 				</div>
 			</div>	
@@ -148,11 +151,21 @@ $(document).ready(function() {
 
 $(function(){
 	$("#insert").on("click", function() {
+		
+		if ($("#inputTitle").val() == "") {
+			alert("제목을 입력해 주세요.");
+			$("#inputTitle").focus();
+			return false;
+		}
+		if ($("#category_select").val() == '1') {//
+			alert("카테고리를 선택해 주세요.");
+			return false;
+		}		
 
 		
 		/* 진행되고 있는 표시  */
-		$("#insert").removeClass("btn btn-danger");
-		$("#insert").addClass("btn m-progress btn-danger");
+		$("#insert").removeClass("btn btn-info");
+		$("#insert").addClass("btn m-progress btn btn-info");
 		$('#insert').attr('disabled',true);
 		
 		var category = $("#category_select").val();
@@ -174,9 +187,9 @@ $(function(){
 			    success : function(response) {
 			 if(response != null){
 					/* 진행되고 있는 표시 지우기  */
-				 $("#insert").removeClass("btn m-progress btn-danger");
-				 $("#insert").addClass("btn btn-danger");
-				 $('#insert').attr('disabled',false);
+			    	$("#insert").removeClass("btn m-progress btn btn-info");
+					$("#insert").addClass("btn btn-info");
+					$('#insert').attr('disabled',false);
 			    	console.log('success');
 			 		location.href = "board"; 
 			 		return true;

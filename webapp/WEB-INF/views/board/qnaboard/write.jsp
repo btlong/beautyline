@@ -32,6 +32,7 @@
 
 <!-- Custom CSS -->
 <link href="/beautyline/bootstrap/css/business-casual.css" rel="stylesheet">
+<link rel="stylesheet" href="http://www.prepbootstrap.com/Content/css/loadingbuttoneffects/local.css" /> <!-- 버튼효과 -->
 	
 	
 	<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">
@@ -104,9 +105,8 @@ padding-left: 0px;
 					<!-- 제목 -->
 					<div class="form-group" id="divTitle" enctype="multipart/form-data">
 						<div class="col-lg-10 col-lg-offset-1">
-							<label class="col-sm-1 control-label" id= "title_title" for="inputName">제목</label>
 							<!-- select  [예약문의, 프로그램 문의 , ] -->
-							<div class="col-lg-2">
+							<div class="col-lg-3">
 								<select class="form-control" name="category_select"
 									id="category_select">
 									<option value="" selected>선택하세요</option>
@@ -115,7 +115,7 @@ padding-left: 0px;
 
 								</select>
 							</div>
-							<div class="col-lg-3">
+							<div >
 								<input class="form-control" id="inputTitle" name="title" type="text" placeholder="제목">
 							</div>
 						 </div>
@@ -129,7 +129,7 @@ padding-left: 0px;
  				</div>
  					
 				<div class="col-lg-11 text-right">
-					<button  id="insert" class="btn btn-danger">등록 <span class="glyphicon glyphicon-ok"></span></button>
+					<button  id="insert" class="btn btn-info">등록 <span class="glyphicon glyphicon-ok"></span></button>
 					<a href="board" class="btn btn-danger">취소 <span class="glyphicon glyphicon-repeat"></span></a>
 				</div>
 			</div>	
@@ -154,16 +154,14 @@ $(document).ready(function() {
     	maxHeight : null,
     	focus : true,
     	lang : 'ko-KR',
-/*     	 onImageUpload : function(files, editor, welEditable) {
-             sendFile(files[0], editor, welEditable);
-         } */
-  	
     });
    
 });
 $(function(){
 	$("#insert").on("click", function() {
-
+		$("#insert").removeClass("btn btn-info");
+		$("#insert").addClass("btn m-progress btn btn-info");
+		$('#insert').attr('disabled',true);
 	 	var data = new FormData();
 	
 		var category = $("#category_select").val();
@@ -186,6 +184,9 @@ $(function(){
 				processData: false,
 			    contentType: false,
 			    success : function(response) {
+			    	$("#insert").removeClass("btn m-progress btn btn-info");
+					$("#insert").addClass("btn btn-info");
+					$('#insert').attr('disabled',false);
 					console.log('success')
 					location.href = "board";
 					

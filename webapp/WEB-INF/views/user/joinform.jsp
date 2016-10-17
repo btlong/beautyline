@@ -17,7 +17,7 @@
 <meta name="author" content="">
 
   <!-- Bootstrap Core CSS -->
-
+<link rel="stylesheet" href="http://www.prepbootstrap.com/Content/css/loadingbuttoneffects/local.css" />
 	<!-- Custom CSS -->
 	<link href="/beautyline/bootstrap/css/business-casual.css" rel="stylesheet">
    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">
@@ -606,7 +606,11 @@
 				return false;
 			
 			}
-
+			/* 진행되고 있는 표시  */
+			$("#submit").removeClass("btn btn-primary");
+			$("#submit").addClass("btn btn-lg btn-primary m-progress");
+			$('#submit').attr('disabled',true);
+			
 			/* 아니라면 아작스 통신으로 데이터 보내기!  */
 			 	var name =	$("#inputName").val();
 				var id =	$("#inputId").val();
@@ -645,6 +649,11 @@
 							console.log(a);
 							
 							if (a == 1) {
+								
+								/* 진행되고 있는 표시 지우기  */
+								 $("#submit").removeClass("btn m-progress btn-primary");
+								 $("#submit").addClass("btn btn-primary");
+								 $('#submit').attr('disabled',false);
 								alert("회원가입에 성공하였습니다.");
 								location.href = "/beautyline/main";
 								return true;

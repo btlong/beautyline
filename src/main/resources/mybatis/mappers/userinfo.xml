@@ -21,20 +21,30 @@
 	<select id="selectCoupon" parameterType="java.lang.Long"
 		resultType="couponvo">
 	<![CDATA[
-	select a.no as no, a.user_no as userNo, a.program_no as programNo, a.count as count 
+		select a.no as no, a.user_no as userNo, a.program_no as programNo, a.count as count, a.reg_date as regDate 
 		from coupon a, users b
 		where a.user_no= b.no 
 		and a.user_no = #{userNo}
-		and (a.no, a.user_no, a.program_no) in (select MAX(a.no) as no, a.user_no as userNo, a.program_no as programNo from coupon a group by a.program_no, a.user_no)
+		and (a.user_no, a.program_no, a.reg_date) in (select a.user_no as userNo, a.program_no as programNo, MAX(a.reg_date) as reg_date from coupon a group by a.program_no, a.user_no)
 	]]>
 	</select>
-<!-- 		select a.no as no, a.user_no as userNo, a.program_no as programNo, a.count as count, a.reg_date as regDate 
-		from coupon a, users b
-		where a.user_no= b.no 
-		and a.user_no = #{userNo}
-		and (a.user_no, a.program_no, a.reg_date) in (select a.user_no as userNo, a.program_no as programNo, MAX(a.reg_date) as regDate from coupon a group by a.program_no, a.user_no) -->
 	
-
+	<!-- 쿠폰수정 -->
+	<!-- <update id="updateCoupon" parameterType="couponvo">
+    <![CDATA[
+        update coupon set 
+        	count = #{count} 
+        where no = #{no} and user_no =#{userNo }
+    ]]>    
+    </update> -->
+			
+			
+	<!-- 쿠폰 insert -->				
+	<insert id="insertCoupon" parameterType="couponvo">
+	<![CDATA[
+		insert into coupon values (seq_coupon.nextval, #{userNo }, #{programNo }, 0, #{count }, sysdate)
+	]]>
+	</insert>
 
 	<!-- 회원검색 -->
 	<select id="searchUser" parameterType="map" resultType="userinfovo">
@@ -67,16 +77,16 @@
 	</delete>
 	
 	<!-- 수정폼 -->
- 	<!-- <select id="selectUser" parameterType="java.lang.Long"
+ 	<select id="selectUser" parameterType="java.lang.Long"
 		resultType="userinfovo">
 		<![CDATA[
-			select no, name, id,  password, email1, email2, zip_code as zipCode, address1, address2, phone, agr_email as agrEmail, agr_message as agrMessage 
-			from users where no= #{no }
+			select no, name, phone, id, email1, email2, zip_code as zipCode, address1, address2, is_admin as isAdmin from users
+			where no=#{no}
 		]]>
-	</select> -->
+	</select>
  
  	<!-- 수정 -->
-	<!-- <update id="updateUser" parameterType="userinfovo">
+	<update id="updateUser" parameterType="userinfovo">
 		<![CDATA[
 			update users set
 				name = #{name},
@@ -89,24 +99,29 @@
 				address2=#{address2} 
 			where no=#{no}
 		]]>
-	</update> -->
 				<!-- is_admin= #{isAdmin} -->
+	</update>
 	
 	
- 	<!-- 쿠폰수정 -->
-	<!-- <update id="updateCoupon" parameterType="couponvo">
-    <![CDATA[
-        update coupon set 
-        	count = #{count} 
-        where no = #{no} and user_no =#{userNo }
-    ]]>    
-    </update> -->
-			
-			
-	<!-- 쿠폰 insert -->				
-	<!-- <insert id="insertCoupon" parameterType="couponvo">
-	<![CDATA[
-		insert into coupon values (seq_coupon.nextval, #{userNo }, #{programNo }, 0, #{count }, sysdate)
-	]]>
-	</insert> -->
+ <!-- 	<select id="couponView" parameterType="java.lang.Long"
+		resultType="kr.ac.sungkyul.beautyline.vo.CouponviewVo">
+		<![CDATA[
+			select users.name as userName, program.name as programName, coupon.count as count
+			from users users, program program, coupon coupon
+			where coupon.user_no=users.no
+			and coupon.program_no = program.no
+			and users.no=#{users.no}
+		]]>
+	</select> -->
+	
+<!-- 	<select id="listCoupon" resultType="kr.ac.sungkyul.beautyline.vo.CouponviewVo">
+		<![CDATA[
+			select coupon.no, users.no as userNo, program.no as programNo, coupon.count as count, users.name as userName, program.name as programName
+			from users users, program program, coupon coupon
+			where coupon.user_no=users.no
+			and coupon.program_no = program.no
+			and users.no=#{users.no}
+		]]>
+	</select>
+	 -->
 </mapper>

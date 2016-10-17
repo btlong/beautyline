@@ -35,15 +35,23 @@ public class NoticeBoardController {
    
    /* 게시판 리스트 */
       @RequestMapping("board")
-      public String list(Model model, @RequestParam(value = "nowPage", required = false) Integer nowPage,
-            @RequestParam(value = "nowBlock", required = false) Integer nowBlock
-      /*
-       * @RequestParam(value = "keyField", required=false) String keyField,
-       * 
-       * @RequestParam(value = "keyWord", required=false) String keyWord
-       */) {
-         List<NoticeBoardVo> boardList = nBoardService.getAll();
-         PageVo page = null;
+      public String list(Model model, 
+    		  @RequestParam(value = "nowPage", required = false) Integer nowPage,
+ 	         @RequestParam(value = "nowBlock", required = false) Integer nowBlock,
+ 	         @RequestParam(value = "keyField", required=false) String keyField,
+ 	         @RequestParam(value = "keyWord", required=false) String keyWord,
+ 	         @RequestParam(value = "keyWord2", required=false) String keyWord2
+       ) {
+		  System.out.println("keyField: "+keyField+" keyWord : "+keyWord+" keyWord2 : "+keyWord2);
+
+    	  if( keyWord2 == "" ){
+			  keyWord2 = null;
+		  }
+    	  
+    	  List<NoticeBoardVo> boardList = nBoardService.getAll(keyField, keyWord, keyWord2);
+        
+    	  PageVo page = null;
+         
          try {
             page = pageService.pagingProc(nowPage, nowBlock, boardList.size());
          } catch (Exception err) {
@@ -51,10 +59,11 @@ public class NoticeBoardController {
          }
          model.addAttribute("boardList", boardList);
          model.addAttribute("page", page);
-         /*
-          * model.addAttribute("keyField", keyField);
-          * model.addAttribute("keyWord", keyWord);
-          */
+      
+         model.addAttribute("keyField", keyField);
+	     model.addAttribute("keyWord", keyWord);
+	     model.addAttribute("keyWord2", keyWord2);
+	    
          return "board/noticeboard/board";
       }
    
@@ -179,7 +188,7 @@ public class NoticeBoardController {
       res.setHeader("Content-disposition", "attachment; filename=\"" + URLEncoder.encode(orgName,"UTF-8") +"\""); // orgname으로 바꿔서 보내준다.
       OutputStream resOut = res.getOutputStream();
    
-      FileInputStream fin = new FileInputStream("C:\\Users\\User\\Download2\\filestore\\"+saveName); // savename을  orgname으로 바꿔서 보내준다.
+      FileInputStream fin = new FileInputStream("c:\\Users\\S401-11\\Downloads\\filestore"+saveName); // savename을  orgname으로 바꿔서 보내준다.
       FileCopyUtils.copy(fin, resOut);
       fin.close();
        

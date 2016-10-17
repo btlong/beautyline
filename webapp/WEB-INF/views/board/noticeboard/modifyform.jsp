@@ -33,6 +33,7 @@
 <!-- Custom CSS -->
 <link href="/beautyline/bootstrap/css/business-casual.css" rel="stylesheet">
 	
+<link rel="stylesheet" href="http://www.prepbootstrap.com/Content/css/loadingbuttoneffects/local.css" /> <!-- 버튼효과 -->
 	
 <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">
 	
@@ -155,8 +156,8 @@ padding-left: 0px;
  				</div>
  					
 				<div class="col-lg-11 text-right">
-					<button id="modify" class="btn btn-danger">수정 <span class="glyphicon glyphicon-ok"></span></button>
-					<a href="board" class="btn btn-primary">취소 <span class="glyphicon glyphicon-repeat"></span></a>
+					<button id="modify" class="btn btn-info">수정 <span class="glyphicon glyphicon-ok"></span></button>
+					<a href="board" class="btn btn-danger">취소 <span class="glyphicon glyphicon-repeat"></span></a>
 				</div>
 			</div>	
 		</div>
@@ -207,135 +208,132 @@ padding-left: 0px;
 </body>
 
 <script >
-$(document).ready(function() {
-	$("#uploadForm").hide();
-	//카테고리 받아오기
-	var categoryseled = "${notiBdVo.category }";
-	$("#category_select").val(categoryseled);
-	
-    $('#summernote').summernote({
-    	
-    	height : 300,
-    	minHeight : null,
-    	maxHeight : null,
-    	focus : true,
-    	lang : 'ko-KR',
-/*     	 onImageUpload : function(files, editor, welEditable) {
-             sendFile(files[0], editor, welEditable);
-         } */
-  	
-    });
-   
-    
-    
-/* 파일 삭제 모달 열기 */
- $("#file_delck").on("click", function(){
-		$("#myModal").modal();
 
-});
+	$(document).ready(function() {
+		$("#uploadForm").hide();
+		//카테고리 받아오기
+		var categoryseled = "${notiBdVo.category }";
+		$("#category_select").val(categoryseled);
 
- var fileCheck = 0; // 파일이 수정되거나 삭제되었는지 체크하기위함
-/* 파일 삭제 체크 */
-$("#delfile").on("click",function(){
-	fileCheck = 1;
-	
-	$("#org_fileName").hide();
-	$("#myModal").modal('hide');
-	
-});
-/* 수정 */
-$("#file").on("change",function(){ 
-	fileCheck = 1;
-	$("#org_fileName").hide();
-});
+		$('#summernote').summernote({
 
+			height : 300,
+			minHeight : null,
+			maxHeight : null,
+			focus : true,
+			lang : 'ko-KR',
 
-$("#modify").on("click", function() {
-    var data = new FormData();
-    
-	var boardNo = "${notiBdVo.no}";
-	var data = new FormData();
-	var category = $("#category_select").val();
-	var title = $("#inputTitle").val();
-	var content = 	$('#summernote').summernote('code');
-	var fNo = "${file.no }";
-	var file ="";
-	
-	data.append("no",boardNo);
- 	data.append("category",category);
-	data.append("title",title);
-	data.append("content",content); 
-	
-		
-	if(  $("#file")[0].files[0] != undefined ){ //첨부파일이 있는 경우
-		data.append("fNo",fNo);	
-		file = $("#file")[0].files[0];
-	 	data.append("file", file);
-	 	
-	 	$.ajax({// 비동기식 
-			url : "modifyWF",
-			type : "POST",
-			data : data,
-			dataType:"text",
-	 	 	enctype: "multipart/form-data", 
-			processData: false,
-		    contentType: false,
-		    success : function() {
-				console.log("success");
-				location.href = "board";
-			}
 		});
-	 	
-	}else{ //첨부된 파일이 없는 경우
-		//삭제 안한경우 -- 글만 업데이트
-		if( fileCheck =! 0){ //삭제 한경우 -- 파일 삭제, 글 업데이트
-			data.append("fNo",fNo);			
-		}
-		
-		
-		$.ajax({// 비동기식 
-			url : "modify",
-			type : "POST",
-			data : data,
-			dataType:"text",
-		 	enctype: "multipart/form-data", 
-			processData: false,
-		    contentType: false,
-		    success : function() {
-				console.log("success");
-				location.href = "board";
-			}
+
+		/* 파일 삭제 모달 열기 */
+		$("#file_delck").on("click", function() {
+			$("#myModal").modal();
+
 		});
-		
-		
-	}
-	
-	
-			 	
-});
-	
-	
-	
-/*  	function sendFile(file, editor, welEditable) {
-			data = new FormData();
-			data.append("file", file);
-			console.log(file);
-			$.ajax({
-				url : "imaUpload",
-				type : "POST",
-				data : data,
-				cache : false,
-				contentType : false,
-				processData : false,
-				success : function(url) {
-					editor.insertImage(welEditable, url);
-				},
-				error : function(jqXHR, status, error) {
-					console.error(status + ":" + error);
+
+		var fileCheck = 0; // 파일이 수정되거나 삭제되었는지 체크하기위함
+		/* 파일 삭제 체크 */
+
+		$("#delfile").on("click", function() {
+			fileCheck = 1;
+
+			$("#org_fileName").hide();
+			$("#myModal").modal('hide');
+
+		});
+		/* 수정 */
+		$("#file").on("change", function() {
+			fileCheck = 1;
+			$("#org_fileName").hide();
+		});
+
+		$("#modify").on("click", function() {
+			
+			
+			
+			
+			if ($("#inputTitle").val() == "") {
+				alert("제목을 입력해 주세요.");
+				$("#inputTitle").focus();
+				return false;
+			}
+			if ($("#category_select").val() == '1') {//
+				alert("카테고리를 선택해 주세요.");
+				return false;
+			}
+			
+			
+			$("#modify").removeClass("btn btn-info");
+			$("#modify").addClass("btn m-progress btn btn-info");
+			$('#modify').attr('disabled',true);
+			
+			
+			
+			var data = new FormData();
+
+			var boardNo = "${notiBdVo.no}";
+			var data = new FormData();
+			var category = $("#category_select").val();
+			var title = $("#inputTitle").val();
+			var content = $('#summernote').summernote('code');
+			var fNo = "${file.no }";
+			var file = "";
+
+			data.append("no", boardNo);
+			data.append("category", category);
+			data.append("title", title);
+			data.append("content", content);
+
+			if ($("#file")[0].files[0] != undefined) { //첨부파일이 있는 경우
+				data.append("fNo", fNo);
+				file = $("#file")[0].files[0];
+				data.append("file", file);
+
+				$.ajax({// 비동기식 
+					url : "modifyWF",
+					type : "POST",
+					data : data,
+					dataType : "text",
+					enctype : "multipart/form-data",
+					processData : false,
+					contentType : false,
+					success : function() {
+				    	$("#modify").removeClass("btn m-progress btn btn-info");
+						$("#modify").addClass("btn btn-info");
+						$('#modify').attr('disabled',false);
+						console.log("success");
+						location.href = "board";
+						return true;
+					}
+				});
+
+			} else { //첨부된 파일이 없는 경우
+				//삭제 안한경우 -- 글만 업데이트
+				if (fileCheck = !0) { //삭제 한경우 -- 파일 삭제, 글 업데이트
+					data.append("fNo", fNo);
 				}
-			});
-		}  */
 
-});
+				$.ajax({// 비동기식 
+					url : "modify",
+					type : "POST",
+					data : data,
+					dataType : "text",
+					enctype : "multipart/form-data",
+					processData : false,
+					contentType : false,
+					success : function() {
+				    	$("#modify").removeClass("btn m-progress btn btn-info");
+						$("#modify").addClass("btn btn-info");
+						$('#modify').attr('disabled',false);
+						console.log("success");
+						location.href = "board";
+						return true;
+					}
+				});
+
+			}
+
+		});
+	});
 </script>
 </html>

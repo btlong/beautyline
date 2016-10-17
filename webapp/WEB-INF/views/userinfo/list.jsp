@@ -145,11 +145,10 @@
 														</td> --%>
 
 														<td>
-															<!-- 회원 수정 --> 
-															<input type="hidden" name="no"
-															value="${listUser[i].no }">
-															 <a class="btn btn-default  btn-sm"
-															href="modifyform?no=${listUser[i].no }" role="button">수정</a>
+															<!-- 회원 수정 --> <input type="hidden" name="no"
+															value="${listUser[i].no }" /> <a
+															class="btn btn-default  btn-sm"
+															href="modifyuser?no=${listUser[i].no }" role="button">수정</a>
 														</td>
 
 														<td>
@@ -265,6 +264,7 @@
 	
 	
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
+
 
 
 	<!-- 쿠폰조회 Modal -->
@@ -401,9 +401,6 @@
 			});
 
 		});
-		
-		
-		
 		
 		/* ProgramNoVo */
 /* 		var basic = "";

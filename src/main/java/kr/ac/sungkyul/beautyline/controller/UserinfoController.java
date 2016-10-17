@@ -2,8 +2,6 @@ package kr.ac.sungkyul.beautyline.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -70,78 +68,33 @@ public class UserinfoController {
 	}
 
 	
-	/* -- 회원가입  -- */	
+	
+	/* -- 회원가입 -- */
 	@RequestMapping("/joinform")
-	public String joinform() { //회원가입 폼
+	public String joinform() { // 회원가입 폼
 		return "userinfo/joinform";
 	}
-	
-	/* 회원가입 아작스	*/
+
+	/*
+	 * @RequestMapping("/join") public String join(@ModelAttribute UserVo vo)
+	 * {//회원가입 버튼 누를 때 userService.join(vo); return "redirect:/userinfo/list";
+	 * // redirect해야함 }
+	 */
 	@ResponseBody
-	@RequestMapping(value ="join", method = RequestMethod.POST)
-	public int join(@RequestBody UserVo vo) {//회원가입 버튼 누를 때
+	@RequestMapping(value = "join", method = RequestMethod.POST)
+	public int join(@RequestBody UserVo vo) {// 회원가입 버튼 누를 때
 		System.out.println(vo);
 		int a = userService.join(vo);
-		return a; 
+		return a; // redirect해야함
 	}
 
 	@ResponseBody
-	@RequestMapping(value ="checkId", method = RequestMethod.POST)
-	public String checkId(@RequestParam String id){//회원가입시 id중복체크
+	@RequestMapping(value = "checkId", method = RequestMethod.POST)
+	public String checkId(@RequestParam(value = "id", required = false) String id) {// 회원가입시
+																					// id중복체크
 		String check = userService.checkId(id);
 		return check;
 	}
-	
-	/*--------------*/
-	
-	/* 회원 정보 수정 */	
-	@RequestMapping(value= "modifyform", method = RequestMethod.GET)
-	public String modifyform(Long no, Model model) {
-		System.out.println(no);
-		UserVo userVo = userService.getUserInfo(no);
-		model.addAttribute("UserVo", userVo);
-		System.out.println(userVo);
-		return "userinfo/modifyform";
-	}
-	
-	@ResponseBody
-	@RequestMapping(value="/modify", method=RequestMethod.POST)
-	public int modify(HttpSession session, @RequestBody UserVo vo ) {
-		UserVo authUser = (UserVo) session.getAttribute("authUser");
-		vo.setNo(authUser.getNo());
-		vo.setName(authUser.getName());
-	    int check =	userService.updateInfo(vo);
-		return check;
-	}
-	/*--------------*/
-	
-	
-	/* -- 회원가입 -- */
-//	@RequestMapping("/joinform")
-//	public String joinform() { // 회원가입 폼
-//		return "userinfo/joinform";
-//	}
-//
-//	/*
-//	 * @RequestMapping("/join") public String join(@ModelAttribute UserVo vo)
-//	 * {//회원가입 버튼 누를 때 userService.join(vo); return "redirect:/userinfo/list";
-//	 * // redirect해야함 }
-//	 */
-//	@ResponseBody
-//	@RequestMapping(value = "join", method = RequestMethod.POST)
-//	public int join(@RequestBody UserVo vo) {// 회원가입 버튼 누를 때
-//		System.out.println(vo);
-//		int a = userService.join(vo);
-//		return a; // redirect해야함
-//	}
-//
-//	@ResponseBody
-//	@RequestMapping(value = "checkId", method = RequestMethod.POST)
-//	public String checkId(@RequestParam(value = "id", required = false) String id) {// 회원가입시
-//																					// id중복체크
-//		String check = userService.checkId(id);
-//		return check;
-//	}
 	/*--------------*/
 
 	/* -- 로그인 -- */

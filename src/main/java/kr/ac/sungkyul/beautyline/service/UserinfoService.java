@@ -43,14 +43,15 @@ public class UserinfoService {
 	}
 	
 	// 수정폼
-	public UserinfoVo selectUser(long no){
+	/*public UserinfoVo selectUser(long no){
+		System.out.println("//"+no);
 		return userinfoDao.selectUser(no);
-	}
+	}*/
 	
 	// 수정
-	public void updateUser(UserinfoVo userinfoVo){
+	/*public void updateUser(UserinfoVo userinfoVo){
 		userinfoDao.updateUser(userinfoVo);
-	}
+	}*/
 	
 /*	public static CouponviewVo couponView(long userNo){
 		return userinfoDao.couponView(userNo);

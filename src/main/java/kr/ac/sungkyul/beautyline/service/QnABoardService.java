@@ -16,21 +16,23 @@ public class QnABoardService {
 
 	
 	/* 전체글 가져오기*/
-	public List<QnABoardVo> getAll(){
+	public List<QnABoardVo> getAll(String keyfield, String keyword, String keyWord2){
 		//찾기가 있다면 if (){ 찾기  sql 문으로 ㄱㄱ 나중에 string 들어와야함
-		List<QnABoardVo> list = qBoardDao.getAll();		
+		List<QnABoardVo> list = qBoardDao.getAll(keyfield, keyword, keyWord2);		
 		return list;	
 	}
 	
 	/* 글쓰기	*/
 	public void write(QnABoardVo qbdvo){
 		qBoardDao.insertBoard(qbdvo);
+		
 	}
 	
 	/* 답글쓰기 */
 	public void replywrite(QnABoardVo qbdvo){
 		qBoardDao.updatereply(qbdvo);
 		qBoardDao.insertreply(qbdvo);
+		
 	}
 	
 	
@@ -57,6 +59,7 @@ public class QnABoardService {
 	/* 글 수정 */
 	public void modify(QnABoardVo qbdvo){
 		qBoardDao.modify(qbdvo);
+		
 	}
 	
 	

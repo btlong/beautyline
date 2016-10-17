@@ -96,7 +96,7 @@ padding-left: 0px;
 						<hr><h3 class="text-center"><strong>글쓰기</strong></h3><hr>
 					</div>
 				<div class="form-horizontal" id="write-form" >
-					<!-- 제목 -->
+					
 					<div class="form-group" id="divTitle" >
 						<div class="col-lg-10 col-lg-offset-1">
 							<!-- select  [프로그램] -->

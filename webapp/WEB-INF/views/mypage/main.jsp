@@ -224,12 +224,12 @@
 							<!-- 방문내역확인 -->
 							<div class="form-group margin-top">
 								<div class="row">
-									<div class="col-lg-2 text-left">
+									<div class="col-lg-4 text-left">
 										<!-- <label>방문내역</label> -->
 										<img src="/beautyline/images/mypage/visit.png"
 											class="img-responsive">
 									</div>
-									<div class="col-lg-10 text-right">
+									<div class="col-lg-8 text-right">
 										<form method="post" action="history2">
 											<input class="btn btn-success btn-sm" type="submit"
 												value="방문내역 더 보기">
@@ -253,15 +253,14 @@
 							<!-- 회원정보수정 -->
 							<div class="form-group margin-top">
 								<div class="row">
-									<div class="col-lg-2 text-left">
+									<div class="col-lg-4 text-left">
 										<!-- <label>회원정보</label> -->
 										<img src="/beautyline/images/mypage/userinfo.png"
 											class="img-responsive">
 									</div>
-									<div class="col-lg-10 text-right">
+									<div class="col-lg-8 text-right">
 										<a href="/beautyline/user/modifyform"
 											class="btn btn-success btn-sm">회원정보 수정</a>
-
 									</div>
 								</div>
 								<div class="row">
@@ -332,7 +331,6 @@
 					<button class="btn btn-default" type="button" data-dismiss="modal">아니요</button>
 				</div>
 			</div>
-
 		</div>
 	</div>
 	<!-- Modal-->
@@ -346,12 +344,9 @@
 			$('#two').text("0");
 			$('#three').text("0");
 			$('#four').text("0");
-			var userNo = $
-			{
-				userVo.no
-			}
+			var userNo = ${userVo.no}
 			; //coupon count 가져올 때 보낼 회원 번호
-			//console.log(userNo);
+			console.log(userNo);
 			$.ajax({
 				url : "selectCoupon",
 				type : "POST",

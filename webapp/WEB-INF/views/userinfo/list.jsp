@@ -99,7 +99,7 @@
 								<table class="table table-bordered table-hover table-responsive">
 									<thead>
 										<tr class="danger">
-											<th>#</th>
+											<!-- <th>#</th> -->
 											<th>회원번호</th>
 											<th>이름</th>
 											<th>전화번호</th>
@@ -107,7 +107,7 @@
 											<th>이메일</th>
 											<th>주소</th>
 											<th>권한</th>
-											<th>쿠폰</th>
+											<!-- <th>쿠폰</th> -->
 											<th>수정</th>
 											<th>삭제</th>
 										</tr>
@@ -126,7 +126,7 @@
 
 													<!-- (전체 게시물 갯수-(전체회원수-1))>=1이면 -->
 													<c:if test="${(page.totalRecord -status.index)>=1}">
-														<td>${page.totalRecord -status.index}</td>
+														<%-- <td>${page.totalRecord -status.index}</td> --%>
 														<td>${listUser[i].no}</td>
 														<td>${listUser[i].name}</td>
 														<td>${listUser[i].phone}</td>
@@ -135,14 +135,14 @@
 														<td>${listUser[i].address}</td>
 														<td>${listUser[i].isAdmin}</td>
 
-														<td>
 															<!-- 쿠폰 조회  --> <!-- Trigger the modal with a button -->
+														<%-- <td>
 															<input type="hidden" name="no" value="${listUser[i].no }" />
 															<a class="btn btn-default btn-sm couponview" href=""
 															data-target="#modalCoupon" type="button"
 															data-toggle="modal" data-backdrop="static" role="button"
 															data-userno="${listUser[i].no}">조회</a>
-														</td>
+														</td> --%>
 
 														<td>
 															<!-- 회원 수정 --> <input type="hidden" name="no"
@@ -153,12 +153,11 @@
 
 														<td>
 															<!-- 회원 삭제 -->
-															<form method="post" action="delete">
-																<input type="hidden" name="no"
-																	value="${listUser[i].no }" /> <input type="submit"
-																	value="삭제" class="btn btn-default  btn-sm">
-																<!-- <a class="btn btn-default" href = "javascript:del()">삭제</a> -->
-															</form>
+															<input type="hidden" name="no" value="${listUser[i].no }" />
+															<a class="btn btn-default btn-sm delete-user" href=""
+															data-target="#modalDeleteReserve" type="button"
+															data-toggle="modal" data-backdrop="static" role="button"
+															data-userno="${listUser[i].no }">삭제</a>
 														</td>
 													</c:if>
 
@@ -176,7 +175,6 @@
 							</div>
 
 
-
 							<!-------------Paging--------------->
 							<c:import url="/WEB-INF/views/include/paging.jsp" />
 
@@ -184,24 +182,6 @@
 							<!-- 검색 -->
 							<div class=row>
 							<div class="col-md-6 col-md-offset-3 text-center">
-							<%-- <div class="col-lg-12">
-								<form id="search_form" action="/beautyline/userinfo"
-									method="get">
-									<div class="btn-group">
-										<button type="button" class="btn btn-default dropdown-toggle"
-											data-toggle="dropdown" aria-expanded="false">
-											전체 <span class="caret"></span>
-										</button>
-										<ul class="dropdown-menu" role="menu">
-											<li><a href="#">회원번호</a></li>
-											<li><a href="#">이름</a></li>
-											<li><a href="#">전화번호</a></li>
-										</ul>
-									</div>
-									<input type="text" id="kwd" name="kwd" value="${keyword }">
-									<input type="submit" value="찾기">
-								</form>
-							</div> --%>
 							<form class="form-inline" action="list" name="search"
 								method="post">
 								<div class="form-group">
@@ -217,11 +197,8 @@
 											<c:if test="${'id'==keyField }"> selected</c:if>>
 											아이디</option>
 										<option value="email"
-											<c:if test="${'email'==keyField }"> selected</c:if>>
+											<c:if test="${'email1'==keyField || 'email2'==keyField}"> selected</c:if>>
 											이메일</option>
-										<option value="address"
-											<c:if test="${'address'==keyField }"> selected</c:if>>
-											주소</option>
 										<option value="is_admin"
 											<c:if test="${'isAdmin'==keyField }"> selected</c:if>>
 											권한</option>
@@ -290,11 +267,9 @@
 
 
 	<!-- 쿠폰조회 Modal -->
-	<div class="modal fade" id="modalCoupon" role="dialog" tabindex="-1"
+<!-- 	<div class="modal fade" id="modalCoupon" role="dialog" tabindex="-1"
 		aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-sm">
-
-			<!-- Modal content-->
 			<div class="modal-content">
 				<form class="form-horizontal">
 					<div class="modal-header">
@@ -302,7 +277,6 @@
 						<h4 class="modal-title">쿠폰조회</h4>
 					</div>
 					<div class="modal-body">
-						<!-- program name,coupon count  -->
 						<table class="table">
 							<thead>
 								<tr class="danger">
@@ -311,7 +285,6 @@
 									<th></th>
 								</tr>
 							</thead>
-							<!-- 리스트영역 -->
 							<tbody>
 								<tr>
 									<td>베이직 케어</td>
@@ -344,16 +317,6 @@
 								<tr>
 									<td><input type=hidden id="coupon-userno" value=""></td>
 								</tr>
-								<%-- <c:forEach items="${couponView }" var="couponinfoVo"
-									varStatus="status">
-									<tr>
-										<td><input type="hidden" name="programNo"
-											value="${couponinfoVo.programNo }" />
-											${couponinfoVo.programName}</td>
-										<td><input type="hidden" name="no"
-											value="${couponinfoVo.no }" /> ${couponinfoVo.count}</td>
-									</tr>
-								</c:forEach> --%>
 							</tbody>
 							<tfoot></tfoot>
 						</table>
@@ -361,8 +324,6 @@
 
 					<div class="modal-footer">
 						<div id="fintdt" class="col-lg-12 text-center">
-							<!-- <button type="button" class="btn btn-default"
-								data-dismiss="modal">닫기</button> -->
 							<button id=reload type="button" class="btn btn-success"
 								>닫기</button>
 						</div>
@@ -371,9 +332,40 @@
 			</div>
 
 		</div>
-	</div>
+	</div> -->
 	<!-- Modal-->
 
+
+<!-- 회원삭제 Modal -->
+	<div class="modal fade" id="modalDeleteReserve" role="dialog"
+		tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<!-- modal content -->
+			<div class="modal-content">
+				<!-- header -->
+				<div class="modal-header">
+					<!-- 닫기(x) 버튼 -->
+					<button type="button" class="close" data-dismiss="modal">×</button>
+					<!-- header title -->
+					<h4 class="modal-title text-center">
+						<strong>예약취소</strong>
+					</h4>
+				</div>
+
+				<!-- body -->
+				<div class="modal-body text-center">
+					<h4>정말로 삭제 하시겠습니까?</h4>
+				</div>
+
+				<!-- Footer -->
+				<div class="modal-footer">
+					<button class="btn btn-primary" id="userDelOk">예</button>
+					<button class="btn btn-default" type="button" data-dismiss="modal">아니요</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Modal-->
 
 	<script>
 		/* 검색 */
@@ -386,30 +378,44 @@
 			document.search.submit();
 		}
 
-		/* $(document).ready(function() {
-			$("#delete").on("click", function() {
-				alert($(this).text());
+		/* 회원삭제 */
+		$(".delete-user").on("click", function() {
+			var userno = $(this).data("userno");
+			console.log(userno);
+			$("#userDelOk").on("click", function() {
+				$.ajax({
+					url : "userdelete",
+					type : "POST",
+					data : {
+						"userno" : userno
+					},
+					success : function(result) {
+						if (result > 0) {
+							location.href = "list";
+						} else {
+							alert("유효하지 않은 정보입니다.");
+						}
+					}
+				});
 			});
-		}); */
-		
-		
-		
-		/* ProgramNoVo */
-		var basic = "";
-		var whitening="";
-		var antiaging="";
-		var acne="";
-		
-		
-		
-		
-		/*  모달닫으면 새로고침 */
-		$("#reload").on("click", function() {
-			location.reload();
+
 		});
 		
+		/* ProgramNoVo */
+/* 		var basic = "";
+		var whitening="";
+		var antiaging="";
+		var acne=""; */
+		
+		
+		
+		/*  쿠폰수정모달닫으면 새로고침 */
+/* 		$("#reload").on("click", function() {
+			location.reload();
+		}); */
+		
 		/*  쿠폰count조회 모달  */
-		$(".couponview").click(function() {
+/* 		$(".couponview").click(function() {
 			//console.log(this);//.couponview 버튼
 			$('#one').val("0");
 			$('#two').val("0");
@@ -449,9 +455,9 @@
 			});
 
 			
-				console.log("val:"+$('#one').val());
+				console.log("val:"+$('#one').val()); */
 			/* 쿠폰모달 수정버튼 클릭 */
-			$("#couponCountModify1").on("click", function() {
+			/* $("#couponCountModify1").on("click", function() {
 				var no = basic;//쿠폰번호
 				var userNo = $('#coupon-userno').val();//유저번호
 				var programNo = 1;//프로그램번호
@@ -459,12 +465,7 @@
 				console.log("val:"+$('#one').val());
 				
 				var url="";
-				/* if(count=="" && count==null){ */
 					url ="insertCoupon1";
-				/* }
-				else{
-					url = "updateCoupon1";
-				} */
 				//console.log("유저넘: "+userNo);
 				
 				var couponvo = {
@@ -502,12 +503,7 @@
 				console.log("val:"+$('#two').val());
 				
 				var url="";
-				/* if(count=="" && count==null){ */
 					url ="insertCoupon2";
-				/* }
-				else{
-					url = "updateCoupon1";
-				} */
 				//console.log("유저넘: "+userNo);
 				
 				var couponvo = {
@@ -545,12 +541,7 @@
 				console.log("val:"+$('#three').val());
 				
 				var url="";
-				/* if(count=="" && count==null){ */
 					url ="insertCoupon3";
-				/* }
-				else{
-					url = "updateCoupon1";
-				} */
 				//console.log("유저넘: "+userNo);
 				
 				var couponvo = {
@@ -588,12 +579,7 @@
 				console.log("val:"+$('#four').val());
 				
 				var url="";
-				/* if(count=="" && count==null){ */
 					url ="insertCoupon4";
-				/* }
-				else{
-					url = "updateCoupon1";
-				} */
 				//console.log("유저넘: "+userNo);
 				
 				var couponvo = {
@@ -623,12 +609,7 @@
 				});
 
 			});
-			
-		});
-
-		/* $('#myDropdown').on('shown.bs.dropdown', function() {
-			// do something…
-		}); */
+			 */
 	</script>
 
 </body>

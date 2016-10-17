@@ -100,7 +100,7 @@ padding-left: 0px;
 				
 				<div class="form-horizontal" id="write-form" >
 					<!-- 제목 -->
-					<div class="form-group" id="divTitle" enctype="multipart/form-data">
+					<div class="form-group" id="divTitle" >
 						<div class="col-lg-10 col-lg-offset-1">
 							<label class="col-lg-1 control-label" id= "title_title" for="inputName">제목</label>
 							<!-- select  [공지 or 이벤트] -->
@@ -122,7 +122,7 @@ padding-left: 0px;
 				<div class="form-group" id= "uploadForm">
 				  <div class="col-lg-10 col-lg-offset-1">
 					<label class="control-label" id= "file_title" for="file">첨부파일</label>
-					<div  id="uploadForm">
+					<div id="uploadForm">
 						<input class="btn btn-default" name="file" id="file" type="file">		
 					</div>						
 				 </div>

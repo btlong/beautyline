@@ -30,9 +30,20 @@ public class ReviewBoardController {
 	
 	/* 게시판 리스트 */
 	@RequestMapping("board")
-	public String list(Model model, @RequestParam(value = "nowPage", required = false) Integer nowPage,
-			@RequestParam(value = "nowBlock", required = false) Integer nowBlock) {
-		List<ReviewBoardVo> boardList = rBoardService.getAll();
+	public String list(Model model, 
+			 @RequestParam(value = "nowPage", required = false) Integer nowPage,
+	         @RequestParam(value = "nowBlock", required = false) Integer nowBlock,
+	         @RequestParam(value = "keyField", required=false) String keyField,
+	         @RequestParam(value = "keyWord", required=false) String keyWord,
+	         @RequestParam(value = "keyWord2", required=false) String keyWord2
+			) {
+		
+		 if( keyWord2 == "" ){
+			  keyWord2 = null;
+		  }
+		
+		
+		List<ReviewBoardVo> boardList = rBoardService.getAll(keyField, keyWord, keyWord2);
 		PageVo page = null;
 		try {
 			page = pageService.pagingProc(nowPage, nowBlock, boardList.size());
@@ -41,6 +52,11 @@ public class ReviewBoardController {
 		}
 		model.addAttribute("boardList", boardList);
 		model.addAttribute("page", page);
+		
+		model.addAttribute("keyField", keyField);
+	    model.addAttribute("keyWord", keyWord);
+	    model.addAttribute("keyWord2", keyWord2);
+	    
 		return "board/reviewboard/board";
 	}
 

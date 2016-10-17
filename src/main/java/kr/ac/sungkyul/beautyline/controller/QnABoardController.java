@@ -40,9 +40,10 @@ public class QnABoardController {
 		  
 		  System.out.println("keyField: "+keyField+" keyWord : "+keyWord+" keyWord2 : "+keyWord2);
 		
-		  if(keyWord2 == ""){
+		  if( keyWord2 == "" ){
 			  keyWord2 = null;
 		  }
+		 
 	      List<QnABoardVo> boardList = qBoardService.getAll(keyField, keyWord, keyWord2);
 		  System.out.println("리스트 나와서 - keyField: "+keyField+" keyWord : "+keyWord+" keyWord2 : "+keyWord2);
 

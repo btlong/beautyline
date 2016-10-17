@@ -17,9 +17,9 @@ public class ReviewBoardService {
 
 	
 	/* 전체글 가져오기*/
-	public List<ReviewBoardVo> getAll(){
+	public List<ReviewBoardVo> getAll(String keyfield, String keyword, String keyWord2){
 		//찾기가 있다면 if (){ 찾기  sql 문으로 ㄱㄱ 나중에 string 들어와야함
-		List<ReviewBoardVo> list = rBoardDao.getAll();		
+		List<ReviewBoardVo> list = rBoardDao.getAll(keyfield, keyword, keyWord2);		
 		return list;	
 	}
 	/* 글쓰기	*/

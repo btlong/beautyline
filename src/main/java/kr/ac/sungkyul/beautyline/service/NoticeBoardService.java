@@ -21,9 +21,9 @@ public class NoticeBoardService {
 
 	
 	/* 전체글 가져오기*/
-	public List<NoticeBoardVo> getAll(){
+	public List<NoticeBoardVo> getAll(String keyfield, String keyword, String keyWord2){
 		//찾기가 있다면 if (){ 찾기  sql 문으로 ㄱㄱ 나중에 string 들어와야함
-		List<NoticeBoardVo> list = nBoardDao.getAll();		
+		List<NoticeBoardVo> list = nBoardDao.getAll(keyfield, keyword, keyWord2);		
 		return list;	
 	}
 	public void write(NoticeBoardVo noticeBoardVo){
@@ -45,7 +45,7 @@ public class NoticeBoardService {
 		String saveName = UUID.randomUUID().toString() + "_" + orgName;
 
 		// 6. path
-		String path = "C:\\Users\\User\\Download2\\filestore\\";
+		String path = "c:\\Users\\S401-11\\Downloads\\filestore";
 
 		
 		FileNotiVo noticeFile = new FileNotiVo();
@@ -122,13 +122,6 @@ public class NoticeBoardService {
 		FileCopyUtils.copy(file.getBytes(), target);
 
 	}
-	
-	
-/*	 파일 다운로드 ! 	
-	public FileNotiVo selectAttachFileByFno(Long no){//다운로드를위해
-		return nBoardDao.selectAttachFileByFno(no);
-		
-	}*/
 	
 	/* 파일 삭제 */
 	public int delFile(Long fileNo){

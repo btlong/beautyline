@@ -4,7 +4,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -12,7 +11,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>예약 관리</title>
+
+<title>예 약 관 리</title>
 
 <!-- Custom CSS -->
 <link href="/beautyline/bootstrap/css/business-casual.css"rel="stylesheet">
@@ -33,9 +33,8 @@
 <!-- jquery  -->
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
-
-
-
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ 
 
 </head>
 <style type="text/css">
@@ -60,12 +59,11 @@
 				<hr>
 			</div>
 
-			<div class="col-lg-2"></div>
 			<fmt:formatDate value="${now }" pattern="yyyy년 MM월 dd일" var="today" />
 			
 			
-				<div class="col-lg-8">
-					<table class="table table-striped">
+		<div class="col-lg-12">
+	         <table class="table table-hover table-responsive">                   
 						<thead>
 							<tr class="info">
 								<th>#</th>
@@ -126,26 +124,53 @@
 			<form id="blockmoveb" name="blockmoveb" method="POST" action="reserveList">
 				<input type="hidden" name="nowBlock" value="${page.nowBlock-1 }" />
 				<input type="hidden" name="nowPage" value="${(page.nowBlock-1)*page.pagePerBlock}" />
-				<%-- <input type="hidden" name="keyField" value="${keyField }" />	
-				<input type="hidden" name="keyWord" value="${keyWord }" /> --%>
+				<input type="hidden" name="keyField" value="${keyField }" />
+				<input type="hidden" name="keyWord" value="${keyWord }" />
 			</form>
 		<!-- 페이지블록 -->
 			<form id="pagemove" name="pagemove" method="POST" action="reserveList">
 				<input type="hidden" name="nowBlock" value="${page.nowBlock}" />
 				<input id="now-page" type="hidden" name="nowPage" value="${page.nowBlock*page.pagePerBlock}" />
-		<%-- 	<input type="hidden"name="keyField" value="${keyField }" />
-				<input type="hidden"name="keyWord" value="${keyWord }" /> --%>
+				<input type="hidden" name="keyField" value="${keyField }" />
+				<input type="hidden" name="keyWord" value="${keyWord }" />
 			</form>
 
 		<!-- 다음 페이지 -->
 			<form id="blockmovef" name="blockmovef" method="POST" action="reserveList">
 				<input type="hidden" name="nowBlock" value="${page.nowBlock+1 }" />
 				<input type="hidden" name="nowPage" value="${(page.nowBlock+1)*page.pagePerBlock}" />
-				<%-- <input type="hidden" name="keyField" value="${keyField }" />
-				<input type="hidden" name="keyWord" value="${keyWord }" /> --%>
+				<input type="hidden" name="keyField" value="${keyField }" />
+				<input type="hidden" name="keyWord" value="${keyWord }" />
+		
 			</form>
 	 	
 			</div>
+			
+			
+<!-- 검색 -->
+	    <div class="col-lg-12">
+			<form id="search_form" name="search" action="reserveList" method="post">
+				<div class="col-lg-3"></div>
+				<div class="col-lg-2">
+					<select class="form-control input-sm" name="keyField" size="1">
+						<option value="">선택 </option>
+						<option value="selName" <c:if test="${'selName'==keyField }"> selected</c:if>>회원이름</option>
+						<option value="selDate" <c:if test="${'selDate'==keyField }"> selected</c:if>>날짜</option>
+						<option value="selPro" <c:if test="${'selPro'==keyField }"> selected</c:if>>프로그램</option>
+					</select>
+					</div>
+					<label>
+					<input id="datepicker1" type="text"  class="form-control input-sm" name="keyWord" value="${keyWord }">
+					
+					</label>
+					
+					<label> 
+					<input  class="btn btn-warning btn-sm" type="button" value="검색" onClick="check()">
+					</label> 
+					
+					<input type="hidden" name="page" value="0">
+			</form>
+		</div>
 			
 			</c:when>
 			<c:otherwise>
@@ -173,7 +198,43 @@ $(document).ready(function(){
 		
 	});
 	
+	/* $("#test22").on("click",function(){
+		console.log("짠");
+	}); */
+	
+	
+	$(document).on("change","select[name=keyField]",function(){
+		var test = $("select[name=keyField] option:selected").val();
+		if( test == "selDate"){
+			$( "#datepicker1" ).datepicker({
+				showOtherMonths: true,
+				monthNames: ['01월', '02월', '03월', '04월', '05월', '06월', '07월', '08월', '09월', '10월', '11월', '12월' ],
+				dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+				dateFormat: 'yy-mm-dd',
+				onSelect: function(dateText, datePicker) { 
+			         var sDate = new Date(dateText); 
+			         var dd = sDate.getDate(); 
+			         var mm = sDate.getMonth()+1; 
+			         if(mm<10) mm = "0" + mm; 
+			         if(dd <10) dd = "0" + dd;
+			         $("#datepicker1").val(sDate.getFullYear() +"년 "+mm+"월 "+dd+"일 ");      
+			         
+			      }
+				});
+		}
+	});
+	
+
+	
 });
+	function check() {
+		if (document.search.keyWord.value == "") {
+			alert("검색어를 입력하세요.");
+			document.search.keyWord.focus();
+			return;
+		}
+			document.search.submit();
+	}
 
 </script>
 </html>

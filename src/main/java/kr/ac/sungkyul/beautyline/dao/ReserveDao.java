@@ -1,6 +1,8 @@
 package kr.ac.sungkyul.beautyline.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +18,20 @@ public class ReserveDao {
 	private SqlSession sqlSession; //sql연결
 	
 	//reserveList
-	public List<ReserveVo> resList(){
-		return sqlSession.selectList( "res.resList" );
+	public List<ReserveVo> resList(String keyfield, String keyword){
+		
+        Map<String, String> map = new HashMap<String, String> ();
+        
+        if( keyfield != null && keyword != null && keyfield !="" && keyword !="" ){//검색 한경우
+    		map.put("keyword", keyword);
+    		map.put("keyfield", keyfield);
+    		return sqlSession.selectList( "res.getSearch" , map );
+    		
+        }else{  //아무것도 검색 안한 경우    
+			return sqlSession.selectList("res.resList");    
+		}
+		
+		
 	}
 	
 	//회원 - 회원번호로 list 조회

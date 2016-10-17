@@ -127,15 +127,6 @@ text-decoration: none;
 					</c:if>
 					</div>
 
-
-
-
-
-
-
-
-
-
 					<!-------------Paging--------------->
 					<c:import url="/WEB-INF/views/include/paging.jsp" />
 					<!-- 이전 페이지 -->

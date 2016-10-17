@@ -179,7 +179,7 @@
 												예약 내역 입니다.
 											</span>
 										</div>
-										<table class="table table-striped">
+										<table class="table table-bordered table-responsive">
 											<thead>
 												<tr class="info">
 													<th>#</th>
@@ -192,7 +192,7 @@
 											<tbody>
 												<c:forEach var='vo' items='${myResList }' varStatus='status'>
 													<tr>
-														<td>${totalCount - status.index }</td>
+														<td>[${totalCount - status.index }]</td>
 														<td>${vo.progName }</td>
 														<td>${vo.resDate }</td>
 														<td>${vo.resTime }시-${vo.resTime + 1 }시</td>
@@ -237,12 +237,59 @@
 									</div>
 								</div>
 								<div class="row">
-									<!-- css 둥근 모서리 박스 : http://www.erzsamatory.net/4 -->
 									<div class="box-radius">그래프</div>
 								</div>
 								<div class="row">
-									<!-- css 둥근 모서리 박스 : http://www.erzsamatory.net/4 -->
-									<div class="box-radius end">방문내역 5건</div>
+									<div class="box-radius end">
+						<c:set var='countList' value='${fn:length(listVo.visitList)}' />
+						<div class="text">
+											<span>최근 <span class="strength">${countList }건</span>의
+												방문 내역 입니다.
+											</span>
+										</div>
+						
+						
+						
+									<table class="table table-bordered table-responsive">
+						<thead>
+							<tr class="info">
+								<th>#</th>
+								<th>날짜</th>
+								<th>프로그램</th>
+								<th>미백점수</th>
+								<th>주름점수</th>
+								<th>피부탄력점수</th>
+								<th>수분점수</th>
+								<th>여드름점수</th>
+								<th>평균점수</th>
+							</tr>
+						</thead>
+						<tbody>
+						<c:forEach var='visitVo' items='${listVo.visitList }'
+							varStatus='status'>
+							<tr>
+								<td>[${countList - status.index }]</td>
+								<td id="regDate">${visitVo.regDate }</td>
+								<td>${visitVo.programName }</td>
+								<td id="whiteningScore">${visitVo.whiteningScore }</td>
+								<td id="whinkleScore">${visitVo.whinkleScore }</td>
+								<td id="elasticScore">${visitVo.elasticScore }</td>
+								<td id="moistureScore">${visitVo.moistureScore }</td>
+								<td id="acneScore">${visitVo.acneScore }</td>
+								<td>${visitVo.averageScore }</td>
+							</tr>
+						</c:forEach>
+</tbody>
+
+					</table>
+									
+									
+									
+									
+									
+									
+									
+									</div>
 								</div>
 							</div>
 

@@ -18,8 +18,15 @@ public class MypageService {
    @Autowired
    private MypageDao mypageDao;
    
-   public ListVo listHistory(HttpSession session, ListVo listVo) {
+   public ListVo sumListHistory(HttpSession session, ListVo listVo) {
+	// 요약리스트 데이터
+	      List<VisitVo> sumVisitList = mypageDao.sumListHistory(listVo);
+	      listVo.setVisitList(sumVisitList);
+		return listVo;
+	   
+   }
       
+   public ListVo listHistory(HttpSession session, ListVo listVo) {
       final int PAGE_RECORDS = 10;
       final int PAGE_SETS = 5;
       

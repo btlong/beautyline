@@ -42,22 +42,22 @@ public class MypageController {
 	@Autowired
 	ReserveService reserveService;
 
-	/*--- 요약페이지--- */
+	/*--- 요약페이지 ---*/
 	@RequestMapping("/main")
-	public String main(HttpSession session, VisitVo visitVo, Model model) {
+	public String main(HttpSession session, ListVo listVo, Model model) {
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
 		// System.out.println("세션 값 : " + authUser.getNo());
 		UserVo userVo = userService.getUserInfo(authUser.getNo());
 
 		List<ReserveVo> myResList = reserveService.myResList(authUser.getNo());
 
-		visitVo.setUserNo(authUser.getNo());
-		// visitVo = mypageService.listHistory(session, visitVo);
-		System.out.println("visitVo : " + visitVo);
+		listVo.setUserNo(authUser.getNo());
+		listVo = mypageService.sumListHistory(session, listVo);
+		System.out.println("listVo : " + listVo);
 
 		model.addAttribute("userVo", userVo);
 		model.addAttribute("myResList", myResList);
-		model.addAttribute("visitVo", visitVo); // jsp에서 쓸 이름, 넘겨줄 애(실제 데이터)
+		model.addAttribute("listVo", listVo); // jsp에서 쓸 이름, 넘겨줄 애(실제 데이터)
 		return "mypage/main";
 	}
 

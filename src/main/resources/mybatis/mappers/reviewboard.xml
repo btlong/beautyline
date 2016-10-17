@@ -51,15 +51,62 @@
 	]]>
 	</delete>
 
-	
-	<!-- 페이징 -->
+<!-- 전체글보기 -->
    <select id="getAll" resultType="reviewboardvo">
-   <![CDATA[
-      select b.no, b.user_no as userNo, b.category, u.id as userId, b.title, to_char(reg_date,'yyyy-mm-dd') as regDate, view_count as viewCount  
-      from bd_re b, users u where b.user_no = u.no order by no desc
-   ]]>
+  <![CDATA[
+     select b.no, b.user_no as userNo, b.category, u.id as userId, b.title, to_char(reg_date,'yyyy-mm-dd') as regDate, view_count as viewCount  
+     from bd_re b, users u 
+     where b.user_no = u.no 
+     order by b.no desc
+     ]]>
    </select>
 	
+	<!-- 검색 -->
+   <select id="getSearch" parameterType="map" resultType="reviewboardvo">
+     select b.no, b.user_no as userNo, b.category, u.id as userId, b.title, to_char(reg_date,'yyyy-mm-dd') as regDate, view_count as viewCount  
+     from bd_re b, users u 
+     where b.user_no = u.no 
+ 	 	<choose>
+	      	<when test="keyfield.equals('whole')">
+	      	and (b.title like '%'||#{keyword}||'%'
+	      	or b.content like '%'||#{keyword}||'%')
+	      	</when>
+	      	<when test="keyfield.equals('selTitle')">
+	      	and b.title like '%'||#{keyword}||'%'
+	      	</when>
+	      	<when test="keyfield.equals('selContent')">
+	      	and b.content like '%'||#{keyword}||'%'
+	      	</when>
+	      	<when test="keyfield.equals('selName')">
+	      	and u.id like '%'||#{keyword}||'%'
+	      	</when>
+	    </choose>
+   		order by b.no desc
+   </select>
+	
+	<!-- 카테고리 선택한 검색 -->
+	  <select id="getCateSearch" parameterType="map" resultType="reviewboardvo">
+     select b.no, b.user_no as userNo, b.category, u.id as userId, b.title, to_char(reg_date,'yyyy-mm-dd') as regDate, view_count as viewCount  
+     from bd_re b, users u 
+     where b.user_no = u.no 
+     and b.category like '%'||#{keyword2}||'%'
+ 	 	<choose>
+	      	<when test="keyfield.equals('whole')">
+	      	and (b.title like '%'||#{keyword}||'%'
+	      	or b.content like '%'||#{keyword}||'%')
+	      	</when>
+	      	<when test="keyfield.equals('selTitle')">
+	      	and b.title like '%'||#{keyword}||'%'
+	      	</when>
+	      	<when test="keyfield.equals('selContent')">
+	      	and b.content like '%'||#{keyword}||'%'
+	      	</when>
+	      	<when test="keyfield.equals('selName')">
+	      	and u.id like '%'||#{keyword}||'%'
+	      	</when>
+	    </choose>
+   		order by b.no desc
+   </select>
 	
 	<!-- 댓글 리스트 -->
 	<select id="getReplyAll" resultType="replyvo">

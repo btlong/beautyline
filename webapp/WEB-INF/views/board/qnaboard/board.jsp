@@ -67,6 +67,9 @@ width:50%;
  #search_form{
 	display: flex;
 }
+#cateBox {
+	padding-left: 0px;
+}
 </style>
 <script>
 
@@ -95,10 +98,19 @@ width:50%;
 						</h1>
 						<hr>
 					</div>
+					
 					<div class="col-lg-10 col-lg-offset-1">
-	         <table class="table table-bordered table-hover table-responsive">
-             
-                   
+				<div class="col-lg-2" id="cateBox">
+					<form id="search_form" name="category" action="board" method="post">
+					<select class="form-control input-sm" name="keyWord2" size="1" id="selCate">
+						<option value="">선택</option>
+						<option value="cateRes" <c:if test="${'cateRes'==keyWord2 }"> selected</c:if>>예약문의</option>
+						<option value="catePro" <c:if test="${'catePro'==keyWord2 }"> selected</c:if>>프로그램문의</option>
+					</select>
+					<input type="hidden" name="page" value="0">
+  					</form>
+			</div>
+	         <table class="table table-bordered table-hover table-responsive">                   
               <tbody>      
               	<c:set var="doneLoop" value="false" />
 				<!-- for(i=보고있는 페이지의 시작번호; i<(시작번호+한페이지의 게시물수); i++ ){ -->
@@ -148,66 +160,57 @@ width:50%;
       			<a href="writeform" class="btn btn-sm btn-danger">글쓰기 <span class="glyphicon glyphicon-pencil"></span></a>
        		</c:if>
       </div>
-      
 
-      
       
       <!-------------Paging--------------->
 	 <c:import url="/WEB-INF/views/include/paging.jsp" />
       <!-- 이전 페이지 -->
-							<form id="blockmoveb" name="blockmoveb" method="POST" action="board">
-								<input type="hidden" name="nowBlock" value="${page.nowBlock-1 }" />
-								<input type="hidden" name="nowPage" value="${(page.nowBlock-1)*page.pagePerBlock}" />
-								<%-- <input type="hidden" name="keyField" value="${keyField }" />	
-								<input type="hidden" name="keyWord" value="${keyWord }" /> --%>
-							</form>
+		<form id="blockmoveb" name="blockmoveb" method="POST" action="board">
+			<input type="hidden" name="nowBlock" value="${page.nowBlock-1 }" />
+			<input type="hidden" name="nowPage" value="${(page.nowBlock-1)*page.pagePerBlock}" />
+			<input type="hidden" name="keyField" value="${keyField }" />	
+			<input type="hidden" name="keyWord" value="${keyWord }" />
+		</form>
 
-							<!-- 페이지블록 -->
-							<form id="pagemove" name="pagemove" method="POST" action="board">
-								<input type="hidden" name="nowBlock" value="${page.nowBlock}" />
-								<input id="now-page" type="hidden" name="nowPage" value="${page.nowBlock*page.pagePerBlock}" />
-							<%-- 	<input type="hidden"name="keyField" value="${keyField }" />
-								<input type="hidden"name="keyWord" value="${keyWord }" /> --%>
-							</form>
+	<!-- 페이지블록 -->
+		<form id="pagemove" name="pagemove" method="POST" action="board">
+			<input type="hidden" name="nowBlock" value="${page.nowBlock}" />
+			<input id="now-page" type="hidden" name="nowPage" value="${page.nowBlock*page.pagePerBlock}" />
+			<input type="hidden"name="keyField" value="${keyField }" />
+			<input type="hidden"name="keyWord" value="${keyWord }" />
+		</form>
 
-							<!-- 다음 페이지 -->
-							<form id="blockmovef" name="blockmovef" method="POST" action="board">
-								<input type="hidden" name="nowBlock" value="${page.nowBlock+1 }" />
-								<input type="hidden" name="nowPage" value="${(page.nowBlock+1)*page.pagePerBlock}" />
-								<%-- <input type="hidden" name="keyField" value="${keyField }" />
-								<input type="hidden" name="keyWord" value="${keyWord }" /> --%>
-							</form>
-  
-  
-  
-		<!-- 검색 -->
+	<!-- 다음 페이지 -->
+		<form id="blockmovef" name="blockmovef" method="POST" action="board">
+			<input type="hidden" name="nowBlock" value="${page.nowBlock+1 }" />
+			<input type="hidden" name="nowPage" value="${(page.nowBlock+1)*page.pagePerBlock}" />
+			<input type="hidden" name="keyField" value="${keyField }" />
+			<input type="hidden" name="keyWord" value="${keyWord }" />
+		</form>
+		
+  	<!-- 검색 -->
 	    <div class="col-lg-12">
-			<form id="search_form" action="board" method="get">
+			<form id="search_form" name="search" action="board" method="post">
 				<div class="col-lg-3"></div>
 				<div class="col-lg-2">
-					<select class="form-control" id="selectSearch" name="selectSearch">
-						<option value="whole">전체</option>
-						<option value="writer">작성자</option>
-						<option value="category">카테고리</option>
+					<select class="form-control input-sm" name="keyField" size="1">
+						<option value="whole" <c:if test="${'whole'==keyField }"> selected</c:if>>제목+내용 </option>
+						<option value="selTitle" <c:if test="${'selTitle'==keyField }"> selected</c:if>>제목</option>
+						<option value="selContent" <c:if test="${'selContent'==keyField }"> selected</c:if>>내용</option>
+						<option value="selName" <c:if test="${'name'==keyField }"> selected</c:if>>작성자</option>
 					</select>
-				</div>
-				
-				<input type="text" id="kwd" name="kwd" value="${keyword }">
-				
-				<div class="col-lg-2" id="divSelCategory" hidden="true">
-					<select class="form-control" id="selectCategory" name="selectCategory">
-						<option>선택</option>
-						<option value="resQ">예약문의</option>
-						<option value="progQ">프로그램문의</option>
-					</select>
-				</div>
-				
-				<input type="submit" class="btn btn-info" value="찾기">
+					</div>
+					<label>
+					<input type="text" class="form-control input-sm" name="keyWord" value="${keyWord }">
+					</label>
+					
+					<label> 
+					<input type="hidden" value="${keyWord2 }" name="keyWord2">
+					<input class="btn btn-warning btn-sm" type="button" value="검색" onClick="check()"></label> 
+					<input type="hidden" name="page" value="0">
 			</form>
-  
-
-  
-  </div>
+		</div>
+			
   </div>
   </div>
   </div>
@@ -215,11 +218,18 @@ width:50%;
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
 </body>
 <script type="text/javascript">
-$(document).ready(function(){
-	$(document).on("change","select[name=selectSearch]", function(){
-		$("#kwd").hide();
-		$("#divSelCategory").show();
-	});
+/* 검색 */
+function check() {
+	if (document.search.keyWord.value == "") {
+		alert("검색어를 입력하세요.");
+		document.search.keyWord.focus();
+		return;
+	}
+		document.search.submit();
+}
+
+$("#selCate").on("change",function(){
+	document.category.submit();
 });
 </script>
 </html>

@@ -291,12 +291,9 @@
 						
 						<div class="form-group">
 							<div class="col-lg-12 text-center">
-								<button class="btn btn-primary" id="modi" >
-									수정하기<i class="fa fa-check spaceLeft"></i>
-								</button>
-								<a class="btn btn-danger" href="javascript:history.go(-1);">
-									취소<i class="fa fa-times spaceLeft"></i>
-								</a>
+								<button class="btn btn-primary" id="modi" >수정하기<i class="fa fa-check spaceLeft"></i></button>
+								<a class="btn btn-danger" href="javascript:history.go(-1);">취소<i class="fa fa-times spaceLeft"></i></a>
+								<a href="" class="btn btn-warning" data-target="#myModal3"  data-toggle="modal" >회원탈퇴 <span class="glyphicon glyphicon-ban-circle"></span></a>
 							</div>
 						</div>
 					</div>
@@ -307,6 +304,58 @@
 	</div>
 
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
+	
+	
+	
+	
+	
+<!-- id찾기 Modal -->
+  <div class="modal fade" id="myModal3" role="dialog" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+    
+      <!-- Modal content-->
+     
+      <div class="modal-content">
+      <div class="form-horizontal" >
+    
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">회원탈퇴</h4>
+        </div>
+        <div class="modal-body"><!-- 이름과 이메일로 찾기 -->
+	  <!-- 이름 -->
+       <p class="text-center">정말 탈퇴 하시겠습니까?</p>
+        </div>
+        <div class="modal-footer">
+        <div id="fintdt" class="col-lg-12 text-center">
+        <a  id="userdelete" class="btn btn-warning">탈퇴 <span class="glyphicon glyphicon-ban-circle"></span></a>
+        <a class="btn btn-danger" data-dismiss="modal">취소<i class="fa fa-times spaceLeft"></i></a>
+        </div>
+       <!--  <button type="button" class="btn btn-default" data-dismiss="modal">찾기</button> -->  
+        </div>
+     </div>
+      </div>
+       
+    </div>
+  </div>
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </body>
 
 
@@ -515,7 +564,36 @@
 				divPhoneNumber.addClass("has-success");
 			}
 		});
-	
+		
+		
+		
+		
+		/* 회원 탈퇴  */
+		$("#userdelete").on("click", function(){
+			var userNo =  "${sessionScope.authUser.no }"; 
+			
+			$.ajax({// 비동기식 
+				url : "delete",
+				type : "POST",
+				data : {
+					"userNo" : userNo
+				},
+				success : function(check) {
+					console.log(check);
+					if (check != null) {
+						alert("회원 탈퇴 되었습니다.");
+						location.href = "/beautyline/main"; 
+					}
+
+				},
+				error : function(jqXHR, status, error) {
+					console.error(status + ":" + error);
+				}
+			});
+			
+		}); 
+		
+		
 		
 		
 		
@@ -636,7 +714,6 @@
 			/////////////////////////////////////////////////////////////
 		});
 
-		
 
 		/* id중복체크  */
 		$("#inputId").change(function() {

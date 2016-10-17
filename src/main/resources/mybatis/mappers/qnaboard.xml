@@ -19,7 +19,7 @@
       
    ]]>
    </insert>
-
+ 
      <!-- 답글쓰기 -->
    <insert id="insertreply" parameterType="qnaboardvo" >
    <![CDATA[
@@ -58,6 +58,58 @@
    </select>
 
 
+	<!-- 검색 -->
+	<select id="getSearch" parameterType="map" resultType="qnaboardvo">
+		select b.no, b.category, b.title, to_char(b.reg_date,'yyyy-mm-dd') as regDate, b.view_count as viewCount, b.content as content,
+        b.group_no as groupNo, b.order_no as orderNo, b.depth as depth,
+        u.no as userNo, u.id as userId, u.name as userName  
+      	from bd_qna b, users u
+      	where b.user_no = u.no
+	      	<choose>
+	      	<when test="keyfield.equals('whole')">
+	      	and (b.title like '%'||#{keyword}||'%'
+	      	or b.content like '%'||#{keyword}||'%')
+	      	</when>
+	      	<when test="keyfield.equals('selTitle')">
+	      	and b.title like '%'||#{keyword}||'%'
+	      	</when>
+	      	<when test="keyfield.equals('selContent')">
+	      	and b.content like '%'||#{keyword}||'%'
+	      	</when>
+	      	<when test="keyfield.equals('selName')">
+	      	and u.id like '%'||#{keyword}||'%'
+	      	</when>
+	      	</choose>
+      	order by b.group_no desc, b.order_no asc
+	</select>
+	
+	<!-- 카테고리 선택한 검색 -->
+	<select id="getCateSearch" parameterType="map" resultType="qnaboardvo">
+		select b.no, b.category, b.title, to_char(b.reg_date,'yyyy-mm-dd') as regDate, b.view_count as viewCount, b.content as content,
+        b.group_no as groupNo, b.order_no as orderNo, b.depth as depth,
+        u.no as userNo, u.id as userId, u.name as userName  
+      	from bd_qna b, users u
+      	where b.user_no = u.no
+      	and b.category like #{keyword2}
+	      	<choose>
+	      	<when test="keyfield.equals('whole')">
+	      	and (b.title like '%'||#{keyword}||'%'
+	      	or b.content like '%'||#{keyword}||'%')
+	      	</when>
+	      	<when test="keyfield.equals('selTitle')">
+	      	and b.title like '%'||#{keyword}||'%'
+	      	</when>
+	      	<when test="keyfield.equals('selContent')">
+	      	and b.content like '%'||#{keyword}||'%'
+	      	</when>
+	      	<when test="keyfield.equals('selName')">
+	      	and u.id like '%'||#{keyword}||'%'
+	      	</when>
+	      	</choose>
+      	order by b.group_no desc, b.order_no asc
+	</select>
+	
+	
    <select id="view" parameterType="java.lang.Integer" resultType="qnaboardvo">
       <![CDATA[
       select b.no, b.category, b.user_no as userNo, u.name as userName, b.title, b.content, to_char(reg_date,'yyyy-mm-dd') as regDate,

@@ -67,9 +67,9 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
 
 <style type="text/css">
-/* .col-lg-2, .col-lg-3 {
+ .col-lg-2, .col-lg-3 {
 	padding-left: 0px;
-} */
+} 
 
 #title_title {
 width :45px;
@@ -102,31 +102,35 @@ padding-left: 0px;
 					<!-- 제목 -->
 					<div class="form-group" id="divTitle" >
 						<div class="col-lg-10 col-lg-offset-1">
-							<label class="col-lg-1 control-label" id= "title_title" for="inputName">제목</label>
 							<!-- select  [공지 or 이벤트] -->
 							<div class="col-lg-3">
-								<select class="form-control" name="category_select"
-									id="category_select">
-									<option value="1" selected>선택하세요</option>
+								<select class="form-control" name="category_select" id="category_select">
+									<option value="1" selected>카테고리</option>
 									<option value="공지">공지</option>
 									<option value="이벤트">이벤트</option>
 								</select>
 							</div>
-							<span class="col-lg-4">
+							<div>
 								<input class="form-control" id="inputTitle" name="title" type="text" placeholder="제목">
-							</span>
+							</div>
 						 </div>
 					</div>
 					
 				 <!-- 첨부파일  -->	
-				<div class="form-group" id= "uploadForm">
-				  <div class="col-lg-10 col-lg-offset-1">
-					<label class="control-label" id= "file_title" for="file">첨부파일</label>
-					<div id="uploadForm">
-						<input class="btn btn-default" name="file" id="file" type="file">		
-					</div>						
+				<div class="form-group"  id= "uploadForm">
+		 			<div class="col-lg-10 col-lg-offset-1">
+						<div class="input-group">
+                		 <label class="input-group-btn">
+                    		<span class="btn btn-success">파일 첨부 <span class="glyphicon glyphicon-folder-open"></span>
+                         	<input id="file" type="file" style="display: none;" multiple>
+                    		</span>
+                		 </label>
+                		<input type="text" class="form-control" readonly>
+            			</div>
+					</div>
 				 </div>
-				</div>
+				
+				
 					  
 				 <div class="form-group" >
 				  <div class="col-lg-10 col-lg-offset-1">

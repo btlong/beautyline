@@ -59,7 +59,7 @@
    <div class= "row">
      <div class="form-group">
      <div class="col-lg-10 col-lg-offset-1">
-            <img src="/beautyline/images/information/program/1.jpg" class="img-responsive">
+            <img src="/beautyline/images/information/brand/brand.png" class="img-responsive">
             
           </div>
           </div>

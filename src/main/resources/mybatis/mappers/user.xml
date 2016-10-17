@@ -39,8 +39,7 @@
 		select no, name, id,  password, is_admin as isAdmin, email1, email2, zip_code as zipCode, address1, address2, phone, agr_email as agrEmail, agr_message as agrMessage from users
         where id=#{id } and password=#{password }
 
-		 
-	]]>
+]]>
 	</select>
       
  	<update id="update" parameterType="uservo">
@@ -88,9 +87,9 @@
 	</update>
 	
 	
-	<delete id="delete" parameterType="uservo">
+	<delete id="delete" parameterType="Long">
 	<![CDATA[
-	 delete from User where no =#{no } and password = #{password }
+	 delete from Users where no =#{userNo }
 	]]>
 	</delete>
 	

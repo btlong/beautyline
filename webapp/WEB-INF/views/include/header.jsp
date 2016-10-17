@@ -12,7 +12,7 @@
 
 
 <div><a href="" data-target="#downloadModal" type="button" data-toggle="modal" data-backdrop="static" role="button"><img id="btn-appdownload" src="/beautyline/images/appdownload/btn_appdownload.png" class="img-responsive"></a></div>
-<div class="brand"><a href ="/beautyline/main"><img class="brand" src="/beautyline/images/beautylinelogo.png" /></a></div>
+<div class="brand"><a href ="/beautyline/main"><img src="/beautyline/images/beautylinelogo.png" /></a></div>
 <div id="includeheader">
 	<ul id="userheader">
 		<c:choose>
@@ -82,7 +82,7 @@
  				
  				
  				
-				<li calss="">
+				<li >
 				<a  class="dropdown-toggle"  data-toggle="dropdown" role="button" aria-expanded="true">게시판 </a>
 					<ul class="dropdown-menu" id="navdropdown" role="menu">
 						<li><a href="/beautyline/noticeboard/board">공지사항</a></li>

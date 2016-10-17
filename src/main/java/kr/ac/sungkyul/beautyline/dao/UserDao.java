@@ -72,7 +72,10 @@ public class UserDao {
 	public UserVo get(String id) { // 이메일 체크 다오
 		return sqlSession.selectOne("user.getByid", id);
 	}
-	public boolean delete(UserVo vo) {
-		return sqlSession.delete("user.delete",vo) !=0;
-}
+	public int delete(Long userNo) {
+		return sqlSession.delete("user.delete",userNo);
+	}
+
+	
+	
 }

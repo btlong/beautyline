@@ -91,8 +91,7 @@
             <div class="col-lg-12">
                <div class="page-header"></div>
                
-               <div class="col-md-2"></div>
-               <div class="col-md-9" id="title">
+               <div class="col-lg-12" id="title">
                
                  <table>
                       <tbody>
@@ -138,8 +137,7 @@
                </div>
                
             
-            <div class="col-md-2"></div>
-            <div class="col-md-9 text-right" id="bottombtns">
+            <div class="col-lg-12 text-right" id="bottombtns">
             
                 <c:if test="${authUser.isAdmin eq 'a'}">
                <a href="deleteform?no=${notiBdVo.no }" class="btn btn-sm btn-danger">삭제 <span class="glyphicon glyphicon-trash"></span></a>

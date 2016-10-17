@@ -37,7 +37,7 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript" src="/beautyline/bootstrap/js/jquery.js"></script>
 <style type="text/css">
-.col-sm-3, .col-sm-2 {
+.col-lg-3, .col-lg-2 {
 	padding-right: 0px;
 }
 
@@ -147,8 +147,8 @@
 
 						<!-- 이름 -->
 						<div class="form-group" id="divName">
-							<label class="col-sm-3 control-label" for="inputName">이름*</label>
-							<div class="col-sm-3">
+							<label class="col-lg-3 control-label" for="inputName">이름*</label>
+							<div class="col-lg-3">
 								<label class="form-control" id="inputName"
 									 >${userVo.name }</label>
 							</div>
@@ -157,8 +157,8 @@
 
 						<!-- 아이디 -->
 						<div class="form-group" id="divId">
-							<label class="col-sm-3 control-label" for="inputId">아이디*</label>
-							<div class="col-sm-3">
+							<label class="col-lg-3 control-label" for="inputId">아이디*</label>
+							<div class="col-lg-3">
 								<label class="form-control onlyAlphabetAndNumber" id="inputId" >${userVo.id }</label>
 							</div>
 						</div>
@@ -166,23 +166,23 @@
 
 						<!-- 비밀번호 -->
 						<div class="form-group" id="divPassword">
-							<label class="col-sm-3 control-label" for="inputPassword">비밀번호*</label>
-							<div class="col-sm-3">
+							<label class="col-lg-3 control-label" for="inputPassword">비밀번호*</label>
+							<div class="col-lg-3">
 								<input class="form-control" id="inputPassword" name="password" type="password" value="${userVo.password }" >
 							</div>
-							<div class="col-sm-3">
+							<div class="col-lg-3">
 								<h11 class="help-block" id="checkPw">특수문자,영문,숫자를 혼합하여 6~20자 이내</h11>
 							</div>
 						</div>
 
 						<!-- 비밀번호확인 -->
 						<div class="form-group" id="divPasswordCheck">
-							<label class="col-sm-3 control-label" for="inputPasswordCheck">비밀번호
+							<label class="col-lg-3 control-label" for="inputPasswordCheck">비밀번호
 								확인*</label>
-							<div class="col-sm-3">
+							<div class="col-lg-3">
 								<input class="form-control" id="inputPasswordCheck" type="password" placeholder="비밀번호 확인" value="${userVo.password }">
 							</div>
-							<div class="col-sm-3">
+							<div class="col-lg-3">
 								<h11 class="help-block" id="oneMore">비밀번호를 한번 더 입력해주세요.</h11>
 							</div>
 						</div>
@@ -191,19 +191,19 @@
 
 						<!-- 이메일 -->
 						<div class="form-group" id="divEmail">
-							<label class="col-sm-3 control-label" for="inputEmail">이메일*</label>
-							<div class="col-sm-2">
+							<label class="col-lg-3 control-label" for="inputEmail">이메일*</label>
+							<div class="col-lg-2">
 						
 								<input class="form-control" id="inputEmail1" type="text" value="${userVo.email1 }">
 							</div>
-							<span class="col-sm-1" id="dat_div">
+							<span class="col-lg-1" id="dat_div">
 							<label class="control-label" >@</label>
 							
 						</span>
-							<div class="col-sm-2" id="inputEmail2_div">
+							<div class="col-lg-2" id="inputEmail2_div">
 								<input class="form-control" id="inputEmail2" type="text" value="${userVo.email2 }">
 							</div>
-					 	 	<div class="col-sm-2" id="email_select_div">
+					 	 	<div class="col-lg-2" id="email_select_div">
 								<select class="form-control" name="email_select" id="email_select">
 									<option value="" selected>선택하세요</option>
 									<option value="naver.com">naver.com</option>
@@ -220,19 +220,19 @@
 
 						<!-- 주소 -->
 						<div class="form-group" id="divAddress">
-							<label class="col-sm-3 control-label">주소*</label>
-							<div class="col-sm-2">
+							<label class="col-lg-3 control-label">주소*</label>
+							<div class="col-lg-2">
 								<input class="form-control" type="text" name="zipCode" id="sample6_postcode" placeholder="우편번호" value="${userVo.zipCode }">
 							</div>
 							<span class="input-group-btn"> <input
 								class="btn btn-success" type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
 							</span>
-							<div class="col-sm-12 col-sm-offset-3">
+							<div class="col-lg-12 col-lg-offset-3">
 								<div class="row">
-									<div class="col-sm-4">
+									<div class="col-lg-4">
 										<input class="form-control"  type="text" id="sample6_address" placeholder="주소" value="${userVo.address1 }">
 									</div>
-									<div class="col-sm-2">
+									<div class="col-lg-2">
 										<input class="form-control"  type="text" id="sample6_address2" placeholder="상세주소" value="${userVo.address2 }"value="${userVo.address2 }">
 									</div>
 								</div>
@@ -242,11 +242,11 @@
 
 						<!-- 휴대폰 번호 -->
 						<div class="form-group" id="divNumber">
-							<label class="col-sm-3 control-label" for="inputNumber">휴대폰번호*</label>
-							<div class="col-sm-3">
+							<label class="col-lg-3 control-label" for="inputNumber">휴대폰번호*</label>
+							<div class="col-lg-3">
 								<input type="text" class="form-control onlyNumber" name="phone" id="inputNumber" placeholder="- 없이 입력해 주세요"  value="${userVo.phone }"/>
 							</div>
-							<div class="col-sm-2" id="btn" >
+							<div class="col-lg-2" id="btn" >
 								<button class="btn btn-success" type="button">
 									인증번호 전송<i class="fa fa-mail-forward spaceLeft"></i>
 								</button>
@@ -256,9 +256,9 @@
 
 
 						<div class="form-group">
-							<label class="col-sm-3 control-label" for="inputEmailReceiveYn" >이메일 수신여부</label>
+							<label class="col-lg-3 control-label" for="inputEmailReceiveYn" >이메일 수신여부</label>
 							
-							<div class="col-sm-7" data-toggle="buttons">
+							<div class="col-lg-7" data-toggle="buttons">
 							<input type="hidden" id ="checkAgrEmail" value="${userVo.agrEmail }" />
 								<label class="btn btn-info" id= "agreeEmail">
 								<input type="radio" class="emailReceiveYn" name="emailReceiveYn" value="Y" autocomplete="off" >
@@ -272,10 +272,10 @@
 						</div><br>
 						
 						<div class="form-group">
-							<label class="col-sm-3 control-label" for="inputPhoneNumber" >SMS 수신여부</label>
+							<label class="col-lg-3 control-label" for="inputPhoneNumber" >SMS 수신여부</label>
 							
 							<input type="hidden" id ="checkAgrMessage" value="${userVo.agrMessage }" />
-							<div class="col-sm-7" id="smsReceveYn" data-toggle="buttons">
+							<div class="col-lg-7" id="smsReceveYn" data-toggle="buttons">
 								<label class="btn btn-info" id="agreeMessage">
 								<input type="radio" class="smsReceiveYn" name="smsReceiveYn" value="Y" autocomplete="off">
 								<span class="fa fa-check"></span>
@@ -290,13 +290,10 @@
 						
 						
 						<div class="form-group">
-							<div class="col-sm-12 text-center">
-								<button class="btn btn-primary" id="modi" >
-									수정하기<i class="fa fa-check spaceLeft"></i>
-								</button>
-								<a class="btn btn-danger" href="javascript:history.go(-1);">
-									취소<i class="fa fa-times spaceLeft"></i>
-								</a>
+							<div class="col-lg-12 text-center">
+								<button class="btn btn-primary" id="modi" >수정하기<i class="fa fa-check spaceLeft"></i></button>
+								<a class="btn btn-danger" href="javascript:history.go(-1);">취소<i class="fa fa-times spaceLeft"></i></a>
+								<a href="" class="btn btn-warning" data-target="#myModal3"  data-toggle="modal" >회원탈퇴 <span class="glyphicon glyphicon-ban-circle"></span></a>
 							</div>
 						</div>
 					</div>
@@ -307,6 +304,58 @@
 	</div>
 
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
+	
+	
+	
+	
+	
+<!-- id찾기 Modal -->
+  <div class="modal fade" id="myModal3" role="dialog" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+    
+      <!-- Modal content-->
+     
+      <div class="modal-content">
+      <div class="form-horizontal" >
+    
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">회원탈퇴</h4>
+        </div>
+        <div class="modal-body"><!-- 이름과 이메일로 찾기 -->
+	  <!-- 이름 -->
+       <p class="text-center">정말 탈퇴 하시겠습니까?</p>
+        </div>
+        <div class="modal-footer">
+        <div id="fintdt" class="col-lg-12 text-center">
+        <a  id="userdelete" class="btn btn-warning">탈퇴 <span class="glyphicon glyphicon-ban-circle"></span></a>
+        <a class="btn btn-danger" data-dismiss="modal">취소<i class="fa fa-times spaceLeft"></i></a>
+        </div>
+       <!--  <button type="button" class="btn btn-default" data-dismiss="modal">찾기</button> -->  
+        </div>
+     </div>
+      </div>
+       
+    </div>
+  </div>
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </body>
 
 
@@ -515,7 +564,36 @@
 				divPhoneNumber.addClass("has-success");
 			}
 		});
-	
+		
+		
+		
+		
+		/* 회원 탈퇴  */
+		$("#userdelete").on("click", function(){
+			var userNo =  "${sessionScope.authUser.no }"; 
+			
+			$.ajax({// 비동기식 
+				url : "delete",
+				type : "POST",
+				data : {
+					"userNo" : userNo
+				},
+				success : function(check) {
+					console.log(check);
+					if (check != null) {
+						alert("회원 탈퇴 되었습니다.");
+						location.href = "/beautyline/main"; 
+					}
+
+				},
+				error : function(jqXHR, status, error) {
+					console.error(status + ":" + error);
+				}
+			});
+			
+		}); 
+		
+		
 		
 		
 		
@@ -636,7 +714,6 @@
 			/////////////////////////////////////////////////////////////
 		});
 
-		
 
 		/* id중복체크  */
 		$("#inputId").change(function() {

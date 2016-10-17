@@ -66,7 +66,7 @@
 <!-- include summernote css/js-->
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
-
+<link rel="stylesheet" href="http://www.prepbootstrap.com/Content/css/loadingbuttoneffects/local.css" /> <!-- 버튼효과 -->
 <style type="text/css">
 .col-lg-2, .col-lg-3 {
 	padding-left: 0px;
@@ -91,7 +91,9 @@ padding-left: 0px;
 #fName {
 	display: inline;
 }
+<
 </style>
+
 
 
 </head>
@@ -112,9 +114,9 @@ padding-left: 0px;
 					<!-- 제목 -->
 					<div class="form-group" id="divTitle" >
 						<div class="col-lg-10 col-lg-offset-1">
-							<label class="col-sm-1 control-label" id= "title_title" for="inputName">제목</label>
+							<label class="col-lg-2 control-label" id= "title_title" for="inputName">제목</label>
 							<!-- select  [공지 or 이벤트] -->
-							<div class="col-lg-2">
+							<div class="col-lg-3">
 								<select class="form-control" name="category_select" id="category_select">
 									<option value="" selected>선택하세요</option>
 									<option value="베이직 케어">베이직 케어</option>
@@ -123,7 +125,7 @@ padding-left: 0px;
 									<option value="여드름 케어">여드름 케어</option>
 								</select>
 							</div>
-							<div class="col-lg-3">
+							<div class="col-lg-5">
 								<input class="form-control" id="inputTitle" name="title" type="text" placeholder="제목" value="${reviewBoardVo.title }">
 							</div>
 						 </div>
@@ -144,6 +146,39 @@ padding-left: 0px;
 			</div>
 			</div>
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </body>
 
@@ -167,6 +202,10 @@ $(document).ready(function() {
 
 
 $("#modify").on("click", function() {
+	/* 진행되고 있는 표시  */
+	$("#modify").removeClass("btn btn-danger");
+	$("#modify").addClass("btn m-progress btn-danger");
+	$('#modify').attr('disabled',true);
 	var no = "${reviewBoardVo.no}";
 	var category = $("#category_select").val();
 	var title = $("#inputTitle").val();
@@ -188,6 +227,10 @@ $("#modify").on("click", function() {
 			contentType:"application/json",
 			success : function(response) {
 				if(response != null){
+					/* 진행되고 있는 표시 지우기  */
+					 $("#modify").removeClass("btn m-progress btn-danger");
+					 $("#modify").addClass("btn btn-danger");
+					 $('#modify').attr('disabled',false);
 					console.log('success');
 			 		location.href = "board";
 			 		return true;

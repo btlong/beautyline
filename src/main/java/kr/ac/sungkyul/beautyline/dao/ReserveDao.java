@@ -24,6 +24,10 @@ public class ReserveDao {
 	public List<ReserveVo> resList( Long userNo ){
 		return sqlSession.selectList( "res.resListUserNo", userNo );
 	}
+	//마이페이지 - 회원번호로 list 조회
+	public List<ReserveVo> myResList( Long userNo ){
+		return sqlSession.selectList( "res.myResListUserNo", userNo );
+	}
 	
 	//예약번호로 검색
 	public ReserveVo selectReserve( int no ){

@@ -38,8 +38,8 @@ public class UserinfoService {
 
 	
 	// 회원삭제
-	public void deleteUser(long no){
-		userinfoDao.deleteUser(no);
+	public int deleteUser(long userno){
+		return userinfoDao.deleteUser(userno);
 	}
 	
 	// 수정폼

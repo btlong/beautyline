@@ -41,6 +41,7 @@ public class UserService {
 
 	/*	회원정보 수정    */
 	public int updateInfo(UserVo vo) {
+		vo.setEmail(vo.getEmail1() + "@" + vo.getEmail2());
 			return userDao.update(vo);
 		}
 
@@ -116,6 +117,10 @@ public class UserService {
 		return userDao.getUserInfo(userNo); 
 	}
 
+	public int delete(Long userNo){
+		return userDao.delete(userNo);
+		
+	}
 	
 	
 }

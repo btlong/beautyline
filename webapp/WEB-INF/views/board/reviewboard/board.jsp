@@ -42,8 +42,14 @@
 
 <style >
 #listTitle{
-width:50%;
+width:60%;
+    
 }
+#title{
+
+text-decoration: none;
+}
+
 </style>
 </head>
 <body>
@@ -85,10 +91,10 @@ width:50%;
 											<!-- (전체 게시물 갯수-(전체회원수-1))>=1이면 -->
 											<c:if test="${(page.totalRecord -status.index)>=1}">
 												<td class="text-center">${page.totalRecord -status.index}</td>
-												<td><a href="view?no=${boardList[i].no }">[${boardList[i].category }] ${boardList[i].title}</a></td>
-												<td>${boardList[i].userId}</td>
-												<td>${boardList[i].viewCount}</td>
-												<td>${boardList[i].regDate}</td>
+												<td><a id ="title" href="view?no=${boardList[i].no }">[${boardList[i].category }] ${boardList[i].title}</a></td>
+												<td class="text-center">${boardList[i].userId}</td>
+												<td class="text-center">${boardList[i].viewCount}</td>
+												<td class="text-center">${boardList[i].regDate}</td>
 											</c:if>
 										</tr>
 
@@ -106,9 +112,9 @@ width:50%;
 								<tr>
 									<th id="listNo" class="danger text-center">no</th>
 									<th id="listTitle" class="danger">제목</th>
-									<th id="listName" class="danger">작성자</th>
-									<th id="listCount" class="danger">조회수</th>
-									<th id="listDate" class="danger">등록일</th>
+									<th id="listName" class="danger text-center">작성자</th>
+									<th id="listCount" class="danger text-center">조회수</th>
+									<th id="listDate" class="danger text-center">작성일</th>
 								</tr>
 							</thead>
 						</table>

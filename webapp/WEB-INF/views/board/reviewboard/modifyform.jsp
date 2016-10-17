@@ -147,6 +147,39 @@ padding-left: 0px;
 			</div>
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
 
 <script >

@@ -57,7 +57,7 @@
 
 <style >
 #listTitle{
-width:50%;
+width:60%;
 
 }
 
@@ -105,9 +105,9 @@ width:50%;
 					<c:if test="${(page.totalRecord -status.index)>=1}">
 					<td>${page.totalRecord -status.index}</td>
 					<td><a href="view?no=${boardList[i].no }">[${boardList[i].category }] ${boardList[i].title}</a></td>
-					<td>관리자</td>
-					<td>${boardList[i].viewCount}</td>
-					<td>${boardList[i].regDate}</td>
+					<td class="text-center">관리자</td>
+					<td class="text-center">${boardList[i].viewCount}</td>
+					<td class="text-center">${boardList[i].regDate}</td>
 					</c:if>
 				  </tr>
 					
@@ -122,13 +122,13 @@ width:50%;
              
            
               <thead>
-                <tr>
-                  <th id="listNo" class="danger text-center">no</th>
-                  <th id="listTitle" class="danger">제목</th>
-                  <th id="listName" class="danger">작성자</th>
-                  <th id="listCount" class="danger">조회수</th>
-                  <th id="listDate" class="danger">등록일</th>
-                </tr>
+				<tr>
+				<th id="listNo" class="danger text-center">no</th>
+				<th id="listTitle" class="danger">제목</th>
+				<th id="listName" class="danger text-center">작성자</th>
+				<th id="listCount" class="danger text-center">조회수</th>
+				<th id="listDate" class="danger text-center">작성일</th>
+				</tr>
               </thead>
             </table>
             </div>

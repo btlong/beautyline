@@ -89,7 +89,7 @@
 											</form>
 										</td>
 										<td>
-											<a href="/beautyline/user/modifyform"  class="btn btn-warning btn-sm" 
+											<a href="/beautyline/user/modifyform" class="btn btn-warning btn-sm" 
 										>회원정보 수정</a>
 										</td>
 									<tr>

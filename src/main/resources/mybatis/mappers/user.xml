@@ -91,9 +91,9 @@
 	</update>
 	
 	
-	<delete id="delete" parameterType="uservo">
+	<delete id="delete" parameterType="Long">
 	<![CDATA[
-	 delete from User where no =#{no } and password = #{password }
+	 delete from Users where no =#{userNo }
 	]]>
 	</delete>
 	

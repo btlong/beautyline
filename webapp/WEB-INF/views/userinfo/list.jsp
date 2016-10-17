@@ -145,10 +145,11 @@
 														</td> --%>
 
 														<td>
-															<!-- 회원 수정 --> <input type="hidden" name="no"
-															value="${listUser[i].no }" /> <a
-															class="btn btn-default  btn-sm"
-															href="modifyuser?no=${listUser[i].no }" role="button">수정</a>
+															<!-- 회원 수정 --> 
+															<input type="hidden" name="no"
+															value="${listUser[i].no }">
+															 <a class="btn btn-default  btn-sm"
+															href="modifyform?no=${listUser[i].no }" role="button">수정</a>
 														</td>
 
 														<td>
@@ -401,6 +402,9 @@
 			});
 
 		});
+		
+		
+		
 		
 		/* ProgramNoVo */
 /* 		var basic = "";

@@ -7,6 +7,7 @@ public class ReplyVo {
 	private String userId;
 	private String content;
 	private String regDate;
+	private String isAdmin;
 	public Long getNo() {
 		return no;
 	}

@@ -60,8 +60,11 @@
 				<hr>
 			</div>
 
-			<div class="col-md-2"></div>
-				<div class="col-md-8">
+			<div class="col-lg-2"></div>
+			<fmt:formatDate value="${now }" pattern="yyyy년 MM월 dd일" var="today" />
+			
+			
+				<div class="col-lg-8">
 					<table class="table table-striped">
 						<thead>
 							<tr class="info">
@@ -75,14 +78,17 @@
 						</thead>
 
 
-						<fmt:formatDate value="${now }" pattern="yyyy년 MM월 dd일" var="today" />
 						
-						<tbody>
-						<%-- 	<c:set var="doneLoop" value="false" />
+							<c:set var="doneLoop" value="false" />
+							
 							<!-- for(i=보고있는 페이지의 시작번호; i<(시작번호+한페이지의 게시물수); i++ ){ -->
-							<c:forEach begin="${page.beginPerPage }" end="${page.beginPerPage + page.numPerPage -1}" var="i"varStatus="status">
+							<c:forEach begin="${page.beginPerPage }" 
+							end="${page.beginPerPage + page.numPerPage -1}" 
+							var="i" varStatus="status">
+						 	
 							<!-- doneLoop가 false이면 루프 계속 돎-->
 							<c:if test="${not doneLoop }">
+						<tbody <c:if test='${today > resList[i].resDate }'> id="resPast" </c:if>>
 	
 							<tr>
 								<!-- (전체 게시물 갯수-(전체회원수-1))>=1이면 -->
@@ -105,7 +111,8 @@
 								<c:set var="doneLoop" value="true" />
 							</c:if>
 						</c:if>
-						</c:forEach> --%>
+						
+						</c:forEach> 
 					</tbody>
 				</table>
 				
@@ -113,31 +120,30 @@
 					<a class="btn btn-danger" type="button" href="javascript:history.go(-1);" >돌아가기</a>
 				</div>
 
-				<!-------------Paging--------------->
-	 			<c:import url="/WEB-INF/views/include/paging.jsp" />
-     			 <!-- 이전 페이지 -->
-							<form id="blockmoveb" name="blockmoveb" method="POST" action="board">
-								<input type="hidden" name="nowBlock" value="${page.nowBlock-1 }" />
-								<input type="hidden" name="nowPage" value="${(page.nowBlock-1)*page.pagePerBlock}" />
-								<%-- <input type="hidden" name="keyField" value="${keyField }" />	
-								<input type="hidden" name="keyWord" value="${keyWord }" /> --%>
-							</form>
+<!-------------Paging--------------->
+	<c:import url="/WEB-INF/views/include/paging.jsp" />
+    	 <!-- 이전 페이지 -->
+			<form id="blockmoveb" name="blockmoveb" method="POST" action="reserveList">
+				<input type="hidden" name="nowBlock" value="${page.nowBlock-1 }" />
+				<input type="hidden" name="nowPage" value="${(page.nowBlock-1)*page.pagePerBlock}" />
+				<%-- <input type="hidden" name="keyField" value="${keyField }" />	
+				<input type="hidden" name="keyWord" value="${keyWord }" /> --%>
+			</form>
+		<!-- 페이지블록 -->
+			<form id="pagemove" name="pagemove" method="POST" action="reserveList">
+				<input type="hidden" name="nowBlock" value="${page.nowBlock}" />
+				<input id="now-page" type="hidden" name="nowPage" value="${page.nowBlock*page.pagePerBlock}" />
+		<%-- 	<input type="hidden"name="keyField" value="${keyField }" />
+				<input type="hidden"name="keyWord" value="${keyWord }" /> --%>
+			</form>
 
-							<!-- 페이지블록 -->
-							<form id="pagemove" name="pagemove" method="POST" action="board">
-								<input type="hidden" name="nowBlock" value="${page.nowBlock}" />
-								<input id="now-page" type="hidden" name="nowPage" value="${page.nowBlock*page.pagePerBlock}" />
-							<%-- 	<input type="hidden"name="keyField" value="${keyField }" />
-								<input type="hidden"name="keyWord" value="${keyWord }" /> --%>
-							</form>
-
-							<!-- 다음 페이지 -->
-							<form id="blockmovef" name="blockmovef" method="POST" action="board">
-								<input type="hidden" name="nowBlock" value="${page.nowBlock+1 }" />
-								<input type="hidden" name="nowPage" value="${(page.nowBlock+1)*page.pagePerBlock}" />
-								<%-- <input type="hidden" name="keyField" value="${keyField }" />
-								<input type="hidden" name="keyWord" value="${keyWord }" /> --%>
-							</form>
+		<!-- 다음 페이지 -->
+			<form id="blockmovef" name="blockmovef" method="POST" action="reserveList">
+				<input type="hidden" name="nowBlock" value="${page.nowBlock+1 }" />
+				<input type="hidden" name="nowPage" value="${(page.nowBlock+1)*page.pagePerBlock}" />
+				<%-- <input type="hidden" name="keyField" value="${keyField }" />
+				<input type="hidden" name="keyWord" value="${keyWord }" /> --%>
+			</form>
 	 	
 			</div>
 			

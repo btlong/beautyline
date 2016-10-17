@@ -7,6 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/information")
 public class InformationController {
 
+	@RequestMapping("/brand")
+	public String brand() {
+		return "information/brand";
+	}
 	
 	@RequestMapping("/program")
 	public String program() {

@@ -78,6 +78,9 @@
    padding-left: 7px;
    text-align: left;
 }
+#list-group{
+	margin-bottom:0px;
+}
 </style>
 
 </head>
@@ -90,9 +93,8 @@
          <div class="box">
             <div class="col-lg-12">
                <div class="page-header"></div>
-               
-               <div class="col-md-2"></div>
-               <div class="col-md-9" id="title">
+           
+               <div class="col-lg-12" id="title">
                
                  <table>
                       <tbody>
@@ -116,7 +118,7 @@
                   </div>
                   
                   <br><br>
-                  <p>댓글갯수는?ㅎ</p>
+                  <p id="replytotal" ></p>
                   <div id="bdhr"></div>
             <ul id="list-group" class="list-group">
           
@@ -129,33 +131,31 @@
             	내요요용용포문으로 돌릴것것거</li> -->
 
             </ul>
-            <div>
-         <a href="#" class="btn btn-warning">더 보기 <span class="glyphicon glyphicon-arrow-down"></span></a>
-                 
-                 </div>
+            
+            <div class="text-center" id="morebt" >
+            <input id="replycheck"  type="hidden" value="0">
+         <a class="btn btn-warning" id="moreclick">더 보기 <span class="glyphicon glyphicon-arrow-down"></span></a>
+          </div>
                  
                  
                  
                  <c:if test='${not empty sessionScope.authUser }'>  
-                          <div id="bdhr"></div>
-              <div  class="list-group-item">
               
-              <textarea rows="3" id="replycontent" class="form-control col-sm-1"></textarea>
-                   
-          <a href="#" id="reply" class="btn btn-lg btn-primary btn-primary">댓글쓰기 <span class="glyphicon glyphicon-comment"></span></a>  
-          </div>
+              <div  class="list-group-item text-center">
+            
+              
+              <textarea rows="3" id="replycontent" class="form-control"></textarea>
+              <div class ="text-center"></div>
+          <a id="reply" class="btn btn-mg btn-primary btn-primary">댓글쓰기 <span class="glyphicon glyphicon-comment"></span></a>  
+          </div> 
             </c:if>
-            
-            
+             
+           
        <div id="bdhr"></div>
-             
-             
-             
-             
+
              
                </div>
-            <div class="col-md-2"></div>
-            <div class="col-md-9 text-right" id="bottombtns"> 
+            <div class="col-lg-12 text-right" id="bottombtns"> 
             
              <c:if test="${authUser.no eq reviewBoardVo.userNo }">
                <a href="deleteform?no=${reviewBoardVo.no }" class="btn btn-sm btn-danger">삭제 <span class="glyphicon glyphicon-trash"></span></a>
@@ -175,7 +175,7 @@
 
 </body>
 <script>
-function replyAll(reviewNo, userNo){
+function replyAll(reviewNo, userNo, isAdmin){
 	var trString="";
 	
 	$.ajax({
@@ -184,15 +184,65 @@ function replyAll(reviewNo, userNo){
         data :{"reviewNo": reviewNo},
         /* contentType: "application/json", */
         success : function (listBoard) {
-        	$.each(listBoard, function(index, replyVo) {
-        		trString += "<li class='list-group-item'>";
-        		trString += "	<div><strong>" + replyVo.userId + "</strong>&nbsp; "+ replyVo.regDate ;
-				if(userNo == replyVo.userNo){
-        		trString += "	<a href='#' data-no='"+ replyVo.no +"' id='deletereply' class='btn btn-xs btn-default'>삭제 <span class='glyphicon glyphicon-trash'></span></a></div>";
-				}
-        		trString += "	<div>" + replyVo.content + "</div>";
-        		trString += "</li>";
-        	});
+        	var length = listBoard.length;
+        	$("#replytotal").text("댓글갯수 "+length+'개');
+        	if( listBoard.length >5 ){
+        		if( $("#replycheck").val() == '0'){//5개만그리기
+        		$.each(listBoard, function(index, replyVo) {
+        			if(index < 5){
+        			trString += "<li class='list-group-item'>";
+            		trString += "	<div><strong>" + replyVo.userId + "</strong>&nbsp;<span id='date'> "+ replyVo.regDate +"</span>" ;
+    				if(userNo == replyVo.userNo || isAdmin=='a'){
+            		trString += "	<a href='#' data-no='"+ replyVo.no +"' id='deletereply' class='btn btn-xs btn-default'>삭제 <span class='glyphicon glyphicon-trash'></span></a></div>";
+    				}
+            		trString += "	<div>" + replyVo.content + "</div>";
+            		trString += "</li>";
+        			}
+        			
+        		});$("#morebt").show();
+        		
+        		}
+        		
+        		else if( $("#replycheck").val() == '1'){//더보기 버튼을 눌렀을때 다그리기
+        			$.each(listBoard, function(index, replyVo) {
+                		trString += "<li class='list-group-item'>";
+                		trString += "	<div><strong>" + replyVo.userId + "</strong>&nbsp;<span id='date'> "+ replyVo.regDate +"</span>" ;
+        				if(userNo == replyVo.userNo ||  isAdmin=='a' ){
+                		trString += "	<a href='#' data-no='"+ replyVo.no +"' id='deletereply' class='btn btn-xs btn-default'>삭제 <span class='glyphicon glyphicon-trash'></span></a></div>";
+        				}
+                		trString += "	<div>" + replyVo.content + "</div>";
+                		trString += "</li>";
+                		
+            		});
+        		}
+        		
+        	}else{
+        		$.each(listBoard, function(index, replyVo) {
+            		trString += "<li class='list-group-item'>";
+            		trString += "	<div><strong>" + replyVo.userId + "</strong>&nbsp;<span id='date'> "+ replyVo.regDate +"</span>" ;
+    				if(userNo == replyVo.userNo || isAdmin=='a'){
+            		trString += "	<a href='#' data-no='"+ replyVo.no +"' id='deletereply' class='btn btn-xs btn-default'>삭제 <span class='glyphicon glyphicon-trash'></span></a></div>";
+    				}
+            		trString += "	<div>" + replyVo.content + "</div>";
+            		trString += "</li>";
+            	});
+        		$("#morebt").hide();
+        		
+        	}
+        	 
+        	  
+/* 		if( 더보기 버튼 활성되면 ){
+			다 뿌려주기  더보기 버튼 비활성 
+		} else{
+
+			더보기 버튼 과 5개 뿌려주기	
+		}         	
+        	 */
+	
+        	/* 
+        	2.5개 이하 
+        	 */
+        	
         	$("#list-group").html(trString);
         	/* console.log(trString) */
         }
@@ -201,10 +251,14 @@ function replyAll(reviewNo, userNo){
 
 
 $(function(){
-	
+	$("#morebt").show();
 	var reviewNo =('${reviewBoardVo.no }');
  	var userNo = "${sessionScope.authUser.no }";
- 	replyAll(reviewNo,userNo);
+ 	var isAdmin	= "${sessionScope.authUser.isAdmin }"; 
+ 	
+ 	
+ 	replyAll(reviewNo,userNo, isAdmin);
+   
  	
 	$("#reply").on("click", function() {
 		var reviewNo =('${reviewBoardVo.no }');
@@ -225,7 +279,7 @@ $(function(){
 			 if(response != null){
 			    	console.log('success');
 			    	
-			    	replyAll(reviewNo,userNo);
+			    	replyAll(reviewNo,userNo,isAdmin);
 			    	$("#replycontent").val("");
 			 		return true;
 			 }
@@ -241,6 +295,17 @@ $(function(){
 				}
 		}); 
 	});
+	
+	
+	$("#moreclick").on("click", function(){
+		$("#morebt").hide();
+		 $("#replycheck").val('1');
+		replyAll(reviewNo,userNo, isAdmin);
+	});
+	
+	
+	
+	
 	
 	
 	
@@ -279,7 +344,4 @@ $(function(){
 
 
 </script>
-
-
-
 </html>

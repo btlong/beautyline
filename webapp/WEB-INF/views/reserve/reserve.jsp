@@ -69,14 +69,13 @@
 					<input type="text" class="form-control" name="name" id="name" >
 					<button class="btn btn-info" id="searchUser">검색</button>
 					<button class="btn btn-success" id="insertUser">회원추가</button>
-					<a href="reservelist" class="btn btn-primary" id="reserveList">예약관리</a>
+					<a href="reserveList" class="btn btn-primary" id="reserveList">예약관리</a>
 				</div>
 <!-- 달력 -->
 				<div class="col-lg-12 text-center">
 					<div id="datepicker"></div>
 					</div>
-				<div class="col-md-4"></div>
-				<div class="col-md-4">	
+				<div class="col-lg-12 text-center">	
 					<h4 id="txt1">예약하고자 하는 날짜를 선택하세요</h4> 
 				</div>
 				
@@ -87,10 +86,10 @@
 						<h2 class="selDateView"></h2>
 					</div>
 	
-					<div class="col-md-2"></div>
+					<div class="col-lg-2"></div>
 	<!-- 프로그램 선택 -->
 					<div class="form-group" id="selBoxgroup">
-						<div class="col-md-3">
+						<div class="col-lg-3">
 							<select class="form-control" name="progName" size="3" id="progName">
 								<option>베이직 케어</option>
 								<option>미백 케어</option>
@@ -99,14 +98,14 @@
 							</select>
 						</div> 
 	<!-- 시간 선택 -->			
-						<div class="col-md-3">
+						<div class="col-lg-3">
 							<select class="form-control" name="resTime" size="3" id="resTime" >							
 								
 							</select>
 							
 						</div>
 	<!-- 예약 정보 -->
-						<div class="col-md-3" id="resInfoBox">
+						<div class="col-lg-3" id="resInfoBox">
 							<div id="resInfo">
 								<h3>예약 정보</h3>
 								<hr>
@@ -141,7 +140,7 @@
 		</div>
 	</div>
 	</div>
-</div>
+
 
 <c:import url="/WEB-INF/views/include/footer.jsp" />
 
@@ -404,6 +403,9 @@ var inputNumber = "";
 			// 예약세부내용 화면 보이게
 			$("#resInfoDiv").removeClass("hide");
 			
+			$("#txt1").text("프로그램과 시간을 선택해 주세요");
+
+			
 			//선택한 날짜를 이용해 db에서 list를 받아온다. 
 			$.ajax({
 				url : "reserveDay",
@@ -444,7 +446,6 @@ var inputNumber = "";
 						 
 						trString += ">" + i + ":00 - " + (i+1) + ":00 " + "</option>" ;
 					}
-					
 					$("#resTime").append(trString);
 				}
 			});

@@ -13,10 +13,21 @@
 </select>
 
 <!-- 회원 - 회원번호로 예약리스트 조회 -->
-<select id="resListUserNo" parameterType="java.lang.Integer" resultType="reservevo">
+<select id="resListUserNo" parameterType="java.lang.Long" resultType="reservevo">
 	<![CDATA[
 		select r.no as no,r.user_no as userNo,u.name as userName,r.prog_name as progName,r.res_date as resDate,r.res_Time as resTime 
 		from reservation r, users u where u.no = r.user_no and r.user_no = #{userNo} order by resDate desc, resTime desc
+	]]>
+
+</select>
+
+<!-- 마이페이지 - 회원번호로 예약리스트 조회 -->
+<select id="myResListUserNo" parameterType="java.lang.Long" resultType="reservevo">
+	<![CDATA[
+		select no, prog_name as progName, res_date as resDate, res_time as resTime 
+		from (select no, user_no as userNo, prog_name, res_date, res_time from reservation order by no desc) 
+		where userNo=#{userNo}
+		and rownum <=5
 	]]>
 
 </select>

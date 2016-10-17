@@ -16,22 +16,16 @@
 			order by no desc
 		]]>
 	</select>
-					<!-- agr_email as agrEmail,
-					agr_message as agrMessage, -->
-	
-	<!-- 쿠폰 -->	
-		<!-- <select id="couponSelect" parameterType="java.lang.Long"
-		resultType="couponvo">
-		<![CDATA[
-			select program_no,count from coupon where user_no = #{no} 
-		]]>
-	</select>	 -->
+					
 	<!-- 쿠폰뷰 -->		
 	<select id="selectCoupon" parameterType="java.lang.Long"
 		resultType="couponvo">
 	<![CDATA[
-		select a.no as no, a.user_no as userNo, a.program_no as programNo, a.count as count from coupon a, users b
-		 where a.user_no= b.no and a.user_no = #{userNo} 
+		select a.no as no, a.user_no as userNo, a.program_no as programNo, a.count as count, a.reg_date as regDate 
+		from coupon a, users b
+		where a.user_no= b.no 
+		and a.user_no = #{userNo}
+		and (a.user_no, a.program_no, a.reg_date) in (select a.user_no as userNo, a.program_no as programNo, MAX(a.reg_date) as reg_date from coupon a group by a.program_no, a.user_no)
 	]]>
 	</select>
 	
@@ -60,11 +54,14 @@
 					phone,
 					id, 
 					password, 
-					email, 
-					address,
-					agr_email as agrEmail,
-					agr_message as agrMessage, 
-					is_admin as isAdmin from users 
+					email1, 
+					email2,
+					email1||'@'||email2 as email, 
+					zip_code as zipCode, 
+					address1,
+					address2,
+					is_admin as isAdmin 
+					from users 
 			where ${keyfield} like '%${keyword}%' order by no desc
 		]]>
 	</select>

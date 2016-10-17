@@ -8,8 +8,6 @@
 
 <html  lang="kr">
 <head>
- 
-   
 
 
 <title>modify</title>
@@ -27,12 +25,9 @@
   <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
 <script src="/beautyline/beautyline/lang/summernote-ko-KR.js"></script>
 
-<!-- Bootstrap Core CSS -->
-
-
 <!-- Custom CSS -->
 <link href="/beautyline/bootstrap/css/business-casual.css" rel="stylesheet">
-	
+<link rel="stylesheet" href="http://www.prepbootstrap.com/Content/css/loadingbuttoneffects/local.css" />	
 	
 <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">
 	
@@ -91,6 +86,7 @@ padding-left: 0px;
 #fName {
 	display: inline;
 }
+
 </style>
 
 
@@ -102,7 +98,6 @@ padding-left: 0px;
 		<div class="row">
 			<div class="box">
 				<div class="col-lg-12">
-				
 					<div class="page-header">
 						<hr><h3 class="text-center"><strong>수정하기</strong></h3><hr>
 					</div>
@@ -118,7 +113,9 @@ padding-left: 0px;
 								<select class="form-control" name="category_select" id="category_select">
 									<option value="" selected>선택하세요</option>
 									<option value="예약문의">예약문의</option>
+									<option value="예약답변">예약답변</option>
 									<option value="프로그램문의">프로그램문의</option>
+									<option value="프로그램답변">프로그램답변</option>
 								</select>
 							</div>
 							<div class="col-lg-3">
@@ -136,14 +133,15 @@ padding-left: 0px;
  				</div>
  					
 				<div class="col-lg-11 text-right">
-					<button id="modify" class="btn btn-danger">수정 <span class="glyphicon glyphicon-ok"></span></button>
-					<a href="board" class="btn btn-primary">취소 <span class="glyphicon glyphicon-repeat"></span></a>
+					<button id="modify" class="btn btn-info">수정 <span class="glyphicon glyphicon-ok"></span></button>
+					<a href="board" class="btn btn-danger">취소 <span class="glyphicon glyphicon-repeat"></span></a>
 				</div>
 			</div>	
 		</div>
-			</div>
-			</div>
-			</div>
+		
+		</div>
+	</div>
+</div>
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
 
 
@@ -170,6 +168,13 @@ $(document).ready(function() {
     
 
 $("#modify").on("click", function() {
+	
+	
+	$("#modify").removeClass("btn btn-info");
+	$("#modify").addClass("btn m-progress btn btn-info");
+	$('#modify').attr('disabled',true);
+	
+
     var data = new FormData();
     
 	var boardNo = "${qnabdvo.no}";
@@ -194,6 +199,9 @@ $("#modify").on("click", function() {
 			processData: false,
 		    contentType: false,
 		    success : function() {
+		    	$("#modify").removeClass("btn m-progress btn btn-info");
+				$("#modify").addClass("btn btn-info");
+				$('#modify').attr('disabled',false);
 				console.log("success");
 				location.href = "board";
 			}

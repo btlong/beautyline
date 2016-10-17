@@ -96,7 +96,7 @@ public class UserController {
 	
 	
 	
-
+	
 	
 	/* 회원 정보 수정 */	
 	@RequestMapping("/modifyform")
@@ -120,7 +120,19 @@ public class UserController {
 	
 	/*--------------*/
 
-
+	/* 회원 탈퇴 */
+	@ResponseBody
+	@RequestMapping(value="/delete", method=RequestMethod.POST)
+	public int  delete(@RequestParam Long userNo,HttpSession session){
+		System.out.println(userNo);
+	    int check =	userService.delete(userNo);
+	    if(check == 1){ 
+		session.removeAttribute("authUser");
+		session.invalidate(); //
+	    }
+		return check;
+	
+	}
 	
 	
 	

@@ -47,23 +47,26 @@
 					</h2>
 					<hr>
 				</div>
-
-				<div class="col-md-3"></div>
-				<div class="col-md-6">
-				<table class="table">
-				<tr>
+			<div class="col-lg-2"></div>
+				<div class="col-lg-8">
+				<table class="table table-striped">
+				<thead>
+					<tr class="info">
 						<th>회원이름</th>
 						<th>예약 프로그램</th>
 						<th>예약일</th>
 						<th>예약 시간</th>
 						
 					</tr>
+				</thead>
+				<tbody>
 				<tr>
 					<td>${reserveVo.userName }</td>
 					<td>${reserveVo.progName }</td>
 					<td>${reserveVo.resDate }</td>
 					<td>${reserveVo.resTime }시 - ${reserveVo.resTime + 1 }시</td>
 				</tr>
+				</tbody>
 				</table>
 				
 				<div class="col-lg-12 text-center">
@@ -99,8 +102,8 @@
 				</div>
 				
 			<!-- body -->
-				<div class="modal-body">
-					예약이 취소 되었습니다.
+				<div class="modal-body text-center">
+					<h4>예약이 취소 되었습니다.</h4>
 				</div>
 				
 			<!-- Footer -->
@@ -135,7 +138,7 @@ $(document).ready(function(){
 	});
 	
 	$("#backList").on("click", function(){
-		location.href = "reservelist";
+		location.href = "reserveList";
 	});
 	
 	$("#backMain").on("click", function(){

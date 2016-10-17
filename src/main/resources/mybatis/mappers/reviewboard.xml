@@ -64,7 +64,7 @@
 	<!-- 댓글 리스트 -->
 	<select id="getReplyAll" resultType="replyvo">
 	  <![CDATA[
-      select r.no, r.content, r.user_no as userNo, u.id as userId, to_char(reg_date,'yyyy-mm-dd') as regDate  
+      select r.no, r.content, r.user_no as userNo, u.id as userId, to_char(reg_date,'yyyy-mm-dd hh:mi:ss') as regDate  
       from rp_re r, users u where r.user_no = u.no and r.review_no = #{reviewNo } order by r.no desc
 	  ]]>
 	</select>

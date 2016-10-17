@@ -1,8 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -11,12 +9,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <!-- Bootstrap Core CSS -->
-<link href="/beautyline/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet">
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
 
 <!-- Custom CSS -->
 <link href="/beautyline/bootstrap/css/business-casual.css"
 	rel="stylesheet">
+
+<!-- 테마 -->
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT"
+	crossorigin="anonymous">
 
 <!-- Fonts -->
 <link
@@ -26,17 +31,14 @@
 	href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic"
 	rel="stylesheet" type="text/css">
 
-<!-- 테마 -->
-<link
-	href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT"
-	crossorigin="anonymous">
-
 <link href="/beautyline/beautyline/css/include.css" rel="stylesheet">
+
+
 <!-- Custom style -->
 <link rel="stylesheet"
 	href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+	
+
 <style type="text/css">
 #page-location {
 	color: red;
@@ -46,10 +48,64 @@
 	padding-top: 0px;
 	height: auto;
 }
+
+.button {
+	display: inline-block;
+	border-radius: 4px;
+	background-color: #f4511e;
+	border: none;
+	color: #FFFFFF;
+	text-align: center;
+	font-size: 28px;
+	padding: 20px;
+	width: 60px;
+	transition: all 0.5s;
+	cursor: pointer;
+	margin: 5px;
+}
+
+.button span {
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	transition: 0.5s;
+}
+
+.button span:after {
+	content: '>>';
+	position: absolute;
+	opacity: 0;
+	top: 0;
+	right: -20px;
+	transition: 0.5s;
+}
+
+.button:hover span {
+	padding-right: 25px;
+}
+
+.button:hover span:after {
+	opacity: 1;
+	right: 0;
+}
+
+/* 검색 재정의 */
+.input-sm {
+	height: 25px;
+	padding: 6px 9px;
+	font-size: 12px;
+	line-height: 1.5;
+	border-radius: 3px;
+}
+
+.btn-sm, .btn-group-sm>.btn {
+	padding: 3px 6px;
+	font-size: 13px;
+	line-height: 1.5;
+	border-radius: 3px;
+}
 </style>
-
 </head>
-
 <body>
 
 	<c:import url="/WEB-INF/views/include/header.jsp" />
@@ -86,6 +142,7 @@
 										<th class="text-center">프로그램</th>
 										<th class="text-center">금액</th>
 										<th class="text-center">결제방법</th>
+										<th class="text-center">환불신청</th>
 									</tr>
 								</thead>
 
@@ -109,6 +166,15 @@
 													<td class="text-center">${visitList[i].programName}</td>
 													<td class="text-right">${visitList[i].price}</td>
 													<td class="text-center">${visitList[i].payName}</td>
+													<td class="text-center">
+														<!-- 쿠폰 조회  --> <!-- Trigger the modal with a button -->
+															<input type="hidden" name="no" value="${listUser[i].no }" />
+															<a class="button btn btn-default btn-sm" href=""
+															data-target="#modalRefund" type="button"
+															data-toggle="modal" data-backdrop="static" role="button"
+															data-userno="${visitList[i].no}">환불</a>
+													
+													</td>
 												</c:if>
 											</tr>
 
@@ -123,10 +189,7 @@
 							</table>
 						</div>
 
-						<!-------------Paging--------------->
 						<c:import url="/WEB-INF/views/include/paging.jsp" />
-
-
 
 						<form class="form-inline" action="details" name="search"
 							method="post">
@@ -147,8 +210,10 @@
 								</select> <label> <input type="text"
 									class="form-control input-sm" name="keyWord"
 									value="${keyWord }">
-								</label> <label> <input class="btn btn-warning btn-sm"
-									type="button" value="검색" onClick="check()">
+								</label> <label>
+									<button class="button btn btn-warning btn-sm" onClick="check()">
+										<span>검색</span>
+									</button>
 								</label> <input type="hidden" name="page" value="0">
 							</div>
 						</form>
@@ -201,7 +266,41 @@
 
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
 
+	<!-- 쿠폰 충전 모달 -->
+	<div id="modalRefund" class="modal fade " tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-content modal-dialog">
+			<!-- header -->
+			<div class="modal-header">
+				<!-- 닫기(x) 버튼 -->
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<!-- header title -->
+				<h4 class="modal-title text-center">
+					<strong>환불 요청</strong>
+				</h4>
+			</div>
+
+			<div class="modal-body">
+				<div class="row text-center">
+					<h3>
+						<strong>환불하시겠습니까?</strong>
+					</h3>
+				</div>
+			</div>
+
+			<!-- Footer -->
+			<div class="modal-footer">
+				<div class="col-lg-12 text-center form-group">
+					<input id="refund" class="btn btn-danger " type="button"
+						value="환불하기">
+					<button type="button" class=" btn btn-danger" data-dismiss="modal">닫기</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
+<!-------------Paging--------------->
+
 <script type="text/javascript">
 	$(document).ready(function() {
 
@@ -216,6 +315,11 @@
 			$('#pagemove').trigger('focus');
 			$('#blockmovef').trigger('focus');
 		}
+
+		/* 환불 */
+		$("#reundOk").on("click", function() {
+			$("#modalRefund").modal();
+		});
 	});
 </script>
 </html>

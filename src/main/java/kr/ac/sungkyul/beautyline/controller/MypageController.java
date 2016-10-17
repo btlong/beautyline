@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.ac.sungkyul.beautyline.service.MypageService;
 import kr.ac.sungkyul.beautyline.vo.ListVo;
@@ -34,8 +35,10 @@ public class MypageController {
    
    // 히스토리
       @RequestMapping("/history")
-      public String listHistory(HttpSession session, ListVo listVo, Model model) {
+      public String listHistory(HttpSession session, ListVo listVo, Model model,
+    		  @RequestParam(value = "pageType", required = false) String pageType) {
          UserVo authUser =(UserVo) session.getAttribute("authUser");
+         System.out.println("페이지 타입 : "+pageType);
          System.out.println("세션 값 : " + authUser.getNo());
          
          listVo.setUserNo(authUser.getNo());
@@ -44,7 +47,7 @@ public class MypageController {
          System.out.println("listVo : " + listVo);
          
          model.addAttribute("listVo", listVo); // jsp에서 쓸 이름, 넘겨줄 애(실제 데이터)
-         
+         model.addAttribute("pageType", pageType);
 
          return "mypage/history";
       }

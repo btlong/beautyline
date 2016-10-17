@@ -46,6 +46,7 @@
 <script type="text/javascript" src="/beautyline/jquery/jquery-1.9.0.js"></script>
 <script type="text/javascript"
 	src="/beautyline/jquery/jquery.scrollfollow.js"></script>
+
 <style type="text/css">
 div.clumn {
 	width: 360px;
@@ -216,6 +217,22 @@ style>.headermessage {
 <script type="text/javascript">
 	$(document).ready(function() {
 
+		/* 사진으로 보는중이면 */
+		if ($("#pageType").val() == "P") {
+
+			$("#graph").addClass('hide');
+			$("#graphTable").addClass('hide');
+			$("#imageTable").removeClass('hide');
+			$("#imageShow").html("점수로 보기");
+
+			/* 점수로 보는중이면 */
+		} else {
+			$("#graph").removeClass('hide');
+			$("#graphTable").removeClass('hide');
+			$("#imageTable").addClass('hide');
+			$("#imageShow").html("사진으로 보기");
+		}
+
 		$("#ad").scrollFollow({
 			speed : 800, // 꿈지럭 거리는 속도
 			offset : 500
@@ -239,8 +256,41 @@ style>.headermessage {
 
 		});
 
-	});
+		$("#imageShow").on("click", function() {
 
+			if ($("#imageTable").hasClass('hide') == true) {
+
+				$("#graph").addClass('hide');
+				$("#graphTable").addClass('hide');
+				$("#imageTable").removeClass('hide');
+				$("#imageShow").html("리스트로 보기");
+				$("#pageType").val("P");
+
+			} else { /* 그래프 0 */
+				$("#graph").removeClass('hide');
+				$("#graphTable").removeClass('hide');
+				$("#imageTable").addClass('hide');
+				$("#imageShow").html("사진으로 보기");
+				$("#pageType").val("L");
+			}
+		});
+
+		$(".filter-tab").click(function() {
+			var value = $(this).attr('data-filter');
+
+			if (value == "전부") {
+				//$('.filter').removeClass('hidden');
+				$('.filter').show('1000');
+			} else {
+				//		            $('.filter[filter-item="'+value+'"]').removeClass('hidden');
+				//		            $(".filter").not('.filter[filter-item="'+value+'"]').addClass('hidden');
+				$(".filter").not('.' + value).hide('3000');
+				$('.filter').filter('.' + value).show('3000');
+
+			}
+		});
+
+	});
 	//숫자 카운터(%값)
 	var max1 = 0;
 	var max2 = 0;
@@ -305,7 +355,6 @@ style>.headermessage {
 
 	$(function() {
 		$(".movepage").click(function() {
-			console.log("click");
 			var cp = $(this).data("cp");
 
 			$("#currentPage").val(cp);
@@ -313,19 +362,30 @@ style>.headermessage {
 
 		});
 	});
-	
+
 	/* test */
-	$("#imageShow").click(function() {
-		$("a").first().show("fast", function showNext() {
-			$(this).next("a").show("fast", showNext);
+	$(function() {
+		$("#items a").fluidbox();
+
+		var $container = $("#items");
+		imagesLoaded("#items", function() {
+			$container.isotope({
+				itemSelector : ".item",
+				layoutMode : "fitRows"
+			});
+		});
+
+		$("#select-filter").selectpicker({
+			size : 6
+		}).change(function() {
+			$container.isotope({
+				filter : "." + $(this).val(),
+				transitionDuration : "1s"
+			});
+			$("#items a").fluidbox();
 		});
 	});
-
-	$("#hidr").click(function() {
-		$("div").hide(1000);
-	});
-	/* test End */
-	
+	/* test end */
 </script>
 </head>
 <body>
@@ -334,7 +394,8 @@ style>.headermessage {
 	<form id="list_form" action="/beautyline/mypage/history" method="POST">
 		<input type="hidden" id=currentPage name="currentPage"
 			value=${listVo.currentPage }> <input type="hidden" id=userNo
-			name="userNo" value=${authUser.no }>
+			name="userNo" value=${authUser.no }> <input type="hidden"
+			id=pageType name="pageType" value="${pageType}">
 	</form>
 
 	<c:import url="/WEB-INF/views/include/header.jsp" />
@@ -354,12 +415,8 @@ style>.headermessage {
 	</div>
 
 	<div class="container">
-
-
 		<div class="row">
 			<div class="box">
-
-
 				<div class="col-lg-12">
 					<hr>
 					<h2 class="intro-text text-center">
@@ -368,7 +425,9 @@ style>.headermessage {
 					<hr>
 				</div>
 
-				<div class="col-lg-12" id="graphTable">
+				<button type="button" id="imageShow">사진으로 보기</button>
+
+				<div class="col-lg-12" id="graph">
 					<h2 class="col-lg-12 text-center">
 						<small id="selectedDay"></small>
 					</h2>
@@ -408,10 +467,10 @@ style>.headermessage {
 					</div>
 				</div>
 
-				<button type="button" id="imageShow">사진으로 보기</button>
-
+				<div class="zoom-desc"></div>
 				<div class="col-lg-12" id="visitRecords">
-					<table class="table table-bordered table-hover table-responsive">
+					<table class="table table-bordered table-hover table-responsive"
+						id="graphTable">
 						<thead>
 							<tr>
 								<th class="danger">번호</th>
@@ -444,108 +503,120 @@ style>.headermessage {
 
 					</table>
 
-					<div id="imageTable" style="display: none;">
+					<div class="hide" id="imageTable">
+						<div class="col-lg-12 center-block">
+							<!-- <div role="tabpanel"> -->
+							<!-- Nav tabs -->
+							<!-- <ul class="nav nav-tabs" role="tablist">
+												<li role="presentation" class="active filter-tab"
+													data-filter="전부"><a href="#" aria-controls="home"
+													role="tab" data-toggle="tab">All</a></li>
+												<li role="presentation" class="active filter-tab"
+													data-filter="베이직 케어"><a href="#"
+													aria-controls="profile" role="tab" data-toggle="tab">베이직
+														케어</a></li>
+												<li role="presentation" class="active filter-tab"
+													data-filter="미백 케어"><a href="#"
+													aria-controls="messages" role="tab" data-toggle="tab">미백
+														케어</a></li>
+												<li role="presentation" class="active filter-tab"
+													data-filter="주름 케어"><a href="#"
+													aria-controls="settings" role="tab" data-toggle="tab">리프팅</a></li>
+												<li role="presentation" class="active filter-tab"
+													data-filter="여드름 케어"><a href="#"
+													aria-controls="settings" role="tab" data-toggle="tab">여드름
+														케어</a></li>
+											</ul>
+ -->						<br>
+							<c:forEach var='visitVo' items='${listVo.visitList }'
+								varStatus='status'>
 
-						<div class="container-fluid center-block">
+								<a href="#" data-toggle="modal"
+									data-target=".dialog-${status.index}"
+									data-index="${status.index}"
+									class="center-block text-center content">
+									<div
+										class="image-block col-sm-2 img-responsive img-rounded center-block"
+										style="background: url(download?saveName=thumb_${visitVo.saveName}) no-repeat center top; background-size: cover;">
+										<p>${visitVo.regDate}</p>
+									</div>
 
-							<div class="row">
-								<h3 class="headermessage text-center">측정 내역</h3>
-							</div>
+								</a>
 
+								<!--  Modal content for City Image -->
+								<div class="modal fade dialog-${status.index}"
+									id="dialog-${status.index}" tabindex="-1">
+									<div class="modal-dialog modal-lg">
+										<div class="modal-content">
 
-							<div class="row">
+											<!-- 사진 모달 헤더 -->
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal"
+													aria-hidden="true">x</button>
+												<h4 class="modal-title"
+													id="myLargeModalLabel-${status.index}">상세정보</h4>
+											</div>
 
-								<c:forEach var='visitVo' items='${listVo.visitList }'
-									varStatus='status'>
+											<!-- 사진 모달 바디 -->
+											<div class="modal-body active">
 
-									<a href="#" data-toggle="modal"
-										data-target=".dialog-${status.index}"
-										data-index="${status.index}" class="center-block text-center">
-										<div
-											class="image-block col-sm-2 img-responsive img-rounded center-block"
-											style="background: url(download?saveName=thumb_${visitVo.saveName}) no-repeat center top; background-size: cover;">
-											<p>${visitVo.regDate}</p>
-										</div>
+												<!-- 사진 -->
+												<a href="#"> <img
+													src="download?saveName=${visitVo.saveName}"
+													class="img-responsive img-rounded center-block"
+													alt="Bootstrap template" />
+												</a>
 
-									</a>
-
-									<!--  Modal content for City Image -->
-									<div class="modal fade dialog-${status.index}"
-										id="dialog-${status.index}" tabindex="-1">
-										<div class="modal-dialog modal-lg">
-											<div class="modal-content">
-												<div class="modal-header">
-													<button type="button" class="close" data-dismiss="modal"
-														aria-hidden="true">x</button>
-													<h4 class="modal-title"
-														id="myLargeModalLabel-${status.index}">상세정보</h4>
-												</div>
-
-												<div class="modal-body active">
-													<a href="#"> <img
-														src="download?saveName=${visitVo.saveName}"
-														class="img-responsive img-rounded center-block"
-														alt="Bootstrap template" />
+												<!-- 사진 모달 내용 -->
+												<h3>${visitVo.programName }</h3>
+												<h4>${visitVo.regDate }</h4>
+												<p>${visitVo.memo }</p>
+												<div class="text-center">
+													<a href="#"> <span
+														class="glyphicon glyphicon-thumbs-up"></span> Vote Up
+													</a> <a href="#"> <span
+														class="glyphicon glyphicon-thumbs-down"></span>Vote Down
 													</a>
-													<h3>${visitVo.programName }</h3>
-													<h4>${visitVo.regDate }</h4>
-													<p>${visitVo.memo }</p>
-													<div class="text-center">
-														<a href="#"><span
-															class="glyphicon glyphicon-thumbs-up"></span> Vote Up</a> <a
-															href="#"><span
-															class="glyphicon glyphicon-thumbs-down"></span> Vote Down</a>
-													</div>
-
 												</div>
+
 											</div>
 										</div>
 									</div>
-								</c:forEach>
-							</div>
-
+								</div>
+							</c:forEach>
 						</div>
-
 					</div>
+
+					<!-- begin:paging -->
+					<div class="pager">
+						<ul>
+							<c:if test="${listVo.beforePage > 0 }">
+								<li class="movepage" data-cp=${listVo.beforePage }>◀</li>
+							</c:if>
+							<c:forEach begin='${listVo.firstPage + 1 }'
+								end='${listVo.lastPage }' step='1' var='i'>
+								<c:choose>
+									<c:when test='${listVo.currentPage == i }'>
+										<li class="selected">${i }</li>
+									</c:when>
+
+									<c:otherwise>
+										<li class="movepage" data-cp=${i }>${i }</li>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+
+							<c:if test='${listVo.nextPage > 0 }'>
+								<li class="movepage" data-cp=${listVo.nextPage }>▶</li>
+							</c:if>
+						</ul>
+					</div>
+					<!-- end:paging -->
+
 				</div>
 			</div>
 		</div>
-
-
-
-		<!-- begin:paging -->
-		<div class="pager">
-			<ul>
-				<c:if test="${listVo.beforePage > 0 }">
-					<li class="movepage" data-cp=${listVo.beforePage }>◀</li>
-				</c:if>
-				<c:forEach begin='${listVo.firstPage + 1 }'
-					end='${listVo.lastPage }' step='1' var='i'>
-					<c:choose>
-						<c:when test='${listVo.currentPage == i }'>
-							<li class="selected">${i }</li>
-						</c:when>
-
-						<c:otherwise>
-							<li class="movepage" data-cp=${i }>${i }</li>
-						</c:otherwise>
-					</c:choose>
-				</c:forEach>
-
-				<c:if test='${listVo.nextPage > 0 }'>
-					<li class="movepage" data-cp=${listVo.nextPage }>▶</li>
-				</c:if>
-			</ul>
-		</div>
-		<!-- end:paging -->
-
 	</div>
-
-
-
-
-
-
 
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
 </body>

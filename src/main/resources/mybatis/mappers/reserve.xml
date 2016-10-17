@@ -21,6 +21,17 @@
 
 </select>
 
+<!-- 마이페이지 - 회원번호로 예약리스트 조회 -->
+<select id="myResListUserNo" parameterType="java.lang.Long" resultType="reservevo">
+	<![CDATA[
+		select no, prog_name as progName, res_date as resDate, res_time as resTime 
+		from (select no, user_no as userNo, prog_name, res_date, res_time from reservation order by no desc) 
+		where userNo=#{userNo}
+		and rownum <=5
+	]]>
+
+</select>
+
 
 <select id="resSelect" parameterType="java.lang.Integer" resultType="reservevo">
 

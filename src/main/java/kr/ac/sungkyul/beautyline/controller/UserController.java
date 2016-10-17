@@ -96,8 +96,6 @@ public class UserController {
 	
 	
 	
-	/* MyPageController에 있어욤 */
-	
 	
 	
 	/* 회원 정보 수정 */	

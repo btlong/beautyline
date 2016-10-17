@@ -12,16 +12,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.ac.sungkyul.beautyline.service.MypageService;
+import kr.ac.sungkyul.beautyline.service.ReserveService;
 import kr.ac.sungkyul.beautyline.service.UserService;
 import kr.ac.sungkyul.beautyline.service.UserinfoService;
 import kr.ac.sungkyul.beautyline.vo.CouponVo;
 import kr.ac.sungkyul.beautyline.vo.ListVo;
+import kr.ac.sungkyul.beautyline.vo.ReserveVo;
 import kr.ac.sungkyul.beautyline.vo.UserVo;
 import kr.ac.sungkyul.beautyline.vo.VisitVo;
 
@@ -34,9 +35,11 @@ public class MypageController {
    
    @Autowired
    UserinfoService userinfoService;
-
    @Autowired
    UserService userService;
+   @Autowired
+   ReserveService reserveService;
+
    
     
    /*--- 요약페이지--- */
@@ -45,17 +48,39 @@ public class MypageController {
 		UserVo authUser =(UserVo) session.getAttribute("authUser");
         //System.out.println("세션 값 : " + authUser.getNo());
         UserVo userVo = userService.getUserInfo(authUser.getNo());
-        
+
+		List<ReserveVo> myResList = reserveService.myResList(authUser.getNo());
+		
         visitVo.setUserNo(authUser.getNo());
         //visitVo = mypageService.listHistory(session, visitVo);
-        
         System.out.println("visitVo : " + visitVo);
         
-        model.addAttribute("visitVo", visitVo); // jsp에서 쓸 이름, 넘겨줄 애(실제 데이터)
+        
         model.addAttribute("userVo",userVo);
+        model.addAttribute("myResList", myResList);
+        model.addAttribute("visitVo", visitVo); // jsp에서 쓸 이름, 넘겨줄 애(실제 데이터)
 		
 		return "mypage/main";
 	}
+	
+	//쿠폰뷰
+	@ResponseBody
+	@RequestMapping(value = "selectCoupon", method = RequestMethod.POST)
+	public List<CouponVo> readCouponAjax(Long userNo) {
+		List<CouponVo> couponList = userinfoService.couponList(userNo);
+		System.out.println(couponList.toString());
+		return couponList;
+	}
+	
+	//예약취소
+	@ResponseBody
+	@RequestMapping(value = "reservedelete", method = RequestMethod.POST)
+	public int reservedelete( int no ) throws Exception{
+	//@RequestBody객체로 받을때 . 객체를 해석하라고 지시하는것임
+		int delResult = reserveService.reserveDelete( no );
+		return delResult;
+	}
+
 	@RequestMapping("/history2")
 	public String listHistory2(HttpSession session, ListVo listVo, Model model) {
 		UserVo authUser =(UserVo) session.getAttribute("authUser");
@@ -73,7 +98,7 @@ public class MypageController {
 	}
 	/*------------*/
    
-	// 히스토리
+	/*-----히스토리----*/
 	@RequestMapping("/history")
 	public String listHistory(HttpSession session, ListVo listVo, Model model) {
 		UserVo authUser =(UserVo) session.getAttribute("authUser");
@@ -89,7 +114,6 @@ public class MypageController {
 		
 		return "mypage/history";
 	}
-   
       
       // 사진 출력
       @RequestMapping(value = "download", method = RequestMethod.GET)
@@ -108,33 +132,7 @@ public class MypageController {
     	  
     	  return "mypage/imageview";
       }
+      /*--------------*/
    
-      
-    //쿠폰뷰
-  	@ResponseBody
-  	@RequestMapping(value = "selectCoupon", method = RequestMethod.POST)
-  	public List<CouponVo> readCouponAjax(Long userNo) {
-  		List<CouponVo> couponList = userinfoService.couponList(userNo);
-  		System.out.println(couponList.toString());
-  		return couponList;
-  	}
   	
-  	/* 회원 정보 수정 */
-  	@RequestMapping("/modifyform")
-	public String modifyform(HttpSession session, Model model)  throws Exception  {
-		UserVo authUser = (UserVo) session.getAttribute("authUser");
-		UserVo userVo = userService.getUserInfo(authUser.getNo());
-		model.addAttribute("userVo",userVo);
-		return "user/modifyform";
-	}
-  	@ResponseBody
-	@RequestMapping(value="/modify", method=RequestMethod.POST)
-	public int modify(HttpSession session, @RequestBody UserVo vo ) {
-		UserVo authUser = (UserVo) session.getAttribute("authUser");
-		vo.setNo(authUser.getNo());
-		vo.setName(authUser.getName());
-	    int check =	userService.updateInfo(vo);
-		return check;
-	}
-  	/*--------------*/
 }

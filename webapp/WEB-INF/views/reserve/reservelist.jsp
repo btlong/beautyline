@@ -115,7 +115,7 @@
 				</table>
 				
 				<div class="col-lg-12 text-right">	
-					<a class="btn btn-danger" type="button" href="javascript:history.go(-1);" >돌아가기</a>
+ㄱ					<a class="btn btn-danger" type="button" href="reserve" >돌아가기</a>
 				</div>
 
 <!-------------Paging--------------->
@@ -193,19 +193,12 @@
 
 </body>
 <script>
-$(document).ready(function(){
-	$("#resSearch").on("click",function(){
-		
-	});
-	
-	/* $("#test22").on("click",function(){
-		console.log("짠");
-	}); */
-	
-	
 	$(document).on("change","select[name=keyField]",function(){
 		var test = $("select[name=keyField] option:selected").val();
+		
 		if( test == "selDate"){
+			
+		
 			$( "#datepicker1" ).datepicker({
 				showOtherMonths: true,
 				monthNames: ['01월', '02월', '03월', '04월', '05월', '06월', '07월', '08월', '09월', '10월', '11월', '12월' ],
@@ -221,8 +214,17 @@ $(document).ready(function(){
 			         
 			      }
 				});
+		}else{
+			$( "#datepicker1").val('');
+			$( "#datepicker1" ).datepicker( "destroy" );  
+		
 		}
 	});
+$(document).ready(function(){
+	$("#resSearch").on("click",function(){
+		
+	});
+	
 	
 
 	

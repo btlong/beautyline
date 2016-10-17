@@ -188,7 +188,7 @@ public class NoticeBoardController {
       res.setHeader("Content-disposition", "attachment; filename=\"" + URLEncoder.encode(orgName,"UTF-8") +"\""); // orgname으로 바꿔서 보내준다.
       OutputStream resOut = res.getOutputStream();
    
-      FileInputStream fin = new FileInputStream("C:\\Users\\User\\Download2\\filestore\\"+saveName); // savename을  orgname으로 바꿔서 보내준다.
+      FileInputStream fin = new FileInputStream("c:\\Users\\S401-11\\Downloads\\filestore"+saveName); // savename을  orgname으로 바꿔서 보내준다.
       FileCopyUtils.copy(fin, resOut);
       fin.close();
        

@@ -58,7 +58,7 @@
 
 <style >
 #listTitle{
-width:50%;
+width:60%;
 
 }
 #kwd{
@@ -71,15 +71,6 @@ width:50%;
 	padding-left: 0px;
 }
 </style>
-<script>
-
-
-
-</script>
-
-
-
-
 </head>
 <body>
 	<c:import url="/WEB-INF/views/include/header.jsp" />
@@ -98,8 +89,8 @@ width:50%;
 						</h1>
 						<hr>
 					</div>
-					
-				<div class="col-lg-12 col-lg-offset-1">
+
+					<div class="col-lg-12">
 				<div class="col-lg-2" id="cateBox">
 					<form id="search_form" name="category" action="board" method="post">
 					<select class="form-control input-sm" name="keyWord2" size="1" id="selCate">
@@ -111,6 +102,7 @@ width:50%;
   					</form>
 				</div>
 	         <table class="table table-bordered table-hover table-responsive">                   
+
               <tbody>      
               	<c:set var="doneLoop" value="false" />
 				<!-- for(i=보고있는 페이지의 시작번호; i<(시작번호+한페이지의 게시물수); i++ ){ -->
@@ -127,9 +119,9 @@ width:50%;
 							<img src = "/beautyline/images/arrow2.png" width="10px">
 						</c:if>
 					<a href="view?no=${boardList[i].no }">[${boardList[i].category }] ${boardList[i].title}</a></td>
-					<td> ${boardList[i].userId}</td>
-					<td>${boardList[i].viewCount}</td>
-					<td>${boardList[i].regDate}</td>
+					<td class="text-center"> ${boardList[i].userId}</td>
+					<td class="text-center">${boardList[i].viewCount}</td>
+					<td class="text-center">${boardList[i].regDate}</td>
 					</c:if>
 				  </tr>
 					
@@ -146,15 +138,15 @@ width:50%;
               <thead>
                 <tr>
                   <th id="listNo" class="danger text-center">no</th>
-                  <th id="listTitle" class="danger">제목</th>
-                  <th id="listName" class="danger">작성자</th>
-                  <th id="listCount" class="danger">조회수</th>
-                  <th id="listDate" class="danger">등록일</th>
+                  <th id="listTitle" class="danger text-left">제목</th>
+                  <th id="listName" class="danger text-center">작성자</th>
+                  <th id="listCount" class="danger text-center">조회수</th>
+                  <th id="listDate" class="danger text-center">등록일</th>
                 </tr>
               </thead>
             </table>
             </div>
-            <div class="col-lg-11 text-right">
+            <div class="col-lg-12 text-right">
             <c:if test="${not empty sessionScope.authUser}">
 
       			<a href="writeform" class="btn btn-sm btn-danger">글쓰기 <span class="glyphicon glyphicon-pencil"></span></a>

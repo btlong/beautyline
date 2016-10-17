@@ -90,9 +90,7 @@
          <div class="box">
             <div class="col-lg-12">
                <div class="page-header"></div>
-               
-               <div class="col-md-2"></div>
-               <div class="col-md-9" id="title">
+               <div class="col-lg-12" id="title">
                
                  <table>
                       <tbody>
@@ -103,47 +101,32 @@
                           <td id="titleInfo">
                              <span id="userName">${qnabdvo.userId }</span> &nbsp;
                               <span id="date">${qnabdvo.regDate }</span>
-
-                         
-                          
                           </td>
                            </tr>
                        </tbody>
                       </table>
-
+					<br><br>
                
                   <div id="bdhr"></div>
-                  
+                  <br>
                   <div id="contents">
                      ${qnabdvo.content }
 
-                  </div>
-                  
-                  
-                  
-                  <div id="bdhr"></div>   
-
-
+                  </div><br>
+                    <div id="bdhr"></div><br>
                </div>
-               
             
-            <div class="col-md-2"></div>
-            <div class="col-md-9 text-right" id="bottombtns">
-            
+            <div class="col-lg-12 text-right" id="bottombtns">
+             
              <c:if test="${authUser.no eq qnabdvo.userNo || authUser.isAdmin eq 'a'}">
                <a href="deleteform?no=${qnabdvo.no }" class="btn btn-sm btn-danger">삭제 <span class="glyphicon glyphicon-trash"></span></a>
                <a href="modifyform?no=${qnabdvo.no }" class="btn btn-sm btn-success">글 수정 <span class="glyphicon glyphicon-pencil"></span></a>
 			   <a href="replywriteform?no=${qnabdvo.no }" class="btn btn-sm btn-warning">답글<span class="glyphicon glyphicon-pencil"></span></a>
-           		
            	</c:if>
-
             <a href="board" class="btn btn-sm btn-primary">목록 <span class="glyphicon glyphicon-th-list"></span></a>
-            
             </div>
-            
          </div>
       </div>
-               
       </div>
    </div>         
 

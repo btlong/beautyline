@@ -92,7 +92,7 @@ width:60%;
 						<hr>
 					</div>
 					
-				<div class="col-lg-12 col-lg-offset-1">
+				<div class="col-lg-12">
 				<div class="col-lg-2" id="cateBox">
 					<form id="search_form" name="category" action="board" method="post">
 					<select class="form-control input-sm" name="keyWord2" size="1" id="selCate">
@@ -114,8 +114,8 @@ width:60%;
    				  <tr>
 					<!-- (전체 게시물 갯수-(전체회원수-1))>=1이면 -->
 					<c:if test="${(page.totalRecord -status.index)>=1}">
-					<td>${page.totalRecord -status.index}</td>
-					<td><a href="view?no=${boardList[i].no }">[${boardList[i].category }] ${boardList[i].title}</a></td>
+					<td class="text-center">${page.totalRecord -status.index}</td>
+					<td class="text-left"><a href="view?no=${boardList[i].no }">[${boardList[i].category }] ${boardList[i].title}</a></td>
 					<td class="text-center">관리자</td>
 					<td class="text-center">${boardList[i].viewCount}</td>
 					<td class="text-center">${boardList[i].regDate}</td>
@@ -135,7 +135,7 @@ width:60%;
               <thead>
 				<tr>
 				<th id="listNo" class="danger text-center">no</th>
-				<th id="listTitle" class="danger">제목</th>
+				<th id="listTitle" class="danger text-left">제목</th>
 				<th id="listName" class="danger text-center">작성자</th>
 				<th id="listCount" class="danger text-center">조회수</th>
 				<th id="listDate" class="danger text-center">작성일</th>

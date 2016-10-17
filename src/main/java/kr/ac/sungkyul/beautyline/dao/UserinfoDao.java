@@ -57,8 +57,8 @@ public class UserinfoDao {
 
 	
 	// 회원삭제
-	public void deleteUser(long no) {
-		sqlSession.delete("userinfo.deleteUser", no);
+	public int deleteUser(long userno) {
+		return sqlSession.delete("userinfo.deleteUser", userno);
 	}
 
 	// 수정폼

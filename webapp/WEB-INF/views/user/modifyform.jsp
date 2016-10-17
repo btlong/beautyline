@@ -309,7 +309,7 @@
 	
 	
 	
-<!-- id찾기 Modal -->
+<!-- 퇴원 탈퇴 모달 -->
   <div class="modal fade" id="myModal3" role="dialog" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
     
@@ -331,39 +331,14 @@
         <a  id="userdelete" class="btn btn-warning">탈퇴 <span class="glyphicon glyphicon-ban-circle"></span></a>
         <a class="btn btn-danger" data-dismiss="modal">취소<i class="fa fa-times spaceLeft"></i></a>
         </div>
-       <!--  <button type="button" class="btn btn-default" data-dismiss="modal">찾기</button> -->  
+     
         </div>
      </div>
       </div>
        
     </div>
   </div>
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 </body>
-
-
-
-
-
-
-
 
 <script>
 
@@ -578,6 +553,7 @@
 				data : {
 					"userNo" : userNo
 				},
+			
 				success : function(check) {
 					console.log(check);
 					if (check != null) {
@@ -602,6 +578,11 @@
 		
 		/* validation 검사 & submit   */
 		$("#modi").on("click", function() {
+			
+			/* 진행되고 있는 표시  */
+			$("#modi").removeClass("btn btn-danger");
+			$("#modi").addClass("btn m-progress btn-danger");
+			$('#modi').attr('disabled',true);
 			
 			
 			if ($("#inputPassword").val() == "") {

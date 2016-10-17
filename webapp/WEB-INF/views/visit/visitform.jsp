@@ -49,14 +49,16 @@
 <body>
 	<c:import url="/WEB-INF/views/include/header.jsp" />
 
-	<c:choose>
-		<c:when
-			test="${not empty sessionScope.authUser && authUser.isAdmin eq 'a'}">
+	<!-- container -->
+	<div class="container">
+		<div class="row">
+			<div class="box">
 
-			<!-- container -->
-			<div class="container">
-				<div class="row">
-					<div class="box">
+				<c:choose>
+					<c:when
+						test="${not empty sessionScope.authUser && authUser.isAdmin eq 'a'}">
+
+
 						<div class="col-lg-12">
 							<div class="page-header">
 								<hr>
@@ -270,30 +272,29 @@
 								</form>
 							</div>
 						</div>
-					</div>
-				</div>
+					</c:when>
+
+
+					<c:otherwise>
+						<!-- authUser.isAdmin 값이 'a'가 아닐 때 -->
+						<div class="col-lg-12 text-center">
+							<hr>
+							<h1>
+								<strong>회원관리</strong>
+							</h1>
+							<hr>
+							<h4>관리자만 가능합니다.</h4>
+							<c:import url="/WEB-INF/views/include/login.jsp" />
+						</div>
+					</c:otherwise>
+				</c:choose>
 			</div>
-		</c:when>
-
-
-		<c:otherwise>
-			<!-- authUser.isAdmin 값이 'a'가 아닐 때 -->
-			<div class="col-lg-12">
-				<hr>
-				<h1 class="text-center text-center">
-					<strong>회원관리</strong>
-				</h1>
-				<hr>
-			</div>
-			<h4 class="text-center">관리자페이지 입니다.</h4>
-			<c:import url="/WEB-INF/views/visit/loginform.jsp" />
-		</c:otherwise>
-	</c:choose>
-
+		</div>
+	</div>
 	<!-- 푸터 -->
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
-	
-	
+
+
 	<!-- searchModal -->
 	<div class="modal fade" id="myModal3" role="dialog" tabindex="-1"
 		aria-labelledby="myModalLabel" aria-hidden="true">

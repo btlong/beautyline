@@ -266,6 +266,7 @@
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
 
 
+
 	<!-- 쿠폰조회 Modal -->
 <!-- 	<div class="modal fade" id="modalCoupon" role="dialog" tabindex="-1"
 		aria-labelledby="myModalLabel" aria-hidden="true">

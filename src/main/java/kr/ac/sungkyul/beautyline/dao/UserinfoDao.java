@@ -62,15 +62,14 @@ public class UserinfoDao {
 	}
 
 	// 수정폼
-	/*public UserinfoVo selectUser(long no) {
-		System.out.println("///"+no);
+	public UserinfoVo selectUser(long no) {
 		return sqlSession.selectOne("userinfo.selectUser", no);
-	}*/
+	}
 
 	// 수정
-	/*public void updateUser(UserinfoVo userinfoVo) {
+	public void updateUser(UserinfoVo userinfoVo) {
 		sqlSession.update("userinfo.updateUser", userinfoVo);
-	}*/
+	}
 
 
 

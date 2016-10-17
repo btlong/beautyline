@@ -19,7 +19,7 @@ public class QnABoardDao {
 	
 	
 	
-	/* 전체글 가져오기 */
+	/* 글 가져오기 */
 	public List<QnABoardVo> getAll(String keyfield, String keyword, String keyword2){
         System.out.println("DAO"+keyfield + "//" + keyword + "//" + keyword2);
     	
@@ -28,6 +28,12 @@ public class QnABoardDao {
         List<QnABoardVo> list;
         if( keyword2 != null ){ //카테고리 선택한 경우
         	//검색따로 안한경우
+        	if( keyword2.equalsIgnoreCase("cateRes")){ //예약인경우
+        		keyword2 = "예약";
+        	}else{ //프로그램인경우
+        		keyword2 = "프로그램";
+        	}
+        	
         	map.put("keyword2", keyword2);
         	System.out.println("카테고리 선택한 경우");
     		

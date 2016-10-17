@@ -90,7 +90,7 @@
         u.no as userNo, u.id as userId, u.name as userName  
       	from bd_qna b, users u
       	where b.user_no = u.no
-      	and b.category like #{keyword2}
+      	and b.category like '%'||#{keyword2}||'%'
 	      	<choose>
 	      	<when test="keyfield.equals('whole')">
 	      	and (b.title like '%'||#{keyword}||'%'

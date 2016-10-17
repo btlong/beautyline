@@ -99,17 +99,17 @@ width:50%;
 						<hr>
 					</div>
 					
-					<div class="col-lg-10 col-lg-offset-1">
+				<div class="col-lg-12 col-lg-offset-1">
 				<div class="col-lg-2" id="cateBox">
 					<form id="search_form" name="category" action="board" method="post">
 					<select class="form-control input-sm" name="keyWord2" size="1" id="selCate">
 						<option value="">선택</option>
-						<option value="cateRes" <c:if test="${'cateRes'==keyWord2 }"> selected</c:if>>예약문의</option>
-						<option value="catePro" <c:if test="${'catePro'==keyWord2 }"> selected</c:if>>프로그램문의</option>
+						<option value="cateRes" <c:if test="${'cateRes'==keyWord2 }"> selected</c:if>>예약</option>
+						<option value="catePro" <c:if test="${'catePro'==keyWord2 }"> selected</c:if>>프로그램</option>
 					</select>
 					<input type="hidden" name="page" value="0">
   					</form>
-			</div>
+				</div>
 	         <table class="table table-bordered table-hover table-responsive">                   
               <tbody>      
               	<c:set var="doneLoop" value="false" />
@@ -170,6 +170,7 @@ width:50%;
 			<input type="hidden" name="nowPage" value="${(page.nowBlock-1)*page.pagePerBlock}" />
 			<input type="hidden" name="keyField" value="${keyField }" />	
 			<input type="hidden" name="keyWord" value="${keyWord }" />
+			<input type="hidden"  name="keyWord2" value="${keyWord2 }">
 		</form>
 
 	<!-- 페이지블록 -->
@@ -178,6 +179,7 @@ width:50%;
 			<input id="now-page" type="hidden" name="nowPage" value="${page.nowBlock*page.pagePerBlock}" />
 			<input type="hidden"name="keyField" value="${keyField }" />
 			<input type="hidden"name="keyWord" value="${keyWord }" />
+			<input type="hidden"  name="keyWord2" value="${keyWord2 }">
 		</form>
 
 	<!-- 다음 페이지 -->
@@ -186,6 +188,7 @@ width:50%;
 			<input type="hidden" name="nowPage" value="${(page.nowBlock+1)*page.pagePerBlock}" />
 			<input type="hidden" name="keyField" value="${keyField }" />
 			<input type="hidden" name="keyWord" value="${keyWord }" />
+			<input type="hidden"  name="keyWord2" value="${keyWord2 }">
 		</form>
 		
   	<!-- 검색 -->
@@ -205,7 +208,7 @@ width:50%;
 					</label>
 					
 					<label> 
-					<input type="hidden" value="${keyWord2 }" name="keyWord2">
+					<input type="hidden"  name="keyWord2" value="${keyWord2 }">
 					<input class="btn btn-warning btn-sm" type="button" value="검색" onClick="check()"></label> 
 					<input type="hidden" name="page" value="0">
 			</form>

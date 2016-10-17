@@ -21,9 +21,9 @@ public class NoticeBoardService {
 
 	
 	/* 전체글 가져오기*/
-	public List<NoticeBoardVo> getAll(){
+	public List<NoticeBoardVo> getAll(String keyfield, String keyword, String keyWord2){
 		//찾기가 있다면 if (){ 찾기  sql 문으로 ㄱㄱ 나중에 string 들어와야함
-		List<NoticeBoardVo> list = nBoardDao.getAll();		
+		List<NoticeBoardVo> list = nBoardDao.getAll(keyfield, keyword, keyWord2);		
 		return list;	
 	}
 	public void write(NoticeBoardVo noticeBoardVo){

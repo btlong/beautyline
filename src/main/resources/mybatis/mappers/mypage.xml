@@ -3,6 +3,28 @@
 
 <mapper namespace="mypage">
 
+   <select id="sumListHistory" parameterType="listvo" 
+   resultType="visitvo">
+      <![CDATA[
+        SELECT * FROM ( SELECT rownum as rnum, c.* FROM 
+            (SELECT 
+               a.no 
+              ,b.name as programName
+              ,SUBSTR(a.reg_date,1,10) as regDate
+              ,a.whitening_score as whiteningScore
+              ,a.wrinkle_score as whinkleScore
+              ,a.elastic_score as elasticScore
+              ,a.moisture_score as moistureScore
+              ,a.acne_score as acneScore
+              ,a.average_score as averageScore
+            FROM VISIT a, PROGRAM b
+            WHERE a.user_no = #{userNo } 
+            AND a.program_no = b.no
+            ORDER BY a.REG_DATE desc , a.no desc) c  )
+        WHERE rownum<=5
+      ]]>
+   </select>
+
    <select id="listHistory" parameterType="listvo" 
    resultType="visitvo">
       <![CDATA[

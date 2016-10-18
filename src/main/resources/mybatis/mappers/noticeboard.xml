@@ -90,16 +90,6 @@
        ]]>
       </select>
    
-   
-   
-   
-   
-   
-   
-   
-   
-   
-
    <!-- 글 수정 -->
    <update id="modify" parameterType="noticeboardvo">
    <![CDATA[

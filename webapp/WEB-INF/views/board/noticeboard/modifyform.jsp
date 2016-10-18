@@ -1,6 +1,4 @@
-
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
@@ -8,10 +6,6 @@
 
 <html  lang="kr">
 <head>
- 
-   
-
-
 <title>modify</title>
 
 <meta charset="utf-8">
@@ -32,12 +26,8 @@
 
 <!-- Custom CSS -->
 <link href="/beautyline/bootstrap/css/business-casual.css" rel="stylesheet">
-	
-<link rel="stylesheet" href="http://www.prepbootstrap.com/Content/css/loadingbuttoneffects/local.css" /> <!-- 버튼효과 -->
-	
 <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">
 	
-<link rel="stylesheet"href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
 
 
 <!-- font awesome -->
@@ -54,7 +44,7 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic"
 	rel="stylesheet" type="text/css">
-
+<link rel="stylesheet" href="http://www.prepbootstrap.com/Content/css/loadingbuttoneffects/local.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -89,9 +79,9 @@ padding-left: 0px;
 .modal-footer{
 	text-align: center;
 }
-#fName {
+/* #org_fileName {
 	display: inline;
-}
+} */
 </style>
 
 
@@ -111,49 +101,59 @@ padding-left: 0px;
 				<div class="form-horizontal" id="write-form" >
 					
 					<!-- 제목 -->
-					<div class="form-group" id="divTitle" enctype="multipart/form-data">
+					<div class="form-group" id="divTitle">
 						<div class="col-lg-10 col-lg-offset-1">
-							<label class="col-sm-1 control-label" id= "title_title" for="inputName">제목</label>
 							<!-- select  [공지 or 이벤트] -->
-							<div class="col-lg-2">
+							<div class="col-lg-3">
 								<select class="form-control" name="category_select" id="category_select">
-									<option value="" selected>선택하세요</option>
+									<option value="1" selected>카테고리</option>
 									<option value="공지">공지</option>
 									<option value="이벤트">이벤트</option>
 								</select>
 							</div>
-							<div class="col-lg-3">
+							<div >
 								<input class="form-control" id="inputTitle" name="title" type="text" placeholder="제목" value="${notiBdVo.title }">
 							</div>
 						 </div>
 					</div>
 					
 					
-				 <!-- 첨부파일 삭제  -->	
+				 <!-- 첨부파일 업로드 -->	
 				<div class="form-group" >
-				  <div class="col-lg-10 col-lg-offset-1">
-					<label class="col-sm-1 control-label" id= "file_title" for="file">첨부파일</label>
-							<div class="col-lg-5" >
-								<input class="btn btn-default" name="file" id="file" type="file">
-							</div>
-						
-						<div class="col-lg-5" >
-							<div id="org_fileName">
-								<div id="fName">
-									${file.orgName }
-								</div>
-								<button class="btn btn-danger btn-xs" id="file_delck">X</button>
-							</div>
-						</div>
+		 			<div class="col-lg-10 col-lg-offset-1">
+						<div class="input-group">
+                		 <label class="input-group-btn">
+                    		<span class="btn btn-success">파일 첨부 <span class="glyphicon glyphicon-folder-open"></span>
+                         	<input id="file" type="file" style="display: none;" multiple>
+                    		</span>
+                		 </label>
+                		<input type="text" class="form-control" readonly>
+            			</div>
+					</div>
 				 </div>
-				</div>
-				
-				 	  
+								
+				 <!-- 에디터 -->
 				 <div class="form-group" >
 				  <div class="col-lg-10 col-lg-offset-1">
 					  <textarea id="summernote" name="contents">${notiBdVo.content }</textarea>
  				  </div>
  				</div>
+ 				
+ 				<!-- 첨부파일 삭제 -->
+ 				
+ 				<c:if test='${not empty file.orgName }'>
+ 				 <div class="form-group" >
+ 				<div class="col-lg-10 col-lg-offset-1">
+ 				<div class="input-group">
+ 				<label class="input-group-btn">
+				<a class="btn btn-primary btn-success">기존 첨부파일  <span class="glyphicon glyphicon-floppy-disk"></span></a>
+ 				</label>
+						<div class="form-control"><div id="org_fileName">${file.orgName } &nbsp;
+						<button class="btn btn-danger btn-xs" id="file_delck">X</button></div>
+ 					</div></div>
+ 				</div>	</div>
+				</c:if>
+ 					
  					
 				<div class="col-lg-11 text-right">
 					<button id="modify" class="btn btn-info">수정 <span class="glyphicon glyphicon-ok"></span></button>
@@ -236,7 +236,7 @@ padding-left: 0px;
 
 		$("#delfile").on("click", function() {
 			fileCheck = 1;
-
+			$("#file_delck").hide();
 			$("#org_fileName").hide();
 			$("#myModal").modal('hide');
 
@@ -334,6 +334,10 @@ padding-left: 0px;
 			}
 
 		});
+		
+	
+		
 	});
+	
 </script>
 </html>

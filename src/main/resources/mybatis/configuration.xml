@@ -16,9 +16,7 @@
 		<typeAlias type="kr.ac.sungkyul.beautyline.vo.ListVo" alias="listvo" />
 		<typeAlias type="kr.ac.sungkyul.beautyline.vo.ReviewBoardVo" alias="reviewboardvo" />
 		<typeAlias type="kr.ac.sungkyul.beautyline.vo.ReplyVo" alias="replyvo" />
-
 	</typeAliases>
-
 
 	<mappers>
 		<mapper resource="mybatis/mappers/user.xml" />
@@ -29,7 +27,6 @@
 		<mapper resource="mybatis/mappers/reserve.xml" />
 		<mapper resource="mybatis/mappers/mypage.xml" />
 		<mapper resource="mybatis/mappers/reviewboard.xml" />
-		
 	</mappers>
 
 

@@ -16,8 +16,8 @@ public class ReserveService {
 	private ReserveDao reserveDao;
 	
 	//관리자 - reserveList
-	public List<ReserveVo> resList(){
-		return reserveDao.resList();
+	public List<ReserveVo> resList(String keyfield, String keyword){
+		return reserveDao.resList(keyfield, keyword);
 	}
 	
 	//회원 - 회원번호로 list 조회

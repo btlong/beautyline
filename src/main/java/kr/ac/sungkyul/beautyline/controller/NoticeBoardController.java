@@ -42,7 +42,6 @@ public class NoticeBoardController {
  	         @RequestParam(value = "keyWord", required=false) String keyWord,
  	         @RequestParam(value = "keyWord2", required=false) String keyWord2
        ) {
-		  System.out.println("keyField: "+keyField+" keyWord : "+keyWord+" keyWord2 : "+keyWord2);
 
     	  if( keyWord2 == "" ){
 			  keyWord2 = null;
@@ -142,10 +141,8 @@ public class NoticeBoardController {
    @RequestMapping(value = "/modify", method = RequestMethod.POST)
    public void modify(NoticeBoardVo noticeBoardVo,Long fNo) throws Exception{
       if( fNo != null ){ //fNo있으면
-         System.out.println("fNo있다. fNo삭제할거다");
          nBoardService.delFile(fNo); //첨부파일 삭제
       }
-         System.out.println("글 업뎃한다.");
       nBoardService.modifyBd(noticeBoardVo); //글업데이트
       
       //nBoardService.modify(noticeBoardVo, file);

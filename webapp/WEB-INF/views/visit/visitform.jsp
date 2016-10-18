@@ -58,7 +58,6 @@
 					<c:when
 						test="${not empty sessionScope.authUser && authUser.isAdmin eq 'a'}">
 
-
 						<div class="col-lg-12">
 							<div class="page-header">
 								<hr>
@@ -69,7 +68,7 @@
 							</div>
 							<div class="form-horizontal">
 								<div class="form-group">
-									<div class="col-sm-4 col-sm-offset-7">
+									<div class="col-sm-5 col-sm-offset-7">
 										<a href="" data-target="#myModal1" data-toggle="modal"
 											class="btn btn-danger btn-primary btn-default" id="package">
 											쿠폰 등록</a> <a class="btn btn-danger btn-primary btn-default"
@@ -187,7 +186,7 @@
 									<!-- 결제 정보 -->
 									<div class="form-group">
 										<label class="col-sm-2 control-label">결제 정보</label> <label
-											class="col-sm-2 control-label" id="regDate" name="regDate"
+											class="col-sm-3 control-label" id="regDate" name="regDate"
 											value="${today}">${today}</label>
 										<!-- test -->
 										<div class="col-sm-3 col-sm-offset-2">
@@ -325,15 +324,18 @@
 							<!-- Ajax 들어옴 -->
 						</select>
 
-						<div class="text-center address-bar bg-danger">
-							<label class="control-label col-sm-6 text-right container">
-								<strong>이름 : </strong>
-							</label> <label id="selectedName"
-								class="control-label col-sm-6 text-left container"><strong></strong></label>
-							<br> <label
-								class="control-label col-sm-6 text-right container"><strong>전화번호
-									:</strong></label> <label id="selectedPhone"
-								class="control-label col-sm-6 text-left container"><strong></strong></label><br>
+						<div class="address-bar bg-danger row">
+							<br>
+							<div class="form-group col-sm-12">
+								<label class="col-sm-6 control-label text-right">이름: </label> 
+								<label id="selectedName" class="control-label col-sm-6 text-left">
+								</label>
+							</div>
+							<div class="form-group col-sm-12">	
+								<label class="col-sm-6 control-label text-right">
+								전화번호: </label> 
+								<label id="selectedPhone" class="control-label col-sm-6 text-left"></label>
+							</div>
 						</div>
 					</div>
 

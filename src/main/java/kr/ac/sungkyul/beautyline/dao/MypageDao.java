@@ -17,9 +17,14 @@ public class MypageDao {
    @Autowired
    private SqlSession sqlSession;
    
-   public List<VisitVo> listHistory(ListVo listVo) {
-      List<VisitVo> list = sqlSession.selectList("mypage.listHistory", listVo);
+   public List<VisitVo> sumListHistory(ListVo listVo) {
+      List<VisitVo> list = sqlSession.selectList("mypage.sumListHistory", listVo);
       return list;
+   }
+
+   public List<VisitVo> listHistory(ListVo listVo) {
+	   List<VisitVo> list = sqlSession.selectList("mypage.listHistory", listVo);
+	   return list;
    }
    
    public int countHistory(Long userNo) {

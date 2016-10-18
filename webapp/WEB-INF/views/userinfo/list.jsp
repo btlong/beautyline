@@ -40,7 +40,6 @@
 #total-record {
 	margin-bottom: 5px;
 }
-
 #page-location {
 	color: red;
 }
@@ -145,10 +144,11 @@
 														</td> --%>
 
 														<td>
-															<!-- 회원 수정 --> <input type="hidden" name="no"
-															value="${listUser[i].no }" /> <a
-															class="btn btn-default  btn-sm"
-															href="modifyuser?no=${listUser[i].no }" role="button">수정</a>
+															<!-- 회원 수정 --> 
+															<input type="hidden" name="no"
+															value="${listUser[i].no }">
+															 <a class="btn btn-default  btn-sm"
+															href="modifyform?no=${listUser[i].no }" role="button">수정</a>
 														</td>
 
 														<td>
@@ -177,8 +177,6 @@
 
 							<!-------------Paging--------------->
 							<c:import url="/WEB-INF/views/include/paging.jsp" />
-
-
 							<!-- 검색 -->
 							<div class=row>
 							<div class="col-md-6 col-md-offset-3 text-center">
@@ -248,8 +246,6 @@
 
 
 						<%-- </c:when>
-
-
 						<c:otherwise>
 							<!-- authUser.isAdmin 값이 'a'가 아닐 때 -->
 							<h4>관리자페이지 입니다.</h4>
@@ -264,7 +260,6 @@
 	
 	
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
-
 
 
 	<!-- 쿠폰조회 Modal -->
@@ -322,7 +317,6 @@
 							<tfoot></tfoot>
 						</table>
 					</div>
-
 					<div class="modal-footer">
 						<div id="fintdt" class="col-lg-12 text-center">
 							<button id=reload type="button" class="btn btn-success"
@@ -331,7 +325,6 @@
 					</div>
 				</form>
 			</div>
-
 		</div>
 	</div> -->
 	<!-- Modal-->
@@ -378,7 +371,6 @@
 			}
 			document.search.submit();
 		}
-
 		/* 회원삭제 */
 		$(".delete-user").on("click", function() {
 			var userno = $(this).data("userno");
@@ -399,8 +391,10 @@
 					}
 				});
 			});
-
 		});
+		
+		
+		
 		
 		/* ProgramNoVo */
 /* 		var basic = "";
@@ -454,7 +448,6 @@
 					$('#coupon-userno').val(userNo);
 				}
 			});
-
 			
 				console.log("val:"+$('#one').val()); */
 			/* 쿠폰모달 수정버튼 클릭 */
@@ -494,7 +487,6 @@
 						}
 					}
 				});
-
 			});
 			$("#couponCountModify2").on("click", function() {
 				var no = whitening;//쿠폰번호
@@ -532,7 +524,6 @@
 						}
 					}
 				});
-
 			});
 			$("#couponCountModify3").on("click", function() {
 				var no = antiaging;//쿠폰번호
@@ -570,7 +561,6 @@
 						}
 					}
 				});
-
 			});
 			$("#couponCountModify4").on("click", function() {
 				var no = acne;//쿠폰번호
@@ -608,7 +598,6 @@
 						}
 					}
 				});
-
 			});
 			 */
 	</script>

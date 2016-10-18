@@ -1,13 +1,9 @@
 package kr.ac.sungkyul.beautyline.service;
 
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.List;
 import java.util.UUID;
 
-import javax.imageio.ImageIO;
-
-import org.imgscalr.Scalr;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
@@ -46,13 +42,12 @@ public class VisitService {
 		File target = new File(path, saveName);
 		FileCopyUtils.copy(file.getBytes(), target);
 
-
-		File thumbnail = new File(path, "thumb_"+ saveName);
+		File thumbnail = new File(path, "thumb_" + saveName);
 
 		if (target.exists()) {
 			thumbnail.getParentFile().mkdirs();
-			Thumbnails.of(target).forceSize(152,195).toFile(thumbnail);
-			
+			Thumbnails.of(target).forceSize(152, 195).toFile(thumbnail);
+
 		}
 		visitVo.setImageNo(imageNo);
 		visitVo.setAverageScore((visitVo.getWhiteningScore() + // 미백
@@ -69,7 +64,7 @@ public class VisitService {
 		if (visitVo.getPayNo() == 2) {
 
 			/* 쿠폰 update */
-			visitDao.updateCoupon(visitVo); // userNo와 programNo가 필요.
+			visitDao.updateCouponMinus(visitVo); // userNo와 programNo가 필요.
 		}
 		if (visitVo.getPrice() == null) {
 			visitVo.setPrice(0L); // defined
@@ -78,7 +73,6 @@ public class VisitService {
 		/* 시술 내역 insert */
 		visitDao.SalesInsert(visitVo);
 	}
-
 
 	/*
 	 * public boolean scale(BufferedImage srcImage, String destPath, String
@@ -119,12 +113,35 @@ public class VisitService {
 	}
 
 	public void couponCharge(CouponVo couponVo) {
+		long success = 0;
+		/* 있는지 없는지 select */
+		Long count = visitDao.couponSelect(couponVo);
+		/* 있으면 update */
+		System.out.println("count를 찍어봅시다." + count);
+		/* 없으면 insert */
 
-		int success = visitDao.couponInsert(couponVo);
+		
+		if (count == null || count == 0) {
+			success = visitDao.couponInsert(couponVo);
+		} else {
+			couponVo.setCount(couponVo.getCount() + count);
+			success = visitDao.updateCouponCharge(couponVo);
+		}
 
 		if (success == 1) {
 			visitDao.SalesInsert(couponVo);
+		} else {
+			System.out.println("씰패");
 		}
+	}
+
+	public void couponRefund(VisitVo visitVo) {
+
+		visitDao.updateRefundCoupon(visitVo);
+	}
+
+	public void insertRefundSales(Long no) {
+		visitDao.insertRefundSales(no);
 	}
 
 }

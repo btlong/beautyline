@@ -70,7 +70,6 @@ public class VisitController {
 		model.addAttribute("page", page);
 		model.addAttribute("keyField", keyField);
 		model.addAttribute("keyWord", keyWord);
-		System.out.println(visitList);
 		return "visit/details";
 	}
 
@@ -156,9 +155,10 @@ public class VisitController {
 	
 	@ResponseBody
 	@RequestMapping(value="refund",  method = RequestMethod.POST)
-	public String refund(@RequestBody VisitVo visitVo) {
-		System.out.println("no :"+visitVo.getNo());
-		System.out.println("userNo :"+visitVo.getUserNo());
-		return "";
+	public int refund(@RequestBody VisitVo visitVo) {
+		visitService.couponRefund(visitVo);
+		visitService.insertRefundSales(visitVo.getNo());
+		
+		return 1;
 	}
 }

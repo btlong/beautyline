@@ -58,7 +58,6 @@
 					<c:when
 						test="${not empty sessionScope.authUser && authUser.isAdmin eq 'a'}">
 
-
 						<div class="col-lg-12">
 							<div class="page-header">
 								<hr>

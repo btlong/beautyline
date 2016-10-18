@@ -153,6 +153,12 @@ public class VisitController {
 		session.invalidate(); //
 		return "redirect:/main";
 	}
-	/* -------------- */
-
+	
+	@ResponseBody
+	@RequestMapping(value="refund",  method = RequestMethod.POST)
+	public String refund(@RequestBody VisitVo visitVo) {
+		System.out.println("no :"+visitVo.getNo());
+		System.out.println("userNo :"+visitVo.getUserNo());
+		return "";
+	}
 }

@@ -117,163 +117,177 @@
 	<div class="container">
 		<div class="row">
 			<div class="box">
-				<div class="col-lg-12">
-					<div class="page-header">
-						<hr>
-						<h1 class="text-center text-center">
-							<strong>방문내역조회</strong>
-						</h1>
-						<hr>
-					</div>
 
-					<!-- 페이지 정보 -->
-					<div id="total-record" class="col-lg-12 text-left">
-						▶전체 회원 수 : ${page.totalRecord }명&nbsp; &nbsp; ▶현재 페이지 ( <span
-							id=page-location>${page.nowPage+1 } / ${page.totalPage}
-							페이지</span>)
-					</div>
+				<c:choose>
+					<c:when
+						test="${not empty sessionScope.authUser && authUser.isAdmin eq 'a'}">
 
+						<div class="col-lg-12">
+							<div class="page-header">
+								<hr>
+								<h1 class="text-center text-center">
+									<strong>방문내역조회</strong>
+								</h1>
+								<hr>
+							</div>
 
-					<div class="form-group">
-						<div class="col-lg-12 text-center center-block">
-							<table class="table table-bordered table-hover table-responsive">
-								<thead>
-									<tr>
-										<th class="text-center">번호</th>
-										<th class="text-center">방문날짜</th>
-										<th class="text-center">고객</th>
-										<th class="text-center">프로그램</th>
-										<th class="text-center">금액</th>
-										<th class="text-center">결제방법</th>
-										<th class="text-center">환불신청</th>
-									</tr>
-								</thead>
+							<!-- 페이지 정보 -->
+							<div id="total-record" class="col-lg-12 text-left">
+								▶전체 회원 수 : ${page.totalRecord }명&nbsp; &nbsp; ▶현재 페이지 ( <span
+									id=page-location>${page.nowPage+1 } / ${page.totalPage}
+									페이지</span>)
+							</div>
 
 
-								<tbody>
-									<c:set var="doneLoop" value="false" />
-
-									<!-- for(i=보고있는 페이지의 시작번호; i<(시작번호+한페이지의 게시물수); i++ ){ -->
-									<c:forEach begin="${page.beginPerPage }"
-										end="${page.beginPerPage + page.numPerPage -1}" var="i"
-										varStatus="status">
-
-										<!-- doneLoop가 false이면 루프 계속 돎-->
-										<c:if test="${not doneLoop }">
+							<div class="form-group">
+								<div class="col-lg-12 text-center center-block">
+									<table
+										class="table table-bordered table-hover table-responsive">
+										<thead>
 											<tr>
-												<!-- (전체 게시물 갯수-(전체회원수-1))>=1이면 -->
-												<c:if test="${(page.totalRecord -status.index)>=1}">
-													<td class="text-center">${page.totalRecord-status.index}</td>
-													<td class="text-center">${visitList[i].regDate}</td>
-													<td class="text-center">${visitList[i].name}</td>
-													<td class="text-center">${visitList[i].programName}</td>
-													<td class="text-right">${visitList[i].price}</td>
-													<td class="text-center">${visitList[i].payName}</td>
-													<td class="text-center">
-													<input type="hidden" data-no="${ visitList[i].no}">
-													<a
-														class="button btn btn-sm refundView" href=""
-														data-target="#myModalRefund" type="button"
-														data-toggle="modal" role="button"
-														data-userno="${visitList[i].userNo}"> <span>환불</span></a>
-													</td>
-													
-													<input type="hidden" name="no" value="${listUser[i].no }" />
-															<a class="btn btn-default btn-sm couponview" href=""
-															data-target="#modalCoupon" type="button"
-															data-toggle="modal" data-backdrop="static" role="button"
-															data-userno="${listUser[i].no}">조회</a>
-													
-													
-													
-													
-													
-													
-												</c:if>
+												<th class="text-center">번호</th>
+												<th class="text-center">방문날짜</th>
+												<th class="text-center">고객</th>
+												<th class="text-center">프로그램</th>
+												<th class="text-center">금액</th>
+												<th class="text-center">결제방법</th>
+												<th class="text-center">환불신청</th>
 											</tr>
-											<!-- 회원수가 토탈 게시물보다 많아지면 루프가 True가 되어 빠져나옴 -->
-											<c:if test="${i+1 == page.totalRecord} }">
-												<c:set var="doneLoop" value="true" />
-											</c:if>
-										</c:if>
-									</c:forEach>
-								</tbody>
-								<tfoot></tfoot>
-							</table>
+										</thead>
+
+
+										<tbody>
+											<c:set var="doneLoop" value="false" />
+
+											<!-- for(i=보고있는 페이지의 시작번호; i<(시작번호+한페이지의 게시물수); i++ ){ -->
+											<c:forEach begin="${page.beginPerPage }"
+												end="${page.beginPerPage + page.numPerPage -1}" var="i"
+												varStatus="status">
+
+												<!-- doneLoop가 false이면 루프 계속 돎-->
+												<c:if test="${not doneLoop }">
+													<tr>
+														<!-- (전체 게시물 갯수-(전체회원수-1))>=1이면 -->
+														<c:if test="${(page.totalRecord -status.index)>=1}">
+															<td class="text-center">${page.totalRecord-status.index}</td>
+															<td class="text-center">${visitList[i].regDate}</td>
+															<td class="text-center">${visitList[i].name}</td>
+															<td class="text-center">${visitList[i].programName}</td>
+															<td class="text-right">${visitList[i].price}</td>
+															<td class="text-center">${visitList[i].payName}</td>
+															<td class="text-center"><a
+																class="button btn btn-sm refundView" href=""
+																data-target="#myModalRefund" type="button"
+																data-toggle="modal" role="button"
+																data-userno="${visitList[i].userNo}"
+																data-no="${visitList[i].no }"><span>환불</span></a></td>
+
+
+
+
+
+														</c:if>
+													</tr>
+													<!-- 회원수가 토탈 게시물보다 많아지면 루프가 True가 되어 빠져나옴 -->
+													<c:if test="${i+1 == page.totalRecord} }">
+														<c:set var="doneLoop" value="true" />
+													</c:if>
+												</c:if>
+											</c:forEach>
+										</tbody>
+										<tfoot></tfoot>
+									</table>
+								</div>
+
+								<c:import url="/WEB-INF/views/include/paging.jsp" />
+
+								<form class="form-inline" action="details" name="search"
+									method="post">
+									<div class="col-lg-12 text-center">
+
+										<select class="form-control input-sm" name="keyField" size="1">
+											<option value="name"
+												<c:if test="${'name'==keyField }"> selected</c:if>>이름
+											</option>
+											<option value="phone"
+												<c:if test="${'phone'==keyField }"> selected</c:if>>
+												방문날짜</option>
+											<option value="id"
+												<c:if test="${'id'==keyField }"> selected</c:if>>프로그램</option>
+											<option value="email"
+												<c:if test="${'email'==keyField }"> selected</c:if>>
+												결제방법</option>
+										</select> <label> <input type="text"
+											class="form-control input-sm" name="keyWord"
+											value="${keyWord }">
+										</label> <label>
+											<button class="button btn btn-warning btn-sm"
+												onClick="check()">
+												<span>검색</span>
+											</button>
+										</label> <input type="hidden" name="page" value="0">
+									</div>
+								</form>
+
+
+								<!-------------Paging n Search form--------------->
+								<!-- 히든 정의 -->
+
+								<!-- 이전 페이지 -->
+								<form id="blockmoveb" name="blockmoveb" method="POST"
+									action="details">
+									<input type="hidden" name="nowBlock"
+										value="${page.nowBlock-1 }" /> <input type="hidden"
+										name="nowPage" value="${(page.nowBlock-1)*page.pagePerBlock}" />
+									<input type="hidden" name="keyField" value="${keyField }" /> <input
+										type="hidden" name="keyWord" value="${keyWord }" />
+								</form>
+
+								<!-- 페이지블록 -->
+								<form id="pagemove" name="pagemove" method="POST"
+									action="details">
+									<input type="hidden" name="nowBlock" value="${page.nowBlock}" />
+									<input id="now-page" type="hidden" name="nowPage"
+										value="${page.nowBlock*page.pagePerBlock}" /> <input
+										type="hidden" name="keyField" value="${keyField }" /> <input
+										type="hidden" name="keyWord" value="${keyWord }" />
+								</form>
+
+								<!-- 다음 페이지 -->
+								<form id="blockmovef" name="blockmovef" method="POST"
+									action="details">
+									<input type="hidden" name="nowBlock"
+										value="${page.nowBlock+1 }" /> <input type="hidden"
+										name="nowPage" value="${(page.nowBlock+1)*page.pagePerBlock}" />
+									<input type="hidden" name="keyField" value="${keyField }" /> <input
+										type="hidden" name="keyWord" value="${keyWord }" />
+								</form>
+							</div>
 						</div>
 
-						<c:import url="/WEB-INF/views/include/paging.jsp" />
-
-						<form class="form-inline" action="details" name="search"
-							method="post">
-							<div class="col-lg-12 text-center">
-
-								<select class="form-control input-sm" name="keyField" size="1">
-									<option value="name"
-										<c:if test="${'name'==keyField }"> selected</c:if>>이름
-									</option>
-									<option value="phone"
-										<c:if test="${'phone'==keyField }"> selected</c:if>>
-										방문날짜</option>
-									<option value="id"
-										<c:if test="${'id'==keyField }"> selected</c:if>>프로그램</option>
-									<option value="email"
-										<c:if test="${'email'==keyField }"> selected</c:if>>
-										결제방법</option>
-								</select> <label> <input type="text"
-									class="form-control input-sm" name="keyWord"
-									value="${keyWord }">
-								</label> <label>
-									<button class="button btn btn-warning btn-sm" onClick="check()">
-										<span>검색</span>
-									</button>
-								</label> <input type="hidden" name="page" value="0">
+						<div class="group-form">
+							<div class="col-sm-2 col-sm-offset-10">
+								<a class="btn-danger btn-primary btn-default"
+									href="/beautyline/visit/visitform" role="button">내역 관리</a> <br />
 							</div>
-						</form>
+						</div>
+					</c:when>
 
 
-						<!-------------Paging n Search form--------------->
-						<!-- 히든 정의 -->
-
-						<!-- 이전 페이지 -->
-						<form id="blockmoveb" name="blockmoveb" method="POST"
-							action="details">
-							<input type="hidden" name="nowBlock" value="${page.nowBlock-1 }" />
-							<input type="hidden" name="nowPage"
-								value="${(page.nowBlock-1)*page.pagePerBlock}" /> <input
-								type="hidden" name="keyField" value="${keyField }" /> <input
-								type="hidden" name="keyWord" value="${keyWord }" />
-						</form>
-
-						<!-- 페이지블록 -->
-						<form id="pagemove" name="pagemove" method="POST" action="details">
-							<input type="hidden" name="nowBlock" value="${page.nowBlock}" />
-							<input id="now-page" type="hidden" name="nowPage"
-								value="${page.nowBlock*page.pagePerBlock}" /> <input
-								type="hidden" name="keyField" value="${keyField }" /> <input
-								type="hidden" name="keyWord" value="${keyWord }" />
-						</form>
-
-						<!-- 다음 페이지 -->
-						<form id="blockmovef" name="blockmovef" method="POST"
-							action="details">
-							<input type="hidden" name="nowBlock" value="${page.nowBlock+1 }" />
-							<input type="hidden" name="nowPage"
-								value="${(page.nowBlock+1)*page.pagePerBlock}" /> <input
-								type="hidden" name="keyField" value="${keyField }" /> <input
-								type="hidden" name="keyWord" value="${keyWord }" />
-						</form>
-					</div>
-				</div>
+					<c:otherwise>
+						<!-- authUser.isAdmin 값이 'a'가 아닐 때 -->
+						<div class="col-lg-12 text-center">
+							<hr>
+							<h1>
+								<strong>회원관리</strong>
+							</h1>
+							<hr>
+							<h4>관리자만 가능합니다.</h4>
+							<c:import url="/WEB-INF/views/include/login.jsp" />
+						</div>
+					</c:otherwise>
+				</c:choose>
 			</div>
-
-			<div class="group-form">
-				<div class="col-sm-1 col-sm-offset-11">
-					<a class="btn-danger btn-primary btn-default"
-						href="/beautyline/visit/visitform" role="button">내역 관리</a> <br />
-				</div>
-			</div>
-
 		</div>
 	</div>
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
@@ -333,31 +347,49 @@
 		}
 
 		/* 환불 */
-			/* 
-			 $.ajax({
-			 url : "visitorsearchform",
-			 type : "POST",
-			 data : JSON.stringify(userVo),
-			 contentType : "application/json",
+		/* 
+		 $.ajax({
+		 url : "visitorsearchform",
+		 type : "POST",
+		 data : JSON.stringify(userVo),
+		 contentType : "application/json",
 
-			 success : function(visitorList) {
+		 success : function(visitorList) {
 
-			 $.each(visitorList, function(index, userVo) {
-			 trString += "<option class='muk'>";
-			 trString += userVo.name;
-			 trString += "&nbsp;|&nbsp;&nbsp;";
-			 trString += userVo.phone;
-			 trString += "</option>";
-			 });
-			 $(".muk").remove();
-			 $("#selected").append(trString);
-			 }
-			 }); */
-
+		 $.each(visitorList, function(index, userVo) {
+		 trString += "<option class='muk'>";
+		 trString += userVo.name;
+		 trString += "&nbsp;|&nbsp;&nbsp;";
+		 trString += userVo.phone;
+		 trString += "</option>";
+		 });
+		 $(".muk").remove();
+		 $("#selected").append(trString);
+		 }
+		 }); */
+		var no;
+		var userNo;
 		$(".refundView").on("click", function() {
-			var userNo = $(this).data("userNo");
-			var no = $(this).data("no");
-			console.log(userNo , no);
+			no = $(this).data("no");
+			userNo = $(this).data("userno");
+		});
+
+		$("#refundOk").on("click", function() {
+			/* var no = $(this).data("no");
+			var userNo = $(this).data("userno"); */
+			console.log(no, userNo);
+
+			var userVo = {
+				"no" : no,
+				"userNo" : userNo
+			};
+
+			$.ajax({
+				url : "refund",
+				type : "POST",
+				data : JSON.stringify(userVo),
+				contentType : "application/json"
+			});
 		});
 
 	});

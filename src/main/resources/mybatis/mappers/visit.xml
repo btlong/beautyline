@@ -61,7 +61,7 @@
 
 	<select id="detailSelect" resultType="visitvo">
 	<![CDATA[
-		SELECT s.no "no", s.reg_date "regDate", u.name "name", pro.name "programName", s.price "price", pay.name "payName"
+		SELECT s.no "no", s.USER_NO "userNo", s.reg_date "regDate", u.name "name", pro.name "programName", s.price "price", pay.name "payName"
 		from sales s,  users u , PAY pay, program pro 
 		where s.USER_NO = u.NO 
 		and  s.PAY_NO = pay.NO
@@ -98,8 +98,8 @@
 		]]>
 		</selectKey>
 	<![CDATA[
-			insert into coupon ( no, user_no, program_no, pay_no, count, reg_date)
-			values ( #{no}, #{userNo}, #{programNo}, #{payNo}, #{count} , sysDate)
+			insert into coupon ( no, user_no, program_no, pay_no, count )
+			values ( #{no}, #{userNo}, #{programNo}, #{payNo}, #{count} )
 	]]>
 	</insert>
 

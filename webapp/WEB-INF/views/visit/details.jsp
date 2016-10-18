@@ -8,9 +8,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
 <!-- Bootstrap Core CSS -->
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+<!-- Modal script -->
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <!-- Custom CSS -->
 <link href="/beautyline/bootstrap/css/business-casual.css"
@@ -33,11 +37,10 @@
 
 <link href="/beautyline/beautyline/css/include.css" rel="stylesheet">
 
-
 <!-- Custom style -->
 <link rel="stylesheet"
 	href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
-	
+
 
 <style type="text/css">
 #page-location {
@@ -167,17 +170,27 @@
 													<td class="text-right">${visitList[i].price}</td>
 													<td class="text-center">${visitList[i].payName}</td>
 													<td class="text-center">
-														<!-- 쿠폰 조회  --> <!-- Trigger the modal with a button -->
-															<input type="hidden" name="no" value="${listUser[i].no }" />
-															<a class="button btn btn-default btn-sm" href=""
-															data-target="#modalRefund" type="button"
-															data-toggle="modal" data-backdrop="static" role="button"
-															data-userno="${visitList[i].no}">환불</a>
-													
+													<input type="hidden" data-no="${ visitList[i].no}">
+													<a
+														class="button btn btn-sm refundView" href=""
+														data-target="#myModalRefund" type="button"
+														data-toggle="modal" role="button"
+														data-userno="${visitList[i].userNo}"> <span>환불</span></a>
 													</td>
+													
+													<input type="hidden" name="no" value="${listUser[i].no }" />
+															<a class="btn btn-default btn-sm couponview" href=""
+															data-target="#modalCoupon" type="button"
+															data-toggle="modal" data-backdrop="static" role="button"
+															data-userno="${listUser[i].no}">조회</a>
+													
+													
+													
+													
+													
+													
 												</c:if>
 											</tr>
-
 											<!-- 회원수가 토탈 게시물보다 많아지면 루프가 True가 되어 빠져나옴 -->
 											<c:if test="${i+1 == page.totalRecord} }">
 												<c:set var="doneLoop" value="true" />
@@ -263,44 +276,47 @@
 
 		</div>
 	</div>
-
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
 
-	<!-- 쿠폰 충전 모달 -->
-	<div id="modalRefund" class="modal fade " tabindex="-1" role="dialog"
+	<!-- 환불 요청 -->
+	<div class="modal fade" id="myModalRefund" role="dialog" tabindex="-1"
 		aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-content modal-dialog">
-			<!-- header -->
-			<div class="modal-header">
-				<!-- 닫기(x) 버튼 -->
-				<button type="button" class="close" data-dismiss="modal">×</button>
-				<!-- header title -->
-				<h4 class="modal-title text-center">
-					<strong>환불 요청</strong>
-				</h4>
-			</div>
 
-			<div class="modal-body">
-				<div class="row text-center">
-					<h3>
-						<strong>환불하시겠습니까?</strong>
-					</h3>
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<!-- header -->
+				<div class="modal-header">
+					<!-- 닫기(x) 버튼 -->
+					<button type="button" class="close" data-dismiss="modal">×</button>
+					<!-- header title -->
+					<h4 class="modal-title text-center">
+						<strong>환불 요청</strong>
+					</h4>
 				</div>
-			</div>
 
-			<!-- Footer -->
-			<div class="modal-footer">
-				<div class="col-lg-12 text-center form-group">
-					<input id="refund" class="btn btn-danger " type="button"
-						value="환불하기">
-					<button type="button" class=" btn btn-danger" data-dismiss="modal">닫기</button>
+				<!-- body -->
+				<div class="modal-body">
+					<div class="text-center">
+						<h4>환불하시겠습니까?</h4>
+					</div>
+				</div>
+
+				<!-- Footer -->
+				<div class="modal-footer">
+					<div class="col-lg-12 text-center form-group">
+						<input id="refundOk" class="button btn btn-sm" type="button"
+							value="환불하기">
+						<button type="button" class="button btn btn-sm"
+							data-dismiss="modal">닫기</button>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</body>
-<!-------------Paging--------------->
 
+
+</body>
 <script type="text/javascript">
 	$(document).ready(function() {
 
@@ -317,9 +333,33 @@
 		}
 
 		/* 환불 */
-		$("#reundOk").on("click", function() {
-			$("#modalRefund").modal();
+			/* 
+			 $.ajax({
+			 url : "visitorsearchform",
+			 type : "POST",
+			 data : JSON.stringify(userVo),
+			 contentType : "application/json",
+
+			 success : function(visitorList) {
+
+			 $.each(visitorList, function(index, userVo) {
+			 trString += "<option class='muk'>";
+			 trString += userVo.name;
+			 trString += "&nbsp;|&nbsp;&nbsp;";
+			 trString += userVo.phone;
+			 trString += "</option>";
+			 });
+			 $(".muk").remove();
+			 $("#selected").append(trString);
+			 }
+			 }); */
+
+		$(".refundView").on("click", function() {
+			var userNo = $(this).data("userNo");
+			var no = $(this).data("no");
+			console.log(userNo , no);
 		});
+
 	});
 </script>
 </html>

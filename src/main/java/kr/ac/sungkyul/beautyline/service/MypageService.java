@@ -115,6 +115,11 @@ public class MypageService {
                , "http://www.dermalogica.co.kr/?r=home&m=shop&cat=3&uid=27"
                , "http://www.dermalogica.co.kr/?r=home&m=shop&cat=2&uid=11"
                , "http://www.dermalogica.co.kr/?r=home&m=shop&cat=3&uid=31"};
+         
+         if(visitList.isEmpty()) {
+        	 return null;
+         }
+         
          VisitVo visitVo = visitList.get(0);
          Long whiteningScore = visitVo.getWhiteningScore();
          Long whinkleScore = visitVo.getWhinkleScore();

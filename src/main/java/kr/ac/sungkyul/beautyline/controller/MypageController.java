@@ -24,7 +24,6 @@ import kr.ac.sungkyul.beautyline.vo.CouponVo;
 import kr.ac.sungkyul.beautyline.vo.ListVo;
 import kr.ac.sungkyul.beautyline.vo.ReserveVo;
 import kr.ac.sungkyul.beautyline.vo.UserVo;
-import kr.ac.sungkyul.beautyline.vo.VisitVo;
 
 @Controller
 @RequestMapping("/mypage")
@@ -77,21 +76,6 @@ public class MypageController {
 		// @RequestBody객체로 받을때 . 객체를 해석하라고 지시하는것임
 		int delResult = reserveService.reserveDelete(no);
 		return delResult;
-	}
-
-	@RequestMapping("/history2")
-	public String listHistory2(HttpSession session, ListVo listVo, Model model) {
-		UserVo authUser = (UserVo) session.getAttribute("authUser");
-		System.out.println("세션 값 : " + authUser.getNo());
-
-		listVo.setUserNo(authUser.getNo());
-		listVo = mypageService.listHistory(session, listVo);
-
-		System.out.println("listVo : " + listVo);
-
-		model.addAttribute("listVo", listVo); // jsp에서 쓸 이름, 넘겨줄 애(실제 데이터)
-
-		return "mypage/history2";
 	}
 	/*------------*/
 

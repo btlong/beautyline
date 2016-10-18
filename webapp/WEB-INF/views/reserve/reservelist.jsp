@@ -38,6 +38,16 @@
 
 </head>
 <style type="text/css">
+.ui-datepicker {
+	margin: auto;
+	width: auto;
+}
+.ui-state-default {
+	height : 20px;
+}
+#ui-datepicker-div{
+	top: 1010.602px !important;
+}
 </style>
 
 
@@ -115,7 +125,7 @@
 				</table>
 				
 				<div class="col-lg-12 text-right">	
-ㄱ					<a class="btn btn-danger" type="button" href="reserve" >돌아가기</a>
+					<a class="btn btn-danger" type="button" href="reserve" >돌아가기</a>
 				</div>
 
 <!-------------Paging--------------->
@@ -220,15 +230,8 @@
 		
 		}
 	});
-$(document).ready(function(){
-	$("#resSearch").on("click",function(){
-		
-	});
-	
-	
 
 	
-});
 	function check() {
 		if (document.search.keyWord.value == "") {
 			alert("검색어를 입력하세요.");

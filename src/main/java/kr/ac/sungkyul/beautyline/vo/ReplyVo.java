@@ -44,10 +44,18 @@ public class ReplyVo {
 	public void setRegDate(String regDate) {
 		this.regDate = regDate;
 	}
+	
+	
+	public String getIsAdmin() {
+		return isAdmin;
+	}
+	public void setIsAdmin(String isAdmin) {
+		this.isAdmin = isAdmin;
+	}
 	@Override
 	public String toString() {
 		return "ReplyVo [no=" + no + ", reviewNo=" + reviewNo + ", userNo=" + userNo + ", userId=" + userId
-				+ ", content=" + content + ", regDate=" + regDate + "]";
+				+ ", content=" + content + ", regDate=" + regDate + ", isAdmin=" + isAdmin + "]";
 	}
 
 

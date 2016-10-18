@@ -166,28 +166,52 @@
 
 												<!-- doneLoop가 false이면 루프 계속 돎-->
 												<c:if test="${not doneLoop }">
-													<tr>
-														<!-- (전체 게시물 갯수-(전체회원수-1))>=1이면 -->
-														<c:if test="${(page.totalRecord -status.index)>=1}">
-															<td class="text-center">${page.totalRecord-status.index}</td>
-															<td class="text-center">${visitList[i].regDate}</td>
-															<td class="text-center">${visitList[i].name}</td>
-															<td class="text-center">${visitList[i].programName}</td>
-															<td class="text-right">${visitList[i].price}</td>
-															<td class="text-center">${visitList[i].payName}</td>
-															<td class="text-center"><a
-																class="button btn btn-sm refundView" href=""
-																data-target="#myModalRefund" type="button"
-																data-toggle="modal" role="button"
-																data-userno="${visitList[i].userNo}"
-																data-no="${visitList[i].no }"><span>환불</span></a></td>
+													<c:set var="price" value="${visitList[i].price}" />
+													<c:choose>
+														<c:when test="${ price >= 0 }">
+															<tr>
+																<!-- (전체 게시물 갯수-(전체회원수-1))>=1이면 -->
+																<c:if test="${(page.totalRecord -status.index)>=1}">
+																	<td class="text-center">${page.totalRecord-status.index}</td>
+																	<td class="text-center">${visitList[i].regDate}</td>
+																	<td class="text-center">${visitList[i].name}</td>
+																	<td class="text-center">${visitList[i].programName}</td>
+																	<td class="text-right">${visitList[i].price}</td>
+																	<td class="text-center">${visitList[i].payName}</td>
+																	<td class="text-center"><a
+																		class="button btn btn-sm refundView" href=""
+																		data-target="#myModalRefund" type="button"
+																		data-toggle="modal" role="button"
+																		data-userno="${visitList[i].userNo}"
+																		data-no="${visitList[i].no }"
+																		data-programno="${visitList[i].programNo }"><span>환불</span></a></td>
+																</c:if>
+															</tr>
+														</c:when>
+														<c:otherwise>
+															<tr style="color: red;">
+																<c:if test="${(page.totalRecord -status.index)>=1}">
+																	<td class="text-center">${page.totalRecord-status.index}</td>
+																	<td class="text-center">${visitList[i].regDate}</td>
+																	<td class="text-center">${visitList[i].name}</td>
+																	<td class="text-center">${visitList[i].programName}</td>
+																	<td class="text-right">${visitList[i].price}</td>
+																	<td class="text-center">${visitList[i].payName}</td>
+																	<td class="text-center"><a
+																		class="button btn btn-sm" href="" type="button"
+																		data-toggle="modal" role="button"
+																		data-userno="${visitList[i].userNo}"
+																		data-no="${visitList[i].no }" disabled="disabled"
+																		data-programno="${visitList[i].programNo }"><span>환불</span></a>
+																	</td>
+
+																</c:if>
+															</tr>
+														</c:otherwise>
 
 
 
-
-
-														</c:if>
-													</tr>
+													</c:choose>
 													<!-- 회원수가 토탈 게시물보다 많아지면 루프가 True가 되어 빠져나옴 -->
 													<c:if test="${i+1 == page.totalRecord} }">
 														<c:set var="doneLoop" value="true" />
@@ -334,6 +358,13 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 
+		var price = $("table").data("price");
+
+		$.each(function(price) {
+			if (0 < price) {
+			}
+		});
+
 		/* 검색 */
 		function check() {
 			if (document.search.keyWord.value == "") {
@@ -369,27 +400,33 @@
 		 }); */
 		var no;
 		var userNo;
+		var programNo;
+		var visitVo;
 		$(".refundView").on("click", function() {
 			no = $(this).data("no");
 			userNo = $(this).data("userno");
+			programNo = $(this).data("programno");
+			visitVo = {
+				"no" : no,
+				"userNo" : userNo,
+				"programNo" : programNo
+			};
 		});
 
 		$("#refundOk").on("click", function() {
-			/* var no = $(this).data("no");
-			var userNo = $(this).data("userno"); */
-			console.log(no, userNo);
-
-			var userVo = {
-				"no" : no,
-				"userNo" : userNo
-			};
-
+			console.log(visitVo);
 			$.ajax({
 				url : "refund",
 				type : "POST",
-				data : JSON.stringify(userVo),
-				contentType : "application/json"
+				data : JSON.stringify(visitVo),
+				contentType : "application/json",
+				success : function() {
+					console.log("ok");
+					window.location.reload();
+				}
 			});
+
+			$("#myModalRefund").modal('hide'); // 숨키기.
 		});
 
 	});

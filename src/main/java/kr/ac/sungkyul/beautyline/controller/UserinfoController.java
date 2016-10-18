@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import kr.ac.sungkyul.beautyline.service.UserService;
 import kr.ac.sungkyul.beautyline.service.UserinfoService;
 import kr.ac.sungkyul.beautyline.service.VisitService;
-import kr.ac.sungkyul.beautyline.vo.CouponVo;
 import kr.ac.sungkyul.beautyline.vo.PageVo;
 import kr.ac.sungkyul.beautyline.vo.UserVo;
 import kr.ac.sungkyul.beautyline.vo.UserinfoVo;
@@ -95,11 +94,11 @@ public class UserinfoController {
 	/*--------------*/
 	
 	/* 회원 정보 수정 */	
-	@RequestMapping(value= "modifyform", method = RequestMethod.GET)
+	@RequestMapping(value= "/modifyform", method = RequestMethod.GET)
 	public String modifyform(Long no, Model model) {
 		System.out.println(no);
 		UserVo userVo = userService.getUserInfo(no);
-		model.addAttribute("UserVo", userVo);
+		model.addAttribute("userVo", userVo);
 		System.out.println(userVo);
 		return "userinfo/modifyform";
 	}

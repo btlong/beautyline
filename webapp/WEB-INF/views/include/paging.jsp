@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<script type="text/javascript" src="/beautyline/bootstrap/js/jquery.js"></script>
+<script type="text/javascript"></script>
 
 <div class="col-lg-12 text-center">
 	<nav>

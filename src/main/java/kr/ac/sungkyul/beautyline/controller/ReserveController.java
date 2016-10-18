@@ -44,12 +44,12 @@ public class ReserveController {
 	@RequestMapping( "reserveList" )
 	public String reservelist( Model model,
 			@RequestParam(value = "nowPage", required = false) Integer nowPage,
-			@RequestParam(value = "nowBlock", required=false) Integer nowBlock 
-			//,@RequestParam(value = "keyField", required=false) String keyField 
-			//,@RequestParam(value = "keyWord", required=false) String keyWord
+			@RequestParam(value = "nowBlock", required=false) Integer nowBlock, 
+			@RequestParam(value = "keyField", required=false) String keyField,
+		    @RequestParam(value = "keyWord", required=false) String keyWord
 			){
 		
-		List<ReserveVo> resList = reserveService.resList();
+		List<ReserveVo> resList = reserveService.resList(keyField, keyWord);
 		PageVo page = null;
         try{
             page = pageService.pagingProc(nowPage, nowBlock, resList.size());
@@ -59,8 +59,8 @@ public class ReserveController {
         }
 		model.addAttribute("page", page);
 		model.addAttribute("resList", resList);
-		//model.addAttribute("keyField", keyField);
-		//model.addAttribute("keyWord", keyWord);
+		model.addAttribute("keyField", keyField);
+	    model.addAttribute("keyWord", keyWord);
 		return "reserve/reservelist";
 	}
 

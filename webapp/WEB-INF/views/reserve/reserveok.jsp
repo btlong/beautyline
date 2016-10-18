@@ -45,7 +45,17 @@
 				</div>
 				<div class="col-lg-12 text-center">
 					<p>예약이 완료되었습니다.</p>
-					<a href="/beautyline/main" class="btn btn-primary"> 메인으로 </a>
+					<a href="/beautyline/main" class="btn btn-success"> 메인으로 </a>
+					
+					<c:choose>
+						<c:when test="${authUser.isAdmin eq 'a'}">
+							<a href="reserveList" class="btn btn-primary" id="reserveList">예약관리</a>
+						</c:when>
+						<c:when test="${not empty sessionScope.authUser}">
+							<a href="userreservelist" class="btn btn-primary" type="button">예약조회</a>
+						</c:when>
+						
+					</c:choose>
 				</div>
 			</div>
 		</div>

@@ -15,8 +15,7 @@
 <!-- 부트스트랩 -->
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
-<script
-	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <!-- Custom CSS -->
 <link href="/beautyline/bootstrap/css/business-casual.css"
@@ -153,7 +152,7 @@ div.pager  ul li.selected {
 	display: inline-block;
 	width: 20px;
 	height: 20px;
-	margin-left: 5px;
+	margin-left: 15px;
 	margin-top: 5px;
 }
 
@@ -431,8 +430,8 @@ style>.headermessage {
 					<h2 class="col-lg-12 text-center">
 						<small id="selectedDay"></small>
 					</h2>
-					<div class="col-lg-4" style="height: 290px;"></div>
-					<div class="col-lg-12 clumn">
+					<div class="col-lg-3" style="height: 290px;"></div>
+					<div class="col-lg-4 clumn">
 						<div class="graphBox2">
 							<ul>
 								<li class="g1"><span class="counter1 counter">0</span></li>
@@ -443,7 +442,7 @@ style>.headermessage {
 							</ul>
 						</div>
 					</div>
-					<div class="col-lg-4" id="color-item" style="height: 290px;">
+					<div class="col-lg-3" id="color-item" style="height: 290px;">
 						<div>
 							<div class="color-item" style="background-color: #EC008C"></div>
 							<label>미백점수</label>

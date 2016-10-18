@@ -15,13 +15,26 @@
 
 
 <!-- Custom CSS -->
-<link href="/beautyline/bootstrap/css/business-casual.css" rel="stylesheet">
+<link href="/beautyline/bootstrap/css/business-casual.css"rel="stylesheet">
 <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">
+<!-- Modal jquery -->
+<link rel="stylesheet"href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+<link href="/beautyline/beautyline/css/reserve.css" rel="stylesheet">
 <link href="/beautyline/beautyline/css/include.css" rel="stylesheet">
 
 <!-- Fonts -->
-<link    href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
-<link    href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
+<link
+   href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
+   rel="stylesheet" type="text/css">
+<link
+   href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic"
+   rel="stylesheet" type="text/css">
+
+<!-- jquery  -->
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 
 <style type="text/css">
 img {
@@ -252,7 +265,7 @@ img {
 					<hr>
 				</div>
 				
-				<div class="col-lg-9" id=test1>
+				<div class="col-lg-12" id=test1>
 					<h2 class="col-lg-12 text-center">
 						<small>당신이 좋아하는 색깔은?</small>
 					</h2>
@@ -266,7 +279,7 @@ img {
 					</div>
 				</div>
 				
-				<div class="col-lg-9 hide" id=test2>
+				<div class="col-lg-12 hide" id=test2>
 					<h2 class="col-lg-12 text-center">
 						<small>당신이 좋아하는 동물은?</small>
 					</h2>
@@ -280,7 +293,7 @@ img {
 					</div>
 				</div>
 				
-				<div class="col-lg-9 hide" id=test3>
+				<div class="col-lg-12 hide" id=test3>
 					<h2 class="col-lg-12 text-center">
 						<small>당신의 평소 수면시간은?</small>
 					</h2>
@@ -294,7 +307,7 @@ img {
 					</div>
 				</div>
 				
-				<div class="col-lg-9 hide test" id=test4>
+				<div class="col-lg-12 hide test" id=test4>
 					<h2 class="col-lg-12 text-center">
 						<small>당신의 피부 톤은?</small>
 					</h2>
@@ -308,7 +321,7 @@ img {
 					</div>
 				</div>
 				
-				<div class="col-lg-9 hide" id=test5>
+				<div class="col-lg-12 hide" id=test5>
 					<h2 class="col-lg-12 text-center">
 						<small>얼마나 자주 피부 트러블이 나시나요?</small>
 					</h2>
@@ -324,8 +337,11 @@ img {
 			</div>
 				
 				
-				<div class="col-lg-3" id="next">
-					<button class="btn btn-default btn-lg" id="forward">다음</button>
+				<div class="col-lg-12" id="next">
+					<div class="col-lg-4"></div>
+					<div class="col-lg-4">
+						<button class="btn btn-default btn-lg" id="forward">다음</button>
+					</div>
 				</div>
 
 			</div>

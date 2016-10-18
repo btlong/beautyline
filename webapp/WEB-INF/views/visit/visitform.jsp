@@ -1,8 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,36 +14,24 @@
 <!-- 부트스트랩 -->
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
-<script
-	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <!-- Custom CSS -->
-<link href="/beautyline/bootstrap/css/business-casual.css"
-	rel="stylesheet">
+<link href="/beautyline/bootstrap/css/business-casual.css" rel="stylesheet">
 
 <!-- 테마 -->
-<link
-	href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT"
-	crossorigin="anonymous">
+<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">
 
 <link href="/beautyline/beautyline/css/include.css" rel="stylesheet">
 
 <!-- 원호 CSS -->
 <link href="/beautyline/beautyline/css/visit.css" rel="stylesheet">
 
-
 <!-- Fonts -->
-<link
-	href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
-	rel="stylesheet" type="text/css">
-<link
-	href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic"
-	rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="http://www.prepbootstrap.com/Content/css/loadingbuttoneffects/local.css" />
 
-<style>
-</style>
 </head>
 <body>
 	<c:import url="/WEB-INF/views/include/header.jsp" />
@@ -69,10 +56,9 @@
 							<div class="form-horizontal">
 								<div class="form-group">
 									<div class="col-sm-5 col-sm-offset-7">
-										<a href="" data-target="#myModal1" data-toggle="modal"
-											class="btn btn-danger btn-primary btn-default" id="package">
-											쿠폰 등록</a> <a class="btn btn-danger btn-primary btn-default"
-											href="/beautyline/visit/details" role="button">내역 조회</a> <a
+										<a href="" data-target="#myModal3" data-toggle="modal" class="btn btn-danger btn-primary btn-default" id="package">
+											쿠폰 등록</a>
+										<a class="btn btn-danger btn-primary btn-default" href="/beautyline/visit/details" role="button">내역 조회</a> <a
 											class="btn btn-danger btn-primary btn-default"
 											id="insertUser" role="button">회원 등록</a>
 									</div>
@@ -96,9 +82,8 @@
 										</div>
 										<!-- Trigger the modal with a button -->
 
-										<button type="button"
-											class="btn btn-theme btn-default col-sm-1" id="smyModal"
-											data-target="#myModal3" data-toggle="modal">검색</button>
+										<button type="button" class="btn btn-theme btn-default col-sm-1" id="smyModal"
+											data-target="#myModal2" data-toggle="modal">검색</button>
 									</div>
 									<div class="form-group">
 										<div class="well">
@@ -221,9 +206,9 @@
 														<div class="mag1">
 															<input id="imageName" data-toggle="magnify"
 																class="upload-name img-responsive img-rounded center-block"
-																value="" disabled="disabled" style="width: 200px;"
-																value=""> <label for="file">업로드</label><input
-																type="file" id="file" name="file" class="upload-hidden"
+																value="" disabled="disabled" style="width: 200px;" value=""> 
+																<label for="file">업로드</label>
+																<input type="file" id="file" name="file" class="upload-hidden"
 																onchange="reviewUploadImg(this);">
 														</div>
 													</div>
@@ -293,187 +278,15 @@
 	<!-- 푸터 -->
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
 
+	<!--  userSearch Modal -->
+	<c:import url="/WEB-INF/views/visit/usersearch.jsp" />
+	
 
-	<!-- searchModal -->
-	<div class="modal fade" id="myModal3" role="dialog" tabindex="-1"
-		aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
+	<!--  couponCharge Modal -->
+	<c:import url="/WEB-INF/views/visit/couponcharge.jsp" />
 
-			<!-- Modal content-->
-			<!-- 모달 회원 검색 -->
-			<form class="form-inline" id="searchform" method="post"
-				action="search">
-				<div class="modal-content">
-					<!-- header -->
-					<div class="modal-header">
-						<!-- 닫기(x) 버튼 -->
-						<button type="button" class="close" data-dismiss="modal">×</button>
-						<!-- header title -->
-						<h4 class="modal-title text-center">
-							<strong>회원 검색</strong>
-						</h4>
-					</div>
-
-					<!-- body -->
-					<div class="modal-body">
-						<select size="5" class="text-center center-block " id="selected">
-							<option disabled="disabled">이름
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;전화번호</option>
-							<option disabled="disabled">------------------------------------------------</option>
-
-							<!-- Ajax 들어옴 -->
-						</select>
-
-						<div class="address-bar bg-danger row">
-							<br>
-							<div class="form-group col-sm-12">
-								<label class="col-sm-6 control-label text-right">이름: </label> 
-								<label id="selectedName" class="control-label col-sm-6 text-left">
-								</label>
-							</div>
-							<div class="form-group col-sm-12">	
-								<label class="col-sm-6 control-label text-right">
-								전화번호: </label> 
-								<label id="selectedPhone" class="control-label col-sm-6 text-left"></label>
-							</div>
-						</div>
-					</div>
-
-					<!-- Footer -->
-					<div class="modal-footer">
-						<button id="userSelect" class="center-block btn btn-danger"
-							type="button">선택</button>
-					</div>
-				</div>
-			</form>
-		</div>
-	</div>
-
-
-	<!-- 쿠폰 충전 모달 -->
-	<div id="myModal1" class="modal fade " tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-content modal-dialog">
-			<!-- header -->
-			<div class="modal-header">
-				<!-- 닫기(x) 버튼 -->
-				<button type="button" class="close" data-dismiss="modal">×</button>
-				<!-- header title -->
-				<h4 class="modal-title text-center">
-					<strong>패키지 충전</strong>
-				</h4>
-			</div>
-
-			<!-- body -->
-			<!-- 	<form class="form-inline" method="post" action="registration"> -->
-
-			<div class="modal-body">
-
-				<div class="row center-blocks">
-					<label class="col-sm-6 text-right">이름</label> <label
-						id="packageName" class="col-sm-3 com-sm-offset-1" type="text"
-						value="" size="8"></label>
-				</div>
-				<div class="row center-blocks">
-					<label class="col-md-6 text-right">전화번호</label> <label
-						id="packagePhone" class="col-md-4" type="text"
-						value="${userVo.phone}"></label>
-				</div>
-
-				<div class="row center-blocks">
-					<label class="col-md-6 text-right">구매프로그램</label> <select
-						id="packageSelected" class="col-md-3">
-						<option value="1">베이직 케어</option>
-						<option value="2">미백 케어</option>
-						<option value="3">주름 케어</option>
-						<option value="4">여드름 케어</option>
-					</select>
-				</div>
-				<div class="row center-blocks">
-					<label class="col-md-6 text-right">횟수</label> <input
-						id="packageCount" class="col-md-2" type="text"> <label
-						class="col-md-1">회</label>
-				</div>
-				<div class="row center-blocks">
-					<label class="col-md-6 text-right">금액</label> <input
-						id="packagePrice" class="col-md-2" type="text"> <label
-						class="col-md-1">원</label>
-				</div>
-				<div class="radio-group text-center">
-					<input id="pack_opt_1" class="radio-box" type="radio"
-						name="packagePay" value="4"> <label
-						class="radio-group__label control-label " for="pack_opt_1">
-						카드</label> <input id="pack_opt_2" class="radio-box" type="radio"
-						name="packagePay" value="3"> <label
-						class="radio-group__label control-label" for="pack_opt_2">
-						현금</label>
-				</div>
-			</div>
-
-			<!-- Footer -->
-			<div class="modal-footer">
-				<div class="col-lg-12 text-center form-group">
-					<input id="packageCharge" class="btn btn-danger " type="button"
-						value="충전하기">
-					<button type="button" class=" btn btn-danger" data-dismiss="modal">닫기</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-	<!-- 회원 추가 -->
-	<div class="modal fade" id="myModal4">
-		<div class="modal-dialog">
-
-			<!-- modal content -->
-			<form class="form-horizontal" id="userInsertForm" method="post"
-				action="insertUser">
-				<div class="modal-content">
-
-					<!-- header -->
-					<div class="modal-header">
-						<!-- 닫기(x) 버튼 -->
-						<button type="button" class="close" data-dismiss="modal">×</button>
-						<!-- header title -->
-						<h4 class="modal-title text-center">
-							<!-- Ajax처리 -->
-							<strong>회원 추가</strong>
-						</h4>
-					</div>
-
-					<!-- body -->
-					<div class="modal-body" id="modal4body">
-
-						<!-- 이름 -->
-						<div class="form-group" id="divName">
-							<label class="col-sm-5 control-label">이름*</label>
-							<div class="col-sm-7">
-								<input class="form-control onlyHangul" id="inputName"
-									name="name" type="text" placeholder="이름">
-							</div>
-						</div>
-						<!-- 휴대폰 번호 -->
-						<div class="form-group" id="divNumber">
-							<label class="col-sm-5 control-label">휴대폰번호*</label>
-							<div class="col-sm-7">
-								<input type="text" class="form-control onlyNumberPhone"
-									name="phone" id="inputNumber" placeholder="- 없이 입력해 주세요" />
-							</div>
-						</div>
-					</div>
-
-					<!-- Footer -->
-					<div class="modal-footer">
-						<div class="form-group" id="modalbtn">
-							<button id="insertUserInfo" class="btn btn-primary" type="button">추가</button>
-							<button data-dismiss="modal" class="btn btn-danger">취소</button>
-						</div>
-					</div>
-				</div>
-			</form>
-		</div>
-	</div>
+	<!-- insertUser Modal  -->
+	<c:import url="/WEB-INF/views/visit/insertuser.jsp" />
 </body>
 <script>
 	/* search Modal Click */
@@ -520,7 +333,7 @@
 				$.each(visitorList, function(index, userVo) {
 					trString += "<option class='muk'>";
 					trString += userVo.name;
-					trString += "&nbsp;|&nbsp;&nbsp;";
+					trString += "&nbsp;&nbsp;|&nbsp;&nbsp;";
 					trString += userVo.phone;
 					trString += "</option>";
 				});
@@ -606,7 +419,7 @@
 				});
 			}
 		});
-		$("#myModal3").modal('hide'); // 숨키기.
+		$("#myModal2").modal('hide'); // 숨키기.
 	});
 
 	/* 이미지 미리보기 */
@@ -846,7 +659,7 @@
 
 				});
 				alert("충전되었습니다.");
-				$("#myModal1").modal('hide'); // 숨키기.
+				$("#myModal3").modal('hide'); // 숨키기.
 			}
 		});
 

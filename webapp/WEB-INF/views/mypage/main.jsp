@@ -78,8 +78,8 @@
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/beautyline/bootstrap/js/jquery.js"></script>
+<jsp:useBean id="now" class="java.util.Date" />
 </head>
-
 <body>
 	<c:import url="/WEB-INF/views/include/header.jsp" />
 	<div class="container">
@@ -167,8 +167,12 @@
 											class="img-responsive">
 									</div>
 									<div class="col-lg-8 text-right">
-										<a href="/beautyline/reserve/userreservelist"
-											class="btn btn-success btn-sm">예약내역 더 보기</a>
+										<form id="adminReserve" action="/beautyline/reserve/userreservelist" method="post">
+											<fmt:formatDate value="${now }" pattern="yyyy년 MM월 dd일" var="today" />
+											<input type="hidden" value="${today }" name="today">
+											<input type="submit" class="btn btn-primary" id="userreserveList" value="예약더보기">
+										</form>
+										
 									</div>
 								</div>
 								<div class="row">
@@ -201,7 +205,7 @@
 															<a class="btn btn-default btn-xs delete-reserve" href=""
 															data-target="#modalDeleteReserve" type="button"
 															data-toggle="modal" data-backdrop="static" role="button"
-															data-no="${vo.no}">삭제</a></td>
+															data-no="${vo.no}">취소</a></td>
 														<%-- 													<td><a href="reservedeleteform?no=${vo.no }"
 														type="button" class="btn btn-default btn-xs"> <c:choose>
 																<c:when test='${vo.resDate }'>삭제</c:when>

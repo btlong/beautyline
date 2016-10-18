@@ -16,14 +16,24 @@ public class ReserveService {
 	private ReserveDao reserveDao;
 	
 	//관리자 - reserveList
-	public List<ReserveVo> resList(String keyfield, String keyword){
-		return reserveDao.resList(keyfield, keyword);
+	public List<ReserveVo> resList(String keyfield, String keyword, String today){
+		return reserveDao.resList(keyfield, keyword, today);
 	}
 	
-	//회원 - 회원번호로 list 조회
-	public List<ReserveVo> resList( Long userNo ){
-		return reserveDao.resList( userNo );
+	//관리자 - reservePastList
+		public List<ReserveVo> reservePastList(String keyfield, String keyword, String today){
+			return reserveDao.reservePastList(keyfield, keyword, today);
 	}
+		
+	//회원 - 회원번호로 list 조회
+	public List<ReserveVo> resList( Long userNo, String today ){
+		return reserveDao.resList( userNo, today);
+	}
+	//회원 - 회원번호로 과거list 조회
+	public List<ReserveVo> resPastList( Long userNo, String today ){
+		return reserveDao.resPastList( userNo, today);
+	}
+	
 	//마이페이지- 회원번호로 list 조회
 	public List<ReserveVo> myResList( Long userNo ){
 		return reserveDao.myResList( userNo );
@@ -41,7 +51,7 @@ public class ReserveService {
 	}
 	
 	//삭제
-	public int reserveDelete( int no ){
+	public int reserveDelete( long no ){
 		int delCount;
 		delCount = reserveDao.reserveDelete( no );
 		return delCount;

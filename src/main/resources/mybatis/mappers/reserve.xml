@@ -4,11 +4,24 @@
 <mapper namespace="res">
 
 <!-- 관리자 - 예약리스트 조회 -->
-<select id="resList" resultType="reservevo">
-	<![CDATA[
+<select id="resList" parameterType="map" resultType="reservevo">
+	
 		select r.no as no,r.user_no as userNo,u.name as userName,r.prog_name as progName,r.res_date as resDate,r.res_Time as resTime 
-		from reservation r, users u where u.no = r.user_no order by resDate desc, resTime desc
-	]]>
+		from reservation r, users u 
+		where u.no = r.user_no
+		and r.res_date <![CDATA[>]]> #{today }
+		order by resDate asc, resTime asc
+	
+</select>
+
+<!-- 관리자 과거 예약리스트 조회 -->
+<select id="resPastList"  parameterType="map" resultType="reservevo">
+		select r.no as no,r.user_no as userNo,u.name as userName,
+		r.prog_name as progName,r.res_date as resDate,r.res_Time as resTime 
+		from reservation r, users u 
+		where u.no = r.user_no
+		and r.res_date <![CDATA[<]]> #{today }
+		order by resDate asc, resTime asc
 </select>
 
 <!-- 관리자 - 예약리스트 검색 -->
@@ -16,6 +29,7 @@
 		select r.no as no,r.user_no as userNo,u.name as userName,r.prog_name as progName,r.res_date as resDate,r.res_Time as resTime 
 		from reservation r, users u 
 		where u.no = r.user_no 
+		and r.res_date <![CDATA[>]]> #{today }
 		<choose>
 	      	<when test="keyfield.equals('selName')">
 	      	and u.name like '%'||#{keyword}||'%'
@@ -27,20 +41,58 @@
 	      	and r.prog_name like '%'||#{keyword}||'%'
 	      	</when>
 	   	</choose>
-		order by resDate desc, resTime desc
+		order by resDate asc, resTime asc
+
+</select>
+
+
+<!-- 관리자 - 과거예약리스트 검색 -->
+<select id="getPastSearch"  parameterType="map" resultType="reservevo">
+		select r.no as no,r.user_no as userNo,u.name as userName,r.prog_name as progName,r.res_date as resDate,r.res_Time as resTime 
+		from reservation r, users u 
+		where u.no = r.user_no 
+		and r.res_date <![CDATA[<]]> #{today }
+		<choose>
+	      	<when test="keyfield.equals('selName')">
+	      	and u.name like '%'||#{keyword}||'%'
+	      	</when>
+	      	<when test="keyfield.equals('selDate')">
+	      	and r.res_date like '%'||#{keyword}||'%'
+	      	</when>
+	      	<when test="keyfield.equals('selPro')">
+	      	and r.prog_name like '%'||#{keyword}||'%'
+	      	</when>
+	   	</choose>
+		order by resDate asc, resTime asc
 
 </select>
 
 
 
 <!-- 회원 - 회원번호로 예약리스트 조회 -->
-<select id="resListUserNo" parameterType="java.lang.Long" resultType="reservevo">
+<select id="resListUserNo" parameterType="map" resultType="reservevo">
 	<![CDATA[
 		select r.no as no,r.user_no as userNo,u.name as userName,r.prog_name as progName,r.res_date as resDate,r.res_Time as resTime 
-		from reservation r, users u where u.no = r.user_no and r.user_no = #{userNo} order by resDate desc, resTime desc
+		from reservation r, users u 
+		where u.no = r.user_no and r.user_no = #{userNo} 
+		and r.res_date > #{today}
+		order by resDate asc, resTime asc
 	]]>
 
 </select>
+
+<!-- 회원 - 회원번호로 과거예약리스트 조회 -->
+<select id="resPastListUserNo" parameterType="map" resultType="reservevo">
+	<![CDATA[
+		select r.no as no,r.user_no as userNo,u.name as userName,r.prog_name as progName,r.res_date as resDate,r.res_Time as resTime 
+		from reservation r, users u 
+		where u.no = r.user_no and r.user_no = #{userNo} 
+		and r.res_date < #{today}
+		order by resDate asc, resTime asc
+	]]>
+
+</select>
+
 
 <!-- 마이페이지 - 회원번호로 예약리스트 조회 -->
 <select id="myResListUserNo" parameterType="java.lang.Long" resultType="reservevo">
@@ -74,7 +126,7 @@
 
 </select>
 
-<delete id="resDelete" parameterType="java.lang.Integer">
+<delete id="resDelete" parameterType="java.lang.Long">
 	<![CDATA[
 	
 		delete from reservation where no = #{no}

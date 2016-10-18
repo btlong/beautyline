@@ -75,7 +75,7 @@
 		<div class="col-lg-12">
 	         <table class="table table-hover table-responsive">                   
 						<thead>
-							<tr class="info">
+							<tr class="danger">
 								<th>#</th>
 								<th>이름</th>
 								<th>예약 프로그램</th>
@@ -96,22 +96,23 @@
 						 	
 							<!-- doneLoop가 false이면 루프 계속 돎-->
 							<c:if test="${not doneLoop }">
-						<tbody <c:if test='${today > resList[i].resDate }'> id="resPast" </c:if>>
+						<tbody>
 	
 							<tr>
 								<!-- (전체 게시물 갯수-(전체회원수-1))>=1이면 -->
 								<c:if test="${(page.totalRecord -status.index)>=1}">
-								<td>${page.totalRecord -status.index}</td>
+								<td>${page.totalRecord - status.index}</td>
 								<td>${resList[i].userName }</td>
 								<td>${resList[i].progName }</td>
 								<td>${resList[i].resDate }</td>
 								<td>${resList[i].resTime }시- ${resList[i].resTime + 1 }시</td>
-								<td><a href="reservedeleteform?no=${resList[i].no }" type="button" class="btn btn-default btn-xs">
-								<c:choose>
-									<c:when test='${today > resList[i].resDate }'>삭제</c:when>
-									<c:otherwise>취소</c:otherwise>
-								</c:choose>
-								</a></td>
+								<td>
+									<input type="hidden" name="no" value="${resList[i].no }" />
+									<a class="btn btn-default btn-xs delete-reserve" 
+										data-target="#modalDeleteReserve" type="button"
+										data-toggle="modal" data-backdrop="static" role="button"
+										data-no="${resList[i].no}">취소</a>
+								</td>
 								</c:if>
 							</tr>
 								<!-- 회원수가 토탈 게시물보다 많아지면 루프가 True가 되어 빠져나옴 -->
@@ -126,6 +127,11 @@
 				
 				<div class="col-lg-12 text-right">	
 					<a class="btn btn-danger" type="button" href="reserve" >돌아가기</a>
+					
+					<form id="adminReserve" action="reservePastList" method="POST">
+					<input type="hidden" value="${today }" name="today">
+					<input class="btn btn-default" type="submit" value="지난 예약관리">
+					</form>
 				</div>
 
 <!-------------Paging--------------->
@@ -136,6 +142,7 @@
 				<input type="hidden" name="nowPage" value="${(page.nowBlock-1)*page.pagePerBlock}" />
 				<input type="hidden" name="keyField" value="${keyField }" />
 				<input type="hidden" name="keyWord" value="${keyWord }" />
+				<input type="hidden" name="today" value="${today }" />
 			</form>
 		<!-- 페이지블록 -->
 			<form id="pagemove" name="pagemove" method="POST" action="reserveList">
@@ -143,6 +150,7 @@
 				<input id="now-page" type="hidden" name="nowPage" value="${page.nowBlock*page.pagePerBlock}" />
 				<input type="hidden" name="keyField" value="${keyField }" />
 				<input type="hidden" name="keyWord" value="${keyWord }" />
+				<input type="hidden" name="today" value="${today }" />
 			</form>
 
 		<!-- 다음 페이지 -->
@@ -151,6 +159,7 @@
 				<input type="hidden" name="nowPage" value="${(page.nowBlock+1)*page.pagePerBlock}" />
 				<input type="hidden" name="keyField" value="${keyField }" />
 				<input type="hidden" name="keyWord" value="${keyWord }" />
+				<input type="hidden" name="today" value="${today }" />
 		
 			</form>
 	 	
@@ -199,47 +208,99 @@
 		</div>
 	</div>
 
+<!-- 예약삭제 Modal -->
+	<div class="modal fade" id="modalDeleteReserve" role="dialog"
+		tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<!-- modal content -->
+			<div class="modal-content">
+				<!-- header -->
+				<div class="modal-header">
+					<!-- 닫기(x) 버튼 -->
+					<button type="button" class="close" data-dismiss="modal">×</button>
+					<!-- header title -->
+					<h4 class="modal-title text-center">
+						<strong>예약취소</strong>
+					</h4>
+				</div>
+
+				<!-- body -->
+				<div class="modal-body text-center">
+					<h4>예약을 취소 하시겠습니까?</h4>
+				</div>
+
+				<!-- Footer -->
+				<div class="modal-footer">
+					<button class="btn btn-primary" id="resDelOk">예</button>
+					<button class="btn btn-default" type="button" data-dismiss="modal">아니요</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
 
 </body>
 <script>
-	$(document).on("change","select[name=keyField]",function(){
-		var test = $("select[name=keyField] option:selected").val();
+
+$(".delete-reserve").on("click", function() {
+		var no = $(this).data("no");
+		console.log(no+"??");
+		$("#resDelOk").on("click", function() {
+			console.log(no);
 		
+			$.ajax({
+				url : "reservedelete",
+				type : "POST",
+				data : {"no" : no},
+				success : function(result) {
+					
+				
+					if (result > 0) {
+						location.href = "reservelist";
+					} else {
+						alert("유효하지 않은 정보입니다.");
+					}
+				}
+			});
+		});
+});
+
+$(document).on("change","select[name=keyField]",function(){
+	var test = $("select[name=keyField] option:selected").val();
 		if( test == "selDate"){
-			
 		
-			$( "#datepicker1" ).datepicker({
-				showOtherMonths: true,
-				monthNames: ['01월', '02월', '03월', '04월', '05월', '06월', '07월', '08월', '09월', '10월', '11월', '12월' ],
-				dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
-				dateFormat: 'yy-mm-dd',
-				onSelect: function(dateText, datePicker) { 
-			         var sDate = new Date(dateText); 
-			         var dd = sDate.getDate(); 
-			         var mm = sDate.getMonth()+1; 
-			         if(mm<10) mm = "0" + mm; 
-			         if(dd <10) dd = "0" + dd;
-			         $("#datepicker1").val(sDate.getFullYear() +"년 "+mm+"월 "+dd+"일 ");      
-			         
-			      }
-				});
-		}else{
-			$( "#datepicker1").val('');
-			$( "#datepicker1" ).datepicker( "destroy" );  
-		
-		}
-	});
-
+		$( "#datepicker1" ).datepicker({
+			showOtherMonths: true,
+			monthNames: ['01월', '02월', '03월', '04월', '05월', '06월', '07월', '08월', '09월', '10월', '11월', '12월' ],
+			dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+			dateFormat: 'yy-mm-dd',
+			onSelect: function(dateText, datePicker) { 
+		         var sDate = new Date(dateText); 
+		         var dd = sDate.getDate(); 
+		         var mm = sDate.getMonth()+1; 
+		         if(mm<10) mm = "0" + mm; 
+		         if(dd <10) dd = "0" + dd;
+		         $("#datepicker1").val(sDate.getFullYear() +"년 "+mm+"월 "+dd+"일 ");      
+		         
+		      }
+			});
+	}else{
+		$( "#datepicker1").val('');
+		$( "#datepicker1" ).datepicker( "destroy" );  
 	
-	function check() {
-		if (document.search.keyWord.value == "") {
-			alert("검색어를 입력하세요.");
-			document.search.keyWord.focus();
-			return;
-		}
-			document.search.submit();
 	}
+});
 
+function check() {
+	if (document.search.keyWord.value == "") {
+		alert("검색어를 입력하세요.");
+		document.search.keyWord.focus();
+		return;
+	}
+		document.search.submit();
+	}
 </script>
 </html>

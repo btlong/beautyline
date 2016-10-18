@@ -3,16 +3,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<style type="text/css">
-#btn-appdownload {
-	float: right;
-	margin: 8px 20px 0px 0px;
-}
-</style>
 
 
 <div><a href="" data-target="#downloadModal" type="button" data-toggle="modal" data-backdrop="static" role="button"><img id="btn-appdownload" src="/beautyline/images/appdownload/btn_appdownload.png" class="img-responsive"></a></div>
-<div class="brand"><a href ="/beautyline/main"><img src="/beautyline/images/beautylinelogo.png" /></a></div>
+<div class="brand"><a href ="/beautyline/main"><img id="brandImg" src="/beautyline/images/beautylinelogo.png" /></a></div>
 <div id="includeheader">
 	<ul id="userheader">
 		<c:choose>
@@ -35,28 +29,16 @@
 <!-- Navigation -->
 <nav class="navbar navbar-default" role="navigation">
 	<div class="container">
-		<!-- Brand and toggle get grouped for better mobile display -->
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse"
-				data-target="#bs-example-navbar-collapse-1">
-				<span class="sr-only">Toggle navigation</span>
-				 <span class="icon-bar"></span> <span class="icon-bar"></span>
-				  <span class="icon-bar"></span>
-			</button>
-			<!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
-			<a class="navbar-brand" href="/beautyline/main">Beauty Line</a>
-		</div>
+		
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav">
+			<ul class="nav navbar-nav" id="navdropdown" role="menu">
 				<li class="dropdown">
-				<a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="false">소개</a>
-				<ul class="dropdown-menu" >
-						<li><a tabindex="-1" href="/beautyline/information/brand">뷰티라인</a></li>
-					   
-					   	<li><a tabindex="-1" href="/beautyline/information/program">프로그램</a></li>
+					<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">소개</a>
+					<ul class="dropdown-menu">
+						<li><a href="/beautyline/information/brand">뷰티라인</a></li>
+						<li><a href="/beautyline/information/program">프로그램</a></li>
 					</ul>
-				
 				</li>
 				<c:choose>
  					<c:when test="${not empty sessionScope.authUser && authUser.isAdmin eq 'a'}">
@@ -80,10 +62,8 @@
 		</li> 
  				 -->
  				
- 				
- 				
-				<li >
-				<a  class="dropdown-toggle"  data-toggle="dropdown" role="button" aria-expanded="true">게시판 </a>
+				<li>
+				<a class="dropdown-toggle"  data-toggle="dropdown" role="button" aria-expanded="true">게시판 </a>
 					<ul class="dropdown-menu" id="navdropdown" role="menu">
 						<li><a href="/beautyline/noticeboard/board">공지사항</a></li>
 					   	<li><a href="/beautyline/qnaboard/board">문의게시판</a></li>

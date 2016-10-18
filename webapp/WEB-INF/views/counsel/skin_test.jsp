@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>default</title>
+<title>나의 피부점수</title>
 
 
 <!-- Custom CSS -->

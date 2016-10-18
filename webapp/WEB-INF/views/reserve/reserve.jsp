@@ -37,8 +37,8 @@
  
 <style>
 
-
 </style>
+<jsp:useBean id="now" class="java.util.Date" />
 </head>
 <body>
 
@@ -57,20 +57,23 @@
 			</h2>
 			<hr>
 		</div>
-<!-- 내용 -->
-		<div class="col-lg-12 text-center">
 
 	<!-- 세션검사후 관리자이면 예약관리가 나와야한다. -->
 
 				
 <!-- 관리자 일 경우 회원 이름으로 검색 -->
-				<div class="form-inline col-lg-12">
+				<div  class="form-inline col-lg-12 text-center">
 					<!-- name -->
 					<label id="lbtxt" >회원 이름 : &nbsp</label> 
 					<input type="text" class="form-control" name="name" id="name" >
 					<button class="btn btn-info" id="searchUser">검색</button>
 					<button class="btn btn-success" id="insertUser">회원추가</button>
-					<a href="reserveList" class="btn btn-primary" id="reserveList">예약관리</a>
+					
+					<form id="adminReserve" action="reservelist" method="post">
+						<fmt:formatDate value="${now }" pattern="yyyy년 MM월 dd일" var="today" />
+						<input type="hidden" value="${today }" name="today">
+						<input type="submit" class="btn btn-primary" id="reserveList" value="예약관리">
+					</form>
 				</div>
 <!-- 달력 -->
 				<div class="col-lg-12 text-center">
@@ -140,7 +143,7 @@
 			</c:choose>
 		</div>
 	</div>
-	</div>
+</div>
 
 
 <c:import url="/WEB-INF/views/include/footer.jsp" />
@@ -219,7 +222,7 @@
 						<div class="form-group" id="divNumber">
 							<label class="col-sm-5 control-label">휴대폰번호*</label>
 							<div class="col-sm-7">
-								<input type="tel" class="form-control onlyNumber" name="phone" id="inputNumber" placeholder="- 없이 입력해 주세요" />
+								<input type="tel" class="form-control onlyNumber" name="phone" id="inputNumber" placeholder="- 없이 입력" />
 							</div>
 						</div>
 				</div>

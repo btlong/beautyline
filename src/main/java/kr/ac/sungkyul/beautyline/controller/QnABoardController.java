@@ -38,14 +38,12 @@ public class QnABoardController {
 	         @RequestParam(value = "keyWord2", required=false) String keyWord2
 	    ) {
 		  
-		  System.out.println("keyField: "+keyField+" keyWord : "+keyWord+" keyWord2 : "+keyWord2);
 		
 		  if( keyWord2 == "" ){
 			  keyWord2 = null;
 		  }
 		 
 	      List<QnABoardVo> boardList = qBoardService.getAll(keyField, keyWord, keyWord2);
-		  System.out.println("리스트 나와서 - keyField: "+keyField+" keyWord : "+keyWord+" keyWord2 : "+keyWord2);
 
 	      PageVo page = null;
 	      

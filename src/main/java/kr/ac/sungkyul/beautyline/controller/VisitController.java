@@ -58,11 +58,7 @@ public class VisitController {
 			@RequestParam(value = "keyField", required = false) String keyField,
 			@RequestParam(value = "keyWord", required = false) String keyWord) {
 		List<VisitVo> visitList = visitService.selectList();
-		System.out.println(visitList.size());
 
-		System.out.println(nowBlock);
-		System.out.println(keyField);
-		System.out.println(keyWord);
 		PageVo page = null;
 		try {
 			page = pageService.pagingProc(nowPage, nowBlock, visitList.size());
@@ -74,7 +70,7 @@ public class VisitController {
 		model.addAttribute("page", page);
 		model.addAttribute("keyField", keyField);
 		model.addAttribute("keyWord", keyWord);
-
+		System.out.println(visitList);
 		return "visit/details";
 	}
 
@@ -157,6 +153,12 @@ public class VisitController {
 		session.invalidate(); //
 		return "redirect:/main";
 	}
-	/* -------------- */
-
+	
+	@ResponseBody
+	@RequestMapping(value="refund",  method = RequestMethod.POST)
+	public String refund(@RequestBody VisitVo visitVo) {
+		System.out.println("no :"+visitVo.getNo());
+		System.out.println("userNo :"+visitVo.getUserNo());
+		return "";
+	}
 }

@@ -9,8 +9,29 @@
 		select r.no as no,r.user_no as userNo,u.name as userName,r.prog_name as progName,r.res_date as resDate,r.res_Time as resTime 
 		from reservation r, users u where u.no = r.user_no order by resDate desc, resTime desc
 	]]>
+</select>
+
+<!-- 관리자 - 예약리스트 검색 -->
+<select id="getSearch"  parameterType="map" resultType="reservevo">
+		select r.no as no,r.user_no as userNo,u.name as userName,r.prog_name as progName,r.res_date as resDate,r.res_Time as resTime 
+		from reservation r, users u 
+		where u.no = r.user_no 
+		<choose>
+	      	<when test="keyfield.equals('selName')">
+	      	and u.name like '%'||#{keyword}||'%'
+	      	</when>
+	      	<when test="keyfield.equals('selDate')">
+	      	and r.res_date like '%'||#{keyword}||'%'
+	      	</when>
+	      	<when test="keyfield.equals('selPro')">
+	      	and r.prog_name like '%'||#{keyword}||'%'
+	      	</when>
+	   	</choose>
+		order by resDate desc, resTime desc
 
 </select>
+
+
 
 <!-- 회원 - 회원번호로 예약리스트 조회 -->
 <select id="resListUserNo" parameterType="java.lang.Long" resultType="reservevo">

@@ -64,8 +64,8 @@
 	-o-border-radius: 5px;
 }
 
-.box-radius end {
-	margin-bottom: 12px;
+.end {
+	margin-bottom: 20px;
 }
 
 .strength {
@@ -190,7 +190,7 @@ div.graphBox2 input.link {
 				</div>
 
 
-				<div class="col-lg-10 col-lg-offset-1">
+				<div class="col-lg-12">
 					<!-- 세션검사 -->
 					<c:choose>
 						<c:when test='${not empty sessionScope.authUser }'>

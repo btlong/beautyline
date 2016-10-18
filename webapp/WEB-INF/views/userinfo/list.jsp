@@ -77,14 +77,14 @@
 
 
 							<!-- 회원등록버튼 -->
-							<div class="col-lg-11 text-right">
+							<div class="col-lg-12 text-right">
 								<a class="btn btn-info" href="/beautyline/userinfo/joinform"
 									id="insert-user" type="button" role="button">등록</a>
 							</div>
 
 
 							<!-- 페이지 정보 -->
-							<div id=total-record class="col-lg-10 col-lg-offset-1 text=left">
+							<div id=total-record class="col-lg-12 text=left">
 								▶전체 회원 수 : ${page.totalRecord }명&nbsp; &nbsp; ▶현재 페이지 ( <span
 									id=page-location>${page.nowPage+1 } / ${page.totalPage}
 									페이지</span>)
@@ -94,7 +94,7 @@
 
 							<!-- 회원리스트 -->
 							<div class=row>
-							<div class="col-lg-10 col-lg-offset-1">
+							<div class="col-lg-12">
 								<table class="table table-bordered table-hover table-responsive">
 									<thead>
 										<tr class="danger">
@@ -245,11 +245,11 @@
 
 
 
-						<%-- </c:when>
+					<%-- 	</c:when>
 						<c:otherwise>
 							<!-- authUser.isAdmin 값이 'a'가 아닐 때 -->
-							<h4>관리자페이지 입니다.</h4>
-							<c:import url="/WEB-INF/views/userinfo/loginform.jsp" />
+							<h4 class="text-center">관리자페이지 입니다.</h4>
+							<c:import url="/WEB-INF/views/include/login.jsp" />
 						</c:otherwise>
 					</c:choose> --%>
 				</div>

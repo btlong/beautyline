@@ -38,13 +38,16 @@ public class MypageController {
       public String listHistory(HttpSession session, ListVo listVo, Model model,
     		  @RequestParam(value = "pageType", required = false) String pageType) {
          UserVo authUser =(UserVo) session.getAttribute("authUser");
-         System.out.println("페이지 타입 : "+pageType);
+         System.out.println("페이지 타입 : " + pageType);
          System.out.println("세션 값 : " + authUser.getNo());
          
          listVo.setUserNo(authUser.getNo());
          listVo = mypageService.listHistory(session, listVo);
          
-         System.out.println("listVo : " + listVo);
+         if(listVo == null) {
+        	 return "mypage/empty";
+         }
+         
          
          model.addAttribute("listVo", listVo); // jsp에서 쓸 이름, 넘겨줄 애(실제 데이터)
          model.addAttribute("pageType", pageType);

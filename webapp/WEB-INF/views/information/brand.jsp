@@ -34,9 +34,14 @@
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/beautyline/bootstrap/js/jquery.js"></script>
 
-
 <style type="text/css">
-
+#daumRoughmapContainer1476768133380 {
+	width:753.3px !important;
+	margin-left: 93px;
+	}
+#video {
+	margin-left: 93px;
+}
 </style>
 
 </head>
@@ -50,23 +55,47 @@
          <div class="box">
             <div class="col-lg-12">
                <div class="page-header">	<hr>
-						<h1 class="text-center text-center">
-							<strong>뷰티라인 소개</strong>
-						</h1>
-						<hr>   </div>
+					<h1 class="text-center text-center">
+						<strong>뷰티라인 소개</strong>
+					</h1>
+					<hr>   
+				</div>
 
-   <div class="form-horizontal">
-   <div class= "row">
-     <div class="form-group">
-     <div class="col-lg-10 col-lg-offset-1">
-            <img src="/beautyline/images/information/brand/brand.png" class="img-responsive">
-            
-          </div>
-          </div>
-          </div>
-      </div>
-    </div> 
-    
+			   <div class="form-horizontal">
+				   <div class= "row">
+				     <div class="form-group">
+					     <div class="col-lg-10 col-lg-offset-1">
+					            <img src="/beautyline/images/information/brand/brand.png" class="img-responsive">
+
+				          </div>
+				          <!-- * Daum 지도 - 약도서비스  -->
+							<!-- 1. 약도 노드 -->
+							<div id="daumRoughmapContainer1476768133380" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+							
+							<!-- 2. 설치 스크립트 -->
+							<script charset="UTF-8" class="daum_roughmap_loader_script" src="http://dmaps.daum.net/map_js_init/roughmapLoader.js"></script>
+							
+							<!-- 3. 실행 스크립트 -->
+							<script charset="UTF-8">
+								new daum.roughmap.Lander({
+									"timestamp" : "1476768133380",
+									"key" : "dmcq",
+									"mapWidth" : "520",
+									"mapHeight" : "300"
+								}).render();
+							</script>
+				            <div id="video">
+								<iframe width="753.3" height="400" src="https://www.youtube.com/embed/utqPlFFOon4" frameborder="0" allowfullscreen></iframe>
+									
+							    
+						    </div>
+				          
+				          
+				          
+			          </div>
+			         </div>
+			     </div>
+	    	</div> 
     </div>
 </div>
 </div>

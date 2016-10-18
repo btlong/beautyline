@@ -42,6 +42,10 @@
 #video {
 	margin-left: 93px;
 }
+
+#background-color {
+	background-color:white;
+}
 </style>
 
 </head>
@@ -61,7 +65,7 @@
 					<hr>   
 				</div>
 
-			   <div class="form-horizontal">
+			   <div id="background-color" class="form-horizontal">
 				   <div class= "row">
 				     <div class="form-group">
 					     <div class="col-lg-10 col-lg-offset-1">
@@ -84,11 +88,7 @@
 									"mapHeight" : "300"
 								}).render();
 							</script>
-				            <div id="video">
-								<iframe width="753.3" height="400" src="https://www.youtube.com/embed/utqPlFFOon4" frameborder="0" allowfullscreen></iframe>
-									
-							    
-						    </div>
+				            
 				          
 				          
 				          

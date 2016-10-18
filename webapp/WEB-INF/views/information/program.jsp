@@ -144,6 +144,9 @@ transition-delay:.2s;
    <div class="form-horizontal">
    <div class= "row">
      <div class="form-group">
+     		<div id="video">
+				<iframe width="640" height="360" src="https://www.youtube.com/embed/cvHn_Sg8R1s" frameborder="0" allowfullscreen></iframe>
+			</div>
            <div class="col-md-3">
            <div class="hovereffect">
             <img src="/beautyline/images/information/program/1.jpg" class="img-responsive">

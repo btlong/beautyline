@@ -21,7 +21,7 @@
 	color: black;
 	text-shadow: none;
     font-family: sans-serif;
-	
+	height: 120px;	
 }
 body {
 	background: none;
@@ -55,9 +55,21 @@ hr {
 #navdropdown {
 	text-align: center;
 	background-color: #2C3E50;
-text-color: #ffffff;
+	text-color: #ffffff;
 	
 }
 .container{
    width: 940px;   
+}
+#btn-appdownload {
+	float: right;
+	margin: 8px 20px 0px 0px;
+	width: 73px;
+	height: 23.99px;
+}
+#brandImg {
+	width: 398.99px;
+	height: 80px;
+	margin: 0px;
+	
 }

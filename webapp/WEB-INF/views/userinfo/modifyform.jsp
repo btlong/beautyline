@@ -516,71 +516,26 @@
 		/* validation 검사 & submit   */
 		$("#modi").on("click", function() {
 			
-			
-			if ($("#inputPassword").val() == "") {
-				alert("비밀번호는 필수 입력 항목입니다.");
-				$("#inputPassword").focus()
-				return false;
-			}
-			if ($("#inputPasswordCheck").val() == "") {
-				alert("이메일은 필수 입력 항목입니다.");
-				$("#inputPasswordCheck").focus()
-				return false;
-			}
-			if ($("#email1").val() == "") {
-				alert("이메일은 필수 입력 항목입니다.");
-				$("#email1").focus()
-				return false;
-			}
-			if ($("#email2").val() == "") {
-				alert("이메일은 필수 입력 항목입니다.");
-				$("#email2").focus()
-				return false;
-			}
-			if ($("#sample6_postcode").val() == "") {
-				alert("우편번호를 입력하세요.");
-				$("#sample6_postcode").focus()
-				return false;
-			}
-			if ($("#address1").val() == "") {
-				alert("주소를 입력하세요.");
-				$("#address1").focus()
-				return false;
-			}
-			if ($("#address2").val() == "") {
-				alert("상세주소를 입력하세요.");
-				$("#address2").focus()
-				return false;
-			}
 			if ($("#inputNumber").val() == "") {
 				alert("전화번호를 입력하세요.");
 				$("#inputNumber").focus()
 				return false;
 			}
-			/* if($("#terms").attr('class') != "btn btn-warning active"){
-				alert ("약관동의가 필요합니다.");
-				return false;
 			
-			} */
-			
-			if ($(".emailReceiveYn:checked").val()!= null) {
-				$("#checkAgrEmail").val($(".emailReceiveYn:checked").val());			
-			}
-			if ($(".smsReceiveYn:checked").val() != null) {
-				$("#checkAgrMessage").val($(".smsReceiveYn:checked").val());				
-			}
 			/* 아니라면 아작스 통신으로 데이터 보내기!  */
-				var password =	$("#inputPassword").val()
-				var email1 =	$("#inputEmail1").val()
-				var email2 =	$("#inputEmail2").val()
-				var zipCode = 	$("#sample6_postcode").val()
-				var address1 =	$("#sample6_address").val()
-				var address2 =	$("#sample6_address2").val()
-				var phone =		$("#inputNumber").val() 
+				var no=${userVo.no };
+				var password =	$("#inputPassword").val();
+				var email1 =	$("#inputEmail1").val();
+				var email2 =	$("#inputEmail2").val();
+				var zipCode = 	$("#sample6_postcode").val();
+				var address1 =	$("#sample6_address").val();
+				var address2 =	$("#sample6_address2").val();
+				var phone =		$("#inputNumber").val(); 
 				//인증번호	
 				var agrEmail =	$("#checkAgrEmail").val();
 				var agrMessage =$("#checkAgrMessage").val();
 				var userVo ={
+						"no": no,
 						"password":  password,
 						"email1":	 email1,
 						"email2":	 email2,

@@ -2,8 +2,6 @@ package kr.ac.sungkyul.beautyline.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -95,8 +93,8 @@ public class UserinfoController {
 	/*--------------*/
 	
 	/* 회원 정보 수정 */	
-	@RequestMapping(value= "/modifyform", method = RequestMethod.GET)
-	public String modifyform(Long no, Model model) {
+	@RequestMapping(value="/modifyform", method = RequestMethod.GET)
+	public String modifyform(Long no, Model model) throws Exception {
 		System.out.println(no);
 		UserVo userVo = userService.getUserInfo(no);
 		model.addAttribute("userVo", userVo);
@@ -106,13 +104,12 @@ public class UserinfoController {
 	
 	@ResponseBody
 	@RequestMapping(value="/modify", method=RequestMethod.POST)
-	public int modify(HttpSession session, @RequestBody UserVo vo ) {
-		UserVo authUser = (UserVo) session.getAttribute("authUser");
-		vo.setNo(authUser.getNo());
-		vo.setName(authUser.getName());
+	public int modify(@RequestBody UserVo vo ) {
+		System.out.println("modify:"+vo);
 	    int check =	userService.updateInfo(vo);
 		return check;
 	}
+	
 	/*--------------*/
 	
 	

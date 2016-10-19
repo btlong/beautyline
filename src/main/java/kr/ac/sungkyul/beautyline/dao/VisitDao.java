@@ -41,7 +41,7 @@ public class VisitDao {
 	}
 
 	public List<CouponVo> selectList(Long no) {
-		return sqlSession.selectList("visit.couponSelect", no);
+		return sqlSession.selectList("visit.couponSelectList", no);
 	}
 
 	public List<VisitVo> selectList() {
@@ -49,8 +49,8 @@ public class VisitDao {
 	}
 
 	/* 쿠폰 사용 */
-	public void updateCoupon(VisitVo visitVo) {
-		sqlSession.update("visit.couponUpdate", visitVo);
+	public void updateCouponMinus(VisitVo visitVo) {
+		sqlSession.update("visit.couponUpdateMinus", visitVo);
 	}
 
 	/* 방문 내역 기록 - 시술이후 */
@@ -59,7 +59,8 @@ public class VisitDao {
 	}
 
 	/* 쿠폰 */
-	public int couponInsert(CouponVo couponVo) {
+	public long couponInsert(CouponVo couponVo) {
+		System.out.println(couponVo);
 		return sqlSession.insert("visit.couponInsert", couponVo);
 	}
 
@@ -71,6 +72,27 @@ public class VisitDao {
 	public long fileInsert(FileVisitVo fileVisitVo) {
 		sqlSession.insert("visit.fileInsert", fileVisitVo);
 		return fileVisitVo.getNo();
+	}
+
+	public void updateRefundCoupon(VisitVo visitVo) {
+		sqlSession.update("visit.updateRefundCoupon", visitVo);
+		
+		System.out.println("update 성공");
+	}
+
+	public void insertRefundSales(Long no) {
+		sqlSession.insert("visit.insertSalesByRefund", no);
+		
+	}
+
+	public Long couponSelect(CouponVo couponVo) {
+		Long count = sqlSession.selectOne("visit.couponSelectOne", couponVo);
+		return count;
+	}
+
+	public long updateCouponCharge(CouponVo couponVo) {
+		System.out.println(couponVo);
+		return sqlSession.update("visit.couponUpdateByCharge", couponVo);
 	}
 
 }

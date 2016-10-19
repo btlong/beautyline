@@ -12,7 +12,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>예약 관리</title>
+<title>지 난 예 약 관 리</title>
 
 <!-- Custom CSS -->
 <link href="/beautyline/bootstrap/css/business-casual.css"rel="stylesheet">
@@ -44,8 +44,6 @@
 </style>
 
 
-<jsp:useBean id="now" class="java.util.Date" />
-
 <body>
 
 <c:import url="/WEB-INF/views/include/header.jsp" />
@@ -57,7 +55,7 @@
 			<div class="col-lg-12">
 				<hr>
 				<h2 class="intro-text text-center">
-				<strong>Reserve List</strong><br><br>${resList[1].userName }님의 예약관리
+				<strong>Past Reserve List</strong><br><br>${authUser.name }님의 지난 예약관리
 				</h2>
 				<hr>
 			</div>
@@ -70,7 +68,7 @@
 							<th>예약 프로그램</th>
 							<th>예약일</th>
 							<th>예약 시간</th>
-							<th>예약취소</th>
+							<th>예약 삭제</th>
 						</tr>
 					</thead>
 
@@ -97,7 +95,7 @@
 										<a class="btn btn-default btn-xs delete-reserve" 
 											data-target="#modalDeleteReserve" type="button"
 											data-toggle="modal" data-backdrop="static" role="button"
-											data-no="${resList[i].no}">취소</a>
+											data-no="${resList[i].no}">삭제</a>
 								</td>
 								</c:if>
 							</tr>
@@ -113,29 +111,25 @@
 				
 				<div class="col-lg-12 text-right">	
 					<a class="btn btn-danger" type="button" href="javascript:history.go(-1);" >돌아가기</a>
-					<form id="adminReserve" action="userreservepastlist" method="POST">
-						<input type="hidden" value="${today }" name="today">
-						<input class="btn btn-default" type="submit" value="지난 예약관리">
-					</form>
 				</div>
 
 <!-------------Paging--------------->
 	<c:import url="/WEB-INF/views/include/paging.jsp" />
     	 <!-- 이전 페이지 -->
-			<form id="blockmoveb" name="blockmoveb" method="POST" action="userreservelist">
+			<form id="blockmoveb" name="blockmoveb" method="POST" action="userreservepastlist">
 				<input type="hidden" name="nowBlock" value="${page.nowBlock-1 }" />
 				<input type="hidden" name="nowPage" value="${(page.nowBlock-1)*page.pagePerBlock}" />
 				<input type="hidden" name="today" value="${today}" />
 			</form>
 		<!-- 페이지블록 -->
-			<form id="pagemove" name="pagemove" method="POST" action="userreservelist">
+			<form id="pagemove" name="pagemove" method="POST" action="userreservepastlist">
 				<input type="hidden" name="nowBlock" value="${page.nowBlock}" />
 				<input id="now-page" type="hidden" name="nowPage" value="${page.nowBlock*page.pagePerBlock}" />
 				<input type="hidden" name="today" value="${today}" />
 			</form>
 
 		<!-- 다음 페이지 -->
-			<form id="blockmovef" name="blockmovef" method="POST" action="userreservelist">
+			<form id="blockmovef" name="blockmovef" method="POST" action="userreservepastlist">
 				<input type="hidden" name="nowBlock" value="${page.nowBlock+1 }" />
 				<input type="hidden" name="nowPage" value="${(page.nowBlock+1)*page.pagePerBlock}" />
 				<input type="hidden" name="today" value="${today}" />
@@ -171,13 +165,13 @@
 					<button type="button" class="close" data-dismiss="modal">×</button>
 					<!-- header title -->
 					<h4 class="modal-title text-center">
-						<strong>예약취소</strong>
+						<strong>예약삭제</strong>
 					</h4>
 				</div>
 
 				<!-- body -->
 				<div class="modal-body text-center">
-					<h4>예약을 취소 하시겠습니까?</h4>
+					<h4>예약을 삭제 하시겠습니까?</h4>
 				</div>
 
 				<!-- Footer -->
@@ -188,7 +182,6 @@
 			</div>
 		</div>
 	</div>
-
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
 
 </body>
@@ -198,13 +191,10 @@ $(document).ready(function(){
 		
 	});
 	
-	
 
 	$(".delete-reserve").on("click", function() {
 			var no = $(this).data("no");
-			console.log(no+"??");
 			$("#resDelOk").on("click", function() {
-				console.log(no);
 			
 				$.ajax({
 					url : "reservedelete",
@@ -212,7 +202,7 @@ $(document).ready(function(){
 					data : {"no" : no},
 					success : function(result) {
 						if (result > 0) {
-							location.href = "userreservelist";
+							location.href = "userreservepastlist";
 						} else {
 							alert("유효하지 않은 정보입니다.");
 						}

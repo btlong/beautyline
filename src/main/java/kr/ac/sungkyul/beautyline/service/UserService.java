@@ -26,6 +26,15 @@ public class UserService {
 		return a;
 	}
 
+	/* 관리자 회원 등록 */
+	public int userresister(UserVo vo) {
+		vo.setEmail(vo.getEmail1() + "@" + vo.getEmail2());
+		System.out.println("///"+vo.toString());
+		int a =	userDao.userresister(vo);
+		return a;
+	}
+	
+	
 	/* 이름과 전화번호로 회원가입 */
 	public UserVo insertUserNamePhone(UserVo userVo){
 		userDao.insertUserNamePhone(userVo);

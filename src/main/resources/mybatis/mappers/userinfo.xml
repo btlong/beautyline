@@ -11,8 +11,9 @@
 					id, 
 					password, 
 					email1||'@'||email2 as email, 
-					'['||zip_code||'] '||address1||', '||address2 as address, 
-					is_admin as isAdmin from users
+					'['||zip_code||'] '||address1||', '||address2 as address 
+					from users
+					where is_Admin='y'
 			order by no desc
 		]]>
 	</select>

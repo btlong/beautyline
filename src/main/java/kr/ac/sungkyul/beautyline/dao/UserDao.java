@@ -20,6 +20,15 @@ public class UserDao {
 
 	}
 	
+
+	/* 관리자 회원등록 */
+	public int userresister(UserVo vo) {// 회원가입
+		int a = sqlSession.insert("user.userresister",vo);
+		System.out.println(a);
+		return a; //요거 아직 확인안함 service에도 써야함 
+
+	}
+	
 	/* 이름과 전화번호로 회원가입 */
 	public UserVo insertUserNamePhone(UserVo uservo){
 		sqlSession.insert("user.insertUserNamePhone",uservo);

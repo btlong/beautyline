@@ -48,6 +48,12 @@
 	padding-right: 0px;
 	width:10px;
 }
+/* input.onlyAlphabetAndNumber{
+	ime-mode:inactive;
+} */
+input.onlyHangul{
+	ime-mode:active;
+}
 </style>
 <script>
 	function sample6_execDaumPostcode() {
@@ -567,7 +573,7 @@
 						
 					};
 					$.ajax({// 비동기식 
-						url : "join",
+						url : "userresister",
 						type : "POST",
 						data:JSON.stringify(userVo),
 						contentType:"application/json",

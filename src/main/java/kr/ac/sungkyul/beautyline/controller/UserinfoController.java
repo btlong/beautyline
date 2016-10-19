@@ -73,19 +73,19 @@ public class UserinfoController {
 		return "userinfo/joinform";
 	}
 	
-	/* 회원가입 아작스	*/
+	/* 관리자 회원등록 아작스	*/
 	@ResponseBody
-	@RequestMapping(value ="join", method = RequestMethod.POST)
+	@RequestMapping(value ="userresister", method = RequestMethod.POST)
 	//public int join(@RequestBody UserVo vo) {//회원가입 버튼 누를 때
-	public int join(@RequestBody(required = false) UserVo vo) {
+	public int userresister(@RequestBody(required = false) UserVo vo) {
 		System.out.println("//"+vo);
-		int a = userService.join(vo);
+		int a = userService.userresister(vo);
 		return a; 
 	}
 
 	@ResponseBody
 	@RequestMapping(value ="checkId", method = RequestMethod.POST)
-	public String checkId(@RequestParam String id){//회원가입시 id중복체크
+	public String checkId(@RequestParam (value="id", required = false)String id){//회원가입시 id중복체크
 		String check = userService.checkId(id);
 		return check;
 	}

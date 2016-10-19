@@ -10,7 +10,7 @@
 
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-"webapp/WEB-INF"width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
 
@@ -61,15 +61,19 @@
 						<div class="carousel-inner">
 							<div class="item active">
 								<img class="img-responsive img-full"
-									src="images/main1.png" alt="">
+									src="images/main/main1.jpg" alt="">
 							</div>
 							<div class="item">
 								<img class="img-responsive img-full"
-									src="bootstrap/img/slide-2.jpg" alt="">
+									src="images/main/main2.jpg" alt="">
 							</div>
 							<div class="item">
 								<img class="img-responsive img-full"
-									src="bootstrap/img/slide-3.jpg" alt="">
+									src="images/main/main3.jpg" alt="">
+							</div>
+							<div class="item">
+								<img class="img-responsive img-full"
+									src="images/main/main4.jpg" alt="">
 							</div>
 						</div>
 
@@ -94,7 +98,7 @@
 			</div>
 		</div>
 
-		<div class="row">
+		<!-- <div class="row">
 			<div class="box">
 				<div class="col-lg-12">
 					<hr>
@@ -119,7 +123,7 @@
 						senectus et netus et malesuada fames ac turpis egestas.</p>
 				</div>
 			</div>
-		</div>
+		</div> 
 
 		<div class="row">
 			<div class="box">
@@ -138,7 +142,7 @@
 						senectus et netus et malesuada fames ac turpis egestas.</p>
 				</div>
 			</div>
-		</div>
+		</div> -->
 
 	</div>
 	<!-- /.container -->

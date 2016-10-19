@@ -1,5 +1,4 @@
 
-
 #reservebtn	a {
 	float: right;
 }
@@ -138,20 +137,19 @@
 	display: inline;
 	text-align: center;
 }
-#modal4body{
-}
+
 
 
 <!-- reservelist -->
-
-
-
-
 .modal-dialog {
 	padding-top: 10%;
 }
 
-.modal-body {
+#myModal4 .modal-body {
+	margin-left: 25%;
+	margin-right: 25%;
+}
+#myModal3 .modal-body{
 	margin-left: 25%;
 	margin-right: 25%;
 }
@@ -167,3 +165,6 @@
 	color: #AEAEAE;
 }
 <!-- -->
+#adminReserve{
+	display: inline;
+}

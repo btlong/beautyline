@@ -47,6 +47,12 @@
 	padding-right: 0px;
 	width:10px;
 }
+/* input.onlyAlphabetAndNumber{
+	ime-mode:inactive;
+} */
+input.onlyHangul{
+	ime-mode:active;
+}
 </style>
 <script>
 	function sample6_execDaumPostcode() {
@@ -127,43 +133,42 @@
 
 						<!-- 이름 -->
 						<div class="form-group" id="divName">
-							<label class="col-lg-3 control-label" for="inputName">이름*</label>
+							<label class="col-lg-3 control-label" for="inputName">이름</label>
 							<div class="col-lg-3">
-								<label class="form-control" id="inputName"
-									 >${userVo.name }</label>
+								 <input class="form-control onlyHangul" id="inputName" type="text" value="${userVo.name }">
 							</div>
 						</div>
 						<br>
 
 						<!-- 아이디 -->
 						<div class="form-group" id="divId">
-							<label class="col-lg-3 control-label" for="inputId">아이디*</label>
+							<label class="col-lg-3 control-label" for="inputId">아이디</label>
 							<div class="col-lg-3">
-								<label class="form-control onlyAlphabetAndNumber" id="inputId" >${userVo.id }</label>
+								<input class="form-control  onlyAlphabetAndNumber" id="inputId" type="text" value="${userVo.id }" readonly>
 							</div>
 						</div>
 						<br>
 
 						<!-- 비밀번호 -->
 						<div class="form-group" id="divPassword">
-							<label class="col-lg-3 control-label" for="inputPassword">비밀번호*</label>
+							<label class="col-lg-3 control-label" for="inputPassword">비밀번호</label>
 							<div class="col-lg-3">
 								<input class="form-control" id="inputPassword" name="password" type="password" value="${userVo.password }" >
 							</div>
 							<div class="col-lg-3">
-								<h11 class="help-block" id="checkPw">특수문자,영문,숫자를 혼합하여 6~20자 이내</h11>
+								<h6 class="help-block" id="checkPw">특수문자,영문,숫자를 혼합하여 6~20자 이내</h6>
 							</div>
 						</div>
 
 						<!-- 비밀번호확인 -->
 						<div class="form-group" id="divPasswordCheck">
 							<label class="col-lg-3 control-label" for="inputPasswordCheck">비밀번호
-								확인*</label>
+								확인</label>
 							<div class="col-lg-3">
 								<input class="form-control" id="inputPasswordCheck" type="password" placeholder="비밀번호 확인" value="${userVo.password }">
 							</div>
 							<div class="col-lg-3">
-								<h11 class="help-block" id="oneMore">비밀번호를 한번 더 입력해주세요.</h11>
+								<h6 class="help-block" id="oneMore">비밀번호를 한번 더 입력해주세요.</h6>
 							</div>
 						</div>
 						<br>
@@ -171,7 +176,7 @@
 
 						<!-- 이메일 -->
 						<div class="form-group" id="divEmail">
-							<label class="col-lg-3 control-label" for="inputEmail">이메일*</label>
+							<label class="col-lg-3 control-label" for="inputEmail">이메일</label>
 							<div class="col-lg-2">
 						
 								<input class="form-control" id="inputEmail1" type="text" value="${userVo.email1 }">
@@ -200,7 +205,7 @@
 
 						<!-- 주소 -->
 						<div class="form-group" id="divAddress">
-							<label class="col-lg-3 control-label">주소*</label>
+							<label class="col-lg-3 control-label">주소</label>
 							<div class="col-lg-2">
 								<input class="form-control" type="text" name="zipCode" id="sample6_postcode" placeholder="우편번호" value="${userVo.zipCode }">
 							</div>
@@ -516,71 +521,28 @@
 		/* validation 검사 & submit   */
 		$("#modi").on("click", function() {
 			
-			
-			if ($("#inputPassword").val() == "") {
-				alert("비밀번호는 필수 입력 항목입니다.");
-				$("#inputPassword").focus()
-				return false;
-			}
-			if ($("#inputPasswordCheck").val() == "") {
-				alert("이메일은 필수 입력 항목입니다.");
-				$("#inputPasswordCheck").focus()
-				return false;
-			}
-			if ($("#email1").val() == "") {
-				alert("이메일은 필수 입력 항목입니다.");
-				$("#email1").focus()
-				return false;
-			}
-			if ($("#email2").val() == "") {
-				alert("이메일은 필수 입력 항목입니다.");
-				$("#email2").focus()
-				return false;
-			}
-			if ($("#sample6_postcode").val() == "") {
-				alert("우편번호를 입력하세요.");
-				$("#sample6_postcode").focus()
-				return false;
-			}
-			if ($("#address1").val() == "") {
-				alert("주소를 입력하세요.");
-				$("#address1").focus()
-				return false;
-			}
-			if ($("#address2").val() == "") {
-				alert("상세주소를 입력하세요.");
-				$("#address2").focus()
-				return false;
-			}
 			if ($("#inputNumber").val() == "") {
 				alert("전화번호를 입력하세요.");
 				$("#inputNumber").focus()
 				return false;
 			}
-			/* if($("#terms").attr('class') != "btn btn-warning active"){
-				alert ("약관동의가 필요합니다.");
-				return false;
 			
-			} */
-			
-			if ($(".emailReceiveYn:checked").val()!= null) {
-				$("#checkAgrEmail").val($(".emailReceiveYn:checked").val());			
-			}
-			if ($(".smsReceiveYn:checked").val() != null) {
-				$("#checkAgrMessage").val($(".smsReceiveYn:checked").val());				
-			}
 			/* 아니라면 아작스 통신으로 데이터 보내기!  */
-				var password =	$("#inputPassword").val()
-				var email1 =	$("#inputEmail1").val()
-				var email2 =	$("#inputEmail2").val()
-				var zipCode = 	$("#sample6_postcode").val()
-				var address1 =	$("#sample6_address").val()
-				var address2 =	$("#sample6_address2").val()
-				var phone =		$("#inputNumber").val() 
+				var no=${userVo.no };
+				var name = $("#inputName").val();
+				var password =	$("#inputPassword").val();
+				var email1 =	$("#inputEmail1").val();
+				var email2 =	$("#inputEmail2").val();
+				var zipCode = 	$("#sample6_postcode").val();
+				var address1 =	$("#sample6_address").val();
+				var address2 =	$("#sample6_address2").val();
+				var phone =		$("#inputNumber").val(); 
 				//인증번호	
 				var agrEmail =	$("#checkAgrEmail").val();
 				var agrMessage =$("#checkAgrMessage").val();
 				var userVo ={
+						"no": no,
+						"name": name,
 						"password":  password,
 						"email1":	 email1,
 						"email2":	 email2,

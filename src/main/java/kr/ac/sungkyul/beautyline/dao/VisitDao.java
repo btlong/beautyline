@@ -37,7 +37,9 @@ public class VisitDao {
 	}
 
 	public UserVo selectOne(UserVo userVo) {
-		return sqlSession.selectOne("visit.searchSelectOne", userVo);
+		UserVo authVo = sqlSession.selectOne("visit.searchSelectOne", userVo);
+		System.out.println(authVo);
+		return authVo;
 	}
 
 	public List<CouponVo> selectList(Long no) {
@@ -76,13 +78,13 @@ public class VisitDao {
 
 	public void updateRefundCoupon(VisitVo visitVo) {
 		sqlSession.update("visit.updateRefundCoupon", visitVo);
-		
+
 		System.out.println("update 성공");
 	}
 
 	public void insertRefundSales(Long no) {
 		sqlSession.insert("visit.insertSalesByRefund", no);
-		
+
 	}
 
 	public Long couponSelect(CouponVo couponVo) {

@@ -101,7 +101,9 @@ public class VisitService {
 	}
 
 	public UserVo searchOne(UserVo userVo) {
-		return visitDao.selectOne(userVo);
+		UserVo authVo = visitDao.selectOne(userVo);
+		authVo.setAddress("[" + authVo.getZipCode() + "] " + authVo.getAddress1() + "   " + authVo.getAddress2());
+		return authVo;
 	}
 
 	public List<CouponVo> couponList(Long no) {
@@ -120,7 +122,6 @@ public class VisitService {
 		System.out.println("count를 찍어봅시다." + count);
 		/* 없으면 insert */
 
-		
 		if (count == null || count == 0) {
 			success = visitDao.couponInsert(couponVo);
 		} else {

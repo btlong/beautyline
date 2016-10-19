@@ -15,7 +15,7 @@
 
 	<select id="searchSelectOne" parameterType="uservo" resultType="uservo">
 	<![CDATA[
-		select * from users 
+		select no,name,id, phone, address1, address2, zip_code as zipCode from users 
 		where name = #{name} and phone = #{phone}
 	]]>
 	</select>

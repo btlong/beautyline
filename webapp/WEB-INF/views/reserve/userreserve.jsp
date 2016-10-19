@@ -60,8 +60,7 @@
 		<c:choose>
 			<c:when test='${not empty sessionScope.authUser }'>
 	
-		<a href="userreservelist" class="btn btn-primary" type="button">예약조회</a>
-
+		
 <!-- 달력 -->
 				<div class="col-lg-12 text-center">
 					<div id="datepicker"></div>

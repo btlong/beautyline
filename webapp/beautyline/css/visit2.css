@@ -1,0 +1,295 @@
+
+/* 이름 / 전화번호  select option창 */
+select[multiple], select[size] {
+   height: auto;
+   margin-bottom: 15px;
+}
+
+.filebox input[type="file"] {
+   position: absolute;
+   width: 1px;
+   height: 1px;
+   padding: 0;
+   margin: -1px;
+   overflow: hidden;
+   clip: rect(0, 0, 0, 0);
+   border: 0;
+}
+
+.filebox label {
+   display: inline-block;
+   padding: .5em .75em;
+   color: #999;
+   font-size: inherit;
+   line-height: normal;
+   vertical-align: middle;
+   background-color: #fdfdfd;
+   cursor: pointer;
+   border: 1px solid #ebebeb;
+   border-bottom-color: #e2e2e2;
+   border-radius: .25em;
+}
+
+/* named upload */
+.filebox .upload-name {
+   display: inline-block;
+   padding: .5em .75em;
+   font-size: inherit;
+   font-family: inherit;
+   line-height: normal;
+   vertical-align: middle;
+   background-color: #f5f5f5;
+   border: 1px solid #ebebeb;
+   border-bottom-color: #e2e2e2;
+   border-radius: .25em;
+   -webkit-appearance: none; /* 네이티브 외형 감추기 */
+   -moz-appearance: none;
+   appearance: none;
+}
+
+/* imaged preview */
+.filebox .upload-display {
+   margin-bottom: 5px;
+}
+
+@media ( min-width : 768px) {
+   .filebox .upload-display {
+      display: inline-block;
+      margin-right: 5px;
+      margin-bottom: 0;
+   }
+}
+
+.filebox .upload-thumb-wrap {
+   display: inline-block;
+   width: 54px;
+   padding: 2px;
+   vertical-align: middle;
+   border: 1px solid #ddd;
+   border-radius: 5px;
+   background-color: #fff;
+}
+
+.filebox .upload-display img {
+   display: block;
+   max-width: 100%;
+   width: 100% \9;
+   height: auto;
+}
+
+.filebox.bs3-primary label {
+   color: #fff;
+   background-color: #337ab7;
+   border-color: #2e6da4;
+}
+
+
+.well {
+   min-height: 20px;
+   padding: 18px;
+   margin-right: 170px;
+   margin-left: 192px;
+   background-color: #f5f5f5;
+   border: 1px solid #e3e3e3;
+   border-radius: 4px;
+   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+   box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+}
+
+.filebox input[type="file"] {
+   position: absolute;
+   width: 1px;
+   height: 1px;
+   padding: 0;
+   margin: -1px;
+   overflow: hidden;
+   clip: rect(0, 0, 0, 0);
+   border: 0;
+}
+
+.filebox label {
+   display: inline-block;
+   padding: .5em .75em;
+   color: #999;
+   font-size: inherit;
+   line-height: normal;
+   vertical-align: middle;
+   background-color: #fdfdfd;
+   cursor: pointer;
+   border: 1px solid #ebebeb;
+   border-bottom-color: #e2e2e2;
+   border-radius: .25em;
+}
+
+/* named upload */
+.filebox .upload-name {
+   display: inline-block;
+   padding: .5em .75em;
+   font-size: inherit;
+   font-family: inherit;
+   line-height: normal;
+   vertical-align: middle;
+   background-color: #f5f5f5;
+   border: 1px solid #ebebeb;
+   border-bottom-color: #e2e2e2;
+   border-radius: .25em;
+   -webkit-appearance: none; /* 네이티브 외형 감추기 */
+   -moz-appearance: none;
+   appearance: none;
+}
+
+/* imaged preview */
+.filebox .upload-display {
+   margin-bottom: 5px;
+}
+
+@media ( min-width : 768px) {
+   .filebox .upload-display {
+      display: inline-block;
+      margin-right: 5px;
+      margin-bottom: 0;
+   }
+}
+
+.filebox .upload-thumb-wrap {
+   display: inline-block;
+   width: 54px;
+   padding: 2px;
+   vertical-align: middle;
+   border: 1px solid #ddd;
+   border-radius: 5px;
+   background-color: #fff;
+}
+
+.filebox .upload-display img {
+   display: block;
+   max-width: 100%;
+   width: 100% \9;
+   height: auto;
+}
+
+.filebox.bs3-primary label {
+   color: #fff;
+   background-color: #337ab7;
+   border-color: #2e6da4;
+}
+
+.step {
+   text-align: center;
+}
+
+.step .col-md-2 {
+   background-color: #fff;
+   border: 1px solid #C0C0C0;
+   border-right: none;
+}
+
+.step .col-md-2:last-child {
+   border: 1px solid #C0C0C0;
+}
+
+.step .col-md-2:first-child {
+   border-radius: 5px 0 0 5px;
+}
+
+.step .col-md-2:last-child {
+   border-radius: 0 5px 5px 0;
+}
+
+.step .col-md-2:hover {
+   color: #F58723;
+   cursor: pointer;
+}
+
+.step .activestep {
+   color: #F58723;
+   height: 100px;
+   margin-top: -7px;
+   padding-top: 7px;
+   border-left: 6px solid #5CB85C !important;
+   border-right: 6px solid #5CB85C !important;
+   border-top: 3px solid #5CB85C !important;
+   border-bottom: 3px solid #5CB85C !important;
+   vertical-align: central;
+}
+
+.step .fa {
+   padding-top: 15px;
+   font-size: 40px;
+}
+
+.thumbnail:hover {
+   background-color: #68dff0;
+}
+
+.btn.active {
+   display: none;
+}
+
+.btn span:nth-of-type(1) {
+   display: none;
+}
+
+.btn span:last-child {
+   display: block;
+}
+
+.btn.active span:nth-of-type(1) {
+   display: block;
+}
+
+.btn.active span:last-child {
+   display: none;
+}
+
+.table {
+   width: 69%;
+   height: 5px;
+   text-align: center;
+}
+
+.mag {
+   width: 450px;
+   margin: 0 auto;
+   float: none;
+}
+
+.mag img {
+   max-width: 100%;
+}
+
+.mag1 {
+   width: 120px;
+   margin: 0 auto;
+   float: none;
+}
+
+.mag1 img {
+   max-width: 100%;
+}
+
+.magnify {
+   position: relative;
+   cursor: none;
+}
+
+.modal-body {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+/* 테이블 선택 */
+.step .activestep {
+    color: #F58723;
+    height: 100%;
+    margin-top: -7px;
+    padding-top: 7px;
+    border-left: 6px solid #68dff0 !important;
+    border-left-width: 6px;
+    border-left-style: solid;
+    border-left-color: rgb(104, 223, 240);
+    border-right: 6px solid #68dff0 !important;
+    border-top: 3px solid #68dff0 !important;
+    border-bottom: 3px solid #68dff0 !important;
+    vertical-align: central;
+}

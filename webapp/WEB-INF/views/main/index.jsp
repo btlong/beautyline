@@ -84,10 +84,10 @@
 					<h2 class="brand-before">
 						<small>Welcome to</small>
 					</h2>
-					<h1 class="brand-name">Business Casual</h1>
+					<h1 class="brand-name">Beauty Line</h1>
 					<hr class="tagline-divider">
 					<h2>
-						<small>By <strong>Start Bootstrap</strong>
+						<small>By <strong>Long</strong>
 						</small>
 					</h2>
 				</div>
@@ -99,23 +99,18 @@
 				<div class="col-lg-12">
 					<hr>
 					<h2 class="intro-text text-center">
-						Build a website <strong>worth visiting</strong>
+					당신의 <strong>아름다움</strong>을 위한 뷰티라인
 					</h2>
 					<hr>
 					<img class="img-responsive img-border img-left"
 						src="bootstrap/img/intro-pic.jpg" alt="">
 					<hr class="visible-xs">
-					<p>The boxes used in this template are nested inbetween a
-						normal Bootstrap row and the start of your column layout. The
-						boxes will be full-width boxes, so if you want to make them
-						smaller then you will need to customize.</p>
-					<p>
-						A huge thanks to <a href="http://join.deathtothestockphoto.com/"
-							target="_blank">Death to the Stock Photo</a> for allowing us to
-						use the beautiful photos that make this template really come to
-						life. When using this template, make sure your photos are decent.
-						Also make sure that the file size on your photos is kept to a
-						minumum to keep load times to a minimum.
+					<p> Basic Care - <small>기본적인 피부관리</small> </p>
+					<p> Whitening -  <small>피부 톤 화이트닝</small></p>
+					<p> Lifting -  <small>주름 개선, 주름 예방</small></p>
+					<p> Acne Management -  <small>여드름 피부 완화</small> </p>
+					<p> 당신의 피부 타입을 검사해드립니다! 맞춤 화장품 추천 서비스 <a href="/beautyline/coun/test"
+							target="_blank"> 나의 <strong>피부타입</strong>은?</a>
 					</p>
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 						Nunc placerat diam quis nisl vestibulum dignissim. In hac

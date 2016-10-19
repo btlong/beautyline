@@ -175,24 +175,21 @@
 						<div class="form-group" id="divPassword">
 							<label class="col-lg-3 control-label" for="inputPassword">비밀번호*</label>
 							<div class="col-lg-3">
-								<input class="form-control" id="inputPassword" name="password"
-									type="password" placeholder="비밀번호">
+								<input class="form-control" id="inputPassword" name="password" type="password" placeholder="비밀번호">
 							</div>
 							<div class="col-lg-3">
-								<h11 class="help-block" id="checkPw">특수문자,영문,숫자를 혼합하여
-								6~20자 이내</h11>
+								<h11 class="help-block" id="checkPw">특수문자,영문,숫자를 혼합하여 6~20자 이내</h11>
 							</div>
 						</div>
 
 						<!-- 비밀번호확인 -->
 						<div class="form-group" id="divPasswordCheck">
-							<label class="col-lg-3 control-label" for="inputPasswordCheck">비밀번호
-								확인*</label>
+							<label class="col-lg-3 control-label" for="inputPasswordCheck">비밀번호 	확인*</label>
 							<div class="col-lg-3">
 								<input class="form-control" id="inputPasswordCheck" type="password" placeholder="비밀번호 확인">
 							</div>
 							<div class="col-lg-3">
-								<h11 class="help-block" id="oneMore">비밀번호를 한번 더 입력해주세요.</h11>
+								<h6 class="help-block" id="oneMore">비밀번호를 한번 더 입력해주세요.</h6>
 							</div>
 						</div>
 						<br>
@@ -202,13 +199,11 @@
 						<div class="form-group" id="divEmail">
 							<label class="col-lg-3 control-label" for="inputEmail">이메일*</label>
 							<div class="col-lg-2">
-						
 								<input class="form-control" id="inputEmail1" type="text">
 							</div>
 							<span class="col-lg-1" id="dat_div">
 							<label class="control-label" >@</label>
-							
-						</span>
+							</span>
 							<div class="col-lg-2" id="inputEmail2_div">
 								<input class="form-control" id="inputEmail2" type="text">
 							</div>
@@ -277,7 +272,7 @@
 								</button>
 							</div>
 							<div class="col-lg-3">
-								<h11 class="help-block">전송된 인증번호를 입력해주세요.</h11>
+								<h6 class="help-block">전송된 인증번호를 입력해주세요.</h6>
 							</div>
 
 						</div>
@@ -563,7 +558,7 @@
 				return false;
 			}
 			if ($("#inputPasswordCheck").val() == "") {
-				alert("이메일은 필수 입력 항목입니다.");
+				alert("비밀번호는 필수 입력 항목입니다.");
 				$("#inputPasswordCheck").focus();
 				return false;
 			}

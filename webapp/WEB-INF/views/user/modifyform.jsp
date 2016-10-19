@@ -147,19 +147,18 @@
 
 						<!-- 이름 -->
 						<div class="form-group" id="divName">
-							<label class="col-lg-3 control-label" for="inputName">이름*</label>
+							<label class="col-lg-3 control-label" for="inputName">이름</label>
 							<div class="col-lg-3">
-								<label class="form-control" id="inputName"
-									 >${userVo.name }</label>
+								<input class="form-control onlyHangul" id="inputName" type="text" value="${userVo.name }" readonly>
 							</div>
 						</div>
 						<br>
 
 						<!-- 아이디 -->
 						<div class="form-group" id="divId">
-							<label class="col-lg-3 control-label" for="inputId">아이디*</label>
+							<label class="col-lg-3 control-label" for="inputId">아이디</label>
 							<div class="col-lg-3">
-								<label class="form-control onlyAlphabetAndNumber" id="inputId" >${userVo.id }</label>
+								<input class="form-control onlyAlphabetAndNumber" id="inputId" type="text" value="${userVo.id }" readonly>
 							</div>
 						</div>
 						<br>
@@ -171,7 +170,7 @@
 								<input class="form-control" id="inputPassword" name="password" type="password" value="${userVo.password }" >
 							</div>
 							<div class="col-lg-3">
-								<h11 class="help-block" id="checkPw">특수문자,영문,숫자를 혼합하여 6~20자 이내</h11>
+								<h6 class="help-block" id="checkPw">특수문자,영문,숫자를 혼합하여 6~20자 이내</h6>
 							</div>
 						</div>
 
@@ -183,7 +182,7 @@
 								<input class="form-control" id="inputPasswordCheck" type="password" placeholder="비밀번호 확인" value="${userVo.password }">
 							</div>
 							<div class="col-lg-3">
-								<h11 class="help-block" id="oneMore">비밀번호를 한번 더 입력해주세요.</h11>
+								<h6 class="help-block" id="oneMore">비밀번호를 한번 더 입력해주세요.</h6>
 							</div>
 						</div>
 						<br>

@@ -105,7 +105,7 @@
 											<th>아이디</th>
 											<th>이메일</th>
 											<th>주소</th>
-											<th>권한</th>
+											<!-- <th>권한</th> -->
 											<!-- <th>쿠폰</th> -->
 											<th>수정</th>
 											<th>삭제</th>
@@ -132,7 +132,7 @@
 														<td>${listUser[i].id}</td>
 														<td>${listUser[i].email}</td>
 														<td>${listUser[i].address}</td>
-														<td>${listUser[i].isAdmin}</td>
+														<%-- <td>${listUser[i].isAdmin}</td> --%>
 
 															<!-- 쿠폰 조회  --> <!-- Trigger the modal with a button -->
 														<%-- <td>
@@ -197,9 +197,9 @@
 										<option value="email"
 											<c:if test="${'email1'==keyField || 'email2'==keyField}"> selected</c:if>>
 											이메일</option>
-										<option value="is_admin"
+										<%-- <option value="is_admin"
 											<c:if test="${'isAdmin'==keyField }"> selected</c:if>>
-											권한</option>
+											권한</option> --%>
 									</select> <label> <input type="text"
 										class="form-control input-sm" name="keyWord"
 										value="${keyWord }">

@@ -1,4 +1,7 @@
-
+*{
+	margin : 0;
+	padding: 0;
+}
 #userli {
 	color: #333;
 
@@ -31,7 +34,8 @@ body {
 .box {
 	background-color: #F7F7F7;
 }
-.hr {
+hr {
+	
 	border-color: #3E3F3A;
 }
 #footerText{
@@ -61,6 +65,7 @@ body {
 	background-color: #2C3E50;
 	border: none;
 }
+
 .dropdown-menu{
 	margin-right:100px;
 }

@@ -39,7 +39,18 @@
 #btn-reserve {
 	margin-top: 20px;
 }
-
+.explain {
+	margin-top: 50px;
+}
+.box-radius {
+   margin-top: 7px;
+   padding: 10px;
+   border: 1px solid #D8D8D8;
+   border-radius: 5px;
+   -moz-border-radius: 5px;
+   -webkit-border-radius: 5px;
+   -o-border-radius: 5px;
+}
 </style>
 
 </head>
@@ -68,12 +79,20 @@
 						&nbsp;- 10회 : 40만원 </p> 
 						<p class="text-left text-muted">&nbsp;- 리프팅관리 + 미니등관리 : 50만원
 						</p> 
+						<div class="text-left">
+						<div class="box-radius">
+						<small>신진대사를 촉진시키며 혈관 내 산소를 공급하고 노폐물을 제거해주며 콜라겐 생성을 유도해내서 잔주름을 예방하고 피부재생을 촉진시킵니다.</small>
+						</div>
+						</div>
+						<div class="row">
 						<a id="btn-reserve" class="btn btn-info btn-sm" href="/beautyline/reserve/userreserve" role="button">예약하러 가기</a>
+				</div>
 				</div>
 			</div>
 			<div class="form-group">
-			
+			<div class="explain col-lg-12">
             <img src="/beautyline/images/information/program/explain-lifting.png" class="img-responsive">
+           </div>
            </div>
 			</form>         
     </div> 

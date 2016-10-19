@@ -39,7 +39,18 @@
 #btn-reserve {
 	margin-top: 20px;
 }
-
+.explain {
+	margin-top: 50px;
+}
+.box-radius {
+   margin-top: 7px;
+   padding: 10px;
+   border: 1px solid #D8D8D8;
+   border-radius: 5px;
+   -moz-border-radius: 5px;
+   -webkit-border-radius: 5px;
+   -o-border-radius: 5px;
+}
 </style>
 
 </head>
@@ -68,12 +79,20 @@
 						&nbsp;- 10회 : 40만원 </p> 
 						<p class="text-left text-muted">&nbsp;- 기본관리 + 미니등관리 : 50만원
 						</p> 
+						<div class="text-left">
+						<div class="box-radius">
+						<small> 자주 사용하지 않아 굳어있는 근육을 부드럽게 하고 노폐물과 부기를 빠지게 하면서 피부에 탄력이 증가되어 얼굴 선을 아름답게 가꾸어 줍니다.</small>
+						</div>
+						</div>
+						<div class="row">
 						<a id="btn-reserve" class="btn btn-info btn-sm" href="/beautyline/reserve/userreserve" role="button">예약하러 가기</a>
+						</div>
 				</div>
 			</div>
 			<div class="form-group">
-			
-            <img src="/beautyline/images/information/program/explain-basic.png" class="img-responsive">
+			<div class="explain col-lg-12">
+          	  <img src="/beautyline/images/information/program/explain-basic.png" class="img-responsive">
+           </div>
            </div>
 			</form>         
     </div> 

@@ -151,7 +151,7 @@
             </div>
    		 </div>
    		 	<form action="/beautyline/information/basic" method="post">
-   		 	<input type="image" src="/beautyline/images/information/program/basic.png">
+   		 	<input class="img-responsive" type="image" src="/beautyline/images/information/program/basic.png">
    		 	</form>
             <!-- <img src="/beautyline/images/information/program/basic.png" class="img-responsive"> -->
             <!-- 
@@ -171,7 +171,7 @@
             </div>
    		 </div>
 	   		 <form action="/beautyline/information/white" method="post">
-   		 	<input type="image" src="/beautyline/images/information/program/white.png">
+   		 	<input class="img-responsive" type="image" src="/beautyline/images/information/program/white.png">
    		 	</form>
             <!-- <img src="/beautyline/images/information/program/white.png" class="img-responsive"> -->
            <!--  <h2 class="text-center">화이트 케어</h2>
@@ -189,7 +189,7 @@
             </div>
    		 </div>
 	   		 <form action="/beautyline/information/lifting" method="post">
-   		 		<input type="image" src="/beautyline/images/information/program/lifting.png">
+   		 		<input class="img-responsive" type="image" src="/beautyline/images/information/program/lifting.png">
    		 	</form>
             <!-- <img src="/beautyline/images/information/program/lifting.png" class="img-responsive"> -->
         <!--     <h2 class="text-center">주름재생</h2>
@@ -207,7 +207,7 @@
             </div>
    		 </div>
 	   		 <form action="/beautyline/information/acne" method="post">
-   			 	<input type="image" src="/beautyline/images/information/program/acne.png">
+   			 	<input class="img-responsive" type="image" src="/beautyline/images/information/program/acne.png">
    		 	</form>
            <!--  <img src="/beautyline/images/information/program/acne.png" class="img-responsive"> -->
             <!-- 

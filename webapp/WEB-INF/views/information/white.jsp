@@ -39,7 +39,19 @@
 #btn-reserve {
 	margin-top: 20px;
 }
+.explain {
+	margin-top: 50px;
 
+}
+.box-radius {
+   margin-top: 7px;
+   padding: 10px;
+   border: 1px solid #D8D8D8;
+   border-radius: 5px;
+   -moz-border-radius: 5px;
+   -webkit-border-radius: 5px;
+   -o-border-radius: 5px;
+}
 </style>
 
 </head>
@@ -68,12 +80,20 @@
 						&nbsp;- 10회 : 50만원 </p> 
 						<p class="text-left text-muted">&nbsp;- 화이트관리 + 미니등관리 : 50만원
 						</p> 
+						<div class="text-left">
+						<div class="box-radius">
+						<small>비타민C를 피부 깊숙이 전달시켜 멜라닌 생성을 차단시키므로 기미,미백관리에 탁월한 효과를 발휘합니다. 또한 활성산소를 제거하므로 노화를 방지하며 콜라겐과 엘라스틴 합성을 촉진하여 잔주름을 제거하고 피부의 탄력을 줍니다.</small>
+						</div>
+						</div>
+						<div class="row">
 						<a id="btn-reserve" class="btn btn-info btn-sm" href="/beautyline/reserve/userreserve" role="button">예약하러 가기</a>
+				</div>
 				</div>
 			</div>
 			<div class="form-group">
-			
+			<div class="explain col-lg-12">
             <img src="/beautyline/images/information/program/explain-white.png" class="img-responsive">
+           </div>
            </div>
 			</form>         
     </div> 

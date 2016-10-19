@@ -39,7 +39,18 @@
 #btn-reserve {
 	margin-top: 20px;
 }
-
+.explain {
+	margin-top: 50px;
+}
+.box-radius {
+   margin-top: 7px;
+   padding: 10px;
+   border: 1px solid #D8D8D8;
+   border-radius: 5px;
+   -moz-border-radius: 5px;
+   -webkit-border-radius: 5px;
+   -o-border-radius: 5px;
+}
 </style>
 
 </head>
@@ -68,12 +79,20 @@
 						&nbsp;- 10회 : 40만원 </p> 
 						<p class="text-left text-muted">&nbsp;- 여드름관리 + 미니등관리 : 50만원
 						</p> 
+						<div class="text-left">
+						<div class="box-radius">
+						<small>여드름은 유전적인 요인, 잘못된 식습관, 호르몬불균형, 스트레스, 잘못된 화장품 등으로 발생하는데  면역성을 길러주며 피지 분비를 균형 있게 조절하고 각질을 분해하여 깨끗한 피부를 만드는데 효과가 있습니다.</small>
+						</div>
+						</div>
+						<div class="row">
 						<a id="btn-reserve" class="btn btn-info btn-sm" href="/beautyline/reserve/userreserve" role="button">예약하러 가기</a>
+				</div>
 				</div>
 			</div>
 			<div class="form-group">
-			
+			<div class="explain col-lg-12">
             <img src="/beautyline/images/information/program/explain-acne.png" class="img-responsive">
+           </div>
            </div>
 			</form>         
     </div> 

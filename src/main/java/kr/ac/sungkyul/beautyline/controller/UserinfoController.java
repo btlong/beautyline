@@ -78,8 +78,9 @@ public class UserinfoController {
 	/* 회원가입 아작스	*/
 	@ResponseBody
 	@RequestMapping(value ="join", method = RequestMethod.POST)
-	public int join(@RequestBody UserVo vo) {//회원가입 버튼 누를 때
-		System.out.println(vo);
+	//public int join(@RequestBody UserVo vo) {//회원가입 버튼 누를 때
+	public int join(@RequestBody(required = false) UserVo vo) {
+		System.out.println("//"+vo);
 		int a = userService.join(vo);
 		return a; 
 	}

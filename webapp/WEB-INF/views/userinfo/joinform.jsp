@@ -126,7 +126,7 @@
 
 						<!-- 아이디 -->
 						<div class="form-group" id="divId">
-							<label class="col-lg-3 control-label" for="inputId">아이디*</label>
+							<label class="col-lg-3 control-label" for="inputId">아이디</label>
 							<div class="col-lg-3">
 								<input class="form-control onlyAlphabetAndNumber" id="inputId"
 									name="id" type="text" placeholder="아이디">
@@ -142,7 +142,7 @@
 
 						<!-- 비밀번호 -->
 						<div class="form-group" id="divPassword">
-							<label class="col-lg-3 control-label" for="inputPassword">비밀번호*</label>
+							<label class="col-lg-3 control-label" for="inputPassword">비밀번호</label>
 							<div class="col-lg-3">
 								<input class="form-control" id="inputPassword" name="password"
 									type="password" placeholder="비밀번호">
@@ -156,7 +156,7 @@
 						<!-- 비밀번호확인 -->
 						<div class="form-group" id="divPasswordCheck">
 							<label class="col-lg-3 control-label" for="inputPasswordCheck">비밀번호
-								확인*</label>
+								확인</label>
 							<div class="col-lg-3">
 								<input class="form-control" id="inputPasswordCheck" type="password" placeholder="비밀번호 확인">
 							</div>
@@ -169,7 +169,7 @@
 
 						<!-- 이메일 -->
 						<div class="form-group" id="divEmail">
-							<label class="col-lg-3 control-label" for="inputEmail">이메일*</label>
+							<label class="col-lg-3 control-label" for="inputEmail">이메일</label>
 							<div class="col-lg-2">
 						
 								<input class="form-control" id="inputEmail1" type="text">
@@ -198,7 +198,7 @@
 
 						<!-- 주소 -->
 						<div class="form-group" id="divAddress">
-							<label class="col-lg-3 control-label">주소*</label>
+							<label class="col-lg-3 control-label">주소</label>
 							<div class="col-lg-2">
 								<input class="form-control" type="text" name="zipCode" id="sample6_postcode" placeholder="우편번호">
 							</div>
@@ -279,17 +279,6 @@
 								<input type="radio" class="smsReceiveYn" name="smsReceiveYn" value="N" autocomplete="off"> 
 								<span class="fa fa-check"></span>
 								</label> 동의하지 않습니다.
-							</div>
-						</div><br>
-
-
-						<div class="form-group">
-							<label class="col-lg-3 control-label" for="inputAgree">약관 동의</label>
-							<div class="col-lg-6" data-toggle="buttons">
-								<label class="btn btn-warning" id="terms">
-								<input id="agree" type="checkbox" autocomplete="off">
-								<span class="fa fa-check"></span>
-								</label> <a href="#">이용약관</a> 에 동의 합니다.
 							</div>
 						</div><br><br>
 						
@@ -480,75 +469,75 @@
 		
 		/* validation 검사 & submit   */
 		$("#submit").on("click",function() {
-			
 			if ($(".emailReceiveYn:checked").val()== null) {
-				alert("이메일 수신여부를 체크해주세요.");
-				return false;
+				//alert("이메일 수신여부를 체크해주세요.");
 			}
 			if ($(".smsReceiveYn:checked").val() ==null) {
-				alert("SMS 수신여부를 체크해주세요.");
-				return false;
-			}
-		
+				//alert("SMS 수신여부를 체크해주세요.");
+			} 
 			if ($("#inputName").val() == "") {
 				alert("이름은 필수 입력 항목입니다.");
 				$("#inputName").focus();
 				return false;
 			}
 			if ($("#inputId").val() == "") {
-				alert("아이디는 필수 입력 항목입니다.");
-				$("#inputId").focus();
-				return false;
+				//alert("아이디는 필수 입력 항목입니다.");
+				$("#inputId").val("null");
+				//$("#inputId").focus();
+			} else{
+				if($("#conCheckId").val()=="0" ){
+					alert ("아이디 중복확인이 필요합니다.");
+					return false;
+					}
 			}
 			if ($("#inputPassword").val() == "") {
-				alert("비밀번호는 필수 입력 항목입니다.");
-				$("#inputPassword").focus();
-				return false;
+				//alert("비밀번호는 필수 입력 항목입니다.");
+				//$("#inputPassword").focus();
+				$("#inputPassword").val("null");
 			}
 			if ($("#inputPasswordCheck").val() == "") {
-				alert("이메일은 필수 입력 항목입니다.");
-				$("#inputPasswordCheck").focus();
-				return false;
+				//alert("이메일은 필수 입력 항목입니다.");
+				//$("#inputPasswordCheck").focus();
+				$("#inputPasswordCheck").val("null");
 			}
 			if ($("#email1").val() == "") {
-				alert("이메일은 필수 입력 항목입니다.");
-				$("#email1").focus();
-				return false;
+				//alert("이메일은 필수 입력 항목입니다.");
+				//$("#email1").focus();
+				$("#inputPasswordCheck").val("null");
 			}
 			if ($("#email2").val() == "") {
-				alert("이메일은 필수 입력 항목입니다.");
-				$("#email2").focus();
-				return false;
+				//alert("이메일은 필수 입력 항목입니다.");
+				//$("#email2").focus();
+				$("#email2").val("null");
 			}
 			if ($("#sample6_postcode").val() == "") {
-				alert("우편번호를 입력하세요.");
-				$("#sample6_postcode").focus();
-				return false;
+				//alert("우편번호를 입력하세요.");
+				//$("#sample6_postcode").focus();
+				$("#sample6_postcode").val("null");
 			}
 			if ($("#address1").val() == "") {
-				alert("주소를 입력하세요.");
-				$("#address1").focus();
-				return false;
+				//alert("주소를 입력하세요.");
+				//$("#address1").focus();
+				$("#address1").val("null");
 			}
 			if ($("#address2").val() == "") {
-				alert("상세주소를 입력하세요.");
-				$("#address2").focus();
-				return false;
+				//alert("상세주소를 입력하세요.");
+				//$("#address2").focus();
+				$("#address2").val("null");
+			}
+			if ($("#zipCode").val() == "") {
+				$("#zipCode").val("null");
+			}
+			if ($("#zipCode").val() == "") {
+				$("#zipCode").val("null");
 			}
 			if ($("#inputNumber").val() == "") {
 				alert("전화번호를 입력하세요.");
 				$("#inputNumber").focus();
 				return false;
 			}
-			if($("#conCheckId").val()=="0" ){
-				alert ("아이디 중복확인이 필요합니다.");
-				return false;
-				}
-			if($("#terms").attr('class') != "btn btn-warning active"){
-				alert ("약관동의가 필요합니다.");
-				return false;
 			
-			}
+			
 			/* 아니라면 아작스 통신으로 데이터 보내기!  */
 			 	var name =	$("#inputName").val();
 				var id =	$("#inputId").val();

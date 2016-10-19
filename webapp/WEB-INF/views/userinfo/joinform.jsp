@@ -48,6 +48,12 @@
 	padding-right: 0px;
 	width:10px;
 }
+/* input.onlyAlphabetAndNumber{
+	ime-mode:inactive;
+} */
+input.onlyHangul{
+	ime-mode:active;
+}
 </style>
 <script>
 	function sample6_execDaumPostcode() {

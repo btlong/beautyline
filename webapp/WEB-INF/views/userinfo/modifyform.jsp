@@ -47,6 +47,12 @@
 	padding-right: 0px;
 	width:10px;
 }
+/* input.onlyAlphabetAndNumber{
+	ime-mode:inactive;
+} */
+input.onlyHangul{
+	ime-mode:active;
+}
 </style>
 <script>
 	function sample6_execDaumPostcode() {
@@ -127,26 +133,25 @@
 
 						<!-- 이름 -->
 						<div class="form-group" id="divName">
-							<label class="col-lg-3 control-label" for="inputName">이름*</label>
+							<label class="col-lg-3 control-label" for="inputName">이름</label>
 							<div class="col-lg-3">
-								<label class="form-control" id="inputName"
-									 >${userVo.name }</label>
+								 <input class="form-control onlyHangul" id="inputName" type="text" value="${userVo.name }">
 							</div>
 						</div>
 						<br>
 
 						<!-- 아이디 -->
 						<div class="form-group" id="divId">
-							<label class="col-lg-3 control-label" for="inputId">아이디*</label>
+							<label class="col-lg-3 control-label" for="inputId">아이디</label>
 							<div class="col-lg-3">
-								<label class="form-control onlyAlphabetAndNumber" id="inputId" >${userVo.id }</label>
+								<input class="form-control  onlyAlphabetAndNumber" id="inputId" type="text" value="${userVo.id }" readonly>
 							</div>
 						</div>
 						<br>
 
 						<!-- 비밀번호 -->
 						<div class="form-group" id="divPassword">
-							<label class="col-lg-3 control-label" for="inputPassword">비밀번호*</label>
+							<label class="col-lg-3 control-label" for="inputPassword">비밀번호</label>
 							<div class="col-lg-3">
 								<input class="form-control" id="inputPassword" name="password" type="password" value="${userVo.password }" >
 							</div>
@@ -158,7 +163,7 @@
 						<!-- 비밀번호확인 -->
 						<div class="form-group" id="divPasswordCheck">
 							<label class="col-lg-3 control-label" for="inputPasswordCheck">비밀번호
-								확인*</label>
+								확인</label>
 							<div class="col-lg-3">
 								<input class="form-control" id="inputPasswordCheck" type="password" placeholder="비밀번호 확인" value="${userVo.password }">
 							</div>
@@ -171,7 +176,7 @@
 
 						<!-- 이메일 -->
 						<div class="form-group" id="divEmail">
-							<label class="col-lg-3 control-label" for="inputEmail">이메일*</label>
+							<label class="col-lg-3 control-label" for="inputEmail">이메일</label>
 							<div class="col-lg-2">
 						
 								<input class="form-control" id="inputEmail1" type="text" value="${userVo.email1 }">
@@ -200,7 +205,7 @@
 
 						<!-- 주소 -->
 						<div class="form-group" id="divAddress">
-							<label class="col-lg-3 control-label">주소*</label>
+							<label class="col-lg-3 control-label">주소</label>
 							<div class="col-lg-2">
 								<input class="form-control" type="text" name="zipCode" id="sample6_postcode" placeholder="우편번호" value="${userVo.zipCode }">
 							</div>
@@ -524,6 +529,7 @@
 			
 			/* 아니라면 아작스 통신으로 데이터 보내기!  */
 				var no=${userVo.no };
+				var name = $("#inputName").val();
 				var password =	$("#inputPassword").val();
 				var email1 =	$("#inputEmail1").val();
 				var email2 =	$("#inputEmail2").val();
@@ -536,6 +542,7 @@
 				var agrMessage =$("#checkAgrMessage").val();
 				var userVo ={
 						"no": no,
+						"name": name,
 						"password":  password,
 						"email1":	 email1,
 						"email2":	 email2,

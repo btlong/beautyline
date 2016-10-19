@@ -247,7 +247,6 @@
 
 $(".delete-reserve").on("click", function() {
 		var no = $(this).data("no");
-		console.log(no+"??");
 		$("#resDelOk").on("click", function() {
 			console.log(no);
 		

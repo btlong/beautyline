@@ -31,7 +31,7 @@ body {
 .box {
 	background-color: #F7F7F7;
 }
-hr {
+.hr {
 	border-color: #3E3F3A;
 }
 #footerText{
@@ -43,6 +43,7 @@ hr {
 #reservejoin{
 	padding: 20px;
 }
+
 .navbar-nav {
     display: table;
     float: none;
@@ -51,12 +52,29 @@ hr {
     table-layout: fixed;
     font-size: 1.25em;
 }
+.navbar-default .navbar-nav>.open>a,
+.navbar-default .navbar-nav>.open>a:hover{
+	background-color: #2C3E50;
+}
 
 #navdropdown {
-	text-align: center;
 	background-color: #2C3E50;
-	text-color: #ffffff;
-	
+	border: none;
+}
+.dropdown-menu{
+	margin-right:100px;
+}
+
+.dropdown:hover .dropdown-menu {
+	display: block;
+	margin-top: 0;
+}
+.dropdown-menu li a{
+	color: #ffffff;
+}
+.dropdown-menu li a:hover{
+	background-color: #ffffff;
+	color: #2C3E50;
 }
 .container{
    width: 940px;   

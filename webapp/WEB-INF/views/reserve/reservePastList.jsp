@@ -12,7 +12,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>예 약 관 리</title>
+<title>지 난 예 약 관 리</title>
 
 <!-- Custom CSS -->
 <link href="/beautyline/bootstrap/css/business-casual.css"rel="stylesheet">
@@ -64,7 +64,7 @@
 			<div class="col-lg-12">
 				<hr>
 				<h2 class="intro-text text-center">
-				<strong>Reserve List</strong><br>예약관리
+				<strong>Past Reserve List</strong><br>지난 예약 관리
 				</h2>
 				<hr>
 			</div>
@@ -81,7 +81,7 @@
 								<th>예약 프로그램</th>
 								<th>예약일</th>
 								<th>예약 시간</th>
-								<th>예약취소</th>
+								<th>예약 삭제</th>
 							</tr>
 						</thead>
 
@@ -97,21 +97,20 @@
 							<!-- doneLoop가 false이면 루프 계속 돎-->
 							<c:if test="${not doneLoop }">
 						<tbody>
-	
 							<tr>
 								<!-- (전체 게시물 갯수-(전체회원수-1))>=1이면 -->
 								<c:if test="${(page.totalRecord -status.index)>=1}">
-								<td>${page.totalRecord - status.index}</td>
+								<td>${page.totalRecord -status.index}</td>
 								<td>${resList[i].userName }</td>
 								<td>${resList[i].progName }</td>
 								<td>${resList[i].resDate }</td>
 								<td>${resList[i].resTime }시- ${resList[i].resTime + 1 }시</td>
 								<td>
 									<input type="hidden" name="no" value="${resList[i].no }" />
-									<a class="btn btn-default btn-xs delete-reserve" 
-										data-target="#modalDeleteReserve" type="button"
-										data-toggle="modal" data-backdrop="static" role="button"
-										data-no="${resList[i].no}">취소</a>
+										<a class="btn btn-default btn-xs delete-reserve" 
+											data-target="#modalDeleteReserve" type="button"
+											data-toggle="modal" data-backdrop="static" role="button"
+											data-no="${resList[i].no}">삭제</a>
 								</td>
 								</c:if>
 							</tr>
@@ -127,17 +126,12 @@
 				
 				<div class="col-lg-12 text-right">	
 					<a class="btn btn-danger" type="button" href="reserve" >돌아가기</a>
-					
-					<form id="adminReserve" action="reservePastList" method="POST">
-					<input type="hidden" value="${today }" name="today">
-					<input class="btn btn-default" type="submit" value="지난 예약관리">
-					</form>
 				</div>
 
 <!-------------Paging--------------->
 	<c:import url="/WEB-INF/views/include/paging.jsp" />
     	 <!-- 이전 페이지 -->
-			<form id="blockmoveb" name="blockmoveb" method="POST" action="reserveList">
+			<form id="blockmoveb" name="blockmoveb" method="POST" action="reservePastList">
 				<input type="hidden" name="nowBlock" value="${page.nowBlock-1 }" />
 				<input type="hidden" name="nowPage" value="${(page.nowBlock-1)*page.pagePerBlock}" />
 				<input type="hidden" name="keyField" value="${keyField }" />
@@ -145,7 +139,7 @@
 				<input type="hidden" name="today" value="${today }" />
 			</form>
 		<!-- 페이지블록 -->
-			<form id="pagemove" name="pagemove" method="POST" action="reserveList">
+			<form id="pagemove" name="pagemove" method="POST" action="reservePastList">
 				<input type="hidden" name="nowBlock" value="${page.nowBlock}" />
 				<input id="now-page" type="hidden" name="nowPage" value="${page.nowBlock*page.pagePerBlock}" />
 				<input type="hidden" name="keyField" value="${keyField }" />
@@ -154,15 +148,12 @@
 			</form>
 
 		<!-- 다음 페이지 -->
-			<form id="blockmovef" name="blockmovef" method="POST" action="reserveList">
+			<form id="blockmovef" name="blockmovef" method="POST" action="reservePastList">
 				<input type="hidden" name="nowBlock" value="${page.nowBlock+1 }" />
 				<input type="hidden" name="nowPage" value="${(page.nowBlock+1)*page.pagePerBlock}" />
 				<input type="hidden" name="keyField" value="${keyField }" />
 				<input type="hidden" name="keyWord" value="${keyWord }" />
-				<input type="hidden" name="today" value="${today }" />
-		
-			</form>
-	 	
+				<input type="hidden" name="today" value="${today }" />			</form>
 			</div>
 			
 			
@@ -207,7 +198,6 @@
 			</div>
 		</div>
 	</div>
-
 <!-- 예약삭제 Modal -->
 	<div class="modal fade" id="modalDeleteReserve" role="dialog"
 		tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -220,13 +210,13 @@
 					<button type="button" class="close" data-dismiss="modal">×</button>
 					<!-- header title -->
 					<h4 class="modal-title text-center">
-						<strong>예약취소</strong>
+						<strong>예약삭제</strong>
 					</h4>
 				</div>
 
 				<!-- body -->
 				<div class="modal-body text-center">
-					<h4>예약을 취소 하시겠습니까?</h4>
+					<h4>예약을 삭제 하시겠습니까?</h4>
 				</div>
 
 				<!-- Footer -->
@@ -237,9 +227,6 @@
 			</div>
 		</div>
 	</div>
-
-
-
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
 
 </body>
@@ -247,6 +234,7 @@
 
 $(".delete-reserve").on("click", function() {
 		var no = $(this).data("no");
+		console.log(no+"??");
 		$("#resDelOk").on("click", function() {
 			console.log(no);
 		
@@ -255,10 +243,8 @@ $(".delete-reserve").on("click", function() {
 				type : "POST",
 				data : {"no" : no},
 				success : function(result) {
-					
-				
 					if (result > 0) {
-						location.href = "reservelist";
+						location.href = "reservePastList";
 					} else {
 						alert("유효하지 않은 정보입니다.");
 					}
@@ -269,8 +255,10 @@ $(".delete-reserve").on("click", function() {
 
 $(document).on("change","select[name=keyField]",function(){
 	var test = $("select[name=keyField] option:selected").val();
-		if( test == "selDate"){
+	
+	if( test == "selDate"){
 		
+	
 		$( "#datepicker1" ).datepicker({
 			showOtherMonths: true,
 			monthNames: ['01월', '02월', '03월', '04월', '05월', '06월', '07월', '08월', '09월', '10월', '11월', '12월' ],
@@ -285,14 +273,14 @@ $(document).on("change","select[name=keyField]",function(){
 		         $("#datepicker1").val(sDate.getFullYear() +"년 "+mm+"월 "+dd+"일 ");      
 		         
 		      }
-			});
+		});
 	}else{
 		$( "#datepicker1").val('');
 		$( "#datepicker1" ).datepicker( "destroy" );  
-	
 	}
 });
 
+	
 function check() {
 	if (document.search.keyWord.value == "") {
 		alert("검색어를 입력하세요.");
@@ -300,6 +288,6 @@ function check() {
 		return;
 	}
 		document.search.submit();
-	}
+}
 </script>
 </html>

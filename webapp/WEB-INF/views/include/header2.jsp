@@ -33,25 +33,16 @@
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav"  role="menu">
-			
 				<li class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">소개</a>
-					<ul class="dropdown-menu" id="navdropdown" role="menu">
+					<ul class="dropdown-menu">
 						<li><a href="/beautyline/information/brand">뷰티라인</a></li>
 						<li><a href="/beautyline/information/program">프로그램</a></li>
 					</ul>
 				</li>
-				
 				<c:choose>
  					<c:when test="${not empty sessionScope.authUser && authUser.isAdmin eq 'a'}">
-						<li class="dropdown">
-							<a href="/beautyline/reserve/reserve" >예약</a>
-							<ul class="dropdown-menu" id="navdropdown" role="menu">
-								<li><a href="/beautyline/reserve/reservelist">예약관리</a></li>
-								<li>&nbsp</li>
-								<li>&nbsp</li>
-							</ul> 
-						</li>					
+						<li><a href="/beautyline/reserve/reserve">예약</a></li> 					
  					</c:when>
  					<c:otherwise>
  						<li><a href="/beautyline/reserve/userreserve">예약</a></li>
@@ -72,14 +63,13 @@
  				 -->
  				
 				<li class="dropdown">
-					<a class="dropdown-toggle"  data-toggle="dropdown" role="button" aria-expanded="true">게시판 </a>
-						<ul class="dropdown-menu" id="navdropdown" role="menu">
-							<li><a href="/beautyline/noticeboard/board">공지사항</a></li>
-						   	<li><a href="/beautyline/qnaboard/board">문의게시판</a></li>
-					       	<li><a href="/beautyline/reviewboard/board">후기게시판</a></li>
-						</ul>
+				<a class="dropdown-toggle"  data-toggle="dropdown" role="button" aria-expanded="true">게시판 </a>
+					<ul class="dropdown-menu" id="navdropdown_board" role="menu">
+						<li><a href="/beautyline/noticeboard/board">공지사항</a></li>
+					   	<li><a href="/beautyline/qnaboard/board">문의게시판</a></li>
+				       	<li><a href="/beautyline/reviewboard/board">후기게시판</a></li>
+					</ul>
 				</li>
-				
 				<li><a href="/beautyline/coun/test" >나의피부타입</a></li>
 
 				<c:choose>

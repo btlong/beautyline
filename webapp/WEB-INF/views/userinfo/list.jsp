@@ -77,14 +77,14 @@
 
 
 							<!-- 회원등록버튼 -->
-							<div class="col-lg-11 text-right">
+							<div class="col-lg-12 text-right">
 								<a class="btn btn-info" href="/beautyline/userinfo/joinform"
 									id="insert-user" type="button" role="button">등록</a>
 							</div>
 
 
 							<!-- 페이지 정보 -->
-							<div id=total-record class="col-lg-10 col-lg-offset-1 text=left">
+							<div id=total-record class="col-lg-12 text=left">
 								▶전체 회원 수 : ${page.totalRecord }명&nbsp; &nbsp; ▶현재 페이지 ( <span
 									id=page-location>${page.nowPage+1 } / ${page.totalPage}
 									페이지</span>)
@@ -94,7 +94,7 @@
 
 							<!-- 회원리스트 -->
 							<div class=row>
-							<div class="col-lg-10 col-lg-offset-1">
+							<div class="col-lg-12">
 								<table class="table table-bordered table-hover table-responsive">
 									<thead>
 										<tr class="danger">
@@ -105,7 +105,7 @@
 											<th>아이디</th>
 											<th>이메일</th>
 											<th>주소</th>
-											<th>권한</th>
+											<!-- <th>권한</th> -->
 											<!-- <th>쿠폰</th> -->
 											<th>수정</th>
 											<th>삭제</th>
@@ -132,7 +132,7 @@
 														<td>${listUser[i].id}</td>
 														<td>${listUser[i].email}</td>
 														<td>${listUser[i].address}</td>
-														<td>${listUser[i].isAdmin}</td>
+														<%-- <td>${listUser[i].isAdmin}</td> --%>
 
 															<!-- 쿠폰 조회  --> <!-- Trigger the modal with a button -->
 														<%-- <td>
@@ -197,9 +197,9 @@
 										<option value="email"
 											<c:if test="${'email1'==keyField || 'email2'==keyField}"> selected</c:if>>
 											이메일</option>
-										<option value="is_admin"
+										<%-- <option value="is_admin"
 											<c:if test="${'isAdmin'==keyField }"> selected</c:if>>
-											권한</option>
+											권한</option> --%>
 									</select> <label> <input type="text"
 										class="form-control input-sm" name="keyWord"
 										value="${keyWord }">
@@ -245,11 +245,11 @@
 
 
 
-						<%-- </c:when>
+					<%-- 	</c:when>
 						<c:otherwise>
 							<!-- authUser.isAdmin 값이 'a'가 아닐 때 -->
-							<h4>관리자페이지 입니다.</h4>
-							<c:import url="/WEB-INF/views/userinfo/loginform.jsp" />
+							<h4 class="text-center">관리자페이지 입니다.</h4>
+							<c:import url="/WEB-INF/views/include/login.jsp" />
 						</c:otherwise>
 					</c:choose> --%>
 				</div>

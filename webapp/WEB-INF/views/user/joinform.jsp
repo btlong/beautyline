@@ -189,7 +189,7 @@
 								<input class="form-control" id="inputPasswordCheck" type="password" placeholder="비밀번호 확인">
 							</div>
 							<div class="col-lg-3">
-								<h11 class="help-block" id="oneMore">비밀번호를 한번 더 입력해주세요.</h11>
+								<h6 class="help-block" id="oneMore">비밀번호를 한번 더 입력해주세요.</h6>
 							</div>
 						</div>
 						<br>
@@ -272,7 +272,7 @@
 								</button>
 							</div>
 							<div class="col-lg-3">
-								<h11 class="help-block">전송된 인증번호를 입력해주세요.</h11>
+								<h6 class="help-block">전송된 인증번호를 입력해주세요.</h6>
 							</div>
 
 						</div>
@@ -558,7 +558,7 @@
 				return false;
 			}
 			if ($("#inputPasswordCheck").val() == "") {
-				alert("이메일은 필수 입력 항목입니다.");
+				alert("비밀번호는 필수 입력 항목입니다.");
 				$("#inputPasswordCheck").focus();
 				return false;
 			}

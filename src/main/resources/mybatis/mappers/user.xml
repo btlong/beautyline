@@ -12,6 +12,14 @@
 	]]>
 	</insert>
 
+	<!-- 관리자 회원등록 -->
+	<insert id="userresister" parameterType="uservo" >
+	<![CDATA[
+		insert into Users values(seq_Users.nextval, #{name }, #{id,jdbcType=VARCHAR }, #{password,jdbcType=VARCHAR }, #{email1,jdbcType=VARCHAR }, #{address1,jdbcType=VARCHAR }, #{phone }, #{agrEmail,jdbcType=VARCHAR }, #{agrMessage,jdbcType=VARCHAR }, 'y', #{email2,jdbcType=VARCHAR},#{zipCode,jdbcType=VARCHAR}, #{address2,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR })
+	]]>
+	</insert>
+<!-- 		insert into Users values(seq_Users.nextval, #{name }, NVL(#{id }, ''), NVL(#{password }, ''), NVL(#{email1 }, ''), NVL(#{address1 }, ''), #{phone }, NVL(#{agrEmail }, ''), NVL(#{agrMessage }, ''), 'y', NVL(#{email2}, ''), NVL(#{zipCode}, ''), NVL(#{address2}, ''), NVL(#{email }, '') ) -->
+
 	<!-- 이름과 전화번호로 회원가입  -->
 	<insert id="insertUserNamePhone" parameterType="uservo" >
 	<![CDATA[
@@ -44,7 +52,7 @@
       
  	<update id="update" parameterType="uservo">
 	<![CDATA[
-		update users set password= #{password }, email1=#{email1 }, email2=#{email2 }, zip_code=#{zipCode },address1=#{address1 },address2=#{address2 },phone=#{phone },agr_email=#{agrEmail },agr_message=#{agrMessage }  where no = #{no }
+		update users set name=#{name }, password= #{password }, email1=#{email1 }, email2=#{email2 }, zip_code=#{zipCode },address1=#{address1 },address2=#{address2 },phone=#{phone },agr_email=#{agrEmail },agr_message=#{agrMessage }  where no = #{no }
 	]]>
 	</update>
 

@@ -18,26 +18,60 @@ public class ReserveDao {
 	private SqlSession sqlSession; //sql연결
 	
 	//reserveList
-	public List<ReserveVo> resList(String keyfield, String keyword){
+	public List<ReserveVo> resList(String keyfield, String keyword, String today){
 		
         Map<String, String> map = new HashMap<String, String> ();
-        
+    
+        map.put("today", today);
+
         if( keyfield != null && keyword != null && keyfield !="" && keyword !="" ){//검색 한경우
     		map.put("keyword", keyword);
     		map.put("keyfield", keyfield);
     		return sqlSession.selectList( "res.getSearch" , map );
     		
         }else{  //아무것도 검색 안한 경우    
-			return sqlSession.selectList("res.resList");    
+			return sqlSession.selectList("res.resList", map);    
 		}
 		
 		
 	}
 	
+	//reservePastList
+		public List<ReserveVo> reservePastList(String keyfield, String keyword, String today){
+			
+	        Map<String, String> map = new HashMap<String, String> ();
+	        
+	        	map.put("today", today);
+	        	
+	        if( keyfield != null && keyword != null && keyfield !="" && keyword !="" ){//검색 한경우
+	    		map.put("keyword", keyword);
+	    		map.put("keyfield", keyfield);
+	    		return sqlSession.selectList( "res.getPastSearch" , map );
+	    		  
+	        }else{  //아무것도 검색 안한 경우    
+				return sqlSession.selectList("res.resPastList", map  );    
+			}
+			
+			
+		}
+		
+	
 	//회원 - 회원번호로 list 조회
-	public List<ReserveVo> resList( Long userNo ){
-		return sqlSession.selectList( "res.resListUserNo", userNo );
+	public List<ReserveVo> resList( Long userNo, String today ){
+        Map<String, Object> map = new HashMap<String, Object> ();
+        map.put("userNo",userNo);
+        map.put("today",today);
+		return sqlSession.selectList( "res.resListUserNo", map );
 	}
+		
+	//회원 - 회원번호로 과거 list 조회
+	public List<ReserveVo> resPastList( Long userNo, String today ){
+        Map<String, Object> map = new HashMap<String, Object> ();
+        map.put("userNo",userNo);
+        map.put("today",today);
+		return sqlSession.selectList( "res.resPastListUserNo", map );
+	}
+	
 	//마이페이지 - 회원번호로 list 조회
 	public List<ReserveVo> myResList( Long userNo ){
 		return sqlSession.selectList( "res.myResListUserNo", userNo );
@@ -55,7 +89,7 @@ public class ReserveDao {
 	}
 	
 	//예약 삭제
-	public int reserveDelete( int no ){
+	public int reserveDelete( long no ){
 		int delCount;
 		delCount = sqlSession.delete( "res.resDelete", no );
 		return delCount;

@@ -1,7 +1,4 @@
-*{
-	margin : 0;
-	padding: 0;
-}
+
 #userli {
 	color: #333;
 
@@ -20,11 +17,10 @@
 	font-weight:bold; 
 	text-decoration:none;
 }
-.brand {
-	color: black;
-	text-shadow: none;
-    font-family: sans-serif;
-	height: 120px;	
+
+#brand-header{
+	padding-top: 30px;
+	padding-bottom: 10px;
 }
 body {
 	background: none;

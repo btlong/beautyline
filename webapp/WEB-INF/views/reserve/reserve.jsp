@@ -43,6 +43,7 @@
 <body>
 
 <c:import url="/WEB-INF/views/include/header.jsp" />
+
 <div class="container">
 	<div class="row">
 	<div class="box">

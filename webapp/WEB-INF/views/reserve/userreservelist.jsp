@@ -33,6 +33,7 @@
 <!-- jquery  -->
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
 
@@ -160,8 +161,7 @@
 	</div>
 	
 <!-- 예약삭제 Modal -->
-	<div class="modal fade" id="modalDeleteReserve" role="dialog"
-		tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal fade" id="modalDeleteReserve" role="dialog" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<!-- modal content -->
 			<div class="modal-content">
@@ -198,11 +198,12 @@ $(document).ready(function(){
 		
 	});
 	
+
+});
 	
 
 	$(".delete-reserve").on("click", function() {
 			var no = $(this).data("no");
-			console.log(no+"??");
 			$("#resDelOk").on("click", function() {
 				console.log(no);
 			
@@ -220,8 +221,6 @@ $(document).ready(function(){
 				});
 			});
 	});
-
-});
 
 </script>
 </html>

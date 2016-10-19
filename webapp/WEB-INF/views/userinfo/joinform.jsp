@@ -573,7 +573,7 @@ input.onlyHangul{
 						
 					};
 					$.ajax({// 비동기식 
-						url : "join",
+						url : "userresister",
 						type : "POST",
 						data:JSON.stringify(userVo),
 						contentType:"application/json",

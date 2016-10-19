@@ -28,16 +28,15 @@
 
 						<!-- 이름 -->
 						<div class="form-group" id="divName">
-							<label class="col-sm-5 control-label">이름*</label>
-							<div class="col-sm-7">
-								<input class="form-control onlyHangul" id="inputName"
-									name="name" type="text" placeholder="이름">
+							<label class="col-lg-4 control-label">이름*</label>
+							<div class="col-lg-5">
+								<input class="form-control onlyHangul" id="inputName" name="name" type="text" placeholder="이름">
 							</div>
 						</div>
 						<!-- 휴대폰 번호 -->
 						<div class="form-group" id="divNumber">
-							<label class="col-sm-5 control-label">휴대폰번호*</label>
-							<div class="col-sm-7">
+							<label class="col-lg-4 control-label">휴대폰번호*</label>
+							<div class="col-lg-5">
 								<input type="text" class="form-control onlyNumberPhone"
 									name="phone" id="inputNumber" placeholder="- 없이 입력해 주세요" />
 							</div>
@@ -46,10 +45,10 @@
 
 					<!-- Footer -->
 					<div class="modal-footer">
-						<div class="form-group" id="modalbtn">
-							<button id="insertUserInfo" class="btn btn-primary" type="button">추가</button>
-							<button data-dismiss="modal" class="btn btn-danger">취소</button>
-						</div>
+					<div class="col-lg-12 text-center form-group">
+						<button id="insertUserInfo" class="btn btn-info" type="button">추가</button>
+						<button data-dismiss="modal" class="btn btn-danger">취소</button>
+					</div>
 					</div>
 				</div>
 			</form>

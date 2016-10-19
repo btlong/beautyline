@@ -21,7 +21,7 @@ public class UserService {
 	/* 회원가입 */
 	public int join(UserVo vo) {
 		vo.setEmail(vo.getEmail1() + "@" + vo.getEmail2());
-		System.out.println(vo.toString());
+		System.out.println("///"+vo.toString());
 		int a =	userDao.insert(vo);
 		return a;
 	}

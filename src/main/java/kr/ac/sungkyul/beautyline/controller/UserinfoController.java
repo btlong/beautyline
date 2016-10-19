@@ -2,8 +2,6 @@ package kr.ac.sungkyul.beautyline.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import kr.ac.sungkyul.beautyline.service.UserService;
 import kr.ac.sungkyul.beautyline.service.UserinfoService;
 import kr.ac.sungkyul.beautyline.service.VisitService;
-import kr.ac.sungkyul.beautyline.vo.CouponVo;
 import kr.ac.sungkyul.beautyline.vo.PageVo;
 import kr.ac.sungkyul.beautyline.vo.UserVo;
 import kr.ac.sungkyul.beautyline.vo.UserinfoVo;
@@ -79,8 +76,9 @@ public class UserinfoController {
 	/* 회원가입 아작스	*/
 	@ResponseBody
 	@RequestMapping(value ="join", method = RequestMethod.POST)
-	public int join(@RequestBody UserVo vo) {//회원가입 버튼 누를 때
-		System.out.println(vo);
+	//public int join(@RequestBody UserVo vo) {//회원가입 버튼 누를 때
+	public int join(@RequestBody(required = false) UserVo vo) {
+		System.out.println("//"+vo);
 		int a = userService.join(vo);
 		return a; 
 	}
@@ -95,24 +93,23 @@ public class UserinfoController {
 	/*--------------*/
 	
 	/* 회원 정보 수정 */	
-	@RequestMapping(value= "modifyform", method = RequestMethod.GET)
-	public String modifyform(Long no, Model model) {
+	@RequestMapping(value="/modifyform", method = RequestMethod.GET)
+	public String modifyform(Long no, Model model) throws Exception {
 		System.out.println(no);
 		UserVo userVo = userService.getUserInfo(no);
-		model.addAttribute("UserVo", userVo);
+		model.addAttribute("userVo", userVo);
 		System.out.println(userVo);
 		return "userinfo/modifyform";
 	}
 	
 	@ResponseBody
 	@RequestMapping(value="/modify", method=RequestMethod.POST)
-	public int modify(HttpSession session, @RequestBody UserVo vo ) {
-		UserVo authUser = (UserVo) session.getAttribute("authUser");
-		vo.setNo(authUser.getNo());
-		vo.setName(authUser.getName());
+	public int modify(@RequestBody UserVo vo ) {
+		System.out.println("modify:"+vo);
 	    int check =	userService.updateInfo(vo);
 		return check;
 	}
+	
 	/*--------------*/
 	
 	

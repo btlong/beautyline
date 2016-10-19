@@ -121,15 +121,7 @@
                   <p id="replytotal" ></p>
                   <div id="bdhr"></div>
             <ul id="list-group" class="list-group">
-          
            <!--  포문으로 돌리기 여기에 추가 prepended-->           
-          <!--   <li  class="list-group-item">
-            	<div>
-            userId regdate    <a href="#" class="btn btn-xs btn-default">삭제 <span class="glyphicon glyphicon-trash"></span></a></div>
-            	<div>내요요용용포문으로 돌릴것것거</div></li>
-            	<li  class="list-group-item">userId regdate<a href="#" class="btn btn-xs btn-default">삭제 <span class="glyphicon glyphicon-trash"></span></a>
-            	내요요용용포문으로 돌릴것것거</li> -->
-
             </ul>
             
             <div class="text-center" id="morebt" >

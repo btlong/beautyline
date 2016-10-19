@@ -128,7 +128,8 @@
       <div class="row">
          <div class="box">
             <div class="col-lg-12">
-               <div class="page-header">	<hr>
+               <div class="page-header">	
+               			<hr>
 						<h1 class="text-center text-center">
 							<strong>프로그램</strong>
 						</h1>

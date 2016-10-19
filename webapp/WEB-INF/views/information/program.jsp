@@ -116,6 +116,9 @@
   -webkit-transform: translate3d(0,0,0);
   transform: translate3d(0,0,0);
 }
+#video{
+	padding-bottom: 30px;
+}
 </style>
 
 </head>
@@ -128,14 +131,13 @@
       <div class="row">
          <div class="box">
             <div class="col-lg-12">
-               <div class="page-header">	
-               			<hr>
-						<h1 class="text-center text-center">
-							<strong>프로그램</strong>
-						</h1>
-						<hr>   </div>
+         		<hr>
+				<h1 class="text-center">
+				<strong>프로그램</strong>
+				</h1>
+				<hr>   
 
-   <div class="form-horizontal">
+   <div class="form-horizontal col-lg-12 ">
    <div class= "row">
      <div class="form-group">
            <div class="col-md-3">

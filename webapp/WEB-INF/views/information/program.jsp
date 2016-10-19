@@ -138,20 +138,20 @@
    <div class="form-horizontal">
    <div class= "row">
      <div class="form-group">
-     		<div id="video">
-				<iframe width="640" height="360" src="https://www.youtube.com/embed/cvHn_Sg8R1s" frameborder="0" allowfullscreen></iframe>
-			</div>
            <div class="col-md-3">
            <div class="hovereffect">
             <img src="/beautyline/images/information/program/1.jpg" class="img-responsive">
             <div class="overlay">
             <h2>베이직 케어</h2>
             <p> 
-					<a href="#">more</a>
+					<a href="/beautyline/information/basic">more</a>
 				</p> 
             </div>
    		 </div>
-            <img src="/beautyline/images/information/program/basic.png" class="img-responsive">
+   		 	<form action="/beautyline/information/basic" method="post">
+   		 	<input type="image" src="/beautyline/images/information/program/basic.png">
+   		 	</form>
+            <!-- <img src="/beautyline/images/information/program/basic.png" class="img-responsive"> -->
             <!-- 
             <h3 class="text-center">베이직 케어</h3>
             <p class="text-center text-muted">&nbsp;- 10회:40만원 - 기본관리 + 미니등관리 : 50만원&nbsp;</p>
@@ -164,11 +164,14 @@
             <div class="overlay">
             <h2>화이트 케어</h2>
             <p> 
-					<a href="#">more</a>
+					<a href="/beautyline/information/white">more</a>
 				</p> 
             </div>
    		 </div>
-            <img src="/beautyline/images/information/program/white.png" class="img-responsive">
+	   		 <form action="/beautyline/information/white" method="post">
+   		 	<input type="image" src="/beautyline/images/information/program/white.png">
+   		 	</form>
+            <!-- <img src="/beautyline/images/information/program/white.png" class="img-responsive"> -->
            <!--  <h2 class="text-center">화이트 케어</h2>
             <p class="text-center">10회:50만원 - 화이트관리 + 미니등 관리 : 50만원&nbsp;</p> -->
           </div>
@@ -179,11 +182,14 @@
             <div class="overlay">
             <h2>리프팅 케어</h2>
             <p> 
-					<a href="#">more</a>
+					<a href="/beautyline/information/lifting">more</a>
 				</p> 
             </div>
    		 </div>
-            <img src="/beautyline/images/information/program/lifting.png" class="img-responsive">
+	   		 <form action="/beautyline/information/lifting" method="post">
+   		 		<input type="image" src="/beautyline/images/information/program/lifting.png">
+   		 	</form>
+            <!-- <img src="/beautyline/images/information/program/lifting.png" class="img-responsive"> -->
         <!--     <h2 class="text-center">주름재생</h2>
             <p class="text-center">- 10회:50만원 - 주름재생관리 + 미니등 관리 : 60만원&nbsp;</p> -->
           </div>
@@ -194,11 +200,14 @@
              <div class="overlay">
             <h2>여드름케어</h2>
             <p> 
-					<a href="#">more</a>
+					<a href="/beautyline/information/acne">more</a>
 				</p> 
             </div>
    		 </div>
-            <img src="/beautyline/images/information/program/acne.png" class="img-responsive">
+	   		 <form action="/beautyline/information/acne" method="post">
+   			 	<input type="image" src="/beautyline/images/information/program/acne.png">
+   		 	</form>
+           <!--  <img src="/beautyline/images/information/program/acne.png" class="img-responsive"> -->
             <!-- 
             <h2 class="text-center">여드름 케어</h2>
             <p class="text-center">&nbsp;- 10회:50만원 - 여드름관리 + 미니등 관리 : 60만원&nbsp;</p> -->

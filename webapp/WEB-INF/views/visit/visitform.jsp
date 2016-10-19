@@ -1,7 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,13 +15,19 @@
 <!-- 부트스트랩 -->
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <!-- Custom CSS -->
-<link href="/beautyline/bootstrap/css/business-casual.css" rel="stylesheet">
+<link href="/beautyline/bootstrap/css/business-casual.css"
+	rel="stylesheet">
 
 <!-- 테마 -->
-<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT"
+	crossorigin="anonymous">
 
 <link href="/beautyline/beautyline/css/include.css" rel="stylesheet">
 
@@ -28,9 +35,14 @@
 <link href="/beautyline/beautyline/css/visit.css" rel="stylesheet">
 
 <!-- Fonts -->
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="http://www.prepbootstrap.com/Content/css/loadingbuttoneffects/local.css" />
+<link
+	href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
+	rel="stylesheet" type="text/css">
+<link
+	href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic"
+	rel="stylesheet" type="text/css">
+<link rel="stylesheet"
+	href="http://www.prepbootstrap.com/Content/css/loadingbuttoneffects/local.css" />
 
 </head>
 <body>
@@ -56,9 +68,10 @@
 							<div class="form-horizontal">
 								<div class="form-group">
 									<div class="col-sm-5 col-sm-offset-7">
-										<a href="" data-target="#myModal3" data-toggle="modal" class="btn btn-danger btn-primary btn-default" id="package">
-											쿠폰 등록</a>
-										<a class="btn btn-danger btn-primary btn-default" href="/beautyline/visit/details" role="button">내역 조회</a> <a
+										<a href="" data-target="#myModal3" data-toggle="modal"
+											class="btn btn-danger btn-primary btn-default" id="package">
+											쿠폰 등록</a> <a class="btn btn-danger btn-primary btn-default"
+											href="/beautyline/visit/details" role="button">내역 조회</a> <a
 											class="btn btn-danger btn-primary btn-default"
 											id="insertUser" role="button">회원 등록</a>
 									</div>
@@ -82,7 +95,8 @@
 										</div>
 										<!-- Trigger the modal with a button -->
 
-										<button type="button" class="btn btn-theme btn-default col-sm-1" id="smyModal"
+										<button type="button"
+											class="btn btn-theme btn-default col-sm-1" id="smyModal"
 											data-target="#myModal2" data-toggle="modal">검색</button>
 									</div>
 									<div class="form-group">
@@ -206,9 +220,9 @@
 														<div class="mag1">
 															<input id="imageName" data-toggle="magnify"
 																class="upload-name img-responsive img-rounded center-block"
-																value="" disabled="disabled" style="width: 200px;" value=""> 
-																<label for="file">업로드</label>
-																<input type="file" id="file" name="file" class="upload-hidden"
+																value="" disabled="disabled" style="width: 200px;"
+																value=""> <label for="file">업로드</label> <input
+																type="file" id="file" name="file" class="upload-hidden"
 																onchange="reviewUploadImg(this);">
 														</div>
 													</div>
@@ -280,7 +294,7 @@
 
 	<!--  userSearch Modal -->
 	<c:import url="/WEB-INF/views/visit/usersearch.jsp" />
-	
+
 
 	<!--  couponCharge Modal -->
 	<c:import url="/WEB-INF/views/visit/couponcharge.jsp" />
@@ -316,6 +330,11 @@
 		$('#selectedPhone').html("");
 		var name = $('#searchName').val();
 		var phone = $('#searchPhone').val();
+
+		if (name == "" && phone == "") {
+			alert(" 회원정보를 입력해주세요.");
+			return false;
+		}
 
 		var userVo = {
 			"name" : name,
@@ -542,13 +561,14 @@
 		}
 	});
 
-	/* test */
 	function resetActive(event, y) {
+
 		$("td").each(function() {
 			if ($(this).hasClass("activestep")) {
 				$(this).removeClass("activestep");
 			}
 		});
+
 		if (event.target.className == "col-md-2") {
 			$(event.target).addClass("activestep");
 
@@ -668,71 +688,60 @@
 	$(".radio-group__option").change(updateLog);
 
 	$("#registor").on("click", function() {
-		/* 	var whiteningScore = $("#whiteningScore").val();
-			var whinkleScore = $("#whinkleScore").val();
-			var elasticScore = $("#elasticScore").val();
-			var moistureScore = $("#moistureScore").val();
-			var acneScore = $("#acneScore").val();
-			
-			$("#averageScore").val((parseInt(whiteningScore)
-									+ parseInt(whinkleScore)
-									+ parseInt(elasticScore)
-									+ parseInt(moistureScore) 
-									+ parseInt(acneScore)) / 5); */
 
-		var payNo = $(".radio-group__option:checked").val();
+				/* 회원정보가 비어있을때 */
+				if ($("#wellName").html() == '' || $("#wellphone").html() == '') {
+					alert("회원을 검색해주세요.");
+					return false;
+				}
 
-		/* 쿠폰 없을때 */
-		var programSample = $("#programNo").val();
-		var count;
-		if (programSample == 1) {
-			count = $('#one').text();
-		} else if (programSample == 2) {
-			count = $('#two').text();
-		} else if (programSample == 3) {
-			count = $('#three').text();
-		} else if (programSample == 4) {
-			count = $('#four').text();
-		}
+				/* 쿠폰이 없을때  */
+				var payNo = $(".radio-group__option:checked").val();
 
-		if (count <= 0 && payNo == 2) {
-			alert("횟수가 부족");
-			return false;
-		}
-		/* 버튼을 눌렀을때 쿠폰남은 횟수가 0이면서 라디오버튼이 쿠폰인 경우  경고창 출력 */
-		/*
-		var memo = $("#memo").val();
-		var regDate = $("#regDate").text();
-		
-		var payNo = $(".radio-group__option:checked").val();
-		
-		var price = $("#price").val();
-		var file = $("#input_file")[0].files[0];
+				var programSample = $("#programNo").val();
+				var count;
+				if (programSample == 1) {
+					count = $('#one').text();
+				} else if (programSample == 2) {
+					count = $('#two').text();
+				} else if (programSample == 3) {
+					count = $('#three').text();
+				} else if (programSample == 4) {
+					count = $('#four').text();
+				}
 
-		
-		var formData = new FormData();
-		formData.append('input_file', $('#input_file')[0].files[0]);
-		
+				$("td").each(function() {
+					if ($(this).hasClass("activestep") == false ) {
+						alert("선택해주세요");
+						return false;
+					}
+				});
+					
+				if (count <= 0 && payNo == 2) {
+					alert("횟수가 부족");
+					return false;
+				}
 
-		var visitVo = {
-		"userNo" : userNo,
-		"programNo" : programNo,
-		"memo" : memo,
-		"regDate" : regDate,
-		"whiteningScore" : whiteningScore,
-		"whinkleScore" : whinkleScore,
-		"elasticScore" : elasticScore,
-		"moistureScore" : moistureScore,
-		"acneScore" : acneScore,
-		"averageScore" : averageScore,
-		"price" : price,
-		"payNo" : payNo,
-		"file" : formData
-		}; */
-		/* 2번 코드에 해당되는 key값을 별도로 주는 FormData */
-	});
+				/* 점수가 비어있을때 */
 
-	/* test */
+				if ($("#whiteningScore").val() == ''
+						|| $("#whinkleScore").val() == ''
+						|| $("#elasticScore").val() == ''
+						|| $("#moistureScore").val() == ''
+						|| $("#acneScore").val() == '') {
+					alert("점수 입력 바랍니다.");
+					return false;
+				}
+				
+				
+				/* 사진이 비어있을때 */
+				if($("#imageName").text() =='') {
+					alert($("#imageName").html());
+					return false;
+				}
+					
+			});
+
 	/* 회원추가 모달 */
 	$("#insertUser").on("click", function() {
 		$("#inputName").val('');//초기화
@@ -830,6 +839,8 @@
 			}
 		}
 	});
+
+	/* 쿠폰 차지모달 유효성 검사 */
 </script>
 </html>
 

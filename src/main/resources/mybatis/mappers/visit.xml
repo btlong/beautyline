@@ -23,18 +23,15 @@
 
 	<!-- 쿠폰 -->
 
-
 	<!-- 쿠폰 있는지 없는지 여부확인 -->
-	<select id="couponSelectOne" parameterType="couponvo"
-		resultType="java.lang.Long">
+	<select id="couponSelectOne" parameterType="couponvo" resultType="java.lang.Long">
 	<![CDATA[
 		select count from coupon where user_no = #{userNo} and program_no = #{ programNo}
 	]]>
 	</select>
 
 	<!-- 고객의 모든 쿠폰 보여주기 -->
-	<select id="couponSelectList" parameterType="java.lang.Long"
-		resultType="couponvo">
+	<select id="couponSelectList" parameterType="java.lang.Long" resultType="couponvo">
 	<![CDATA[
 		select program_no,count from coupon where user_no = #{no} 
 	]]>
@@ -50,8 +47,7 @@
 	</update>
 
 	<insert id="couponInsert" parameterType="couponvo">
-		<selectKey resultType="java.lang.Long" keyProperty="no"
-			order="BEFORE">
+		<selectKey resultType="java.lang.Long" keyProperty="no" order="BEFORE">
 		<![CDATA[
 			select seq_coupon.nextval as no from dual
 		]]>
@@ -127,8 +123,7 @@
 
 	<!-- 방문내역 추가 -->
 	<insert id="salesInsert" parameterType="visitvo">
-		<selectKey resultType="java.lang.Long" keyProperty="no"
-			order="BEFORE">
+		<selectKey resultType="java.lang.Long" keyProperty="no" order="BEFORE">
 		<![CDATA[
 			select seq_sales.nextVal as no from dual
 		]]>
@@ -142,8 +137,7 @@
 
 
 	<insert id="salesInsertByCoupon" parameterType="couponvo">
-		<selectKey resultType="java.lang.Long" keyProperty="no"
-			order="BEFORE">
+		<selectKey resultType="java.lang.Long" keyProperty="no" order="BEFORE">
 		<![CDATA[
 			select seq_sales.nextVal as no from dual
 		]]>
@@ -165,7 +159,7 @@
 	<insert id="insertSalesByRefund" parameterType="java.lang.Long">
 	<![CDATA[
 			insert into sales
-			select seq_sales.nextval, user_no, pay_no, program_no, reg_date, -price 
+			select seq_sales.nextval, user_no, pay_no, program_no, to_char(sysdate , 'YYYY-MM-DD HH24:MI'), -price 
 			from sales where no=#{no}
 	]]>
 	</insert>

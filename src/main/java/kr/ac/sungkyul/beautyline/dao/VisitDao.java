@@ -86,8 +86,7 @@ public class VisitDao {
 	}
 
 	public Long couponSelect(CouponVo couponVo) {
-		Long count = sqlSession.selectOne("visit.couponSelectOne", couponVo);
-		return count;
+		return sqlSession.selectOne("visit.couponSelectOne", couponVo);
 	}
 
 	public long updateCouponCharge(CouponVo couponVo) {

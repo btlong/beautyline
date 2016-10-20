@@ -119,8 +119,4 @@ public class UserVo {
 				+ ", address1=" + address1 + ", address2=" + address2 + ", email1=" + email1 + ", email2=" + email2
 				+ ", agrEmail=" + agrEmail + ", agrMessage=" + agrMessage + "]";
 	}
-	
-	
-
-	
 }

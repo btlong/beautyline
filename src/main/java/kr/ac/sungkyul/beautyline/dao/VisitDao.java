@@ -38,7 +38,6 @@ public class VisitDao {
 
 	public UserVo selectOne(UserVo userVo) {
 		UserVo authVo = sqlSession.selectOne("visit.searchSelectOne", userVo);
-		System.out.println(authVo);
 		return authVo;
 	}
 
@@ -62,7 +61,6 @@ public class VisitDao {
 
 	/* 쿠폰 */
 	public long couponInsert(CouponVo couponVo) {
-		System.out.println(couponVo);
 		return sqlSession.insert("visit.couponInsert", couponVo);
 	}
 
@@ -92,8 +90,11 @@ public class VisitDao {
 	}
 
 	public long updateCouponCharge(CouponVo couponVo) {
-		System.out.println(couponVo);
 		return sqlSession.update("visit.couponUpdateByCharge", couponVo);
+	}
+
+	public void updateRefundSales(Long no) {
+		sqlSession.update("visit.salesUpdateByRefund",no);
 	}
 
 }

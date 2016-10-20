@@ -15,19 +15,13 @@
 <!-- 부트스트랩 -->
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
-<script
-	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <!-- Custom CSS -->
-<link href="/beautyline/bootstrap/css/business-casual.css"
-	rel="stylesheet">
+<link href="/beautyline/bootstrap/css/business-casual.css" rel="stylesheet">
 
 <!-- 테마 -->
-<link
-	href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT"
-	crossorigin="anonymous">
+<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">
 
 <link href="/beautyline/beautyline/css/include.css" rel="stylesheet">
 
@@ -35,33 +29,30 @@
 <link href="/beautyline/beautyline/css/visit2.css" rel="stylesheet">-->
 
 <!-- Fonts -->
-<link
-	href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
-	rel="stylesheet" type="text/css">
-<link
-	href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic"
-	rel="stylesheet" type="text/css">
-<link rel="stylesheet"
-	href="http://www.prepbootstrap.com/Content/css/loadingbuttoneffects/local.css" />
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="http://www.prepbootstrap.com/Content/css/loadingbuttoneffects/local.css" />
+<link href="path/to/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
+        <link href="/beautyline/beautyline/file/css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
+            <script src="/beautyline/beautyline/file/js/fileinput.js" type="text/javascript"></script>
 <style type="text/css">
 .col-lg-3, .col-lg-2 {
-	padding-right: 0px;
+padding-right:0px;
 }
-
 .activestep {
-	color: #F58723;
-	height: 100%;
-	margin-top: -7px;
-	padding-top: 7px;
-	border-left: 6px solid #68dff0 !important;
-	border-left-width: 6px;
-	border-left-style: solid;
-	border-left-color: rgb(104, 223, 240);
-	border-right: 6px solid #68dff0 !important;
-	border-top: 3px solid #68dff0 !important;
-	border-bottom: 3px solid #68dff0 !important;
-	vertical-align: central;
-}
+    color: #F58723;
+    height: 100%;
+    margin-top: -7px;
+    padding-top: 7px;
+    border-left: 6px solid #68dff0 !important;
+    border-left-width: 6px;
+    border-left-style: solid;
+    border-left-color: rgb(104, 223, 240);
+    border-right: 6px solid #68dff0 !important;
+    border-top: 3px solid #68dff0 !important;
+    border-bottom: 3px solid #68dff0 !important;
+    vertical-align: central;
+}   
 </style>
 </head>
 <body>
@@ -144,7 +135,7 @@
 														<label class="control-label">I&nbsp;D : </label> <label
 															id="wellId" name="id" class="control-label"></label>
 													</div>
-													<div class="col-lg-4">
+													<div class="col-lg-8">
 														<label class="control-label">주소 : </label> <label
 															class="control-label" id="wellAddress" name="address"></label>
 													</div>
@@ -722,7 +713,6 @@
 	$(".radio-group__option").change(updateLog);
 
 	$("#registor").on( "click", function() {
-
 						/* 회원정보가 비어있을때 */
 						if ($("#wellName").html() == ''
 								|| $("#wellphone").html() == '') {
@@ -765,10 +755,11 @@
 							return false;
 						}
 						/* 사진이 비어있을때 */
-						else if ($("#imageName").text() == '') {
-							alert($("#imageName").html());
+						else if ($(".file-caption-name").attr('title') == '') {
+							alert('보여줘라');
 							return false;
 						}
+						
 					});
 
 	/* 회원추가 모달 */

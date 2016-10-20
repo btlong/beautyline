@@ -99,7 +99,7 @@
 	<![CDATA[
 		insert into visit values( 
 			#{no}, #{userNo}, #{programNo}, 
-			#{imageNo}, #{memo}, to_char(sysdate , 'YYYY-MM-DD HH24:MI'), 
+			#{imageNo, jdbcType=INTEGER}, #{memo}, to_char(sysdate , 'YYYY-MM-DD HH24:MI'), 
 			#{whiteningScore}, #{whinkleScore}, #{elasticScore},
 			#{moistureScore}, #{acneScore}, #{averageScore}
 			)
@@ -112,7 +112,7 @@
 	<!-- 방문내역 조회 -->
 	<select id="detailSelect" resultType="visitvo">
 	<![CDATA[
-		SELECT s.no "no", s.USER_NO "userNo", s.reg_date "regDate", u.name "name", s.program_no "programNo", pro.name "programName", s.price "price", pay.name "payName"
+		SELECT s.no "no", s.USER_NO "userNo", s.reg_date "regDate", u.name "name", s.program_no "programNo", pro.name "programName", s.price "price", pay.name "payName", s.refund "refund"
 		from sales s,  users u , PAY pay, program pro 
 		where s.USER_NO = u.NO 
 		and  s.PAY_NO = pay.NO
@@ -129,8 +129,8 @@
 		]]>
 		</selectKey>
 	<![CDATA[
-			insert into sales ( no, user_no, pay_no, program_no, reg_date, price)
-			values ( #{no}, #{userNo}, #{payNo}, #{programNo} ,to_char(sysdate , 'YYYY-MM-DD HH24:MI'), #{price} )
+			insert into sales ( no, user_no, pay_no, program_no, reg_date, price, refund)
+			values ( #{no}, #{userNo}, #{payNo}, #{programNo} ,to_char(sysdate , 'YYYY-MM-DD HH24:MI'), #{price} , 0 )
 	]]>
 	</insert>
 
@@ -159,10 +159,18 @@
 	<insert id="insertSalesByRefund" parameterType="java.lang.Long">
 	<![CDATA[
 			insert into sales
-			select seq_sales.nextval, user_no, pay_no, program_no, to_char(sysdate , 'YYYY-MM-DD HH24:MI'), -price 
+			select seq_sales.nextval, user_no, pay_no, program_no, to_char(sysdate , 'YYYY-MM-DD HH24:MI'), -price , 1 
 			from sales where no=#{no}
 	]]>
 	</insert>
+	
+	<update id="salesUpdateByRefund" parameterType="java.lang.Long">
+	<![CDATA[
+		update sales
+		set refund = 1
+		where no = #{no}
+	]]>
+	</update>
 
 </mapper>
 

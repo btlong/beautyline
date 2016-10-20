@@ -18,8 +18,8 @@
 
   <!-- Bootstrap Core CSS -->
 <link rel="stylesheet" href="http://www.prepbootstrap.com/Content/css/loadingbuttoneffects/local.css" />
-	<!-- Custom CSS -->
-	<link href="/beautyline/bootstrap/css/business-casual.css" rel="stylesheet">
+<!-- Custom CSS -->
+<link href="/beautyline/bootstrap/css/business-casual.css" rel="stylesheet">
    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">
    <link href="/beautyline/beautyline/css/include.css" rel="stylesheet">
    <!-- font awesome -->
@@ -51,7 +51,7 @@
 }
 </style>
 <script>
-	function sample6_execDaumPostcode() {
+	function sample6_execDaumPostcode() {//우편번호
 		new daum.Postcode(
 				{
 					oncomplete : function(data) {
@@ -95,30 +95,6 @@
 					}
 				}).open();
 	}
-
-	/*   function chkPwd(str){
-
-		 var reg_pwd = /^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
-
-		 if(!reg_pwd.test(str)){
-
-		  return false;
-
-		 }
-
-		 return true;
-
-		}
-
-	 	if(!chkPwd( $.trim($('#inputPassword').val()))){ 
-
-		 alert('비밀번호를 확인하세요.₩n(영문,숫자를 혼합하여 6~20자 이내)');    
-
-		 $('#inputPassword').val('');
-
-		 $('#inputPassword').focus(); return false;
-
-		 }  */
 </script>
 
 

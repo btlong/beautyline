@@ -16,10 +16,19 @@
 	font-weight:bold; 
 	text-decoration:none;
 }
+<<<<<<< HEAD
+.brand {
+	color: black;
+	text-shadow: none;
+    font-family: sans-serif;
+	height: 120px;
+	width:1263px;	
+=======
 
 #brand-header{
 	padding-top: 30px;
 	padding-bottom: 10px;
+>>>>>>> df31766c9e77b8b4c1362cef36b4a31a2e4c9d39
 }
 body {
 	background: none;
@@ -91,6 +100,10 @@ hr {
 	margin: 0px;
 	
 }
+#brandtaga{
+	height: 80px;
+}
 .main-text{
 	font-size: x-small;
+
 }

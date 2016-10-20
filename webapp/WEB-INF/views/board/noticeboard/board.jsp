@@ -63,11 +63,6 @@ width:60%;
 }
 
 </style>
-<script>
-
-
-
-</script>
 
 
 

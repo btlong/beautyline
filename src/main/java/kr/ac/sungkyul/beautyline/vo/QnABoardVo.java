@@ -13,6 +13,7 @@ public class QnABoardVo extends UserVo {
 	private Long orderNo;
 	private Long depth;
 	private String category;
+	private Long status;
 	
 	public Long getNo() {
 		return no;
@@ -87,12 +88,21 @@ public class QnABoardVo extends UserVo {
 	public void setCategory(String category) {
 		this.category = category;
 	}
+	public Long getStatus() {
+		return status;
+	}
+	public void setStatus(Long status) {
+		this.status = status;
+	}
 	@Override
 	public String toString() {
 		return "QnABoardVo [no=" + no + ", userNo=" + userNo + ", userName=" + userName + ", userId=" + userId
 				+ ", title=" + title + ", content=" + content + ", regDate=" + regDate + ", viewCount=" + viewCount
-				+ ", groupNo=" + groupNo + ", orderNo=" + orderNo + ", depth=" + depth + ", category=" + category + "]";
+				+ ", groupNo=" + groupNo + ", orderNo=" + orderNo + ", depth=" + depth + ", category=" + category
+				+ ", status=" + status + "]";
 	}
+	
+	
 	
 	
 	

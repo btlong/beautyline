@@ -118,7 +118,20 @@ width:60%;
 						<c:if test='${boardList[i].depth >= 1 }'>
 							<img src = "/beautyline/images/arrow2.png" width="10px">
 						</c:if>
-					<a href="view?no=${boardList[i].no }">[${boardList[i].category }] ${boardList[i].title}</a></td>
+						
+						<c:choose>
+						<c:when test='${boardList[i].status == 1}'>
+							<a href="view?no=${boardList[i].no }">[${boardList[i].category }] ${boardList[i].title} 
+							<c:if test="${ boardList[i].userNo != authUser.no &&  authUser.isAdmin ne 'a'}">
+								&nbsp<span class="glyphicon glyphicon-lock"></span>
+							</c:if>
+							</a>
+						</c:when>
+						<c:when  test='${boardList[i].status == 0}'>
+							삭제 된 글입니다.
+						</c:when>
+						</c:choose>
+					</td>
 					<td class="text-center"> ${boardList[i].userId}</td>
 					<td class="text-center">${boardList[i].viewCount}</td>
 					<td class="text-center">${boardList[i].regDate}</td>

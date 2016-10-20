@@ -92,9 +92,39 @@ public class QnABoardDao {
 	}
 	
 
+	/* 답글을 위해 원글 작성자 알아오기 */
+	public Long getOrgNo( Long no ){
+		return sqlSession.selectOne("qnaboard.getOrgNo",no);
+	}
+	
 	/* 글 삭제 */
 	public int delete(QnABoardVo qbdvo){
-		return sqlSession.delete("qnaboard.delete",qbdvo);	
+		/* 1. 삭제할 글에 답글이 있는지 확인한다.
+		 * 	1-1. 없으면 삭제
+		 *  1-2. 있으면 status를 1로 바꿔준다.
+		 */
+		//1. 삭제할 글에 답글 있는지 확인 ( 삭제할 글의 group에서 order_no+1의 depth값이 원글의 depth값보다 크면 답글)
+
+		//지금 그룹에 status 1인 것이 있으면 이 그룹삭제
+		Long statusCh =  sqlSession.selectOne("qnaboard.searchStatus", qbdvo); //그룹을 삭제할지 안할지 체크
+
+		if( statusCh == 1 ){
+			//그룹을 삭제할 것임
+			return sqlSession.delete("qnaboard.deleteGroup",qbdvo);
+			
+		}else{
+			//그룹에서 마지막 글이 아님
+			Long delcheck = sqlSession.selectOne("qnaboard.delStatus",qbdvo); //답글 있는지 체크
+			
+			if( delcheck == 0 ){
+				return sqlSession.delete("qnaboard.delete",qbdvo);	
+			}else{
+				return sqlSession.update("qnaboard.updateStatus",qbdvo);
+			}
+		}
+		
+		
+
 	}
 
 	/* 글 수정 */

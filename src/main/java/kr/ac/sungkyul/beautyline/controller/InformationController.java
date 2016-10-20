@@ -16,4 +16,21 @@ public class InformationController {
 	public String program() {
 		return "information/program";
 	}
+
+	@RequestMapping("/basic")
+	public String basic() {
+		return "information/basic";
+	}
+	@RequestMapping("/white")
+	public String white() {
+		return "information/white";
+	}
+	@RequestMapping("/lifting")
+	public String lifting() {
+		return "information/lifting";
+	}
+	@RequestMapping("/acne")
+	public String acne() {
+		return "information/acne";
+	}
 }

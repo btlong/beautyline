@@ -30,7 +30,7 @@ public class VisitController {
 
 	@Autowired
 	VisitService visitService;
-
+	
 	@Autowired
 	UserService userService;
 
@@ -44,7 +44,6 @@ public class VisitController {
 	}
 
 	// 시술 후 등록
-
 	@RequestMapping(value = "visited", method = RequestMethod.POST)
 	public String visited(VisitVo visitVo, MultipartFile file) throws Exception {
 		visitService.insert(visitVo, file);

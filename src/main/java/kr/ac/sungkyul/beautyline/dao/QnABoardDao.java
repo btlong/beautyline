@@ -92,6 +92,11 @@ public class QnABoardDao {
 	}
 	
 
+	/* 답글을 위해 원글 작성자 알아오기 */
+	public Long getOrgNo( Long no ){
+		return sqlSession.selectOne("qnaboard.getOrgNo",no);
+	}
+	
 	/* 글 삭제 */
 	public int delete(QnABoardVo qbdvo){
 		return sqlSession.delete("qnaboard.delete",qbdvo);	

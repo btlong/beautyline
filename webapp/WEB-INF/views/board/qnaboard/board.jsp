@@ -118,7 +118,12 @@ width:60%;
 						<c:if test='${boardList[i].depth >= 1 }'>
 							<img src = "/beautyline/images/arrow2.png" width="10px">
 						</c:if>
-					<a href="view?no=${boardList[i].no }">[${boardList[i].category }] ${boardList[i].title}</a></td>
+					<a href="view?no=${boardList[i].no }">[${boardList[i].category }] ${boardList[i].title} 
+						<c:if test="${ boardList[i].userNo != authUser.no &&  authUser.isAdmin ne 'a'}">
+							&nbsp<span class="glyphicon glyphicon-lock"></span>
+						</c:if>
+						</a>
+					</td>
 					<td class="text-center"> ${boardList[i].userId}</td>
 					<td class="text-center">${boardList[i].viewCount}</td>
 					<td class="text-center">${boardList[i].regDate}</td>

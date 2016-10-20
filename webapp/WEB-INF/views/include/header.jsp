@@ -1,12 +1,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 
 <div><a href="" data-target="#downloadModal" type="button" data-toggle="modal" data-backdrop="static" role="button"><img id="btn-appdownload" src="/beautyline/images/appdownload/btn_appdownload.png" class="img-responsive"></a></div>
-<div class="brand"><a href ="/beautyline/main"><img id="brandImg" src="/beautyline/images/beautylinelogo.png" /></a></div>
+<div class="brand"><a id="brandtaga" href ="/beautyline/main"><img id="brandImg" src="/beautyline/images/beautylinelogo.png" /></a></div>
 <div id="includeheader">
 	<ul id="userheader">
 		<c:choose>

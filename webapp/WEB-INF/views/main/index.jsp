@@ -10,7 +10,7 @@
 
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-"webapp/WEB-INF"width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
 
@@ -61,15 +61,19 @@
 						<div class="carousel-inner">
 							<div class="item active">
 								<img class="img-responsive img-full"
-									src="images/main1.png" alt="">
+									src="images/main/main1.jpg" alt="">
 							</div>
 							<div class="item">
 								<img class="img-responsive img-full"
-									src="bootstrap/img/slide-2.jpg" alt="">
+									src="images/main/main2.jpg" alt="">
 							</div>
 							<div class="item">
 								<img class="img-responsive img-full"
-									src="bootstrap/img/slide-3.jpg" alt="">
+									src="images/main/main3.jpg" alt="">
+							</div>
+							<div class="item">
+								<img class="img-responsive img-full"
+									src="images/main/main4.jpg" alt="">
 							</div>
 						</div>
 
@@ -84,38 +88,33 @@
 					<h2 class="brand-before">
 						<small>Welcome to</small>
 					</h2>
-					<h1 class="brand-name">Business Casual</h1>
+					<h1 class="brand-name">Beauty Line</h1>
 					<hr class="tagline-divider">
 					<h2>
-						<small>By <strong>Start Bootstrap</strong>
+						<small>By <strong>Long</strong>
 						</small>
 					</h2>
 				</div>
 			</div>
 		</div>
 
-		<div class="row">
+		<!-- <div class="row">
 			<div class="box">
 				<div class="col-lg-12">
 					<hr>
 					<h2 class="intro-text text-center">
-						Build a website <strong>worth visiting</strong>
+					당신의 <strong>아름다움</strong>을 위한 뷰티라인
 					</h2>
 					<hr>
 					<img class="img-responsive img-border img-left"
 						src="bootstrap/img/intro-pic.jpg" alt="">
 					<hr class="visible-xs">
-					<p>The boxes used in this template are nested inbetween a
-						normal Bootstrap row and the start of your column layout. The
-						boxes will be full-width boxes, so if you want to make them
-						smaller then you will need to customize.</p>
-					<p>
-						A huge thanks to <a href="http://join.deathtothestockphoto.com/"
-							target="_blank">Death to the Stock Photo</a> for allowing us to
-						use the beautiful photos that make this template really come to
-						life. When using this template, make sure your photos are decent.
-						Also make sure that the file size on your photos is kept to a
-						minumum to keep load times to a minimum.
+					<p> Basic Care - <small>기본적인 피부관리</small> </p>
+					<p> Whitening -  <small>피부 톤 화이트닝</small></p>
+					<p> Lifting -  <small>주름 개선, 주름 예방</small></p>
+					<p> Acne Management -  <small>여드름 피부 완화</small> </p>
+					<p> 당신의 피부 타입을 검사해드립니다! 맞춤 화장품 추천 서비스 <a href="/beautyline/coun/test"
+							target="_blank"> 나의 <strong>피부타입</strong>은?</a>
 					</p>
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 						Nunc placerat diam quis nisl vestibulum dignissim. In hac
@@ -124,7 +123,7 @@
 						senectus et netus et malesuada fames ac turpis egestas.</p>
 				</div>
 			</div>
-		</div>
+		</div> 
 
 		<div class="row">
 			<div class="box">
@@ -143,7 +142,7 @@
 						senectus et netus et malesuada fames ac turpis egestas.</p>
 				</div>
 			</div>
-		</div>
+		</div> -->
 
 	</div>
 	<!-- /.container -->

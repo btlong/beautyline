@@ -148,6 +148,7 @@ public class ReserveController {
 	        catch(Exception err){
 	            page = pageService.pagingProc(0, 0, resList.size());
 	        }
+	        
 			model.addAttribute("page", page);
 			model.addAttribute("resList", resList);
 			model.addAttribute("today",today);

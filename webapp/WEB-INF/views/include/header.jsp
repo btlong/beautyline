@@ -5,7 +5,11 @@
 
 
 <div><a href="" data-target="#downloadModal" type="button" data-toggle="modal" data-backdrop="static" role="button"><img id="btn-appdownload" src="/beautyline/images/appdownload/btn_appdownload.png" class="img-responsive"></a></div>
-<div class="brand"><a id="brandtaga" href ="/beautyline/main"><img id="brandImg" src="/beautyline/images/beautylinelogo.png" /></a></div>
+<div class="text-center" id="brand-header">
+	<a href ="/beautyline/main">
+	<img id="brandImg" src="/beautyline/images/beautylinelogo.png" />
+	</a>
+</div>
 <div id="includeheader">
 	<ul id="userheader">
 		<c:choose>

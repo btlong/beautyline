@@ -44,7 +44,7 @@
 				<div class="form-group">
 					<label class="col-lg-4 control-label text-right">횟수</label>
 					<div class="col-lg-4">
-					<input id="packageCount" class="form-control" type="text" placeholder="횟수 입력">
+					<input id="packageCount" class="form-control onlyNumber" type="text" placeholder="횟수 입력">
 			<!-- 		<label >회</label> -->
 					</div>
 				</div>
@@ -52,7 +52,7 @@
 				<div class="form-group">
 					<label class="col-lg-4 control-label text-right">금액</label> 
 					<div class="col-lg-4">
-					<input id="packagePrice" class="form-control" type="text" placeholder="금액 입력">
+					<input id="packagePrice" class="form-control onlyNumber" type="text" placeholder="금액 입력">
 			<!-- 		<span class="col-lg-1">원</span> -->
 					</div>
 				</div>

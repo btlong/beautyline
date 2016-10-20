@@ -45,11 +45,7 @@
    margin-top: 3px;
    margin-bottom: 3px;  
 }
-#contents {
-   padding: 20px 5px;
-   
-   
-}
+
 #title table{
    width: 100%;
 }
@@ -89,6 +85,8 @@
       <div class="row">
          <div class="box">
             <div class="col-lg-12">
+            <c:choose>
+               <c:when test="${authUser.no eq qnabdvo.userNo || authUser.isAdmin eq 'a' || orgUserNo eq authUser.no}">
                <div class="page-header"></div>
                <div class="col-lg-12" id="title">
                
@@ -105,7 +103,7 @@
                            </tr>
                        </tbody>
                       </table>
-					<br><br>
+					
                
                   <div id="bdhr"></div>
                   <br>
@@ -125,6 +123,22 @@
            	</c:if>
             <a href="board" class="btn btn-sm btn-primary">목록 <span class="glyphicon glyphicon-th-list"></span></a>
             </div>
+            </c:when>
+            <c:otherwise>
+            	<div class="page-header">
+							<hr>
+							<h1 class="text-center">
+								<strong>비밀 글 입니다.</strong>
+							</h1>
+							<hr>
+				</div>
+						
+					
+				<div class="col-lg-11 text-center">
+					<a href="board" class="btn btn-md btn-primary">돌아가기 <span class="glyphicon glyphicon-arrow-left"></span></a>
+				</div>	
+            </c:otherwise>
+            </c:choose>
          </div>
       </div>
       </div>

@@ -133,7 +133,15 @@
 		where no = #{no}
 	]]>	
 	</update>
-
+	
+	<!-- 원글 번호 알아오기 -->
+	<select id="getOrgNo" parameterType="java.lang.Long" resultType="java.lang.Long">
+	<![CDATA[
+		SELECT user_no
+		FROM BD_QNA 
+		WHERE GROUP_NO = (SELECT group_no FROM BD_QNA WHERE no = #{no })  and depth= 0
+	]]>	
+	</select>
 
 	<!-- 조회수 업뎃 -->
 	<update id="updateviewcnt" parameterType="java.lang.Integer">

@@ -15,12 +15,17 @@
 <title>예 약</title>
 
 <!-- Custom CSS -->
+<link rel="stylesheet"href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+<link href="/beautyline/beautyline/css/reserve.css" rel="stylesheet">
+<link rel="stylesheet" href="http://www.prepbootstrap.com/Content/css/loadingbuttoneffects/local.css" />
+
 <link href="/beautyline/bootstrap/css/business-casual.css"rel="stylesheet">
 <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">
 <!-- Modal jquery -->
-<link rel="stylesheet"href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
-<link href="/beautyline/beautyline/css/reserve.css" rel="stylesheet">
 <link href="/beautyline/beautyline/css/include.css" rel="stylesheet">
+ <link rel="stylesheet" href="/beautyline/bootstrap/css/font-awesome.min.css" media="screen" title="no title" >
+   <link rel="stylesheet" href="/beautyline/bootstrap/css/style.css" media="screen" title="no title" >
+
 
 <!-- Fonts -->
 <link
@@ -36,7 +41,9 @@
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
  
 <style>
-
+#brandtaga{
+	height: 80px;
+}
 </style>
 <jsp:useBean id="now" class="java.util.Date" />
 </head>

@@ -16,7 +16,6 @@
 	font-weight:bold; 
 	text-decoration:none;
 }
-
 #brand-header{
 	padding-top: 30px;
 	padding-bottom: 10px;
@@ -91,6 +90,10 @@ hr {
 	margin: 0px;
 	
 }
+#brandtaga{
+	height: 80px;
+}
 .main-text{
 	font-size: x-small;
+
 }

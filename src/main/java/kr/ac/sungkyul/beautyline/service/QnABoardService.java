@@ -36,25 +36,30 @@ public class QnABoardService {
 	}
 	
 	
-	/* 공지사항 글 보기 */
+	/* 문의 글 보기 */
 	public QnABoardVo view( Long no ){
 		return qBoardDao.viewBoard(no);
 		
 	}
 	
 
-	/* 공지사항 글 조회수 업뎃 */
+	/* 문의 글 조회수 업뎃 */
 	public void updateViewCount( Long no ){
 		qBoardDao.updateViewCount(no);
 	}
 	
-	/* 공지사항 글 삭제 */
+	/* 문의 글 삭제 */
 	public int delete(QnABoardVo qbdv){
 		 return qBoardDao.delete(qbdv);
 	}
 	
 
 
+	/* 답글을 위해 원글 작성자 알아오기 */
+	public Long getOrgNo( Long no ){
+		return qBoardDao.getOrgNo(no);
+	}
+	
 /*------------------- 수정--------------------  */
 	/* 글 수정 */
 	public void modify(QnABoardVo qbdvo){

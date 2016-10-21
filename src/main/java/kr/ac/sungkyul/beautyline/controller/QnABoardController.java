@@ -2,6 +2,7 @@ package kr.ac.sungkyul.beautyline.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ import kr.ac.sungkyul.beautyline.vo.FileNotiVo;
 import kr.ac.sungkyul.beautyline.vo.NoticeBoardVo;
 import kr.ac.sungkyul.beautyline.vo.PageVo;
 import kr.ac.sungkyul.beautyline.vo.QnABoardVo;
+import kr.ac.sungkyul.beautyline.vo.UserVo;
 
 @Controller
 @RequestMapping("/qnaboard")
@@ -35,9 +37,10 @@ public class QnABoardController {
 	         @RequestParam(value = "nowBlock", required = false) Integer nowBlock,
 	         @RequestParam(value = "keyField", required=false) String keyField,
 	         @RequestParam(value = "keyWord", required=false) String keyWord,
-	         @RequestParam(value = "keyWord2", required=false) String keyWord2
+	         @RequestParam(value = "keyWord2", required=false) String keyWord2,
+	         HttpSession session
 	    ) {
-		  
+		   UserVo authUser =(UserVo) session.getAttribute("authUser");
 		
 		  if( keyWord2 == "" ){
 			  keyWord2 = null;
@@ -52,6 +55,7 @@ public class QnABoardController {
 	      } catch (Exception err) {
 	         page = pageService.pagingProc(0, 0, boardList.size());
 	      }
+	      model.addAttribute("authUser", authUser);
 	      model.addAttribute("boardList", boardList);
 	      model.addAttribute("page", page);
 	      
@@ -65,12 +69,17 @@ public class QnABoardController {
 	
 	   /* 글 보기 폼 */
 	   @RequestMapping(value = "/view", method = RequestMethod.GET)
-	   public String view(Long no, Model model) {
+	   public String view(Long no, Model model, HttpSession session) { 
+		   
+		   UserVo authUser =(UserVo) session.getAttribute("authUser");
 		   /* 조회수 업뎃 */
 		  qBoardService.updateViewCount(no);
 		  
 		  QnABoardVo qnabdvo = qBoardService.view(no);
-	      
+		  Long orgUserNo = qBoardService.getOrgNo(no);
+		  
+		  model.addAttribute("orgUserNo", orgUserNo);
+		  model.addAttribute("authUser", authUser);
 	      model.addAttribute("qnabdvo", qnabdvo);
 	      return "board/qnaboard/view";
 	   }

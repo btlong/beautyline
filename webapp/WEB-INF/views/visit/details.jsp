@@ -167,6 +167,7 @@
 												<!-- doneLoop가 false이면 루프 계속 돎-->
 												<c:if test="${not doneLoop }">
 													<c:set var="price" value="${visitList[i].price}" />
+													<c:set var="refund" value="${visitList[i].refund}" />
 													<c:choose>
 														<c:when test="${ price >= 0 }">
 															<tr>
@@ -178,13 +179,27 @@
 																	<td class="text-center">${visitList[i].programName}</td>
 																	<td class="text-right">${visitList[i].price}</td>
 																	<td class="text-center">${visitList[i].payName}</td>
-																	<td class="text-center"><a
-																		class="button btn btn-sm refundView" href=""
-																		data-target="#myModalRefund" type="button"
-																		data-toggle="modal" role="button"
-																		data-userno="${visitList[i].userNo}"
-																		data-no="${visitList[i].no }"
-																		data-programno="${visitList[i].programNo }"><span>환불</span></a></td>
+																	<c:choose>
+																		<c:when test="${ refund  == 1 }">
+																			<td class="text-center"><a
+																				class="button btn btn-sm" href="" type="button"
+																				data-toggle="modal" role="button"
+																				data-userno="${visitList[i].userNo}"
+																				data-no="${visitList[i].no }" disabled="disabled"
+																				data-programno="${visitList[i].programNo }"><span>환불</span></a>
+																			</td>
+																		</c:when>
+																		<c:otherwise>
+																			<td class="text-center"><a
+																				class="button btn btn-sm refundView" href=""
+																				data-target="#myModalRefund" type="button"
+																				data-toggle="modal" role="button"
+																				data-userno="${visitList[i].userNo}"
+																				data-no="${visitList[i].no }"
+																				data-programno="${visitList[i].programNo }"
+																				data-refund="${visitList[i].refund}"><span>환불</span></a></td>
+																		</c:otherwise>
+																	</c:choose>
 																</c:if>
 															</tr>
 														</c:when>
@@ -208,7 +223,6 @@
 																</c:if>
 															</tr>
 														</c:otherwise>
-
 
 
 													</c:choose>
@@ -356,12 +370,12 @@
 
 </body>
 <script type="text/javascript">
+	var visitList = new Array();
 	$(document).ready(function() {
 
-		var price = $("table").data("price");
-
-		$.each(function(price) {
-			if (0 < price) {
+		$.each(function(index) {
+			if ($('.refundView').data("refund") == 1) {
+				$('.refundView').attr("disabled", true);
 			}
 		});
 
@@ -377,27 +391,6 @@
 			$('#blockmovef').trigger('focus');
 		}
 
-		/* 환불 */
-		/* 
-		 $.ajax({
-		 url : "visitorsearchform",
-		 type : "POST",
-		 data : JSON.stringify(userVo),
-		 contentType : "application/json",
-
-		 success : function(visitorList) {
-
-		 $.each(visitorList, function(index, userVo) {
-		 trString += "<option class='muk'>";
-		 trString += userVo.name;
-		 trString += "&nbsp;|&nbsp;&nbsp;";
-		 trString += userVo.phone;
-		 trString += "</option>";
-		 });
-		 $(".muk").remove();
-		 $("#selected").append(trString);
-		 }
-		 }); */
 		var no;
 		var userNo;
 		var programNo;

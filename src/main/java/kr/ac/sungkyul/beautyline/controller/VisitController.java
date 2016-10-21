@@ -64,7 +64,6 @@ public class VisitController {
 		} catch (Exception err) {
 			page = pageService.pagingProc(0, 0, visitList.size());
 		}
-
 		model.addAttribute("visitList", visitList);
 		model.addAttribute("page", page);
 		model.addAttribute("keyField", keyField);
@@ -88,7 +87,6 @@ public class VisitController {
 		UserVo authUser = visitService.searchOne(userVo);
 		retVal.put("authUser", authUser);
 		List<CouponVo> couponList = visitService.couponList(authUser.getNo());
-		/* System.out.println(couponList); */
 		retVal.put("couponList", couponList);
 		return retVal;
 	}
@@ -97,7 +95,6 @@ public class VisitController {
 	@ResponseBody
 	@RequestMapping(value = "packageModal", method = RequestMethod.POST)
 	public UserVo packageCharge(@RequestBody UserVo userVo) {
-		System.out.println(userVo);
 		UserVo authUser = visitService.searchOne(userVo);
 		return authUser;
 	}
@@ -108,6 +105,7 @@ public class VisitController {
 	public List<CouponVo> packageCharge(@RequestBody CouponVo couponVo) {
 		visitService.couponCharge(couponVo);
 		List<CouponVo> couponList = visitService.couponList(couponVo.getUserNo());
+		
 		return couponList;
 	}
 
@@ -131,20 +129,7 @@ public class VisitController {
 		return "visit/loginform";
 	}
 
-/*	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(HttpSession session,
-
-			@RequestParam(value = "id", required = false, defaultValue = "") String id,
-			@RequestParam(value = "password", required = false, defaultValue = "") String password) {
-
-		UserVo authUser = userService.login(id, password);
-		if (authUser == null) {
-			return "redirect:/visit/loginform";
-		}
-		session.setAttribute("authUser", authUser);
-		return "redirect:/visit/visitform";
-	}*/
-
+	
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		session.removeAttribute("authUser");
@@ -157,7 +142,6 @@ public class VisitController {
 	public int refund(@RequestBody VisitVo visitVo) {
 		visitService.couponRefund(visitVo);
 		visitService.insertRefundSales(visitVo.getNo());
-		
 		return 1;
 	}
 }

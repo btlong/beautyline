@@ -172,23 +172,23 @@ img {
 			$("#score2").val("100");
 		});
 		
-		$("#4hours").click(function() {
+		$("#elastic1").click(function() {
 			$("#score3").val("20");
 		});
 		
-		$("#5hours").click(function() {
+		$("#elastic2").click(function() {
 			$("#score3").val("40");
 		});
 		
-		$("#6hours").click(function() {
+		$("#elastic3").click(function() {
 			$("#score3").val("60");
 		});
 		
-		$("#7hours").click(function() {
+		$("#elastic4").click(function() {
 			$("#score3").val("80");
 		});
 		
-		$("#8hours").click(function() {
+		$("#elastic5").click(function() {
 			$("#score3").val("100");
 		});
 		
@@ -295,15 +295,15 @@ img {
 				
 				<div class="col-lg-12 hide" id=elastic>
 					<h2 class="col-lg-12 text-center">
-						<small>당신의 평소 수면시간은?</small>
+						<small>자고일어나서 베개 자국이 얼마나 빨리 없어지나요?</small>
 					</h2>
 					
 					<div class="col-lg-12 test">
-						<img id="4hours" src="/beautyline/images/btn_sleep_4.PNG" /> 
-						<img id="5hours" src="/beautyline/images/btn_sleep_5.PNG" /> 
-						<img id="6hours" src="/beautyline/images/btn_sleep_6.PNG" /> 
-						<img id="7hours" src="/beautyline/images/btn_sleep_7.PNG" /> 
-						<img id="8hours" src="/beautyline/images/btn_sleep_8.PNG" />				
+						<img id="elastic1" src="/beautyline/images/skin_test/elastic/elastic1.png" /> 
+						<img id="elastic2" src="/beautyline/images/skin_test/elastic/elastic2.png" /> 
+						<img id="elastic3" src="/beautyline/images/skin_test/elastic/elastic3.png" /> 
+						<img id="elastic4" src="/beautyline/images/skin_test/elastic/elastic4.png" /> 
+						<img id="elastic5" src="/beautyline/images/skin_test/elastic/elastic5.png" />				
 					</div>
 				</div>
 				
@@ -323,15 +323,15 @@ img {
 				
 				<div class="col-lg-12 hide" id=acne>
 					<h2 class="col-lg-12 text-center">
-						<small>얼마나 자주 피부 트러블이 나시나요?</small>
+						<small>나의 피부 상태와 비슷한 사진을 골라주세요!</small>
 					</h2>
 					
 					<div class="col-lg-12 test">
-						<img id="acne1" src="/beautyline/images/btn_acne_always.PNG" /> 
-						<img id="acne2" src="/beautyline/images/btn_acne_usually.PNG" /> 
-						<img id="acne3" src="/beautyline/images/btn_acne_often.PNG" /> 
-						<img id="acne4" src="/beautyline/images/btn_acne_sometimes.PNG" /> 
-						<img id="acne5" src="/beautyline/images/btn_acne_never.PNG" />			
+						<img id="acne5" src="/beautyline/images/skin_test/acne/acne1.png" />			
+						<img id="acne4" src="/beautyline/images/skin_test/acne/acne2.png" /> 
+						<img id="acne3" src="/beautyline/images/skin_test/acne/acne3.png" /> 
+						<img id="acne2" src="/beautyline/images/skin_test/acne/acne4.png" /> 
+						<img id="acne1" src="/beautyline/images/skin_test/acne/acne5.png" /> 
 					</div>
 				</div>
 			</div>

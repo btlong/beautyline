@@ -169,11 +169,11 @@
 					<table class="table-bordered text-center" id="print_score">
 						<tr>
 							<td>종합점수</td>
-							<td>미백점수</td>
-							<td>주름점수</td>
-							<td>피부탄력점수</td>
-							<td>수분점수</td>
-							<td>여드름점수</td>							
+							<td>미백</td>
+							<td>리프팅</td>
+							<td>피부탄력</td>
+							<td>수분</td>
+							<td>여드름</td>							
 						</tr>
 						<tr>
 							<td>

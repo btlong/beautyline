@@ -22,8 +22,10 @@ public class ReserveDao {
 		
         Map<String, String> map = new HashMap<String, String> ();
     
-        map.put("today", today);
 
+    	map.put("today", today);
+
+        
         if( keyfield != null && keyword != null && keyfield !="" && keyword !="" ){//검색 한경우
     		map.put("keyword", keyword);
     		map.put("keyfield", keyfield);
@@ -39,6 +41,7 @@ public class ReserveDao {
 	//reservePastList
 		public List<ReserveVo> reservePastList(String keyfield, String keyword, String today){
 			
+			
 	        Map<String, String> map = new HashMap<String, String> ();
 	        
 	        	map.put("today", today);
@@ -49,7 +52,7 @@ public class ReserveDao {
 	    		return sqlSession.selectList( "res.getPastSearch" , map );
 	    		  
 	        }else{  //아무것도 검색 안한 경우    
-				return sqlSession.selectList("res.resPastList", map  );    
+	        	return sqlSession.selectList("res.resPastList", map  );    
 			}
 			
 			

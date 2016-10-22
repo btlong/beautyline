@@ -183,6 +183,7 @@
 		from bd_qna
 		where group_no = #{groupNo }
 		and depth = #{depth } + 1
+		and order_no = #{orderNo } + 1
 	]]>
 	</select>
 	

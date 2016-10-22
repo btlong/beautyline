@@ -38,9 +38,9 @@
 
 <style type="text/css">
 img {
-	margin: 20px 10px;
-	width: 145px;
-	height: 145px;
+	margin: 20px;
+	width: 100px;
+	height: 100px;
 	cursor: pointer;
 }
 
@@ -91,32 +91,32 @@ img {
 						return;
 					}
 					$("#stage").val("2");
-					$("#white").remove();
-					$("#lifting").removeClass("hide");
+					$("#test1").remove();
+					$("#test2").removeClass("hide");
                 } else if ($("#stage").val() == 2) {
                 	if($("#score2").val() == '') {
 						alert("버튼을 누르세요");
 						return;
 					}
 					$("#stage").val("3");
-					$("#lifting").remove();
-					$("#elastic").removeClass("hide");
+					$("#test2").remove();
+					$("#test3").removeClass("hide");
                 } else if ($("#stage").val() == 3) {
                 	if($("#score3").val() == '') {
 						alert("버튼을 누르세요");
 						return;
 					}
 					$("#stage").val("4");
-					$("#elastic").remove();
-					$("#moisture").removeClass("hide");
+					$("#test3").remove();
+					$("#test4").removeClass("hide");
                 } else if ($("#stage").val() == 4) {
                 	if($("#score4").val() == '') {
 						alert("버튼을 누르세요");
 						return;
 					}
                 	$("#stage").val("5");
-					$("#moisture").remove();
-					$("#acne").removeClass("hide");
+					$("#test4").remove();
+					$("#test5").removeClass("hide");
                 } else if ($("#stage").val() == 5) {
                 	if($("#score5").val() == '') {
 						alert("버튼을 누르세요");
@@ -131,85 +131,85 @@ img {
 			});
 		});
 
-		$("#white1").click(function() {
+		$("#blue").click(function() {
 			$("#score1").val("20");
 
 		});
 
-		$("#white2").click(function() {
+		$("#green").click(function() {
 			$("#score1").val("40");
 		});
 
-		$("#white3").click(function() {
+		$("#red").click(function() {
 			$("#score1").val("60");
 		});
 
-		$("#white4").click(function() {
+		$("#yellow").click(function() {
 			$("#score1").val("80");
 		});
 		
-		$("#white5").click(function() {
+		$("#bmw").click(function() {
 			$("#score1").val("100");
 		});
 
-		$("#lifting1").click(function() {
+		$("#bird").click(function() {
 			$("#score2").val("20");
 		});
 		
-		$("#lifting2").click(function() {
+		$("#bug").click(function() {
 			$("#score2").val("40");
 		});
 		
-		$("#lifting3").click(function() {
+		$("#nemo").click(function() {
 			$("#score2").val("60");
 		});
 		
-		$("#lifting4").click(function() {
+		$("#shark").click(function() {
 			$("#score2").val("80");
 		});
 		
-		$("#lifting5").click(function() {
+		$("#twitter").click(function() {
 			$("#score2").val("100");
 		});
 		
-		$("#elastic1").click(function() {
+		$("#4hours").click(function() {
 			$("#score3").val("20");
 		});
 		
-		$("#elastic2").click(function() {
+		$("#5hours").click(function() {
 			$("#score3").val("40");
 		});
 		
-		$("#elastic3").click(function() {
+		$("#6hours").click(function() {
 			$("#score3").val("60");
 		});
 		
-		$("#elastic4").click(function() {
+		$("#7hours").click(function() {
 			$("#score3").val("80");
 		});
 		
-		$("#elastic5").click(function() {
+		$("#8hours").click(function() {
 			$("#score3").val("100");
 		});
 		
-		$("#moisture1").click(function() {
-			$("#score4").val("20");
+		$("#tone1").click(function() {
+			$("#score4").val("100");
 		});
 		
-		$("#moisture2").click(function() {
-			$("#score4").val("40");
-		});
-		
-		$("#moisture3").click(function() {
-			$("#score4").val("60");
-		});
-		
-		$("#moisture4").click(function() {
+		$("#tone2").click(function() {
 			$("#score4").val("80");
 		});
 		
-		$("#moisture5").click(function() {
-			$("#score4").val("100");
+		$("#tone3").click(function() {
+			$("#score4").val("60");
+		});
+		
+		$("#tone4").click(function() {
+			$("#score4").val("40");
+		});
+		
+		$("#tone5").click(function() {
+			$("#score4").val("20");
 		});
 
 		$("#acne1").click(function() {
@@ -265,73 +265,73 @@ img {
 					<hr>
 				</div>
 				
-				<div class="col-lg-12" id=white>
+				<div class="col-lg-12" id=test1>
 					<h2 class="col-lg-12 text-center">
-						<small>평소 메이크업 스타일을 <strong>피부색과 비교하면?</strong></small>
+						<small>당신이 좋아하는 색깔은?</small>
 					</h2>
 					
 					<div class="col-lg-12 test">
-						<img id="white1" src="/beautyline/images/btn_color_blue.png" /> 
-						<img id="white2" src="/beautyline/images/btn_color_green.png" /> 
-						<img id="white3" src="/beautyline/images/btn_color_red.png" /> 
-						<img id="white4" src="/beautyline/images/btn_color_yellow.png" /> 
-						<img id="white5" src="/beautyline/images/btn_color_bmw.png" />					
+						<img id="blue" src="/beautyline/images/btn_color_blue.png" /> 
+						<img id="green" src="/beautyline/images/btn_color_green.png" /> 
+						<img id="red" src="/beautyline/images/btn_color_red.png" /> 
+						<img id="yellow" src="/beautyline/images/btn_color_yellow.png" /> 
+						<img id="bmw" src="/beautyline/images/btn_color_bmw.png" />					
 					</div>
 				</div>
 				
-				<div class="col-lg-12 hide" id=lifting>
+				<div class="col-lg-12 hide" id=test2>
 					<h2 class="col-lg-12 text-center">
-						<small>나의 <strong>주름 상태</strong>는 어떤 편 인가요?</small>
+						<small>당신이 좋아하는 동물은?</small>
 					</h2>
 					
 					<div class="col-lg-12 test">
-						<img id="lifting5" src="/beautyline/images/skin_test/lifting/lifting5.png" /> 
-						<img id="lifting4" src="/beautyline/images/skin_test/lifting/lifting4.png" /> 
-						<img id="lifting3" src="/beautyline/images/skin_test/lifting/lifting3.png" /> 
-						<img id="lifting2" src="/beautyline/images/skin_test/lifting/lifting2.png" /> 
-						<img id="lifting1" src="/beautyline/images/skin_test/lifting/lifting1.png" />				
+						<img id="bird" src="/beautyline/images/btn_animal_bird.png" /> 
+						<img id="bug" src="/beautyline/images/btn_animal_bug.png" /> 
+						<img id="nemo" src="/beautyline/images/btn_animal_nemo.png" /> 
+						<img id="shark" src="/beautyline/images/btn_animal_shark.png" /> 
+						<img id="twitter" src="/beautyline/images/btn_animal_twitter.png" />				
 					</div>
 				</div>
 				
-				<div class="col-lg-12 hide" id=elastic>
+				<div class="col-lg-12 hide" id=test3>
 					<h2 class="col-lg-12 text-center">
-						<small>자고일어나서 베개 자국이 얼마나 빨리 없어지나요?</small>
+						<small>당신의 평소 수면시간은?</small>
 					</h2>
 					
 					<div class="col-lg-12 test">
-						<img id="elastic1" src="/beautyline/images/skin_test/elastic/elastic1.png" /> 
-						<img id="elastic2" src="/beautyline/images/skin_test/elastic/elastic2.png" /> 
-						<img id="elastic3" src="/beautyline/images/skin_test/elastic/elastic3.png" /> 
-						<img id="elastic4" src="/beautyline/images/skin_test/elastic/elastic4.png" /> 
-						<img id="elastic5" src="/beautyline/images/skin_test/elastic/elastic5.png" />				
+						<img id="4hours" src="/beautyline/images/btn_sleep_4.PNG" /> 
+						<img id="5hours" src="/beautyline/images/btn_sleep_5.PNG" /> 
+						<img id="6hours" src="/beautyline/images/btn_sleep_6.PNG" /> 
+						<img id="7hours" src="/beautyline/images/btn_sleep_7.PNG" /> 
+						<img id="8hours" src="/beautyline/images/btn_sleep_8.PNG" />				
 					</div>
 				</div>
 				
-				<div class="col-lg-12 hide test" id=moisture>
+				<div class="col-lg-12 hide test" id=test4>
 					<h2 class="col-lg-12 text-center">
-						<small>기초단계에서 사용하는 <strong>가장 무거운 제형의 화장품은?</strong></small>
+						<small>당신의 피부 톤은?</small>
 					</h2>
 					
 					<div class="col-lg-12 test">
-						<img id="moisture5" src="/beautyline/images/skin_test/moisture/non_use.png" />				
-						<img id="moisture4" src="/beautyline/images/skin_test/moisture/skin.png" /> 
-						<img id="moisture3" src="/beautyline/images/skin_test/moisture/moisture_cream.jpg" /> 
-						<img id="moisture2" src="/beautyline/images/skin_test/moisture/lotion.jpg" /> 
-						<img id="moisture1" src="/beautyline/images/skin_test/moisture/cream.jpg" /> 
+						<img id="tone1" src="/beautyline/images/btn_color_1.PNG" /> 
+						<img id="tone2" src="/beautyline/images/btn_color_2.PNG" /> 
+						<img id="tone3" src="/beautyline/images/btn_color_3.PNG" /> 
+						<img id="tone4" src="/beautyline/images/btn_color_4.PNG" /> 
+						<img id="tone5" src="/beautyline/images/btn_color_5.PNG" />				
 					</div>
 				</div>
 				
-				<div class="col-lg-12 hide" id=acne>
+				<div class="col-lg-12 hide" id=test5>
 					<h2 class="col-lg-12 text-center">
-						<small>나의 피부 상태와 비슷한 사진을 골라주세요!</small>
+						<small>얼마나 자주 피부 트러블이 나시나요?</small>
 					</h2>
 					
 					<div class="col-lg-12 test">
-						<img id="acne5" src="/beautyline/images/skin_test/acne/acne1.png" />			
-						<img id="acne4" src="/beautyline/images/skin_test/acne/acne2.png" /> 
-						<img id="acne3" src="/beautyline/images/skin_test/acne/acne3.png" /> 
-						<img id="acne2" src="/beautyline/images/skin_test/acne/acne4.png" /> 
-						<img id="acne1" src="/beautyline/images/skin_test/acne/acne5.png" /> 
+						<img id="acne1" src="/beautyline/images/btn_acne_always.PNG" /> 
+						<img id="acne2" src="/beautyline/images/btn_acne_usually.PNG" /> 
+						<img id="acne3" src="/beautyline/images/btn_acne_often.PNG" /> 
+						<img id="acne4" src="/beautyline/images/btn_acne_sometimes.PNG" /> 
+						<img id="acne5" src="/beautyline/images/btn_acne_never.PNG" />			
 					</div>
 				</div>
 			</div>

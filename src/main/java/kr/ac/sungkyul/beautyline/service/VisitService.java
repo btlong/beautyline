@@ -28,6 +28,9 @@ public class VisitService {
 
 		/* orgName , path, saveName */
 		String orgName = file.getOriginalFilename();
+		
+		if(file.getOriginalFilename().equals("") == false) {
+			
 		String path = "c:\\upload\\beautyline";
 		String saveName = UUID.randomUUID().toString() + "_" + orgName;
 
@@ -47,9 +50,12 @@ public class VisitService {
 		if (target.exists()) {
 			thumbnail.getParentFile().mkdirs();
 			Thumbnails.of(target).forceSize(152, 195).toFile(thumbnail);
-
 		}
-		visitVo.setImageNo(imageNo);
+			visitVo.setImageNo(imageNo);
+		} else {
+			visitVo.setImageNo(null);
+		}
+			
 		visitVo.setAverageScore((visitVo.getWhiteningScore() + // 미백
 				visitVo.getElasticScore() + // 피부탄력
 				visitVo.getMoistureScore() + // 수분
@@ -118,31 +124,33 @@ public class VisitService {
 		long success = 0;
 		/* 있는지 없는지 select */
 		Long count = visitDao.couponSelect(couponVo);
-		/* 있으면 update */
-		System.out.println("count를 찍어봅시다." + count);
-		/* 없으면 insert */
+		
 
+		/* 없으면 insert */
 		if (count == null || count == 0) {
 			success = visitDao.couponInsert(couponVo);
 		} else {
+			/* 있으면 update */
 			couponVo.setCount(couponVo.getCount() + count);
 			success = visitDao.updateCouponCharge(couponVo);
 		}
-
+		
+		/* 판매 insert */
 		if (success == 1) {
 			visitDao.SalesInsert(couponVo);
 		} else {
 			System.out.println("씰패");
 		}
 	}
-
+	
+	
 	public void couponRefund(VisitVo visitVo) {
-
 		visitDao.updateRefundCoupon(visitVo);
 	}
 
 	public void insertRefundSales(Long no) {
 		visitDao.insertRefundSales(no);
+		visitDao.updateRefundSales(no);
 	}
 
 }

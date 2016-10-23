@@ -51,8 +51,8 @@
 							<a href="/beautyline/reserve/reserve" >예약</a>
 							<ul class="dropdown-menu" id="navdropdown" role="menu">
 								<li><a href="/beautyline/reserve/reservelist">예약관리</a></li>
-								<li>&nbsp</li>
-								<li>&nbsp</li>
+								<li>&nbsp;</li>
+								<li>&nbsp;</li>
 							</ul> 
 						</li>					
  					</c:when>

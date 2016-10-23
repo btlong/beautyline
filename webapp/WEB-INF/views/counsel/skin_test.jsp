@@ -35,7 +35,6 @@
 <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-
 <style type="text/css">
 img {
 	margin: 20px 10px;
@@ -45,12 +44,21 @@ img {
 }
 
 .selected {
-	width: 120px;
-	height: 120px;
+	filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feComponentTransfer color-interpolation-filters="sRGB"><feFuncR type="linear" slope="0.6" /><feFuncG type="linear" slope="0.6" /><feFuncB type="linear" slope="0.6" /></feComponentTransfer></filter></svg>#filter');
+	filter: brightness(0.6);
+	-webkit-filter: brightness(0.6);
+}
+
+.hovereffect:hover img {
+	-webkit-transition: all 0.35s;
+	transition: all 0.35s;
+	filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feComponentTransfer color-interpolation-filters="sRGB"><feFuncR type="linear" slope="0.6" /><feFuncG type="linear" slope="0.6" /><feFuncB type="linear" slope="0.6" /></feComponentTransfer></filter></svg>#filter');
+	filter: brightness(0.6);
+	-webkit-filter: brightness(0.6);
 }
 
 #next {
-	margin-top: 100px;	
+	margin-top: 50px;	
 }
 
 #forward {
@@ -77,7 +85,7 @@ img {
 		});
 
 		$(function() {
-			$("img").click(function() {
+			$(".test img").click(function() {
 				$("img.selected").removeClass("selected");
 				$(this).addClass("selected");
 			});
@@ -125,9 +133,6 @@ img {
 					$("#scores").submit();
 					console.log("섭밋"); 
                 }
-				
-				
-				
 			});
 		});
 
@@ -269,13 +274,22 @@ img {
 					<h2 class="col-lg-12 text-center">
 						<small>평소 메이크업 스타일을 <strong>피부색과 비교하면?</strong></small>
 					</h2>
-					
-					<div class="col-lg-12 test">
-						<img id="white1" src="/beautyline/images/btn_color_blue.png" /> 
-						<img id="white2" src="/beautyline/images/btn_color_green.png" /> 
-						<img id="white3" src="/beautyline/images/btn_color_red.png" /> 
-						<img id="white4" src="/beautyline/images/btn_color_yellow.png" /> 
-						<img id="white5" src="/beautyline/images/btn_color_bmw.png" />					
+					<div class="col-lg-12 form-inline test">
+						<div class="form-group hovereffect">
+						<img id="white1" src="/beautyline/images/skin_test/white/white1.png" /> 
+						</div>
+						<div class="form-group hovereffect">
+						<img id="white2" src="/beautyline/images/skin_test/white/white2.png" /> 
+						</div>
+						<div class="form-group hovereffect">
+						<img id="white3" src="/beautyline/images/skin_test/white/white3.png" /> 
+						</div>
+						<div class="form-group hovereffect">
+						<img id="white4" src="/beautyline/images/skin_test/white/white4.png" /> 
+						</div>
+						<div class="form-group hovereffect">
+						<img id="white5" src="/beautyline/images/skin_test/white/white5.png" />					
+						</div>
 					</div>
 				</div>
 				
@@ -283,13 +297,22 @@ img {
 					<h2 class="col-lg-12 text-center">
 						<small>나의 <strong>주름 상태</strong>는 어떤 편 인가요?</small>
 					</h2>
-					
-					<div class="col-lg-12 test">
-						<img id="lifting5" src="/beautyline/images/skin_test/lifting/lifting5.png" /> 
-						<img id="lifting4" src="/beautyline/images/skin_test/lifting/lifting4.png" /> 
-						<img id="lifting3" src="/beautyline/images/skin_test/lifting/lifting3.png" /> 
-						<img id="lifting2" src="/beautyline/images/skin_test/lifting/lifting2.png" /> 
-						<img id="lifting1" src="/beautyline/images/skin_test/lifting/lifting1.png" />				
+					<div class="col-lg-12 form-inline test">
+						<div class="form-group hovereffect">
+							<img id="lifting5" src="/beautyline/images/skin_test/lifting/lifting5.png" />
+						</div>
+						<div class="form-group hovereffect">
+							<img id="lifting4" src="/beautyline/images/skin_test/lifting/lifting4.png" /> 
+						</div>
+						<div class="form-group hovereffect">
+							<img id="lifting3" src="/beautyline/images/skin_test/lifting/lifting3.png" /> 
+						</div>
+						<div class="form-group hovereffect">
+							<img id="lifting2" src="/beautyline/images/skin_test/lifting/lifting2.png" /> 
+						</div>
+						<div class="form-group hovereffect">
+							<img id="lifting1" src="/beautyline/images/skin_test/lifting/lifting1.png" />				
+						</div>
 					</div>
 				</div>
 				
@@ -297,13 +320,22 @@ img {
 					<h2 class="col-lg-12 text-center">
 						<small>자고일어나서 베개 자국이 얼마나 빨리 없어지나요?</small>
 					</h2>
-					
-					<div class="col-lg-12 test">
-						<img id="elastic1" src="/beautyline/images/skin_test/elastic/elastic1.png" /> 
-						<img id="elastic2" src="/beautyline/images/skin_test/elastic/elastic2.png" /> 
-						<img id="elastic3" src="/beautyline/images/skin_test/elastic/elastic3.png" /> 
-						<img id="elastic4" src="/beautyline/images/skin_test/elastic/elastic4.png" /> 
-						<img id="elastic5" src="/beautyline/images/skin_test/elastic/elastic5.png" />				
+					<div class="col-lg-12 form-inline test">
+						<div class="form-group hovereffect">
+							<img id="elastic5" src="/beautyline/images/skin_test/elastic/elastic1.png" />				
+						</div>
+						<div class="form-group hovereffect">
+							<img id="elastic4" src="/beautyline/images/skin_test/elastic/elastic2.png" /> 
+						</div>
+						<div class="form-group hovereffect">
+							<img id="elastic3" src="/beautyline/images/skin_test/elastic/elastic3.png" /> 
+						</div>
+						<div class="form-group hovereffect">
+							<img id="elastic2" src="/beautyline/images/skin_test/elastic/elastic4.png" /> 
+						</div>
+						<div class="form-group hovereffect">
+							<img id="elastic1" src="/beautyline/images/skin_test/elastic/elastic5.png" /> 
+						</div>
 					</div>
 				</div>
 				
@@ -311,13 +343,22 @@ img {
 					<h2 class="col-lg-12 text-center">
 						<small>기초단계에서 사용하는 <strong>가장 무거운 제형의 화장품은?</strong></small>
 					</h2>
-					
-					<div class="col-lg-12 test">
-						<img id="moisture5" src="/beautyline/images/skin_test/moisture/non_use.png" />				
-						<img id="moisture4" src="/beautyline/images/skin_test/moisture/skin.png" /> 
-						<img id="moisture3" src="/beautyline/images/skin_test/moisture/moisture_cream.jpg" /> 
-						<img id="moisture2" src="/beautyline/images/skin_test/moisture/lotion.jpg" /> 
-						<img id="moisture1" src="/beautyline/images/skin_test/moisture/cream.jpg" /> 
+					<div class="col-lg-12 form-inline test">
+						<div class="form-group hovereffect">
+							<img id="moisture5" src="/beautyline/images/skin_test/moisture/non_use.png" />				
+						</div>
+						<div class="form-group hovereffect">
+							<img id="moisture4" src="/beautyline/images/skin_test/moisture/skin.png" /> 
+						</div>
+						<div class="form-group hovereffect">
+							<img id="moisture3" src="/beautyline/images/skin_test/moisture/moisture_cream.jpg" /> 
+						</div>
+						<div class="form-group hovereffect">
+							<img id="moisture2" src="/beautyline/images/skin_test/moisture/lotion.jpg" /> 
+						</div>
+						<div class="form-group hovereffect">
+							<img id="moisture1" src="/beautyline/images/skin_test/moisture/cream.jpg" /> 
+						</div>
 					</div>
 				</div>
 				
@@ -325,23 +366,29 @@ img {
 					<h2 class="col-lg-12 text-center">
 						<small>나의 피부 상태와 비슷한 사진을 골라주세요!</small>
 					</h2>
-					
-					<div class="col-lg-12 test">
-						<img id="acne5" src="/beautyline/images/skin_test/acne/acne1.png" />			
-						<img id="acne4" src="/beautyline/images/skin_test/acne/acne2.png" /> 
-						<img id="acne3" src="/beautyline/images/skin_test/acne/acne3.png" /> 
-						<img id="acne2" src="/beautyline/images/skin_test/acne/acne4.png" /> 
-						<img id="acne1" src="/beautyline/images/skin_test/acne/acne5.png" /> 
+					<div class="col-lg-12 form-inline test">
+						<div class="form-group hovereffect">
+							<img id="acne5" src="/beautyline/images/skin_test/acne/acne1.png" />			
+						</div>
+						<div class="form-group hovereffect">
+							<img id="acne4" src="/beautyline/images/skin_test/acne/acne2.png" /> 
+						</div>
+						<div class="form-group hovereffect">
+							<img id="acne3" src="/beautyline/images/skin_test/acne/acne3.png" /> 
+						</div>
+						<div class="form-group hovereffect">
+							<img id="acne2" src="/beautyline/images/skin_test/acne/acne4.png" /> 
+						</div>
+						<div class="form-group hovereffect">
+							<img id="acne1" src="/beautyline/images/skin_test/acne/acne5.png" /> 
+						</div>
 					</div>
 				</div>
 			</div>
 				
 				
-				<div class="col-lg-12" id="next">
-					<div class="col-lg-4"></div>
-					<div class="col-lg-4">
-						<button class="btn btn-default btn-lg" id="forward">다음</button>
-					</div>
+				<div class="col-lg-12 text-center" id="next">
+					<button class="btn btn-info btn-lg" id="forward">다음</button>
 				</div>
 
 			</div>

@@ -198,9 +198,13 @@ div.graphBox2 input.link {
                         <div class="col-lg-6 col-lg-offset-3">
                            <table class="table table-responsive text-center">
                               <tr>
-                                 <td><form id="adminReserve" action="/beautyline/reserve/userreservelist" method="post">
-                                 <input type="submit" class="btn btn-warning btn-sm" id="userreserveList" value="예약더보기">
-                              </form>
+                                 <td>
+                                 <a href="/beautyline/reserve/userreservelist?no=${userVo.no }"
+                                    class="btn btn-warning btn-sm">예약내역</a>
+                                <%-- <form id="adminReserve" action="/beautyline/reserve/userreservelist" method="post">
+                                 <input type="hidden" value="${userVo.no }">
+                                 <input type="submit" class="btn btn-warning btn-sm" id="userreserveList" value="예약내역">
+                              </form> --%>
                               </td>
                                  <td>
                                     <form method="post" action="history">

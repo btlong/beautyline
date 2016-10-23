@@ -199,7 +199,7 @@ div.graphBox2 input.link {
                            <table class="table table-responsive text-center">
                               <tr>
                                  <td><form id="adminReserve" action="/beautyline/reserve/userreservelist" method="post">
-                                 <input type="submit" class="btn btn-warning btn-sm" id="userreserveList" value="예약더보기">
+                                 <input type="submit" class="btn btn-warning btn-sm" id="userreserveList" value="예약내역">
                               </form></td>
                                  <td>
                                     <form method="post" action="history">
@@ -264,7 +264,7 @@ div.graphBox2 input.link {
                            </div>
                            <div class="col-lg-8 text-right">
                                <form id="adminReserve" action="/beautyline/reserve/userreservelist" method="post">
-                                 <input type="submit" class="btn btn-success btn-sm" id="userreserveList" value="예약더보기">
+                                 <input type="submit" class="btn btn-success btn-sm" id="userreserveList" value="예약내역 더 보기">
                               </form>
                              
                            </div>

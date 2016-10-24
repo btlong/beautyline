@@ -4,8 +4,6 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -50,7 +48,7 @@ public class UserinfoController {
 	@Autowired
 	PageService pageService;
 
-	// 회원관리 리스트
+	// 회원정보 리스트
 	@RequestMapping(value = "list")
 	public String listUser(Model model, @RequestParam(value = "nowPage", required = false) Integer nowPage,
 			@RequestParam(value = "nowBlock", required = false) Integer nowBlock,
@@ -145,12 +143,13 @@ public class UserinfoController {
 	@ResponseBody
 	@RequestMapping(value = "reservedelete", method = RequestMethod.POST)
 	public int reservedelete(int no) throws Exception {
+		System.out.println(no);
 		// @RequestBody객체로 받을때 . 객체를 해석하라고 지시하는것임
 		int delResult = reserveService.reserveDelete(no);
 		return delResult;
 	}
 
-	//예약 리스트
+	//예약 더보기
 	@RequestMapping("userreservelist")
 	public String userreservelist(Long no, Model model, 
 			@RequestParam(value = "nowPage", required = false) Integer nowPage,
@@ -177,27 +176,24 @@ public class UserinfoController {
 		model.addAttribute("today",today);
 		model.addAttribute("userVo", userVo);
 		
-		return "reserve/userreservelist";
+		return "userinfo/userreservelist";
 	}
 	
 	
-	//지난 예약 리스트
+	//예약더보기>지난 예약 리스트
 	@RequestMapping("userreservepastlist")
-	public String userReservePastList( Model model, 
+	public String userReservePastList(Long no, Model model, 
 				@RequestParam(value = "nowPage", required = false) Integer nowPage,
-				@RequestParam(value = "nowBlock", required=false) Integer nowBlock,
-				HttpSession session
-					){
+				@RequestParam(value = "nowBlock", required=false) Integer nowBlock){
 		
 			Date now = new Date();
 
 			DateFormat format1 = DateFormat.getDateInstance(DateFormat.FULL);
 			String today = format1.format(now);
 		
-		   	UserVo authUser =(UserVo) session.getAttribute("authUser");
-		       Long userNo = authUser.getNo();
+			UserVo userVo =userService.getUserInfo(no);
 		        
-			List<ReserveVo> resList = reserveService.resPastList( userNo, today);
+			List<ReserveVo> resList = reserveService.resPastList( no, today);
 				PageVo page = null;
 		        try{
 		            page = pageService.pagingProc(nowPage, nowBlock, resList.size());
@@ -205,12 +201,12 @@ public class UserinfoController {
 		        catch(Exception err){
 		            page = pageService.pagingProc(0, 0, resList.size());
 		        }
-				model.addAttribute("authUser", authUser);
+				model.addAttribute("userVo", userVo);
 				model.addAttribute("page", page);
 				model.addAttribute("resList", resList);
 				model.addAttribute("today",today);
 				
-				return "reserve/userreservepastlist";
+				return "userinfo/userreservepastlist";
 		}
 	
 	

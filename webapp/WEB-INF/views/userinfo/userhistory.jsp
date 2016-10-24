@@ -12,7 +12,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>mypage</title>
+<title>user-history</title>
 
 <!-- Custom CSS -->
 <link href="/beautyline/bootstrap/css/business-casual.css"
@@ -184,7 +184,7 @@ div.graphBox2 input.link {
             <div class="col-lg-12">
                <hr>
                <h2 class="intro-text text-center">
-                  <strong>My Page</strong><br> <br>${userVo.name }님의 마이페이지
+                  <strong>User History</strong><br> <br>${userVo.name }님의 히스토리
                </h2>
                <hr>
             </div>
@@ -199,7 +199,7 @@ div.graphBox2 input.link {
                            <table class="table table-responsive text-center">
                               <tr>
                                  <td>
-                                 <a href="/beautyline/reserve/userreservelist?no=${userVo.no }"
+                                 <a href="userreservelist?no=${userVo.no }"
                                     class="btn btn-warning btn-sm">예약내역</a>
                                 <%-- <form id="adminReserve" action="/beautyline/reserve/userreservelist" method="post">
                                  <input type="hidden" value="${userVo.no }">
@@ -270,9 +270,11 @@ div.graphBox2 input.link {
                                  class="img-responsive">
                            </div>
                            <div class="col-lg-8 text-right">
-                               <form id="adminReserve" action="/beautyline/reserve/userreservelist" method="post">
+                          		 <a href="userreservelist?no=${userVo.no }"
+                                    class="btn btn-success btn-sm">예약내역 더보기</a>
+                               <!-- <form id="adminReserve" action="/beautyline/reserve/userreservelist" method="post">
                                  <input type="submit" class="btn btn-success btn-sm" id="userreserveList" value="예약내역 더보기">
-                              </form>
+                              </form> -->
                              
                            </div>
                         </div>
@@ -565,7 +567,7 @@ div.graphBox2 input.link {
                   },
                   success : function(result) {
                      if (result > 0) {
-                        location.href = "userhistory";
+                        location.href = "userhistory?no=${userVo.no }";
                      } else {
                         alert("유효하지 않은 정보입니다.");
                      }

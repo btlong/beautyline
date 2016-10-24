@@ -71,9 +71,9 @@
 
 				<div>
 					<!-- 관리자권한 설정 -->
-					<%-- <c:choose>
+					<c:choose>
 						<c:when
-							test="${not empty sessionScope.authUser && authUser.isAdmin eq 'a'}"> --%>
+							test="${not empty sessionScope.authUser && authUser.isAdmin eq 'a'}">
 
 
 							<!-- 회원등록버튼 -->
@@ -258,13 +258,13 @@
 
 
 
-					<%-- 	</c:when>
+						</c:when>
 						<c:otherwise>
 							<!-- authUser.isAdmin 값이 'a'가 아닐 때 -->
 							<h4 class="text-center">관리자페이지 입니다.</h4>
 							<c:import url="/WEB-INF/views/include/login.jsp" />
 						</c:otherwise>
-					</c:choose> --%>
+					</c:choose>
 				</div>
 			</div>
 		</div>

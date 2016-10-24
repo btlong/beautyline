@@ -39,6 +39,7 @@ public class UserinfoController {
 	@Autowired
 	VisitService visitService;
 
+
 	@Autowired
 	ReserveService reserveService;
 
@@ -115,18 +116,18 @@ public class UserinfoController {
 	public String userhistory(Long no, ListVo listVo, Model model) throws Exception {
 		System.out.println(no);
 		UserVo userVo = userService.getUserInfo(no);
+		
 		//예약요약
 		List<ReserveVo> myResList = reserveService.myResList(no);
+		
 		//방문내역요약
 		listVo.setUserNo(no);
 		listVo = mypageService.sumListHistory(no, listVo);
-		//System.out.println("listVo : " + listVo);
 
 		model.addAttribute("userVo", userVo); // jsp에서 쓸 이름, 넘겨줄 애(실제 데이터)
 		model.addAttribute("myResList", myResList);
 		model.addAttribute("listVo", listVo);
 		
-		//System.out.println(userVo);
 		return "userinfo/userhistory";
 	}
 	

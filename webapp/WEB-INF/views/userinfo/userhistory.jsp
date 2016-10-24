@@ -270,12 +270,7 @@ div.graphBox2 input.link {
                                  class="img-responsive">
                            </div>
                            <div class="col-lg-8 text-right">
-                          		 <a href="userreservelist?no=${userVo.no }"
-                                    class="btn btn-success btn-sm">예약내역 더보기</a>
-                               <!-- <form id="adminReserve" action="/beautyline/reserve/userreservelist" method="post">
-                                 <input type="submit" class="btn btn-success btn-sm" id="userreserveList" value="예약내역 더보기">
-                              </form> -->
-                             
+                          		<a href="userreservelist?no=${userVo.no }" class="btn btn-success btn-sm">예약내역 더보기</a>
                            </div>
                         </div>
                         <div class="row">
@@ -337,10 +332,8 @@ div.graphBox2 input.link {
                                  class="img-responsive">
                            </div>
                            <div class="col-lg-8 text-right">
-                              <form method="post" action="history">
-                                 <input class="btn btn-success btn-sm" type="submit"
-                                    value="방문내역 더 보기">
-                              </form>
+                      		<a href="/beautyline/mypage/adminHistory?no=${userVo.no }" class="btn btn-success btn-sm">방문내역 더 보기</a>
+                          	
                            </div>
                         </div>
                         <div class="row">

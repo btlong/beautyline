@@ -2,175 +2,166 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="visit">
 
-	<!-- 유저 검색 -->
-	<select id="searchByNameAndPhone" parameterType="uservo"
-		resultType="uservo">
-	<![CDATA[
-		select no, name, phone from users 
-		where name LIKE '%' ||  #{name} || '%'
-		and phone LIKE '%' || #{phone} || '%' 
-		and is_admin ='y'
-	]]>
-	</select>
+   <!-- 유저 검색 -->
+   <select id="searchByNameAndPhone" parameterType="uservo"
+      resultType="uservo">
+   <![CDATA[
+      select no, name, phone from users 
+      where name LIKE '%' ||  #{name} || '%'
+      and phone LIKE '%' || #{phone} || '%' 
+      and is_admin ='y'
+   ]]>
+   </select>
 
-	<select id="searchSelectOne" parameterType="uservo" resultType="uservo">
-	<![CDATA[
-		select no,name,id, phone, address1, address2, zip_code as zipCode from users 
-		where name = #{name} and phone = #{phone}
-	]]>
-	</select>
-
-
-	<!-- 쿠폰 -->
-
-	<!-- 쿠폰 있는지 없는지 여부확인 -->
-	<select id="couponSelectOne" parameterType="couponvo" resultType="java.lang.Long">
-	<![CDATA[
-		select count from coupon where user_no = #{userNo} and program_no = #{ programNo}
-	]]>
-	</select>
-
-	<!-- 고객의 모든 쿠폰 보여주기 -->
-	<select id="couponSelectList" parameterType="java.lang.Long" resultType="couponvo">
-	<![CDATA[
-		select program_no,count from coupon where user_no = #{no} 
-	]]>
-	</select>
-
-	<!-- 시술받고 쿠폰사용시 차감 -->
-	<update id="couponUpdateMinus" parameterType="visitvo">
-	<![CDATA[
-			update coupon 
-			set count = count-1 
-			where USER_NO = #{userNo} and PROGRAM_NO = #{programNo}
-	]]>
-	</update>
-
-	<insert id="couponInsert" parameterType="couponvo">
-		<selectKey resultType="java.lang.Long" keyProperty="no" order="BEFORE">
-		<![CDATA[
-			select seq_coupon.nextval as no from dual
-		]]>
-		</selectKey>
-	<![CDATA[
-			insert into coupon ( no, user_no, program_no, pay_no, count )
-			values ( #{no}, #{userNo}, #{programNo}, #{payNo}, #{count} )
-	]]>
-	</insert>
+   <select id="searchSelectOne" parameterType="uservo" resultType="uservo">
+   <![CDATA[
+      select no,name,id, phone, address1, address2, zip_code as zipCode from users 
+      where name = #{name} and phone = #{phone}
+   ]]>
+   </select>
 
 
-	<update id="couponUpdateByCharge" parameterType="couponvo">
-	<![CDATA[
-			update coupon 
-			set count = #{count}
-			where USER_NO = #{userNo} and PROGRAM_NO = #{programNo}
-	]]>
-	</update>
+   <!-- 쿠폰 -->
+
+   <!-- 쿠폰 있는지 없는지 여부확인 -->
+   <select id="couponSelectOne" parameterType="couponvo" resultType="java.lang.Long">
+   <![CDATA[
+      select count from coupon where user_no = #{userNo} and program_no = #{ programNo}
+   ]]>
+   </select>
+
+   <!-- 고객의 모든 쿠폰 보여주기 -->
+   <select id="couponSelectList" parameterType="java.lang.Long" resultType="couponvo">
+   <![CDATA[
+      select program_no,count from coupon where user_no = #{no} 
+   ]]>
+   </select>
+
+   <!-- 시술받고 쿠폰사용시 차감 -->
+   <update id="couponUpdateMinus" parameterType="visitvo">
+   <![CDATA[
+         update coupon 
+         set count = count-1 
+         where USER_NO = #{userNo} and PROGRAM_NO = #{programNo}
+   ]]>
+   </update>
+
+   <insert id="couponInsert" parameterType="couponvo">
+      <selectKey resultType="java.lang.Long" keyProperty="no" order="BEFORE">
+      <![CDATA[
+         select seq_coupon.nextval as no from dual
+      ]]>
+      </selectKey>
+   <![CDATA[
+         insert into coupon ( no, user_no, program_no, pay_no, count )
+         values ( #{no}, #{userNo}, #{programNo}, #{payNo}, #{count} )
+   ]]>
+   </insert>
 
 
-
-
-	<!-- 파일 추가 -->
-	<insert id="fileInsert" parameterType="filevisitvo">
-		<selectKey resultType="java.lang.Long" keyProperty="no"
-			order="BEFORE">
-		<![CDATA[
-			select seq_f_visit.nextVal as no from dual
-		]]>
-		</selectKey>
-	
-		<![CDATA[
-			insert into f_visit 
-			values ( #{no} , #{orgName} , #{path} , #{saveName} ) 
-	
-		]]>
-	</insert>
-
-	<!-- 시술 -->
-	<insert id="insert" parameterType="visitvo">
-
-		<selectKey resultType="java.lang.Long" keyProperty="no"
-			order="BEFORE">
-		<![CDATA[
-			select seq_visit.nextVal as no from dual
-		]]>
-		</selectKey>
-	
-	<![CDATA[
-		insert into visit values( 
-			#{no}, #{userNo}, #{programNo}, 
-			#{imageNo, jdbcType=INTEGER}, #{memo}, to_char(sysdate , 'YYYY-MM-DD HH24:MI'), 
-			#{whiteningScore}, #{whinkleScore}, #{elasticScore},
-			#{moistureScore}, #{acneScore}, #{averageScore}
-			)
-		]]>
-	</insert>
-
-
-	<!-- 방문 내역 -->
-
-	<!-- 방문내역 조회 -->
-	<select id="detailSelect" resultType="visitvo">
-	<![CDATA[
-		SELECT s.no "no", s.USER_NO "userNo", s.reg_date "regDate", u.name "name", s.program_no "programNo", pro.name "programName", s.price "price", pay.name "payName", s.refund "refund"
-		from sales s,  users u , PAY pay, program pro 
-		where s.USER_NO = u.NO 
-		and  s.PAY_NO = pay.NO
-		and  s.PROGRAM_NO = pro.no
-	]]>
-	</select>
-
-
-	<!-- 방문내역 추가 -->
-	<insert id="salesInsert" parameterType="visitvo">
-		<selectKey resultType="java.lang.Long" keyProperty="no" order="BEFORE">
-		<![CDATA[
-			select seq_sales.nextVal as no from dual
-		]]>
-		</selectKey>
-	<![CDATA[
-			insert into sales ( no, user_no, pay_no, program_no, reg_date, price, refund)
-			values ( #{no}, #{userNo}, #{payNo}, #{programNo} ,to_char(sysdate , 'YYYY-MM-DD HH24:MI'), #{price} , 0 )
-	]]>
-	</insert>
+   <update id="couponUpdateByCharge" parameterType="couponvo">
+   <![CDATA[
+         update coupon 
+         set count = #{count}
+         where USER_NO = #{userNo} and PROGRAM_NO = #{programNo}
+   ]]>
+   </update>
 
 
 
-	<insert id="salesInsertByCoupon" parameterType="couponvo">
-		<selectKey resultType="java.lang.Long" keyProperty="no" order="BEFORE">
-		<![CDATA[
-			select seq_sales.nextVal as no from dual
-		]]>
-		</selectKey>
-	<![CDATA[
-			insert into sales ( no, user_no, pay_no, program_no, reg_date, price)
-			values ( #{no}, #{userNo}, #{payNo}, #{programNo} , to_char(sysdate , 'YYYY-MM-DD HH24:MI'), #{price} )
-	]]>
-	</insert>
+   <!-- 파일 추가 -->
+   <insert id="fileInsert" parameterType="filevisitvo">
+      <selectKey resultType="java.lang.Long" keyProperty="no"
+         order="BEFORE">
+      <![CDATA[
+         select seq_f_visit.nextVal as no from dual
+      ]]>
+      </selectKey>
+   
+      <![CDATA[
+         insert into f_visit 
+         values ( seq_f_visit.nextVal , #{orgName} , #{path} , #{saveName} ) 
+   
+      ]]>
+   </insert>
 
-	<update id="updateRefundCoupon" parameterType="visitvo">
-	<![CDATA[
-			update coupon 
-			set count = 0
-			where USER_NO = #{userNo} and PROGRAM_NO = #{programNo}
-	]]>
-	</update>
+   <!-- 시술 -->
+   <insert id="insert" parameterType="visitvo">
+   
+   <![CDATA[
+      insert into visit values( 
+         seq_visit.nextVal, #{userNo}, #{programNo}, 
+         #{imageNo}, #{memo}, to_char(sysdate , 'YYYY-MM-DD HH24:MI'), 
+         #{whiteningScore}, #{whinkleScore}, #{elasticScore},
+         #{moistureScore}, #{acneScore}, #{averageScore}
+         )
+      ]]>
+   </insert>
 
-	<insert id="insertSalesByRefund" parameterType="java.lang.Long">
-	<![CDATA[
-			insert into sales
-			select seq_sales.nextval, user_no, pay_no, program_no, to_char(sysdate , 'YYYY-MM-DD HH24:MI'), -price , 1 
-			from sales where no=#{no}
-	]]>
-	</insert>
-	
-	<update id="salesUpdateByRefund" parameterType="java.lang.Long">
-	<![CDATA[
-		update sales
-		set refund = 1
-		where no = #{no}
-	]]>
-	</update>
+
+   <!-- 방문 내역 -->
+
+   <!-- 방문내역 조회 -->
+   <select id="detailSelect" resultType="visitvo">
+   <![CDATA[
+      SELECT s.no "no", s.USER_NO "userNo", s.reg_date "regDate", u.name "name", s.program_no "programNo", pro.name "programName", s.price "price", pay.name "payName", s.refund "refund"
+      from sales s,  users u , PAY pay, program pro 
+      where s.USER_NO = u.NO 
+      and  s.PAY_NO = pay.NO
+      and  s.PROGRAM_NO = pro.no
+   ]]>
+   </select>
+
+
+   <!-- 방문내역 추가 -->
+   <insert id="salesInsert" parameterType="visitvo">
+      <selectKey resultType="java.lang.Long" keyProperty="no" order="BEFORE">
+      <![CDATA[
+         select seq_sales.nextVal as no from dual
+      ]]>
+      </selectKey>
+   <![CDATA[
+         insert into sales ( no, user_no, pay_no, program_no, reg_date, price, refund)
+         values ( #{no}, #{userNo}, #{payNo}, #{programNo} ,to_char(sysdate , 'YYYY-MM-DD HH24:MI'), #{price} , 0 )
+   ]]>
+   </insert>
+
+
+
+   <insert id="salesInsertByCoupon" parameterType="couponvo">
+      <selectKey resultType="java.lang.Long" keyProperty="no" order="BEFORE">
+      <![CDATA[
+         select seq_sales.nextVal as no from dual
+      ]]>
+      </selectKey>
+   <![CDATA[
+         insert into sales ( no, user_no, pay_no, program_no, reg_date, price)
+         values ( #{no}, #{userNo}, #{payNo}, #{programNo} , to_char(sysdate , 'YYYY-MM-DD HH24:MI'), #{price} )
+   ]]>
+   </insert>
+
+   <update id="updateRefundCoupon" parameterType="visitvo">
+   <![CDATA[
+         update coupon 
+         set count = 0
+         where USER_NO = #{userNo} and PROGRAM_NO = #{programNo}
+   ]]>
+   </update>
+
+   <insert id="insertSalesByRefund" parameterType="java.lang.Long">
+   <![CDATA[
+         insert into sales
+         select seq_sales.nextval, user_no, pay_no, program_no, to_char(sysdate , 'YYYY-MM-DD HH24:MI'), -price , 1 
+         from sales where no=#{no}
+   ]]>
+   </insert>
+   
+   <update id="salesUpdateByRefund" parameterType="java.lang.Long">
+   <![CDATA[
+      update sales
+      set refund = 1
+      where no = #{no}
+   ]]>
+   </update>
 
 </mapper>
-

@@ -140,6 +140,15 @@ public class UserinfoController {
 		//System.out.println(couponList.toString());
 		return couponList;
 	}
+	
+	// 예약취소
+	@ResponseBody
+	@RequestMapping(value = "reservedelete", method = RequestMethod.POST)
+	public int reservedelete(int no) throws Exception {
+		// @RequestBody객체로 받을때 . 객체를 해석하라고 지시하는것임
+		int delResult = reserveService.reserveDelete(no);
+		return delResult;
+	}
 
 	//예약 리스트
 	@RequestMapping("userreservelist")
@@ -205,14 +214,6 @@ public class UserinfoController {
 		}
 	
 	
-	// 예약취소
-	@ResponseBody
-	@RequestMapping(value = "reservedelete", method = RequestMethod.POST)
-	public int reservedelete(int no) throws Exception {
-		// @RequestBody객체로 받을때 . 객체를 해석하라고 지시하는것임
-		int delResult = reserveService.reserveDelete(no);
-		return delResult;
-	}
 	/*------------*/
 
 	

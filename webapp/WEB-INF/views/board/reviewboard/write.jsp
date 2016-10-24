@@ -93,7 +93,7 @@ padding-left: 0px;
 			<div class="box">
 				<div class="col-lg-12">
 					<div class="page-header">
-						<hr><h3 class="text-center"><strong>글쓰기</strong></h3><hr>
+						<hr><h3 class="text-center"><strong>후기 글 쓰기</strong></h3><hr>
 					</div>
 				<div class="form-horizontal" id="write-form" >
 					

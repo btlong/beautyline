@@ -1,5 +1,9 @@
 package kr.ac.sungkyul.beautyline.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +50,15 @@ public class UserController {
 	
 	/*--------------*/
 	
+	@RequestMapping(value ="android", method = RequestMethod.POST)
+	public void test(HttpServletRequest request) {
+		System.out.println("name : " + request.getParameter("name"));
+		System.out.println("안드로이드 테스트!!!!!!");
+		System.out.println("안드로이드 테스트!!!!!!");
+		System.out.println("안드로이드 테스트!!!!!!");
+		System.out.println("안드로이드 테스트!!!!!!");
+	
+	}
 	
 	
 	
@@ -133,6 +146,53 @@ public class UserController {
 		return check;
 	
 	}
+	
+	
+	
+	@RequestMapping(value = "checkLogin", method = RequestMethod.POST)
+	   @ResponseBody
+	   public Map<String, String> androidTestWithRequest(HttpServletRequest request,
+	         @RequestParam("id") String id,
+	         @RequestParam("pw") String pw){
+	      
+	      System.out.println(id);
+	      System.out.println(pw);
+	      
+//	      System.out.println("test"); 
+//	      System.out.println(request.getParameter("title"));
+//	        System.out.println(request.getParameter("memo"));
+	   
+	        Map<String, String> result = new HashMap<String, String>();
+	        
+	        UserVo vo = new UserVo();
+	        vo.setId(id);
+	        vo.setPassword(pw);
+	        
+	       UserVo authUser =  userService.login(vo);
+	       
+	      if(authUser == null){
+	          result.put("result", "false");
+	          
+	      }
+	        
+	      else {
+	         //인증성공
+	          result.put("result", "true");
+	          result.put("no",authUser.getNo().toString());
+	      }
+	        return result;
+	           
+	   }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

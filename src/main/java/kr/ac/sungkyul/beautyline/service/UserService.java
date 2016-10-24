@@ -54,6 +54,11 @@ public class UserService {
 			return userDao.update(vo);
 		}
 
+	/*	관리자정보 수정    */
+	public int updateAdminInfo(UserVo vo) {
+		return userDao.updateAdminInfo(vo);
+	}
+
 	
 	/* 아이디찾기  */
 	public String getId(UserVo userVo) throws Exception {//아이디 찾기

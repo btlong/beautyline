@@ -65,6 +65,10 @@ public class UserDao {
 		return sqlSession.update("user.update", vo);
 	}
 
+	public int updateAdminInfo(UserVo vo) {// 관리자정보수정
+		return sqlSession.update("user.updateAdminInfo", vo);
+	}
+
 	
 	
 	/* 회원정보 수정 - 세션넘버를 받아서 정보를 다가져올때	*/

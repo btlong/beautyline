@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -41,6 +42,39 @@ public class MypageController {
 	@Autowired
 	ReserveService reserveService;
 
+	/* ----관리자---- */
+	//관리자페이지
+	@RequestMapping("/adminmain")
+	public String adminmain(HttpSession session, ListVo listVo, Model model) {
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
+		// System.out.println("세션 값 : " + authUser.getNo());
+		UserVo userVo = userService.getUserInfo(authUser.getNo());
+
+		model.addAttribute("userVo", userVo);
+		return "mypage/adminmain";
+	}
+	
+	// 관리자 정보 수정	
+	@RequestMapping(value="/adminmodifyform", method = RequestMethod.GET)
+	public String modifyform(HttpSession session, Model model) throws Exception {
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
+		UserVo userVo = userService.getUserInfo(authUser.getNo());
+		model.addAttribute("userVo", userVo);
+		System.out.println(userVo);
+		return "mypage/adminmodifyform";
+	}
+	@ResponseBody
+	@RequestMapping(value="/modify", method=RequestMethod.POST)
+	public int modify(HttpSession session, @RequestBody UserVo vo ) {
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
+		vo.setNo(authUser.getNo());
+		System.out.println("수정!"+vo);
+		int check =	userService.updateAdminInfo(vo);
+		return check;
+	}
+	/*-------------*/
+	
+	
 	/*--- 요약페이지 ---*/
 	@RequestMapping("/main")
 	public String main(HttpSession session, ListVo listVo, Model model) {

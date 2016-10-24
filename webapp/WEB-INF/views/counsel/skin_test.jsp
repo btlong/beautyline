@@ -36,7 +36,7 @@
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <style type="text/css">
-img {
+.test img {
 	margin: 20px 10px;
 	width: 145px;
 	height: 145px;
@@ -64,8 +64,6 @@ img {
 #forward {
 	width: 150px;
 }
-
-
 </style>
 	
 
@@ -90,6 +88,7 @@ img {
 				$(this).addClass("selected");
 			});
 		});
+
 
 		$(function() {
 			$("#forward").click(function() {
@@ -259,9 +258,7 @@ img {
 						<input type="hidden" id ="score4" name="score4" value="" />
 						<input type="hidden" id ="score5" name="score5" value="" />
 					</form>
-					<div class="col-lg-12" id="temp">
-						<button id="btn_temp">히스토리</button>
-					</div>
+					
 				<div class="col-lg-12">
 					<hr>
 					<h2 class="intro-text text-center">
@@ -321,20 +318,35 @@ img {
 						<small>자고일어나서 베개 자국이 얼마나 빨리 없어지나요?</small>
 					</h2>
 					<div class="col-lg-12 form-inline test">
-						<div class="form-group hovereffect">
-							<img id="elastic5" src="/beautyline/images/skin_test/elastic/elastic1.png" />				
+						<div class="form-group text-center">
+						<div class="hovereffect">
+							<img id="elastic5" src="/beautyline/images/skin_test/elastic/elas1.png" />				
 						</div>
-						<div class="form-group hovereffect">
-							<img id="elastic4" src="/beautyline/images/skin_test/elastic/elastic2.png" /> 
+						<span>자국이 나지 않는다</span>
 						</div>
-						<div class="form-group hovereffect">
-							<img id="elastic3" src="/beautyline/images/skin_test/elastic/elastic3.png" /> 
+						<div class="form-group text-center">
+						<div class="hovereffect">
+							<img id="elastic4" src="/beautyline/images/skin_test/elastic/elas2.png" /> 
 						</div>
-						<div class="form-group hovereffect">
-							<img id="elastic2" src="/beautyline/images/skin_test/elastic/elastic4.png" /> 
+						<span>일어나자 마자</span>
 						</div>
-						<div class="form-group hovereffect">
-							<img id="elastic1" src="/beautyline/images/skin_test/elastic/elastic5.png" /> 
+						<div class="form-group text-center">
+						<div class="hovereffect">
+							<img id="elastic3" src="/beautyline/images/skin_test/elastic/elas3.png" /> 
+						</div>
+						<span>양치질 할 때</span>
+						</div>
+						<div class="form-group text-center">
+						<div class="hovereffect">
+							<img id="elastic2" src="/beautyline/images/skin_test/elastic/elas4.png" /> 
+						</div>
+						<span>출근할 때</span>
+						</div>
+						<div class="form-group text-center">
+						<div class="hovereffect">
+							<img id="elastic1" src="/beautyline/images/skin_test/elastic/elas5.png" /> 
+						</div>
+						<span>점심 전 후에</span>
 						</div>
 					</div>
 				</div>
@@ -344,20 +356,35 @@ img {
 						<small>기초단계에서 사용하는 <strong>가장 무거운 제형의 화장품은?</strong></small>
 					</h2>
 					<div class="col-lg-12 form-inline test">
-						<div class="form-group hovereffect">
+						<div class="form-group text-center">
+						<div class="hovereffect">
 							<img id="moisture5" src="/beautyline/images/skin_test/moisture/non_use.png" />				
 						</div>
-						<div class="form-group hovereffect">
+							<span>사용하지 않는다</span>
+						</div>
+						<div class="form-group text-center">
+						<div class="hovereffect">
 							<img id="moisture4" src="/beautyline/images/skin_test/moisture/skin.png" /> 
 						</div>
-						<div class="form-group hovereffect">
+							<span>스킨/토너</span>
+						</div>
+						<div class="form-group text-center">
+						<div class="hovereffect">
 							<img id="moisture3" src="/beautyline/images/skin_test/moisture/moisture_cream.jpg" /> 
 						</div>
-						<div class="form-group hovereffect">
+							<span>수분크림</span>
+						</div>
+						<div class="form-group text-center">
+						<div class="hovereffect">
 							<img id="moisture2" src="/beautyline/images/skin_test/moisture/lotion.jpg" /> 
 						</div>
-						<div class="form-group hovereffect">
+							<span>로션</span>
+						</div>
+						<div class="form-group text-center">
+						<div class="hovereffect">
 							<img id="moisture1" src="/beautyline/images/skin_test/moisture/cream.jpg" /> 
+						</div>
+							<span>크림</span>
 						</div>
 					</div>
 				</div>

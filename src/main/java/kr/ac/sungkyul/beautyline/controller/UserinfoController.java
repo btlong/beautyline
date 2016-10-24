@@ -16,18 +16,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.ac.sungkyul.beautyline.service.MypageService;
-<<<<<<< HEAD
-import kr.ac.sungkyul.beautyline.service.UserService;
-import kr.ac.sungkyul.beautyline.service.UserinfoService;
-import kr.ac.sungkyul.beautyline.service.VisitService;
-=======
+
 import kr.ac.sungkyul.beautyline.service.PageService;
 import kr.ac.sungkyul.beautyline.service.ReserveService;
 import kr.ac.sungkyul.beautyline.service.UserService;
 import kr.ac.sungkyul.beautyline.service.UserinfoService;
 import kr.ac.sungkyul.beautyline.service.VisitService;
 import kr.ac.sungkyul.beautyline.vo.CouponVo;
->>>>>>> a267f3191f7a275a8a78b527389913a8328ffa2a
 import kr.ac.sungkyul.beautyline.vo.ListVo;
 import kr.ac.sungkyul.beautyline.vo.PageVo;
 import kr.ac.sungkyul.beautyline.vo.ReserveVo;
@@ -46,10 +41,7 @@ public class UserinfoController {
 
 	@Autowired
 	VisitService visitService;
-<<<<<<< HEAD
-	
-	// 리스트
-=======
+
 
 	@Autowired
 	ReserveService reserveService;
@@ -61,7 +53,6 @@ public class UserinfoController {
 	PageService pageService;
 
 	// 회원정보 리스트
->>>>>>> a267f3191f7a275a8a78b527389913a8328ffa2a
 	@RequestMapping(value = "list")
 	public String listUser(Model model, @RequestParam(value = "nowPage", required = false) Integer nowPage,
 			@RequestParam(value = "nowBlock", required = false) Integer nowBlock,

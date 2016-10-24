@@ -72,6 +72,30 @@ public class MypageController {
 		int check =	userService.updateAdminInfo(vo);
 		return check;
 	}
+	
+/* 효빈 */
+	//회원 방문 내역 조회
+	/*-----히스토리----*/
+	@RequestMapping(value="/adminHistory", method = RequestMethod.GET)
+	public String listHistory(Long no, ListVo listVo, Model model,HttpSession session) {
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
+		
+		System.out.println("들어온다? "+no);
+		
+		
+		listVo.setUserNo(no);
+		listVo = mypageService.listHistory(session,listVo);
+
+		System.out.println("listVo : " + listVo);
+
+		model.addAttribute("listVo", listVo); // jsp에서 쓸 이름, 넘겨줄 애(실제 데이터)
+
+		return "mypage/history";
+	}
+
+	
+/* 효빈 */
+	
 	/*-------------*/
 	
 	

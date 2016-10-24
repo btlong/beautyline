@@ -47,64 +47,13 @@
 	padding-right: 0px;
 	width:10px;
 }
-/* input.onlyAlphabetAndNumber{
-	ime-mode:inactive;
-} */
+
 input.onlyHangul{
 	ime-mode:active;
 }
 </style>
 <script>
-	function sample6_execDaumPostcode() {
-		new daum.Postcode(
-				{
-					oncomplete : function(data) {
-						// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-						// 각 주소의 노출 규칙에 따라 주소를 조합한다.
-						// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-						var fullAddr = ''; // 최종 주소 변수
-						var extraAddr = ''; // 조합형 주소 변수
-						// 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-						if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-							fullAddr = data.roadAddress;
-						} else { // 사용자가 지번 주소를 선택했을 경우(J)
-							fullAddr = data.jibunAddress;
-						}
-						// 사용자가 선택한 주소가 도로명 타입일때 조합한다.
-						if (data.userSelectedType === 'R') {
-							//법정동명이 있을 경우 추가한다.
-							if (data.bname !== '') {
-								extraAddr += data.bname;
-							}
-							// 건물명이 있을 경우 추가한다.
-							if (data.buildingName !== '') {
-								extraAddr += (extraAddr !== '' ? ', '
-										+ data.buildingName : data.buildingName);
-							}
-							// 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
-							fullAddr += (extraAddr !== '' ? ' (' + extraAddr
-									+ ')' : '');
-						}
-						// 우편번호와 주소 정보를 해당 필드에 넣는다.
-						document.getElementById('sample6_postcode').value = data.zonecode; //5자리 새우편번호 사용
-						document.getElementById('sample6_address').value = fullAddr;
-						// 커서를 상세주소 필드로 이동한다.
-						document.getElementById('sample6_address2').focus();
-					}
-				}).open();
-	}
-	/*   function chkPwd(str){
-		 var reg_pwd = /^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
-		 if(!reg_pwd.test(str)){
-		  return false;
-		 }
-		 return true;
-		}
-	 	if(!chkPwd( $.trim($('#inputPassword').val()))){ 
-		 alert('비밀번호를 확인하세요.₩n(영문,숫자를 혼합하여 6~20자 이내)');    
-		 $('#inputPassword').val('');
-		 $('#inputPassword').focus(); return false;
-		 }  */
+	
 </script>
 
 
@@ -121,7 +70,7 @@ input.onlyHangul{
 					<div class="page-header">
 						<hr>
 						<h1 class="text-center text-center">
-							<strong>회원정보 수정</strong>
+							<strong>관리자정보 수정</strong>
 						</h1>
 						<hr>
 					</div>
@@ -173,58 +122,6 @@ input.onlyHangul{
 						</div>
 						<br>
 
-
-						<!-- 이메일 -->
-						<div class="form-group" id="divEmail">
-							<label class="col-lg-3 control-label" for="inputEmail">이메일</label>
-							<div class="col-lg-2">
-						
-								<input class="form-control" id="inputEmail1" type="text" value="${userVo.email1 }">
-							</div>
-							<span class="col-lg-1" id="dat_div">
-							<label class="control-label" >@</label>
-							
-						</span>
-							<div class="col-lg-2" id="inputEmail2_div">
-								<input class="form-control" id="inputEmail2" type="text" value="${userVo.email2 }">
-							</div>
-					 	 	<div class="col-lg-2" id="email_select_div">
-								<select class="form-control" name="email_select" id="email_select">
-									<option value="" selected>선택하세요</option>
-									<option value="naver.com">naver.com</option>
-									<option value="hotmail.com">hotmail.com</option>
-									<option value="hanmail.com">hanmail.com</option>
-									<option value="yahoo.co.kr">yahoo.co.kr</option>
-									<option value="1">직접입력</option>
-								</select>
-							</div> 
-						</div>
-						<br>
-
-
-
-						<!-- 주소 -->
-						<div class="form-group" id="divAddress">
-							<label class="col-lg-3 control-label">주소</label>
-							<div class="col-lg-2">
-								<input class="form-control" type="text" name="zipCode" id="sample6_postcode" placeholder="우편번호" value="${userVo.zipCode }">
-							</div>
-							<span class="input-group-btn"> <input
-								class="btn btn-success" type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
-							</span>
-							<div class="col-lg-12 col-lg-offset-3">
-								<div class="row">
-									<div class="col-lg-4">
-										<input class="form-control"  type="text" id="sample6_address" placeholder="주소" value="${userVo.address1 }">
-									</div>
-									<div class="col-lg-2">
-										<input class="form-control"  type="text" id="sample6_address2" placeholder="상세주소" value="${userVo.address2 }"value="${userVo.address2 }">
-									</div>
-								</div>
-							</div>
-						</div>
-						<br>
-
 						<!-- 휴대폰 번호 -->
 						<div class="form-group" id="divNumber">
 							<label class="col-lg-3 control-label" for="inputNumber">휴대폰번호*</label>
@@ -238,40 +135,6 @@ input.onlyHangul{
 							</div>
 						</div>
 						<br>
-
-
-						<div class="form-group">
-							<label class="col-lg-3 control-label" for="inputEmailReceiveYn" >이메일 수신여부</label>
-							
-							<div class="col-lg-7" data-toggle="buttons">
-							<input type="hidden" id ="checkAgrEmail" value="${userVo.agrEmail }" />
-								<label class="btn btn-info" id= "agreeEmail">
-								<input type="radio" class="emailReceiveYn" name="emailReceiveYn" value="Y" autocomplete="off" >
-								<span class="fa fa-check"></span>
-								</label> 동의합니다.
-								<label class="btn btn-default" id="disagreeEmail">
-								<input type="radio" class="emailReceiveYn" name="emailReceiveYn" value="N" autocomplete="off">
-								<span class="fa fa-check"></span>
-								</label> 동의하지 않습니다.
-							</div>
-						</div><br>
-						
-						<div class="form-group">
-							<label class="col-lg-3 control-label" for="inputPhoneNumber" >SMS 수신여부</label>
-							
-							<input type="hidden" id ="checkAgrMessage" value="${userVo.agrMessage }" />
-							<div class="col-lg-7" id="smsReceveYn" data-toggle="buttons">
-								<label class="btn btn-info" id="agreeMessage">
-								<input type="radio" class="smsReceiveYn" name="smsReceiveYn" value="Y" autocomplete="off">
-								<span class="fa fa-check"></span>
-								</label> 동의합니다.
-								<label class="btn btn-default" id="disagreeMessage">
-								<input type="radio" class="smsReceiveYn" name="smsReceiveYn" value="N" autocomplete="off"> 
-								<span class="fa fa-check"></span>
-								</label> 동의하지 않습니다.
-							</div>
-						</div><br>
-	
 						
 						
 						<div class="form-group">
@@ -292,49 +155,8 @@ input.onlyHangul{
 
 
 
-
-
-
-
-
 <script>
 	$(function() {
-		
-		//이메일 수신여부 원래의 값 뿌려주기
-		var checkAgrEmail = $("#checkAgrEmail").val()
-	
-		if(checkAgrEmail =='Y'){
-			$("#agreeEmail").removeClass("btn btn-info");
-			$("#agreeEmail").addClass("btn btn-info active");
-			$("#checkAgrEmail").val('Y');
-		}
-		if(checkAgrEmail =='N'){
-			$("#disagreeEmail").removeClass("btn btn-default");
-			$("#disagreeEmail").addClass("btn btn-default active");
-			$("#checkAgrEmail").val('N');
-		}
-		
-		
-	 	var checkAgrMessage =  $("#checkAgrMessage").val();
-		
-		if(checkAgrMessage =='Y'){
-			$("#agreeMessage").removeClass("btn btn-info");
-			$("#agreeMessage").addClass("btn btn-info active");
-			$("#checkAgrMessage").val('Y');
-		}
-		if(checkAgrMessage =='N'){
-			$("#disagreeMessage").removeClass("btn btn-default");
-			$("#disagreeMessage").addClass("btn btn-default active");
-			$("#checkAgrMessage").val('N');
-		} 
-		
-		
-		
-		
-		
-		
-		
-		
 		//모달을 전역변수로 선언
 		var modalContents = $(".modal-contents");
 		var modal = $("#defaultModal");
@@ -441,35 +263,7 @@ input.onlyHangul{
 			}
 		});
 		
-		$('#inputEmail1').keyup(function(event) {
-			var divEmail = $('#divEmail');
-			if ($.trim($('#inputEmail1').val()) == "" || $.trim($('#inputEmail2').val()) == "") {
-				divEmail.removeClass("has-success");
-				divEmail.addClass("has-error");
-			} else {
-				divEmail.removeClass("has-error");
-				divEmail.addClass("has-success");
-			}
-		});
-		$("#email_select").change(function() {
-			/* @뒤 이메일 자동으로 만들어주는것  */
-			if ($("#email_select").val() == '1') {//
-				$("#inputEmail2").readonly = false;
-				$("#inputEmail2").value = '';
-				$("#inputEmail2").focus();
-			} else {
-				$("#inputEmail2").readonly = true;
-				$("#inputEmail2").val($("#email_select").val());
-			}
-			var divEmail = $('#divEmail');
-			if ($.trim($('#inputEmail1').val()) == "" || $.trim($('#inputEmail2').val()) == "") {
-				divEmail.removeClass("has-success");
-				divEmail.addClass("has-error");
-			} else {
-				divEmail.removeClass("has-error");
-				divEmail.addClass("has-success");
-			}
-		});
+		
 		$('#inputNumber').keyup(function(event) {
 			var divPhoneNumber = $('#divNumber');
 			//숫자 검사해야함!
@@ -483,11 +277,6 @@ input.onlyHangul{
 		});
 		
 		
-		
-		
-		
-		
-		
 		/* validation 검사 & submit   */
 		$("#modi").on("click", function() {
 			
@@ -497,37 +286,20 @@ input.onlyHangul{
 				return false;
 			}
 			
-			if ($(".emailReceiveYn:checked").val()!= null) {
-				$("#checkAgrEmail").val($(".emailReceiveYn:checked").val());			
-			}
-			if ($(".smsReceiveYn:checked").val() != null) {
-				$("#checkAgrMessage").val($(".smsReceiveYn:checked").val());				
-			}
+			
 			/* 아니라면 아작스 통신으로 데이터 보내기!  */
 				var no=${userVo.no };
 				var name = $("#inputName").val();
 				var password =	$("#inputPassword").val();
-				var email1 =	$("#inputEmail1").val();
-				var email2 =	$("#inputEmail2").val();
-				var zipCode = 	$("#sample6_postcode").val();
-				var address1 =	$("#sample6_address").val();
-				var address2 =	$("#sample6_address2").val();
 				var phone =		$("#inputNumber").val(); 
 				//인증번호	
-				var agrEmail =	$("#checkAgrEmail").val();
-				var agrMessage =$("#checkAgrMessage").val();
+				
 				var userVo ={
 						"no": no,
 						"name": name,
 						"password":  password,
-						"email1":	 email1,
-						"email2":	 email2,
-						"zipCode":	 zipCode,
-						"address1":	 address1,
-						"address2":	 address2,
-						"phone":	 phone,
-						"agrEmail":	 agrEmail,
-						"agrMessage":agrMessage
+						"phone":	 phone
+				
 						
 					};
 					$.ajax({// 비동기식 
@@ -539,9 +311,9 @@ input.onlyHangul{
 							console.log(a);
 							
 							if (a == 1) {
-								alert("회원정보를 수정하였습니다.");
-								//window.history.back();
-								 location.href = "/beautyline/userinfo/userhistory?no=${userVo.no }";
+								alert("관리자정보를 수정하였습니다.");
+								window.history.back();
+								 //location.href = "/beautyline/userinfo/userhistory?no=${userVo.no }";
 								 return true;
 							}
 							/*  if($("#inputId").val()==null){

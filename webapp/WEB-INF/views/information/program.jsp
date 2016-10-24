@@ -116,9 +116,7 @@
   -webkit-transform: translate3d(0,0,0);
   transform: translate3d(0,0,0);
 }
-#video{
-	padding-bottom: 30px;
-}
+
 </style>
 
 </head>

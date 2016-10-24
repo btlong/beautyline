@@ -49,15 +49,22 @@
 
 	]]>
 	</select>
-      
+    
+    
+    <!-- 회원정보수정 -->  
  	<update id="update" parameterType="uservo">
 	<![CDATA[
 		update users set name=#{name }, password= #{password }, email1=#{email1 }, email2=#{email2 }, zip_code=#{zipCode },address1=#{address1 },address2=#{address2 },phone=#{phone },agr_email=#{agrEmail },agr_message=#{agrMessage }  where no = #{no }
 	]]>
 	</update>
 
-	
-	
+	<!-- 관리자정보수정 -->
+ 	<update id="updateAdminInfo" parameterType="uservo">
+	<![CDATA[
+		update users set name=#{name }, password= #{password }, phone=#{phone } where no = #{no }
+	]]>
+	</update>
+
 	
 	<!-- 이메일 체크  -->
 	<select id="getById" parameterType="String" resultType="uservo">

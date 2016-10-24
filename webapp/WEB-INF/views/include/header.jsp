@@ -13,11 +13,16 @@
 <div id="includeheader">
 	<ul id="userheader">
 		<c:choose>
+			<c:when test="${authUser.isAdmin eq 'a'}">
+				<li><a href="/beautyline/user/logout">Log out</a></li>
+				<li><a href="/beautyline/mypage/adminmain">관리자페이지</a></li>
+				<li id="userli">${authUser.name }님안녕하세요^^</li>
+			</c:when>
+		
 			<c:when test='${not empty sessionScope.authUser }'>
 				<li><a href="/beautyline/user/logout">Log out</a></li>
 				<li><a href="/beautyline/mypage/main">마이페이지</a></li>
 				<li id="userli">${authUser.name }님안녕하세요^^</li>
-				
 			</c:when>
 
 			<c:otherwise>
@@ -38,7 +43,8 @@
 			<ul class="nav navbar-nav"  role="menu">
 			
 				<li class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">소개</a>
+					<a href="/beautyline/information/brand" >소개</a>
+					<!-- <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">소개</a> -->
 					<ul class="dropdown-menu" id="navdropdown" role="menu">
 						<li><a href="/beautyline/information/brand">뷰티라인</a></li>
 						<li><a href="/beautyline/information/program">프로그램</a></li>
@@ -51,8 +57,8 @@
 							<a href="/beautyline/reserve/reserve" >예약</a>
 							<ul class="dropdown-menu" id="navdropdown" role="menu">
 								<li><a href="/beautyline/reserve/reservelist">예약관리</a></li>
-								<li>&nbsp</li>
-								<li>&nbsp</li>
+								<!-- <li>&nbsp;</li>
+								<li>&nbsp;</li> -->
 							</ul> 
 						</li>					
  					</c:when>

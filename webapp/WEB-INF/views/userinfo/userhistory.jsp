@@ -12,7 +12,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>mypage</title>
+<title>user-history</title>
 
 <!-- Custom CSS -->
 <link href="/beautyline/bootstrap/css/business-casual.css"
@@ -184,7 +184,7 @@ div.graphBox2 input.link {
             <div class="col-lg-12">
                <hr>
                <h2 class="intro-text text-center">
-                  <strong>My Page</strong><br> <br>${userVo.name }님의 마이페이지
+                  <strong>User History</strong><br> <br>${userVo.name }님의 히스토리
                </h2>
                <hr>
             </div>
@@ -198,17 +198,24 @@ div.graphBox2 input.link {
                         <div class="col-lg-6 col-lg-offset-3">
                            <table class="table table-responsive text-center">
                               <tr>
-                                 <td><form id="adminReserve" action="/beautyline/reserve/userreservelist" method="post">
+                                 <td>
+                                 <a href="userreservelist?no=${userVo.no }"
+                                    class="btn btn-warning btn-sm">예약내역</a>
+                                <%-- <form id="adminReserve" action="/beautyline/reserve/userreservelist" method="post">
+                                 <input type="hidden" value="${userVo.no }">
                                  <input type="submit" class="btn btn-warning btn-sm" id="userreserveList" value="예약내역">
-                              </form></td>
+                              </form> --%>
+                              </td>
                                  <td>
                                     <form method="post" action="history">
                                        <input class="btn btn-warning btn-sm" type="submit"
                                           value="방문내역">
                                     </form>
                                  </td>
-                                 <td><a href="/beautyline/user/modifyform"
-                                    class="btn btn-warning btn-sm">회원정보 수정</a></td>
+                                 <td>
+                                 	<a href="modifyform?no=${userVo.no }"
+                                    class="btn btn-warning btn-sm">회원정보 수정</a>
+                                </td>
                               <tr>
                            </table>
                         </div>
@@ -263,9 +270,11 @@ div.graphBox2 input.link {
                                  class="img-responsive">
                            </div>
                            <div class="col-lg-8 text-right">
-                               <form id="adminReserve" action="/beautyline/reserve/userreservelist" method="post">
-                                 <input type="submit" class="btn btn-success btn-sm" id="userreserveList" value="예약내역 더 보기">
-                              </form>
+                          		 <a href="userreservelist?no=${userVo.no }"
+                                    class="btn btn-success btn-sm">예약내역 더보기</a>
+                               <!-- <form id="adminReserve" action="/beautyline/reserve/userreservelist" method="post">
+                                 <input type="submit" class="btn btn-success btn-sm" id="userreserveList" value="예약내역 더보기">
+                              </form> -->
                              
                            </div>
                         </div>
@@ -432,8 +441,10 @@ div.graphBox2 input.link {
                                  class="img-responsive">
                            </div>
                            <div class="col-lg-8 text-right">
-                              <a href="/beautyline/user/modifyform"
-                                 class="btn btn-success btn-sm">회원정보 수정</a>
+                              <!-- <a href="/beautyline/user/modifyform"
+                                 class="btn btn-success btn-sm">회원정보 수정</a> -->
+                              <a href="modifyform?no=${userVo.no }"
+                                 class="btn btn-warning btn-sm">회원정보 수정</a>
                            </div>
                         </div>
                         <div class="row">
@@ -466,7 +477,7 @@ div.graphBox2 input.link {
 
                   </c:when>
                   <c:otherwise>
-                     <h4>마이페이지 조회는 회원만 가능합니다.</h4>
+                     <h4 class="text-center">마이페이지 조회는 회원만 가능합니다.</h4>
                      <c:import url="/WEB-INF/views/include/login.jsp" />
                   </c:otherwise>
                </c:choose>
@@ -556,7 +567,7 @@ div.graphBox2 input.link {
                   },
                   success : function(result) {
                      if (result > 0) {
-                        location.href = "main";
+                        location.href = "userhistory?no=${userVo.no }";
                      } else {
                         alert("유효하지 않은 정보입니다.");
                      }

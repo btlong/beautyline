@@ -108,17 +108,16 @@ padding-left: 0px;
 					<!-- 제목 -->
 					<div class="form-group" id="divTitle" enctype="multipart/form-data">
 						<div class="col-lg-10 col-lg-offset-1">
-							<label class="col-sm-1 control-label" id= "title_title" for="inputName">제목</label>
 							<!-- select  [예약문의, 프로그램 문의 , ] -->
-							<div class="col-lg-2">
+							<div class="col-lg-3">
 								<select class="form-control" name="category_select"
 									id="category_select">
-									<option value="" selected>선택하세요</option>
+									<option value="1" selected>선택하세요</option>
 									<option value="예약답변">예약답변</option>
 									<option value="프로그램답변">프로그램답변</option>
 								</select>
 							</div>
-							<div class="col-lg-3">
+							<div>
 								<input class="form-control" id="inputTitle" name="title" type="text" placeholder="제목">
 							</div>
 						 </div>
@@ -164,6 +163,18 @@ $(document).ready(function() {
 });
 $(function(){
 	$("#insert").on("click", function() {
+		if ($("#inputTitle").val() == "") {
+			alert("제목을 입력해 주세요.");
+			$("#inputTitle").focus();
+			return false;
+		}
+		if ($("#category_select").val() == '1') {//
+			alert("카테고리를 선택해 주세요.");
+			return false;
+		}		
+
+		
+		
 		$("#insert").removeClass("btn btn-info");
 		$("#insert").addClass("btn m-progress btn btn-info");
 		$('#insert').attr('disabled',true);
@@ -202,7 +213,7 @@ $(function(){
 					$('#insert').attr('disabled',false);
 					console.log('success')
 					location.href = "board";
-					
+					return true;
 				},
 				error : function(jqXHR, status, error) {
 					console.error(status + ":" + error);

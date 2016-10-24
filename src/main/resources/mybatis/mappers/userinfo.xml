@@ -18,23 +18,6 @@
 		]]>
 	</select>
 					
-	<!-- 쿠폰뷰 -->		
-	<select id="selectCoupon" parameterType="java.lang.Long"
-		resultType="couponvo">
-	<![CDATA[
-	select a.no as no, a.user_no as userNo, a.program_no as programNo, a.count as count 
-		from coupon a, users b
-		where a.user_no= b.no 
-		and a.user_no = #{userNo}
-		and (a.no, a.user_no, a.program_no) in (select MAX(a.no) as no, a.user_no as userNo, a.program_no as programNo from coupon a group by a.program_no, a.user_no)
-	]]>
-	</select>
-<!-- 		select a.no as no, a.user_no as userNo, a.program_no as programNo, a.count as count, a.reg_date as regDate 
-		from coupon a, users b
-		where a.user_no= b.no 
-		and a.user_no = #{userNo}
-		and (a.user_no, a.program_no, a.reg_date) in (select a.user_no as userNo, a.program_no as programNo, MAX(a.reg_date) as regDate from coupon a group by a.program_no, a.user_no) -->
-	
 
 
 	<!-- 회원검색 -->
@@ -66,6 +49,24 @@
 			where no=#{no}
 		]]>
 	</delete>
+	
+	<!-- 쿠폰뷰 -->		
+	<select id="selectCoupon" parameterType="java.lang.Long"
+		resultType="couponvo">
+	<![CDATA[
+	select a.no as no, a.user_no as userNo, a.program_no as programNo, a.count as count 
+		from coupon a, users b
+		where a.user_no= b.no 
+		and a.user_no = #{userNo}
+		and (a.no, a.user_no, a.program_no) in (select MAX(a.no) as no, a.user_no as userNo, a.program_no as programNo from coupon a group by a.program_no, a.user_no)
+	]]>
+	</select>
+<!-- 		select a.no as no, a.user_no as userNo, a.program_no as programNo, a.count as count, a.reg_date as regDate 
+		from coupon a, users b
+		where a.user_no= b.no 
+		and a.user_no = #{userNo}
+		and (a.user_no, a.program_no, a.reg_date) in (select a.user_no as userNo, a.program_no as programNo, MAX(a.reg_date) as regDate from coupon a group by a.program_no, a.user_no) -->
+	
 	
 	<!-- 수정폼 -->
  	<!-- <select id="selectUser" parameterType="java.lang.Long"

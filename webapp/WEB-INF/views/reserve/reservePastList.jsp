@@ -45,9 +45,7 @@
 .ui-state-default {
 	height : 20px;
 }
-#ui-datepicker-div{
-	top: 1010.602px !important;
-}
+
 </style>
 
 

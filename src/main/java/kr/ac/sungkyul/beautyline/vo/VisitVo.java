@@ -4,6 +4,10 @@ package kr.ac.sungkyul.beautyline.vo;
  * @author WonHo
  *
  */
+/**
+ * @author WonHo
+ *
+ */
 public class VisitVo {
 	private Long no; // 방문내역 번호
 	private Long userNo; // 회원 번호
@@ -27,6 +31,7 @@ public class VisitVo {
 	private Long price;
 	private String path;
 	private String saveName;
+	private Long refund;
 
 	/* getter & setter */
 	public Long getNo() {
@@ -180,6 +185,19 @@ public class VisitVo {
 	public void setSaveName(String saveName) {
 		this.saveName = saveName;
 	}
+	
+	
+	public Long getRefund() {
+		return refund;
+	}
+
+	public void setRefund(Long refund) {
+		this.refund = refund;
+	}
+
+	public void setAverageScore(Long averageScore) {
+		this.averageScore = averageScore;
+	}
 
 	@Override
 	public String toString() {
@@ -188,7 +206,7 @@ public class VisitVo {
 				+ ", whiteningScore=" + whiteningScore + ", whinkleScore=" + whinkleScore + ", elasticScore="
 				+ elasticScore + ", moistureScore=" + moistureScore + ", acneScore=" + acneScore + ", averageScore="
 				+ averageScore + ", payNo=" + payNo + ", payName=" + payName + ", price=" + price + ", path=" + path
-				+ ", saveName=" + saveName + "]";
+				+ ", saveName=" + saveName + ", refund=" + refund + "]";
 	}
 
 }

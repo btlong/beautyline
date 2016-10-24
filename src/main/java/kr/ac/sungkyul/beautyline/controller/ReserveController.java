@@ -80,11 +80,13 @@ public class ReserveController {
 				@RequestParam(value = "keyField", required=false) String keyField,
 			    @RequestParam(value = "keyWord", required=false) String keyWord
 				){
+			
 			Date now = new Date();
 
 			DateFormat format1 = DateFormat.getDateInstance(DateFormat.FULL);
 			String today = format1.format(now);
 			
+
 			List<ReserveVo> resList = reserveService.reservePastList(keyField, keyWord, today);
 			PageVo page = null;
 	        try{
@@ -152,6 +154,7 @@ public class ReserveController {
 			model.addAttribute("page", page);
 			model.addAttribute("resList", resList);
 			model.addAttribute("today",today);
+			model.addAttribute("authUser",authUser);
 			
 			return "reserve/userreservelist";
 		}

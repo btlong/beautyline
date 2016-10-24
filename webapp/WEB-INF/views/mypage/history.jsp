@@ -167,11 +167,11 @@ div.pager  ul li.selected {
 #ad {
 	background-color: #123456;
 	position: absolute;
-	border: 3px solid #f00;
+	border: 1px solid ;
 	right: 20px;
 	top: 30px;
 	width: 175px;
-	height: 315px;
+	height: 350px;
 }
 
 #img_ad {
@@ -212,6 +212,7 @@ style>.headermessage {
 	background-color: rgba(3, 3, 3, 0.5);
 	color: white;
 }
+
 </style>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -424,7 +425,7 @@ style>.headermessage {
 					<hr>
 				</div>
 
-				<button type="button" id="imageShow">사진으로 보기</button>
+				<button class="btn btn-sm btn-warning" id="imageShow">사진으로 보기</button>
 
 				<div class="col-lg-12" id="graph">
 					<h2 class="col-lg-12 text-center">
@@ -487,7 +488,7 @@ style>.headermessage {
 						<c:forEach var='visitVo' items='${listVo.visitList }'
 							varStatus='status'>
 							<tr>
-								<td>[${listVo.number - status.index }]</td>
+								<td>${listVo.number - status.index }</td>
 								<td id="regDate">${visitVo.regDate }</td>
 								<td>${visitVo.programName }</td>
 								<td id="whiteningScore">${visitVo.whiteningScore }</td>

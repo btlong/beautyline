@@ -168,3 +168,14 @@
 #adminReserve{
 	display: inline;
 }
+
+select[name=resTime] option:disabled {
+    color: #c0c0c0;
+}
+
+.able:hover {
+	cursor: pointer;
+}
+#progName:hover {
+	cursor: pointer;
+}

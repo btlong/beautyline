@@ -15,7 +15,8 @@
       nvl((select max(group_no) from bd_qna), 0) + 1, 
       '1', 
       '0',
-      #{category})
+      #{category},
+      '1')
       
    ]]>
    </insert>
@@ -27,7 +28,8 @@
       							#{groupNo },
       							#{orderNo } + 1,
       							#{depth } + 1,
-      							#{category}
+      							#{category},
+      							'1'
       							)
       
    ]]>
@@ -50,7 +52,7 @@
    <![CDATA[
       select b.no, b.category, b.title, to_char(b.reg_date,'yyyy-mm-dd') as regDate, b.view_count as viewCount,
         b.group_no as groupNo, b.order_no as orderNo, b.depth as depth,
-        u.no as userNo, u.id as userId, u.name as userName  
+        u.no as userNo, u.id as userId, u.name as userName, b.status as status
       from bd_qna b, users u
       where b.user_no = u.no
       order by group_no desc, order_no asc
@@ -62,7 +64,7 @@
 	<select id="getSearch" parameterType="map" resultType="qnaboardvo">
 		select b.no, b.category, b.title, to_char(b.reg_date,'yyyy-mm-dd') as regDate, b.view_count as viewCount, b.content as content,
         b.group_no as groupNo, b.order_no as orderNo, b.depth as depth,
-        u.no as userNo, u.id as userId, u.name as userName  
+        u.no as userNo, u.id as userId, u.name as userName, b.status as status
       	from bd_qna b, users u
       	where b.user_no = u.no
 	      	<choose>
@@ -87,7 +89,7 @@
 	<select id="getCateSearch" parameterType="map" resultType="qnaboardvo">
 		select b.no, b.category, b.title, to_char(b.reg_date,'yyyy-mm-dd') as regDate, b.view_count as viewCount, b.content as content,
         b.group_no as groupNo, b.order_no as orderNo, b.depth as depth,
-        u.no as userNo, u.id as userId, u.name as userName  
+        u.no as userNo, u.id as userId, u.name as userName, b.status as status  
       	from bd_qna b, users u
       	where b.user_no = u.no
       	and b.category like '%'||#{keyword2}||'%'
@@ -114,7 +116,7 @@
       <![CDATA[
       select b.no, b.category, b.user_no as userNo, u.name as userName, b.title, b.content, to_char(reg_date,'yyyy-mm-dd') as regDate,
        b.view_count as viewCount, u.id as userId,
-       b.group_no as groupNo, b.order_no as orderNo, b.depth as depth
+       b.group_no as groupNo, b.order_no as orderNo, b.depth as depth, b.status as status
        from bd_qna b, users u 
        where b.no = #{no }
        and b.USER_NO = u.NO
@@ -150,11 +152,45 @@
 	]]>
 	</update>
 
+	<!-- 그룹삭제 해야하는 지 체크 -->
+	<select id="searchStatus" parameterType="qnaboardvo" resultType="java.lang.Long">
+	<![CDATA[
+		select count(no)
+		from bd_qna
+		where group_no = #{groupNo }
+		and status = 1
+	]]>
+	</select>
+	
 	<!-- 글 삭제 -->
 	<delete id="delete" parameterType="qnaboardvo">
+	<![CDATA[
+		delete from bd_qna where no = #{no } 
+	]]>
+	</delete>
+	
+	<!-- 그룹 삭제 -->
+	<delete id="deleteGroup" parameterType="qnaboardvo">
 	<![CDATA[
 		delete from bd_qna where group_no = #{groupNo } 
 	]]>
 	</delete>
-
+	
+	<!-- 글 삭제 할 것이 있는지 체크 -->
+	<select id="delStatus" parameterType="qnaboardvo" resultType="java.lang.Long">
+	<![CDATA[
+		select count(no) 
+		from bd_qna
+		where group_no = #{groupNo }
+		and depth = #{depth } + 1
+		and order_no = #{orderNo } + 1
+	]]>
+	</select>
+	
+	<!-- status 업뎃 -->
+	<update id="updateStatus" parameterType="qnaboardvo">
+	<![CDATA[
+		update bd_qna set status = 0 where no= #{no }
+	]]>
+	</update>
 </mapper> 

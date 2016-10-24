@@ -258,9 +258,7 @@
 						<input type="hidden" id ="score4" name="score4" value="" />
 						<input type="hidden" id ="score5" name="score5" value="" />
 					</form>
-					<div class="col-lg-12" id="temp">
-						<button id="btn_temp">히스토리</button>
-					</div>
+					
 				<div class="col-lg-12">
 					<hr>
 					<h2 class="intro-text text-center">

@@ -211,7 +211,7 @@ $(document).ready(function(){
 					data : {"no" : no},
 					success : function(result) {
 						if (result > 0) {
-							location.href = "userreservelist";
+							location.href = "userreservelist?no=${userVo.no}";
 						} else {
 							alert("유효하지 않은 정보입니다.");
 						}

@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
@@ -12,7 +12,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>지 난 예 약 관 리</title>
+<title>지난 예약 관리</title>
 
 <!-- Custom CSS -->
 <link href="/beautyline/bootstrap/css/business-casual.css"rel="stylesheet">
@@ -24,15 +24,16 @@
 
 <!-- Fonts -->
 <link
-	href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
-	rel="stylesheet" type="text/css">
+   href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
+   rel="stylesheet" type="text/css">
 <link
-	href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic"
-	rel="stylesheet" type="text/css">
+   href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic"
+   rel="stylesheet" type="text/css">
 
 <!-- jquery  -->
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
 
@@ -91,10 +92,11 @@
 								<td>${resList[i].resDate }</td>
 								<td>${resList[i].resTime }시- ${resList[i].resTime + 1 }시</td>
 								<td>
+	
 									<input type="hidden" name="no" value="${resList[i].no }" />
 										<a class="btn btn-default btn-xs delete-reserve" 
 											data-target="#modalDeleteReserve" type="button"
-											data-toggle="modal" data-backdrop="static" role="button"
+											data-toggle="modal" data-backdrop="static"
 											data-no="${resList[i].no}">삭제</a>
 								</td>
 								</c:if>
@@ -192,8 +194,9 @@ $(document).ready(function(){
 	});
 	
 
-	$(".delete-reserve").on("click", function() {
+	 $(".delete-reserve").on("click", function() {
 			var no = $(this).data("no");
+			console.log(no);
 			$("#resDelOk").on("click", function() {
 			
 				$.ajax({
@@ -202,14 +205,14 @@ $(document).ready(function(){
 					data : {"no" : no},
 					success : function(result) {
 						if (result > 0) {
-							location.href = "userreservepastlist";
+							location.href = "userreservepastlist?no=${userVo.no }&today=${today }";
 						} else {
 							alert("유효하지 않은 정보입니다.");
 						}
 					}
 				});
 			});
-	});
+	 }); 
 
 });
 

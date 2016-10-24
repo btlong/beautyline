@@ -107,6 +107,7 @@
 											<th>주소</th>
 											<!-- <th>권한</th> -->
 											<!-- <th>쿠폰</th> -->
+											<th>내역</th>
 											<th>수정</th>
 											<th>삭제</th>
 										</tr>
@@ -143,6 +144,13 @@
 															data-userno="${listUser[i].no}">조회</a>
 														</td> --%>
 
+													
+														<td>
+															<!-- 회원 방문 내역 조회 -->
+															<input type="hidden" name="no" value="${listUser[i].no }" />
+															<a class="btn btn-default btn-sm delete-user" 
+																href="../mypage/adminHistory?no=${listUser[i].no }">내역</a>
+														</td>
 														<td>
 															<!-- 회원 수정 --> 
 															<input type="hidden" name="no"

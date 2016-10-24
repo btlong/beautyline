@@ -2,6 +2,8 @@ package kr.ac.sungkyul.beautyline.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.ac.sungkyul.beautyline.service.MypageService;
 import kr.ac.sungkyul.beautyline.service.UserService;
 import kr.ac.sungkyul.beautyline.service.UserinfoService;
 import kr.ac.sungkyul.beautyline.service.VisitService;
+import kr.ac.sungkyul.beautyline.vo.ListVo;
 import kr.ac.sungkyul.beautyline.vo.PageVo;
 import kr.ac.sungkyul.beautyline.vo.UserVo;
 import kr.ac.sungkyul.beautyline.vo.UserinfoVo;
@@ -30,7 +34,7 @@ public class UserinfoController {
 
 	@Autowired
 	VisitService visitService;
-
+	
 	// 리스트
 	@RequestMapping(value = "list")
 	public String listUser(Model model, @RequestParam(value = "nowPage", required = false) Integer nowPage,

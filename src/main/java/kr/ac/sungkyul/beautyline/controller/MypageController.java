@@ -95,6 +95,9 @@ public class MypageController {
 		return "mypage/history";
 	}
 
+
+
+	
 	// 사진 출력
 	@RequestMapping(value = "download", method = RequestMethod.GET)
 	public void viewImg(String saveName, HttpServletResponse res) throws Exception {

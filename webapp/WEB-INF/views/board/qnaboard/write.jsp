@@ -97,7 +97,7 @@ padding-left: 0px;
 				<div class="col-lg-12">
 				
 					<div class="page-header">
-						<hr><h3 class="text-center"><strong>글쓰기</strong></h3><hr>
+						<hr><h3 class="text-center"><strong>문의 사항</strong></h3><hr>
 					</div>
 				
 				<div class="form-horizontal" id="write-form" >
@@ -107,15 +107,14 @@ padding-left: 0px;
 						<div class="col-lg-10 col-lg-offset-1">
 							<!-- select  [예약문의, 프로그램 문의 , ] -->
 							<div class="col-lg-3">
-								<select class="form-control" name="category_select"
-									id="category_select">
-									<option value="" selected>선택하세요</option>
+								<select class="form-control" name="category_select" id="category_select">
+									<option value="1" selected>선택하세요</option>
 									<option value="예약문의">예약문의</option>
 									<option value="프로그램문의">프로그램문의</option>
 
 								</select>
 							</div>
-							<div >
+							<div>
 								<input class="form-control" id="inputTitle" name="title" type="text" placeholder="제목">
 							</div>
 						 </div>
@@ -159,6 +158,21 @@ $(document).ready(function() {
 });
 $(function(){
 	$("#insert").on("click", function() {
+		
+		if ($("#inputTitle").val() == "") {
+			alert("제목을 입력해 주세요.");
+			$("#inputTitle").focus();
+			return false;
+		}
+		if ($("#category_select").val() == '1') {//
+			alert("카테고리를 선택해 주세요.");
+			return false;
+		}		
+
+		
+		
+		
+		
 		$("#insert").removeClass("btn btn-info");
 		$("#insert").addClass("btn m-progress btn btn-info");
 		$('#insert').attr('disabled',true);
@@ -189,6 +203,7 @@ $(function(){
 					$('#insert').attr('disabled',false);
 					console.log('success')
 					location.href = "board";
+					return true;
 					
 				},
 				error : function(jqXHR, status, error) {

@@ -99,7 +99,7 @@ padding-left: 0px;
 			<div class="box">
 				<div class="col-lg-12">
 					<div class="page-header">
-						<hr><h3 class="text-center"><strong>수정하기</strong></h3><hr>
+						<hr><h3 class="text-center"><strong>글 수정</strong></h3><hr>
 					</div>
 				
 				<div class="form-horizontal" id="write-form" >
@@ -107,18 +107,17 @@ padding-left: 0px;
 					<!-- 제목 -->
 					<div class="form-group" id="divTitle" enctype="multipart/form-data">
 						<div class="col-lg-10 col-lg-offset-1">
-							<label class="col-sm-1 control-label" id= "title_title" for="inputName">제목</label>
 							<!-- select  [공지 or 이벤트] -->
-							<div class="col-lg-2">
+							<div class="col-lg-3">
 								<select class="form-control" name="category_select" id="category_select">
-									<option value="" selected>선택하세요</option>
+									<option value="1" selected>선택하세요</option>
 									<option value="예약문의">예약문의</option>
 									<option value="예약답변">예약답변</option>
 									<option value="프로그램문의">프로그램문의</option>
 									<option value="프로그램답변">프로그램답변</option>
 								</select>
 							</div>
-							<div class="col-lg-3">
+							<div>
 								<input class="form-control" id="inputTitle" name="title" type="text" placeholder="제목" value="${qnabdvo.title }">
 							</div>
 						 </div>
@@ -169,6 +168,18 @@ $(document).ready(function() {
 
 $("#modify").on("click", function() {
 	
+	if ($("#inputTitle").val() == "") {
+		alert("제목을 입력해 주세요.");
+		$("#inputTitle").focus();
+		return false;
+	}
+	if ($("#category_select").val() == '1') {//
+		alert("카테고리를 선택해 주세요.");
+		return false;
+	}		
+
+	
+	
 	
 	$("#modify").removeClass("btn btn-info");
 	$("#modify").addClass("btn m-progress btn btn-info");
@@ -204,6 +215,7 @@ $("#modify").on("click", function() {
 				$('#modify').attr('disabled',false);
 				console.log("success");
 				location.href = "board";
+				return true;
 			}
 		});		
 	});

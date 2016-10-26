@@ -135,16 +135,21 @@ public class VisitController {
 	@ResponseBody
 	public Long androidTestWithRequest(HttpServletRequest request,
 			@RequestParam("no")	Long userNo, //사용자 번호
-			@RequestParam("progNo")	Long programNo //쿠폰 번호
+			@RequestParam("progNo")	String programNo //쿠폰 번호
 			){
+
+	
+		Long progNo = Long.parseLong(programNo);
 		System.out.println(userNo);
 		System.out.println(programNo);
+		System.out.println(progNo);
+		
 		CouponVo couponVo = new CouponVo();
 		couponVo.setUserNo(userNo);
-		couponVo.setProgram_No(programNo);
+		couponVo.setProgram_No(progNo);
 		
 		Long count = visitService.searchCount(couponVo);
-	
+		System.out.println(count);
 		return count;
 	}
 

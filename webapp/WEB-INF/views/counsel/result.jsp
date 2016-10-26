@@ -147,9 +147,9 @@
 				</div>
 				
 				<div class="col-lg-7">
-				<div class="row margin-bottom">
+				<div class="row text-center margin-bottom">
             		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> 
-            		<span class="induce margin-left">관리실에 방문하여 <strong>더욱 정확한 진단</strong>을 받아보세요!</span>
+            		<span class="induce margin-left">뷰티라인에 방문하여 <strong>더욱 정확한 진단</strong>을 받아보세요!</span>
             		
             		<c:choose>
 						<c:when test="${authUser.isAdmin eq 'y'}">

@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -126,6 +127,25 @@ public class VisitController {
 		List<CouponVo> couponList = visitService.couponList(authUser.getNo());
 		retVal.put("couponList", couponList);
 		return retVal;
+	}
+	
+/*
+ *  안드로이드 쿠폰 정보	
+ */
+	@RequestMapping(value = "searchCoupon", method = RequestMethod.POST)
+	@ResponseBody
+	public Long androidTestWithRequest(HttpServletRequest request,
+			@RequestParam("no")	Long userNo, //사용자 번호
+			@RequestParam("progNo")	Long programNo //쿠폰 번호
+			){
+		
+		CouponVo couponVo = new CouponVo();
+		couponVo.setUserNo(userNo);
+		couponVo.setProgram_No(programNo);
+		
+		Long count = visitService.searchCount(couponVo);
+	
+		return count;
 	}
 
 	/* 쿠폰 충전 */

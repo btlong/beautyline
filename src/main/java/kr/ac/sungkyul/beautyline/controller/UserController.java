@@ -179,6 +179,7 @@ public class UserController {
 	         //인증성공
 	          result.put("result", "true");
 	          result.put("no",authUser.getNo().toString());
+	          result.put("name", authUser.getName().toString());
 	      }
 	        return result;
 	           

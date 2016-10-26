@@ -12,6 +12,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
+
 <title>지난 예약 관리</title>
 
 <!-- Custom CSS -->

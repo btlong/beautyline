@@ -44,7 +44,7 @@ public class VisitDao {
 	public List<CouponVo> selectList(Long no) {
 		return sqlSession.selectList("visit.couponSelectList", no);
 	}
-
+	
 	public List<VisitVo> selectList() {
 		return sqlSession.selectList("visit.detailSelect");
 	}

@@ -117,6 +117,15 @@ public class VisitService {
    public List<CouponVo> couponList(Long no) {
       return visitDao.selectList(no);
    }
+   
+   //안드로이드 쿠폰 갯수 조회(하나씩)
+   public Long searchCount(CouponVo couponVo){
+	   Long count = visitDao.couponSelect(couponVo);
+	   if( count == null ){
+		   count = 0L;
+	   }
+ 	   return count;
+   }
 
    public List<VisitVo> selectList() {
       return visitDao.selectList();

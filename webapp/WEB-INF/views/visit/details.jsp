@@ -107,6 +107,9 @@
 	line-height: 1.5;
 	border-radius: 3px;
 }
+#btn-bottom{
+display: inline-block;
+}
 </style>
 </head>
 <body>
@@ -132,10 +135,13 @@
 							</div>
 
 							<!-- 페이지 정보 -->
-							<div id="total-record" class="col-lg-12 text-left">
-								▶전체 회원 수 : ${page.totalRecord }명&nbsp; &nbsp; ▶현재 페이지 ( <span
-									id=page-location>${page.nowPage+1 } / ${page.totalPage}
-									페이지</span>)
+							<div class="form-group">
+								<div id="total-record" class="col-lg-8 text-left">
+									▶전체 회원 수 : ${page.totalRecord }명&nbsp; &nbsp; ▶현재 페이지 ( <span
+										id=page-location>${page.nowPage+1 } / ${page.totalPage}
+										페이지</span>)
+								</div>
+								<label id="tt" class="col-lg-4 control-label text-right" function="doInit();"></label>
 							</div>
 
 
@@ -186,8 +192,8 @@
 																				data-toggle="modal" role="button"
 																				data-userno="${visitList[i].userNo}"
 																				data-no="${visitList[i].no }" disabled="disabled"
-																				data-programno="${visitList[i].programNo }"><span style="cursor: no-drop;">환불</span></a>
-																			</td>
+																				data-programno="${visitList[i].programNo }"><span
+																					style="cursor: no-drop;">환불</span></a></td>
 																		</c:when>
 																		<c:otherwise>
 																			<td class="text-center"><a
@@ -217,8 +223,8 @@
 																		data-toggle="modal" role="button"
 																		data-userno="${visitList[i].userNo}"
 																		data-no="${visitList[i].no }" disabled="disabled"
-																		data-programno="${visitList[i].programNo }"><span style="cursor: no-drop;">환불</span></a>
-																	</td>
+																		data-programno="${visitList[i].programNo }"><span
+																			style="cursor: no-drop;">환불</span></a></td>
 
 																</c:if>
 															</tr>
@@ -235,6 +241,12 @@
 										</tbody>
 										<tfoot></tfoot>
 									</table>
+								<div class="col-lg-4 col-lg-offset-8"  id="btn-bottom">
+									<a class="btn btn-md btn-warning"
+										href="/beautyline/visit/visitform" role="button">내역 관리</a>
+									<a class="btn btn-md btn-primary"
+										href="todaydetails" role="button">오늘 판매내역</a>
+								</div>
 								</div>
 
 								<c:import url="/WEB-INF/views/include/paging.jsp" />
@@ -266,7 +278,8 @@
 										</label> <input type="hidden" name="page" value="0">
 									</div>
 								</form>
-
+							
+						
 
 								<!-------------Paging n Search form--------------->
 								<!-- 히든 정의 -->
@@ -303,12 +316,7 @@
 							</div>
 						</div>
 
-						<div class="group-form">
-							<div class="col-sm-2 col-sm-offset-10">
-								<a class="btn btn-primary btn-warning"
-									href="/beautyline/visit/visitform" role="button">내역 관리</a> <br />
-							</div>
-						</div>
+						
 					</c:when>
 
 
@@ -372,15 +380,15 @@
 <script type="text/javascript">
 	var visitList = new Array();
 	$(document).ready(function() {
-		
-		var totalPrice = 0; 
+
+		var totalPrice = 0;
 		function doInit() {
 			$.each(function(index) {
-			totalPrice += '<c:out value="${visitList[i].price}"/>';
-			console.log(totalPrice);
+				totalPrice += '<c:out value="${visitList[i].price}"/>';
+				console.log(totalPrice);
+				$("#tt").html(totalPrice);
 			});
 		}
-		
 
 		$.each(function(index) {
 			if ($('.refundView').data("refund") == 1) {

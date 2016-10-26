@@ -97,4 +97,9 @@ public class VisitDao {
 		sqlSession.update("visit.salesUpdateByRefund",no);
 	}
 
+	public List<VisitVo> selectListbyToday(String today) {
+		
+		return sqlSession.selectList("visit.detailSelectByToday", today );
+	}
+
 }

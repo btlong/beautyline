@@ -19,12 +19,20 @@ public class MypageService {
    private MypageDao mypageDao;
    
    public ListVo sumListHistory(HttpSession session, ListVo listVo) {
-	// 요약리스트 데이터
+	//회원- 요약리스트 데이터
 	      List<VisitVo> sumVisitList = mypageDao.sumListHistory(listVo);
 	      listVo.setVisitList(sumVisitList);
 		return listVo;
-	   
    }
+
+   
+   //관리자- 요약리스트 데이터
+	public ListVo sumListHistory(Long no, ListVo listVo) {
+		List<VisitVo> sumVisitList = mypageDao.sumListHistory(listVo);
+		listVo.setVisitList(sumVisitList);
+		return listVo;
+	}
+   
       
    public ListVo listHistory(HttpSession session, ListVo listVo) {
       final int PAGE_RECORDS = 10;
@@ -154,6 +162,5 @@ public class MypageService {
       
       return listVo;
    }
-   
 
 }

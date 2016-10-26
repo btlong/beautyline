@@ -120,6 +120,12 @@
 
 <script>
 $(function(){ // 다썼는지 체크하기! 빠진 항목없는지..
+	$("input[class=form-control]").keydown(function (key) {
+        if(key.keyCode == 13){//키가 13이면 실행 (엔터는 13)
+        	$('#loginbt').click();
+        }
+    });	
+		
 	$("#loginbt").on("click",function(){
 		
 		if($("#id").val() == ""){

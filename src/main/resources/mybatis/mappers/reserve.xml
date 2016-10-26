@@ -5,23 +5,25 @@
 
 <!-- 관리자 - 예약리스트 조회 -->
 <select id="resList" parameterType="map" resultType="reservevo">
-	
+	<![CDATA[
 		select r.no as no,r.user_no as userNo,u.name as userName,r.prog_name as progName,r.res_date as resDate,r.res_Time as resTime 
 		from reservation r, users u 
 		where u.no = r.user_no
-		and r.res_date <![CDATA[>]]> #{today }
+		and r.res_date >= #{today}
 		order by resDate asc, resTime asc
-	
+	]]>
 </select>
 
 <!-- 관리자 과거 예약리스트 조회 -->
 <select id="resPastList"  parameterType="map" resultType="reservevo">
+	<![CDATA[	
 		select r.no as no,r.user_no as userNo,u.name as userName,
 		r.prog_name as progName,r.res_date as resDate,r.res_Time as resTime 
-		from reservation r, users u 
+		from reservation r, users u
 		where u.no = r.user_no
-		and r.res_date <![CDATA[<]]> #{today }
+		and r.res_date < #{today }
 		order by resDate asc, resTime asc
+	]]>
 </select>
 
 <!-- 관리자 - 예약리스트 검색 -->
@@ -29,7 +31,7 @@
 		select r.no as no,r.user_no as userNo,u.name as userName,r.prog_name as progName,r.res_date as resDate,r.res_Time as resTime 
 		from reservation r, users u 
 		where u.no = r.user_no 
-		and r.res_date <![CDATA[>]]> #{today }
+		and r.res_date <![CDATA[>=]]> #{today }
 		<choose>
 	      	<when test="keyfield.equals('selName')">
 	      	and u.name like '%'||#{keyword}||'%'
@@ -75,7 +77,7 @@
 		select r.no as no,r.user_no as userNo,u.name as userName,r.prog_name as progName,r.res_date as resDate,r.res_Time as resTime 
 		from reservation r, users u 
 		where u.no = r.user_no and r.user_no = #{userNo} 
-		and r.res_date > #{today}
+		and r.res_date >= #{today}
 		order by resDate asc, resTime asc
 	]]>
 

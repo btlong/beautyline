@@ -71,9 +71,9 @@
 
 				<div>
 					<!-- 관리자권한 설정 -->
-					<%-- <c:choose>
+					<c:choose>
 						<c:when
-							test="${not empty sessionScope.authUser && authUser.isAdmin eq 'a'}"> --%>
+							test="${not empty sessionScope.authUser && authUser.isAdmin eq 'a'}">
 
 
 							<!-- 회원등록버튼 -->
@@ -107,7 +107,8 @@
 											<th>주소</th>
 											<!-- <th>권한</th> -->
 											<!-- <th>쿠폰</th> -->
-											<th>수정</th>
+											<!-- <th>수정</th> -->
+											<th>히스토리</th>
 											<th>삭제</th>
 										</tr>
 									</thead>
@@ -143,21 +144,33 @@
 															data-userno="${listUser[i].no}">조회</a>
 														</td> --%>
 
-														<td>
 															<!-- 회원 수정 --> 
+														<%-- <td>
 															<input type="hidden" name="no"
 															value="${listUser[i].no }">
 															 <a class="btn btn-default  btn-sm"
-															href="modifyform?no=${listUser[i].no }" role="button">수정</a>
-														</td>
+															href="modifyform?no=${listUser[i].no }" role="button">
+															<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+															</a>
+														</td> --%>
 
+														<td>
+															<!-- 회원 마이페이지 -->
+															<input type="hidden" name="no" value="${listUser[i].no }" />
+															<a class="btn btn-default  btn-sm"
+															href="userhistory?no=${listUser[i].no }" role="button">
+															<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+															</a>
+														</td>
+														
 														<td>
 															<!-- 회원 삭제 -->
 															<input type="hidden" name="no" value="${listUser[i].no }" />
 															<a class="btn btn-default btn-sm delete-user" href=""
 															data-target="#modalDeleteReserve" type="button"
 															data-toggle="modal" data-backdrop="static" role="button"
-															data-userno="${listUser[i].no }">삭제</a>
+															data-userno="${listUser[i].no }">
+															<span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
 														</td>
 													</c:if>
 
@@ -245,13 +258,13 @@
 
 
 
-					<%-- 	</c:when>
+						</c:when>
 						<c:otherwise>
 							<!-- authUser.isAdmin 값이 'a'가 아닐 때 -->
 							<h4 class="text-center">관리자페이지 입니다.</h4>
 							<c:import url="/WEB-INF/views/include/login.jsp" />
 						</c:otherwise>
-					</c:choose> --%>
+					</c:choose>
 				</div>
 			</div>
 		</div>

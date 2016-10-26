@@ -15,12 +15,17 @@
 <title>예 약 관 리</title>
 
 <!-- Custom CSS -->
+<link rel="stylesheet"href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+<link href="/beautyline/beautyline/css/reserve.css" rel="stylesheet">
+<link rel="stylesheet" href="http://www.prepbootstrap.com/Content/css/loadingbuttoneffects/local.css" />
+
 <link href="/beautyline/bootstrap/css/business-casual.css"rel="stylesheet">
 <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">
 <!-- Modal jquery -->
-<link rel="stylesheet"href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
-<link href="/beautyline/beautyline/css/reserve.css" rel="stylesheet">
 <link href="/beautyline/beautyline/css/include.css" rel="stylesheet">
+<link rel="stylesheet" href="/beautyline/bootstrap/css/font-awesome.min.css" media="screen" title="no title" >
+ <link rel="stylesheet" href="/beautyline/bootstrap/css/style.css" media="screen" title="no title" >
+
 
 <!-- Fonts -->
 <link
@@ -45,9 +50,7 @@
 .ui-state-default {
 	height : 20px;
 }
-#ui-datepicker-div{
-	top: 1010.602px !important;
-}
+
 </style>
 
 
@@ -126,7 +129,7 @@
 				</table>
 				
 				<div class="col-lg-12 text-right">	
-					<a class="btn btn-danger" type="button" href="reserve" >돌아가기</a>
+					<a class="btn btn-danger" type="button" href="javascript:history.go(-1);" >돌아가기</a>
 					
 					<form id="adminReserve" action="reservePastList" method="POST">
 					<input type="hidden" value="${today }" name="today">
@@ -137,7 +140,7 @@
 <!-------------Paging--------------->
 	<c:import url="/WEB-INF/views/include/paging.jsp" />
     	 <!-- 이전 페이지 -->
-			<form id="blockmoveb" name="blockmoveb" method="POST" action="reserveList">
+			<form id="blockmoveb" name="blockmoveb" method="POST" action="reservelist">
 				<input type="hidden" name="nowBlock" value="${page.nowBlock-1 }" />
 				<input type="hidden" name="nowPage" value="${(page.nowBlock-1)*page.pagePerBlock}" />
 				<input type="hidden" name="keyField" value="${keyField }" />
@@ -145,7 +148,7 @@
 				<input type="hidden" name="today" value="${today }" />
 			</form>
 		<!-- 페이지블록 -->
-			<form id="pagemove" name="pagemove" method="POST" action="reserveList">
+			<form id="pagemove" name="pagemove" method="POST" action="reservelist">
 				<input type="hidden" name="nowBlock" value="${page.nowBlock}" />
 				<input id="now-page" type="hidden" name="nowPage" value="${page.nowBlock*page.pagePerBlock}" />
 				<input type="hidden" name="keyField" value="${keyField }" />
@@ -154,7 +157,7 @@
 			</form>
 
 		<!-- 다음 페이지 -->
-			<form id="blockmovef" name="blockmovef" method="POST" action="reserveList">
+			<form id="blockmovef" name="blockmovef" method="POST" action="reservelist">
 				<input type="hidden" name="nowBlock" value="${page.nowBlock+1 }" />
 				<input type="hidden" name="nowPage" value="${(page.nowBlock+1)*page.pagePerBlock}" />
 				<input type="hidden" name="keyField" value="${keyField }" />
@@ -168,7 +171,7 @@
 			
 <!-- 검색 -->
 	    <div class="col-lg-12">
-			<form id="search_form" name="search" action="reserveList" method="post">
+			<form id="search_form" name="search" action="reservelist" method="post">
 				<div class="col-lg-3"></div>
 				<div class="col-lg-2">
 					<select class="form-control input-sm" name="keyField" size="1">
@@ -271,11 +274,13 @@ $(document).on("change","select[name=keyField]",function(){
 	var test = $("select[name=keyField] option:selected").val();
 		if( test == "selDate"){
 		
-		$( "#datepicker1" ).datepicker({
+			console.log("00");
+		$("#datepicker1").datepicker({
 			showOtherMonths: true,
 			monthNames: ['01월', '02월', '03월', '04월', '05월', '06월', '07월', '08월', '09월', '10월', '11월', '12월' ],
 			dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
 			dateFormat: 'yy-mm-dd',
+			minDate: '-0d',
 			onSelect: function(dateText, datePicker) { 
 		         var sDate = new Date(dateText); 
 		         var dd = sDate.getDate(); 

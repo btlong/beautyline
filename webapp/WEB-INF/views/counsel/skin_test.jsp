@@ -35,29 +35,35 @@
 <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-
 <style type="text/css">
-img {
-	margin: 20px;
-	width: 100px;
-	height: 100px;
+.test img {
+	margin: 20px 10px;
+	width: 145px;
+	height: 145px;
 	cursor: pointer;
 }
 
 .selected {
-	width: 120px;
-	height: 120px;
+	filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feComponentTransfer color-interpolation-filters="sRGB"><feFuncR type="linear" slope="0.6" /><feFuncG type="linear" slope="0.6" /><feFuncB type="linear" slope="0.6" /></feComponentTransfer></filter></svg>#filter');
+	filter: brightness(0.6);
+	-webkit-filter: brightness(0.6);
+}
+
+.hovereffect:hover img {
+	-webkit-transition: all 0.35s;
+	transition: all 0.35s;
+	filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feComponentTransfer color-interpolation-filters="sRGB"><feFuncR type="linear" slope="0.6" /><feFuncG type="linear" slope="0.6" /><feFuncB type="linear" slope="0.6" /></feComponentTransfer></filter></svg>#filter');
+	filter: brightness(0.6);
+	-webkit-filter: brightness(0.6);
 }
 
 #next {
-	margin-top: 100px;	
+	margin-top: 50px;	
 }
 
 #forward {
 	width: 150px;
 }
-
-
 </style>
 	
 
@@ -77,11 +83,12 @@ img {
 		});
 
 		$(function() {
-			$("img").click(function() {
+			$(".test img").click(function() {
 				$("img.selected").removeClass("selected");
 				$(this).addClass("selected");
 			});
 		});
+
 
 		$(function() {
 			$("#forward").click(function() {
@@ -91,32 +98,32 @@ img {
 						return;
 					}
 					$("#stage").val("2");
-					$("#test1").remove();
-					$("#test2").removeClass("hide");
+					$("#white").remove();
+					$("#lifting").removeClass("hide");
                 } else if ($("#stage").val() == 2) {
                 	if($("#score2").val() == '') {
 						alert("버튼을 누르세요");
 						return;
 					}
 					$("#stage").val("3");
-					$("#test2").remove();
-					$("#test3").removeClass("hide");
+					$("#lifting").remove();
+					$("#elastic").removeClass("hide");
                 } else if ($("#stage").val() == 3) {
                 	if($("#score3").val() == '') {
 						alert("버튼을 누르세요");
 						return;
 					}
 					$("#stage").val("4");
-					$("#test3").remove();
-					$("#test4").removeClass("hide");
+					$("#elastic").remove();
+					$("#moisture").removeClass("hide");
                 } else if ($("#stage").val() == 4) {
                 	if($("#score4").val() == '') {
 						alert("버튼을 누르세요");
 						return;
 					}
                 	$("#stage").val("5");
-					$("#test4").remove();
-					$("#test5").removeClass("hide");
+					$("#moisture").remove();
+					$("#acne").removeClass("hide");
                 } else if ($("#stage").val() == 5) {
                 	if($("#score5").val() == '') {
 						alert("버튼을 누르세요");
@@ -125,91 +132,88 @@ img {
 					$("#scores").submit();
 					console.log("섭밋"); 
                 }
-				
-				
-				
 			});
 		});
 
-		$("#blue").click(function() {
+		$("#white1").click(function() {
 			$("#score1").val("20");
 
 		});
 
-		$("#green").click(function() {
+		$("#white2").click(function() {
 			$("#score1").val("40");
 		});
 
-		$("#red").click(function() {
+		$("#white3").click(function() {
 			$("#score1").val("60");
 		});
 
-		$("#yellow").click(function() {
+		$("#white4").click(function() {
 			$("#score1").val("80");
 		});
 		
-		$("#bmw").click(function() {
+		$("#white5").click(function() {
 			$("#score1").val("100");
 		});
 
-		$("#bird").click(function() {
+		$("#lifting1").click(function() {
 			$("#score2").val("20");
 		});
 		
-		$("#bug").click(function() {
+		$("#lifting2").click(function() {
 			$("#score2").val("40");
 		});
 		
-		$("#nemo").click(function() {
+		$("#lifting3").click(function() {
 			$("#score2").val("60");
 		});
 		
-		$("#shark").click(function() {
+		$("#lifting4").click(function() {
 			$("#score2").val("80");
 		});
 		
-		$("#twitter").click(function() {
+		$("#lifting5").click(function() {
 			$("#score2").val("100");
 		});
 		
-		$("#4hours").click(function() {
+		$("#elastic1").click(function() {
 			$("#score3").val("20");
 		});
 		
-		$("#5hours").click(function() {
+		$("#elastic2").click(function() {
 			$("#score3").val("40");
 		});
 		
-		$("#6hours").click(function() {
+		$("#elastic3").click(function() {
 			$("#score3").val("60");
 		});
 		
-		$("#7hours").click(function() {
+		$("#elastic4").click(function() {
 			$("#score3").val("80");
 		});
 		
-		$("#8hours").click(function() {
+		$("#elastic5").click(function() {
 			$("#score3").val("100");
 		});
 		
-		$("#tone1").click(function() {
-			$("#score4").val("100");
+		$("#moisture1").click(function() {
+			$("#score4").val("20");
 		});
 		
-		$("#tone2").click(function() {
-			$("#score4").val("80");
-		});
-		
-		$("#tone3").click(function() {
-			$("#score4").val("60");
-		});
-		
-		$("#tone4").click(function() {
+		$("#moisture2").click(function() {
 			$("#score4").val("40");
 		});
 		
-		$("#tone5").click(function() {
-			$("#score4").val("20");
+		$("#moisture3").click(function() {
+			$("#score4").val("60");
+		});
+		
+		$("#moisture4").click(function() {
+			$("#score4").val("80");
+		});
+		
+		$("#moisture5").click(function() {
+			$("#score4").val("100");
 		});
 
 		$("#acne1").click(function() {
@@ -254,9 +258,7 @@ img {
 						<input type="hidden" id ="score4" name="score4" value="" />
 						<input type="hidden" id ="score5" name="score5" value="" />
 					</form>
-					<div class="col-lg-12" id="temp">
-						<button id="btn_temp">히스토리</button>
-					</div>
+					
 				<div class="col-lg-12">
 					<hr>
 					<h2 class="intro-text text-center">
@@ -265,83 +267,155 @@ img {
 					<hr>
 				</div>
 				
-				<div class="col-lg-12" id=test1>
+				<div class="col-lg-12" id=white>
 					<h2 class="col-lg-12 text-center">
-						<small>당신이 좋아하는 색깔은?</small>
+						<small>평소 메이크업 스타일을 <strong>피부색과 비교하면?</strong></small>
 					</h2>
-					
-					<div class="col-lg-12 test">
-						<img id="blue" src="/beautyline/images/btn_color_blue.png" /> 
-						<img id="green" src="/beautyline/images/btn_color_green.png" /> 
-						<img id="red" src="/beautyline/images/btn_color_red.png" /> 
-						<img id="yellow" src="/beautyline/images/btn_color_yellow.png" /> 
-						<img id="bmw" src="/beautyline/images/btn_color_bmw.png" />					
+					<div class="col-lg-12 form-inline test">
+						<div class="form-group hovereffect">
+						<img id="white1" src="/beautyline/images/skin_test/white/white1.png" /> 
+						</div>
+						<div class="form-group hovereffect">
+						<img id="white2" src="/beautyline/images/skin_test/white/white2.png" /> 
+						</div>
+						<div class="form-group hovereffect">
+						<img id="white3" src="/beautyline/images/skin_test/white/white3.png" /> 
+						</div>
+						<div class="form-group hovereffect">
+						<img id="white4" src="/beautyline/images/skin_test/white/white4.png" /> 
+						</div>
+						<div class="form-group hovereffect">
+						<img id="white5" src="/beautyline/images/skin_test/white/white5.png" />					
+						</div>
 					</div>
 				</div>
 				
-				<div class="col-lg-12 hide" id=test2>
+				<div class="col-lg-12 hide" id=lifting>
 					<h2 class="col-lg-12 text-center">
-						<small>당신이 좋아하는 동물은?</small>
+						<small>나의 <strong>주름 상태</strong>는 어떤 편 인가요?</small>
 					</h2>
-					
-					<div class="col-lg-12 test">
-						<img id="bird" src="/beautyline/images/btn_animal_bird.png" /> 
-						<img id="bug" src="/beautyline/images/btn_animal_bug.png" /> 
-						<img id="nemo" src="/beautyline/images/btn_animal_nemo.png" /> 
-						<img id="shark" src="/beautyline/images/btn_animal_shark.png" /> 
-						<img id="twitter" src="/beautyline/images/btn_animal_twitter.png" />				
+					<div class="col-lg-12 form-inline test">
+						<div class="form-group hovereffect">
+							<img id="lifting5" src="/beautyline/images/skin_test/lifting/lifting5.png" />
+						</div>
+						<div class="form-group hovereffect">
+							<img id="lifting4" src="/beautyline/images/skin_test/lifting/lifting4.png" /> 
+						</div>
+						<div class="form-group hovereffect">
+							<img id="lifting3" src="/beautyline/images/skin_test/lifting/lifting3.png" /> 
+						</div>
+						<div class="form-group hovereffect">
+							<img id="lifting2" src="/beautyline/images/skin_test/lifting/lifting2.png" /> 
+						</div>
+						<div class="form-group hovereffect">
+							<img id="lifting1" src="/beautyline/images/skin_test/lifting/lifting1.png" />				
+						</div>
 					</div>
 				</div>
 				
-				<div class="col-lg-12 hide" id=test3>
+				<div class="col-lg-12 hide" id=elastic>
 					<h2 class="col-lg-12 text-center">
-						<small>당신의 평소 수면시간은?</small>
+						<small>자고일어나서 베개 자국이 얼마나 빨리 없어지나요?</small>
 					</h2>
-					
-					<div class="col-lg-12 test">
-						<img id="4hours" src="/beautyline/images/btn_sleep_4.PNG" /> 
-						<img id="5hours" src="/beautyline/images/btn_sleep_5.PNG" /> 
-						<img id="6hours" src="/beautyline/images/btn_sleep_6.PNG" /> 
-						<img id="7hours" src="/beautyline/images/btn_sleep_7.PNG" /> 
-						<img id="8hours" src="/beautyline/images/btn_sleep_8.PNG" />				
+					<div class="col-lg-12 form-inline test">
+						<div class="form-group text-center">
+						<div class="hovereffect">
+							<img id="elastic5" src="/beautyline/images/skin_test/elastic/elas1.png" />				
+						</div>
+						<span>자국이 나지 않는다</span>
+						</div>
+						<div class="form-group text-center">
+						<div class="hovereffect">
+							<img id="elastic4" src="/beautyline/images/skin_test/elastic/elas2.png" /> 
+						</div>
+						<span>일어나자 마자</span>
+						</div>
+						<div class="form-group text-center">
+						<div class="hovereffect">
+							<img id="elastic3" src="/beautyline/images/skin_test/elastic/elas3.png" /> 
+						</div>
+						<span>양치질 할 때</span>
+						</div>
+						<div class="form-group text-center">
+						<div class="hovereffect">
+							<img id="elastic2" src="/beautyline/images/skin_test/elastic/elas4.png" /> 
+						</div>
+						<span>출근할 때</span>
+						</div>
+						<div class="form-group text-center">
+						<div class="hovereffect">
+							<img id="elastic1" src="/beautyline/images/skin_test/elastic/elas5.png" /> 
+						</div>
+						<span>점심 전 후에</span>
+						</div>
 					</div>
 				</div>
 				
-				<div class="col-lg-12 hide test" id=test4>
+				<div class="col-lg-12 hide test" id=moisture>
 					<h2 class="col-lg-12 text-center">
-						<small>당신의 피부 톤은?</small>
+						<small>기초단계에서 사용하는 <strong>가장 무거운 제형의 화장품은?</strong></small>
 					</h2>
-					
-					<div class="col-lg-12 test">
-						<img id="tone1" src="/beautyline/images/btn_color_1.PNG" /> 
-						<img id="tone2" src="/beautyline/images/btn_color_2.PNG" /> 
-						<img id="tone3" src="/beautyline/images/btn_color_3.PNG" /> 
-						<img id="tone4" src="/beautyline/images/btn_color_4.PNG" /> 
-						<img id="tone5" src="/beautyline/images/btn_color_5.PNG" />				
+					<div class="col-lg-12 form-inline test">
+						<div class="form-group text-center">
+						<div class="hovereffect">
+							<img id="moisture5" src="/beautyline/images/skin_test/moisture/non_use.png" />				
+						</div>
+							<span>사용하지 않는다</span>
+						</div>
+						<div class="form-group text-center">
+						<div class="hovereffect">
+							<img id="moisture4" src="/beautyline/images/skin_test/moisture/skin.png" /> 
+						</div>
+							<span>스킨/토너</span>
+						</div>
+						<div class="form-group text-center">
+						<div class="hovereffect">
+							<img id="moisture3" src="/beautyline/images/skin_test/moisture/moisture_cream.jpg" /> 
+						</div>
+							<span>수분크림</span>
+						</div>
+						<div class="form-group text-center">
+						<div class="hovereffect">
+							<img id="moisture2" src="/beautyline/images/skin_test/moisture/lotion.jpg" /> 
+						</div>
+							<span>로션</span>
+						</div>
+						<div class="form-group text-center">
+						<div class="hovereffect">
+							<img id="moisture1" src="/beautyline/images/skin_test/moisture/cream.jpg" /> 
+						</div>
+							<span>크림</span>
+						</div>
 					</div>
 				</div>
 				
-				<div class="col-lg-12 hide" id=test5>
+				<div class="col-lg-12 hide" id=acne>
 					<h2 class="col-lg-12 text-center">
-						<small>얼마나 자주 피부 트러블이 나시나요?</small>
+						<small>나의 피부 상태와 비슷한 사진을 골라주세요!</small>
 					</h2>
-					
-					<div class="col-lg-12 test">
-						<img id="acne1" src="/beautyline/images/btn_acne_always.PNG" /> 
-						<img id="acne2" src="/beautyline/images/btn_acne_usually.PNG" /> 
-						<img id="acne3" src="/beautyline/images/btn_acne_often.PNG" /> 
-						<img id="acne4" src="/beautyline/images/btn_acne_sometimes.PNG" /> 
-						<img id="acne5" src="/beautyline/images/btn_acne_never.PNG" />			
+					<div class="col-lg-12 form-inline test">
+						<div class="form-group hovereffect">
+							<img id="acne5" src="/beautyline/images/skin_test/acne/acne1.png" />			
+						</div>
+						<div class="form-group hovereffect">
+							<img id="acne4" src="/beautyline/images/skin_test/acne/acne2.png" /> 
+						</div>
+						<div class="form-group hovereffect">
+							<img id="acne3" src="/beautyline/images/skin_test/acne/acne3.png" /> 
+						</div>
+						<div class="form-group hovereffect">
+							<img id="acne2" src="/beautyline/images/skin_test/acne/acne4.png" /> 
+						</div>
+						<div class="form-group hovereffect">
+							<img id="acne1" src="/beautyline/images/skin_test/acne/acne5.png" /> 
+						</div>
 					</div>
 				</div>
 			</div>
 				
 				
-				<div class="col-lg-12" id="next">
-					<div class="col-lg-4"></div>
-					<div class="col-lg-4">
-						<button class="btn btn-default btn-lg" id="forward">다음</button>
-					</div>
+				<div class="col-lg-12 text-center" id="next">
+					<button class="btn btn-info btn-lg" id="forward">다음</button>
 				</div>
 
 			</div>

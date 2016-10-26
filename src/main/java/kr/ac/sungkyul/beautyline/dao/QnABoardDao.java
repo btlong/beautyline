@@ -117,8 +117,10 @@ public class QnABoardDao {
 			Long delcheck = sqlSession.selectOne("qnaboard.delStatus",qbdvo); //답글 있는지 체크
 			
 			if( delcheck == 0 ){
+				//답글없음
 				return sqlSession.delete("qnaboard.delete",qbdvo);	
 			}else{
+				//답글있음
 				return sqlSession.update("qnaboard.updateStatus",qbdvo);
 			}
 		}

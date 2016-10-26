@@ -288,36 +288,6 @@ input.onlyHangul{
 	</div>
 
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
-	
-	
-	
-	
-	
-<!-- id찾기 Modal -->
-  <div class="modal fade" id="myModal3" role="dialog" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-    
-       
-    </div>
-  </div>
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 </body>
 
 
@@ -527,6 +497,12 @@ input.onlyHangul{
 				return false;
 			}
 			
+			if ($(".emailReceiveYn:checked").val()!= null) {
+				$("#checkAgrEmail").val($(".emailReceiveYn:checked").val());			
+			}
+			if ($(".smsReceiveYn:checked").val() != null) {
+				$("#checkAgrMessage").val($(".smsReceiveYn:checked").val());				
+			}
 			/* 아니라면 아작스 통신으로 데이터 보내기!  */
 				var no=${userVo.no };
 				var name = $("#inputName").val();
@@ -565,8 +541,7 @@ input.onlyHangul{
 							if (a == 1) {
 								alert("회원정보를 수정하였습니다.");
 								//window.history.back();
-								
-								 location.href = "/beautyline/userinfo/list";
+								 location.href = "/beautyline/userinfo/userhistory?no=${userVo.no }";
 								 return true;
 							}
 							/*  if($("#inputId").val()==null){

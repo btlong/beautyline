@@ -14,8 +14,8 @@ public class UserinfoVo {
 	private String address2;
 	private String address;
 	private String phone;
-	private Long agrEmail;
-	private Long agrMessage;
+	private String agrEmail;
+	private String agrMessage;
 	private String isAdmin;
 
 	public Long getNo() {
@@ -90,16 +90,16 @@ public class UserinfoVo {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public Long getAgrEmail() {
+	public String getAgrEmail() {
 		return agrEmail;
 	}
-	public void setAgrEmail(Long agrEmail) {
+	public void setAgrEmail(String agrEmail) {
 		this.agrEmail = agrEmail;
 	}
-	public Long getAgrMessage() {
+	public String getAgrMessage() {
 		return agrMessage;
 	}
-	public void setAgrMessage(Long agrMessage) {
+	public void setAgrMessage(String agrMessage) {
 		this.agrMessage = agrMessage;
 	}
 	public String getIsAdmin() {

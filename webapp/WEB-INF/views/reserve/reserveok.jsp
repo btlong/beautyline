@@ -49,7 +49,7 @@
 					
 					<c:choose>
 						<c:when test="${authUser.isAdmin eq 'a'}">
-							<a href="reserveList" class="btn btn-primary" id="reserveList">예약관리</a>
+							<a href="reservelist" class="btn btn-primary" id="reservelist">예약관리</a>
 						</c:when>
 						<c:when test="${not empty sessionScope.authUser}">
 							<a href="userreservelist" class="btn btn-primary" type="button">예약조회</a>

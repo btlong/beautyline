@@ -23,8 +23,8 @@
 <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">
 <!-- Modal jquery -->
 <link href="/beautyline/beautyline/css/include.css" rel="stylesheet">
- <link rel="stylesheet" href="/beautyline/bootstrap/css/font-awesome.min.css" media="screen" title="no title" >
-   <link rel="stylesheet" href="/beautyline/bootstrap/css/style.css" media="screen" title="no title" >
+<link rel="stylesheet" href="/beautyline/bootstrap/css/font-awesome.min.css" media="screen" title="no title" >
+ <link rel="stylesheet" href="/beautyline/bootstrap/css/style.css" media="screen" title="no title" >
 
 
 <!-- Fonts -->
@@ -453,6 +453,8 @@ var inputNumber = "";
 						if( resDateText == nowDate ){
 							if( i <= nowHour ){
 								trString += " disabled";
+							}else{
+								trString += " class='able' ";
 							}	 
 						}
 						 

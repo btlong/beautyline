@@ -1,5 +1,7 @@
 package kr.ac.sungkyul.beautyline.controller;
 
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +13,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.ac.sungkyul.beautyline.service.MypageService;
+import kr.ac.sungkyul.beautyline.service.PageService;
+import kr.ac.sungkyul.beautyline.service.ReserveService;
 import kr.ac.sungkyul.beautyline.service.UserService;
 import kr.ac.sungkyul.beautyline.service.UserinfoService;
 import kr.ac.sungkyul.beautyline.service.VisitService;
+import kr.ac.sungkyul.beautyline.vo.CouponVo;
+import kr.ac.sungkyul.beautyline.vo.ListVo;
 import kr.ac.sungkyul.beautyline.vo.PageVo;
+import kr.ac.sungkyul.beautyline.vo.ReserveVo;
 import kr.ac.sungkyul.beautyline.vo.UserVo;
 import kr.ac.sungkyul.beautyline.vo.UserinfoVo;
 
@@ -31,7 +39,17 @@ public class UserinfoController {
 	@Autowired
 	VisitService visitService;
 
-	// 리스트
+
+	@Autowired
+	ReserveService reserveService;
+
+	@Autowired
+	MypageService mypageService;
+
+	@Autowired
+	PageService pageService;
+
+	// 회원정보 리스트
 	@RequestMapping(value = "list")
 	public String listUser(Model model, @RequestParam(value = "nowPage", required = false) Integer nowPage,
 			@RequestParam(value = "nowBlock", required = false) Integer nowBlock,
@@ -39,7 +57,7 @@ public class UserinfoController {
 			@RequestParam(value = "keyWord", required = false) String keyWord) {
 
 		List<UserinfoVo> listUser = userinfoService.listUser(keyField, keyWord);
-		System.out.println(listUser.toString());
+		//System.out.println(listUser.toString());
 		PageVo page = null;
 		try {
 			page = userinfoService.pagingProc(nowPage, nowBlock, listUser.size());
@@ -67,7 +85,7 @@ public class UserinfoController {
 	}
 
 	
-	/* -- 회원가입  -- */	
+	/* -- 회원등록  -- */	
 	@RequestMapping("/joinform")
 	public String joinform() { //회원가입 폼
 		return "userinfo/joinform";
@@ -78,7 +96,7 @@ public class UserinfoController {
 	@RequestMapping(value ="userresister", method = RequestMethod.POST)
 	//public int join(@RequestBody UserVo vo) {//회원가입 버튼 누를 때
 	public int userresister(@RequestBody(required = false) UserVo vo) {
-		System.out.println("//"+vo);
+		//System.out.println("//"+vo);
 		int a = userService.userresister(vo);
 		return a; 
 	}
@@ -89,8 +107,112 @@ public class UserinfoController {
 		String check = userService.checkId(id);
 		return check;
 	}
-	
 	/*--------------*/
+	
+	
+	
+	/* 회원 히스토리 */	
+	@RequestMapping(value="/userhistory", method = RequestMethod.GET)
+	public String userhistory(Long no, ListVo listVo, Model model) throws Exception {
+		System.out.println(no);
+		UserVo userVo = userService.getUserInfo(no);
+		
+		//예약요약
+		List<ReserveVo> myResList = reserveService.myResList(no);
+		
+		//방문내역요약
+		listVo.setUserNo(no);
+		listVo = mypageService.sumListHistory(no, listVo);
+
+		model.addAttribute("userVo", userVo); // jsp에서 쓸 이름, 넘겨줄 애(실제 데이터)
+		model.addAttribute("myResList", myResList);
+		model.addAttribute("listVo", listVo);
+		
+		return "userinfo/userhistory";
+	}
+	
+	// 쿠폰뷰
+	@ResponseBody
+	@RequestMapping(value = "selectCoupon", method = RequestMethod.POST)
+	public List<CouponVo> readCouponAjax(Long userNo) {
+		List<CouponVo> couponList = userinfoService.couponList(userNo);
+		//System.out.println(couponList.toString());
+		return couponList;
+	}
+	
+	// 예약취소
+	@ResponseBody
+	@RequestMapping(value = "reservedelete", method = RequestMethod.POST)
+	public int reservedelete(int no) throws Exception {
+		System.out.println(no);
+		// @RequestBody객체로 받을때 . 객체를 해석하라고 지시하는것임
+		int delResult = reserveService.reserveDelete(no);
+		return delResult;
+	}
+
+	//예약 더보기
+	@RequestMapping("userreservelist")
+	public String userreservelist(Long no, Model model, 
+			@RequestParam(value = "nowPage", required = false) Integer nowPage,
+			@RequestParam(value = "nowBlock", required=false) Integer nowBlock) {
+		System.out.println(no);
+		Date now = new Date();
+
+		DateFormat format1 = DateFormat.getDateInstance(DateFormat.FULL);
+		String today = format1.format(now);
+		
+		UserVo userVo =userService.getUserInfo(no);
+        
+		List<ReserveVo> resList = reserveService.resList(no, today);
+		PageVo page = null;
+        try{
+            page = pageService.pagingProc(nowPage, nowBlock, resList.size());
+        }
+        catch(Exception err){
+            page = pageService.pagingProc(0, 0, resList.size());
+        }
+        
+		model.addAttribute("page", page);
+		model.addAttribute("resList", resList);
+		model.addAttribute("today",today);
+		model.addAttribute("userVo", userVo);
+		
+		return "userinfo/userreservelist";
+	}
+	
+	
+	//예약더보기>지난 예약 리스트
+	@RequestMapping("userreservepastlist")
+	public String userReservePastList(Long no, Model model, 
+				@RequestParam(value = "nowPage", required = false) Integer nowPage,
+				@RequestParam(value = "nowBlock", required=false) Integer nowBlock){
+		
+			Date now = new Date();
+
+			DateFormat format1 = DateFormat.getDateInstance(DateFormat.FULL);
+			String today = format1.format(now);
+		
+			UserVo userVo =userService.getUserInfo(no);
+		        
+			List<ReserveVo> resList = reserveService.resPastList( no, today);
+				PageVo page = null;
+		        try{
+		            page = pageService.pagingProc(nowPage, nowBlock, resList.size());
+		        }
+		        catch(Exception err){
+		            page = pageService.pagingProc(0, 0, resList.size());
+		        }
+				model.addAttribute("userVo", userVo);
+				model.addAttribute("page", page);
+				model.addAttribute("resList", resList);
+				model.addAttribute("today",today);
+				
+				return "userinfo/userreservepastlist";
+		}
+	
+	
+	/*------------*/
+
 	
 	/* 회원 정보 수정 */	
 	@RequestMapping(value="/modifyform", method = RequestMethod.GET)
@@ -105,12 +227,11 @@ public class UserinfoController {
 	@ResponseBody
 	@RequestMapping(value="/modify", method=RequestMethod.POST)
 	public int modify(@RequestBody UserVo vo ) {
-		System.out.println("modify:"+vo);
-	    int check =	userService.updateInfo(vo);
+		int check =	userService.updateInfo(vo);
 		return check;
 	}
-	
 	/*--------------*/
+	
 	
 	
 	/* -- 회원가입 -- */

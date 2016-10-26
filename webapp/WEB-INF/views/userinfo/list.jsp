@@ -358,7 +358,7 @@ th{text-align:center;}
 <!-- 회원삭제 Modal -->
 	<div class="modal fade" id="modalDeleteReserve" role="dialog"
 		tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
+		<div class="modal-dialog modal-sm">
 			<!-- modal content -->
 			<div class="modal-content">
 				<!-- header -->

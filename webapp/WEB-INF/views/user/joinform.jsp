@@ -332,7 +332,7 @@
               <button contenteditable="false" type="button" class="close" data-dismiss="alert"
               aria-hidden="true">×</button>이미 등록된 아이디 입니다.</div>-->
 
-	<button id="qmyBtn">Click Here</button>
+
 </body>
 
 

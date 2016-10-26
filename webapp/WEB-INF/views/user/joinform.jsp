@@ -584,7 +584,7 @@
 			}
 			/* 진행되고 있는 표시  */
 			$("#submit").removeClass("btn btn-primary");
-			$("#submit").addClass("btn btn-lg btn-primary m-progress");
+			$("#submit").addClass("btn btn-primary m-progress");
 			$('#submit').attr('disabled',true);
 			
 			/* 아니라면 아작스 통신으로 데이터 보내기!  */

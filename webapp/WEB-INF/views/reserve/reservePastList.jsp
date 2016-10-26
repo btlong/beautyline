@@ -123,7 +123,7 @@
 				</table>
 				
 				<div class="col-lg-12 text-right">	
-					<a class="btn btn-danger" type="button" href="reserve" >돌아가기</a>
+					<a class="btn btn-danger" type="button" href="javascript:history.go(-1);" >돌아가기</a>
 				</div>
 
 <!-------------Paging--------------->

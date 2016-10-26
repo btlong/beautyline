@@ -24,6 +24,7 @@ public class MypageDao {
 
    public List<VisitVo> listHistory(ListVo listVo) {
 	   List<VisitVo> list = sqlSession.selectList("mypage.listHistory", listVo);
+	   System.out.println(list);
 	   return list;
    }
    
@@ -31,7 +32,6 @@ public class MypageDao {
       int totalRecords = sqlSession.selectOne("mypage.countHistory", userNo);
       return totalRecords;
    }
-   
    
    
 }

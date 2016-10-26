@@ -51,6 +51,9 @@
 	height : 20px;
 }
 
+#user-name{
+	font-weight : bold;
+}
 </style>
 
 
@@ -105,7 +108,7 @@
 								<!-- (전체 게시물 갯수-(전체회원수-1))>=1이면 -->
 								<c:if test="${(page.totalRecord -status.index)>=1}">
 								<td>${page.totalRecord - status.index}</td>
-								<td>${resList[i].userName }</td>
+								<td><a id=user-name href="/beautyline/userinfo/userhistory?no=${resList[i].userNo }">${resList[i].userName }</a></td>
 								<td>${resList[i].progName }</td>
 								<td>${resList[i].resDate }</td>
 								<td>${resList[i].resTime }시- ${resList[i].resTime + 1 }시</td>

@@ -1,5 +1,8 @@
 package kr.ac.sungkyul.beautyline.controller;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,7 +33,7 @@ public class VisitController {
 
 	@Autowired
 	VisitService visitService;
-	
+
 	@Autowired
 	UserService userService;
 
@@ -71,6 +74,40 @@ public class VisitController {
 		return "visit/details";
 	}
 
+	// 내역 조회
+	@RequestMapping("todaydetails")
+		public String todaydetails(Model model, @RequestParam(value = "nowPage", required = false) Integer nowPage,
+				@RequestParam(value = "nowBlock", required = false) Integer nowBlock,
+				@RequestParam(value = "keyField", required = false) String keyField,
+				@RequestParam(value = "keyWord", required = false) String keyWord) {
+			
+			Date now = new Date();
+
+			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			
+			String today = simpleDateFormat.format(now);
+			List<VisitVo> visitList = visitService.selectListbyToday(today);
+
+			PageVo page = null;
+
+			Long totalPrice  = 0L ;
+			for(  VisitVo vo : visitList){
+				totalPrice += vo.getPrice();
+			}
+			
+			try {
+				page = pageService.pagingProc(nowPage, nowBlock, visitList.size());
+			} catch (Exception err) {
+				page = pageService.pagingProc(0, 0, visitList.size());
+			}
+			model.addAttribute("totalPrice" , totalPrice);
+			model.addAttribute("visitList", visitList);
+			model.addAttribute("page", page);
+			model.addAttribute("keyField", keyField);
+			model.addAttribute("keyWord", keyWord);
+			return "visit/todaydetails";
+		}
+
 	// 검색 회원 선택 시작
 	@ResponseBody
 	@RequestMapping(value = "visitorsearchform", method = RequestMethod.POST)
@@ -105,7 +142,7 @@ public class VisitController {
 	public List<CouponVo> packageCharge(@RequestBody CouponVo couponVo) {
 		visitService.couponCharge(couponVo);
 		List<CouponVo> couponList = visitService.couponList(couponVo.getUserNo());
-		
+
 		return couponList;
 	}
 
@@ -129,16 +166,15 @@ public class VisitController {
 		return "visit/loginform";
 	}
 
-	
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		session.removeAttribute("authUser");
 		session.invalidate(); //
 		return "redirect:/main";
 	}
-	
+
 	@ResponseBody
-	@RequestMapping(value="refund",  method = RequestMethod.POST)
+	@RequestMapping(value = "refund", method = RequestMethod.POST)
 	public int refund(@RequestBody VisitVo visitVo) {
 		visitService.couponRefund(visitVo);
 		visitService.insertRefundSales(visitVo.getNo());

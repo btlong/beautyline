@@ -43,6 +43,10 @@
 #page-location {
 	color: red;
 }
+
+#user-name{
+	font-weight : bold;
+}
 </style>
 
 <!-- jQuery -->
@@ -108,7 +112,7 @@
 											<!-- <th>권한</th> -->
 											<!-- <th>쿠폰</th> -->
 											<!-- <th>수정</th> -->
-											<th>히스토리</th>
+											<!-- <th>히스토리</th> -->
 											<th>삭제</th>
 										</tr>
 									</thead>
@@ -128,7 +132,9 @@
 													<c:if test="${(page.totalRecord -status.index)>=1}">
 														<%-- <td>${page.totalRecord -status.index}</td> --%>
 														<td>${listUser[i].no}</td>
-														<td>${listUser[i].name}</td>
+														<td>
+															<a id=user-name href="userhistory?no=${listUser[i].no }">${listUser[i].name}</a>
+														</td>
 														<td>${listUser[i].phone}</td>
 														<td>${listUser[i].id}</td>
 														<td>${listUser[i].email}</td>
@@ -154,14 +160,14 @@
 															</a>
 														</td> --%>
 
-														<td>
 															<!-- 회원 마이페이지 -->
+														<%-- <td>
 															<input type="hidden" name="no" value="${listUser[i].no }" />
 															<a class="btn btn-default  btn-sm"
 															href="userhistory?no=${listUser[i].no }" role="button">
 															<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
 															</a>
-														</td>
+														</td> --%>
 														
 														<td>
 															<!-- 회원 삭제 -->

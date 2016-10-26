@@ -186,7 +186,7 @@
 																				data-toggle="modal" role="button"
 																				data-userno="${visitList[i].userNo}"
 																				data-no="${visitList[i].no }" disabled="disabled"
-																				data-programno="${visitList[i].programNo }"><span>환불</span></a>
+																				data-programno="${visitList[i].programNo }"><span style="cursor: no-drop;">환불</span></a>
 																			</td>
 																		</c:when>
 																		<c:otherwise>
@@ -217,7 +217,7 @@
 																		data-toggle="modal" role="button"
 																		data-userno="${visitList[i].userNo}"
 																		data-no="${visitList[i].no }" disabled="disabled"
-																		data-programno="${visitList[i].programNo }"><span>환불</span></a>
+																		data-programno="${visitList[i].programNo }"><span style="cursor: no-drop;">환불</span></a>
 																	</td>
 
 																</c:if>
@@ -305,7 +305,7 @@
 
 						<div class="group-form">
 							<div class="col-sm-2 col-sm-offset-10">
-								<a class="btn-danger btn-primary btn-default"
+								<a class="btn btn-primary btn-warning"
 									href="/beautyline/visit/visitform" role="button">내역 관리</a> <br />
 							</div>
 						</div>
@@ -372,6 +372,15 @@
 <script type="text/javascript">
 	var visitList = new Array();
 	$(document).ready(function() {
+		
+		var totalPrice = 0; 
+		function doInit() {
+			$.each(function(index) {
+			totalPrice += '<c:out value="${visitList[i].price}"/>';
+			console.log(totalPrice);
+			});
+		}
+		
 
 		$.each(function(index) {
 			if ($('.refundView').data("refund") == 1) {

@@ -36,10 +36,11 @@ public class VisitService {
 
 		/* 객체 setting */
 		FileVisitVo fileVisitVo = new FileVisitVo();
+		
 		fileVisitVo.setOrgName(orgName);
 		fileVisitVo.setPath(path);
 		fileVisitVo.setSaveName(saveName);
-
+		
 		/* 이미지 insert */
 		long imageNo = visitDao.fileInsert(fileVisitVo);
 		File target = new File(path, saveName);
@@ -53,7 +54,8 @@ public class VisitService {
 		}
 			visitVo.setImageNo(imageNo);
 		} else {
-			visitVo.setImageNo(null);
+			System.out.println("no-image");
+			visitVo.setImageNo(0L);
 		}
 			
 		visitVo.setAverageScore((visitVo.getWhiteningScore() + // 미백

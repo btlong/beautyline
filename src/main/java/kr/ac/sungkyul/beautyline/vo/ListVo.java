@@ -18,7 +18,6 @@ public class ListVo {
 	private int pageRecords;
 	private List<VisitVo> visitList;
 	
-	
 	public int getPageRecords() {
 		return pageRecords;
 	}
@@ -105,9 +104,5 @@ public class ListVo {
 				+ ", nextPageSet=" + nextPageSet + ", number=" + number + ", pageRecords=" + pageRecords
 				+ ", visitList=" + visitList + "]";
 	}
-	
-	
-	
-	
 
 }

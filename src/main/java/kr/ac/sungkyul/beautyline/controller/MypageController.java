@@ -109,7 +109,6 @@ public class MypageController {
 																	// 바꿔서 보내준다.
 		FileCopyUtils.copy(fin, resOut);
 		fin.close();
-
 	}
 
 	@RequestMapping("imageview")

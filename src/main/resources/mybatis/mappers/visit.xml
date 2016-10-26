@@ -69,7 +69,6 @@
 
 
 
-
 	<!-- 파일 추가 -->
 	<insert id="fileInsert" parameterType="filevisitvo">
 		<selectKey resultType="java.lang.Long" keyProperty="no"
@@ -81,25 +80,18 @@
 	
 		<![CDATA[
 			insert into f_visit 
-			values ( #{no} , #{orgName} , #{path} , #{saveName} ) 
+			values ( seq_f_visit.nextVal , #{orgName} , #{path} , #{saveName} ) 
 	
 		]]>
 	</insert>
 
 	<!-- 시술 -->
 	<insert id="insert" parameterType="visitvo">
-
-		<selectKey resultType="java.lang.Long" keyProperty="no"
-			order="BEFORE">
-		<![CDATA[
-			select seq_visit.nextVal as no from dual
-		]]>
-		</selectKey>
 	
 	<![CDATA[
 		insert into visit values( 
-			#{no}, #{userNo}, #{programNo}, 
-			#{imageNo, jdbcType=INTEGER}, #{memo}, to_char(sysdate , 'YYYY-MM-DD HH24:MI'), 
+			seq_visit.nextVal, #{userNo}, #{programNo}, 
+			#{imageNo}, #{memo}, to_char(sysdate , 'YYYY-MM-DD HH24:MI'), 
 			#{whiteningScore}, #{whinkleScore}, #{elasticScore},
 			#{moistureScore}, #{acneScore}, #{averageScore}
 			)
@@ -117,6 +109,7 @@
 		where s.USER_NO = u.NO 
 		and  s.PAY_NO = pay.NO
 		and  s.PROGRAM_NO = pro.no
+		order by s.reg_date desc
 	]]>
 	</select>
 

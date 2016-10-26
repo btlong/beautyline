@@ -15,7 +15,8 @@
 <!-- 부트스트랩 -->
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <!-- Custom CSS -->
 <link href="/beautyline/bootstrap/css/business-casual.css"
@@ -274,21 +275,6 @@ style>.headermessage {
 			}
 		});
 
-		$(".filter-tab").click(function() {
-			var value = $(this).attr('data-filter');
-
-			if (value == "전부") {
-				//$('.filter').removeClass('hidden');
-				$('.filter').show('1000');
-			} else {
-				//		            $('.filter[filter-item="'+value+'"]').removeClass('hidden');
-				//		            $(".filter").not('.filter[filter-item="'+value+'"]').addClass('hidden');
-				$(".filter").not('.' + value).hide('3000');
-				$('.filter').filter('.' + value).show('3000');
-
-			}
-		});
-
 	});
 	//숫자 카운터(%값)
 	var max1 = 0;
@@ -361,30 +347,6 @@ style>.headermessage {
 
 		});
 	});
-
-	/* test */
-	$(function() {
-		$("#items a").fluidbox();
-
-		var $container = $("#items");
-		imagesLoaded("#items", function() {
-			$container.isotope({
-				itemSelector : ".item",
-				layoutMode : "fitRows"
-			});
-		});
-
-		$("#select-filter").selectpicker({
-			size : 6
-		}).change(function() {
-			$container.isotope({
-				filter : "." + $(this).val(),
-				transitionDuration : "1s"
-			});
-			$("#items a").fluidbox();
-		});
-	});
-	/* test end */
 </script>
 </head>
 <body>
@@ -504,32 +466,8 @@ style>.headermessage {
 
 					<div class="hide" id="imageTable">
 						<div class="col-lg-12 center-block">
-							<!-- <div role="tabpanel"> -->
-							<!-- Nav tabs -->
-							<!-- <ul class="nav nav-tabs" role="tablist">
-												<li role="presentation" class="active filter-tab"
-													data-filter="전부"><a href="#" aria-controls="home"
-													role="tab" data-toggle="tab">All</a></li>
-												<li role="presentation" class="active filter-tab"
-													data-filter="베이직 케어"><a href="#"
-													aria-controls="profile" role="tab" data-toggle="tab">베이직
-														케어</a></li>
-												<li role="presentation" class="active filter-tab"
-													data-filter="미백 케어"><a href="#"
-													aria-controls="messages" role="tab" data-toggle="tab">미백
-														케어</a></li>
-												<li role="presentation" class="active filter-tab"
-													data-filter="주름 케어"><a href="#"
-													aria-controls="settings" role="tab" data-toggle="tab">리프팅</a></li>
-												<li role="presentation" class="active filter-tab"
-													data-filter="여드름 케어"><a href="#"
-													aria-controls="settings" role="tab" data-toggle="tab">여드름
-														케어</a></li>
-											</ul>
- -->						<br>
 							<c:forEach var='visitVo' items='${listVo.visitList }'
 								varStatus='status'>
-
 								<a href="#" data-toggle="modal"
 									data-target=".dialog-${status.index}"
 									data-index="${status.index}"
@@ -539,9 +477,7 @@ style>.headermessage {
 										style="background: url(download?saveName=thumb_${visitVo.saveName}) no-repeat center top; background-size: cover;">
 										<p>${visitVo.regDate}</p>
 									</div>
-
 								</a>
-
 								<!--  Modal content for City Image -->
 								<div class="modal fade dialog-${status.index}"
 									id="dialog-${status.index}" tabindex="-1">

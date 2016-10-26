@@ -164,4 +164,8 @@ public class VisitService {
       visitDao.updateRefundSales(no);
    }
 
+public List<VisitVo> selectListbyToday(String today) {
+	return visitDao.selectListbyToday(today);
+}
+
 }

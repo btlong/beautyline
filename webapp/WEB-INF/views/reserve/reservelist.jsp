@@ -51,6 +51,9 @@
 	height : 20px;
 }
 
+#user-name{
+	font-weight : bold;
+}
 </style>
 
 
@@ -105,7 +108,7 @@
 								<!-- (전체 게시물 갯수-(전체회원수-1))>=1이면 -->
 								<c:if test="${(page.totalRecord -status.index)>=1}">
 								<td>${page.totalRecord - status.index}</td>
-								<td>${resList[i].userName }</td>
+								<td><a id=user-name href="/beautyline/userinfo/userhistory?no=${resList[i].userNo }">${resList[i].userName }</a></td>
 								<td>${resList[i].progName }</td>
 								<td>${resList[i].resDate }</td>
 								<td>${resList[i].resTime }시- ${resList[i].resTime + 1 }시</td>
@@ -129,7 +132,7 @@
 				</table>
 				
 				<div class="col-lg-12 text-right">	
-					<a class="btn btn-danger" type="button" href="reserve" >돌아가기</a>
+					<a class="btn btn-danger" type="button" href="javascript:history.go(-1);" >돌아가기</a>
 					
 					<form id="adminReserve" action="reservePastList" method="POST">
 					<input type="hidden" value="${today }" name="today">

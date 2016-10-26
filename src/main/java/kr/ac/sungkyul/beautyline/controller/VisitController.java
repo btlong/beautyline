@@ -1,6 +1,5 @@
 package kr.ac.sungkyul.beautyline.controller;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -138,7 +137,8 @@ public class VisitController {
 			@RequestParam("no")	Long userNo, //사용자 번호
 			@RequestParam("progNo")	Long programNo //쿠폰 번호
 			){
-		
+		System.out.println(userNo);
+		System.out.println(programNo);
 		CouponVo couponVo = new CouponVo();
 		couponVo.setUserNo(userNo);
 		couponVo.setProgram_No(programNo);

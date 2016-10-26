@@ -2,8 +2,11 @@ package kr.ac.sungkyul.beautyline.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -225,6 +228,28 @@ public class ReserveController {
 		return count;
 	}
 	
+	/*------------------------------------------------- 안드--------------------------------------------------- */
+	@RequestMapping(value = "android", method = RequestMethod.POST)
+	   @ResponseBody
+	   public int androidTestWithRequest(HttpServletRequest request,
+	         @RequestParam("resDate") String resDate,
+	         @RequestParam("resTime") String resTime2){
+	      
+	      System.out.println(resDate);
+	      System.out.println(resTime2);
+	      int resTime = Integer.parseInt(resTime2);
+	      
+	      ReserveVo reserveVo = new ReserveVo();
+	      reserveVo.setResDate(resDate);
+	      reserveVo.setResTime(resTime);
+	      reserveVo.setUserNo(101);
+	      reserveVo.setProgName("여드름 케어");
+	      int count = reserveService.reserve( reserveVo );
+	      
+	      
+	        return count;
+	           
+	   }
 	
 	 
 } 

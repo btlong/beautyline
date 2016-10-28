@@ -83,7 +83,7 @@
 	
 		<![CDATA[
 			insert into f_visit 
-			values ( seq_f_visit.nextVal , #{orgName} , #{path} , #{saveName} ) 
+			values ( #{no} , #{orgName} , #{path} , #{saveName} ) 
 	
 		]]>
 	</insert>

@@ -162,6 +162,26 @@ public class ReserveController {
 			return "reserve/userreservelist";
 		}
 		
+		//안드로이드 - 회원 예약 리스트
+		@RequestMapping(value="andReserveList", method = RequestMethod.POST)
+		public String andReserveList(  
+				@RequestParam("no") Long no
+				){
+			
+			System.out.println(no);
+			Date now = new Date();
+
+			DateFormat format1 = DateFormat.getDateInstance(DateFormat.FULL);
+			String today = format1.format(now);
+				        
+			List<ReserveVo> resList = reserveService.resList( no, today);
+	       
+			
+			return "reserve/userreservelist";
+		}
+		
+		
+		
 		
 		//회원 - 지난 예약 리스트
 		@RequestMapping("userreservepastlist")

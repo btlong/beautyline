@@ -80,7 +80,18 @@
 		and r.res_date >= #{today}
 		order by resDate asc, resTime asc
 	]]>
+</select>
 
+
+<!-- 안드로이드 회원 - 회원번호로 예약리스트 조회 -->
+<select id="andResListUserNo" parameterType="map" resultType="reservevo">
+	<![CDATA[
+		select u.name as userName,r.prog_name as progName,r.res_date as resDate,r.res_Time as resTime 
+		from reservation r, users u 
+		where u.no = r.user_no and r.user_no = #{userNo} 
+		and r.res_date >= #{today}
+		order by resDate asc, resTime asc
+	]]>
 </select>
 
 <!-- 회원 - 회원번호로 과거예약리스트 조회 -->
@@ -89,7 +100,7 @@
 		select r.no as no,r.user_no as userNo,u.name as userName,r.prog_name as progName,r.res_date as resDate,r.res_Time as resTime 
 		from reservation r, users u 
 		where u.no = r.user_no and r.user_no = #{userNo} 
-		and r.res_date < #{today}
+		and r.res_date <= #{today}
 		order by resDate asc, resTime asc
 	]]>
 

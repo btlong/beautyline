@@ -1,6 +1,8 @@
 package kr.ac.sungkyul.beautyline.controller;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -53,10 +55,11 @@ public class ReserveController {
 			@RequestParam(value = "keyField", required=false) String keyField,
 		    @RequestParam(value = "keyWord", required=false) String keyWord
 			){
-		Date now = new Date();
+		SimpleDateFormat df = new SimpleDateFormat("yyyy년 MM월 dd일");
+		
+		Date date = new Date();
 
-		DateFormat format1 = DateFormat.getDateInstance(DateFormat.FULL);
-		String today = format1.format(now);
+		String today = df.format(date);
 		
 		List<ReserveVo> resList = reserveService.resList(keyField, keyWord, today);
 		PageVo page = null;
@@ -84,12 +87,12 @@ public class ReserveController {
 			    @RequestParam(value = "keyWord", required=false) String keyWord
 				){
 			
-			Date now = new Date();
-
-			DateFormat format1 = DateFormat.getDateInstance(DateFormat.FULL);
-			String today = format1.format(now);
+			SimpleDateFormat df = new SimpleDateFormat("yyyy년 MM월 dd일");
 			
+			Date date = new Date();
 
+			String today = df.format(date);
+			
 			List<ReserveVo> resList = reserveService.reservePastList(keyField, keyWord, today);
 			PageVo page = null;
 	        try{
@@ -137,10 +140,13 @@ public class ReserveController {
 				@RequestParam(value = "nowBlock", required=false) Integer nowBlock,
 				HttpSession session
 				){
-			Date now = new Date();
+			SimpleDateFormat df = new SimpleDateFormat("yyyy년 MM월 dd일");
+			
+			Date date = new Date();
 
-			DateFormat format1 = DateFormat.getDateInstance(DateFormat.FULL);
-			String today = format1.format(now);
+			String today = df.format(date);
+			
+	
 			
 			UserVo authUser =(UserVo) session.getAttribute("authUser");
 	        Long userNo = authUser.getNo();
@@ -162,6 +168,29 @@ public class ReserveController {
 			return "reserve/userreservelist";
 		}
 		
+		//안드로이드 - 회원 예약 리스트
+		@ResponseBody
+		@RequestMapping(value="/andReserveList", method = RequestMethod.GET)
+		public List<ReserveVo> andReserveList(  
+				@RequestParam("no") Long no
+				){
+	
+			SimpleDateFormat df = new SimpleDateFormat("yyyy년 MM월 dd일");
+	
+			Date date = new Date();
+
+			String today = df.format(date);
+			
+			System.out.println(today);
+				        
+			List<ReserveVo> resList = reserveService.andResList( no, today);
+	     
+		
+			 return resList;
+		}
+		
+		
+		
 		
 		//회원 - 지난 예약 리스트
 		@RequestMapping("userreservepastlist")
@@ -170,11 +199,11 @@ public class ReserveController {
 					@RequestParam(value = "nowBlock", required=false) Integer nowBlock,
 					HttpSession session
 						){
+			SimpleDateFormat df = new SimpleDateFormat("yyyy년 MM월 dd일");
 			
-				Date now = new Date();
+			Date date = new Date();
 
-				DateFormat format1 = DateFormat.getDateInstance(DateFormat.FULL);
-				String today = format1.format(now);
+			String today = df.format(date);
 			
 			   	UserVo authUser =(UserVo) session.getAttribute("authUser");
 			       Long userNo = authUser.getNo();

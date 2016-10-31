@@ -29,7 +29,11 @@ public class ReserveService {
 	public List<ReserveVo> resList( Long userNo, String today ){
 		return reserveDao.resList( userNo, today);
 	}
-	//회원 - 회원번호로 과거list 조회
+	//안드로이드 회원 - 회원번호로 list 조회
+	public List<ReserveVo> andResList( Long userNo, String today ){
+		return reserveDao.andResList( userNo, today);
+	}
+		//회원 - 회원번호로 과거list 조회
 	public List<ReserveVo> resPastList( Long userNo, String today ){
 		return reserveDao.resPastList( userNo, today);
 	}

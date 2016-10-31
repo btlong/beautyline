@@ -404,7 +404,7 @@ var inputNumber = "";
 			resDateText += dateArr[1] + "월 ";
 			resDateText += dateArr[2] + "일 ";
 			
-			resDateText += day + "요일";
+			//resDateText += day + "요일";
 			
 			$(".resDateText").text(resDateText);
 			$('.selDateView').text(resDateText); 
@@ -438,7 +438,7 @@ var inputNumber = "";
 					var week2 = new Array('일','월','화','수','목','금','토');
 					var day2 = week[d2.getDay()];
 					
-					nowDate += day2 + "요일";
+					//nowDate += day2 + "요일";
 
 					for( var i = 10; i <= 21 ; i++ ){
 						trString += "<option value='" + i + "' id='resTime"+ i + "'" ;

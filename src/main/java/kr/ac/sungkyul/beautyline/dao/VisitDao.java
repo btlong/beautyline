@@ -20,6 +20,7 @@ public class VisitDao {
 
 	/* visited - visitInsert */
 	public void insert(VisitVo visitVo) {
+		System.out.println(visitVo);
 		sqlSession.insert("visit.insert", visitVo);
 	}
 

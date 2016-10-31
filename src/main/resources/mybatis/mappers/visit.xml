@@ -83,7 +83,7 @@
 	
 		<![CDATA[
 			insert into f_visit 
-			values ( seq_f_visit.nextVal , #{orgName} , #{path} , #{saveName} ) 
+			values ( #{no} , #{orgName} , #{path} , #{saveName} ) 
 	
 		]]>
 	</insert>
@@ -112,7 +112,7 @@
 		where s.USER_NO = u.NO 
 		and  s.PAY_NO = pay.NO
 		and  s.PROGRAM_NO = pro.no
-		order by s.reg_date desc
+		order by no desc ,reg_date desc
 	]]>
 	</select>
 
@@ -125,7 +125,7 @@
 		and s.PAY_NO = pay.NO
 		and s.PROGRAM_NO = pro.no
 		and s.reg_date >= #{today}
-		order by s.reg_date desc
+		order by s.reg_date desc , s.no desc
 	]]>
 	</select>
 

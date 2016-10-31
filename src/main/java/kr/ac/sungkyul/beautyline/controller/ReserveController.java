@@ -231,25 +231,47 @@ public class ReserveController {
 	/*------------------------------------------------- 안드--------------------------------------------------- */
 	@RequestMapping(value = "android", method = RequestMethod.POST)
 	   @ResponseBody
-	   public int androidTestWithRequest(HttpServletRequest request,
-	         @RequestParam("resDate") String resDate,
-	         @RequestParam("resTime") String resTime2){
-	      
-	      System.out.println(resDate);
-	      System.out.println(resTime2);
-	      int resTime = Integer.parseInt(resTime2);
-	      
-	      ReserveVo reserveVo = new ReserveVo();
-	      reserveVo.setResDate(resDate);
-	      reserveVo.setResTime(resTime);
-	      reserveVo.setUserNo(101);
-	      reserveVo.setProgName("여드름 케어");
-	      int count = reserveService.reserve( reserveVo );
-	      
-	      
-	        return count;
-	           
-	   }
+	   public String androidTestWithRequest(HttpServletRequest request,
+               @RequestParam("resDate") String resDate,
+               @RequestParam("resTime") String resTime,
+               @RequestParam("progNo") String progNo,
+               @RequestParam("userNo") String userNo){
+		
+		//Integer programNo;
+		Integer a=Integer.parseInt(resTime);	
+			ReserveVo reserveVo = new ReserveVo();
+			reserveVo.setResDate(resDate);
+			reserveVo.setResTime(a);
+			reserveVo.setUserNo(Integer.parseInt(userNo));
+			reserveVo.setProgName(progNo);
+			int count = reserveService.reserve( reserveVo );
+			String result = count+"";
+			System.out.println(result);
+
+				return result;
+
+
+		}
+
 	
+	 //안드로이드 - 회원 예약 리스트
+	@ResponseBody
+    @RequestMapping(value="andReserveList", method = RequestMethod.POST)
+    public List<ReserveVo> andReserveList(  
+          @RequestParam("no") Long no
+          ){
+       
+       System.out.println("안드로이드 들어와땅"+no);
+       Date now = new Date();
+
+       DateFormat format1 = DateFormat.getDateInstance(DateFormat.FULL);
+       String today = format1.format(now);
+                  
+       List<ReserveVo> resList = reserveService.resList( no, today);
+       System.out.println(resList);
+        
+    
+        return resList;
+    }
 	 
 } 

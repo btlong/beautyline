@@ -108,4 +108,14 @@ public class ReserveDao {
 	public List<UserVo> UserSearch( String name ){
 		return sqlSession.selectList( "res.UserSearch", name );
 	}
+	
+	/* */
+	
+	//안드로이드 - 회원번호로 list 조회
+	   public List<ReserveVo> andResList( Long userNo, String today ){
+	        Map<String, Object> map = new HashMap<String, Object> ();
+	        map.put("userNo",userNo);
+	        map.put("today",today);
+	      return sqlSession.selectList( "res.andResListUserNo", map );
+	   }
 }

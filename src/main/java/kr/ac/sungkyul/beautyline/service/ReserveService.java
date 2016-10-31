@@ -66,4 +66,12 @@ public class ReserveService {
 	public List<UserVo> UserSearch( String name ){
 		return reserveDao.UserSearch( name );
 	}
+	
+	
+	/* */
+	
+	//안드로이드 회원 - 회원번호로 list 조회
+	   public List<ReserveVo> andResList( Long userNo, String today ){
+	      return reserveDao.andResList( userNo, today);
+	   }
 }

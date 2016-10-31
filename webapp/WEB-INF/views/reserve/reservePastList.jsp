@@ -5,6 +5,7 @@
 	pageEncoding="UTF-8"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -12,8 +13,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
-
-<title>지 난 예 약 관 리</title>
+<title>예약 관리</title>
 
 <!-- Custom CSS -->
 <link href="/beautyline/bootstrap/css/business-casual.css"rel="stylesheet">
@@ -35,7 +35,6 @@
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
- 
 
 </head>
 <style type="text/css">

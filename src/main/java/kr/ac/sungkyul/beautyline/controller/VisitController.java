@@ -1,12 +1,12 @@
 package kr.ac.sungkyul.beautyline.controller;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -126,6 +126,75 @@ public class VisitController {
 		List<CouponVo> couponList = visitService.couponList(authUser.getNo());
 		retVal.put("couponList", couponList);
 		return retVal;
+	}
+	
+/*
+ *  안드로이드 쿠폰 정보	
+ */
+	
+	
+	
+	
+	@RequestMapping(value = "checkLogin", method = RequestMethod.POST)
+	   @ResponseBody
+	   public Map<String, String> androidTestWithRequest(HttpServletRequest request,
+	         @RequestParam("id") String id,
+	         @RequestParam("pw") String pw){
+	      
+	      System.out.println(id);
+	      System.out.println(pw);
+	      
+//	      System.out.println("test"); 
+//	      System.out.println(request.getParameter("title"));
+//	        System.out.println(request.getParameter("memo"));
+	   
+	        Map<String, String> result = new HashMap<String, String>();
+	        
+	        UserVo vo = new UserVo();
+	        vo.setId(id);
+	        vo.setPassword(pw);
+	        
+	       UserVo authUser =  userService.login(vo);
+	       
+	      if(authUser == null){
+	          result.put("result", "false");
+	          
+	      }
+	        
+	      else {
+	         //인증성공
+	          result.put("result", "true");
+	          result.put("no",authUser.getNo().toString());
+	          result.put("name", authUser.getName().toString());
+	      }
+	        return result;
+	           
+	   }
+	
+	
+	
+	
+	
+	@RequestMapping(value = "searchCoupon", method = RequestMethod.POST)
+	@ResponseBody
+	public String androidTestWithRequest(HttpServletRequest request,
+			@RequestParam("no")	Long userNo, //사용자 번호
+			@RequestParam("progNo")	String programNo //쿠폰 번호
+			){
+
+String count;
+		Long progNo = Long.parseLong(programNo);
+		System.out.println(userNo);
+		System.out.println(programNo);
+		System.out.println(progNo);
+		
+		CouponVo couponVo = new CouponVo();
+		couponVo.setUserNo(userNo);
+		couponVo.setProgram_No(progNo);
+		
+		count = ""+visitService.searchCount(couponVo);
+		
+		return count;
 	}
 
 	/* 쿠폰 충전 */

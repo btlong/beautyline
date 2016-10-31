@@ -47,6 +47,12 @@
 #user-name{
 	font-weight : bold;
 }
+th{text-align:center;}
+#th-userno{width:80px; word-break:break-all;}
+#th-name{width:65px; word-break:break-all;}
+#th-phone{width:140px; word-break:break-all;}
+#td-userno, #td-name, #td-phone{text-align:center;}
+
 </style>
 
 <!-- jQuery -->
@@ -103,9 +109,9 @@
 									<thead>
 										<tr class="danger">
 											<!-- <th>#</th> -->
-											<th>회원번호</th>
-											<th>이름</th>
-											<th>전화번호</th>
+											<th id="th-userno">회원번호</th>
+											<th id="th-name">이름</th>
+											<th id="th-phone">전화번호</th>
 											<th>아이디</th>
 											<th>이메일</th>
 											<th>주소</th>
@@ -131,11 +137,11 @@
 													<!-- (전체 게시물 갯수-(전체회원수-1))>=1이면 -->
 													<c:if test="${(page.totalRecord -status.index)>=1}">
 														<%-- <td>${page.totalRecord -status.index}</td> --%>
-														<td>${listUser[i].no}</td>
-														<td>
+														<td id="td-userno">${listUser[i].no}</td>
+														<td id="td-name">
 															<a id=user-name href="userhistory?no=${listUser[i].no }">${listUser[i].name}</a>
 														</td>
-														<td>${listUser[i].phone}</td>
+														<td id="td-phone">${listUser[i].phone}</td>
 														<td>${listUser[i].id}</td>
 														<td>${listUser[i].email}</td>
 														<td>${listUser[i].address}</td>
@@ -352,7 +358,7 @@
 <!-- 회원삭제 Modal -->
 	<div class="modal fade" id="modalDeleteReserve" role="dialog"
 		tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
+		<div class="modal-dialog modal-sm">
 			<!-- modal content -->
 			<div class="modal-content">
 				<!-- header -->

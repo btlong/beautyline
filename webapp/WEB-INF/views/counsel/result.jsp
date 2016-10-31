@@ -48,9 +48,9 @@
    
    .counter {margin-left: 5px; }
       
-   
-
-   
+   .margin-bottom{margin: 10px 0px;}
+	.margin-left {margin-left: 5px;}
+	.induce {text-decoration: underline; color:#757575;}
  
 </style>
 <script type="text/javascript">
@@ -138,7 +138,7 @@
 				
 				<div class="col-lg-4 " style="height:420px;">
 					<h2 class="col-lg-12 text-center">
-						<small >고객님만을 위한 추천제품 (product regimen)</small>
+						<small>고객님만을 위한 추천제품 (product regimen)</small>
 					</h2>
 					<div class="col-lg-12 text-center " id="cosmetic" style="height:420px;"> <!-- text-center -->
 							<a href='${resultVo.url }' target="_blank"> <img src='${resultVo.src }' title="구매하러 가기" /> </a>
@@ -146,13 +146,31 @@
 					</div>
 				</div>
 				
-				<div class="col-lg-1">
+				<div class="col-lg-7">
+				<div class="row text-center margin-bottom">
+            		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> 
+            		<span class="induce margin-left">뷰티라인에 방문하여 <strong>더욱 정확한 진단</strong>을 받아보세요!</span>
+            		
+            		<c:choose>
+						<c:when test="${authUser.isAdmin eq 'y'}">
+							<a href="/beautyline/reserve/userreserve" class="btn btn-info btn-sm margin-left" id="reservelist">예약하러 가기</a>
+						</c:when>
+						<c:when test="${authUser.isAdmin eq 'a'}">
+							<a href="/beautyline/reserve/reserve" class="btn btn-info btn-sm margin-left" id="reservelist">예약하러 가기</a>
+						</c:when>
+						<c:when test="${empty sessionScope.authUser}">
+							<a href="/beautyline/user/joinform" class="btn btn-info btn-sm margin-left" type="button">회원가입</a>
+						</c:when>
+						
+					</c:choose>
+            		
+            		
+            		</div>
 				</div>
 				
 				
 				
-				<div class="col-lg-6 clumn">
-            
+				<div class="col-lg-6 col-lg-offset-1 clumn">
 		            <div class="graphBox2">
 		                <ul>
 		                    <li class="g1"><span class="counter1 counter">0</span></li>

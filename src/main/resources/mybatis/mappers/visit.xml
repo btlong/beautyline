@@ -112,7 +112,7 @@
 		where s.USER_NO = u.NO 
 		and  s.PAY_NO = pay.NO
 		and  s.PROGRAM_NO = pro.no
-		order by no desc ,reg_date desc
+		order by s.no desc , s.reg_date desc
 	]]>
 	</select>
 

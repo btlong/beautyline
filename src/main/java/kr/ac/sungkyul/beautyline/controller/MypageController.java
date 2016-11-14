@@ -165,7 +165,7 @@ public class MypageController {
 																														// 바꿔서
 																														// 보내준다.
 		OutputStream resOut = res.getOutputStream();
-		FileInputStream fin = new FileInputStream(path + saveName); // savename을
+		FileInputStream fin = new FileInputStream(path + saveName ); // savename을
 																	// orgname으로
 																	// 바꿔서 보내준다.
 		FileCopyUtils.copy(fin, resOut);

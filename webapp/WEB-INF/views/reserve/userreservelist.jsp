@@ -58,7 +58,7 @@
 			<div class="col-lg-12">
 				<hr>
 				<h2 class="intro-text text-center">
-				<strong>Reserve List</strong><br><br>${resList[1].userName }님의 예약관리
+				<strong>Reserve List</strong><br><br>${authUser.name }님의 예약관리
 				</h2>
 				<hr>
 			</div>

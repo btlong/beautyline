@@ -100,7 +100,7 @@
 		select r.no as no,r.user_no as userNo,u.name as userName,r.prog_name as progName,r.res_date as resDate,r.res_Time as resTime 
 		from reservation r, users u 
 		where u.no = r.user_no and r.user_no = #{userNo} 
-		and r.res_date <= #{today}
+		and r.res_date < #{today}
 		order by resDate asc, resTime asc
 	]]>
 

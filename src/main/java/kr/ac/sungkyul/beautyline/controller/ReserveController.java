@@ -145,6 +145,8 @@ public class ReserveController {
 	
 			
 			UserVo authUser =(UserVo) session.getAttribute("authUser");
+			//UserVo authUser = userService.getUserInfo(no);
+			// System.out.println("여기여기"+authUser);
 	        Long userNo = authUser.getNo();
 	        
 			List<ReserveVo> resList = reserveService.resList( userNo, today);
@@ -166,7 +168,7 @@ public class ReserveController {
 		
 		//안드로이드 - 회원 예약 리스트
 		@ResponseBody
-		@RequestMapping(value="/andReserveList", method = RequestMethod.GET)
+		@RequestMapping(value="/andReserveList", method = RequestMethod.POST)
 		public List<ReserveVo> andReserveList(  
 				@RequestParam("no") Long no
 				){
@@ -180,7 +182,7 @@ public class ReserveController {
 			System.out.println(today);
 				        
 			List<ReserveVo> resList = reserveService.andResList( no, today);
-	     
+			System.out.println(resList);
 		
 			 return resList;
 		}
@@ -192,7 +194,7 @@ public class ReserveController {
 					@RequestParam(value = "nowBlock", required=false) Integer nowBlock,
 					HttpSession session
 						){
-			SimpleDateFormat df = new SimpleDateFormat("yyyy년 MM월 dd일");
+			SimpleDateFormat df = new SimpleDateFormat("yyyy년MM월dd일");
 			
 			Date date = new Date();
 

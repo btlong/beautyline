@@ -155,15 +155,16 @@ public class UserinfoController {
 	public String userreservelist(Long no, Model model, 
 			@RequestParam(value = "nowPage", required = false) Integer nowPage,
 			@RequestParam(value = "nowBlock", required=false) Integer nowBlock) {
-		System.out.println(no);
 		Date now = new Date();
 
-		DateFormat format1 = DateFormat.getDateInstance(DateFormat.FULL);
+		DateFormat format1 = DateFormat.getDateInstance(DateFormat.MEDIUM);
+		System.out.println("날짜"+now);
 		String today = format1.format(now);
 		
 		UserVo userVo =userService.getUserInfo(no);
-        
+        	
 		List<ReserveVo> resList = reserveService.resList(no, today);
+		System.out.println("여기여기"+resList);
 		PageVo page = null;
         try{
             page = pageService.pagingProc(nowPage, nowBlock, resList.size());

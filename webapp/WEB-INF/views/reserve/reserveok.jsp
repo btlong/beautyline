@@ -52,7 +52,7 @@
 							<a href="reservelist" class="btn btn-primary" id="reservelist">예약관리</a>
 						</c:when>
 						<c:when test="${not empty sessionScope.authUser}">
-							<a href="userreservelist" class="btn btn-primary" type="button">예약조회</a>
+							<a href="userreservelist?no=${authUser.no}" class="btn btn-primary" type="button">예약조회</a>
 						</c:when>
 						
 					</c:choose>
